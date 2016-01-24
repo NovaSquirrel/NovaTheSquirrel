@@ -1,0 +1,183 @@
+L ObjGraphics1
+L ObjGraphics2
+L ObjBehaviors
+
+R NONE
+C .byt 0
+C .byt 0
+C .byt 0
+
+R GOOMBA
+C .byt GraphicsUpload::SP_WALKER
+C .byt GraphicsUpload::SP_WALKER
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R SNEAKER
+C .byt GraphicsUpload::SP_WALKER
+C .byt GraphicsUpload::SP_WALKER
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R SPINNER
+C .byt GraphicsUpload::SP_WALKER
+C .byt GraphicsUpload::SP_WALKER
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R OWL
+C .byt GraphicsUpload::SP_WALKER
+C .byt GraphicsUpload::SP_WALKER
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R KING
+C .byt GraphicsUpload::SP_KING
+C .byt GraphicsUpload::SP_KING
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R TOASTBOT
+C .byt GraphicsUpload::SP_KING
+C .byt GraphicsUpload::SP_KING
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R BALL
+C .byt GraphicsUpload::SP_CANNON
+C .byt GraphicsUpload::SP_CANNON
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R POTION
+C .byt GraphicsUpload::SP_KING
+C .byt GraphicsUpload::SP_KING
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R GEORGE
+C .byt GraphicsUpload::SP_KING
+C .byt GraphicsUpload::SP_GEORGE
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R BIGGEORGE
+C .byt GraphicsUpload::SP_GEORGE
+C .byt GraphicsUpload::SP_GEORGE
+C .byt ObjBehavior::AUTO_REMOVE
+
+R ALAN
+C .byt GraphicsUpload::SP_GEORGE
+C .byt GraphicsUpload::SP_GEORGE
+C .byt ObjBehavior::AUTO_REMOVE
+
+R GLIDER
+C .byt 0
+C .byt 0
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R ICE1
+C .byt 0
+C .byt 0
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R ICE2
+C .byt 0
+C .byt 0
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R BALLGUY
+C .byt GraphicsUpload::SP_CANNON
+C .byt GraphicsUpload::SP_CANNON
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R THWOMP
+C .byt GraphicsUpload::SP_CANNON
+C .byt GraphicsUpload::SP_CANNON
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R CANNON1
+C .byt GraphicsUpload::SP_CANNON
+C .byt GraphicsUpload::SP_CANNON
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R CANNON2
+C .byt GraphicsUpload::SP_CANNON
+C .byt GraphicsUpload::SP_CANNON
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R BURGER
+C .byt GraphicsUpload::SP_CANNON
+C .byt GraphicsUpload::SP_CANNON
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R FIREWALK
+C .byt GraphicsUpload::SP_FIRE
+C .byt GraphicsUpload::SP_FIRE
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R FIREJUMP
+C .byt GraphicsUpload::SP_FIRE
+C .byt GraphicsUpload::SP_FIRE
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R FIREBURNING
+C .byt GraphicsUpload::SP_FIRE
+C .byt GraphicsUpload::SP_FIRE
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R MINE
+C .byt GraphicsUpload::SP_CANNON
+C .byt GraphicsUpload::SP_CANNON
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R ROCKET
+C .byt GraphicsUpload::SP_EXPLODE
+C .byt GraphicsUpload::SP_EXPLODE
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R ROCKETLAUNCHER
+C .byt GraphicsUpload::SP_EXPLODE
+C .byt GraphicsUpload::SP_EXPLODE
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R FIREWORKSHOOTER
+C .byt GraphicsUpload::SP_EXPLODE
+C .byt GraphicsUpload::SP_EXPLODE
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R TORNADO
+C .byt 0
+C .byt 0
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R ELECTRICFAN
+C .byt 0
+C .byt 0
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R CLOUD
+C .byt 0
+C .byt 0
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R BOUNCER
+C .byt 0
+C .byt 0
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R GREMLIN
+C .byt 0
+C .byt 0
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R BOMBGUY
+C .byt GraphicsUpload::SP_EXPLODE
+C .byt GraphicsUpload::SP_EXPLODE
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+
+R POOF
+C .byt 0
+C .byt 0
+C .byt 0
+
+R PLAYER_PROJECTILE
+C .byt 0
+C .byt 0
+C .byt 0
+
+R ENEMY_PROJECTILE
+C .byt 0
+C .byt 0
+C .byt 0

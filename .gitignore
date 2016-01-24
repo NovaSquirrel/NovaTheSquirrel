@@ -1,0 +1,6 @@
+*.o
+*.nes
+*.lst
+*.exe
+*.deb
+map.txt

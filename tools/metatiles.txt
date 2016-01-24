@@ -1,0 +1,855 @@
+# this file defines the metatiles used in this game
+I M_FIRST_SPECIAL_MISC = Metatiles::COIN
+I M_FIRST_SPECIAL_WALL = Metatiles::LOCK_RED
+I M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
+E Metatiles
+L MetatilePalettes
+I .pushseg
+I .code
+L MetatileFlags
+I .popseg
+L MetatileUL
+L MetatileLL
+L MetatileUR
+L MetatileLR
+
+R EMPTY
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $3f
+C .byt $3f
+C .byt $3f
+C .byt $3f
+
+R BRICKS
+C .byt M_PAL_2
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_BRICKS
+C .byt $00
+C .byt $01
+C .byt $02
+C .byt $03
+
+R BRICKPRIZE
+C .byt M_PAL_2
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_BRICKS
+C .byt $00
+C .byt $01
+C .byt $02
+C .byt $03
+
+R REPLACE_BRICK
+C .byt M_PAL_2
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_BRICKS
+C .byt $00
+C .byt $01
+C .byt $02
+C .byt $03
+
+R REPLACE_BRICK_SUB1
+C .byt M_PAL_2
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_BRICKS
+C .byt $00
+C .byt $01
+C .byt $02
+C .byt $03
+
+R REPLACE_BRICK_SUB2
+C .byt M_PAL_2
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_BRICKS
+C .byt $00
+C .byt $01
+C .byt $02
+C .byt $03
+
+R PRIZE
+C .byt M_PAL_2
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_CEILING
+C .byt $04
+C .byt $05
+C .byt $06
+C .byt $07
+
+R INFINITE_PRIZE
+C .byt M_PAL_2
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_CEILING
+C .byt $04
+C .byt $05
+C .byt $06
+C .byt $07
+
+R USED_PRIZE
+C .byt M_PAL_2
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $08
+C .byt $09
+C .byt $0a
+C .byt $0b
+
+R SOLID_BLOCK
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $0c
+C .byt $0d
+C .byt $0e
+C .byt $0f
+
+R LADDER
+C .byt M_PAL_2
+C .byt M_SOLID_TOP|M_EMPTY
+C .byt $10
+C .byt $10
+C .byt $11
+C .byt $11
+
+R SPIKES
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_GROUND
+C .byt $12
+C .byt $13
+C .byt $12
+C .byt $13
+
+##### M_SPECIAL_MISC list starts here #####
+
+R COIN
+C .byt M_PAL_2
+C .byt M_EMPTY|M_SPECIAL_MISC
+C .byt $14
+C .byt $15
+C .byt $16
+C .byt $17
+
+R SPRING
+C .byt M_PAL_2
+C .byt M_EMPTY|M_SPECIAL_MISC
+C .byt $3f
+C .byt $18
+C .byt $3f
+C .byt $19
+
+R SIGNPOST
+C .byt M_PAL_2
+C .byt M_EMPTY|M_SPECIAL_MISC
+C .byt $1c
+C .byt $1d
+C .byt $1e
+C .byt $1f
+
+R DOOR_BOTTOM
+C .byt M_PAL_1
+C .byt M_SPECIAL_MISC
+C .byt $3c
+C .byt $3c
+C .byt $3c
+C .byt $3c
+
+R SPRING_DOWN
+C .byt M_PAL_0
+C .byt M_SPECIAL_MISC
+C .byt $2c
+C .byt $3f
+C .byt $2d
+C .byt $3f
+
+R KEY_RED
+C .byt M_PAL_2
+C .byt M_SPECIAL_MISC
+C .byt $ac
+C .byt $ad
+C .byt $ae
+C .byt $af
+
+R KEY_GREEN
+C .byt M_PAL_0
+C .byt M_SPECIAL_MISC
+C .byt $ac
+C .byt $ad
+C .byt $ae
+C .byt $af
+
+R KEY_BLUE
+C .byt M_PAL_3
+C .byt M_SPECIAL_MISC
+C .byt $ac
+C .byt $ad
+C .byt $ae
+C .byt $af
+
+R TOGGLE_SWITCH
+C .byt M_PAL_0
+C .byt M_SPECIAL_MISC
+C .byt $3f
+C .byt $89
+C .byt $3f
+C .byt $8b
+
+R TELEPORTER
+C .byt M_PAL_2
+C .byt M_SPECIAL_MISC
+C .byt $3f
+C .byt $8c
+C .byt $3f
+C .byt $8e
+
+R CLONE_SWITCH
+C .byt M_PAL_2
+C .byt M_SPECIAL_MISC
+C .byt $3f
+C .byt $89
+C .byt $3f
+C .byt $8b
+
+R GENERIC_SWITCH
+C .byt M_PAL_1
+C .byt M_SPECIAL_MISC
+C .byt $3f
+C .byt $89
+C .byt $3f
+C .byt $8b
+
+R RED_BOOTS
+C .byt M_PAL_2
+C .byt M_SPECIAL_MISC
+C .byt $3f
+C .byt $88
+C .byt $3f
+C .byt $8a
+
+R GREEN_BOOTS
+C .byt M_PAL_0
+C .byt M_SPECIAL_MISC
+C .byt $3f
+C .byt $88
+C .byt $3f
+C .byt $8a
+
+R GRAY_BOOTS
+C .byt M_PAL_1
+C .byt M_SPECIAL_MISC
+C .byt $3f
+C .byt $88
+C .byt $3f
+C .byt $8a
+
+R BLUE_BOOTS
+C .byt M_PAL_3
+C .byt M_SPECIAL_MISC
+C .byt $3f
+C .byt $88
+C .byt $3f
+C .byt $8a
+
+R CHERRY_BOMB
+C .byt M_PAL_2
+C .byt M_SPECIAL_MISC
+C .byt $9c
+C .byt $9d
+C .byt $9e
+C .byt $9f
+
+R CAMPFIRE
+C .byt M_PAL_2
+C .byt M_SPECIAL_MISC
+C .byt $90
+C .byt $91
+C .byt $92
+C .byt $93
+
+R FORCE_LEFT
+C .byt M_PAL_0
+C .byt M_SPECIAL_MISC
+C .byt $a4
+C .byt $a5
+C .byt $a4
+C .byt $a5
+
+R FORCE_RIGHT
+C .byt M_PAL_0
+C .byt M_SPECIAL_MISC
+C .byt $a6
+C .byt $a7
+C .byt $a6
+C .byt $a7
+
+R FORCE_UP
+C .byt M_PAL_0
+C .byt M_SPECIAL_MISC
+C .byt $a0
+C .byt $a2
+C .byt $a0
+C .byt $a2
+
+R FORCE_DOWN
+C .byt M_PAL_0
+C .byt M_SPECIAL_MISC
+C .byt $a1
+C .byt $a3
+C .byt $a1
+C .byt $a3
+
+R CHIP
+C .byt M_PAL_1
+C .byt M_SPECIAL_MISC
+C .byt $94
+C .byt $95
+C .byt $96
+C .byt $97
+
+##### M_SPECIAL_MISC list ends here #####
+
+R SPRING_PRESSED
+C .byt M_PAL_2
+C .byt M_EMPTY
+C .byt $3f
+C .byt $1a
+C .byt $3f
+C .byt $1b
+
+R SOLID_LEDGE_L
+C .byt M_PAL_1
+C .byt M_SOLID_TOP
+C .byt $57
+C .byt $3f
+C .byt $58
+C .byt $3f
+
+R SOLID_LEDGE_M
+C .byt M_PAL_1
+C .byt M_SOLID_TOP|M_POST_PROCESS
+C .byt $58
+C .byt $3f
+C .byt $58
+C .byt $3f
+
+R SOLID_LEDGE_R
+C .byt M_PAL_1
+C .byt M_SOLID_TOP
+C .byt $58
+C .byt $3f
+C .byt $59
+C .byt $3f
+
+R SOLID_LEDGE_S
+C .byt M_PAL_1
+C .byt M_SOLID_TOP
+C .byt $57
+C .byt $3f
+C .byt $59
+C .byt $3f
+
+R FALLTHROUGH_LEDGE_L
+C .byt M_PAL_1
+C .byt M_SOLID_TOP|M_FALLABLE_LEDGE
+C .byt $67
+C .byt $3f
+C .byt $68
+C .byt $3f
+
+R FALLTHROUGH_LEDGE_M
+C .byt M_PAL_1
+C .byt M_SOLID_TOP|M_FALLABLE_LEDGE|M_POST_PROCESS
+C .byt $68
+C .byt $3f
+C .byt $68
+C .byt $3f
+
+R FALLTHROUGH_LEDGE_R
+C .byt M_PAL_1
+C .byt M_SOLID_TOP|M_FALLABLE_LEDGE
+C .byt $68
+C .byt $3f
+C .byt $69
+C .byt $3f
+
+R FALLTHROUGH_LEDGE_S
+C .byt M_PAL_1
+C .byt M_SOLID_TOP|M_FALLABLE_LEDGE
+C .byt $67
+C .byt $3f
+C .byt $69
+C .byt $3f
+
+R SOLID_ROCK
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $52
+C .byt $62
+C .byt $53
+C .byt $63
+
+R WATER_FROZEN
+C .byt M_PAL_1
+C .byt M_SOLID_TOP|M_WATER|M_ICE
+C .byt $7d
+C .byt $7e
+C .byt $7d
+C .byt $7e
+
+R WATER_TOP
+C .byt M_PAL_1
+C .byt M_WATER
+C .byt $7c
+C .byt $7e
+C .byt $7c
+C .byt $7e
+
+R WATER_MAIN
+C .byt M_PAL_1
+C .byt M_WATER|M_POST_PROCESS
+C .byt $7e
+C .byt $7e
+C .byt $7e
+C .byt $7e
+
+R WATER_BELOW_SOMETHING
+C .byt M_PAL_1
+C .byt M_WATER
+C .byt $7f
+C .byt $7e
+C .byt $7f
+C .byt $7e
+
+R LAVA_FROZEN
+C .byt M_PAL_3
+C .byt M_LAVA|M_SOLID_TOP|M_ICE
+C .byt $7d
+C .byt $7e
+C .byt $7d
+C .byt $7e
+
+R LAVA_TOP
+C .byt M_PAL_3
+C .byt M_LAVA
+C .byt $7c
+C .byt $7e
+C .byt $7c
+C .byt $7e
+
+R LAVA_MAIN
+C .byt M_PAL_3
+C .byt M_LAVA|M_POST_PROCESS
+C .byt $7e
+C .byt $7e
+C .byt $7e
+C .byt $7e
+
+R LAVA_BELOW_SOMETHING
+C .byt M_PAL_3
+C .byt M_LAVA
+C .byt $7f
+C .byt $7e
+C .byt $7f
+C .byt $7e
+
+R GROUND_TOP_L
+C .byt M_PAL_0
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $70
+C .byt $60
+C .byt $71
+C .byt $77
+
+R GROUND_TOP_M
+C .byt M_PAL_0
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $71
+C .byt $77
+C .byt $71
+C .byt $77
+
+R GROUND_TOP_R
+C .byt M_PAL_0
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $71
+C .byt $77
+C .byt $72
+C .byt $61
+
+R GROUND_MIDDLE_L
+C .byt M_PAL_0
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $60
+C .byt $60
+C .byt $73
+C .byt $73
+
+R GROUND_MIDDLE_M
+C .byt M_PAL_0
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_POST_PROCESS
+C .byt $73
+C .byt $73
+C .byt $73
+C .byt $73
+
+R GROUND_MIDDLE_R
+C .byt M_PAL_0
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $73
+C .byt $73
+C .byt $61
+C .byt $61
+
+R GROUND_INNER_LEFT
+C .byt M_PAL_0
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $60
+C .byt $73
+C .byt $73
+C .byt $73
+
+R GROUND_INNER_RIGHT
+C .byt M_PAL_0
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $73
+C .byt $73
+C .byt $61
+C .byt $73
+
+R GROUND_INNER_BOTH
+C .byt M_PAL_0
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $60
+C .byt $73
+C .byt $61
+C .byt $73
+
+R GROUND_NARROW_TOP
+C .byt M_PAL_0
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $70
+C .byt $60
+C .byt $72
+C .byt $61
+
+R GROUND_NARROW_SIDES
+C .byt M_PAL_0
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $60
+C .byt $60
+C .byt $61
+C .byt $61
+
+R GROUND_CLIMB_L
+C .byt M_PAL_0
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $50
+C .byt $60
+C .byt $71
+C .byt $77
+
+R GROUND_CLIMB_R
+C .byt M_PAL_0
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $71
+C .byt $77
+C .byt $51
+C .byt $61
+
+R ROCK_TOP_L
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $54
+C .byt $64
+C .byt $55
+C .byt $65
+
+R ROCK_TOP_M
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $55
+C .byt $65
+C .byt $55
+C .byt $65
+
+R ROCK_TOP_R
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $55
+C .byt $65
+C .byt $56
+C .byt $66
+
+R ROCK_MID_L
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $64
+C .byt $64
+C .byt $65
+C .byt $65
+
+R ROCK_MID_M
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_POST_PROCESS
+C .byt $65
+C .byt $65
+C .byt $65
+C .byt $65
+
+R ROCK_MID_R
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $65
+C .byt $65
+C .byt $66
+C .byt $66
+
+R ROCK_BOT_L
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $64
+C .byt $74
+C .byt $65
+C .byt $75
+
+R ROCK_BOT_M
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $65
+C .byt $75
+C .byt $65
+C .byt $75
+
+R ROCK_BOT_R
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $65
+C .byt $75
+C .byt $66
+C .byt $76
+
+R SKY_DITHER_1
+C .byt M_PAL_1
+C .byt M_EMPTY
+C .byt $3a
+C .byt $3f
+C .byt $3f
+C .byt $3a
+
+R SKY_DITHER_2
+C .byt M_PAL_1
+C .byt M_EMPTY
+C .byt $3a
+C .byt $3a
+C .byt $3a
+C .byt $3a
+
+R SKY_DITHER_3
+C .byt M_PAL_1
+C .byt M_EMPTY
+C .byt $3a
+C .byt $3b
+C .byt $3b
+C .byt $3a
+
+R SKY_DITHER_4
+C .byt M_PAL_1
+C .byt M_EMPTY
+C .byt $3b
+C .byt $3b
+C .byt $3b
+C .byt $3b
+
+R DOOR_TOP
+C .byt M_PAL_1
+C .byt M_EMPTY
+C .byt $20
+C .byt $3c
+C .byt $21
+C .byt $3c
+
+R EXIT_DOOR_TOP
+C .byt M_PAL_1
+C .byt M_EMPTY
+C .byt $22
+C .byt $3c
+C .byt $23
+C .byt $3c
+
+R DOWN_SPRING_PRESSED
+C .byt M_PAL_2
+C .byt M_EMPTY
+C .byt $2e
+C .byt $3f
+C .byt $2f
+C .byt $3f
+
+R TOGGLE_BLOCK_OFF
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $80
+C .byt $81
+C .byt $82
+C .byt $83
+
+R TOGGLE_BLOCK_ON
+C .byt M_PAL_0
+C .byt M_SOLID_TOP|M_SOLID_ALL
+C .byt $84
+C .byt $85
+C .byt $86
+C .byt $87
+
+R CLONER
+C .byt M_PAL_1
+C .byt M_EMPTY
+C .byt $b0
+C .byt $b1
+C .byt $b2
+C .byt $b3
+
+##### M_SPECIAL_WALL list starts here #####
+
+R LOCK_RED
+C .byt M_PAL_2
+C .byt M_SPECIAL_WALL
+C .byt $a8
+C .byt $a9
+C .byt $aa
+C .byt $ab
+
+R LOCK_GREEN
+C .byt M_PAL_0
+C .byt M_SPECIAL_WALL
+C .byt $a8
+C .byt $a9
+C .byt $aa
+C .byt $ab
+
+R LOCK_BLUE
+C .byt M_PAL_3
+C .byt M_SPECIAL_WALL
+C .byt $a8
+C .byt $a9
+C .byt $aa
+C .byt $ab
+
+R CHIP_SOCKET
+C .byt M_PAL_1
+C .byt M_SPECIAL_WALL
+C .byt $98
+C .byt $99
+C .byt $9a
+C .byt $9b
+
+R PICKUP_BLOCK
+C .byt M_PAL_1
+C .byt M_SPECIAL_WALL
+C .byt $28
+C .byt $0d
+C .byt $2a
+C .byt $0f
+
+R PUSHABLE_BLOCK
+C .byt M_PAL_1
+C .byt M_SPECIAL_WALL
+C .byt $0c
+C .byt $29
+C .byt $0e
+C .byt $2b
+
+##### M_SPECIAL_WALL list ends here #####
+
+R CAMPFIRE_OUT
+C .byt M_PAL_2
+C .byt M_EMPTY
+C .byt $3f
+C .byt $bc
+C .byt $3f
+C .byt $be
+
+R GRAVEL
+C .byt M_PAL_1
+C .byt M_EMPTY
+C .byt $3f
+C .byt $bf
+C .byt $3f
+C .byt $bf
+
+R ICE
+C .byt M_PAL_0
+C .byt M_ICE
+C .byt $00
+C .byt $00
+C .byt $00
+C .byt $00
+
+R PATH_MARKER
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $3f
+C .byt $3f
+C .byt $3f
+C .byt $3f
+
+##### background stuff starts here #####
+R CLOUD_L
+C .byt M_PAL_1
+C .byt M_EMPTY
+C .byt $c0
+C .byt $d0
+C .byt $c1
+C .byt $d1
+
+R CLOUD_M
+C .byt M_PAL_1
+C .byt M_EMPTY
+C .byt $c2
+C .byt $d1
+C .byt $c3
+C .byt $d1
+
+R CLOUD_R
+C .byt M_PAL_1
+C .byt M_EMPTY
+C .byt $c4
+C .byt $d4
+C .byt $3f
+C .byt $3f
+
+R BG_FENCE
+C .byt M_PAL_2
+C .byt M_EMPTY
+C .byt $ce
+C .byt $de
+C .byt $cf
+C .byt $df
+
+R BG_TALL_GRASS
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $3f
+C .byt $ca
+C .byt $3f
+C .byt $cb
+
+R BG_FLOWER_1
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $cc
+C .byt $da
+C .byt $cd
+C .byt $db
+
+R BG_FLOWER_2
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $dc
+C .byt $da
+C .byt $dd
+C .byt $db
+
+R BG_FLOWER_3
+C .byt M_PAL_2
+C .byt M_EMPTY
+C .byt $cc
+C .byt $da
+C .byt $cd
+C .byt $db
+
+R BG_FLOWER_4
+C .byt M_PAL_2
+C .byt M_EMPTY
+C .byt $dc
+C .byt $da
+C .byt $dd
+C .byt $db
