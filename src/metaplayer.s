@@ -126,9 +126,9 @@ SpecialMiscHi:
 
 .proc TouchedSpring
   inc HandlePlayer::SkipFourCorners
-  lda #-1
+  lda #<-1
   sta PlayerVYH
-  lda #-$70
+  lda #<-$70
   sta PlayerVYL
   lda #30
   sta PlayerJumpCancelLock

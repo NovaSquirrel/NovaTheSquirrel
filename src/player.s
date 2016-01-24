@@ -117,12 +117,12 @@ MaxSpeedRight = 10
 
   lda PlayerWasRunning ; nonzero = B button, only updated when on ground
   beq :+
-    lda #-NOVA_RUN_SPEED*16
+    lda #<-(NOVA_RUN_SPEED*16)
     sta MaxSpeedLeft
     lda #NOVA_RUN_SPEED*16
     sta MaxSpeedRight
     bne NotWalkSpeed
-: lda #-NOVA_WALK_SPEED*16
+: lda #<-(NOVA_WALK_SPEED*16)
   sta MaxSpeedLeft
   lda #NOVA_WALK_SPEED*16
   sta MaxSpeedRight
@@ -212,7 +212,7 @@ SkipTail:
     lda PlayerVXL
     cmp MaxSpeedLeft ; can be either run speed or walk speed
     beq NotLeft
-    cmp #-NOVA_RUN_SPEED*16
+    cmp #<-(NOVA_RUN_SPEED*16)
     beq NotLeft
 
     lda PlayerVXL
@@ -514,9 +514,9 @@ FC__R_R:
   cmp #Metatiles::GROUND_CLIMB_L
   bne :+
 DoClimb:
-    lda #-1
+    lda #<-1
     sta PlayerVYH
-    lda #-$40
+    lda #<-$40
     sta PlayerVYL
     lda #10
     sta PlayerJumpCancelLock
@@ -592,7 +592,7 @@ FC___LR:
   ldx BlockLR
   cmp MetatileFlags,x
   bne NotFallthrough
-    and #~M_POST_PROCESS
+    and #<~M_POST_PROCESS
     cmp #M_SOLID_TOP|M_FALLABLE_LEDGE
     bne NotFallthrough
       lda PlayerDownTimer
@@ -879,7 +879,7 @@ NoCoinShow:
 
 XPosList: .byt 0, 8, 0, 8, 0,  8
 YPosList: .byt 0, 0, 8, 8, 16, 16
-ExtraTileX: .byt 16, -8
+ExtraTileX: .byt 16, <-8
 
 Anim0: .byt $02, $10, $13, $15, $19 ;$20
 Anim1: .byt $03, $11, $14, $16, $1a ;$21
@@ -946,7 +946,7 @@ LimitObjectAmount:
   ldx #0
   ldy #0 ; Y = counter for number of player projectiles
 : lda ObjectF1,x
-  and #~1
+  and #<~1
   cmp #Enemy::PLAYER_PROJECTILE*2
   bne :+
   iny ; yes, this is a player projectile
@@ -1013,7 +1013,7 @@ AbilityBomb:
   beq :+
     lda #$20
     jsr SetXVelocity
-    lda #-$40
+    lda #<-$40
     sta ObjectVYL,x
     lda #255
     sta ObjectVYH,x
@@ -1032,7 +1032,7 @@ AbilityFire:
   lda keydown
   and #KEY_UP
   beq :+
-    lda #-$40
+    lda #<-$40
     sta ObjectVYL,x
     lda #255
     sta ObjectVYH,x
@@ -1092,7 +1092,7 @@ AbilityWater:
   bne :+
   lda #$20
   jsr SetXVelocity
-: lda #-$40
+: lda #<-$40
   sta ObjectVYL,x
   lda #255
   sta ObjectVYH,x

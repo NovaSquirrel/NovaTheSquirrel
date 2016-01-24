@@ -131,7 +131,7 @@ KEY_A     = %10000000
 ; and now macros ----------------------------------------------------------
 
 .feature leading_dot_in_identifiers
-.feature force_range
+;.feature force_range
 .macpack generic
 .macpack longbranch
 

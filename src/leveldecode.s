@@ -167,7 +167,7 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
   lda (LevelHeaderPointer),y
   sta LevelUploadList,x
   inx
-  cmp #-1
+  cmp #<-1
   bne :-
 
   lda #1

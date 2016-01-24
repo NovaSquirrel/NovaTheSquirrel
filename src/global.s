@@ -86,7 +86,7 @@ Length = TempVal+2
 ; clear any projectiles already made so they're not drawn with the wrong graphis
   ldx #0
 : lda ObjectF1,x
-  and #~1
+  and #<~1
   cmp #Enemy::PLAYER_PROJECTILE*2
   bne :+
   lda #0
@@ -232,11 +232,11 @@ Found:
 .if 0
   lda TouchTopA
   sub #20
-  cmp #-20
+  cmp #<-20
   bcs No
   lda TouchTopB
   sub #20
-  cmp #-20
+  cmp #<-20
   bcs No
 .endif
 

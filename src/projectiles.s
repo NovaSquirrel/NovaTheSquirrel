@@ -240,7 +240,7 @@ _rts:
   jsr EnemyDespawnTimer
 
   lda ObjectF1,x
-  and #~1
+  and #<~1
   cmp #Enemy::ENEMY_PROJECTILE*2
   bne NotEnemyProjectile
   jsr ProjectilePlayerTouchHurt
@@ -354,7 +354,7 @@ ProjBoomerang:
 ProjFireball:
   jsr ObjectFallSmall
   bcc :+
-  lda #-$20
+  lda #<-$20
   sta ObjectVYL,x
   lda #255
   sta ObjectVYH,x
@@ -409,9 +409,9 @@ ProjFireworksCursor:
   lda keydown
   and #KEY_UP
   beq @NoUp
-  lda #-$10
+  lda #<-$10
   sta ObjectVYL,x
-  lda #-1
+  lda #<-1
   sta ObjectVYH,x
 @NoUp:
 
@@ -488,7 +488,7 @@ ProjBurger:
 ProjBall:
   jsr EnemyFall
   bcc :+
-  lda #-$20
+  lda #<-$20
   sta ObjectVYL,x
   lda #255
   sta ObjectVYH,x

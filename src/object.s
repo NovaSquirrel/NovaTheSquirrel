@@ -248,9 +248,9 @@ No:
   lda #0
   sta ObjectTimer,x
   sta ObjectF2,x
-  lda #-1
+  lda #<-1
   sta PlayerVYH
-  lda #-$60
+  lda #<-$60
   sta PlayerVYL
   lda #22
   sta PlayerJumpCancelLock
@@ -758,7 +758,7 @@ SkipGravity:
 TryClimb:
     lda #255
     sta ObjectVYH,x
-    lda #-$30
+    lda #<-$30
     sta ObjectVYL,x
 
     lda ObjectF1,x
@@ -783,7 +783,7 @@ OffsetAmountH:
 .proc EnemyAutoRemove
   lda ObjectPXH,x
   sub ScrollX+1
-  cmp #-8
+  cmp #<-8
   bcs Good
   cmp #24
   bcc Good

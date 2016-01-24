@@ -179,7 +179,7 @@ pently_drums:
 drumSFX:
   .byt 10, 2
   .byt 1,  9
-  .byt 3, -1
+  .byt 3, <-1
 KICK  = 0*8
 SNARE = 1*8
 CLHAT = 2*8
