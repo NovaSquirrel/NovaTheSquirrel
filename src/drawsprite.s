@@ -25,7 +25,7 @@
 ; ENEMY DRAWING OPTIONS (for arbitrary sizes) ------------------------------------------
 ; DispEnemyMetasprite               - 
 ;
-; DEFINITIONS IN THE ABOVE TABLSE ------------------------------------------------------
+; DEFINITIONS IN THE ABOVE TABLES ------------------------------------------------------
 ; Sequential:           Tile N is given; sprite is drawn with N+0, N+1, N+2, N+3
 ; Nonsequential:        Four tiles are arbitrarily chosen
 ; Same attributes:      Each 8x8 tile has the same attributes for its sprites
@@ -372,11 +372,7 @@ NoHFlip:
 .endproc
 
 ; ----------------- COMPLICATED METASPRITE STUFF ----------
-; header with flags:
-;
-; ?Hyyyxxx whhttttt
-;           ||+++++-
-;           ++------
+; more complicated format is canceled
 ;
 ; -----------------
 ; rectangle format:
