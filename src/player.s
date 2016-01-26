@@ -578,9 +578,16 @@ BumpBlocksAbove: ; handle bumping into stuff
 BumpOneBlockAbove:
   ldy PlayerPYH
   jsr GetLevelColumnPtr
-  cmp #Metatiles::BRICKS
+  tay
+  lda MetatileFlags,y
+  and #M_BEHAVIOR
+  sta TempVal ; store the behavior bits
+  ldy PlayerPYH ; reload the Y position
+  cmp #M_BRICKS
   jeq DoBreakBricks
-  cmp #Metatiles::PRIZE
+
+  lda TempVal ; load the behavior bits again
+  cmp #M_SPECIAL_CEILING
   jeq OpenPrize
   rts
 

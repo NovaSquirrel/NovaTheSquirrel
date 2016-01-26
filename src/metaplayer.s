@@ -216,6 +216,7 @@ SpecialMiscHi:
 .endproc
 
 .proc DoBreakBricks
+  lda (LevelBlockPtr),y
   sty TempY
   sub #Metatiles::BRICKS
   sta TempVal

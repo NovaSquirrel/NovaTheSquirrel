@@ -401,3 +401,4 @@ NoFlags:
   sta ObjectIndexInLevel,x    ; no "sty absolute,x" so transfer first
   rts
 .endproc
+
