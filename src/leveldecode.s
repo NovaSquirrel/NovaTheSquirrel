@@ -151,6 +151,8 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
     lsr
   .endrep
   sta LevelSize
+  lda #$80
+  sta PlayerPYL
 
 ; read the four sprite slots and level and sprite pointers
   ldx #0 ; also writes LevelDecodePointer and LevelSpritePointer and LevelBackgroundColor
@@ -272,13 +274,13 @@ NoLinks:
 : sty LastSpriteIndex
 .endif
 
-.if 1
+  ; copy the sprite list in
+  ; To do: stop when we reach the end of the list
   ldy #0
-: lda Level1Sprite,y
+: lda (LevelSpritePointer),y
   sta SpriteListRAM,y
   iny
   bne :-
-.endif
 
   jsr LevelDecodeLoop
 

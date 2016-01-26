@@ -223,6 +223,10 @@ MS_EMPTY = 32
   BALL
 .endenum
 
+.enum MusicTracks
+  NONE
+.endenum
+
 ; -------------------- scripting stuff --------------------------------------
 .enum SCR
   END_SCRIPT    ; end the script

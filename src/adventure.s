@@ -34,13 +34,6 @@ SOUND_BANK = $e
 CUTSCENE_BANK = $e ; code currently relies on CUTSCENE_BANK = VWF_BANK
 VWF_BANK = $e
 
-.segment "PRG0" ; levels
-.include "levels.s"
-.segment "PRG1" ; levels
-.segment "PRG2" ; levels
-.segment "PRG3" ; levels
-.segment "PRG4" ; levels
-.segment "PRG5" ; levels
 .segment "PRG6" ;
 .segment "PRG7" ;
 .segment "PRG8" ;
@@ -74,3 +67,12 @@ VWF_BANK = $e
 .include "math.s"
 .include "global.s"
 .include "cutscene.s"
+
+; ---------------------
+.segment "PRG0" ; levels
+.include "levels.s"
+.segment "PRG1" ; levels
+.segment "PRG2" ; levels
+.segment "PRG3" ; levels
+.segment "PRG4" ; levels
+.segment "PRG5" ; levels
