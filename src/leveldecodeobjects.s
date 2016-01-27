@@ -9,7 +9,7 @@
   BLOCK_WIDE_FROM_LIST    ; TT XY Wm
   BLOCK_TALL_FROM_LIST    ; TT XY Hm
   BLOCK_RECT_FROM_LIST    ; TT XY Hm WW
-  BLOCK_RECTANGLE_SERIES  ; TT XY [WH] ... 00
+  BLOCK_RECTANGLE_SERIES  ; TT XY [WH] ... FF
 .endenum
 
 .proc DecodeObjectTypesAddressesL

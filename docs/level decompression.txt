@@ -1,0 +1,46 @@
+Levels are composed of a series of commands, in this form:
+
+ TT - Command Type
+ YX - Y and X bytes
+[SS]- additional optional settings bytes
+
+The command list is composed of a command format (from the list below) and a byte for configuration.
+Usually the configuration byte is a block type to use, as in BLOCK_SINGLE and BLOCK_RECTANGLE.
+
+Command formats:
+
+ CUSTOM_BLOCK_SINGLE     - TT XY mm
+One block with any metatile type.
+
+ CUSTOM_BLOCK_RECTANGLE  - TT XY mm WH
+Rectangle with any metatile type.
+
+ BLOCK_SINGLE            - TT XY
+A single block of a hardcoded type.
+
+ BLOCK_RECTANGLE         - TT XY WH
+A rectangle of a hardcoded type.
+
+ BLOCK_WIDE_FROM_LIST    - TT XY Wm
+A rectangle (1 block tall) of a type from a list.
+
+ BLOCK_TALL_FROM_LIST    - TT XY Hm
+A rectangle (1 block wide) of a type from a list.
+
+ BLOCK_RECT_FROM_LIST    - TT XY Hm WW
+A rectangle of a type from a list.
+
+ BLOCK_RECTANGLE_SERIES  - TT XY [WH] ... FF
+A series of rectangles. One width (minus 1) and height are specified after the other.
+Example (with a pit):
+   222
+111222       4     6666
+11122233333334     6666
+              \_5_/
+1: $22 - width 3, height 2
+2: $23 - width 3, height 3
+3: $61 - width 7, height 1
+4: $02 - width 1, height 2
+5: $40 - width 5, height 0
+6: $32 - width 3, height 2
+   $FF - ending mark

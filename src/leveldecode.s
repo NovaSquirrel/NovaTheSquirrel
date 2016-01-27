@@ -622,9 +622,8 @@ PointLoop:
   ldy #0
   lda (LevelDecodePointer),y
   inc16 LevelDecodePointer
-  ora #0 ; set zero flag for A again
-         ; (faster than PHP PLP)
-  rtseq ; If zero is read, we're done.
+  cmp #$ff ; if $ff is read, we're done
+  rtseq
 
   ; unpack into the X and Y
   pha
