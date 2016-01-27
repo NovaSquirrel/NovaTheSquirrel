@@ -276,6 +276,8 @@ MS_EMPTY = 32
   S_SOLID_ROCK
   S_DOOR
   S_EXIT_DOOR
+  RS_GROUND
+  RS_ROCK
 .endenum
 
 .enum LN1

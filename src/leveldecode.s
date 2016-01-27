@@ -487,6 +487,7 @@ IncreaseDecodePointerBy = LevelDecodeCommand::IncreasePointerBy
   jmp IncreaseDecodePointerBy
 .endproc
 
+.if 0 ; not useful
 .proc DO_BlockExtraWide
   sta DecodeObjectBlock
   lda (LevelDecodePointer),y
@@ -508,6 +509,7 @@ IncreaseDecodePointerBy = LevelDecodeCommand::IncreasePointerBy
   lda #1
   jmp IncreaseDecodePointerBy
 .endproc
+.endif
 
 .proc DO_BlockWideList
   lda (LevelDecodePointer),y
@@ -580,7 +582,10 @@ DecodeWriteRectangleConvert:
   pla
   and #15
   sta DecodeObjectHeight
-.proc DecodeWriteRectangle ; 2 = block, 3 = width, 4 = height
+; Writes a rectangle to the level buffer
+; inputs: DecodeObjectType, DecodeObjectXY, DecodeObjectBlock, DecodeObjectWidth, DecodeObjectHeight
+; locals: 5, TempSpace+0..TempSpace+4
+.proc DecodeWriteRectangle
   inc DecodeObjectWidth ; increase width and height by 1
   inc DecodeObjectHeight
 ColumnLoop:
@@ -604,4 +609,60 @@ RowLoop:
 : dec DecodeObjectWidth
   bne ColumnLoop
   rts
+.endproc
+
+.proc DO_RectangleSeries
+CurrentXY = 0
+Width = 1
+Height = 2
+TempHeight = 3
+  sta DecodeObjectBlock
+PointLoop:
+  ; read the X and Y
+  ldy #0
+  lda (LevelDecodePointer),y
+  inc16 LevelDecodePointer
+  ora #0 ; set zero flag for A again
+         ; (faster than PHP PLP)
+  rtseq ; If zero is read, we're done.
+
+  ; unpack into the X and Y
+  pha
+  lsr
+  lsr
+  lsr
+  lsr
+  sta Width
+  inc Width ; width is 1-16
+  pla
+  and #15
+  sta Height  ; zero height is valid, no adjustment needed
+
+  ; fill the rectangle column by column
+ColumnLoop:
+  lda Height
+  sta TempHeight
+  beq SkipFill ; zero height won't write anything
+
+  ; fill column
+  ldy DecodeObjectXY ; base Y
+  lda DecodeObjectBlock
+: sta (LevelBlockPtr),y
+  dey
+  dec TempHeight
+  bne :-
+SkipFill:
+
+  ; move to the next column
+  lda LevelBlockPtr
+  add #16
+  sta LevelBlockPtr
+  bcc :+
+    inc LevelBlockPtr+1
+:
+  ; are we done with the rectangle yet?
+  dec Width
+  bne ColumnLoop
+
+  jmp PointLoop
 .endproc

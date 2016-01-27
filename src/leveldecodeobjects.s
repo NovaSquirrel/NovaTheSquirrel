@@ -4,11 +4,12 @@
   CUSTOM_BLOCK_RECTANGLE  ; TT XY mm WH
   BLOCK_SINGLE            ; TT XY
   BLOCK_RECTANGLE         ; TT XY WH
-  BLOCK_EXTRA_WIDE        ; TT XY WW \ useless
-  BLOCK_EXTRA_TALL        ; TT XY HH /
+;  BLOCK_EXTRA_WIDE        ; TT XY WW \ useless
+;  BLOCK_EXTRA_TALL        ; TT XY HH /
   BLOCK_WIDE_FROM_LIST    ; TT XY Wm
   BLOCK_TALL_FROM_LIST    ; TT XY Hm
   BLOCK_RECT_FROM_LIST    ; TT XY Hm WW
+  BLOCK_RECTANGLE_SERIES  ; TT XY [WH] ... 00
 .endenum
 
 .proc DecodeObjectTypesAddressesL
@@ -16,11 +17,10 @@
   .byt <(DO_CustomBlockRectangle-1)
   .byt <(DO_BlockSingle-1)
   .byt <(DO_BlockRectangle-1)
-  .byt <(DO_BlockExtraWide-1)
-  .byt <(DO_BlockExtraTall-1)
   .byt <(DO_BlockWideList-1)
   .byt <(DO_BlockTallList-1)
   .byt <(DO_BlockRectList-1)
+  .byt <(DO_RectangleSeries-1)
 .endproc
 
 .proc DecodeObjectTypesAddressesH
@@ -28,11 +28,10 @@
   .byt >(DO_CustomBlockRectangle-1)
   .byt >(DO_BlockSingle-1)
   .byt >(DO_BlockRectangle-1)
-  .byt >(DO_BlockExtraWide-1)
-  .byt >(DO_BlockExtraTall-1)
   .byt >(DO_BlockWideList-1)
   .byt >(DO_BlockTallList-1)
   .byt >(DO_BlockRectList-1)
+  .byt >(DO_RectangleSeries-1)
 .endproc
 
 .proc ObjectTypesTable
@@ -61,6 +60,8 @@
   .byt BLOCK_SINGLE,           Metatiles::SOLID_ROCK
   .byt BLOCK_SINGLE,           Metatiles::DOOR_TOP
   .byt BLOCK_SINGLE,           Metatiles::EXIT_DOOR_TOP
+  .byt BLOCK_RECTANGLE_SERIES, Metatiles::GROUND_MIDDLE_M
+  .byt BLOCK_RECTANGLE_SERIES, Metatiles::ROCK_MID_M
 .endproc
 
 .proc ObjectTypesList

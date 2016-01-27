@@ -321,6 +321,14 @@ DJ_Label:
   sta hi          ;... and store the result
 .endmacro
 
+.macro inc16 variable
+.local @Skip
+  inc variable+0
+  bne @Skip
+  inc variable+1
+@Skip:
+.endmacro
+
 .macro pushaxy
   pha
   txa
