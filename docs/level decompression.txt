@@ -1,7 +1,7 @@
 Levels are composed of a series of commands, in this form:
 
  TT - Command Type
- YX - Y and X bytes
+ YX - Y and X bytes. Y is absolute, X is relative from the previous block's X.
 [SS]- additional optional settings bytes
 
 The command list is composed of a command format (from the list below) and a byte for configuration.
@@ -44,3 +44,16 @@ Example (with a pit):
 5: $40 - width 5, height 0
 6: $32 - width 3, height 2
    $FF - ending mark
+
+---------------------------------
+Command types from $f0 to $ff are special commands that don't encode any blocks.
+
+These commands are defined:
+
+Finished     - Stop decompressing the level
+SetX         - Set the X position for the next block to an arbitrary byte
+Write1Column - Sets the data for the current column to an arbitrary byte (for question block contents, etc)
+Write2Column - Same, but has 2 bytes for 2 consecutive columns
+Write3Column - Same, but has 3 bytes for 3 consecutive columns
+XMinus16     - Sets the X position for the next block back 16 columns
+XPlus16      - Sets the X position for the next block ahead 16 columns
