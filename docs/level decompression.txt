@@ -1,7 +1,7 @@
 Levels are composed of a series of commands, in this form:
 
  TT - Command Type
- YX - Y and X bytes. Y is absolute, X is relative from the previous block's X.
+ XY - Y and X bytes. Y is absolute, X is relative from the previous block's X.
 [SS]- additional optional settings bytes
 
 The command list is composed of a command format (from the list below) and a byte for configuration.
