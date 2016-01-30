@@ -42,7 +42,7 @@ Example (with a pit):
 3: $61 - width 7, height 1
 4: $02 - width 1, height 2
 5: $40 - width 5, height 0
-6: $32 - width 3, height 2
+6: $32 - width 4, height 2
    $FF - ending mark
 
 ---------------------------------
