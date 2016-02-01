@@ -52,6 +52,7 @@
   jsr WaitVblank
   jmp MainLoop
 .endproc
+
 .proc VBlankUpdates
   jsr WaitVblank
   lda #2
@@ -141,20 +142,7 @@
   .endrep
 
   ; set the scroll
-  lda ScrollX+1
-  sta 0
-  lda ScrollX
-  .repeat 4
-    lsr 0
-    ror
-  .endrep
-  sta PPUSCROLL
-  lda #0
-  sta PPUSCROLL
-  lda 0
-  and #1 ; bit 0 is most significant bit of scroll
-  ora #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
-  sta PPUCTRL
+  jsr UpdateScrollRegister
 .endproc
 ; don't put anything else here
 .proc MainLoop

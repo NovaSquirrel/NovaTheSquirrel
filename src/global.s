@@ -83,7 +83,7 @@ Length = TempVal+2
   lda #SFX::GET_ABILITY
   sta NeedSFX
 
-; clear any projectiles already made so they're not drawn with the wrong graphis
+; Because the graphics will be rewritten, erase any projectiles using the old graphics
   ldx #0
 : lda ObjectF1,x
   and #<~1
@@ -94,17 +94,18 @@ Length = TempVal+2
 : inx
   bne :--
 
+; Ability graphics are in the graphics bank
   lda #GRAPHICS_BANK1
   jsr _SetPRG
 
   jsr WaitVblank
-  lda #%11100000 ; dim
+  lda #%11100001 ; dim
   sta PPUMASK
 
-; calculate pointer to the ability icon
+; Calculate pointer to the ability icon
   lda #0
   sta Pointer+1
-  lda PlayerAbility ; multiply by 64
+  lda PlayerAbility ; 4 tiles * 16 bytes each = 64, so multiply by 64
   .repeat 6
     asl
     rol Pointer+1
@@ -115,6 +116,7 @@ Length = TempVal+2
   adc #>AbilityIcons
   sta Pointer+1
 
+; Write to ability icon in VRAM
   lda #>$14c0
   sta PPUADDR
   lda #<$14c0
@@ -126,7 +128,7 @@ Length = TempVal+2
   cpy #64
   bne :-
 
-; calculate pointer to ability tiles
+; Calculate pointer to ability tiles
   ldx PlayerAbility
   lda AbilityLengths,x
   beq NoExtraTiles
@@ -149,7 +151,7 @@ Length = TempVal+2
   adc #>AbilityGfx
   sta Pointer+1
 
-; write tiles
+; Write projectile tiles
   lda #>$1700
   sta PPUADDR
   lda #<$1700
@@ -162,8 +164,33 @@ Length = TempVal+2
   bne :-
 NoExtraTiles:
 
+  jsr WaitVblank
+  jsr UpdateScrollRegister
+  lda #OBJ_ON|BG_ON
+  sta PPUMASK
+  jsr WaitVblank
+; Restore the old bank
   lda PRGBank
-  jsr _SetPRG
+  jmp _SetPRG
+.endproc
+
+; Updates PPUSCROLL and PPUCTRL to account for ScrollX
+; locals: 0
+.proc UpdateScrollRegister
+  lda ScrollX+1
+  sta 0
+  lda ScrollX
+  .repeat 4
+    lsr 0
+    ror
+  .endrep
+  sta PPUSCROLL
+  lda #0
+  sta PPUSCROLL
+  lda 0
+  and #1 ; bit 0 is most significant bit of scroll
+  ora #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
+  sta PPUCTRL
   rts
 .endproc
 
