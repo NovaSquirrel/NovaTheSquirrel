@@ -26,8 +26,8 @@ funkundergroundData:
   LObjN LO::R_SOLID_BLOCK,    1, 9, 0, 3
   LObjN LO::WIDE_1,           2, 9, 2, LN1::SOLID_LEDGE
   LObjN LO::R_GROUND,         2, 13, 9, 1
-  LObjN LO::WIDE_1,           2, 9, 2, LN1::SOLID_LEDGE
-  LObjN LO::R_BRICK,          0, 1, 2, 0
+  LObjN LO::R_BRICK,          2, 1, 2, 0
+  LObjN LO::WIDE_1,           0, 9, 2, LN1::SOLID_LEDGE
   LObjN LO::R_SOLID_BLOCK,    5, 10, 0, 2
   LObjN LO::WIDE_1,           4, 9, 2, LN1::SOLID_LEDGE
   LObjN LO::R_BRICK,          1, 1, 6, 0
@@ -41,11 +41,11 @@ funkundergroundData:
   LObjN LO::R_SOLID_BLOCK,    1, 1, 1, 6
   LObjN LO::R_BRICK,          4, 4, 6, 0
   LObjN LO::R_COIN,           1, 3, 4, 0
-  LObjN LO::R_GROUND,         4, 13, 15, 1
-  LObjN LO::R_BRICK,          0, 10, 2, 2
-  LObj  LO::S_CUSTOM,         1, 4, Metatiles::BRICKPRIZE
+  LObjN LO::R_BRICK,          4, 10, 2, 2
+  LObjN LO::R_GROUND,         0, 13, 15, 1
+  LObjN LO::R_BRICK,          1, 1, 15, 0
+  LObj  LO::S_CUSTOM,         0, 4, Metatiles::BRICKPRIZE
   LObjN LO::R_BRICK,          0, 7, 0, 2
-  LObjN LO::R_BRICK,          0, 1, 15, 0
   LObjN LO::R_BRICK,          3, 9, 5, 0
   LObjN LO::R_BRICK,          1, 2, 4, 0
   LObjN LO::R_BRICK,          3, 3, 1, 6
@@ -59,21 +59,21 @@ funkundergroundData:
   LObjN LO::R_GROUND,         0, 13, 4, 1
   LObjN LO::R_BRICK,          1, 7, 2, 0
   LObj  LO::S_CUSTOM,         0, 7, Metatiles::BRICKPRIZE
-  LObjN LO::R_SOLID_BLOCK,    2, 9, 0, 1
-  LObjN LO::R_BRICK,          0, 2, 0, 1
-  LObjN LO::RECT_1,           6, 13, 1, LN1::GROUND, 23
-  LObjN LO::R_BRICK,          0, 1, 7, 0
+  LObjN LO::R_BRICK,          2, 2, 0, 1
+  LObjN LO::R_SOLID_BLOCK,    0, 9, 0, 1
+  LObjN LO::R_BRICK,          6, 1, 7, 0
+  LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 23
   LObjN LO::R_SOLID_BLOCK,    1, 11, 3, 1
-  LObjN LO::R_SOLID_BLOCK,    1, 9, 3, 1
-  LObj  LO::S_SOLID_BLOCK,    0, 8
-  LObjN LO::R_BRICK,          5, 6, 8, 3
-  LObjN LO::R_BRICK,          0, 2, 8, 1
+  LObj  LO::S_SOLID_BLOCK,    1, 8
+  LObjN LO::R_SOLID_BLOCK,    0, 9, 3, 1
+  LObjN LO::R_BRICK,          5, 2, 8, 1
+  LObjN LO::R_BRICK,          0, 6, 8, 3
   LObjN LO::R_COIN,           1, 5, 5, 0
   LObj  LO::S_CUSTOM,         2, 2, Metatiles::BRICKPRIZE
   LObjN LO::RECT_1,           5, 1, 0, LN1::BRICKS, 23
   LObjN LO::R_SOLID_BLOCK,    3, 10, 1, 2
-  LObjN LO::R_BRICK,          6, 6, 8, 3
-  LObjN LO::R_BRICK,          0, 2, 2, 3
+  LObjN LO::R_BRICK,          6, 2, 2, 3
+  LObjN LO::R_BRICK,          0, 6, 8, 3
   LObjN LO::WIDE_1,           1, 13, 3, LN1::SOLID_LEDGE
   LObjN LO::R_GROUND,         5, 13, 12, 1
   LObjN LO::R_SOLID_BLOCK,    3, 9, 5, 0
@@ -86,15 +86,15 @@ funkundergroundData:
   LObjN LO::R_SOLID_BLOCK,    3, 8, 4, 0
   LObjN LO::RECT_1,           1, 13, 1, LN1::GROUND, 24
   LObjN LO::R_SOLID_BLOCK,    3, 9, 0, 3
-  LObjN LO::R_BRICK,          1, 5, 7, 7
-  LObjN LO::R_BRICK,          0, 1, 10, 0
+  LObjN LO::R_BRICK,          1, 1, 10, 0
+  LObjN LO::R_BRICK,          0, 5, 7, 7
   LObjN LO::R_BRICK,          8, 9, 11, 3
   LObjN LO::R_BRICK,          3, 1, 0, 5
   LObj  LO::S_SPRING,         1, 5
   LObj  LO::S_SOLID_BLOCK,    0, 6
-  LObjN LO::R_BRICK,          1, 6, 1, 0
-  LObjN LO::R_BRICK,          0, 1, 9, 0
+  LObjN LO::R_BRICK,          1, 1, 9, 0
   LObjN LO::R_SOLID_BLOCK,    0, 3, 9, 0
+  LObjN LO::R_BRICK,          0, 6, 1, 0
   LObjN LO::R_BRICK,          6, 7, 0, 1
   LObjN LO::R_SOLID_BLOCK,    1, 4, 0, 4
   LObj  LO::S_COIN,           4, 2
@@ -102,12 +102,12 @@ funkundergroundData:
   LObj  LO::S_COIN,           2, 6
   LObjN LO::RECT_1,           1, 13, 1, LN1::GROUND, 16
   LObjN LO::R_SOLID_BLOCK,    1, 0, 0, 8
-  LObjN LO::R_BRICK,          1, 1, 11, 8
-  LObjN LO::R_SOLID_BLOCK,    0, 0, 11, 0
-  LObj  LO::S_SPRING,         3, 12
-  LObjN LO::R_AIR,            0, 5, 1, 1
-  LObj  LO::S_SPRING,         1, 6
-  LObjN LO::R_AIR,            0, 1, 2, 1
+  LObjN LO::R_SOLID_BLOCK,    1, 0, 11, 0
+  LObjN LO::R_BRICK,          0, 1, 11, 8
+  LObjN LO::R_AIR,            3, 5, 1, 1
+  LObj  LO::S_SPRING,         0, 12
+  LObjN LO::R_AIR,            1, 1, 2, 1
+  LObj  LO::S_SPRING,         0, 6
   LObj  LO::S_DOOR,           1, 2
   LObjN LO::R_BRICK,          7, 1, 11, 1
   LObj  LO::S_PRIZE,          0, 9
@@ -116,9 +116,9 @@ funkundergroundData:
   LXPlus16
   LObj  LO::S_EXIT_DOOR,      1, 12
   LXPlus16
-  LObjN LO::R_GROUND,         3, 13, 15, 1
-  LObjN LO::R_SOLID_BLOCK,    0, 1, 15, 1
+  LObjN LO::R_SOLID_BLOCK,    3, 1, 15, 1
   LObjN LO::R_SOLID_BLOCK,    0, 3, 1, 9
+  LObjN LO::R_GROUND,         0, 13, 15, 1
   LObj  LO::S_DOOR,           3, 12
   LObjN LO::R_COIN,           1, 5, 7, 5
   LObj  LO::S_SPRING,         2, 12

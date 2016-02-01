@@ -294,6 +294,7 @@ MS_EMPTY = 32
   WATER
   SOLID_LEDGE
   FALLTHROUGH_LEDGE
+  BRICKPRIZE
 .endenum
 
 .macro LSpr Type, Direction, XPos, YPos, Extra

@@ -78,7 +78,7 @@
   .byt Metatiles::WATER_MAIN
   .byt Metatiles::SOLID_LEDGE_M
   .byt Metatiles::FALLTHROUGH_LEDGE_M
-  .byt Metatiles::EMPTY
+  .byt Metatiles::BRICKPRIZE
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY
