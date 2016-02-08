@@ -64,6 +64,33 @@ NewCameraX = Temp
   ror Target+0
   sta Target+1
  
+  ; Limit speed
+  ; Maybe I can make this smaller?
+  php
+  lda Target+1
+  sta TouchTemp
+  bpl :+
+    neg16 Target+0, Target+1
+  :
+
+  lda Target+1
+  bne TooBig
+  lda Target+0
+  cmp #$80
+  bcc :+
+TooBig:
+    lda #0
+    sta Target+1
+    lda #$7f
+    sta Target+0
+  :
+
+  lda TouchTemp
+  bpl :+
+    neg16 Target+0, Target+1
+  :
+  plp
+
   ; Step 3: Add this to produce the camera's new position.
   ; The bit shifted out of Target+0 into carry can be used
   ; for free
