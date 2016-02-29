@@ -223,6 +223,11 @@ MS_EMPTY = 32
   BALL
 .endenum
 
+.enum PoofSubtype
+  POOF
+  BRICKS
+.endenum
+
 .enum MusicTracks
   NONE
 .endenum

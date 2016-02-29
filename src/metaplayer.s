@@ -62,6 +62,24 @@ BricksHi:
 .proc BrokeBricks
   lda #Metatiles::EMPTY
   jsr ChangeBlock
+
+  sty TempVal+1
+  jsr FindFreeObjectY
+  bcc NoSlotFree
+  lda #Enemy::POOF*2
+  sta ObjectF1,y
+  lda #PoofSubtype::BRICKS
+  sta ObjectF2,y
+  jsr GetBlockX
+  sta ObjectPXH,y
+  lda TempVal+1
+  sta ObjectPYH,y
+  lda #0
+  sta ObjectPXL,y
+  sta ObjectPYL,y
+  sta ObjectTimer,y
+NoSlotFree:
+
   lda #SFX::SMASH
   jmp PlaySoundDebounce
 .endproc
@@ -132,6 +150,7 @@ SpecialMiscHi:
   sta PlayerVYL
   lda #30
   sta PlayerJumpCancelLock
+  sta PlayerJumping
   lda #SFX::SPRING
   jsr PlaySoundDebounce
 

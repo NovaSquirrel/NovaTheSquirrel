@@ -177,7 +177,6 @@ DelayCheck:
     tya                          ; Y gets the Y position.
     and #$0f
     tay
-    pla
     lda DelayedMetaEditType,x
     jsr ChangeBlock              ; saves X so we don't have to do that here
     lda #0

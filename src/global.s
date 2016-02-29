@@ -575,6 +575,7 @@ DetectSpriteSlot2:
     ror 0
   .endrep
   lda 0
+  rts
 .endproc
 
 ; Queues a change to the level to happen after a timer goes off.
