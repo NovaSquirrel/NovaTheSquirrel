@@ -105,7 +105,10 @@ BlockUL = 2
 BlockUR = 3
 BlockLL = 4
 BlockLR = 5
+BlockFootL = TempSpace+1  ; TempSpace is free here because
+BlockFootR = TempSpace+2  ; the buffer isn't filled until after Handleplayer
 FourCorners = 6
+FootCorners = TempSpace+3
 BottomCMP = 7
 SkipFourCorners = 8
 MaxSpeedLeft = 9
@@ -113,6 +116,7 @@ MaxSpeedRight = 10
   lda #0
   sta PlayerOnGround
   sta FourCorners
+  sta FootCorners
   sta SkipFourCorners
 
   lda PlayerWasRunning ; nonzero = B button, only updated when on ground
@@ -434,7 +438,7 @@ DoneCheckMiddle:
   lda MetatileFlags,x
   cmp BottomCMP
   rol FourCorners
-  lda #$70
+  lda #$30
   add PlayerPXL            ; right side
   lda PlayerPXH
   adc #0
@@ -479,6 +483,15 @@ FourCornersH:
   .byt >(FC_LRL_ -1), >(FC_LRLR -1)
 
 FC_____:
+  lda PlayerPXL
+  sta PlayerNonSolidPXL
+  lda PlayerPXH
+  sta PlayerNonSolidPXH
+  lda PlayerPYL
+  sta PlayerNonSolidPYL
+  lda PlayerPYH
+  sta PlayerNonSolidPYH
+  rts
 FC__RL_:
 FC_L__R:
 FC_LR_R:
@@ -486,13 +499,14 @@ FC_LRL_:
   rts
 
 FC_LRLR:
-  lda PlayerPYL
-  sub #$a0
+  lda PlayerNonSolidPXL
+  sta PlayerPXL
+  lda PlayerNonSolidPXH
+  sta PlayerPXH
+  lda PlayerNonSolidPYL
   sta PlayerPYL
-  subcarry PlayerPYH
-  lda #0
-  sta PlayerVYL
-  sta PlayerVYH
+  lda PlayerNonSolidPYH
+  sta PlayerPYH
   rts
 
 FC_L_LR:

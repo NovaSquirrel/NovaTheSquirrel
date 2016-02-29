@@ -43,6 +43,11 @@
   PlayerVXL:        .res 1 ;  \
   PlayerVYH:        .res 1 ;  /
   PlayerVYL:        .res 1 ; /
+  PlayerNonSolidPXL: .res 1
+  PlayerNonSolidPXH: .res 1
+  PlayerNonSolidPYL: .res 1
+  PlayerNonSolidPYH: .res 1
+ 
   PlayerInvincible: .res 1     ; player invincibility timer, for when getting hurt or otherwise
   PlayerWasRunning: .res 1     ; was the player running when they jumped?
   PlayerDir:        .res 1     ; currently facing left?
