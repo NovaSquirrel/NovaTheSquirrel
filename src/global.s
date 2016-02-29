@@ -220,11 +220,11 @@ Found:
 ; output: Y (object slot), carry (success)
 .proc FindFreeObjectY
   pha
-  ldx #0
+  ldy #0
 : lda ObjectF1,y
   beq Found
-  inx
-  cpx #ObjectLen
+  iny
+  cpy #ObjectLen
   bne :-
 NotFound:
   pla
@@ -565,6 +565,7 @@ DetectSpriteSlot2:
 ; extract the X position from (LevelBlockPtr),y
 ; input: LevelBlockPtr
 ; output: A (column number)
+; locals: 0
 .proc GetBlockX
   lda LevelBlockPtr+0
   sta 0
