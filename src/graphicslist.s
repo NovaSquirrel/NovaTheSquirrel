@@ -21,6 +21,9 @@ GraphicsList:
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGCutscene, >BGCutscene
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGGrassyBG, >BGGrassyBG
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGChip,     >BGChip
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <TitleCHR,   >TitleCHR
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <TitleNAM,   >TitleNAM
+  .byt GRAPHICS_BANK1|IS_PALETTE, <PalTitle,   >PalTitle
 
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)

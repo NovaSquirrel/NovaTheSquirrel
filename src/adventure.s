@@ -51,6 +51,7 @@ VWF_BANK = $e
 .segment "PRGc" ; compressed graphics
 .segment "PRGd" ; compressed graphics
 .include "graphics.s"
+
 .segment "PRGe" ; code+music
 .include "vwf_draw.s"
 .include "levelprocess.s"
@@ -67,6 +68,7 @@ VWF_BANK = $e
 .include "math.s"
 .include "global.s"
 .include "cutscene.s"
+.include "title.s" ; might as well put this here
 
 ; ---------------------
 .segment "PRG0" ; levels

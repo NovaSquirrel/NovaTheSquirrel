@@ -103,6 +103,8 @@ IRQ:
   inx
   stx random2+1
 
+  jsr ShowTitle
+
 ; Decompress Nova tiles and common sprite tiles
   lda #GRAPHICS_BANK1
   jsr SetPRG

@@ -4,4 +4,6 @@
 *.exe
 *.deb
 *.lnk
+*.pyc
+*.sav
 map.txt

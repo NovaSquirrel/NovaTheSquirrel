@@ -65,6 +65,9 @@
   BG_CUTSCENE
   BG_GRASSYBG
   BG_CHIP
+  TITLE_CHR
+  TITLE_NAM
+  TITLE_PAL
 .endenum
 
 .enum SFX

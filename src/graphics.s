@@ -16,6 +16,9 @@ SPFire:     ChrFile "../chr/spfire.pb53",     512,  $1800
 SPKing:     ChrFile "../chr/spking.pb53",     512,  $1800
 SPGeorge:   ChrFile "../chr/spgeorge.pb53",   512,  $1800
 SPExplode:  ChrFile "../chr/spexplode.pb53",  512,  $1800
+TitleCHR:   ChrFile "../tools/title/title.pb53",    4096, $0000
+TitleNAM:   ChrFile "../tools/title/titlenam.pb53", 1024, $2000
+
 PalGrassy:  .byt $03
             .byt $1a, $2a, $26
             .byt $2d, $3d, $30
@@ -31,6 +34,10 @@ PalFrozen:  .byt $03
             .byt $0c, $1c, $10
             .byt $17, $27, $38
             .byt $06, $16, $27
+PalTitle:   .byt $02
+            .byt $0f, $2a, $12
+            .byt $0f, $2a, $26
+            .byt $12, $22, $32
 
 AbilityIcons: .incbin "chr/sppowericons.chr"
 AbilityGfx:   .incbin "chr/sppowergfx.chr"
