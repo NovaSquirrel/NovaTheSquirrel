@@ -109,6 +109,8 @@ BlockFootL = TempSpace+1  ; TempSpace is free here because
 BlockFootR = TempSpace+2  ; the buffer isn't filled until after Handleplayer
 FourCorners = 6
 FootCorners = TempSpace+3
+BlockMiddle = TempSpace+4
+XForMiddle  = TempSpace+5
 BottomCMP = 7
 SkipFourCorners = 8
 MaxSpeedLeft = 9
@@ -132,11 +134,9 @@ MaxSpeedRight = 10
   sta MaxSpeedRight
 NotWalkSpeed:
 
-;  lda PlayerPYL
-;  sta OldPlayerPYL
-;  lda PlayerPYH
-;  sta OldPlayerPYH
-
+  lda PlayerOnLadder       ; skip gravity if on a ladder
+  bne HandleLadderClimbing
+  ; add gravity
   lda PlayerVYH
   bmi GravityAddOK
   lda PlayerVYL
@@ -149,6 +149,29 @@ GravityAddOK:
   bcc SkipGravity
     inc PlayerVYH
 SkipGravity:
+  jmp PlayerIsntOnLadder
+HandleLadderClimbing:
+  lda #0
+  sta PlayerVYL
+  sta PlayerVYH
+  jsr OfferJump
+  lda keydown
+  and #KEY_UP
+  beq :+
+    lda PlayerPYL
+    sub #$20
+    sta PlayerPYL
+    subcarry PlayerPYH
+  :
+  lda keydown
+  and #KEY_DOWN
+  beq :+
+    lda PlayerPYL
+    add #$20
+    sta PlayerPYL
+    addcarry PlayerPYH
+  :
+PlayerIsntOnLadder:
 
   ; apply gravity
   lda PlayerPYL
@@ -374,7 +397,9 @@ NoFixWalkSpeed:
   add PlayerPXL
   lda PlayerPXH
   adc #0
+  sta XForMiddle
   jsr GetLevelColumnPtr
+  sta BlockMiddle
   tay
 
   ; A is going to get overwritten now so take this opportunity to update PlayerLocationNow/Last
@@ -448,6 +473,27 @@ DoneCheckMiddle:
   lda MetatileFlags,x
   cmp BottomCMP
   rol FourCorners
+
+  ; Cancel the ladder if we move into a non-ladder thing
+  lda PlayerOnLadder
+  beq :+
+  lda BlockMiddle
+  cmp #Metatiles::LADDER
+  beq :+
+  cmp #Metatiles::LADDER_TOP
+  beq :+
+  lda BlockLL
+  cmp #Metatiles::LADDER
+  beq :+
+  cmp #Metatiles::LADDER_TOP
+  beq :+
+  lda BlockLR
+  cmp #Metatiles::LADDER
+  beq :+
+  cmp #Metatiles::LADDER_TOP
+  beq :+
+  lsr PlayerOnLadder
+:
 
   lda SkipFourCorners
   rtsne
@@ -608,6 +654,9 @@ BumpOneBlockAbove:
 FC___L_:
 FC____R:
 FC___LR:
+  lsr PlayerOnLadder
+
+  ; Fall through a platform
   ldx BlockLL
   lda MetatileFlags,x
   ldx BlockLR
@@ -622,6 +671,19 @@ FC___LR:
         rts
   NotFallthrough:
 
+  ; Get on ladder from above
+  lda BlockLL
+  cmp #Metatiles::LADDER_TOP
+  bne :+
+  lda BlockLR
+  cmp #Metatiles::LADDER_TOP
+  bne :+
+    lda PlayerDownTimer
+    cmp #15
+    bcc :+
+     rts
+  :
+
   inc PlayerOnGround
   lda keydown
   and #KEY_B
@@ -632,12 +694,15 @@ FC___LR:
   sta PlayerVYL
   lda #$80
   sta PlayerPYL
+OfferJump:
   lda keylast
   and #KEY_A
   bne :+
   lda keydown
   and #KEY_A
   beq :+
+    lda #0
+    sta PlayerOnLadder
     lda #<(-$50)
     sta PlayerVYL
     lda #>(-$50)
@@ -682,6 +747,12 @@ DrawX2 = 4
   sta PlayerTiles+6
   sta PlayerAnimationFrame
 
+  lda PlayerOnLadder
+  beq :+
+    ldy #$20
+    bne CustomFrameBase
+  :
+
   lda PlayerTailAttack
   beq :+
     tax
@@ -714,6 +785,7 @@ DrawX2 = 4
   jmp NoSpecialAnimation
 NormalFrame:
   ldy #$00
+CustomFrameBase:
   sty PlayerTiles+0
   iny
   sty PlayerTiles+1
@@ -727,6 +799,8 @@ NormalFrame:
   sty PlayerTiles+5
 EndAnimationFrame:
 
+  lda PlayerOnLadder
+  jne NoSpecialAnimation
   lda PlayerJumping
   beq :+
     lda #$0c
@@ -771,21 +845,41 @@ EndAnimationFrame:
   :
 NoSpecialAnimation:
 
+  ; horizontally flip as the player moves up and down the ladder
+  lda PlayerOnLadder
+  beq :+
+    lda retraces
+    and #%10000
+    beq DoHorizTileFlip
+    bne NoHorizTileFlip 
+  :
+
   ; flip horizontally
   lda PlayerDir
   beq :+
+DoHorizTileFlip:
     lda #OAM_XFLIP
     sta Attrib
     swapy PlayerTiles+0, PlayerTiles+1
     swapy PlayerTiles+2, PlayerTiles+3
     swapy PlayerTiles+4, PlayerTiles+5
   :
+NoHorizTileFlip:
+  lda PlayerOnLadder
+  beq :+
+    lda DrawX
+    sub #4
+    sta DrawX
+    jmp SkipRegularXFlip
+  :
+
   lda PlayerDir
   bne :+
     lda DrawX
     sub #8
     sta DrawX
   :
+SkipRegularXFlip:
   lda DrawX
   sta DrawX2
 

@@ -86,6 +86,8 @@ NoSlotFree:
 
 SpecialMiscLo:
   .byt <(TouchedCoin-1)
+  .byt <(TouchedLadder-1)
+  .byt <(TouchedLadder-1)
   .byt <(TouchedSpring-1)
   .byt <(TouchedSignpost-1)
   .byt <(TouchedDoorBottom-1)
@@ -111,6 +113,8 @@ SpecialMiscLo:
 
 SpecialMiscHi:
   .byt >(TouchedCoin-1)
+  .byt >(TouchedLadder-1)
+  .byt >(TouchedLadder-1)
   .byt >(TouchedSpring-1)
   .byt >(TouchedSignpost-1)
   .byt >(TouchedDoorBottom-1)
@@ -140,6 +144,22 @@ SpecialMiscHi:
   lda #SFX::COIN
   jsr PlaySound
   jmp AddCoin
+.endproc
+
+.proc TouchedLadder
+XForMiddle = TempSpace+5
+  lda keydown
+  and #KEY_UP|KEY_DOWN
+  rtseq
+  lda #2
+  sta PlayerOnLadder
+
+  ; snap onto the ladder
+  lda #$50
+  sta PlayerPXL
+  lda XForMiddle
+  sta PlayerPXH
+  rts
 .endproc
 
 .proc TouchedSpring

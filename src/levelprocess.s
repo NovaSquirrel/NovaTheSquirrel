@@ -121,6 +121,7 @@ ListOfProcessTiles:
   .byt Metatiles::DOOR_TOP
   .byt Metatiles::EXIT_DOOR_TOP
   .byt Metatiles::CLOUD_M
+  .byt Metatiles::LADDER
 ListOfProcessAddrLo:
   .byt <(ProcessGround-1)
   .byt <(ProcessRock-1)
@@ -130,6 +131,7 @@ ListOfProcessAddrLo:
   .byt <(ProcessDoorTop-1)
   .byt <(ProcessDoorTop-1)
   .byt <(ProcessCloud-1)
+  .byt <(ProcessLadder-1)
 ListOfProcessAddrHi:
   .byt >(ProcessGround-1)
   .byt >(ProcessRock-1)
@@ -139,6 +141,20 @@ ListOfProcessAddrHi:
   .byt >(ProcessDoorTop-1)
   .byt >(ProcessDoorTop-1)
   .byt >(ProcessCloud-1)
+  .byt >(ProcessLadder-1)
+
+ProcessLadder:
+  dey
+  lda (Pointer),y
+  iny
+  cmp #Metatiles::LADDER
+  beq YesLadder
+  cmp #Metatiles::LADDER_TOP
+  beq YesLadder
+  lda #Metatiles::LADDER_TOP
+  sta (Pointer),y
+YesLadder:
+  rts
 
 ProcessCloud:
   lda (LeftPointer),y

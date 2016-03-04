@@ -93,14 +93,6 @@ C .byt $0d
 C .byt $0e
 C .byt $0f
 
-R LADDER
-C .byt M_PAL_2
-C .byt M_SOLID_TOP|M_EMPTY
-C .byt $10
-C .byt $10
-C .byt $11
-C .byt $11
-
 R SPIKES
 C .byt M_PAL_1
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_GROUND
@@ -118,6 +110,22 @@ C .byt $14
 C .byt $15
 C .byt $16
 C .byt $17
+
+R LADDER
+C .byt M_PAL_2
+C .byt M_SPECIAL_MISC|M_POST_PROCESS
+C .byt $10
+C .byt $10
+C .byt $11
+C .byt $11
+
+R LADDER_TOP
+C .byt M_PAL_2
+C .byt M_SOLID_TOP|M_SPECIAL_MISC
+C .byt $10
+C .byt $10
+C .byt $11
+C .byt $11
 
 R SPRING
 C .byt M_PAL_2
