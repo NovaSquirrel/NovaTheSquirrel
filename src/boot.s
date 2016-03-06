@@ -92,9 +92,10 @@ IRQ:
   cpx #4*3
   bcc :-
 
+  jsr ShowTitle
+
 ; Set some random seeds
-; Later this will come from player input
-  ldx #60
+  ldx retraces
   stx random1+0
   inx
   stx random1+1
@@ -102,8 +103,6 @@ IRQ:
   stx random2+0
   inx
   stx random2+1
-
-  jsr ShowTitle
 
 ; Decompress Nova tiles and common sprite tiles
   lda #GRAPHICS_BANK1
