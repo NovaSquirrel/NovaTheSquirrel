@@ -360,19 +360,6 @@ NoFixWalkSpeed:
   adc PlayerVXH
   sta PlayerPXH
 
-  ; Disallow moving past the left side of the stage.
-  ; Treat column 0 as a barrier because if we let the player stand in column 0,
-  ; then facing right would make Nova's tail wrap to the other side of the screen
-  lda PlayerPXH
-  bne :+
-    lda #1
-    sta PlayerPXH
-    lda #0
-    sta PlayerPXL
-    sta PlayerVXH
-    sta PlayerVXL
-  :
-
   ; ------- FOUR CORNER COLLISION DETECTION -------
   ; http://pineight.com/mw/index.php?title=Four-corner_collision_detection
 
@@ -721,8 +708,32 @@ Attrib = 2
 MiddleOffsetX = 3
 DrawX2 = 4
   ; need to do this first even if we skip the drawing, because of PlayerDrawX and PlayerDrawY
-  RealXPosToScreenPos PlayerPXL, PlayerPXH, DrawX
+  jsr MakeDrawX
   RealYPosToScreenPos PlayerPYL, PlayerPYH, DrawY
+
+  ; check if the player's X is out of bounds,
+  ; and fix it if it is
+  lda DrawX
+  cmp #$08
+  bcs :+
+    lda #$80
+    sta PlayerPXL
+    lda #0
+    sta PlayerVXH
+    sta PlayerVXL
+    jsr MakeDrawX
+  :
+  lda DrawX
+  cmp #$f0
+  bcc :+
+    dec PlayerPXH
+    lda #$ff
+    sta PlayerPXL
+    lda #0
+    sta PlayerVXH
+    sta PlayerVXL
+    jsr MakeDrawX
+  :
 
   ; copy to PlayerDrawX and PlayerDrawY which are used for collision detection
   ; PlayerDrawY is also used for the coin display when you get coins
@@ -1004,6 +1015,10 @@ Anim4: .byt $00, $00, $00, $00, $1d ;$24
 AnimO: .byt   0,   0,   0,   2,   3 ;  4
 TailAttackFrame:
   .byt 1, 1, 2, 2, 3, 3, 4, 4, 4, 3, 3, 2, 2, 1
+
+MakeDrawX:
+  RealXPosToScreenPos PlayerPXL, PlayerPXH, DrawX
+  rts
 
 ; 00 01 | 0f 01 | 0f 01 | 0f 01 | 0f 01     | 0f 01
 ; 02 03 | 10 11 | 13 14 | 15 16 | 19 1a     | 20 21 

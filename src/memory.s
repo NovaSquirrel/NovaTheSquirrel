@@ -200,8 +200,8 @@
   ScreenFlags:        .res 16  ; / so keep them in order
   ScreenFlagsDummy:   .res 1
 
-; ScreenFlags stores flags for each screen in the level, so far there's just one flag:
-SCREEN_BOUNDARY = 1
+; ScreenFlags stores flags for each screen in the level; so far there's just one flag:
+SCREEN_BOUNDARY = 1 ; boundary on left side of screen
 
   LevelSize:          .res 1  ; last screen number in the level
   LastSpriteIndex:    .res 1  ; the index of the end marker in the sprite list, not initialized correctly yet?
@@ -216,4 +216,4 @@ SCREEN_BOUNDARY = 1
 
   ; the sprite list from the ROM has to be copied here so we can access it in gameplay banks
   SpriteListRAM:      .res 256
-.code
+.code   

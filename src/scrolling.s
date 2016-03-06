@@ -69,11 +69,10 @@ NewCameraX = Temp
   php
   lda Target+1
   sta TouchTemp
+  ; Flip to positive if needed
   bpl :+
     neg16 Target+0, Target+1
-  :
-
-  lda Target+1
+: lda Target+1
   bne TooBig
   lda Target+0
   cmp #$80
@@ -85,11 +84,11 @@ TooBig:
     sta Target+0
   :
 
+  ; Flip back to negative if it was negative
   lda TouchTemp
   bpl :+
     neg16 Target+0, Target+1
-  :
-  plp
+: plp
 
   ; Step 3: Add this to produce the camera's new position.
   ; The bit shifted out of Target+0 into carry can be used
@@ -100,6 +99,56 @@ TooBig:
   lda Target+1
   adc ScrollX+1
   sta ScrollX+1
+
+; ----------------------------------------
+; SCROLL BARRIERS (left)
+; ----------------------------------------  
+  lda ScrollX+1
+  eor ScrollOldX+1
+  and #%00010000
+  beq NoScreenChangeLeft
+  lda ScrollX+0
+  cmp #$80
+  bcc NoScreenChangeLeft
+  ; See if we're scrolling past a barrier
+  lda ScrollOldX+1
+  lsr
+  lsr
+  lsr
+  lsr
+  tay
+  lda ScreenFlags,y
+  lsr
+  bcc NoScreenChangeLeft
+  lda ScrollOldX+1
+  and #$f0
+  sta ScrollX+1
+  lda #0
+  sta ScrollX+0 
+NoScreenChangeLeft:
+
+; ----------------------------------------
+; SCROLL BARRIERS (right)
+; ----------------------------------------  
+  lda ScrollX+1
+  and #$0f
+  bne NoScreenChangeRight
+  lda ScrollX+0
+  and #$f0
+  beq NoScreenChangeRight
+  lda ScrollX+1
+  ; Check the next screen and see if it's got a barrier
+  lsr
+  lsr
+  lsr
+  lsr
+  tay
+  lda ScreenFlags+1,y
+  lsr
+  bcc NoScreenChangeRight
+  lda #0
+  sta ScrollX+0
+NoScreenChangeRight:
 
 ; ----------------------------------------
 ; UPDATE THE NAMETABLES
