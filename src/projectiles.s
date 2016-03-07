@@ -456,6 +456,8 @@ ProjBomb:
   lda ObjectTimer,x
   cmp #1
   bne NotBombExplode
+  lda #SFX::BOOM1
+  sta NeedSFX
   lda #$40
   jsr ObjectOffsetXY
   lda #PlayerProjectileType::EXPLOSION

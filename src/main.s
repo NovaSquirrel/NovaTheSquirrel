@@ -146,7 +146,7 @@
 .endproc
 ; don't put anything else here
 .proc MainLoop
-;  lda #OBJ_CLIP | BG_CLIP | %11100000
+;  lda #OBJ_ON | BG_ON | %11100000
 ;  sta PPUMASK
   countdown IsScrollUpdate ; decrease scroll update stage
   jsr ReadJoy
@@ -210,9 +210,16 @@ NotSlowTimer:
   jsr SetPRG
   jsr pently_update
   lda NeedSFX
-  bpl :+
+  bpl :++
+    cmp #SFX::BOOM1
+    php
     and #63
     jsr pently_start_sound
+    plp
+    bne :+
+      lda #SFX::BOOM2
+      jsr pently_start_sound
+    :
     lda #0
     sta NeedSFX
   :

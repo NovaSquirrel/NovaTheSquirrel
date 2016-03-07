@@ -211,6 +211,31 @@ NoTail:
     lda #SFX::TAIL_WHOOSH
     jsr PlaySound
     inc PlayerTailAttack
+
+    ; Detonate any fireworks
+    ldy #0
+  @Loop:
+    lda ObjectF1,y
+    lsr
+    cmp #Enemy::PLAYER_PROJECTILE
+    bne @No
+    lda ObjectF2,y
+    cmp #PlayerProjectileType::FIREWORK_CURSOR
+    bne @No
+    tya
+    tax
+    lda #$40
+    jsr ObjectOffsetXY
+    lda #10
+    sta ObjectTimer,y
+    lda #PlayerProjectileType::EXPLOSION
+    sta ObjectF2,y
+    lda #SFX::BOOM1
+    sta NeedSFX
+  @No:
+    iny
+    cpy #ObjectLen
+    bne @Loop
   :
 SkipTail:
 
