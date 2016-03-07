@@ -78,38 +78,38 @@
 
 .proc ObjBehaviors
   .byt 0 ;NONE
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;GOOMBA
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;SNEAKER
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;SPINNER
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;OWL
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;KING
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;TOASTBOT
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;BALL
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;POTION
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;GEORGE
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;GOOMBA
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;SNEAKER
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;SPINNER
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;OWL
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;KING
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;TOASTBOT
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BALL
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;POTION
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;GEORGE
   .byt ObjBehavior::AUTO_REMOVE ;BIGGEORGE
   .byt ObjBehavior::AUTO_REMOVE ;ALAN
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;GLIDER
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;ICE1
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;ICE2
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;BALLGUY
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;THWOMP
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;CANNON1
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;CANNON2
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;BURGER
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;FIREWALK
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;FIREJUMP
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;FIREBURNING
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;MINE
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;ROCKET
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;ROCKETLAUNCHER
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;FIREWORKSHOOTER
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;TORNADO
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;ELECTRICFAN
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;CLOUD
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;BOUNCER
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;GREMLIN
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT ;BOMBGUY
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;GLIDER
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;ICE1
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;ICE2
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BALLGUY
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;THWOMP
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;CANNON1
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;CANNON2
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BURGER
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;FIREWALK
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;FIREJUMP
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;FIREBURNING
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;MINE
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;ROCKET
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;ROCKETLAUNCHER
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;FIREWORKSHOOTER
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;TORNADO
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;ELECTRICFAN
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;CLOUD
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BOUNCER
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;GREMLIN
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BOMBGUY
   .byt 0 ;POOF
   .byt 0 ;PLAYER_PROJECTILE
   .byt 0 ;ENEMY_PROJECTILE

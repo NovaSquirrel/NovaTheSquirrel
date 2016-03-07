@@ -516,6 +516,7 @@ FourCornersH:
   .byt >(FC_LRL_ -1), >(FC_LRLR -1)
 
 FC_____:
+SavePosition:
   lda PlayerPXL
   sta PlayerNonSolidPXL
   lda PlayerPXH
@@ -641,6 +642,7 @@ BumpOneBlockAbove:
 FC___L_:
 FC____R:
 FC___LR:
+  jsr SavePosition
   lsr PlayerOnLadder
 
   ; Fall through a platform

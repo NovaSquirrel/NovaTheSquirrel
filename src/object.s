@@ -37,6 +37,7 @@ ENEMY_STATE_INIT    = 4
 .enum ObjBehavior
   AUTO_REMOVE = $1
   GET_SHOT    = $2
+  AUTO_RESET  = $4
 .endenum
 
 ; run the list of sprites
@@ -55,7 +56,23 @@ Loop:
   :
   lsr O_RAM::OBJ_FLAG
   bcc :+
-    jsr EnemyTouchPlayerProjectiles
+    jsr EnemyGetShot
+  :
+  lsr O_RAM::OBJ_FLAG
+  bcc :+
+    lda ObjectTimer,x
+    beq :+
+    dec ObjectTimer,x
+    bne :+
+    lda #0
+    sta ObjectF2,x
+  :
+  ; If an object is in an init state, reset it
+  lda ObjectF2,x
+  cmp #ENEMY_STATE_INIT
+  bne :+
+    lda #0
+    sta ObjectF2,x
   :
 SkipEmpty:
 
@@ -253,7 +270,8 @@ DrawY = O_RAM::OBJ_DRAWY
   lda #$10
   jsr EnemyWalk
   jsr EnemyAutoBump
-;  jsr EnemyPlayerTouchHurt
+
+  ; Alternate between two frames
   lda retraces
   lsr
   lsr
@@ -264,12 +282,9 @@ DrawY = O_RAM::OBJ_DRAWY
   ldy #OAM_COLOR_2
   jsr DispEnemyWide
 
-;  lda #<SampleMetasprite
-;  ldy #>SampleMetasprite
-;  jsr DispEnemyMetasprite
-
   jsr EnemyPlayerTouch
   bcc NoTouch
+  ; Custom behavior, so can't use EnemyPlayerTouchHurt
   lda PlayerDrawY
   add #8
   cmp O_RAM::OBJ_DRAWY
@@ -280,15 +295,6 @@ NoTouch:
   rts
 Frames:
   .byt $0c, $10, $14, $10
-.endproc
-
-.proc EnemyTurnAround
-  lda ObjectF1,x
-  beq No
-  eor #1
-  sta ObjectF1,x
-No:
-  rts
 .endproc
 
 .proc FlattenGoomba
@@ -305,6 +311,190 @@ No:
   sta PlayerJumpCancelLock
   lda #SFX::ENEMY_SMOOSH
   sta NeedSFX
+  rts
+.endproc
+
+.proc EnemyGetShot
+CenterX = TempVal+0
+CenterY = TempVal+1
+ProjectileIndex = TempVal+2
+ProjectileType  = 0
+  ; Skip offscreen enemies
+  lda O_RAM::ON_SCREEN
+  rtseq
+
+  ; Move the X and Y to the centers
+  lda O_RAM::OBJ_DRAWX
+  add #8-1
+  sta TouchLeftA
+  lda O_RAM::OBJ_DRAWY
+  add #8-1
+  sta TouchTopA
+
+  ; Set collision size
+  lda #16+2
+  sta TouchWidthA
+  sta TouchHeightA
+
+  ldy #0
+Loop:
+  sty ProjectileIndex
+
+  ; Only check for player projectiles
+  lda ObjectF1,y
+  lsr
+  cmp #Enemy::PLAYER_PROJECTILE
+  jne Nope
+
+  ; Skip if too far away horizontally
+  lda ObjectPXH,x
+  sub ObjectPXH,y
+  abs
+  cmp #2
+  bcc :+
+  clc
+  rts
+:
+  ; Skip if too far away vertically
+  lda ObjectPYH,x
+  sub ObjectPYH,y
+  abs
+  cmp #3
+  bcc :+
+  clc
+  rts
+:
+
+  RealXPosToScreenPosByY ObjectPXL, ObjectPXH, TouchLeftB
+  RealYPosToScreenPosByY ObjectPYL, ObjectPYH, TouchTopB
+
+  ; ChkTouchGeneric wants the center of each object, so add width and height divided by 2
+   lda ObjectF2,y
+   tay
+   sta ProjectileType
+   lda PlayerProjectileSizeTable,y
+   sta TouchWidthB
+   sta TouchHeightB
+   lda TouchLeftB
+   add PlayerProjectileHalfSizeTable,y
+   sta TouchLeftB
+   lda TouchTopB
+   add PlayerProjectileHalfSizeTable,y
+   sta TouchTopB
+  jsr ChkTouchGeneric
+  bcc Nope
+  jsr EnemyGotShot
+Nope: 
+  ldy ProjectileIndex
+  ; Try the next one
+  iny
+  cpy #ObjectLen
+  jne Loop
+  rts
+.endproc
+
+.proc EnemyGotShot
+ProjectileIndex = TempVal+2
+ProjectileType  = 0
+  ldy ProjectileType
+  lda PlayerProjectileActionTable,y
+  asl    ; most significant bit = remove projectile
+  bcc :+
+    ldy ProjectileIndex
+    pha
+    lda #0
+    sta ObjectF1,y
+    pla
+  :
+  tay
+  lda Responses+1,y
+  pha
+  lda Responses+0,y
+  pha
+  rts
+Responses:
+  .raddr Nothing
+  .raddr Bump
+  .raddr Stun
+  .raddr Damage
+  .raddr BlowAway
+  .raddr Copy
+Bump:
+  lda #SFX::BUMP
+  jsr PlaySoundDebounce
+  lda #>-1
+  sta ObjectVYH,x
+  lda #<-$30
+  sta ObjectVYL,x
+  lda ObjectF1,x
+  eor #1
+  sta ObjectF1,x
+Nothing:
+  rts
+Stun:
+  lda #ENEMY_STATE_STUNNED
+  sta ObjectF2,x
+  lda #180
+  sta ObjectTimer,x
+  rts
+Damage:
+  lda #SFX::ENEMY_HURT
+  jsr PlaySoundDebounce
+  lda #Enemy::POOF * 2
+  sta ObjectF1,x
+  lda #0
+  sta ObjectTimer,x
+  sta ObjectF2,x
+  rts
+BlowAway:
+  rts
+Copy:
+  ; maybe change it so they have to be stunned?
+  ldy #0
+  lda ObjectF1,x
+  lsr
+  sta 0
+: lda EnemyAbilityTable,y
+  beq @End
+  cmp 0
+  bne @Nope
+  lda EnemyAbilityTable+1,y
+  jmp ChangePlayerAbility
+@Nope:
+  iny
+  iny
+  bne :-
+@End:
+  rts
+EnemyAbilityTable:
+  .byt Enemy::BALL,             AbilityType::BALL
+  .byt Enemy::GEORGE,           AbilityType::WATER
+  .byt Enemy::BIG_GEORGE,       AbilityType::WATER
+  .byt Enemy::GLIDER,           AbilityType::GLIDER
+  .byt Enemy::ICE_1,            AbilityType::NICE
+  .byt Enemy::ICE_2,            AbilityType::NICE
+  .byt Enemy::BURGER,           AbilityType::BURGER
+  .byt Enemy::FIRE_WALK,        AbilityType::FIRE
+  .byt Enemy::FIRE_JUMP,        AbilityType::FIRE
+  .byt Enemy::FIRE_BURNING,     AbilityType::FIRE
+  .byt Enemy::ROCKET,           AbilityType::FIREWORK
+  .byt Enemy::ROCKET_LAUNCHER,  AbilityType::FIREWORK
+  .byt Enemy::FIREWORK_SHOOTER, AbilityType::FIREWORK
+  .byt Enemy::TORNADO,          AbilityType::FAN
+  .byt Enemy::ELECTRIC_FAN,     AbilityType::FAN
+  .byt Enemy::CLOUD,            AbilityType::FAN
+  .byt Enemy::BOUNCER,          AbilityType::BLASTER
+  .byt Enemy::GREMLIN,          AbilityType::BLASTER
+  .byt Enemy::BOMB_GUY,         AbilityType::BOMB
+  .byt 0
+.endproc
+
+.proc EnemyTurnAround
+  lda ObjectF1,x
+  beq No
+  eor #1
+  sta ObjectF1,x
+No:
   rts
 .endproc
 
@@ -394,6 +584,8 @@ No:
 .proc ObjectFireJump
   jsr EnemyFall
   bcc :+
+    lda ObjectF2,x
+    bne :+
     lda #<(-$40)
     sta ObjectVYL,x
     lda #>(-$40)
@@ -596,6 +788,14 @@ WalkDistance = 0
 NewXL = 1
 NewXH = 2
   sta WalkDistance
+
+  lda ObjectF2,x
+  and #ENEMY_STATE_BITS
+  ; Change this when I have nonzero states that still involve walking
+  beq Yes
+  clc
+  rts
+Yes:
 
   ldy ObjectPYH,x
 

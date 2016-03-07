@@ -18,7 +18,7 @@
 .enum PlayerProjectileAction
   NOTHING
   BUMP
-  KNOCK
+;  KNOCK
   STUN
   DAMAGE
   BLOW_AWAY
@@ -62,6 +62,25 @@
   .byt 16
   .byt 16
   .byt 16
+.endproc
+
+.proc PlayerProjectileHalfSizeTable
+  .byt 4
+  .byt 4
+  .byt 4
+  .byt 4
+  .byt 4
+  .byt 4
+  .byt 4
+  .byt 4
+  .byt 4
+  .byt 8
+  .byt 4
+  .byt 8
+  .byt 8
+  .byt 8
+  .byt 8
+  .byt 8
 .endproc
 
 .proc PlayerProjectileRightCornerTable ; used by ObjectBounceHoriz

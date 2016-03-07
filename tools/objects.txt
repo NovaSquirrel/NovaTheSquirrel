@@ -10,47 +10,47 @@ C .byt 0
 R GOOMBA
 C .byt GraphicsUpload::SP_WALKER
 C .byt GraphicsUpload::SP_WALKER
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R SNEAKER
 C .byt GraphicsUpload::SP_WALKER
 C .byt GraphicsUpload::SP_WALKER
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R SPINNER
 C .byt GraphicsUpload::SP_WALKER
 C .byt GraphicsUpload::SP_WALKER
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R OWL
 C .byt GraphicsUpload::SP_WALKER
 C .byt GraphicsUpload::SP_WALKER
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R KING
 C .byt GraphicsUpload::SP_KING
 C .byt GraphicsUpload::SP_KING
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R TOASTBOT
 C .byt GraphicsUpload::SP_KING
 C .byt GraphicsUpload::SP_KING
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R BALL
 C .byt GraphicsUpload::SP_CANNON
 C .byt GraphicsUpload::SP_CANNON
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R POTION
 C .byt GraphicsUpload::SP_KING
 C .byt GraphicsUpload::SP_KING
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R GEORGE
 C .byt GraphicsUpload::SP_KING
 C .byt GraphicsUpload::SP_GEORGE
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R BIGGEORGE
 C .byt GraphicsUpload::SP_GEORGE
@@ -65,107 +65,107 @@ C .byt ObjBehavior::AUTO_REMOVE
 R GLIDER
 C .byt 0
 C .byt 0
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R ICE1
 C .byt 0
 C .byt 0
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R ICE2
 C .byt 0
 C .byt 0
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R BALLGUY
 C .byt GraphicsUpload::SP_CANNON
 C .byt GraphicsUpload::SP_CANNON
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R THWOMP
 C .byt GraphicsUpload::SP_CANNON
 C .byt GraphicsUpload::SP_CANNON
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R CANNON1
 C .byt GraphicsUpload::SP_CANNON
 C .byt GraphicsUpload::SP_CANNON
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R CANNON2
 C .byt GraphicsUpload::SP_CANNON
 C .byt GraphicsUpload::SP_CANNON
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R BURGER
 C .byt GraphicsUpload::SP_CANNON
 C .byt GraphicsUpload::SP_CANNON
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R FIREWALK
 C .byt GraphicsUpload::SP_FIRE
 C .byt GraphicsUpload::SP_FIRE
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R FIREJUMP
 C .byt GraphicsUpload::SP_FIRE
 C .byt GraphicsUpload::SP_FIRE
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R FIREBURNING
 C .byt GraphicsUpload::SP_FIRE
 C .byt GraphicsUpload::SP_FIRE
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R MINE
 C .byt GraphicsUpload::SP_CANNON
 C .byt GraphicsUpload::SP_CANNON
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R ROCKET
 C .byt GraphicsUpload::SP_EXPLODE
 C .byt GraphicsUpload::SP_EXPLODE
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R ROCKETLAUNCHER
 C .byt GraphicsUpload::SP_EXPLODE
 C .byt GraphicsUpload::SP_EXPLODE
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R FIREWORKSHOOTER
 C .byt GraphicsUpload::SP_EXPLODE
 C .byt GraphicsUpload::SP_EXPLODE
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R TORNADO
 C .byt 0
 C .byt 0
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R ELECTRICFAN
 C .byt 0
 C .byt 0
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R CLOUD
 C .byt 0
 C .byt 0
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R BOUNCER
 C .byt 0
 C .byt 0
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R GREMLIN
 C .byt 0
 C .byt 0
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R BOMBGUY
 C .byt GraphicsUpload::SP_EXPLODE
 C .byt GraphicsUpload::SP_EXPLODE
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 
 R POOF
 C .byt 0

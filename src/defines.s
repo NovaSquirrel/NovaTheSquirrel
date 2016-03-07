@@ -142,6 +142,30 @@
   .endrep
 .endmacro
 
+.macro RealXPosToScreenPosByY RealLo, RealHi, Store
+  lda RealLo,y
+  sub ScrollX+0
+  sta Store
+
+  lda RealHi,y
+  sbc ScrollX+1
+  .repeat 4
+    lsr
+    ror Store
+  .endrep
+.endmacro
+
+.macro RealYPosToScreenPosByY RealLo, RealHi, Store
+  lda RealLo,y
+  sta Store
+
+  lda RealHi,y
+  .repeat 4
+    lsr
+    ror Store
+  .endrep
+.endmacro
+
 .macro ChrFile File, Size, Address
   .word Address
   .byt (Size/128)
