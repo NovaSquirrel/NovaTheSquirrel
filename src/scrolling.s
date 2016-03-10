@@ -40,12 +40,12 @@ NewCameraX = Temp
   lda PlayerPXL
   sta Target+0
   lda PlayerPXH
-  ldy PlayerDirForScroll  ; 0 for right, 1 for left
-  sub CameraTargetByFacing,y
-  bcs :+
+  ;ldy PlayerDirForScroll  ; 0 for right, 1 for left
+  sub #8 ;CameraTargetByFacing,y
+  bcs :+ ; <-- if it goes past zero, zero out the scroll
     lda #0
     sta Target+0
-    sec
+    sec ; <-- for the sbc coming up
 : sta Target+1
  
   ; Step 2: Find the distance that the camera must move
@@ -210,7 +210,7 @@ FillIt:
 
   ; Make another pointer that's one column to the right
   ; (used for updating the attribute table)
-  add #16
+  ora #16
   sta LevelPointer2
   lda ScrollLevelPointer+1
   sta LevelPointer2+1

@@ -47,7 +47,7 @@
 ;11111111 - ending with 255
 ;gets written to LevelUploadList
 
-;hgfedcba Lonmlkji - boundaries between screens horizontally
+;abcdefgh ijklmnoL - boundaries between screens horizontally
 ;if L: specify links for top and bottom
 ;????nnnn
 ;||||++++- number of screens to change
@@ -193,27 +193,25 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
   bne :--
 :
 
-  lda (LevelHeaderPointer),y
-  bpl NoLinks
-  ldx #0
+  ; now the link bit is the most significant bit
+  asl
+  bcc NoLinks
 
+  ; Start at screen zero
+  ldx #0
 LinkLoop:
+  ; Get next byte in the header (number of screens to change)
   iny
   lda (LevelHeaderPointer),y
   and #15
   sta 0
   inc 0
 
-: iny
-  lda (LevelHeaderPointer),y
-  pha
-  and #15
-  sta LevelLinkDown,x
-  pla
-  .repeat 4
-    lsr
-  .endrep
-  sta LevelLinkUp,x
+  ; Read the up and down bytes
+  ; (repeated for each time it's used, but it doesn't matter)
+  iny
+: lda (LevelHeaderPointer),y
+  unpackx LevelLinkDown, LevelLinkUp
   inx
   dec 0
   bne :-
@@ -290,6 +288,64 @@ NoLinks:
   jsr SetPRG
   jsr PostProcessLevel
   jsr MakeBackground
+
+  ; add arrows to mark links
+  ldx #15
+ArrowLoop:
+  lda LevelLinkUp,x
+  beq @NotUp
+  ldy #0
+  jsr PutArrows
+@NotUp:
+  lda LevelLinkDown,x
+  beq @NotDown
+  ldy #13
+  jsr PutArrows
+@NotDown:
+  dex
+  bpl ArrowLoop
+  rts
+
+PutArrows:
+  txa
+  ora #$60
+  sta LevelBlockPtr+1
+  lda #0
+  sta LevelBlockPtr+0
+
+; now write a screen width of arrows
+  lda #16
+  sta 0   ; Initialize counter
+
+  tya
+  cpy #1 ; Select up arrows or down arrows 
+  lda #0
+  adc #Metatiles::BG_UP_ARROW  
+  sta 1
+
+  ; Make two rows
+@ArrowRowLoop:
+  ; Top row
+  lda (LevelBlockPtr),y
+  bne :+
+  lda 1
+  sta (LevelBlockPtr),y
+: iny
+  ; Bottom row
+  lda (LevelBlockPtr),y
+  bne :+
+  lda 1
+  sta (LevelBlockPtr),y
+: dey
+
+  ; Next column
+  pha
+  lda LevelBlockPtr
+  add #$10
+  sta LevelBlockPtr
+  pla
+  dec 0
+  bne @ArrowRowLoop
   rts
 .endproc
 

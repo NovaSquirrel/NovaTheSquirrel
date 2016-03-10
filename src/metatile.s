@@ -53,166 +53,184 @@ M_BEHAVIOR =       %00011111 ; mask for the block's behavior only
 .endproc
 
 .proc RenderLevelScreens
-Pointer = 0
-PPUAddrHigh = 7
   lda #0
   sta PPUMASK
 
+  ; Clear sprites
   jsr ClearOAM
   lda #2
   sta OAM_DMA
  
-  lda #<LevelMap
-  sta Pointer+0
-  lda #>LevelMap
-  sta Pointer+1
-  lda #$20
-  sta PPUAddrHigh
-  jsr RenderLevelScreen
+  ; Immediately set the correct scroll value
+  lda PlayerPXL
+  sta ScrollX+0
+  lda PlayerPXH
+  sub #8
+  bcs :+
+    lda #0
+    sta ScrollX+0
+: sta ScrollX+1
 
-  inc Pointer+1
-  lda #$24
-  sta PPUAddrHigh
-  jsr RenderLevelScreen
-
-  lda #0
-  sta PPUSCROLL
-  sta PPUSCROLL
-  rts
-.endproc
-
-.proc RenderLevelScreen ; NOT the version used in FHBG, DABG and Sliding Blaster for once
-Pointer = 0
-PPUColumn = 2
-RowCounter  = 3
-ColCounter  = 4
-Temp1 = 5
-Temp2 = 6
-PPUAddrHigh = 7
-  ; initialize pointers
-  lda #0
-  sta PPUColumn
-
-  ; clear attributes
-  ; A is still zero
-  tax
-: sta Attributes,x
-  inx
-  cpx #64
+  ; Start writing chunks
+  lda ScrollX+1
+  lsr
+  sub #2
+  sta 15  ; Current chunk
+  lda #13
+  sta 14  ; Counter
+: lda 15
+  jsr RenderLevel32Wide
+  inc 15
+  dec 14
   bne :-
 
-  ldx #16
-  stx ColCounter
-  dex ;X = 15
-  stx RowCounter
+  jmp UpdateScrollRegister
+.endproc
 
-  ; set PPU to vertical writes
+; Render a 32 pixel wide chunk
+; Very similar to the scrolling code
+; input: A (level chunk number)
+; locals: 2, 3, 4, 5, 6, 7, more
+.proc RenderLevel32Wide
+LPointer = ScrollLevelPointer
+; ThirtyUpdateAddr ; big endian
+LevelIndex = 2 ; index for (ScrollLevelPointer),y
+AttrIndex = 3
+Chunk = 4
+Temp = 5
+RPointer = 6
+  sta Chunk
+
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
   sta PPUCTRL
 
-  ; --------- render columns ---------
-  ldy #0
-Loop1Init:
-  lda PPUAddrHigh
-  sta PPUADDR
-  lda PPUColumn
-  inc PPUColumn
-  sta PPUADDR
-Loop1:
-  lda (Pointer),y
+  ; Multiply to get the level pointer
+  lda #6>>1 ; this 6 will get shifted over to become $60
+            ; so that the pointer starts from $6000
+  sta LPointer+1
+  lda Chunk
+  .repeat 5
+    asl
+    rol LPointer+1
+  .endrep
+  sta LPointer
+  ; Make another pointer that's one column to the right
+  ora #16
+  sta RPointer+0
+  lda LPointer+1
+  sta RPointer+1
+
+  ; Make the PPU address
+  lda Chunk
+  asl
+  asl
+  and #31
+  sta ThirtyUpdateAddr+1
+  lda Chunk
+  and #%1000 ; becomes 0 or 4
+  lsr
+  ora #$20   ; $20xx or $24xx
+  sta ThirtyUpdateAddr+0
+
+; -------------------------------
+; START OF ATTRIBUTE TABLE CODE
+; -------------------------------
+  ldy #0        ; Start at the top of the column
+  sty AttrIndex ; and start of the attributes array
+LoopAttr:
+  ; top left corner of attribute byte
+  lda (LPointer),y
   tax
-  lda MetatileUL,x
-  sta PPUDATA
-  lda MetatileLL,x
-  sta PPUDATA
-  iny ; next block
-  dec RowCounter
-  bne Loop1
-
-  tya ; move back to top
-  sub #15
-  tay
-
-  lda #15
-  sta RowCounter
-  lda PPUAddrHigh
-  sta PPUADDR
-  lda PPUColumn
-  inc PPUColumn
-  sta PPUADDR
-Loop2:
-  lda (Pointer),y
+  lda MetatilePalettes,x
+  and #%00000011
+  sta Temp
+  ; top right corner of attribute byte
+  lda (RPointer),y
   tax
-  lda MetatileUR,x
-  sta PPUDATA
-  lda MetatileLR,x
-  sta PPUDATA
-
-  ; write attribute table entry for this block
-  tya
-  pha ; save Y
-  and #%1110
-  asl
-  asl
-  sta Temp1
-  tya ; xxxx....
-  lsr ; .xxxx...
-  lsr ; ..xxxx..
-  lsr ; ...xxxx.
-  lsr ; ....xxxx
-  lsr ; .....xxx
-  ora Temp1
-  sta Temp1
-
-  ; calculate which metatile in attribute byte to write
-  tya
-  and #$01
-  asl
-  sta Temp2
-  tya
-  and #$10
-  lsr
-  lsr
-  lsr
-  lsr
-  ora Temp2
-  tay
-
-  lda ANDMask,y
-  and MetatilePalettes,x
-  ldy Temp1
-  ora Attributes,y
-  sta Attributes,y
-  pla ; restore Y
-  tay
-
-  iny ; next block
-  dec RowCounter
-  bne Loop2
-
+  lda MetatilePalettes,x
+  and #%00001100
+  ora Temp
+  sta Temp
   iny
-  lda #15
-  sta RowCounter
-  dec ColCounter
-  jne Loop1Init
+  ; bottom left corner of attribute byte
+  lda (LPointer),y
+  tax
+  lda MetatilePalettes,x
+  and #%00110000
+  ora Temp
+  sta Temp
+  ; top right corner of attribute byte
+  lda (RPointer),y
+  tax
+  lda MetatilePalettes,x
+  and #%11000000
+  ora Temp
+  iny
 
-  ; set PPU to horizontal writes
-  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
-  sta PPUCTRL
+  ; store the attribute byte we just built
+  ldx AttrIndex
+  sta AttributeWriteD,x
+  inx
+  stx AttrIndex
+  cpx #8
+  bne LoopAttr
 
-  ; write attribute table
-  lda PPUAddrHigh
+  ; make attribute addresses
+  lda Chunk
+  and #7
+  sta Temp
+  ldx #3
+: lda AttributeAddrsLo,x
+  ora Temp
+  sta AttributeWriteA2,x
+  dex
+  bpl :-
+
+  ; Make high address for all the attribute writes,
+  ; which will be on the same nametable as the tile updates
+  lda ThirtyUpdateAddr+0
   ora #3
-  sta PPUADDR
-  lda #$c0
-  sta PPUADDR
+  sta AttributeWriteA1
+
+  ; Write attributes
+  .repeat 4, I
+    lda AttributeWriteA1
+    sta PPUADDR
+    lda AttributeWriteA2+I
+    sta PPUADDR
+    lda AttributeWriteD+I
+    sta PPUDATA
+    lda AttributeWriteD+I+4
+    sta PPUDATA
+  .endrep
+; -------------------------------
+; END OF ATTRIBUTE TABLE CODE
+; -------------------------------
+
+  jsr UpdateScrollBufferLeft
+  jsr Write30
+  jsr UpdateScrollBufferRight
+  jsr Write30
+  lda RPointer+0
+  sta LPointer+0
+  jsr UpdateScrollBufferLeft
+  jsr Write30
+  jsr UpdateScrollBufferRight
+  jmp Write30
+
+Write30:
   ldx #0
-: lda Attributes,x
+  lda ThirtyUpdateAddr+0
+  sta PPUADDR
+  lda ThirtyUpdateAddr+1
+  sta PPUADDR
+: lda ThirtyUpdateTile,x
   sta PPUDATA
   inx
-  cpx #64
+  cpx #30
   bne :-
+  inc ThirtyUpdateAddr+1
   rts
-ANDMask:
-  .byt %00000011, %00001100, %00110000, %11000000
+AttributeAddrsLo:
+  .byt $c0, $c8, $d0, $d8
 .endproc

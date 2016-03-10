@@ -447,3 +447,38 @@ DJ_Label:
 @Skip:
 .endmacro
 
+.macro unpack lo, hi
+  pha
+  and #15
+  sta lo
+  pla
+  lsr
+  lsr
+  lsr
+  lsr
+  sta hi
+.endmacro
+
+.macro unpackx lo, hi
+  pha
+  and #15
+  sta lo,x
+  pla
+  lsr
+  lsr
+  lsr
+  lsr
+  sta hi,x
+.endmacro
+
+.macro unpacky lo, hi
+  pha
+  and #15
+  sta lo,y
+  pla
+  lsr
+  lsr
+  lsr
+  lsr
+  sta hi,y
+.endmacro

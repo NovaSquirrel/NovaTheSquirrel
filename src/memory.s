@@ -142,6 +142,8 @@
   Attributes:      .res 64
                    .res 64
 
+  NeedLevelRerender: .res 1
+
   PRGBank:         .res 1  ; current program bank
   Coins:           .res 2  ; 2 digits, BCD
   CoinShowTimer:   .res 1  ; timer for how long to show the current coin value

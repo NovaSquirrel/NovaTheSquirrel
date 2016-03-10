@@ -179,8 +179,39 @@ PlayerIsntOnLadder:
   sta PlayerPYL
   lda PlayerPYH
   adc PlayerVYH
-  and #$0f
+;  and #$0f
   sta PlayerPYH
+
+  ; Handle the player going off the top and bottom of the screen
+  ; (A is still PlayerPYH)
+  cmp #15
+  bcc NotOffTopBottom
+  ; Warp the player if needed
+  ldy #0
+  lda PlayerPXH ; get screen number only
+  lsr
+  lsr
+  lsr
+  lsr
+  ldx PlayerPYH
+  bmi :+
+    ora #$10 ; move onto the LevelLinkDown if on the bottom side
+    ldy #1
+: tax
+  lda LevelLinkUp,x
+  asl
+  asl
+  asl
+  asl
+  add PlayerPXH
+  sta PlayerPXH
+
+  inc NeedLevelRerender
+  lda LevelLinkStartYL,y
+  sta PlayerPYL
+  lda LevelLinkStartYH,y
+  sta PlayerPYH
+NotOffTopBottom:
 
   countdown PlayerJumpCancelLock
   countdown PlayerWalkLock
@@ -230,6 +261,11 @@ NoTail:
     sta ObjectTimer,y
     lda #PlayerProjectileType::EXPLOSION
     sta ObjectF2,y
+    lda #0 ; when it's not cleared it's cool and flies off
+    sta ObjectVXH,y
+    sta ObjectVXL,y
+    sta ObjectVYH,y
+    sta ObjectVYL,y
     lda #SFX::BOOM1
     sta NeedSFX
   @No:
@@ -726,8 +762,14 @@ OfferJump:
     jsr PlaySound
   :
   rts
+LevelLinkStartYL:
+  .byt 0, 0
+LevelLinkStartYH:
+  .byt 13, 1
 .endproc
-
+; -----------------------------
+; END OF PLAYER HANDLING CODE
+; -----------------------------
 .proc DisplayPlayer
 DrawX = 0
 DrawY = 1
@@ -1046,7 +1088,6 @@ TailAttackFrame:
 MakeDrawX:
   RealXPosToScreenPos PlayerPXL, PlayerPXH, DrawX
   rts
-
 ; 00 01 | 0f 01 | 0f 01 | 0f 01 | 0f 01     | 0f 01
 ; 02 03 | 10 11 | 13 14 | 15 16 | 19 1a     | 20 21 
 ; 04 05 | 12 05 | 12 05 | 17 18 | 1b 1c 1d  | 22 23 24

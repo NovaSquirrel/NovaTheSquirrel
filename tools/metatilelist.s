@@ -104,6 +104,9 @@
   BG_FLOWER_2
   BG_FLOWER_3
   BG_FLOWER_4
+  BG_UP_ARROW
+  BG_DN_ARROW
+  BG_BLACK
 .endenum
 
 M_FIRST_SPECIAL_MISC = Metatiles::COIN
@@ -215,6 +218,9 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_PAL_0 ;BG_FLOWER_2
   .byt M_PAL_2 ;BG_FLOWER_3
   .byt M_PAL_2 ;BG_FLOWER_4
+  .byt M_PAL_0 ;BG_UP_ARROW
+  .byt M_PAL_0 ;BG_DN_ARROW
+  .byt M_PAL_1 ;BG_BLACK
 .endproc
 
 .pushseg
@@ -325,6 +331,9 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_EMPTY ;BG_FLOWER_2
   .byt M_EMPTY ;BG_FLOWER_3
   .byt M_EMPTY ;BG_FLOWER_4
+  .byt M_EMPTY ;BG_UP_ARROW
+  .byt M_EMPTY ;BG_DN_ARROW
+  .byt M_EMPTY ;BG_BLACK
 .endproc
 
 .popseg
@@ -434,6 +443,9 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $dc ;BG_FLOWER_2
   .byt $cc ;BG_FLOWER_3
   .byt $dc ;BG_FLOWER_4
+  .byt $30 ;BG_UP_ARROW
+  .byt $31 ;BG_DN_ARROW
+  .byt $3c ;BG_BLACK
 .endproc
 
 .proc MetatileLL
@@ -542,6 +554,9 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $da ;BG_FLOWER_2
   .byt $da ;BG_FLOWER_3
   .byt $da ;BG_FLOWER_4
+  .byt $3f ;BG_UP_ARROW
+  .byt $3f ;BG_DN_ARROW
+  .byt $3c ;BG_BLACK
 .endproc
 
 .proc MetatileUR
@@ -650,6 +665,9 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $dd ;BG_FLOWER_2
   .byt $cd ;BG_FLOWER_3
   .byt $dd ;BG_FLOWER_4
+  .byt $3f ;BG_UP_ARROW
+  .byt $3f ;BG_DN_ARROW
+  .byt $3c ;BG_BLACK
 .endproc
 
 .proc MetatileLR
@@ -758,5 +776,8 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $db ;BG_FLOWER_2
   .byt $db ;BG_FLOWER_3
   .byt $db ;BG_FLOWER_4
+  .byt $30 ;BG_UP_ARROW
+  .byt $31 ;BG_DN_ARROW
+  .byt $3c ;BG_BLACK
 .endproc
 

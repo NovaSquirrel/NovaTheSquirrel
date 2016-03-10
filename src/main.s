@@ -194,6 +194,14 @@ NotSlowTimer:
   jsr RunObjects
   jsr FlickerEnemies
 
+  lda NeedLevelRerender
+  beq :+
+    lsr NeedLevelRerender
+    jsr WaitVblank
+    jsr RenderLevelScreens
+    jsr WaitVblank
+  :
+
 .if 0
   lda keydown
   and #KEY_B
@@ -224,6 +232,7 @@ NotSlowTimer:
     sta NeedSFX
   :
   countdown SoundDebounce
+
   lda #OBJ_ON | BG_ON ;OBJ_CLIP | BG_CLIP
   sta PPUMASK
 
@@ -250,7 +259,7 @@ NotSlowTimer:
   :
 .endif
 
-.if 1
+.if 0
   lda keydown
   and #KEY_SELECT
   beq :++

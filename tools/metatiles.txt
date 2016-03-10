@@ -861,3 +861,27 @@ C .byt $dc
 C .byt $da
 C .byt $dd
 C .byt $db
+
+R BG_UP_ARROW
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $30
+C .byt $3f
+C .byt $3f
+C .byt $30
+
+R BG_DN_ARROW
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $31
+C .byt $3f
+C .byt $3f
+C .byt $31
+
+R BG_BLACK
+C .byt M_PAL_1
+C .byt M_EMPTY
+C .byt $3c
+C .byt $3c
+C .byt $3c
+C .byt $3c
