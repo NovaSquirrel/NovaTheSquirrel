@@ -289,6 +289,9 @@ DrawY = O_RAM::OBJ_DRAWY
   add #8
   cmp O_RAM::OBJ_DRAWY
   bcc FlattenGoomba
+  lda ObjectF2,x
+  cmp #ENEMY_STATE_STUNNED
+  beq NoTouch
   jsr HurtPlayer
   jsr EnemyTurnAround
 NoTouch:
@@ -715,6 +718,10 @@ YOnly:
 ; hurts the player if they're touching the enemy
 ; input: X (object slot)
 .proc EnemyPlayerTouchHurt
+  lda ObjectF2,x
+  and #ENEMY_STATE_BITS
+  cmp #ENEMY_STATE_STUNNED
+  beq :+
   jsr EnemyPlayerTouch
   bcc :+
   jsr HurtPlayer
