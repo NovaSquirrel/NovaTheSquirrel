@@ -64,6 +64,8 @@
   PlayerAbility:    .res 1     ; current ability, see the AbilityType enum
   PlayerTiles:      .res 7     ; tiles to use while drawing the player
   SoundDebounce:    .res 1     ; timer, while nonzero no new sounds effects start
+  ForceControllerBits:  .res 1
+  ForceControllerTime:  .res 1
 
   IsScrollUpdate:     .res 1   ; nonzero = yes
   ScrollUpdateChunk:  .res 1   ; current 32 pixel chunk we're updating

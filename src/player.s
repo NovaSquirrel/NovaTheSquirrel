@@ -121,6 +121,14 @@ MaxSpeedRight = 10
   sta FootCorners
   sta SkipFourCorners
 
+  lda ForceControllerTime
+  beq :+
+    dec ForceControllerTime
+    lda ForceControllerBits
+    ora keydown
+    sta keydown
+  :
+
   lda PlayerWasRunning ; nonzero = B button, only updated when on ground
   beq :+
     lda #<-(NOVA_RUN_SPEED*16)
@@ -472,19 +480,14 @@ DoneCheckMiddle:
   lda PlayerPYH
   adc #>(8*16)
   tay
-  lda #0
-  pha
-  add PlayerPXL            ; left side
   lda PlayerPXH
-  adc #0
   jsr GetLevelColumnPtr
   sta BlockUL
   tax
   lda MetatileFlags,x
   cmp #$80
   rol FourCorners
-  pla
-  add #$70
+  lda #$70
   add PlayerPXL            ; right side
   lda PlayerPXH
   adc #0
@@ -501,7 +504,7 @@ DoneCheckMiddle:
   lda PlayerPYH
   adc #>(24*16)
   tay
-  lda #$40 ; left side
+  lda #$20 ; left side
   add PlayerPXL            ; left side
   lda PlayerPXH
   adc #0
@@ -511,7 +514,7 @@ DoneCheckMiddle:
   lda MetatileFlags,x
   cmp BottomCMP
   rol FourCorners
-  lda #$30
+  lda #$40
   add PlayerPXL            ; right side
   lda PlayerPXH
   adc #0
@@ -619,9 +622,14 @@ FC__R_R:
   sta PlayerVXH
   lda #$8f
   sta PlayerPXL
+
+  lda PlayerDir
+  bne NoClimb
+  lda #KEY_RIGHT
+  sta ForceControllerBits
   lda BlockUR
   cmp #Metatiles::GROUND_CLIMB_L
-  bne :+
+  bne NoClimb
 DoClimb:
     lda #<-1
     sta PlayerVYH
@@ -631,7 +639,10 @@ DoClimb:
     sta PlayerJumpCancelLock
     lsr
     sta PlayerWalkLock
-: rts
+    lda #15
+    sta ForceControllerTime
+NoClimb:
+  rts
 
 FC_L___:
   jsr BumpBlocksAbove
@@ -641,6 +652,10 @@ FC_L_L_:
   sta PlayerVXH
   sta PlayerPXL
   inc PlayerPXH
+  lda PlayerDir
+  beq NoClimb
+  lda #KEY_LEFT
+  sta ForceControllerBits
   lda BlockUL
   cmp #Metatiles::GROUND_CLIMB_R
   beq DoClimb
