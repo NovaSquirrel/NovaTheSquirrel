@@ -646,20 +646,6 @@ FC_L_L_:
   beq DoClimb
   rts
 
-;FC_L___:
-;  lda PlayerPXL
-;  add #$40
-;  sta PlayerPXL
-;  addcarry PlayerPXH
-;  rts
-
-;FC__R__:
-;  lda PlayerPXL
-;  sub #$40
-;  sta PlayerPXL
-;  subcarry PlayerPXH
-;  rts
-
 FC_LR__:
   lda #0
   sta PlayerVYH
@@ -742,8 +728,15 @@ FC___LR:
   lda #0
   sta PlayerVYH
   sta PlayerVYL
+
+  lda PlayerPYL
+  bmi :+
+    dec PlayerPYH
+  :
+
   lda #$80
   sta PlayerPYL
+
 OfferJump:
   lda keylast
   and #KEY_A
