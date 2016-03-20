@@ -82,7 +82,7 @@ IRQ:
   lda #$10
   sta PPUADDR
   ldx #0
-: lda #$00    ; Background will just get overwritten later
+: lda #$30    ; Background will just get overwritten later
   sta PPUDATA
   .repeat 3
   lda DemoPalette,x

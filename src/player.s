@@ -208,6 +208,26 @@ PlayerIsntOnLadder:
     ldy #1
 : tax
   lda LevelLinkUp,x
+  bne LevelLinkNonzero
+; Respond to the screen that's linked to itself:
+
+  lda PlayerPYH ; don't kill if on the top side of the screen
+  bmi :+
+  lda PuzzleMode
+  bne :+
+  ; In action mode, die
+  ; (A = 0 still)
+  sta PlayerHealth
+: jmp @ActionMode
+
+  ; In puzzle mode, a non-linked screen wraps around
+  lda PlayerPYH
+  and #$0f
+  sta PlayerPYH
+@ActionMode:
+
+  jmp NotOffTopBottom
+LevelLinkNonzero:
   asl
   asl
   asl
@@ -433,6 +453,10 @@ NoFixWalkSpeed:
   ; ------- FOUR CORNER COLLISION DETECTION -------
   ; http://pineight.com/mw/index.php?title=Four-corner_collision_detection
 
+  ; Don't react to collision if off the top of the screen
+  lda PlayerPYH
+  rtsmi
+
   lda #M_SOLID_ALL
   sta BottomCMP
   lda PlayerVYH
@@ -546,7 +570,8 @@ DoneCheckMiddle:
   beq :+
   lsr PlayerOnLadder
 :
-
+ 
+  ; Don't react to collision if told not to
   lda SkipFourCorners
   rtsne
 
@@ -788,6 +813,13 @@ DrawX2 = 4
   ; need to do this first even if we skip the drawing, because of PlayerDrawX and PlayerDrawY
   jsr MakeDrawX
   RealYPosToScreenPos PlayerPYL, PlayerPYH, DrawY
+
+  ; skip drawing if off the top of the screen
+  ; to do: clip off only the top of the player sprite?
+  lda PlayerPYH
+  bpl :+
+    rts
+  :
 
   ; check if the player's X is out of bounds,
   ; and fix it if it is

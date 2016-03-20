@@ -49,3 +49,44 @@ Exit:
   sta PPUMASK
   rts
 .endproc
+
+.proc ShowDie
+  jsr WaitVblank
+  lda #$3f
+  sta PPUADDR
+  lda #$00
+  sta PPUADDR
+  ; Set the palette to black and red
+  ldx #4
+: lda #$0f
+  sta PPUDATA
+  lda #$06
+  sta PPUDATA
+  lda #$16
+  sta PPUDATA
+  lda #$26
+  sta PPUDATA
+  dex
+  bne :-
+  jsr UpdateScrollRegister
+
+  ; Play the sample
+  ; to do: move to using something other than DPCM, so it can be in a different bank
+  lda #%100000
+  sta DMC_RAW
+  lda #13
+  sta DMC_FREQ
+  lda #(DieSampleEnd-1-DieSample)/16
+  sta DMC_LEN
+  lda #<(DieSample>>6)
+  sta DMC_START
+  lda #CH_DPCM
+  sta SND_CHN
+
+  ; Wait until the sample finishes playing
+: lda SND_CHN
+  and #CH_DPCM
+  bne :-
+
+  jmp Reset
+.endproc

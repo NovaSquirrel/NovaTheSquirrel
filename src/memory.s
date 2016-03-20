@@ -159,6 +159,7 @@
   AttributeWriteD:  .res 8 ; data to write in the eight attributes
 
   NeedSFX:          .res 4 ; sound effects that need to be played the next time the music engine is banked in
+  PuzzleMode:       .res 1
 
   ; PlayerLocationLast/Now contain the low byte of the player's position in the level
   ; and are for detecting when entering a new block

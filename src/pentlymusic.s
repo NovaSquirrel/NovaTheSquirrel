@@ -146,13 +146,13 @@ invdurations:
   lda #>300
   sta music_tempoHi
 .endproc
-.proc resume_music
+.proc pently_resume_music
   lda #1
   sta pently_music_playing
   rts
 .endproc
 
-.proc stop_music
+.proc pently_stop_music
   lda #0
   sta pently_music_playing
   rts

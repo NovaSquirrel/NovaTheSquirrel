@@ -380,10 +380,8 @@ No:
 .proc WaitForKey
 : jsr ReadJoy
   lda keydown
-  ora keydown+1
   beq :-
   lda keylast
-  ora keylast+1
   bne :-
   rts
 .endproc

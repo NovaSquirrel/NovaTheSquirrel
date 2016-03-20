@@ -68,7 +68,12 @@ VWF_BANK = $e
 .include "math.s"
 .include "global.s"
 .include "cutscene.s"
-.include "title.s" ; might as well put this here
+.include "screens.s"
+.segment "DMC"
+.align 64
+DieSample:
+.incbin "tools/die.dmc"
+DieSampleEnd:
 
 ; ---------------------
 .segment "PRG0" ; levels
