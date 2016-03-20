@@ -124,8 +124,9 @@ MaxSpeedRight = 10
   lda ForceControllerTime
   beq :+
     dec ForceControllerTime
-    lda ForceControllerBits
-    ora keydown
+    lda keydown
+    and #<~(KEY_LEFT|KEY_RIGHT)
+    ora ForceControllerBits
     sta keydown
   :
 
