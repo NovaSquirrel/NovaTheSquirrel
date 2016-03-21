@@ -49,8 +49,7 @@
   jsr RenderLevelScreens
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
-  jsr WaitVblank
-  jmp MainLoop
+  jmp VBlankUpdates
 .endproc
 
 .proc VBlankUpdates
@@ -262,6 +261,51 @@ NotSlowTimer:
 .if 0
   lda keydown
   and #KEY_SELECT
+  beq :+
+  lda keylast
+  and #KEY_SELECT
+  bne :+
+    lda PlayerPXH
+    add #$10
+    sta PlayerPXH
+    inc NeedLevelRerender
+  :
+.endif
+
+  lda #SOUND_BANK
+  jsr SetPRG
+
+  lda keydown
+  and #KEY_START
+  beq NoPause
+    jsr pently_init
+    inc pently_music_playing
+
+    ; debounce
+    ldx #10
+  : jsr WaitVblank
+    lda #OBJ_ON|BG_ON|%11100000
+    sta PPUMASK
+    dex
+    bne :-
+
+  : jsr ReadJoy
+    lda keydown
+    and #KEY_START
+    bne :-
+  : jsr ReadJoy
+    lda keydown
+    and #KEY_START
+    beq :-
+  : jsr ReadJoy
+    lda keydown
+    and #KEY_START
+    bne :-
+  NoPause:
+
+.if 0
+  lda keydown
+  and #KEY_SELECT
   beq :++
   lda keylast
   and #KEY_SELECT
@@ -275,6 +319,13 @@ NotSlowTimer:
     jsr ChangePlayerAbility
   :
 .endif
+
+  ; Assuming sound bank is still in
+  lda PlayerHealth
+  bne NotDie
+  jsr pently_init
+  jsr ShowDie
+NotDie:
 
   jmp VBlankUpdates
 .endproc
