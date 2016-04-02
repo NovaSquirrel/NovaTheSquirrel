@@ -482,3 +482,7 @@ DJ_Label:
   lsr
   sta hi,y
 .endmacro
+
+.macro skip2
+  bit $2c ; BIT absolute
+.endmacro

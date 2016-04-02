@@ -65,6 +65,8 @@ Speed = 5
   .byt $80, $81, $82, $83, $84, $85, $86, $87, $88, $89, $90, $91, $92, $93, $94, $95, $96, $97, $98, $99
 .endproc
 
+WritePPURepeated16:
+  ldx #16
 ; Write "A" to the PPU "X" times
 .proc WritePPURepeated
 : sta PPUDATA
@@ -166,12 +168,11 @@ NoExtraTiles:
 
   jsr WaitVblank
   jsr UpdateScrollRegister
-  lda #OBJ_ON|BG_ON
-  sta PPUMASK
+;  lda #OBJ_ON|BG_ON
+;  sta PPUMASK
   jsr WaitVblank
 ; Restore the old bank
-  lda PRGBank
-  jmp _SetPRG
+  jmp SetPRG_Restore
 .endproc
 
 ; Updates PPUSCROLL and PPUCTRL to account for ScrollX
@@ -341,6 +342,10 @@ No:
     cmp #1
     rol keydown
     bcc :-
+  lda keylast
+  eor #255
+  and keydown
+  sta keynew
   rts
 .endproc
 
@@ -354,13 +359,14 @@ No:
 
 ; clear the nametable
 .proc ClearName
+  lda #$3f ; clear tile
+Custom:
   ldx #$20
   ldy #$00
   stx PPUADDR
   sty PPUADDR
   ldx #64
   ldy #4
-  lda #$3f ; clear tile
 : sta PPUDATA
   inx
   bne :-
@@ -369,16 +375,19 @@ No:
 ;Clear the attributes
   ldy #64
   lda #0
-: dey
+: sta PPUDATA
+  dey
   bne :-
   sta PPUSCROLL
   sta PPUSCROLL
   rts
 .endproc
+ClearNameCustom = ClearName::Custom
 
 ; Wait for any key to be pressed
 .proc WaitForKey
-: jsr ReadJoy
+: jsr WaitVblank
+  jsr ReadJoy
   lda keydown
   beq :-
   lda keylast
@@ -740,6 +749,7 @@ PPURowAddrLo:
   lda #<$1000
   sta PPUADDR
   lda #0
+SkipAddr:
   tax
   ldy #4*4
 : sta PPUDATA
@@ -748,6 +758,13 @@ PPURowAddrLo:
   dey
   bne :-
   rts
+.endproc
+
+.proc ClearBG4kb
+  lda #0
+  sta PPUADDR
+  sta PPUADDR
+  jmp ClearSprite4kb::SkipAddr
 .endproc
 
 ; Copies a string to StringBuffer for displaying
@@ -763,4 +780,52 @@ PPURowAddrLo:
   iny
   bne :- ; treated like an unconditional branch
 : rts
+.endproc
+
+; Plays a sound, handles bank switching
+; input: A (sound number)
+.proc PlaySoundAuto
+  pha
+  lda #SOUND_BANK
+  jsr _SetPRG
+  pla
+  jsr pently_start_sound
+  jmp SetPRG_Restore
+.endproc
+
+; Plays music, handles bank switching
+; input: A (music number)
+.proc PlayMusicAuto
+  pha
+  lda #SOUND_BANK
+  jsr _SetPRG
+  pla
+  jsr pently_start_music
+  jmp SetPRG_Restore
+.endproc
+
+; Uploads graphics for Nova as well as the common sprite tiles
+.proc UploadNovaAndCommon
+  lda #GRAPHICS_BANK1
+  jsr _SetPRG
+  lda #<SPNova
+  ldy #>SPNova
+  jsr DecompressCHR
+
+  lda #<SPCommon
+  ldy #>SPCommon
+  jsr DecompressCHR
+  jmp SetPRG_Restore
+.endproc
+
+WriteIncreasing16:
+  ldx #16
+; Write increasing bytes to PPU
+; input: Y (thing to write), X (count)
+.proc WriteIncreasing
+: sty PPUDATA
+  iny
+  dex
+  bne :-
+  rts
 .endproc

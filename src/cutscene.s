@@ -79,6 +79,305 @@
   rts
 .endproc
 
+.proc ScriptBRK ; BRK handler
+  pla ; discard flags
+  pla ; low
+  sta ScriptPtr+0
+  pla ; high
+  sta ScriptPtr+1
+
+  ; decrement the return handler
+  lda ScriptPtr+0
+  bne :+
+  dec ScriptPtr+1
+: dec ScriptPtr+0
+.endproc
+
+.proc ScriptLoopInit
+  lda #<ScriptBRK
+  sta IRQAddress+1
+  lda #>ScriptBRK
+  sta IRQAddress+0
+  lda #0
+  sta ScriptIf
+.endproc
+; this space needs to be empty
+.proc ScriptLoop
+  ldy #0
+  ; Get script byte
+  lda (ScriptPtr),y
+
+  ; Increment script pointer
+  inc16 ScriptPtr
+
+  ; Call the cutscene command
+  asl
+  tax
+  lda ScriptCommands+1,x
+  pha
+  lda ScriptCommands+0,x
+  pha
+
+  ; Load the next byte, just in case it's a parameter
+  lda (ScriptPtr),y
+  rts
+.endproc
+
+.proc ScriptIncreasePointerBy
+  add ScriptPtr+0
+  sta ScriptPtr+0
+  bcc :+
+    inc ScriptPtr+1
+: jmp ScriptLoop
+.endproc
+
+.proc ScriptCommands
+  .raddr EndScript  ;
+  .raddr EndPage    ;
+  .raddr Delay      ; xx - delay time
+  .raddr RunAsm     ;
+  .raddr Poke       ; aa aa vv - address, value
+  .raddr FlagOn     ; ff - flag
+  .raddr FlagOff    ; ff - flag
+  .raddr FlagToggle ; ff - flag
+  .raddr IfOn       ; ff - flag
+  .raddr IfOff      ; ff - flag
+  .raddr IfItem     ; ii - item
+  .raddr IfNotItem  ; ii - item
+  .raddr IfChoice   ; nn - choice num
+  .raddr Goto       ; aa aa - address
+  .raddr Call       ; aa aa - address
+  .raddr Return     ;
+  .raddr Say        ; \  .ssccccc
+  .raddr Think      ;  |  ||+++++- character (0-31). determines name and face
+  .raddr Narrate    ; /   ++------ slot (0-3)
+
+; Command, ends the script
+EndScript:
+  ; clean up the script engine and return to the game
+  rts
+
+; Command, ends the page
+EndPage:
+  jsr WaitForKey
+  lda keydown
+  and #KEY_A
+  beq EndPage
+  jmp ScriptLoop
+
+; Command, switch speaker and style
+Say:
+  jmp IncreaseBy1
+
+; Command, switch speaker and style
+Think:
+  jmp IncreaseBy1
+
+; Command, switch speaker and style
+Narrate:
+  jmp IncreaseBy1
+
+ConditionalGotoCall:
+  pha
+  lda ScriptIf
+  lsr
+  bcs @Skip
+  lsr ; Disable the current if chain
+  sta ScriptIf
+  pla
+  rts
+@Skip:
+  lsr ; Disable the current if chain
+  sta ScriptIf
+  pla ; the PHA in ConditionalGotoCall
+  pla ; \ jsr ConditionalGotoCall
+  pla ; /
+  jmp IncreaseBy2
+
+; Command, jumps
+Goto:
+  jsr ConditionalGotoCall
+  pha ; Save low byte of new pointer
+  ; Get the high byte of the new pointer and set the current pointer to it
+  iny
+  lda (ScriptPtr),y
+  sta ScriptPtr+1
+  pla
+  sta ScriptPtr+0
+  jmp ScriptLoop
+
+; Command, calls subroutine
+Call:
+  jsr ConditionalGotoCall
+  pha ; Save low byte of new pointer
+
+  lda ScriptPtr+0 ; Save current position (plus 2) in return address
+  add #2
+  sta ScriptReturn+0
+  lda ScriptPtr+1
+  adc #0
+  sta ScriptReturn+1
+
+  ; Get the high byte of the new pointer and set the current pointer to it
+  iny
+  lda (ScriptPtr),y
+  sta ScriptPtr+1
+  pla
+  sta ScriptPtr+0
+  jmp ScriptLoop
+
+; Command, returns from subroutine
+Return:
+  lda ScriptReturn+0
+  sta ScriptPtr+0
+  lda ScriptReturn+1
+  sta ScriptPtr+1
+  jmp ScriptLoop
+
+; Command, delays X frames
+Delay:
+  tax
+: jsr WaitVblank
+  dex
+  bne :-
+  jmp IncreaseBy1
+
+; Command, starts running inline asm
+RunAsm:
+  jmp (ScriptPtr)
+
+; Command, write a pointer
+Poke:
+  jsr GetPointer
+  lda (ScriptPtr),y ; read value to poke
+  ldy #0
+  sta (0),y             ; store the read value
+  jmp IncreaseBy3
+
+; Command, increment a pointer
+;Increment:
+;  jsr GetPointer
+;  lda (0),y
+;  add #1
+;  sta (0),y
+;  jmp IncreaseBy2
+
+; Reads two bytes and writes them to 0 and 1 for pointer use
+GetPointer:
+  sta 0
+  iny
+  lda (ScriptPtr),y
+  sta 1
+  iny  
+  rts
+
+; An if statement was false, so mark the whole thing false
+IfFalse:
+  lda #3
+  sta ScriptIf
+  jmp IncreaseBy1
+
+; Command, check if flag is on
+IfOn:
+  tay
+  jsr InitIf
+  jsr IndexToBitmap
+  and ScriptFlags,y
+  beq IfFalse
+  jmp IncreaseBy1
+
+; Command, check if flag is off
+IfOff:
+  tay
+  jsr InitIf
+  jsr IndexToBitmap
+  and ScriptFlags,y
+  bne IfFalse
+  jmp IncreaseBy1
+
+; Command, check if player has item
+IfItem:
+  tax
+  jsr InitIf
+  txa
+  jsr InventoryHasItem
+  bcc IfFalse
+  jmp IncreaseBy1
+
+; Command, check if player doesn't have item
+IfNotItem:
+  tax
+  jsr InitIf
+  txa
+  jsr InventoryHasItem
+  bcs IfFalse
+  jmp IncreaseBy1
+
+; Command, check if choice is the specified one
+IfChoice:
+  tax
+  cmp ScriptChoice
+  bne IfFalse
+  jmp IncreaseBy1
+
+; Carry is set if the item number (in the accumulator) is found
+InventoryHasItem:
+  ldx #InventoryLen-1
+: cmp InventoryType,x
+  beq :+
+  dex
+  bpl :-
+  clc ; no
+  rts
+: sec ; yes
+  rts
+
+; If ScriptIf is 0, it's set to 2, meaning execute anyway
+; If it's 3 it's kept 3, meaning don't execute
+InitIf:
+  lda ScriptIf
+  ora #2
+  sta ScriptIf
+  rts
+
+; Command, turn a flag on
+FlagOn:
+  jsr GetFlag
+  ora ScriptFlags,y
+  sta ScriptFlags,y
+  jmp IncreaseBy1
+
+; Command, turn a flag off
+FlagOff:
+  jsr GetFlag
+  eor #255
+  and ScriptFlags,y
+  sta ScriptFlags,y
+  jmp IncreaseBy1
+
+; Command, toggle a flag
+FlagToggle:
+  jsr GetFlag
+  eor ScriptFlags,y
+  jmp IncreaseBy1
+
+IncreaseBy3:
+  lda #3
+  skip2
+IncreaseBy2:
+  lda #2
+  skip2
+IncreaseBy1:
+  lda #1
+  jmp ScriptIncreasePointerBy
+
+; input: A (flag number)
+; output: Y (flag index), A (mask used to manipulate that flag)
+GetFlag:
+  tay
+  jmp IndexToBitmap
+.endproc
+
 HelloString:
   .byt "Sample text to test this with!",0
 

@@ -18,6 +18,7 @@ SPGeorge:   ChrFile "../chr/spgeorge.pb53",   512,  $1800
 SPExplode:  ChrFile "../chr/spexplode.pb53",  512,  $1800
 TitleCHR:   ChrFile "../tools/title/title.pb53",    4096, $0000
 TitleNAM:   ChrFile "../tools/title/titlenam.pb53", 1024, $2000
+InventoryCHR: ChrFile "../chr/inventory.pb53", 512, $0000
 
 PalGrassy:  .byt $03
             .byt $1a, $2a, $26

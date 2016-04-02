@@ -193,28 +193,16 @@ NotSlowTimer:
   jsr RunObjects
   jsr FlickerEnemies
 
-  lda NeedLevelRerender
-  beq :+
-    lsr NeedLevelRerender
-    jsr WaitVblank
-    jsr RenderLevelScreens
-    jsr WaitVblank
-  :
-
-.if 0
-  lda keydown
-  and #KEY_B
-  beq :+
-  lda keylast
-  and #KEY_B
-  bne :+
-    ldy #0
-    jsr TryMakeSprite
-  :
-.endif
-
   lda #SOUND_BANK
   jsr SetPRG
+
+  ; Assuming sound bank is still in
+  lda PlayerHealth
+  bne NotDie
+  jsr pently_init
+  jsr ShowDie
+NotDie:
+
   jsr pently_update
   lda NeedSFX
   bpl :++
@@ -232,100 +220,26 @@ NotSlowTimer:
   :
   countdown SoundDebounce
 
-  lda #OBJ_ON | BG_ON ;OBJ_CLIP | BG_CLIP
-  sta PPUMASK
-
-.if 0
-  lda #<($17c0)
-  sta UploadTileAddress+0
-  lda #>($17c0)
-  sta UploadTileAddress+1
-  ldx #63
-  lda retraces
-: sta UploadTileSpace,x
-  dex
-  bpl :-
-.endif
-
-.if 0
-  lda keydown
-  and #KEY_SELECT
-  beq :+
-  lda keylast
-  and #KEY_SELECT
-  bne :+
-    jsr StartCutscene
-  :
-.endif
-
-.if 0
-  lda keydown
-  and #KEY_SELECT
-  beq :+
-  lda keylast
-  and #KEY_SELECT
-  bne :+
-    lda PlayerPXH
-    add #$10
-    sta PlayerPXH
-    inc NeedLevelRerender
-  :
-.endif
-
-  lda #SOUND_BANK
-  jsr SetPRG
-
+  ; Still need sound bank since the pause screen mutes the sound
   lda keydown
   and #KEY_START
   beq NoPause
-    jsr pently_init
-    inc pently_music_playing
-
-    ; debounce
-    ldx #10
-  : jsr WaitVblank
-    lda #OBJ_ON|BG_ON|%11100000
-    sta PPUMASK
-    dex
-    bne :-
-
-  : jsr ReadJoy
-    lda keydown
-    and #KEY_START
-    bne :-
-  : jsr ReadJoy
-    lda keydown
-    and #KEY_START
-    beq :-
-  : jsr ReadJoy
-    lda keydown
-    and #KEY_START
-    bne :-
+    jsr PauseScreen
   NoPause:
 
-.if 0
-  lda keydown
-  and #KEY_SELECT
-  beq :++
-  lda keylast
-  and #KEY_SELECT
-  bne :++
-    lda PlayerAbility
-    add #1
-    cmp #12
-    bne :+
-      lda #0
-    :
-    jsr ChangePlayerAbility
-  :
-.endif
+  lda #MAINLOOP_BANK
+  jsr SetPRG
 
-  ; Assuming sound bank is still in
-  lda PlayerHealth
-  bne NotDie
-  jsr pently_init
-  jsr ShowDie
-NotDie:
+  lda NeedLevelRerender
+  beq :+
+    lsr NeedLevelRerender
+    jsr WaitVblank
+    jsr RenderLevelScreens
+    jsr WaitVblank
+  :
+
+  lda #OBJ_ON | BG_ON ;OBJ_CLIP | BG_CLIP
+  sta PPUMASK
 
   jmp VBlankUpdates
 .endproc

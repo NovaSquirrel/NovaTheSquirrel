@@ -55,6 +55,13 @@ M_BEHAVIOR =       %00011111 ; mask for the block's behavior only
 .proc RenderLevelScreens
   lda #0
   sta PPUMASK
+  sta IsScrollUpdate
+  ; Clear block updates
+  ldx #4
+: sta TileUpdateA1,x
+  sta BlockUpdateA1,x ; overruns a little but it's OK
+  dex
+  bpl :-
 
   ; Clear sprites
   jsr ClearOAM

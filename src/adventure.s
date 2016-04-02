@@ -60,6 +60,7 @@ VWF_BANK = $e
 .include "musicseq.s"
 .segment "PRGf" ; important stuff
 .code
+.include "inventoryitems.s"
 .include "leveldecode.s"
 .include "boot.s"
 .include "graphicslist.s"

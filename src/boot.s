@@ -17,13 +17,17 @@
 .segment "VECTORS"	; NMI vector is at $FFFA, reset at $FFFC, IRQ at $FFFE
     .addr NMI   ; run at the start of vblank
 	.addr Reset ; run when the NES boots or resets
-	.addr IRQ   ; points to empty interrupt handler, to be safe
+	.addr IRQ   ; configurable
 .code
 
 NMI:
   inc retraces
-IRQ:
+DefaultIRQ:
   rti
+IRQ:
+  jmp (IRQAddress)
+DoNothing:
+  rts
 
 .proc Reset
   sei
@@ -55,6 +59,12 @@ IRQ:
   sta $700,x
   inx
   bne :-
+
+; Set an interrupt handler that's just an RTI
+  lda #<DefaultIRQ
+  sta IRQAddress+0
+  lda #>DefaultIRQ
+  sta IRQAddress+1
 
 ; Clear out a chunk of on-cart RAM
 ; When savefiles are implemented this will have to be adjusted
@@ -104,19 +114,29 @@ IRQ:
   inx
   stx random2+1
 
+; Sample testing inventory
+  lda #InventoryItem::HEALTH_RESTORE
+  sta InventoryType+0
+  lda #InventoryItem::ABILITY_GLIDER
+  sta InventoryType+1
+  lda #InventoryItem::ABILITY_BURGER
+  sta InventoryType+2
+  lda #InventoryItem::GREEN_KEY
+  sta InventoryType+3
+  lda #InventoryItem::BLOCK
+  sta InventoryType+4
+  lda #InventoryItem::ICE_SKATES
+  sta InventoryType+5
+  lda #1
+  sta InventoryLen+0
+  sta InventoryLen+1
+  sta InventoryLen+2
+  sta InventoryLen+3
+  sta InventoryLen+4
+  sta InventoryLen+5
+
 ; Decompress Nova tiles and common sprite tiles
-  lda #GRAPHICS_BANK1
-  jsr SetPRG
-
-  lda #<SPNova
-  ldy #>SPNova
-  jsr DecompressCHR
-
-  lda #<SPCommon
-  ldy #>SPCommon
-  jsr DecompressCHR
-
-  jsr ClearName
+  jsr UploadNovaAndCommon
 
 ; Turn on NMI and make sprites use $1xxx in CHR RAM
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
@@ -194,6 +214,9 @@ IRQ:
 
 .endproc
 
+; restores the program bank after a _SetPRG
+SetPRG_Restore:
+  lda PRGBank
 ; input: A = the new bank to put at $8000-$bfff
 ; output: the bank is changed
 .proc SetPRG

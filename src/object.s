@@ -151,9 +151,7 @@ Exit:
 ; other enemy attributes
 .include "../tools/objectlist.s"
 
-.proc ObjectNone
-  rts
-.endproc
+ObjectNone = DoNothing
 
 .proc BrickPoof ; the particles used for brick poofs
 DrawX = O_RAM::OBJ_DRAWX

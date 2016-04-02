@@ -20,6 +20,7 @@
   slowtimer:        .res 1 ; incremented every 4 frames
   keydown:	        .res 1 ; currently pressed buttons
   keylast: 	        .res 1 ; buttons that were pressed last frame
+  keynew:           .res 1 ; buttons that were not pressed last frame but are now
 
   random1:          .res 2 ; \ two separate random states
   random2:          .res 2 ; / combined to get a 2147385345 period randomizer
@@ -124,9 +125,15 @@
   TouchHeightB:    .res 1
 
 ; level decode stuff
-  LevelHeaderPointer: .res 2   ; pointer to the level header, for reading it
+  LevelHeaderPointer = TouchTemp ; pointer to the level header, for reading it
   ; LevelDecodePointer and LevelSpritePointer aren't needed during gameplay or outside level decompression
   ; so they can be reused elsewhere if needed
+
+  ScriptPtr = TouchTemp
+
+  ScriptIf = ScriptPtr+2 ; 0 (normal), 2 (enable), 3 (disable)
+  ScriptReturn = ScriptIf+1
+  ScriptChoice = ScriptReturn+2
 
   SpriteTileSlots:    .res 4   ; \ keep together
   LevelDecodePointer: .res 2   ;  \ in this order
@@ -139,19 +146,23 @@
   UploadTileAddress: .res 2
 
   ; big scratch space, can be used for uploading tiles, for strings in cutscenes, or for building attributes of the screen
+  BigTempSpace:
   UploadTileSpace:
   StringBuffer:
   Attributes:      .res 64
                    .res 64
 
   NeedLevelRerender: .res 1
+  InventoryCursorY:   .res 1
+  InventoryCursorYSwap: .res 1
 
   PRGBank:         .res 1  ; current program bank
   Coins:           .res 2  ; 2 digits, BCD
   CoinShowTimer:   .res 1  ; timer for how long to show the current coin value
   PlayerOnLadder:  .res 1  ; true if player is on a ladder
+
   LevelUploadList: .res 20 ; list of graphics resources to upload while the level loads
-                           ; not used anywhere else, so it's free for temp space
+                           ; must be preserved because it's needed after level load too
 
   ; queue for attribute table updates for scrolling
   AttributeWriteA1: .res 1 ; high address, always the same for the four writes
@@ -218,6 +229,7 @@ SCREEN_BOUNDARY = 1 ; boundary on left side of screen
   InventoryLen = 10
   InventoryType:      .res InventoryLen
   InventoryAmount:    .res InventoryLen
+  IRQAddress:       .res 2
 
   ; the sprite list from the ROM has to be copied here so we can access it in gameplay banks
   SpriteListRAM:      .res 256

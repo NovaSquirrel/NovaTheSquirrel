@@ -7,23 +7,24 @@ IS_PALETTE = %10000000 ; palette colors
 ;banks available: GRAPHICS_BANK1, GRAPHICS_BANK2, GRAPHICS_BANK3
 
 GraphicsList:
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGCommon,   >BGCommon
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGGrassy,   >BGGrassy
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPWalker,   >SPWalker
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPCannon,   >SPCannon
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPFire,     >SPFire
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPKing,     >SPKing
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPGeorge,   >SPGeorge
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPExplode,  >SPExplode
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalGrassy,  >PalGrassy
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalBummer,  >PalBummer
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalFrozen,  >PalFrozen
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGCutscene, >BGCutscene
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGGrassyBG, >BGGrassyBG
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGChip,     >BGChip
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <TitleCHR,   >TitleCHR
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <TitleNAM,   >TitleNAM
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalTitle,   >PalTitle
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGCommon,     >BGCommon
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGGrassy,     >BGGrassy
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPWalker,     >SPWalker
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPCannon,     >SPCannon
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPFire,       >SPFire
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPKing,       >SPKing
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPGeorge,     >SPGeorge
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPExplode,    >SPExplode
+  .byt GRAPHICS_BANK1|IS_PALETTE, <PalGrassy,    >PalGrassy
+  .byt GRAPHICS_BANK1|IS_PALETTE, <PalBummer,    >PalBummer
+  .byt GRAPHICS_BANK1|IS_PALETTE, <PalFrozen,    >PalFrozen
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGCutscene,   >BGCutscene
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGGrassyBG,   >BGGrassyBG
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGChip,       >BGChip
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <TitleCHR,     >TitleCHR
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <TitleNAM,     >TitleNAM
+  .byt GRAPHICS_BANK1|IS_PALETTE, <PalTitle,     >PalTitle
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <InventoryCHR, >InventoryCHR
 
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)
@@ -95,6 +96,7 @@ NotPalette:
     jsr DecompressCHR_Off
 NotCompressedGraphics:
 
+  jsr SetPRG_Restore
   pullaxy
   rts
 .endproc

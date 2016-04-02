@@ -222,7 +222,7 @@ NoLinks:
 
 ; decompress background graphics
 ; and sprites
-  jsr DoLevelUploadList
+  jsr DoLevelUploadListAndSprites
 
   ; display a "now loading" or whatever
   ; currently it says PLZ WAIT
@@ -354,6 +354,8 @@ PutArrows:
   jmp :-
 .endproc
 
+DoLevelUploadListAndSprites:
+  jsr UploadSpriteSlots
 .proc DoLevelUploadList
 ; background and palettes
   ldy #0
@@ -364,7 +366,10 @@ PutArrows:
   jsr DoGraphicUpload
   iny
   bne :-
-:
+: rts
+.endproc
+
+.proc UploadSpriteSlots
 ; sprites
   ldy #0
 : tya

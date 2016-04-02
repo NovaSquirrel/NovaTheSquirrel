@@ -68,6 +68,7 @@
   TITLE_CHR
   TITLE_NAM
   TITLE_PAL
+  INVENTORY_CHR
 .endenum
 
 .enum SFX
@@ -92,6 +93,21 @@
   TAIL_WHOOSH
   SMASH
   GET_ABILITY
+.endenum
+
+.enum InventoryIcon
+  NOTHING
+  BULLET
+  ABILITY
+  STAR
+  HEART
+  KEY
+  SHIELD
+  PANTS
+  ACTIVE
+  PLACEABLE
+  ACTION
+  EFFECT
 .endenum
 
 .macro RealXPosToScreenPos RealLo, RealHi, Store
@@ -262,24 +278,32 @@ MS_EMPTY = 32
 ; -------------------- scripting stuff --------------------------------------
 .enum SCR
   END_SCRIPT    ; end the script
-  WAIT_KEY      ; wait for any key
-  DELAY         ; xx - delay time / 2
-  RETURN        ; returns from a call
+  END_PAGE      ; wait for key, then clear page after it's pressed
+  DELAY         ; xx - delay time
   RUN_ASM       ; runs inline asm
+  POKE          ; aa aa xx - poke value in address
+; INCREMENT     ; aa aa - increment address
   FLAG_ON       ; xx - flag
   FLAG_OFF      ; xx - flag
   FLAG_TOGGLE   ; xx - flag
   IF_FLAG_ON    ; xx - flag
   IF_FLAG_OFF   ; xx - flag
-  IF_YES        ; shows prompt with yes/no first
-  IF_NO         ; shows prompt with yes/no first
-  JUMP_8        ; xx - displacement
-  JUMP_16       ; xx xx - location in same bank
-  CALL_16       ; xx xx - location in same bank
-  CALL_24       ; xx xx xx - location in new bank
-  SPEAKER_1     ; switch to speaker 1
-  SPEAKER_2     ; switch to speaker 2
+  IF_ITEM       ; xx - item
+  IF_NOT_ITEM   ; xx - item
+  IF_CHOICE     ; xx - choice number
+;  PLAY_MUSIC    ; xx - music
+;  PLAY_SOUND    ; xx - sound
+  GOTO          ; goto
+  CALL          ; call in same bank
+  RETURN        ; returns from a call
+  SAY           ; xssn nnnn            | ..ff ffff
+  THINK         ; |||+-++++- name/face |   ++-++++- face
+  NARRATE       ; |++------- speaker   |
+                ; +--------- extended: |
 .endenum
+
+SCRIPT_FIRST_IF = SCR::IF_FLAG_ON
+SCRIPT_LAST_IF = SCR::IF_CHOICE
 
 ; -------------------- level stuff --------------------------------------
 .enum LO ; see leveldecodeobjects.s
