@@ -166,11 +166,10 @@ Length = TempVal+2
   bne :-
 NoExtraTiles:
 
-  jsr WaitVblank
   jsr UpdateScrollRegister
-;  lda #OBJ_ON|BG_ON
-;  sta PPUMASK
   jsr WaitVblank
+  lda #0
+  sta PPUMASK
 ; Restore the old bank
   jmp SetPRG_Restore
 .endproc

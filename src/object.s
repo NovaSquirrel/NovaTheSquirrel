@@ -460,7 +460,9 @@ Copy:
   cmp 0
   bne @Nope
   lda EnemyAbilityTable+1,y
-  jmp ChangePlayerAbility
+  ora #128
+  sta NeedAbilityChange
+  rts
 @Nope:
   iny
   iny

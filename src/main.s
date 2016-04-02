@@ -238,6 +238,28 @@ NotDie:
     jsr WaitVblank
   :
 
+  ; Change ability if needed
+  lda NeedAbilityChange
+  bpl :+
+    and #127
+    jsr ChangePlayerAbility
+    lda #0
+    sta NeedAbilityChange
+  :
+
+  ; Let player reset their ability
+  lda PlayerAbility
+  beq :+
+  lda keydown
+  and #KEY_DOWN
+  beq :+
+  lda keynew
+  and #KEY_SELECT
+  beq :+
+    lda #0
+    jsr ChangePlayerAbility
+  :
+
   lda #OBJ_ON | BG_ON ;OBJ_CLIP | BG_CLIP
   sta PPUMASK
 

@@ -151,7 +151,7 @@
   StringBuffer:
   Attributes:      .res 64
                    .res 64
-
+  NeedAbilityChange: .res 1
   NeedLevelRerender: .res 1
   InventoryCursorY:   .res 1
   InventoryCursorYSwap: .res 1
