@@ -58,9 +58,9 @@ VWF_BANK = $e
 .include "pentlysound.s"
 .include "pentlymusic.s"
 .include "musicseq.s"
+.include "inventoryitems.s"
 .segment "PRGf" ; important stuff
 .code
-.include "inventoryitems.s"
 .include "leveldecode.s"
 .include "boot.s"
 .include "graphicslist.s"
