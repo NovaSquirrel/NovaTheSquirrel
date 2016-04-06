@@ -42,9 +42,9 @@
   jsr SetPRG
   jsr CutsceneInit
 
-  ldy #<HelloString
-  lda #>HelloString
-  jsr CopyToStringBuffer
+;  ldy #<HelloString
+;  lda #>HelloString
+;  jsr CopyToStringBuffer
 
   jsr ClearDynamicVRAM
   jsr clearLineImg
@@ -151,7 +151,8 @@
   .raddr Say        ; \  .ssccccc
   .raddr Think      ;  |  ||+++++- character (0-31). determines name and face
   .raddr Narrate    ; /   ++------ slot (0-3)
-
+  .raddr ShowChoice ; xx - choice set 
+  .raddr ShowScene  ; xx - scene number
 ; Command, ends the script
 EndScript:
   ; clean up the script engine and return to the game
@@ -164,6 +165,14 @@ EndPage:
   and #KEY_A
   beq EndPage
   jmp ScriptLoop
+
+; Command, switch to a different scene
+ShowScene:
+  rts
+
+; Command, show preset choices
+ShowChoice:
+  rts
 
 ; Command, switch speaker and style
 Say:
@@ -224,6 +233,7 @@ Call:
   sta ScriptPtr+1
   pla
   sta ScriptPtr+0
+
   jmp ScriptLoop
 
 ; Command, returns from subroutine
@@ -377,9 +387,6 @@ GetFlag:
   tay
   jmp IndexToBitmap
 .endproc
-
-HelloString:
-  .byt "Sample text to test this with!",0
 
 .pushseg
 .segment "PRGe"

@@ -69,6 +69,8 @@
   TITLE_NAM
   TITLE_PAL
   INVENTORY_CHR
+  SP_SUN
+  NPC_CHR
 .endenum
 
 .enum SFX
@@ -282,7 +284,6 @@ MS_EMPTY = 32
   DELAY         ; xx - delay time
   RUN_ASM       ; runs inline asm
   POKE          ; aa aa xx - poke value in address
-; INCREMENT     ; aa aa - increment address
   FLAG_ON       ; xx - flag
   FLAG_OFF      ; xx - flag
   FLAG_TOGGLE   ; xx - flag
@@ -291,8 +292,6 @@ MS_EMPTY = 32
   IF_ITEM       ; xx - item
   IF_NOT_ITEM   ; xx - item
   IF_CHOICE     ; xx - choice number
-;  PLAY_MUSIC    ; xx - music
-;  PLAY_SOUND    ; xx - sound
   GOTO          ; goto
   CALL          ; call in same bank
   RETURN        ; returns from a call
@@ -300,10 +299,30 @@ MS_EMPTY = 32
   THINK         ; |||+-++++- name/face |   ++-++++- face
   NARRATE       ; |++------- speaker   |
                 ; +--------- extended: |
+  CHOICES       ; xx - choice set
+  SCENE         ; xx - scene number
 .endenum
 
 SCRIPT_FIRST_IF = SCR::IF_FLAG_ON
 SCRIPT_LAST_IF = SCR::IF_CHOICE
+
+.enum CHAR
+  NONE
+  SIGN
+  NOVA
+  KEE
+  SHERWIN
+  LUVI
+  KIERAN
+  REMY
+  ECLIPSE
+  MOLSNO
+  S_TEAM
+  SMILOID
+  IKE
+  RAOUL
+  JAFGAUR
+.endenum
 
 ; -------------------- level stuff --------------------------------------
 .enum LO ; see leveldecodeobjects.s
