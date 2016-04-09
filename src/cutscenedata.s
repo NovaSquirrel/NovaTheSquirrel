@@ -67,3 +67,6 @@ Jafguar:  .byt "Jafguar",0
   .byt CHAR::NOVA|(1<<5), CHAR::SIGN|(2<<5), 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::LUVI|(2<<5)|FLIP, 0, 0
 .endproc
+
+FaceData:
+  .incbin "../chr/faces2.chr"

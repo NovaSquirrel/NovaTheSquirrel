@@ -111,6 +111,7 @@
   CutsceneCurSpeaker = CutsceneCharPos+4
   CutsceneBufIndex   = CutsceneCurSpeaker+1
   CutsceneScriptBank = CutsceneBufIndex+1
+  CutsceneCurFace    = CutsceneScriptBank+1
 
   LevelNumber: .res 1 ; current level number
 

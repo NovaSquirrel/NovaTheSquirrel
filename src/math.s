@@ -33,8 +33,8 @@
 ; in about 153 cycles.
 ; @param A one factor
 ; @param Y another factor
-; @return high 8 bits in A; low 8 bits in $0000
-;         Y and $0001 are trashed; X is untouched
+; @return high 8 bits in A; low 8 bits in Y
+; Modified a bit
 .proc mul8
 factor2 = TempVal+1
 prodlo = TempVal

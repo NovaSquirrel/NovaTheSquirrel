@@ -70,6 +70,8 @@ xfix_end:
   .endrep
   dey
   bpl loop
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
+  sta PPUCTRL
   rts
 xfix:
   inx

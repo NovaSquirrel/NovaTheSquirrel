@@ -26,13 +26,13 @@ DemoCutscene:
   .byt "and it seems to be working"
   .byt SCR::END_PAGE
   .byt SCR::NEWLINE
-  .byt SCR::SAY, CHAR::NOVA|SCR::SPEAKER_1
+  .byt SCR::SAY, CHAR::IKE|SCR::SPEAKER_1
   .byt "aaaaaa"
   .byt SCR::END_PAGE
-  .byt SCR::SAY, CHAR::NOVA|SCR::SPEAKER_2
+  .byt SCR::SAY, CHAR::SHERWIN|SCR::SPEAKER_2
   .byt "aaaaaa"
   .byt SCR::END_PAGE
-  .byt SCR::SAY, CHAR::NOVA|SCR::SPEAKER_3
+  .byt SCR::SAY, CHAR::RAOUL|SCR::SPEAKER_3
   .byt "aaaaaa"
   .byt SCR::END_PAGE
   .byt SCR::END_SCRIPT
@@ -164,7 +164,7 @@ IsCommand:
   sta StringBuffer,x
   jsr ScriptRenderOff
   jsr clearLineImg
-  ldx #0 ;CutsceneRenderCol
+  ldx CutsceneRenderCol
   jsr vwfPutsBuffer
   stx CutsceneRenderCol
   ldy #0
@@ -240,6 +240,9 @@ EndPage:
   beq :-
   jsr ScriptRenderOff
 
+  lda #CUTSCENE_BANK
+  jsr SetPRG
+
   ; Clear VWF space
   jsr clearLineImg
   lda #4
@@ -269,6 +272,9 @@ ShowScene:
   asl
   tax
   jsr ScriptRenderOff
+  lda #CUTSCENE_BANK
+  jsr SetPRG
+
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
   ; Read the four characters
@@ -409,7 +415,7 @@ ShowChoice:
 SwitchSpeaker:
   pha
   and #31
-  sta CutsceneCharacter
+  sta CutsceneCurFace ; face and name
   pla
   lsr
   lsr
@@ -421,10 +427,115 @@ SwitchSpeaker:
   sta CutsceneRenderRow
   sta CutsceneRenderCol
   sta CutsceneBufIndex
+
+  ; Don't draw face or name if sign or nothing
+  lda CutsceneCurFace
+  cmp #2
+  bcs @YesCharacter
+
+  ; Erase old face
+  lda #$20
+  sta PPUADDR
+  lda #$E0
+  sta PPUADDR
+  ldx #32*3
+  lda #0
+  jmp WritePPURepeated
+@YesCharacter:
+
+  ; Write name
+  lda #CUTSCENE_BANK
+  jsr SetPRG
+  lda CutsceneCurFace ; Get index into table
+  asl
+  asl
+  tax
+  lda CharacterInfoTable,x
+  tax
+  ldy #0
+: lda CharacterNameData,x
+  sta StringBuffer,y
+  inx
+  iny
+  cmp #0
+  bne :-
+
+  ; Write name to CHR
+  jsr clearLineImg
+  ldx #0
+  jsr vwfPutsBuffer
+  ldy #0
+  lda #3
+  jsr copyLineImg
+
+  ; Write to nametable
+  lda #$21
+  sta PPUADDR
+  lda #$28
+  sta PPUADDR
+  ldy #$30
+  ldx #13
+  jsr WriteIncreasing
+  ; Write face to nametable too
+  ldy #$26
+  ldx #3
+  jsr WriteIncreasing
+  lda #$21
+  sta PPUADDR
+  lda #$15
+  sta PPUADDR
+  ldy #$23
+  ldx #3
+  jsr WriteIncreasing
+  lda #$20
+  sta PPUADDR
+  lda #$f5
+  sta PPUADDR
+  ldy #$20
+  ldx #3
+  jsr WriteIncreasing
+
+  ; Decompress face
+  lda #72
+  ldy CutsceneCurFace
+  dey
+  dey
+  jsr mul8
+  sty 0
+  sta 1
+
+  ; Add to base
+  lda 0
+  add #<FaceData
+  sta 0
+  lda 1
+  adc #>FaceData
+  sta 1
+
+  ;Set to start of second row
+  lda #$02
+  sta PPUADDR
+  ldy #0
+  sty PPUADDR
+
+  lda #9
+  sta 2 ; loop counter
+@TileLoop:
+  ldx #8
+: lda (0),y
+  sta PPUDATA
+  iny
+  dex
+  bne :-
+  ldx #8
+  lda #0
+  jsr WritePPURepeated
+  dec 2
+  bne @TileLoop
   rts
 
 EraseOldTail:
-  ; Erase any old tail
+  ; Erase any old bubble tail
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
   lda #$22
@@ -493,12 +604,13 @@ Say:
 ; Command, switch speaker and style
 Think:
   jsr SwitchSpeaker
-  lda #12
+  lda #11
   jsr DoBalloonTail
   jmp IncreaseBy1
 
 ; Command, switch speaker and style
 Narrate:
+  jsr EraseOldTail
   jsr SwitchSpeaker
   jmp IncreaseBy1
 
