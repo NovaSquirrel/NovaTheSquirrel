@@ -745,6 +745,10 @@ FC___LR:
       lda PlayerDownTimer
       cmp #15
       bcc NotFallthrough
+        lda #KEY_DOWN
+        sta ForceControllerBits
+        lda #15
+        sta ForceControllerTime
         rts
   NotFallthrough:
 

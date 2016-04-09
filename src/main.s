@@ -47,6 +47,10 @@
   lda #MAINLOOP_BANK
   jsr SetPRG
   jsr RenderLevelScreens
+  jsr WaitVblank
+  lda #BG_ON|OBJ_ON
+  sta PPUMASK
+  
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
   jmp VBlankUpdates
@@ -196,7 +200,6 @@ NotSlowTimer:
   lda #SOUND_BANK
   jsr SetPRG
 
-  ; Assuming sound bank is still in
   lda PlayerHealth
   bne NotDie
   jsr pently_init
@@ -258,6 +261,15 @@ NotDie:
   beq :+
     lda #0
     jsr ChangePlayerAbility
+  :
+
+  lda keydown
+  and #KEY_SELECT
+  beq :+
+  lda keylast
+  and #KEY_SELECT
+  bne :+
+    jsr StartCutscene
   :
 
   lda #OBJ_ON | BG_ON ;OBJ_CLIP | BG_CLIP

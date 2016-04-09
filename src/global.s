@@ -814,6 +814,30 @@ SkipAddr:
   lda #<SPCommon
   ldy #>SPCommon
   jsr DecompressCHR
+
+  ; Write palette for Nova and common
+  lda #$3f
+  sta PPUADDR
+  lda #$11
+  sta PPUADDR
+  lda #$12
+  sta PPUDATA
+  lda #$2a
+  sta PPUDATA
+  lda #$30
+  sta PPUDATA
+
+  lda #$3f
+  sta PPUADDR
+  lda #$15
+  sta PPUADDR
+  lda #$2d
+  sta PPUDATA
+  lda #$3d
+  sta PPUDATA
+  lda #$30
+  sta PPUDATA
+
   jmp SetPRG_Restore
 .endproc
 

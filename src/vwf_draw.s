@@ -340,8 +340,8 @@ bail:
 .endif
 
 vwfPutsBuffer:
-  ldy #>StringBuffer
-  lda #<StringBuffer
+  ldy #<StringBuffer
+  lda #>StringBuffer
 ;;
 ; Puts a string to position X, terminated by ctrl character or null.
 ; In:   AAYY = string base address, stored to $00-$01

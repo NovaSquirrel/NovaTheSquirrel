@@ -101,6 +101,17 @@
   DecodeObjectWidth  = TempSpace+3
   DecodeObjectHeight = TempSpace+4
 
+  ; variables for controlling cutscenes
+  ; (safe because cutscenes discard the buffer anyway)
+  ; also see ScriptPtr and such
+  CutsceneRenderRow  = TempSpace
+  CutsceneRenderCol  = CutsceneRenderRow+1
+  CutsceneCharacter  = CutsceneRenderCol+1 ;4
+  CutsceneCharPos    = CutsceneCharacter+4 ;4
+  CutsceneCurSpeaker = CutsceneCharPos+4
+  CutsceneBufIndex   = CutsceneCurSpeaker+1
+  CutsceneScriptBank = CutsceneBufIndex+1
+
   LevelNumber: .res 1 ; current level number
 
   OamPtr:      .res 1 ; index the next sprite goes in
@@ -229,6 +240,10 @@ SCREEN_BOUNDARY = 1 ; boundary on left side of screen
   InventoryLen = 10
   InventoryType:      .res InventoryLen
   InventoryAmount:    .res InventoryLen
+  ; InventoryAmount is also used for flags when it's values above 99:
+INVENTORY_UNLIMITED = 255
+INVENTORY_EQUIPPED  = 254
+
   IRQAddress:       .res 2
 
   ; the sprite list from the ROM has to be copied here so we can access it in gameplay banks

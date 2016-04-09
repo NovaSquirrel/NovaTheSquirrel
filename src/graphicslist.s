@@ -25,6 +25,8 @@ GraphicsList:
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <TitleNAM,     >TitleNAM
   .byt GRAPHICS_BANK1|IS_PALETTE, <PalTitle,     >PalTitle
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <InventoryCHR, >InventoryCHR
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPSun,        >SPSun
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <NPCCHR,       >NPCCHR
 
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)

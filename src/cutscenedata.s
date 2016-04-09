@@ -41,7 +41,7 @@ Jafguar:  .byt "Jafguar",0
 .proc CharacterInfoTable
   .byt CharacterNameData::None - CharacterNameData,    $00, $00, $00
   .byt CharacterNameData::Sign - CharacterNameData,    $17, $27, $37
-  .byt CharacterNameData::Nova - CharacterNameData,    $12, $2a, $3a
+  .byt CharacterNameData::Nova - CharacterNameData,    $12, $2a, $30
   .byt CharacterNameData::Kee - CharacterNameData,     $17, $27, $38
   .byt CharacterNameData::Sherwin - CharacterNameData, $17, $27, $37
   .byt CharacterNameData::Luvi - CharacterNameData,    $13, $21, $37
@@ -57,10 +57,13 @@ Jafguar:  .byt "Jafguar",0
 .endproc
 
 .proc SceneInfoTable
+  FLIP = 128
   ; [hppccccc]*4
   ;  |||+++++- character graphic
   ;  |++------ position (0-3)
   ;  +-------- horizontally flipped?
-  ;
-  ;
+  .byt 0, 0, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::IKE|(2<<5)|FLIP, CHAR::SHERWIN|(3<<5), CHAR::RAOUL|(0<<5)|FLIP
+  .byt CHAR::NOVA|(1<<5), CHAR::SIGN|(2<<5), 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::LUVI|(2<<5)|FLIP, 0, 0
 .endproc

@@ -281,6 +281,7 @@ MS_EMPTY = 32
 .enum SCR
   END_SCRIPT    ; end the script
   END_PAGE      ; wait for key, then clear page after it's pressed
+  NEWLINE       ; new line
   DELAY         ; xx - delay time
   RUN_ASM       ; runs inline asm
   POKE          ; aa aa xx - poke value in address
@@ -295,12 +296,15 @@ MS_EMPTY = 32
   GOTO          ; goto
   CALL          ; call in same bank
   RETURN        ; returns from a call
-  SAY           ; xssn nnnn            | ..ff ffff
-  THINK         ; |||+-++++- name/face |   ++-++++- face
-  NARRATE       ; |++------- speaker   |
-                ; +--------- extended: |
+  SAY           ; .ssn nnnn            |
+  THINK         ; .||+-++++- name/face |
+  NARRATE       ; .++------- speaker   |
   CHOICES       ; xx - choice set
   SCENE         ; xx - scene number
+  SPEAKER_0 = %0000000
+  SPEAKER_1 = %0100000
+  SPEAKER_2 = %1000000
+  SPEAKER_3 = %1100000
 .endenum
 
 SCRIPT_FIRST_IF = SCR::IF_FLAG_ON

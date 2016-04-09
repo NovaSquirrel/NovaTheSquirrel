@@ -14,7 +14,35 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;
+
+DemoCutscene:
+  .byt SCR::SCENE, 1
+  .byt SCR::SAY, CHAR::NOVA|SCR::SPEAKER_0
+  .byt "Sample text"
+  .byt SCR::NEWLINE
+  .byt SCR::NEWLINE
+  .byt "This is a demo script"
+  .byt SCR::NEWLINE
+  .byt "and it seems to be working"
+  .byt SCR::END_PAGE
+  .byt SCR::NEWLINE
+  .byt SCR::SAY, CHAR::NOVA|SCR::SPEAKER_1
+  .byt "aaaaaa"
+  .byt SCR::END_PAGE
+  .byt SCR::SAY, CHAR::NOVA|SCR::SPEAKER_2
+  .byt "aaaaaa"
+  .byt SCR::END_PAGE
+  .byt SCR::SAY, CHAR::NOVA|SCR::SPEAKER_3
+  .byt "aaaaaa"
+  .byt SCR::END_PAGE
+  .byt SCR::END_SCRIPT
+
 .proc StartCutscene
+  lda #<DemoCutscene
+  sta ScriptPtr+0
+  lda #>DemoCutscene
+  sta ScriptPtr+1
+
   lda PRGBank ; we'll return to the original bank when we're done
   pha
   jsr WaitVblank
@@ -23,54 +51,45 @@
   jsr ClearOAM
   lda #2
   sta OAM_DMA
-; clear background half of VRAM
-  lda #0
-  sta PPUADDR
-  sta PPUADDR
-  tax
-  ldy #16
-: sta PPUDATA
+
+; Clear cutscene related variables
+  ldx #0
+  txa
+: sta TempSpace,x
   inx
-  bne :-
-  dey
+  cpx #30
   bne :-
 
+; Clear background half of VRAM
+  jsr ClearBG4kb
+
+; Upload graphics
   lda #GraphicsUpload::BG_CUTSCENE
   jsr DoGraphicUpload
+  lda #GraphicsUpload::NPC_CHR
+  jsr DoGraphicUpload
 
+; Set up nametable
   lda #CUTSCENE_BANK
   jsr SetPRG
   jsr CutsceneInit
 
-;  ldy #<HelloString
-;  lda #>HelloString
-;  jsr CopyToStringBuffer
+; Run script
+  jsr ScriptLoopInit
+  jsr ClearOAM
 
-  jsr ClearDynamicVRAM
-  jsr clearLineImg
-  ldx #0
-  ldy #<StringBuffer
-  lda #>StringBuffer
-  jsr vwfPuts
-  ldy #<$0200
-  lda #>$0200
-  jsr copyLineImg
-  lda #0
-  sta PPUSCROLL
-  sta PPUSCROLL
-
-  jsr WaitVblank
-  lda #OBJ_ON|BG_ON
-  sta PPUMASK
-  lda #0
-  sta PPUSCROLL
-  sta PPUSCROLL
-: jmp :-
-
-  jsr WaitVblank
+; Clean up and restore gameplay graphics
   lda #0
   sta PPUMASK
+  lda #2
+  sta OAM_DMA
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
+  sta PPUCTRL
+  jsr ClearName
   jsr DoLevelUploadList
+  jsr UploadNovaAndCommon
+  inc NeedLevelRerender
+  jsr UpdateScrollRegister
   jsr WaitVblank
 
   pla ; restore old bank
@@ -91,13 +110,33 @@
   bne :+
   dec ScriptPtr+1
 : dec ScriptPtr+0
+  jmp ScriptLoop
+.endproc
+
+.proc ScriptRenderOff
+  jsr WaitVblank
+  lda #0
+  sta PPUMASK
+  rts
+.endproc
+
+.proc ScriptRenderOn
+  jsr WaitVblank
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
+  sta PPUCTRL
+  lda #BG_ON|OBJ_ON
+  sta PPUMASK
+  lda #0
+  sta PPUSCROLL
+  sta PPUSCROLL
+  rts
 .endproc
 
 .proc ScriptLoopInit
   lda #<ScriptBRK
-  sta IRQAddress+1
-  lda #>ScriptBRK
   sta IRQAddress+0
+  lda #>ScriptBRK
+  sta IRQAddress+1
   lda #0
   sta ScriptIf
 .endproc
@@ -106,9 +145,36 @@
   ldy #0
   ; Get script byte
   lda (ScriptPtr),y
-
   ; Increment script pointer
   inc16 ScriptPtr
+
+  cmp #$20
+  bcc IsCommand
+  ; If not command, just add the character or word to the current line
+  ldx CutsceneBufIndex
+  inc CutsceneBufIndex
+  sta StringBuffer,x
+  bne ScriptLoop
+IsCommand:
+  ; Terminate StringBuffer
+  ldx CutsceneBufIndex
+;  beq SkipDraw
+  pha
+  lda #0
+  sta StringBuffer,x
+  jsr ScriptRenderOff
+  jsr clearLineImg
+  ldx #0 ;CutsceneRenderCol
+  jsr vwfPutsBuffer
+  stx CutsceneRenderCol
+  ldy #0
+  lda CutsceneRenderRow
+  add #4
+  jsr copyLineImg
+  pla
+  ldy #0 ; reset Y to zero
+  sty CutsceneBufIndex
+SkipDraw:
 
   ; Call the cutscene command
   asl
@@ -134,6 +200,7 @@
 .proc ScriptCommands
   .raddr EndScript  ;
   .raddr EndPage    ;
+  .raddr NewLine    ;
   .raddr Delay      ; xx - delay time
   .raddr RunAsm     ;
   .raddr Poke       ; aa aa vv - address, value
@@ -160,30 +227,279 @@ EndScript:
 
 ; Command, ends the page
 EndPage:
-  jsr WaitForKey
-  lda keydown
+  lda #SOUND_BANK
+  jsr SetPRG
+  lda #2
+  sta OAM_DMA
+  jsr ScriptRenderOn
+: jsr WaitVblank
+  jsr ReadJoy
+  jsr pently_update
+  lda keynew
   and #KEY_A
-  beq EndPage
+  beq :-
+  jsr ScriptRenderOff
+
+  ; Clear VWF space
+  jsr clearLineImg
+  lda #4
+: ldy #0
+  pha
+  jsr copyLineImg
+  pla
+  add #1
+  cmp #10
+  bne :-
+
+  lda #0
+  sta CutsceneRenderCol
+  sta CutsceneRenderRow
+  jmp ScriptLoop
+
+; Command, moves to the next line
+NewLine:
+  lda #0
+  sta CutsceneRenderCol
+  inc CutsceneRenderRow
   jmp ScriptLoop
 
 ; Command, switch to a different scene
 ShowScene:
-  rts
+  asl
+  asl
+  tax
+  jsr ScriptRenderOff
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
+  sta PPUCTRL
+  ; Read the four characters
+  ldy #0
+@Read:
+  lda SceneInfoTable+0,x
+  pha
+  and #31
+  sta CutsceneCharacter,y
+  pla
+  lsr
+  lsr
+  lsr
+  lsr
+  lsr
+  sta CutsceneCharPos,y
+  inx
+  iny
+  cpy #4
+  bne @Read
+
+  jsr ClearOAM
+
+  ; Set up the four characters
+  ldy #0
+@SetUp:
+  lda CutsceneCharacter,y
+  jeq @SkipMe
+  asl
+  asl
+  sta 0 ; 0 = character id *4
+  tax
+  ; Set palette address
+  lda #$3f
+  sta PPUADDR
+  tya
+  asl
+  asl
+  sta 1 ; 1 = character slot *4
+  ora #$11
+  sta PPUADDR
+  ; Write palette
+  lda CharacterInfoTable+1,x
+  sta PPUDATA
+  lda CharacterInfoTable+2,x
+  sta PPUDATA
+  lda CharacterInfoTable+3,x
+  sta PPUDATA
+
+  ; Write to OAM
+  lda 1
+  asl ;*8
+  asl ;*16
+  asl ;*32
+  tax ; X = sprite index
+  lda #21*8-1
+  sta OAM_YPOS+(4*0),x
+  sta OAM_YPOS+(4*1),x
+  lda #22*8-1
+  sta OAM_YPOS+(4*2),x
+  sta OAM_YPOS+(4*3),x
+  lda #23*8-1
+  sta OAM_YPOS+(4*4),x
+  sta OAM_YPOS+(4*5),x
+  sty TempY
+  lda CutsceneCharPos,y
+  and #3
+  tay
+  lda SpriteXPositions,y
+  sta OAM_XPOS+(4*0),x
+  sta OAM_XPOS+(4*2),x
+  sta OAM_XPOS+(4*4),x
+  add #8
+  sta OAM_XPOS+(4*1),x
+  sta OAM_XPOS+(4*3),x
+  sta OAM_XPOS+(4*5),x
+  ldy TempY
+  tya
+  sta OAM_ATTR+(4*0),x
+  sta OAM_ATTR+(4*1),x
+  sta OAM_ATTR+(4*2),x
+  sta OAM_ATTR+(4*3),x
+  sta OAM_ATTR+(4*4),x
+  sta OAM_ATTR+(4*5),x
+  lda CutsceneCharacter,y
+  asl
+  sta 2
+  asl
+  add 2
+  ; find a better solution than this mess?
+  sta OAM_TILE+(4*0),x
+  add #1
+  sta OAM_TILE+(4*1),x
+  add #1
+  sta OAM_TILE+(4*2),x
+  add #1
+  sta OAM_TILE+(4*3),x
+  add #1
+  sta OAM_TILE+(4*4),x
+  add #1
+  sta OAM_TILE+(4*5),x
+
+  ; Do flipping
+  ; (currently messy)
+  lda CutsceneCharPos,y
+  and #4
+  beq @NoFlip
+  inc OAM_TILE+(4*0),x
+  dec OAM_TILE+(4*1),x
+  inc OAM_TILE+(4*2),x
+  dec OAM_TILE+(4*3),x
+  inc OAM_TILE+(4*4),x
+  dec OAM_TILE+(4*5),x
+  tya
+  ora #OAM_XFLIP
+  sta OAM_ATTR+(4*0),x
+  sta OAM_ATTR+(4*1),x
+  sta OAM_ATTR+(4*2),x
+  sta OAM_ATTR+(4*3),x
+  sta OAM_ATTR+(4*4),x
+  sta OAM_ATTR+(4*5),x
+@NoFlip:
+
+@SkipMe:
+  iny
+  cpy #4
+  jne @SetUp
+
+  jmp IncreaseBy1
+
+SpriteXPositions:
+  .byt 8*8+4, 12*8+4, 16*8+4, 20*8+4
 
 ; Command, show preset choices
 ShowChoice:
+  jmp IncreaseBy1
+
+SwitchSpeaker:
+  pha
+  and #31
+  sta CutsceneCharacter
+  pla
+  lsr
+  lsr
+  lsr
+  lsr
+  lsr
+  sta CutsceneCurSpeaker
+  lda #0
+  sta CutsceneRenderRow
+  sta CutsceneRenderCol
+  sta CutsceneBufIndex
+  rts
+
+EraseOldTail:
+  ; Erase any old tail
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
+  sta PPUCTRL
+  lda #$22
+  sta PPUADDR
+  lda #$28
+  sta PPUADDR
+  lda #2
+  jsr WritePPURepeated16
+  lda #$22
+  sta PPUADDR
+  lda #$48
+  sta PPUADDR
+  lda #0
+  jsr WritePPURepeated16
+  lda #$22
+  sta PPUADDR
+  lda #$68
+  sta PPUADDR
+  lda #0
+  jmp WritePPURepeated16
+
+DoBalloonTail:
+  sta 0
+  ldy CutsceneCurSpeaker
+  lda CutsceneCharPos,y
+  and #3
+  asl
+  asl
+  sta 1
+  jsr EraseOldTail
+
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
+  sta PPUCTRL
+  ; Write the balloon's tail (as two columns)
+  lda #>($2000+32*17+9)
+  sta PPUADDR
+  lda #<($2000+32*17+9)
+  add 1
+  sta PPUADDR
+  ldy 0
+  sty PPUDATA
+  iny
+  sty PPUDATA
+  iny
+  sty PPUDATA
+  lda #>($2000+32*17+10)
+  sta PPUADDR
+  lda #<($2000+32*17+10)
+  add 1
+  sta PPUADDR
+  lda 0
+  add #3
+  tay
+  sty PPUDATA
+  iny
+  sty PPUDATA
   rts
 
 ; Command, switch speaker and style
 Say:
+  jsr SwitchSpeaker
+  lda #6
+  jsr DoBalloonTail
   jmp IncreaseBy1
 
 ; Command, switch speaker and style
 Think:
+  jsr SwitchSpeaker
+  lda #12
+  jsr DoBalloonTail
   jmp IncreaseBy1
 
 ; Command, switch speaker and style
 Narrate:
+  jsr SwitchSpeaker
   jmp IncreaseBy1
 
 ConditionalGotoCall:
@@ -414,24 +730,14 @@ GetFlag:
   stx PPUDATA
   ldx #$2a
   stx PPUDATA
-  ldx #$26
+  ldx #$37
   stx PPUDATA
 
 ; clear nametable
-  lda #$20
-  sta PPUADDR
-  lda #$00
-  sta PPUADDR
-  tax
-  ldy #4
   lda #0
-: sta PPUDATA
-  inx
-  bne :-
-  dey
-  bne :-
+  jsr ClearNameCustom
 
-; top of ground
+; Top row of ground
   lda #>($2000+32*24+6)
   sta PPUADDR
   lda #<($2000+32*24+6)
@@ -444,7 +750,7 @@ GetFlag:
   lda #$1a
   sta PPUDATA
 
-; bottom of ground
+; Bottom row of ground
   lda #>($2000+32*25+6)
   sta PPUADDR
   lda #<($2000+32*25+6)
@@ -457,7 +763,7 @@ GetFlag:
   lda #$1b
   sta PPUDATA
 
-; ground attribute
+; Write attribute table bytes for ground
   lda #>($2400-16)
   sta PPUADDR
   lda #<($2400-16)
@@ -468,16 +774,15 @@ GetFlag:
   dex
   bne :-
 
-; set up nametable
+; Set up nametable with increasing bytes to display VWF text
   lda #>($2000+32*11+8)
   sta PPUADDR
   lda #<($2000+32*11+8)
   sta PPUADDR
   lda #6
   sta 0
-  ldy #$20
+  ldy #$40
 NametableLoop:
-  ldy #$20
   ldx #16
 : sty PPUDATA
   iny
@@ -535,55 +840,9 @@ NametableLoop:
   ldx #6
   jsr WritePPURepeated
 
-  ; write the balloon's tail
-  lda #>($2000+32*17+9)
-  sta PPUADDR
-  lda #<($2000+32*17+9)
-  sta PPUADDR
-  ldy #$06
-  sty PPUDATA
-  iny
-  sty PPUDATA
-  iny
-  sty PPUDATA
-  lda #>($2000+32*17+10)
-  sta PPUADDR
-  lda #<($2000+32*17+10)
-  sta PPUADDR
-  ldy #$09
-  sty PPUDATA
-  iny
-  sty PPUDATA
-
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
   rts
 .endproc
 
-SpeechBubblePPUAddrLo:
-.repeat 8, I
-  .byt <($2000+32*11+7+32*I)
-.endrep
-
-.proc WriteSpeechBubbleHorizLine
-  lda #$02
-StartSixteen:
-  .repeat 16
-    sta PPUDATA
-  .endrep
-  rts
-.endproc
-
-WriteSpeechBubbleSixteen = WriteSpeechBubbleHorizLine::StartSixteen
-
-.proc WriteSpeechBubbleRow
-  lda #$15
-  sta PPUDATA
-  .repeat 16
-    sty PPUDATA
-    iny
-  .endrep
-  sta PPUDATA
-  rts
-.endproc
 .popseg
