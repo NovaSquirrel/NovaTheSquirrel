@@ -107,6 +107,15 @@
   BG_UP_ARROW
   BG_DN_ARROW
   BG_BLACK
+  BG_BUSH_TOP
+  BG_BUSH_BOT
+  BG_TRUNK_L
+  BG_TRUNK_R
+  BG_TREETOP_UL
+  BG_TREETOP_UR
+  BG_TREETOP_LL
+  BG_TREETOP_LR
+  BG_TRUNK
 .endenum
 
 M_FIRST_SPECIAL_MISC = Metatiles::COIN
@@ -221,6 +230,15 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_PAL_0 ;BG_UP_ARROW
   .byt M_PAL_0 ;BG_DN_ARROW
   .byt M_PAL_1 ;BG_BLACK
+  .byt M_PAL_0 ;BG_BUSH_TOP
+  .byt M_PAL_0 ;BG_BUSH_BOT
+  .byt M_PAL_2 ;BG_TRUNK_L
+  .byt M_PAL_2 ;BG_TRUNK_R
+  .byt M_PAL_0 ;BG_TREETOP_UL
+  .byt M_PAL_0 ;BG_TREETOP_UR
+  .byt M_PAL_0 ;BG_TREETOP_LL
+  .byt M_PAL_0 ;BG_TREETOP_LR
+  .byt M_PAL_2 ;BG_TRUNK
 .endproc
 
 .pushseg
@@ -334,6 +352,15 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_EMPTY ;BG_UP_ARROW
   .byt M_EMPTY ;BG_DN_ARROW
   .byt M_EMPTY ;BG_BLACK
+  .byt M_EMPTY ;BG_BUSH_TOP
+  .byt M_EMPTY|M_POST_PROCESS ;BG_BUSH_BOT
+  .byt M_EMPTY|M_POST_PROCESS ;BG_TRUNK_L
+  .byt M_EMPTY ;BG_TRUNK_R
+  .byt M_EMPTY ;BG_TREETOP_UL
+  .byt M_EMPTY ;BG_TREETOP_UR
+  .byt M_EMPTY ;BG_TREETOP_LL
+  .byt M_EMPTY ;BG_TREETOP_LR
+  .byt M_EMPTY ;BG_TRUNK
 .endproc
 
 .popseg
@@ -446,6 +473,15 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $30 ;BG_UP_ARROW
   .byt $31 ;BG_DN_ARROW
   .byt $3c ;BG_BLACK
+  .byt $3f ;BG_BUSH_TOP
+  .byt $c7 ;BG_BUSH_BOT
+  .byt $3f ;BG_TRUNK_L
+  .byt $d3 ;BG_TRUNK_R
+  .byt $3f ;BG_TREETOP_UL
+  .byt $3f ;BG_TREETOP_UR
+  .byt $c7 ;BG_TREETOP_LL
+  .byt $3d ;BG_TREETOP_LR
+  .byt $d2 ;BG_TRUNK
 .endproc
 
 .proc MetatileLL
@@ -557,6 +593,15 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $3f ;BG_UP_ARROW
   .byt $3f ;BG_DN_ARROW
   .byt $3c ;BG_BLACK
+  .byt $c5 ;BG_BUSH_TOP
+  .byt $d7 ;BG_BUSH_BOT
+  .byt $3f ;BG_TRUNK_L
+  .byt $d3 ;BG_TRUNK_R
+  .byt $c5 ;BG_TREETOP_UL
+  .byt $d5 ;BG_TREETOP_UR
+  .byt $d7 ;BG_TREETOP_LL
+  .byt $d8 ;BG_TREETOP_LR
+  .byt $d2 ;BG_TRUNK
 .endproc
 
 .proc MetatileUR
@@ -668,6 +713,15 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $3f ;BG_UP_ARROW
   .byt $3f ;BG_DN_ARROW
   .byt $3c ;BG_BLACK
+  .byt $3f ;BG_BUSH_TOP
+  .byt $c9 ;BG_BUSH_BOT
+  .byt $d2 ;BG_TRUNK_L
+  .byt $3f ;BG_TRUNK_R
+  .byt $3f ;BG_TREETOP_UL
+  .byt $3f ;BG_TREETOP_UR
+  .byt $3d ;BG_TREETOP_LL
+  .byt $c9 ;BG_TREETOP_LR
+  .byt $d3 ;BG_TRUNK
 .endproc
 
 .proc MetatileLR
@@ -779,5 +833,14 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $30 ;BG_UP_ARROW
   .byt $31 ;BG_DN_ARROW
   .byt $3c ;BG_BLACK
+  .byt $d6 ;BG_BUSH_TOP
+  .byt $d9 ;BG_BUSH_BOT
+  .byt $d2 ;BG_TRUNK_L
+  .byt $3f ;BG_TRUNK_R
+  .byt $c6 ;BG_TREETOP_UL
+  .byt $d6 ;BG_TREETOP_UR
+  .byt $d8 ;BG_TREETOP_LL
+  .byt $d9 ;BG_TREETOP_LR
+  .byt $d3 ;BG_TRUNK
 .endproc
 

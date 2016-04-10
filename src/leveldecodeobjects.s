@@ -65,6 +65,9 @@
   .byt BLOCK_SINGLE,           Metatiles::EXIT_DOOR_TOP
   .byt BLOCK_RECTANGLE_SERIES, Metatiles::GROUND_MIDDLE_M
   .byt BLOCK_RECTANGLE_SERIES, Metatiles::ROCK_MID_M
+  .byt BLOCK_SINGLE,           Metatiles::BG_TALL_GRASS
+  .byt BLOCK_SINGLE,           Metatiles::BG_FLOWER_1
+  .byt BLOCK_SINGLE,           Metatiles::BG_BUSH_BOT
 .endproc
 
 .proc ObjectTypesList
@@ -86,10 +89,10 @@
   .byt Metatiles::BG_TALL_GRASS
   ; list 2
   .byt Metatiles::BG_FLOWER_1
-  .byt Metatiles::EMPTY
-  .byt Metatiles::EMPTY
-  .byt Metatiles::EMPTY
-  .byt Metatiles::EMPTY
+  .byt Metatiles::BG_BLACK
+  .byt Metatiles::BG_BUSH_BOT
+  .byt Metatiles::BG_TRUNK_L
+  .byt Metatiles::BG_TRUNK
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY

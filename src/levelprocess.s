@@ -64,7 +64,7 @@ RowLoop:
   lda MetatileFlags,x
   and #M_POST_PROCESS
   beq NoPostProcess
-    tya
+    tya ; Save Y. Y doesn't need to be preserved
     pha
 
     txa ; copy block type back to A
@@ -123,6 +123,8 @@ ListOfProcessTiles:
   .byt Metatiles::CLOUD_M
   .byt Metatiles::LADDER
   .byt Metatiles::BG_FLOWER_1
+  .byt Metatiles::BG_BUSH_BOT
+  .byt Metatiles::BG_TRUNK_L
 ListOfProcessAddrLo:
   .byt <(ProcessGround-1)
   .byt <(ProcessRock-1)
@@ -134,6 +136,8 @@ ListOfProcessAddrLo:
   .byt <(ProcessCloud-1)
   .byt <(ProcessLadder-1)
   .byt <(ProcessFlower-1)
+  .byt <(ProcessBushBot-1)
+  .byt <(ProcessTrunkL-1)
 ListOfProcessAddrHi:
   .byt >(ProcessGround-1)
   .byt >(ProcessRock-1)
@@ -145,6 +149,35 @@ ListOfProcessAddrHi:
   .byt >(ProcessCloud-1)
   .byt >(ProcessLadder-1)
   .byt >(ProcessFlower-1)
+  .byt >(ProcessBushBot-1)
+  .byt >(ProcessTrunkL-1)
+ProcessBushBot:
+  dey
+  lda (Pointer),y
+  bne :+
+  lda #Metatiles::BG_BUSH_TOP
+  sta (Pointer),y
+: rts
+ProcessTrunkL:
+  ; Make right side
+  lda (RightPointer),y
+  bne :+
+  lda #Metatiles::BG_TRUNK_R
+  sta (RightPointer),y
+: dey
+  ; Make treetop
+  lda (Pointer),y
+  bne :+
+  lda #Metatiles::BG_TREETOP_LL
+  sta (Pointer),y
+  lda #Metatiles::BG_TREETOP_LR
+  sta (RightPointer),y
+  dey
+  lda #Metatiles::BG_TREETOP_UL
+  sta (Pointer),y
+  lda #Metatiles::BG_TREETOP_UR
+  sta (RightPointer),y
+: rts
 ProcessFlower:
   jsr huge_rand
   and #3

@@ -885,3 +885,75 @@ C .byt $3c
 C .byt $3c
 C .byt $3c
 C .byt $3c
+
+R BG_BUSH_TOP
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $3f
+C .byt $c5
+C .byt $3f
+C .byt $d6
+
+R BG_BUSH_BOT
+C .byt M_PAL_0
+C .byt M_EMPTY|M_POST_PROCESS
+C .byt $c7
+C .byt $d7
+C .byt $c9
+C .byt $d9
+
+R BG_TRUNK_L
+C .byt M_PAL_2
+C .byt M_EMPTY|M_POST_PROCESS
+C .byt $3f
+C .byt $3f
+C .byt $d2
+C .byt $d2
+
+R BG_TRUNK_R
+C .byt M_PAL_2
+C .byt M_EMPTY
+C .byt $d3
+C .byt $d3
+C .byt $3f
+C .byt $3f
+
+R BG_TREETOP_UL
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $3f
+C .byt $c5
+C .byt $3f
+C .byt $c6
+
+R BG_TREETOP_UR
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $3f
+C .byt $d5
+C .byt $3f
+C .byt $d6
+
+R BG_TREETOP_LL
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $c7
+C .byt $d7
+C .byt $3d
+C .byt $d8
+
+R BG_TREETOP_LR
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $3d
+C .byt $d8
+C .byt $c9
+C .byt $d9
+
+R BG_TRUNK
+C .byt M_PAL_2
+C .byt M_EMPTY
+C .byt $d2
+C .byt $d2
+C .byt $d3
+C .byt $d3

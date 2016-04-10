@@ -48,12 +48,12 @@ introlevelData:
   LObj  LO::S_COIN,           1, 7
   LObj  LO::S_COIN,           1, 6
   LObjN LO::R_GROUND,         0, 8, 7, 2
-  LObj  LO::R_CUSTOM,         0, 11, Metatiles::BG_BLACK, (5<<4)|1
   LObjN LO::WIDE_1,           1, 7, 5, LN1::FENCE
+  LObjN LO::RECT_2,           0, 11, 1, LN2::BLACK, 4
   LObjN LO::WIDE_1,           2, 10, 2, LN1::PRIZE
   LObjN LO::R_GROUND,         3, 11, 1, 1
   LObjN LO::R_GROUND,         5, 8, 2, 6
-  LObjN LO::WIDE_2,           1, 7, 0, LN2::FLOWER
+  LObj  LO::S_FLOWER,         1, 7
   LObjN LO::R_GROUND,         2, 10, 2, 4
   LObjN LO::WIDE_1,           3, 10, 9, LN1::SOLID_LEDGE
   LObjN LO::R_GROUND,         0, 12, 2, 2
@@ -103,7 +103,7 @@ introlevelData:
   LObjN LO::WIDE_1,           3, 11, 0, LN1::SOLID_LEDGE
   LObjN LO::R_GROUND,         0, 13, 14, 1
   LObjN LO::WIDE_1,           1, 9, 0, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_2,           0, 12, 0, LN2::FLOWER
+  LObj  LO::S_FLOWER,         0, 12
   LObjN LO::R_GROUND,         6, 11, 7, 1
   LObjN LO::WIDE_1,           1, 10, 5, LN1::FENCE
   LObjN LO::WIDE_1,           9, 11, 2, LN1::SOLID_LEDGE

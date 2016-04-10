@@ -360,6 +360,9 @@ SCRIPT_LAST_IF = SCR::IF_CHOICE
   S_EXIT_DOOR
   RS_GROUND
   RS_ROCK
+  S_TALL_GRASS
+  S_FLOWER
+  S_BUSH
 .endenum
 
 .enum LN1
@@ -383,6 +386,10 @@ SCRIPT_LAST_IF = SCR::IF_CHOICE
 
 .enum LN2
   FLOWER
+  BLACK
+  BUSH
+  TRUNK_L
+  TRUNK
 .endenum
 
 .macro LSpr Type, Direction, XPos, YPos, Extra
