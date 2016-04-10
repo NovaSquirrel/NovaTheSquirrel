@@ -25,16 +25,6 @@ DemoCutscene:
   .byt SCR::NEWLINE
   .byt "and it seems to be working"
   .byt SCR::END_PAGE
-  .byt SCR::NEWLINE
-  .byt SCR::SAY, CHAR::IKE|SCR::SPEAKER_1
-  .byt "aaaaaa"
-  .byt SCR::END_PAGE
-  .byt SCR::SAY, CHAR::SHERWIN|SCR::SPEAKER_2
-  .byt "aaaaaa"
-  .byt SCR::END_PAGE
-  .byt SCR::SAY, CHAR::RAOUL|SCR::SPEAKER_3
-  .byt "aaaaaa"
-  .byt SCR::END_PAGE
   .byt SCR::END_SCRIPT
 
 .proc StartCutscene
@@ -45,6 +35,12 @@ DemoCutscene:
 
   lda PRGBank ; we'll return to the original bank when we're done
   pha
+
+  lda #SOUND_BANK
+  jsr SetPRG
+  jsr pently_init
+  inc pently_music_playing
+
   jsr WaitVblank
   ldx #0
   stx PPUMASK
@@ -72,6 +68,7 @@ DemoCutscene:
 ; Set up nametable
   lda #CUTSCENE_BANK
   jsr SetPRG
+
   jsr CutsceneInit
 
 ; Run script
@@ -201,7 +198,6 @@ SkipDraw:
   .raddr EndScript  ;
   .raddr EndPage    ;
   .raddr NewLine    ;
-  .raddr Delay      ; xx - delay time
   .raddr RunAsm     ;
   .raddr Poke       ; aa aa vv - address, value
   .raddr FlagOn     ; ff - flag
@@ -234,7 +230,6 @@ EndPage:
   jsr ScriptRenderOn
 : jsr WaitVblank
   jsr ReadJoy
-  jsr pently_update
   lda keynew
   and #KEY_A
   beq :-
@@ -671,14 +666,6 @@ Return:
   lda ScriptReturn+1
   sta ScriptPtr+1
   jmp ScriptLoop
-
-; Command, delays X frames
-Delay:
-  tax
-: jsr WaitVblank
-  dex
-  bne :-
-  jmp IncreaseBy1
 
 ; Command, starts running inline asm
 RunAsm:

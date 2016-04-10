@@ -149,8 +149,11 @@
 .endproc
 ; don't put anything else here
 .proc MainLoop
-;  lda #OBJ_ON | BG_ON | %11100000
-;  sta PPUMASK
+  lda NeedLevelRerender
+  bne :+
+  lda #OBJ_ON | BG_ON ;| %11100000
+  sta PPUMASK
+:
   countdown IsScrollUpdate ; decrease scroll update stage
   jsr ReadJoy
   jsr ClearOAM
@@ -272,8 +275,8 @@ NotDie:
     jsr StartCutscene
   :
 
-  lda #OBJ_ON | BG_ON ;OBJ_CLIP | BG_CLIP
-  sta PPUMASK
+;  lda #OBJ_ON | BG_ON ;OBJ_CLIP | BG_CLIP
+;  sta PPUMASK
 
   jmp VBlankUpdates
 .endproc

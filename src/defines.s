@@ -71,6 +71,7 @@
   INVENTORY_CHR
   SP_SUN
   NPC_CHR
+  PAL_ENEMY1
 .endenum
 
 .enum SFX
@@ -282,7 +283,6 @@ MS_EMPTY = 32
   END_SCRIPT    ; end the script
   END_PAGE      ; wait for key, then clear page after it's pressed
   NEWLINE       ; new line
-  DELAY         ; xx - delay time
   RUN_ASM       ; runs inline asm
   POKE          ; aa aa xx - poke value in address
   FLAG_ON       ; xx - flag
@@ -335,6 +335,9 @@ SCRIPT_LAST_IF = SCR::IF_CHOICE
   WIDE_1
   TALL_1
   RECT_1
+  WIDE_2
+  TALL_2
+  RECT_2
   R_AIR
   R_BRICK
   R_SOLID_BLOCK
@@ -374,6 +377,12 @@ SCRIPT_LAST_IF = SCR::IF_CHOICE
   SOLID_LEDGE
   FALLTHROUGH_LEDGE
   BRICKPRIZE
+  FENCE
+  TALLGRASS
+.endenum
+
+.enum LN2
+  FLOWER
 .endenum
 
 .macro LSpr Type, Direction, XPos, YPos, Extra

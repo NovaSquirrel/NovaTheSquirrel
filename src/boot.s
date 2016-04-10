@@ -84,24 +84,6 @@ DoNothing:
 : lda PPUSTATUS   ; Wait a PPU frame
   bpl :-
 
-; Now after two frames the PPU is warmed up, so set up PPU stuff
-
-  ; Write the initial sprite palettes
-  lda #$3f
-  sta PPUADDR
-  lda #$10
-  sta PPUADDR
-  ldx #0
-: lda #$30    ; Background will just get overwritten later
-  sta PPUDATA
-  .repeat 3
-  lda DemoPalette,x
-  sta PPUDATA
-  inx
-  .endrep
-  cpx #4*3
-  bcc :-
-
   jsr ShowTitle
 
 ; Set some random seeds
@@ -147,13 +129,6 @@ DoNothing:
   jsr DecompressLevel
 
   jmp MainLoopInit
-.endproc
-
-.proc DemoPalette
-  .byt $12, $2a, $30
-  .byt $2d, $3d, $30
-  .byt $06, $16, $36
-  .byt $02, $12, $32
 .endproc
 
 .proc InitMapper

@@ -832,7 +832,7 @@ C .byt $cb
 
 R BG_FLOWER_1
 C .byt M_PAL_0
-C .byt M_EMPTY
+C .byt M_EMPTY|M_POST_PROCESS
 C .byt $cc
 C .byt $da
 C .byt $cd

@@ -573,6 +573,7 @@ IncreaseDecodePointerBy = LevelDecodeCommand::IncreasePointerBy
 .endif
 
 .proc DO_BlockWideList
+  sta 0
   lda (LevelDecodePointer),y
   pha
   lsr
@@ -582,6 +583,7 @@ IncreaseDecodePointerBy = LevelDecodeCommand::IncreasePointerBy
   sta DecodeObjectWidth
   pla
   and #15
+  add 0
   tax
   lda ObjectTypesList,x
   sta DecodeObjectBlock
@@ -593,6 +595,7 @@ IncreaseDecodePointerBy = LevelDecodeCommand::IncreasePointerBy
 .endproc
 
 .proc DO_BlockRectList
+  sta 0
   lda (LevelDecodePointer),y
   pha
   lsr
@@ -602,6 +605,7 @@ IncreaseDecodePointerBy = LevelDecodeCommand::IncreasePointerBy
   sta DecodeObjectHeight
   pla
   and #15
+  add 0
   tax
   lda ObjectTypesList,x
   sta DecodeObjectBlock
@@ -614,6 +618,7 @@ IncreaseDecodePointerBy = LevelDecodeCommand::IncreasePointerBy
 .endproc
 
 .proc DO_BlockTallList
+  sta 0
   lda (LevelDecodePointer),y
   pha
   lsr
@@ -623,6 +628,7 @@ IncreaseDecodePointerBy = LevelDecodeCommand::IncreasePointerBy
   sta DecodeObjectHeight
   pla
   and #15
+  add 0
   tax
   lda ObjectTypesList,x
   sta DecodeObjectBlock

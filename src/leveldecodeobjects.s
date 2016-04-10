@@ -40,6 +40,9 @@
   .byt BLOCK_WIDE_FROM_LIST,   0
   .byt BLOCK_TALL_FROM_LIST,   0
   .byt BLOCK_RECT_FROM_LIST,   0
+  .byt BLOCK_WIDE_FROM_LIST,   16
+  .byt BLOCK_TALL_FROM_LIST,   16
+  .byt BLOCK_RECT_FROM_LIST,   16
   .byt BLOCK_RECTANGLE,        Metatiles::EMPTY
   .byt BLOCK_RECTANGLE,        Metatiles::BRICKS
   .byt BLOCK_RECTANGLE,        Metatiles::SOLID_BLOCK
@@ -79,6 +82,22 @@
   .byt Metatiles::SOLID_LEDGE_M
   .byt Metatiles::FALLTHROUGH_LEDGE_M
   .byt Metatiles::BRICKPRIZE
+  .byt Metatiles::BG_FENCE
+  .byt Metatiles::BG_TALL_GRASS
+  ; list 2
+  .byt Metatiles::BG_FLOWER_1
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY
