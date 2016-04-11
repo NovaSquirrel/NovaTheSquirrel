@@ -28,7 +28,8 @@ GraphicsList:
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPSun,        >SPSun
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <NPCCHR,       >NPCCHR
   .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy1,    >PalEnemy1
-
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGFrozenFG,   >BGFrozenFG
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGFrozenBG,   >BGFrozenBG
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)
 DoGraphicUpload:

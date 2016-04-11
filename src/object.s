@@ -153,7 +153,7 @@ Exit:
 
 ObjectNone = DoNothing
 
-.proc BrickPoof ; the particles used for brick poofs
+.proc GenericPoof
 DrawX = O_RAM::OBJ_DRAWX
 DrawY = O_RAM::OBJ_DRAWY
   lda ObjectTimer,x
@@ -181,14 +181,12 @@ DrawY = O_RAM::OBJ_DRAWY
   sta OAM_XPOS+(4*1),y
   sta OAM_XPOS+(4*3),y
 
-  lda #OAM_COLOR_1
+  lda 1
   sta OAM_ATTR+(4*0),y
   sta OAM_ATTR+(4*1),y
   sta OAM_ATTR+(4*2),y
   sta OAM_ATTR+(4*3),y
-  lda retraces
-  and #1
-  ora #$56
+  lda 2
   sta OAM_TILE+(4*0),y
   sta OAM_TILE+(4*1),y
   sta OAM_TILE+(4*2),y
@@ -206,61 +204,29 @@ DrawY = O_RAM::OBJ_DRAWY
 : rts
 .endproc
 
+.proc BrickPoof ; the particles used for brick poofs
+  lda #OAM_COLOR_1
+  sta 1
+  lda retraces
+  and #1
+  ora #$56
+  sta 2
+  jmp GenericPoof
+.endproc
+
 .proc ObjectPoof ; also for particle effects
 DrawX = O_RAM::OBJ_DRAWX
 DrawY = O_RAM::OBJ_DRAWY
-
   RealXPosToScreenPosByX ObjectPXL, ObjectPXH, DrawX
   RealYPosToScreenPosByX ObjectPYL, ObjectPYH, DrawY
   lda ObjectF2,x
   jne BrickPoof
 
-  lda ObjectTimer,x
-  asl
-  sta 0
-
-  ldy OamPtr
-  lda DrawY
-  sub 0
-  sta OAM_YPOS+(4*0),y
-  sta OAM_YPOS+(4*1),y
-  lda DrawY
-  add #8
-  add 0
-  sta OAM_YPOS+(4*2),y
-  sta OAM_YPOS+(4*3),y
-
-  lda DrawX
-  sub 0
-  sta OAM_XPOS+(4*0),y
-  sta OAM_XPOS+(4*2),y
-  lda DrawX
-  add #8
-  add 0
-  sta OAM_XPOS+(4*1),y
-  sta OAM_XPOS+(4*3),y
-
   lda #OAM_COLOR_1
-  sta OAM_ATTR+(4*0),y
-  sta OAM_ATTR+(4*1),y
-  sta OAM_ATTR+(4*2),y
-  sta OAM_ATTR+(4*3),y
+  sta 1
   lda #$51
-  sta OAM_TILE+(4*0),y
-  sta OAM_TILE+(4*1),y
-  sta OAM_TILE+(4*2),y
-  sta OAM_TILE+(4*3),y
-  tya
-  add #4*4
-  sta OamPtr
-
-  inc ObjectTimer,x
-  lda ObjectTimer,x
-  cmp #6
-  bcc :+
-  lda #0
-  sta ObjectF1,x
-: rts
+  sta 2
+  jmp GenericPoof
 .endproc
 
 .proc ObjectGoomba

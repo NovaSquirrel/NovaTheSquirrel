@@ -21,6 +21,9 @@ TitleNAM:   ChrFile "../tools/title/titlenam.pb53", 1024, $2000
 InventoryCHR: ChrFile "../chr/inventory.pb53", 512, $0000
 NPCCHR:     ChrFile "../chr/spnpc.pb53",      1536, $1000
 SPSun:      ChrFile "../chr/spsun.pb53",      512,  $1800
+BGFrozenFG: ChrFile "../chr/bgfrozenfg.pb53", 768,  $0500
+BGFrozenBG: ChrFile "../chr/bgfrozenbg.pb53", 512,  $0c00
+
 
 PalGrassy:  .byt $03
             .byt $1a, $2a, $37

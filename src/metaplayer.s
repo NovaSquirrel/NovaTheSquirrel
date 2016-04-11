@@ -18,6 +18,9 @@
 OpenPrize: ; insert effects here
   lda #Metatiles::USED_PRIZE
   jsr ChangeBlock
+  lda #PoofSubtype::POOF
+  jsr MakePoofAtBlock
+
   lda #SFX::COIN
   jsr PlaySoundDebounce
   jmp AddCoin
@@ -59,16 +62,14 @@ BricksHi:
   jmp OpenPrize
 .endproc
 
-.proc BrokeBricks
-  lda #Metatiles::EMPTY
-  jsr ChangeBlock
-
+.proc MakePoofAtBlock
+  pha
   sty TempVal+1
   jsr FindFreeObjectY
   bcc NoSlotFree
   lda #Enemy::POOF*2
   sta ObjectF1,y
-  lda #PoofSubtype::BRICKS
+  pla
   sta ObjectF2,y
   jsr GetBlockX
   sta ObjectPXH,y
@@ -78,7 +79,18 @@ BricksHi:
   sta ObjectPXL,y
   sta ObjectPYL,y
   sta ObjectTimer,y
+  rts
 NoSlotFree:
+  pla
+  rts
+.endproc
+
+.proc BrokeBricks
+  lda #Metatiles::EMPTY
+  jsr ChangeBlock
+
+  lda #PoofSubtype::BRICKS
+  jsr MakePoofAtBlock
 
   lda #SFX::SMASH
   jmp PlaySoundDebounce

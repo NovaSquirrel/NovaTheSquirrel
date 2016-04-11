@@ -72,6 +72,8 @@
   SP_SUN
   NPC_CHR
   PAL_ENEMY1
+  BG_FROZEN_FG
+  BG_FROZEN_BG
 .endenum
 
 .enum SFX
