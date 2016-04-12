@@ -659,7 +659,7 @@ C .byt $3b
 
 R DOOR_TOP
 C .byt M_PAL_1
-C .byt M_EMPTY
+C .byt M_EMPTY|M_POST_PROCESS
 C .byt $20
 C .byt $3c
 C .byt $21
@@ -667,7 +667,7 @@ C .byt $3c
 
 R EXIT_DOOR_TOP
 C .byt M_PAL_1
-C .byt M_EMPTY
+C .byt M_EMPTY|M_POST_PROCESS
 C .byt $22
 C .byt $3c
 C .byt $23

@@ -468,7 +468,18 @@ No:
 .endproc
 
 .proc ObjectSneaker
-  rts
+  jsr EnemyFall
+  lda #$30
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+
+  ; Alternate between two frames
+  lda retraces
+  and #4
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+
+  jmp EnemyPlayerTouchHurt
 .endproc
 
 .proc ObjectSpinner
@@ -476,6 +487,7 @@ No:
 .endproc
 
 .proc ObjectOwl
+  jsr EnemyFall
   lda #$10
   jsr EnemyWalkOnPlatform
   lda retraces
