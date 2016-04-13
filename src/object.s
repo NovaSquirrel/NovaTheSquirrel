@@ -873,7 +873,7 @@ SkipGravity:
 
   lda ObjectPYH,x
   bmi :+
-    cmp #17
+    cmp #15
     bcc :+
       lda #0
       sta ObjectF1,x
