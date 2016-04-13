@@ -35,9 +35,10 @@ ENEMY_STATE_INIT    = 4
 
 ; common object behaviors that get put in ORAM::OBJ_FLAG
 .enum ObjBehavior
-  AUTO_REMOVE = $1
-  GET_SHOT    = $2
-  AUTO_RESET  = $4
+  AUTO_REMOVE     = $1
+  GET_SHOT        = $2
+  AUTO_RESET      = $4
+  WAIT_UNTIL_NEAR = $8
 .endenum
 
 ; run the list of sprites
@@ -58,7 +59,7 @@ Loop:
   bcc :+
     jsr EnemyGetShot
   :
-  lsr O_RAM::OBJ_FLAG
+  lsr O_RAM::OBJ_FLAG ; auto reset state when the timer reaches zero
   bcc :+
     lda ObjectTimer,x
     beq :+
@@ -66,6 +67,10 @@ Loop:
     bne :+
     lda #0
     sta ObjectF2,x
+  :
+  lsr O_RAM::OBJ_FLAG ; wait until near to activate
+  bcc :+
+    jsr EnemyActivateIfNear
   :
   ; If an object is in an init state, reset it
   lda ObjectF2,x
@@ -152,6 +157,33 @@ Exit:
 .include "../tools/objectlist.s"
 
 ObjectNone = DoNothing
+
+; If an object is initializing, change it to the paused state
+; and hold it in the paused state until the player is near
+.proc EnemyActivateIfNear
+  ; If already activated, just exit
+  lda ObjectF2,x
+  beq Exit
+  ; If it's initializing, automatically start pausing
+  cmp #ENEMY_STATE_INIT
+  bne :+ ; change it to paused
+    lda #ENEMY_STATE_PAUSE
+    sta ObjectF2,x
+  :
+
+  ; Stop pausing if close enough
+  lda PlayerPXH
+  sub ObjectPXH,x
+  abs
+  cmp #7
+  bcs Exit
+
+Yes: ; Change to normal state
+  lda #ENEMY_STATE_NORMAL
+  sta ObjectF2,x
+Exit:
+  rts
+.endproc
 
 .proc GenericPoof
 DrawX = O_RAM::OBJ_DRAWX
