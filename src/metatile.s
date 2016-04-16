@@ -78,6 +78,43 @@ M_BEHAVIOR =       %00011111 ; mask for the block's behavior only
     sta ScrollX+0
 : sta ScrollX+1
 
+
+  ; Check for scroll locks and adjust for them
+  ; Get the screen first
+  lda PlayerPXH
+  lsr
+  lsr
+  lsr
+  lsr
+  tax
+  lda PlayerPXH
+  and #$0f
+  cmp #8
+  bcs @OnRight
+@OnLeft:
+  lda PlayerPXH
+  cmp ScrollX+1
+  beq @OnSkip
+  lda ScreenFlags+0,x
+  lsr
+  bcc @OnSkip
+    lda PlayerPXH
+    and #$f0
+    sta ScrollX+1
+    lda #0
+    sta ScrollX+0
+  jmp @OnSkip
+@OnRight:
+  lda ScreenFlags+1,x
+  lsr
+  bcc @OnSkip
+    lda ScrollX+1
+    and #$f0
+    sta ScrollX+1
+    lda #0
+    sta ScrollX+0
+@OnSkip:
+
   ; Start writing chunks
   lda ScrollX+1
   lsr

@@ -72,6 +72,7 @@
 ;    4 write 3 column bytes starting at this column
 ;    5 current X -= 16
 ;    6 current X += 16
+;    7 run special command S:
 
 .proc DecompressLevel ; A = level number
 LevelBank = 15 ; figure out what to put in here later; for now it's just gonna be LEVELS_BANK1
@@ -431,10 +432,8 @@ NormalCommand:
   rts
 
 SpecialCommand:
-  inc LevelDecodePointer+0
-  beq :+
-  inc LevelDecodePointer+1
-: ; Y is still zero
+  inc16 LevelDecodePointer
+  ; Y is still zero
   and #$0f
   asl
   tax
@@ -451,6 +450,29 @@ SpecialCommandTable:
   .raddr SpecialWrite3Column
   .raddr SpecialXMinus16
   .raddr SpecialXPlus16
+  .raddr SpecialConfig
+SpecialConfigTable:
+  .raddr SpecialConfigEnablePuzzle
+SpecialConfigEnablePuzzle:
+  lda #1
+  sta PuzzleMode
+
+  lda #1
+  jmp IncreasePointerBy
+SpecialConfig:
+  lda (LevelDecodePointer),y
+  asl
+  tax
+  lda SpecialConfigTable+1,x
+  pha
+  lda SpecialConfigTable+0,x
+  pha
+  rts
+IncreasePointerBy2:
+  lda #2
+  skip2
+IncreasePointerBy1:
+  lda #1
 IncreasePointerBy:
   add LevelDecodePointer+0
   sta LevelDecodePointer+0
@@ -460,17 +482,16 @@ IncreasePointerBy:
 SpecialSetX:
   lda (LevelDecodePointer),y
   sta LevelDecodeXPos
-  lda #1
-  bne IncreasePointerBy
+  jmp IncreasePointerBy1
 SpecialWrite1Column:
   lda LevelDecodeXPos
   ;lsr
   tax
   lda (LevelDecodePointer),y
   sta ColumnBytes,x
-  iny  
-  lda #1
-  bne IncreasePointerBy
+  iny
+;  lda #1
+  jmp IncreasePointerBy1
 SpecialWrite2Column:
   lda LevelDecodeXPos
   ;lsr
@@ -480,9 +501,8 @@ SpecialWrite2Column:
   iny
   lda (LevelDecodePointer),y
   sta ColumnBytes+1,x
-  iny
-  lda #2
-  bne IncreasePointerBy
+;  iny
+  jmp IncreasePointerBy2
 SpecialWrite3Column:
   lda LevelDecodeXPos
   ;lsr
@@ -495,9 +515,9 @@ SpecialWrite3Column:
   iny
   lda (LevelDecodePointer),y
   sta ColumnBytes+2,x
-  iny
+;  iny
   lda #3
-  bne IncreasePointerBy
+  jmp IncreasePointerBy
 SpecialXMinus16:
   lda LevelDecodeXPos
   sub #16

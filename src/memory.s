@@ -196,7 +196,7 @@
   DelayedMetaEditTime:    .res MaxDelayedMetaEdits  ; amount of time
   DelayedMetaEditType:    .res MaxDelayedMetaEdits  ; new block type
 
-  ObjectLen = 8
+  ObjectLen = 12
   ObjectPXH:   .res ObjectLen ; \ horizontal and vertical positions
   ObjectPXL:   .res ObjectLen ;  \
   ObjectPYH:   .res ObjectLen ;  /
@@ -244,6 +244,7 @@ SCREEN_BOUNDARY = 1 ; boundary on left side of screen
   ; InventoryAmount is also used for flags when it's values above 99:
 INVENTORY_UNLIMITED = 255
 INVENTORY_EQUIPPED  = 254
+  InventorySaved:     .res InventoryLen*2
 
   IRQAddress:       .res 2
 

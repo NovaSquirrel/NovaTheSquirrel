@@ -405,6 +405,8 @@ SCRIPT_LAST_IF = SCR::IF_CHOICE
 .endmacro
 
 .macro LObj Type, XPos, YPos, Extra1, Extra2
+  .assert XPos >= 0 && XPos <= 255, error, "Invalid X position"
+  .assert YPos >= 0 && YPos <= 15, error, "Invalid Y position"
   .byt Type
   .byt (XPos<<4)|YPos
   .ifnblank Extra1
@@ -416,6 +418,10 @@ SCRIPT_LAST_IF = SCR::IF_CHOICE
 .endmacro
 
 .macro LObjN Type, XPos, YPos, Width, Height, Extra
+  .assert XPos >= 0 && XPos <= 255, error, "Invalid X position"
+  .assert YPos >= 0 && YPos <= 15, error, "Invalid Y position"
+  .assert Width >= 0 && Width <= 15, error, "Invalid width"
+  .assert Height >= 0 && Height <= 15, error, "Invalid height"
   LObj Type, XPos, YPos, (Width<<4)|Height
   .ifnblank Extra
     .byt Extra

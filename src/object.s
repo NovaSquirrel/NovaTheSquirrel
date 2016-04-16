@@ -575,7 +575,52 @@ No:
 .endproc
 
 .proc ObjectThwomp
-  rts
+  lda ObjectF2,x
+  cmp #ENEMY_STATE_ACTIVE
+  bne :+
+  jsr EnemyFall
+  bcc :+
+  lda #ENEMY_STATE_PAUSE
+  sta ObjectF2,x
+:
+
+  lda ObjectF2,x
+  cmp #ENEMY_STATE_PAUSE
+  bne :+
+    lda ObjectPYL,x
+    sub #$10
+    sta ObjectPYL,x
+    subcarryx ObjectPYH
+
+    ; Check for collision
+    ldy ObjectPYH,x
+    lda ObjectPXH,x
+    jsr GetLevelColumnPtr
+    tay
+    lda MetatileFlags,y
+    bpl :+
+    lda #0
+    sta ObjectPYL,x
+    inc ObjectPYH,x
+    lda #ENEMY_STATE_NORMAL
+    sta ObjectF2,x
+  :
+
+  lda ObjectF2,x
+  bne :+
+  lda ObjectPXH,x
+  sub PlayerPXH
+  abs
+  cmp #4
+  bcs :+
+    lda #ENEMY_STATE_ACTIVE
+    sta ObjectF2,x
+  :
+
+  lda #$a8
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  jmp EnemyPlayerTouchHurt
 .endproc
 
 .proc ObjectCannon1

@@ -1,0 +1,55 @@
+{
+  "Meta": {
+    "Name": "unnamed level",
+    "Comment": "",
+    "Width": 256,
+    "Height": 15,
+    "TileWidth": 16,
+    "TileHeight": 16,
+    "GridWidth": 16,
+    "GridHeight": 15,
+    "ExportFormat": "PrincessNES",
+    "FormatVersion": 1
+  },
+
+  "Header": {
+    "Music": "NONE",
+    "SpriteGFX": [
+      "SP_WALKER",
+      "SP_CANNON",
+      "SP_FIRE",
+      "SP_KING"
+    ],
+    "GFXUpload": [
+      "PAL_GRASSY",
+      "BG_COMMON",
+      "BG_GRASSY"
+    ],
+    "BGColor": 49
+  },
+
+  "Layers": [
+    { "Name": "Foreground",
+      "Type": "Rectangle",
+      "Tileset": "novafg",
+      "Data": [
+        {"Id": "GROUND",   "X": 0, "Y": 13, "W": 20, "H": 2},
+        {"Id": "GROUND",   "X": 10, "Y": 5, "W": 5, "H": 2}
+      ]
+    },
+    { "Name": "Sprites",
+      "Type": "Sprite",
+      "Tileset": "novasp",
+      "Data": [
+        {"Id": "GOOMBA", "XFlip": true, "X":17, "Y":7}
+      ]
+    },
+    { "Name": "Control",
+      "Type": "Control",
+      "Tileset": "novact",
+      "Data": [
+        {"Id": "PLAYER_START_R", "X":7, "Y":5}
+      ]
+    }
+  ]
+}

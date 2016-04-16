@@ -268,6 +268,9 @@ NoTail:
   lda keydown
   and #KEY_B
   beq :+
+    lda PlayerPYH
+    cmp #15
+    bcs :+
     lda #SFX::TAIL_WHOOSH
     jsr PlaySound
     inc PlayerTailAttack
@@ -732,6 +735,19 @@ FC____R:
 FC___LR:
   jsr SavePosition
   lsr PlayerOnLadder
+
+  ; Should probably check for special ground,
+  ; but so far spikes are the only type of it
+  lda BlockLL
+  cmp #Metatiles::SPIKES
+  beq @Spikes
+  lda BlockLR
+  cmp #Metatiles::SPIKES
+  beq @Spikes
+  bne @NoSpikes
+@Spikes:
+  jsr HurtPlayer
+@NoSpikes:
 
   ; Fall through a platform
   ldx BlockLL
