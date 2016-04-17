@@ -53,6 +53,7 @@ VWF_BANK = $e
 .include "graphics.s"
 
 .segment "PRGe" ; code+music
+.include "quadpcm.s"
 .include "vwf_draw.s"
 .include "levelprocess.s"
 .include "pentlysound.s"
@@ -71,11 +72,6 @@ VWF_BANK = $e
 .include "global.s"
 .include "cutscene.s"
 .include "screens.s"
-.segment "DMC"
-.align 64
-DieSample:
-.incbin "tools/die.dmc"
-DieSampleEnd:
 
 ; ---------------------
 .segment "PRG0" ; levels

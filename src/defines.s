@@ -74,6 +74,7 @@
   PAL_ENEMY1
   BG_FROZEN_FG
   BG_FROZEN_BG
+  PAL_ENEMY2
 .endenum
 
 .enum SFX

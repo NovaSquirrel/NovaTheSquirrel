@@ -42,8 +42,9 @@ SEGMENTS {
   PRGb:    load = ROMb, type = ro;
   PRGc:    load = ROMc, type = ro;
   PRGd:    load = ROMd, type = ro;
-  PRGe:    load = ROMe, type = ro;
+  PRGeSamp: load = ROMe, type = ro, align = $100;
   PRGeFont: load = ROMe, type = ro, align = $100;
+  PRGe:    load = ROMe, type = ro;
   PRGf:    load = ROMf, type = ro;
 
   CODE:    load = ROMf, type = ro;

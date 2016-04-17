@@ -547,7 +547,15 @@ No:
 .endproc
 
 .proc ObjectGeorge
-  rts
+  jsr EnemyFall
+  lda #$10
+  jsr EnemyWalkOnPlatform
+
+  lda #$18
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+
+  jmp EnemyPlayerTouchHurt
 .endproc
 
 .proc ObjectBigGeorge
@@ -615,6 +623,11 @@ No:
   bcs :+
     lda #ENEMY_STATE_ACTIVE
     sta ObjectF2,x
+    lda ObjectVYH,x ; fix vertical velocity if it's negative
+    bpl :+
+      lda #0
+      sta ObjectVYH,x
+      sta ObjectVYL,x
   :
 
   lda #$a8
@@ -1228,7 +1241,7 @@ DispObject8x8:
   pla
 
 ; Draws an 8x8 sprite
-; input: X (object slot), A (object tile), 1 (sprite palette)
+; input: X (object slot), A (object tile), 1 (sprite palette), 2 (X offset), 3 (Y offset)
 .proc DispObject8x8_Attr
 DrawX = O_RAM::OBJ_DRAWX
 DrawY = O_RAM::OBJ_DRAWY
@@ -1236,7 +1249,10 @@ DrawY = O_RAM::OBJ_DRAWY
   sta 0
 
   lda #0
+  sta 2
+  sta 3
   sta O_RAM::ON_SCREEN
+WithXYOffset:
 
   lda ObjectPXL,x
   sub ScrollX+0
@@ -1261,8 +1277,10 @@ DrawY = O_RAM::OBJ_DRAWY
   RealYPosToScreenPosByX ObjectPYL, ObjectPYH, DrawY
   ldy OamPtr
   lda DrawX
+  add 2
   sta OAM_XPOS,y
   lda DrawY
+  add 3
   sta OAM_YPOS,y
   lda 1 ; defaults to OAM_COLOR_1
   sta OAM_ATTR,y
@@ -1274,6 +1292,12 @@ DrawY = O_RAM::OBJ_DRAWY
   iny
   sty OamPtr
   rts
+.endproc
+.proc DispObject8x8_XYOffset
+  sta 0
+  lda #0
+  sta O_RAM::ON_SCREEN
+  beq DispObject8x8_Attr::WithXYOffset
 .endproc
 
 ; Decrements an enemy's timer and remove the object when it runs out

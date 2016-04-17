@@ -193,7 +193,7 @@ PlayerIsntOnLadder:
 
   ; Handle the player going off the top and bottom of the screen
   ; (A is still PlayerPYH)
-  cmp #15
+  cmp #14
   bcc NotOffTopBottom
   ; Warp the player if needed
   ldy #0
@@ -1346,17 +1346,29 @@ AbilityWater:
   bcc @Exit
   lda #48/4
   sta ObjectTimer,x
+
+  ; Vary the speeds based on the directions pressed
   lda keydown
-  and #KEY_UP
-  bne :+
-  lda #$20
+  lsr
+  lsr
+  and #3
+  sta 0
+
+  tay
+  lda WaterHSpeeds,y  
   jsr SetXVelocity
-: lda #<-$40
+
+  ldy 0
+  lda WaterVSpeeds,y
   sta ObjectVYL,x
   lda #255
   sta ObjectVYH,x
 @Exit:
   rts
+; none, down, up, up+down
+WaterHSpeeds: .byt $20, $10, $28, $20
+WaterVSpeeds: .byt <-$40, <-$30, <-$50, <-$40
+
 AbilityFan:
   lda #3
   jsr LimitObjectAmount

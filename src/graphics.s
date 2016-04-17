@@ -47,6 +47,10 @@ PalTitle:   .byt $02
 PalEnemy1:  .byt $61
             .byt $06, $16, $36
             .byt $16, $27, $37
+PalEnemy2:  .byt $61
+            .byt $06, $16, $36
+            .byt $02, $22, $32
+
 AbilityIcons: .incbin "chr/sppowericons.chr"
 AbilityGfx:   .incbin "chr/sppowergfx.chr"
 AbilityOffsets:

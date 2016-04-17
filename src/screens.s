@@ -87,22 +87,9 @@ Exit:
   jsr UpdateScrollRegister
 
   ; Play the sample
-  ; to do: move to using something other than DPCM, so it can be in a different bank
-  lda #%100000
-  sta DMC_RAW
-  lda #13
-  sta DMC_FREQ
-  lda #(DieSampleEnd-1-DieSample)/16
-  sta DMC_LEN
-  lda #<(DieSample>>6)
-  sta DMC_START
-  lda #CH_DPCM
-  sta SND_CHN
-
-  ; Wait until the sample finishes playing
-: lda SND_CHN
-  and #CH_DPCM
-  bne :-
+  lda #SOUND_BANK
+  jsr SetPRG
+  jsr quadpcm_play_die
 
   jmp Reset
 .endproc

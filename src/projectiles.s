@@ -417,8 +417,41 @@ ProjFlame:
 ProjWaterBottle:
   jsr EnemyGravity
   jsr EnemyApplyVelocity
-  lda #$70
-  jmp DispObject8x8
+
+  ; Draw the water bottle
+  lda retraces
+  lsr
+  lsr
+  lsr
+  and #3
+  tay
+  sty 4
+  ; Draw tile 1
+  lda SpinningBottleA,y
+  sta 1
+  lda SpinningBottleX1,y
+  sta 2
+  lda SpinningBottleY1,y
+  sta 3
+  lda SpinningBottleT1,y
+  jsr DispObject8x8_XYOffset
+  ; Draw tile 2
+  ldy 4
+  lda SpinningBottleX2,y
+  sta 2
+  lda SpinningBottleY2,y
+  sta 3
+  lda SpinningBottleT2,y
+  jmp DispObject8x8_XYOffset
+
+SpinningBottleT1:  .byt $70, $72, $70, $72
+SpinningBottleT2:  .byt $71, $73, $71, $73
+SpinningBottleX1:  .byt 0, 4, 0, <-4
+SpinningBottleY1:  .byt <-4, 0, 4, 0
+SpinningBottleX2:  .byt 0, <-4, 0, 4
+SpinningBottleY2:  .byt 4, 0, <-4, 0
+SpinningBottleA:
+  .byt OAM_COLOR_1, OAM_COLOR_1 | OAM_XFLIP, OAM_COLOR_1|OAM_YFLIP, OAM_COLOR_1
 ProjFireworksCursor:
   jsr EnemyApplyVelocity
   lda #0

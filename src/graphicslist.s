@@ -30,6 +30,7 @@ GraphicsList:
   .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy1,    >PalEnemy1
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGFrozenFG,   >BGFrozenFG
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGFrozenBG,   >BGFrozenBG
+  .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy2,    >PalEnemy2
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)
 DoGraphicUpload:
