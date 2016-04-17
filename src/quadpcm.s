@@ -108,10 +108,12 @@ endPeriodWait:
   jmp quadpcm_playPages
 .endproc
 
+.align 256
 die_qdp:
   .incbin "../tools/die.qdp"
 die_qdp_end:
 
+.align 256
 bummer_qdp:
   .incbin "../tools/bummer.qdp"
 bummer_qdp_end:
