@@ -1,27 +1,50 @@
 #!/usr/bin/env python3
 from __future__ import with_statement, division, print_function
 from contextlib import closing
-import wave
 import array
+import sys
+if str is bytes:
+    print("This program requires Python 3.", file=sys.stdout)
+    sys.exit(1)
 
-filename = "../audio/selnow.wav"
+use_sox = False
+
+usageText = """Usage: quadenc.py INFILE.wav OUTFILE.qdp
+Compresses an audio file to QuaDPCM (quadratic difference pulse code
+modulation), a format suitable for playback on an NES using quadpcm.s.
+The sample rate of the input file should be 16000 Hz."""
+usageTextSox = "File format support through SoX enabled; requires SoX and soxwave.py."
+usageTextNoSox = "File format support through SoX disabled; only uncompressed .wav works."
+
 framelen = (256 - 1) * 4
+usageNotes = [usageText]
+usageNotes.append(usageTextSox if use_sox else usageTextNoSox)
+usageText = '\n'.join(usageNotes)
+
+def is_little():
+    """Return True if the system is little-endian or False otherwise"""
+    return bool(bytearray(array.array("i", [1]).tobytes())[0])
 
 def load_file(filename):
-    little = bytearray(array.array("i",[1]).tobytes())[0]
-    with closing(wave.open(filename,'rb')) as inwv:
+    """Load a mono audio file as an array of 2-byte halfwords."""
+    if use_sox:
+        import soxwave as wave
+    else:
+        import wave
+    with closing(wave.open(filename, 'rb')) as inwv:
         c = inwv.getnchannels()
         if c != 1:
             raise ValueError("only mono is supported")
         length = inwv.getnframes()
         data = array.array('h', inwv.readframes(length))
-    if not little:
+    assert data.itemsize() == 2
+    if not is_little():
         data.byteswap()
     return data
 
 def play_data(data, rate):
-    little = bytearray(array.array("i",[1]).tobytes())[0]
-    if not little:
+    import soxwave
+    if not is_little():
         data = data[:]
         data.byteswap()
     args = ['play', '-t', 's16', '-r', str(rate), '-c', '1', '-L', '-']
@@ -135,10 +158,22 @@ def quads_dec(bitstream):
              for (i, s) in enumerate(f))
     return array.array('h', unflp)
 
+def main(argv=None):
+    argv = argv or sys.argv
+    if len(argv) > 1 and argv[1] in ('-h', '-?', '--help'):
+        print(usageText)
+        return
+    if len(argv) != 3:
+        print("not enough filenames; try --help", file=sys.stderr)
+        sys.exit(1)
+    infilename, outfilename = argv[1:3]
 
-data = load_file(filename)
-bitstream = quads_enc(data)
-if len(bitstream) % 256 > 0:
-    bitstream.extend([0] * (256 - (len(bitstream) % 256)))
-with open("../obj/nes/selnow.qdp", "wb") as outfp:
-    outfp.write(bitstream.tostring())
+    bitstream = quads_enc(load_file(infilename))
+    if len(bitstream) % 256 > 0:
+        bitstream.extend([0] * (256 - (len(bitstream) % 256)))
+    with open(outfilename, "wb") as outfp:
+        outfp.write(bitstream.tobytes())
+
+if __name__=='__main__':
+##    main(['quadenc.py', "../audio/selnow.wav", "../obj/nes/selnow.qdp"])
+    main()
