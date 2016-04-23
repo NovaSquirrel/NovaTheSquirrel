@@ -110,12 +110,12 @@ endPeriodWait:
 
 .align 256
 die_qdp:
-  .incbin "../tools/die.qdp"
+  .incbin "../tools/die2.qdp"
 die_qdp_end:
 
 .align 256
 bummer_qdp:
-  .incbin "../tools/bummer.qdp"
+  .incbin "../tools/bummer2.qdp"
 bummer_qdp_end:
 
 .align 16

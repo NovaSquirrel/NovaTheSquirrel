@@ -146,6 +146,7 @@
   ScriptIf = ScriptPtr+2 ; 0 (normal), 2 (enable), 3 (disable)
   ScriptReturn = ScriptIf+1
   ScriptChoice = ScriptReturn+2
+  ScriptPageEnded = ScriptChoice+1 ; page is already ended, don't prompt the user for a key press
 
   SpriteTileSlots:    .res 4   ; \ keep together
   LevelDecodePointer: .res 2   ;  \ in this order
@@ -241,6 +242,7 @@ SCREEN_BOUNDARY = 1 ; boundary on left side of screen
   InventoryLen = 10
   InventoryType:      .res InventoryLen
   InventoryAmount:    .res InventoryLen
+  InventoryEnd:
   ; InventoryAmount is also used for flags when it's values above 99:
 INVENTORY_UNLIMITED = 255
 INVENTORY_EQUIPPED  = 254

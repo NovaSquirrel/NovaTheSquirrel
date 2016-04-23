@@ -304,6 +304,7 @@ MS_EMPTY = 32
   NARRATE       ; .++------- speaker   |
   CHOICES       ; xx - choice set
   SCENE         ; xx - scene number
+  TRANSITION    ; transition effect
   SPEAKER_0 = %0000000
   SPEAKER_1 = %0100000
   SPEAKER_2 = %1000000
@@ -459,3 +460,10 @@ SCRIPT_LAST_IF = SCR::IF_CHOICE
 .macro LXPlus16
   .byt $f6
 .endmacro
+
+LSpecialCmd = $f7
+
+.enum LevelSpecialConfig
+  PUZZLE_MODE       ; [ii] ... 00 - item IDs
+  MAKE_BACKGROUNDS  ; sl bb - start screen, length, background id
+.endenum

@@ -70,3 +70,14 @@ Jafguar:  .byt "Jafguar",0
 
 FaceData:
   .incbin "../chr/faces2.chr"
+
+.proc CutsceneDictionary
+; Replace with a hand-made dictionary later that compresses the script down a lot
+.word _A
+.word The
+.word You
+_A:  .byt "a ",0
+The: .byt "the ",0
+You: .byt "you",0
+.endproc
+

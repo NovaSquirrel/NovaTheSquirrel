@@ -21,10 +21,13 @@ DemoCutscene:
   .byt "Sample text"
   .byt SCR::NEWLINE
   .byt SCR::NEWLINE
+  .byt SCR::TRANSITION
+  .byt SCR::SAY, CHAR::NOVA|SCR::SPEAKER_0
   .byt "This is a demo script"
   .byt SCR::NEWLINE
   .byt "and it seems to be working"
-  .byt SCR::END_PAGE
+  .byt SCR::SAY, CHAR::NOVA|SCR::SPEAKER_0
+  .byt "This is a demo"
   .byt SCR::END_SCRIPT
 
 .proc StartCutscene
@@ -46,6 +49,7 @@ DemoCutscene:
   stx PPUMASK
   jsr ClearOAM
   lda #2
+  sta ScriptPageEnded
   sta OAM_DMA
 
 ; Clear cutscene related variables
@@ -148,10 +152,42 @@ DemoCutscene:
   cmp #$20
   bcc IsCommand
   ; If not command, just add the character or word to the current line
+  cmp #$80
+  bcs IsDictionaryWord
   ldx CutsceneBufIndex
   inc CutsceneBufIndex
   sta StringBuffer,x
   bne ScriptLoop
+
+IsDictionaryWord:
+  ; Get table index
+  sub #$80
+  asl
+  tay
+  lda #VWF_BANK
+  jsr _SetPRG
+
+  ; Find word address
+  lda CutsceneDictionary+0,y
+  sta 0
+  lda CutsceneDictionary+1,y
+  sta 1
+  ldx CutsceneBufIndex
+
+  ; Copy the word
+  ldy #0
+: lda (0),y
+  beq :+
+  sta StringBuffer,x
+  inx
+  iny
+  bne :-
+: ; Save new BufIndex
+  stx CutsceneBufIndex
+
+  jsr SetPRG_Restore
+  jmp ScriptLoop
+
 IsCommand:
   ; Terminate StringBuffer
   ldx CutsceneBufIndex
@@ -216,14 +252,46 @@ SkipDraw:
   .raddr Narrate    ; /   ++------ slot (0-3)
   .raddr ShowChoice ; xx - choice set 
   .raddr ShowScene  ; xx - scene number
+  .raddr Transition ;
+
 ; Command, ends the script
 EndScript:
-  ; clean up the script engine and return to the game
-  rts
+  jmp DoEndPage
+
+; Command, does a transition effect
+Transition:
+  jsr DoEndPage
+  jsr WaitVblank
+
+  ldy #0
+@Loop:
+  jsr WaitVblank
+  lda #$3f
+  sta PPUADDR
+  lda #$00
+  sta PPUADDR
+  lda FadeColors,y
+  sta PPUDATA
+  ldx #4
+: jsr WaitVblank
+  dex
+  bne :-
+  iny
+  cpy #8
+  bne @Loop
+
+  inc ScriptPageEnded
+  jmp ScriptLoop
+FadeColors:
+  .byt $10, $00, $0f, $0f, $00, $10, $30
 
 ; Command, ends the page
 EndPage:
-  lda #SOUND_BANK
+  jsr DoEndPage
+  jmp ScriptLoop
+
+DoEndPage:
+  lda #CUTSCENE_BANK
   jsr SetPRG
   lda #2
   sta OAM_DMA
@@ -252,7 +320,7 @@ EndPage:
   lda #0
   sta CutsceneRenderCol
   sta CutsceneRenderRow
-  jmp ScriptLoop
+  rts
 
 ; Command, moves to the next line
 NewLine:
@@ -589,8 +657,19 @@ DoBalloonTail:
   sty PPUDATA
   rts
 
+EndPageIfNeeded:
+  pha
+  lda ScriptPageEnded
+  bne :+
+  jsr DoEndPage
+: lda #0
+  sta ScriptPageEnded  
+  pla
+  rts
+
 ; Command, switch speaker and style
 Say:
+  jsr EndPageIfNeeded
   jsr SwitchSpeaker
   lda #6
   jsr DoBalloonTail
@@ -598,6 +677,7 @@ Say:
 
 ; Command, switch speaker and style
 Think:
+  jsr EndPageIfNeeded
   jsr SwitchSpeaker
   lda #11
   jsr DoBalloonTail
@@ -605,6 +685,7 @@ Think:
 
 ; Command, switch speaker and style
 Narrate:
+  jsr EndPageIfNeeded
   jsr EraseOldTail
   jsr SwitchSpeaker
   jmp IncreaseBy1

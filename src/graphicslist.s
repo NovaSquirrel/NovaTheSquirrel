@@ -156,5 +156,5 @@ ChunksLoop:
   bne :-
   dec ChunksLeft
   bne ChunksLoop
-  rts
+  jmp ClearOAM
 .endproc

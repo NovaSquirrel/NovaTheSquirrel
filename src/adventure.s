@@ -52,7 +52,7 @@ VWF_BANK = $e
 .segment "PRGd" ; compressed graphics
 .include "graphics.s"
 
-.segment "PRGe" ; code+music
+.segment "PRGe" ; voice samples, dialogs, inventory, VWF engine
 .include "quadpcm.s"
 .include "vwf_draw.s"
 .include "levelprocess.s"

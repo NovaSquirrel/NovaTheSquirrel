@@ -1,15 +1,16 @@
 ; to do: figure out how I want to select banks
 
 MasterLevelListL:
-  .byt <level2, <funkunderground, <level1, <introlevel
+  .byt <level1, <level2, <level3, <funkunderground
 
 MasterLevelListH:
-  .byt >level2, >funkunderground, >level1, >introlevel
+  .byt >level1, >level2, >level3, >funkunderground
 
 .include "../levels/funkunderground.s"
 .include "../levels/introlevel.s"
 .include "../levels/level1.s"
 .include "../levels/level2.s"
+.include "../levels/level3.s"
 
 ;Level data:
 ;TTTTTTTT XXXXYYYY [SSSSSSSS]

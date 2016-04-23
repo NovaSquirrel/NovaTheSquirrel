@@ -453,12 +453,32 @@ SpecialCommandTable:
   .raddr SpecialConfig
 SpecialConfigTable:
   .raddr SpecialConfigEnablePuzzle
+  .raddr SpecialConfigMakeBackgrounds
+SpecialConfigMakeBackgrounds:
+
 SpecialConfigEnablePuzzle:
   lda #1
   sta PuzzleMode
 
+  ; Clear the current inventory
+  ldx #InventoryEnd-InventoryType-1
+  lda #0
+: sta InventoryType,x
+  dex
+  bpl :-
+
+  ; Write a new inventory specifically for this level
+  ldx #0
+@Loop:
+  lda (LevelDecodePointer),y
+  beq IncreasePointerBy1
+  sta InventoryType,x
+  iny
   lda #1
-  jmp IncreasePointerBy
+  sta InventoryAmount,x
+  inx
+  jsr IncreasePointerBy1
+  jmp @Loop
 SpecialConfig:
   lda (LevelDecodePointer),y
   asl
