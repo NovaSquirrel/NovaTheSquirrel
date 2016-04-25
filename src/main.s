@@ -18,6 +18,8 @@
   lda #0
   sta PPUMASK
 
+  lda #SOUND_BANK
+  jsr _SetPRG
   jsr pently_init
   lda #0
   jsr pently_start_music
@@ -265,6 +267,19 @@ NotDie:
   beq :+
     lda #0
     jsr ChangePlayerAbility
+  :
+
+  lda NeedLevelReload
+  beq :+
+    dec NeedLevelReload
+    jsr WaitVblank
+    lda #0
+    sta PPUMASK
+    lda LevelNumber
+    jsr DecompressLevel
+    ldx #$ff
+    txs
+    jmp MainLoopInit
   :
 
   lda keydown

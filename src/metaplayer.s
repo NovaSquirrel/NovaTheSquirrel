@@ -201,6 +201,36 @@ XForMiddle = TempSpace+5
 .endproc
 
 .proc TouchedDoorBottom
+  lda keynew
+  and #KEY_UP
+  beq Nope
+    dey  
+    lda (LevelBlockPtr),y
+    cmp #Metatiles::EXIT_DOOR_TOP
+    beq ExitDoor
+    ; regular door
+    ; XX 0Y    - X and Y only
+    ; XX 1Y LL - X and Y with level number
+    inc NeedLevelRerender
+    inc IsNormalDoor
+    jsr GetBlockX        ; Get the block's X position
+    tax
+    lda ColumnBytes,x    ; Read the X position
+    sta PlayerPXH
+    lda ColumnBytes+1,x  ; Read the Y position plus the flag
+    and #15              ; (but only use the flag)
+    sta PlayerPYH
+    lda ColumnBytes+1,x  ; Read the flag again
+    and #$10             ; Is the level specified too?
+    beq Nope
+    lda ColumnBytes+2,x
+    sta LevelNumber
+    inc NeedLevelReload
+Nope:
+  rts
+ExitDoor:
+  inc LevelNumber
+  inc NeedLevelReload
   rts
 .endproc
 

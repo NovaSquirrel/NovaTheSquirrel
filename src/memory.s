@@ -114,6 +114,7 @@
   CutsceneCurFace    = CutsceneScriptBank+1
 
   LevelNumber: .res 1 ; current level number
+  NeedLevelReload: .res 1
 
   OamPtr:      .res 1 ; index the next sprite goes in
 
@@ -166,6 +167,7 @@
                    .res 64
   NeedAbilityChange: .res 1
   NeedLevelRerender: .res 1
+  IsNormalDoor:       .res 1 ; 1 if the level is loading due to a door
   InventoryCursorY:   .res 1
   InventoryCursorYSwap: .res 1
 

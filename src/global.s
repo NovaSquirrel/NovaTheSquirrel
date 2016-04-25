@@ -815,6 +815,7 @@ SkipAddr:
   ldy #>SPCommon
   jsr DecompressCHR
 
+  jsr WaitVblank
   ; Write palette for Nova and common
   lda #$3f
   sta PPUADDR

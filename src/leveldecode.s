@@ -77,6 +77,10 @@
 .proc DecompressLevel ; A = level number
 LevelBank = 15 ; figure out what to put in here later; for now it's just gonna be LEVELS_BANK1
   tax
+  lda #SOUND_BANK
+  jsr SetPRG
+  jsr pently_init
+
   lda #LEVELS_BANK1 ; get this out of the way
   sta LevelBank
   jsr SetPRG
@@ -137,17 +141,21 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
 ; read starting player X position
   iny
   lda (LevelHeaderPointer),y
+  ldx IsNormalDoor
+  bne :+
   sta PlayerPXH
-  lda #4
+: lda #4
   sta PlayerPXL
 
 ; read starting player Y position and number of screens
   iny
   lda (LevelHeaderPointer),y
   pha
+  ldx IsNormalDoor
+  bne :+
   and #15
   sta PlayerPYH
-  pla
+: pla
   .repeat 4
     lsr
   .endrep
@@ -157,6 +165,7 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
 
 ; read the four sprite slots and level and sprite pointers
   ldx #0 ; also writes LevelDecodePointer and LevelSpritePointer and LevelBackgroundColor
+  stx IsNormalDoor
 : iny
   lda (LevelHeaderPointer),y
   sta SpriteTileSlots,x
@@ -358,6 +367,7 @@ PutArrows:
 DoLevelUploadListAndSprites:
   jsr UploadSpriteSlots
 .proc DoLevelUploadList
+  jsr WaitVblank
 ; background and palettes
   ldy #0
 : tya
