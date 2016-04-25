@@ -31,12 +31,11 @@ GRAPHICS_BANK2 = $c
 GRAPHICS_BANK1 = $d
 LEVELPROCESS_BANK = $e
 SOUND_BANK = $e
-CUTSCENE_BANK = $e ; code currently relies on CUTSCENE_BANK = VWF_BANK
 VWF_BANK = $e
+DIALOG_BANK = $8
 
 .segment "PRG6" ;
 .segment "PRG7" ;
-.segment "PRG8" ;
 .segment "PRG9" ; extra main loop stuff
 .segment "PRGa" ; main loop stuff
 .include "metatile.s"
@@ -61,6 +60,8 @@ VWF_BANK = $e
 .include "musicseq.s"
 .include "inventoryitems.s"
 .include "cutscenedata.s"
+.segment "PRG8" ; dialog
+.include "../tools/dialog.s"
 .segment "PRGf" ; important stuff
 .code
 .include "leveldecode.s"

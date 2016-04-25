@@ -14,11 +14,11 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;
-
+.if 0
 DemoCutscene:
-  .byt SCR::SCENE, 1
+  .byt SCR::SCENE, 0
   .byt SCR::SAY, CHAR::NOVA|SCR::SPEAKER_0
-  .byt "Sample text"
+  .byt $80, $81, $82, $83
   .byt SCR::NEWLINE
   .byt SCR::NEWLINE
   .byt SCR::TRANSITION
@@ -29,11 +29,12 @@ DemoCutscene:
   .byt SCR::SAY, CHAR::NOVA|SCR::SPEAKER_0
   .byt "This is a demo"
   .byt SCR::END_SCRIPT
+.endif
 
 .proc StartCutscene
-  lda #<DemoCutscene
+  lda #<Intro
   sta ScriptPtr+0
-  lda #>DemoCutscene
+  lda #>Intro
   sta ScriptPtr+1
 
   lda PRGBank ; we'll return to the original bank when we're done
@@ -70,7 +71,7 @@ DemoCutscene:
   jsr DoGraphicUpload
 
 ; Set up nametable
-  lda #CUTSCENE_BANK
+  lda #VWF_BANK
   jsr SetPRG
 
   jsr CutsceneInit
@@ -143,7 +144,10 @@ DemoCutscene:
 .endproc
 ; this space needs to be empty
 .proc ScriptLoop
+  lda #DIALOG_BANK
+  jsr _SetPRG
   ldy #0
+
   ; Get script byte
   lda (ScriptPtr),y
   ; Increment script pointer
@@ -162,37 +166,64 @@ DemoCutscene:
 IsDictionaryWord:
   ; Get table index
   sub #$80
-  asl
-  tay
-  lda #VWF_BANK
-  jsr _SetPRG
-
-  ; Find word address
-  lda CutsceneDictionary+0,y
+  sta 2 ; target
+; Still in dialog bank
+;  lda #DIALOG_BANK
+;  jsr _SetPRG
+  
+  ; Look up the dictionary word
+  lda #<CutsceneDictionary
   sta 0
-  lda CutsceneDictionary+1,y
+  lda #>CutsceneDictionary
   sta 1
-  ldx CutsceneBufIndex
-
-  ; Copy the word
+  ; Start at eginning
   ldy #0
-: lda (0),y
-  beq :+
-  sta StringBuffer,x
+@Loop:
+  lda 2
+  beq @IsFirstWord
+@Loop2:
+  iny
+  bne :+
+    inc 1   ; Increment high byte
+  :
+  lda (0),y ; Is this the last character?
+  bpl :+
+    dec 2   ; If at target now, exit
+  :
+  bne @Loop2
+@TargetMet:
+
+  ; Add Y to pointer
+  tya
+  sec
+  adc 0
+  sta 0
+  lda 1
+  adc #0
+  sta 1
+@IsFirstWord:
+
+  ; Write word to buffer
+  ldx CutsceneBufIndex
+  ldy #0
+: lda (0),y            ; Read character
+  and #127             ; Ignore top bit
+  sta StringBuffer,x   ; Write character
   inx
+  lda (0),y            ; Reread character to check for high bit
+  bmi @Done
   iny
   bne :-
-: ; Save new BufIndex
+@Done:
   stx CutsceneBufIndex
-
-  jsr SetPRG_Restore
   jmp ScriptLoop
 
 IsCommand:
   ; Terminate StringBuffer
   ldx CutsceneBufIndex
-;  beq SkipDraw
   pha
+  lda #VWF_BANK
+  jsr _SetPRG
   lda #0
   sta StringBuffer,x
   jsr ScriptRenderOff
@@ -207,7 +238,6 @@ IsCommand:
   pla
   ldy #0 ; reset Y to zero
   sty CutsceneBufIndex
-SkipDraw:
 
   ; Call the cutscene command
   asl
@@ -217,6 +247,8 @@ SkipDraw:
   lda ScriptCommands+0,x
   pha
 
+  lda #DIALOG_BANK
+  jsr _SetPRG
   ; Load the next byte, just in case it's a parameter
   lda (ScriptPtr),y
   rts
@@ -291,7 +323,7 @@ EndPage:
   jmp ScriptLoop
 
 DoEndPage:
-  lda #CUTSCENE_BANK
+  lda #VWF_BANK
   jsr SetPRG
   lda #2
   sta OAM_DMA
@@ -303,7 +335,7 @@ DoEndPage:
   beq :-
   jsr ScriptRenderOff
 
-  lda #CUTSCENE_BANK
+  lda #VWF_BANK
   jsr SetPRG
 
   ; Clear VWF space
@@ -327,6 +359,9 @@ NewLine:
   lda #0
   sta CutsceneRenderCol
   inc CutsceneRenderRow
+  lda CutsceneRenderRow
+  cmp #6
+  beq EndPage
   jmp ScriptLoop
 
 ; Command, switch to a different scene
@@ -335,7 +370,7 @@ ShowScene:
   asl
   tax
   jsr ScriptRenderOff
-  lda #CUTSCENE_BANK
+  lda #VWF_BANK
   jsr SetPRG
 
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
@@ -507,7 +542,7 @@ SwitchSpeaker:
 @YesCharacter:
 
   ; Write name
-  lda #CUTSCENE_BANK
+  lda #VWF_BANK
   jsr SetPRG
   lda CutsceneCurFace ; Get index into table
   asl

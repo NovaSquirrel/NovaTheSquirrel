@@ -329,7 +329,10 @@ SCRIPT_LAST_IF = SCR::IF_CHOICE
   SMILOID
   IKE
   RAOUL
-  JAFGAUR
+  JAFGUAR
+  S_POLICE
+  NEKOED
+  BILL
 .endenum
 
 ; -------------------- level stuff --------------------------------------

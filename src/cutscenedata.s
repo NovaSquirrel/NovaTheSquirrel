@@ -20,6 +20,10 @@ YesNo:
   .byt 2, "Yes",0, "No",0
 .endproc
 
+.enum CHOICELIST
+  YES_OR_NO
+.endenum
+
 .proc CharacterNameData
 Sign:     .byt "-SIGN-"
 None:     .byt 0
@@ -63,21 +67,47 @@ Jafguar:  .byt "Jafguar",0
   ;  |++------ position (0-3)
   ;  +-------- horizontally flipped?
   .byt 0, 0, 0, 0
-  .byt CHAR::NOVA|(1<<5), CHAR::IKE|(2<<5)|FLIP, CHAR::SHERWIN|(3<<5), CHAR::RAOUL|(0<<5)|FLIP
   .byt CHAR::NOVA|(1<<5), CHAR::SIGN|(2<<5), 0, 0
+  .byt 0, 0, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::LUVI|(2<<5)|FLIP, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::KEE|(2<<5)|FLIP, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::KEE|(2<<5), CHAR::LUVI|(3<<5)|FLIP, 0
+  .byt CHAR::S_TEAM|(1<<5), CHAR::S_TEAM|(2<<5)|FLIP, 0, 0
+  .byt CHAR::SHERWIN|(1<<5), CHAR::S_POLICE|(0<<5), CHAR::S_POLICE|(3<<5)|FLIP, 0
+  .byt CHAR::SHERWIN|(1<<5), 0, 0, 0
+  .byt CHAR::S_TEAM|(1<<5), CHAR::S_TEAM|(2<<5), CHAR::BILL|(3<<5)|FLIP, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::ECLIPSE|(2<<5)|FLIP, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::MOLSNO|(2<<5)|FLIP, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::REMY|(2<<5)|FLIP, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::REMY|(2<<5)|FLIP, CHAR::JAFGUAR|(3<<5)|FLIP, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::RAOUL|(2<<5)|FLIP, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::NEKOED|(2<<5)|FLIP, 0, 0
+  .byt CHAR::NOVA|(1<<5), 0, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::S_TEAM|(0<<5), CHAR::S_TEAM|(3<<5)|FLIP, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::KIERAN|(0<<5)|FLIP, 0, 0
 .endproc
+
+.enum SCENES
+  NOTHING
+  NOVA_AND_SIGN
+  FORUMS
+  NOVA_AND_LUVI
+  NOVA_AND_KEE
+  NOVA_KEE_LUVI
+  TWO_BAD_GUYS
+  SHERWIN_WITH_BAD_GUYS_AS_POLICE
+  SHERWIN_ALONE
+  BAD_GUYS_AND_LEADER
+  NOVA_AND_ECLIPSE
+  NOVA_AND_MOLSNO
+  NOVA_AND_REMY
+  NOVA_REMY_JAFGUAR
+  NOVA_AND_RAOUL
+  NOVA_AND_NEKOED
+  NOVA_ALONE
+  NOVA_AND_BAD_GUYS
+  NOVA_AND_KIERAN
+.endenum
 
 FaceData:
   .incbin "../chr/faces2.chr"
-
-.proc CutsceneDictionary
-; Replace with a hand-made dictionary later that compresses the script down a lot
-.word _A
-.word The
-.word You
-_A:  .byt "a ",0
-The: .byt "the ",0
-You: .byt "you",0
-.endproc
-
