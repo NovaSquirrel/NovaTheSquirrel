@@ -30,6 +30,10 @@ const int CharWidths[] = {
   8,  8,  8,  5,  6,  6,  6,  6
 };
 
+int CharWidth(char C) {
+  return CharWidths[C-32];
+}
+
 void RemoveLineEndings(char *Buffer) {
   char *Text;
   Text = strrchr(Buffer, '\n');
@@ -163,14 +167,20 @@ int main(int argc, char *argv[]) {
       char *Peek;
       int CurXPos = 0;
       for(Peek = Text; *Peek; Peek++) {
-        CurXPos += CharWidths[(*Peek)-32];
-        if(CurXPos >= 120) {
-          char *Move = Peek-1;
-          while(*Move != ' ')
-            Move--;
-          *Move = '\n';
-          CurXPos = 0;
+        if(*Peek == ' ') {
+          int WordLength = 0;
+
+          // find word length
+          char *Word = Peek+1;
+          for(;*Word != ' ' && *Word;Word++)
+            WordLength += CharWidth(*Word);
+          if(CurXPos + CharWidth(' ') + WordLength >= 128) {
+            *Peek = '\n';
+            CurXPos = 0;
+          }
         }
+        if(*Peek != '\n')
+          CurXPos += CharWidth(*Peek);
       }
 
       Uncompressed += strlen(Text);
