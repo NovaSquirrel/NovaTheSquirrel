@@ -222,8 +222,7 @@
   CollectedBits:      .res 128 ; stores bits for broken blocks and opened blocks, that sort of thing
   CollectedAlternate: .res 128 ; alternate buffer to allow going to a different level and back and having it still work
   ColumnBytes:        .res 256 ; stores a byte for each column, for ? block contents and other things
-  ScriptFlags:        .res 64  ; flags for scripts
-  ScriptFlagsSaved:   .res 64  ; version of the flags for scripts that are actually in the save file
+  ScriptFlags:        .res 32  ; flags for scripts
 
   ; LevelLinkUp/Down are offsets for what screen to move to if you go off the top or bottom
   LevelLinkUp:        .res 16  ; \
@@ -248,10 +247,18 @@ SCREEN_BOUNDARY = 1 ; boundary on left side of screen
   ; InventoryAmount is also used for flags when it's values above 99:
 INVENTORY_UNLIMITED = 255
 INVENTORY_EQUIPPED  = 254
-  InventorySaved:     .res InventoryLen*2
 
   IRQAddress:       .res 2
 
   ; the sprite list from the ROM has to be copied here so we can access it in gameplay banks
   SpriteListRAM:      .res 256
+.segment "SAVE"
+SaveStart:
+  SaveTag:            .res 12
+  InventorySaved:     .res InventoryLen*2
+  ScriptFlagsSaved:   .res 32  ; version of the flags for scripts that are actually in the save file. 256 flags
+  LevelCleared:       .res 8   ; 64 levels, bit = enabled
+  SavedAbility:       .res 1
+SaveEnd:
 .code   
+

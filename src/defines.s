@@ -75,6 +75,7 @@
   BG_FROZEN_FG
   BG_FROZEN_BG
   PAL_ENEMY2
+  BG_BUMMER
 .endenum
 
 .enum SFX
@@ -330,9 +331,18 @@ SCRIPT_LAST_IF = SCR::IF_CHOICE
   IKE
   RAOUL
   JAFGUAR
-  S_POLICE
+  LIA
+  ITI
   NEKOED
+  NEKOED2
   BILL
+  UNUSED_1
+  UNUSED_2
+  NOVA_AW
+  NOVA_YAY
+  NOVA_FUNNY
+  NOVA_WHOA
+  NOVA_MAD
 .endenum
 
 ; -------------------- level stuff --------------------------------------

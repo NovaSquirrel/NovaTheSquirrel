@@ -1,0 +1,36 @@
+http://www.cavestory.org/guides/basicmodding/guide/tsc.txt
+
+Misc:
+:Label:              - marks a label
+`end                 - ends the script
+`p                   - waits for a button, then clears the box and starts the next page
+`goto Label          - goto label
+`call Label          - call a label, saving the current spot
+`return              - return to the saved spot
+`choose CHOICE_SET   - display choices, from a preset list of choices elsewhere
+`scene SCENE_NUM     - switch to a scene from a preset list of scenes elsewhere
+                       (specifying the characters on display, and the location?)
+
+Conditionals:
+?on FLAG             - is flag on?
+?off FLAG            - is flag off?
+?item ITEM           - does the player have item ITEM?
+?notitem ITEM        - does the player not have item ITEM?
+?choice NUM          - did the player choose choice N?
+Conditionals affect the next `goto or `call, and can be chained
+
+Flags:
+`on FLAG             - turn flag on
+`off FLAG            - turn flag off
+`toggle FLAG         - toggle flag
+
+Speaker switches:
+<SLOT PERSON>        - switch to speech bubble with given character slot, and given character
+>SLOT PERSON<        - switch to thought bubble with given character slot, and given character
+[PERSON]             - switch to narrator
+
+ASM stuff:
+`poke Address, Value - write value to address
+`asm                 - start running opcodes until `endasm is reached
+Poke is used for changing level blocks, changing health, powerups, etc
+

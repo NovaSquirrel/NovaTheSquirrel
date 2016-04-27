@@ -78,8 +78,33 @@ DoNothing:
   bne :-
   inx
   stx 1
-  cpx #$74 ; stop at $7400
+  cpx #$7e ; stop at $7e00
   bne :-
+
+  ; Initialize the savefile if it's corrupted
+  ldx #11
+: lda SaveTag,x
+  cmp SaveTagString,x
+  bne InitSave
+  dex
+  bpl :-
+  bne NoInitSave
+InitSave:
+  ; Clear out the save section
+  lda #0
+  tax
+: sta $7e00,x
+  sta $7f00,x
+  inx
+  bne :-
+  ; Write tag to SRAM
+  ldx #11
+: lda SaveTagString,x
+  sta SaveTag,x
+  dex
+  bpl :-
+NoInitSave:
+
 
 : lda PPUSTATUS   ; Wait a PPU frame
   bpl :-
@@ -130,6 +155,8 @@ DoNothing:
 
   jmp MainLoopInit
 .endproc
+
+SaveTagString: .byt "NovaSquirrel"
 
 .proc InitMapper
   ; UNROM needs no intialization

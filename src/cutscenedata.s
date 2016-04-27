@@ -40,6 +40,10 @@ Smiloid:  .byt "Smiloid",0
 Ike:      .byt "Ike",0
 Raoul:    .byt "Raoul",0
 Jafguar:  .byt "Jafguar",0
+Lia:      .byt "Lia",0
+Iti:      .byt "Itimar",0
+NekoEd:   .byt "NekoEd",0
+Bill:     .byt "Bill",0
 .endproc
 
 .proc CharacterInfoTable
@@ -58,6 +62,18 @@ Jafguar:  .byt "Jafguar",0
   .byt CharacterNameData::Ike - CharacterNameData,     $17, $26, $30
   .byt CharacterNameData::Raoul - CharacterNameData,   $0f, $10, $30
   .byt CharacterNameData::Jafguar - CharacterNameData, $17, $27, $38
+  .byt CharacterNameData::Lia - CharacterNameData,     $00, $10, $30
+  .byt CharacterNameData::Iti - CharacterNameData,     $0f, $21, $30
+  .byt CharacterNameData::NekoEd - CharacterNameData,  $0f, $27, $30
+  .byt CharacterNameData::NekoEd - CharacterNameData,  $31, $17, $16
+  .byt CharacterNameData::Bill - CharacterNameData,    $0f, $16, $30
+  .byt CharacterNameData::None - CharacterNameData,    $00, $00, $00
+  .byt CharacterNameData::None - CharacterNameData,    $00, $00, $00
+  .byt CharacterNameData::Nova - CharacterNameData,    $12, $2a, $30
+  .byt CharacterNameData::Nova - CharacterNameData,    $12, $2a, $30
+  .byt CharacterNameData::Nova - CharacterNameData,    $12, $2a, $30
+  .byt CharacterNameData::Nova - CharacterNameData,    $12, $2a, $30
+  .byt CharacterNameData::Nova - CharacterNameData,    $12, $2a, $30
 .endproc
 
 .proc SceneInfoTable
@@ -84,7 +100,10 @@ Jafguar:  .byt "Jafguar",0
   .byt CHAR::NOVA|(1<<5), CHAR::NEKOED|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), 0, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::S_TEAM|(0<<5), CHAR::S_TEAM|(3<<5)|FLIP, 0
-  .byt CHAR::NOVA|(1<<5), CHAR::KIERAN|(0<<5)|FLIP, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::KIERAN|(2<<5)|FLIP, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::BILL|(2<<5)|FLIP, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::SHERWIN|(2<<5)|FLIP, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::SHERWIN|(2<<5)|FLIP, CHAR::KIERAN|(3<<5)|FLIP, 0
 .endproc
 
 .enum SCENES
@@ -107,6 +126,9 @@ Jafguar:  .byt "Jafguar",0
   NOVA_ALONE
   NOVA_AND_BAD_GUYS
   NOVA_AND_KIERAN
+  NOVA_AND_BILL
+  NOVA_AND_SHERWIN
+  NOVA_SHERWIN_KIERAN
 .endenum
 
 FaceData:

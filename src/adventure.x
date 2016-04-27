@@ -27,6 +27,7 @@ SEGMENTS {
   ZEROPAGE: load = ZP, type = zp;
   BSS:      load = RAM, type = bss, define = yes, align = $100;
   BSS2:     load = WRAM, type = bss, define = yes, align = $100;
+  SAVE:     load = WRAM, type = bss, define = yes, start = $7e00;
   DMC:      load = ROMf, type = ro, align = $40, optional = yes;
   PRG0:    load = ROM0, type = ro;
   PRG1:    load = ROM1, type = ro;
