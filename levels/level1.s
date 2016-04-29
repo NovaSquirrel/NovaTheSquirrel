@@ -10,12 +10,12 @@ level1:
   .addr level1Sprite
   .byt $31 ; background
   .byt GraphicsUpload::PAL_GRASSY
+  .byt GraphicsUpload::PAL_ENEMY1
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_GRASSY
   .byt GraphicsUpload::BG_GRASSYBG
-  .byt GraphicsUpload::PAL_ENEMY1
   .byt 255 ; end
-  .word %0000000000000000 ; boundaries
+  .byt $00, $04 ; boundaries
 
 level1Data:
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 31
@@ -155,7 +155,9 @@ level1Data:
   LObjN LO::R_GROUND,         4, 12, 5, 2
   LObjN LO::WIDE_1,           1, 11, 3, LN1::FENCE
   LObjN LO::R_GROUND,         5, 13, 15, 1
-  LObj  LO::S_EXIT_DOOR,      11, 11
+  LObj  LO::S_PRIZE,          4, 7
+  LObj  LO::S_SPRING,         0, 12
+  LObj  LO::S_EXIT_DOOR,      7, 11
   LFinished
 
 level1Sprite:

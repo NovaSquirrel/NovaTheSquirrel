@@ -282,13 +282,23 @@ NotDie:
     jmp MainLoopInit
   :
 
+  lda NeedDialog
+  beq :+
+    jsr StartCutscene ; this routine clears NeedDialog
+  :
+
+  ; Debugging feature
   lda keydown
   and #KEY_SELECT
   beq :+
   lda keylast
   and #KEY_SELECT
   bne :+
-    jsr StartCutscene
+    lda #<Intro
+    sta ScriptPtr+0
+    lda #>Intro
+    sta ScriptPtr+1
+    inc NeedDialog
   :
 
 ;  lda #OBJ_ON | BG_ON ;OBJ_CLIP | BG_CLIP

@@ -19,11 +19,12 @@ SPExplode:  ChrFile "../chr/spexplode.pb53",  512,  $1800
 TitleCHR:   ChrFile "../tools/title/title.pb53",    4096, $0000
 TitleNAM:   ChrFile "../tools/title/titlenam.pb53", 1024, $2000
 InventoryCHR: ChrFile "../chr/inventory.pb53", 512, $0000
-NPCCHR:     ChrFile "../chr/spnpc.pb53",      1536, $1000
+NPCCHR:     ChrFile "../chr/spnpc.pb53",      2048, $1000
 SPSun:      ChrFile "../chr/spsun.pb53",      512,  $1800
 BGFrozenFG: ChrFile "../chr/bgfrozenfg.pb53", 768,  $0500
 BGFrozenBG: ChrFile "../chr/bgfrozenbg.pb53", 512,  $0c00
-
+BGBummer:   ChrFile "../chr/bgbummer.pb53",   768,  $0500
+LevelSelCHR: ChrFile "../chr/levelselect.pb53",  1024,  $0000
 
 PalGrassy:  .byt $03
             .byt $1a, $2a, $37
@@ -50,6 +51,15 @@ PalEnemy1:  .byt $61
 PalEnemy2:  .byt $61
             .byt $06, $16, $36
             .byt $02, $22, $32
+PalLevelSel: .byt $07
+             .byt $30, $30, $30
+             .byt $15, $25, $35
+             .byt $14, $24, $34
+             .byt $1c, $2c, $3c
+             .byt $12, $2a, $30
+             .byt $15, $25, $35
+             .byt $14, $24, $34
+             .byt $00, $10, $30
 
 AbilityIcons: .incbin "chr/sppowericons.chr"
 AbilityGfx:   .incbin "chr/sppowergfx.chr"

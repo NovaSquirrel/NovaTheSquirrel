@@ -486,3 +486,8 @@ DJ_Label:
 .macro skip2
   bit $2c ; BIT absolute
 .endmacro
+
+.macro asr ; Arithmetic shift left
+  cmp #$80
+  ror
+.endmacro

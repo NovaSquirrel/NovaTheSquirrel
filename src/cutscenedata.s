@@ -89,7 +89,7 @@ Bill:     .byt "Bill",0
   .byt CHAR::NOVA|(1<<5), CHAR::KEE|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::KEE|(2<<5), CHAR::LUVI|(3<<5)|FLIP, 0
   .byt CHAR::S_TEAM|(1<<5), CHAR::S_TEAM|(2<<5)|FLIP, 0, 0
-  .byt CHAR::SHERWIN|(1<<5), CHAR::S_POLICE|(0<<5), CHAR::S_POLICE|(3<<5)|FLIP, 0
+  .byt CHAR::SHERWIN|(1<<5), CHAR::S_TEAM|(0<<5), CHAR::S_TEAM|(3<<5)|FLIP, 0
   .byt CHAR::SHERWIN|(1<<5), 0, 0, 0
   .byt CHAR::S_TEAM|(1<<5), CHAR::S_TEAM|(2<<5), CHAR::BILL|(3<<5)|FLIP, 0
   .byt CHAR::NOVA|(1<<5), CHAR::ECLIPSE|(2<<5)|FLIP, 0, 0
@@ -104,6 +104,8 @@ Bill:     .byt "Bill",0
   .byt CHAR::NOVA|(1<<5), CHAR::BILL|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::SHERWIN|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::SHERWIN|(2<<5)|FLIP, CHAR::KIERAN|(3<<5)|FLIP, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::LIA|(2<<5)|FLIP, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::ITI|(2<<5)|FLIP, 0, 0
 .endproc
 
 .enum SCENES
@@ -129,6 +131,8 @@ Bill:     .byt "Bill",0
   NOVA_AND_BILL
   NOVA_AND_SHERWIN
   NOVA_SHERWIN_KIERAN
+  NOVA_AND_LIA
+  NOVA_AND_ITI
 .endenum
 
 FaceData:

@@ -1,7 +1,7 @@
 MEMORY {
   ZP:     start = $10, size = $f0, type = rw;
   # use first $10 zeropage locations as locals
-  RAM:    start = $0300, size = $0500, type = rw;
+  RAM:    start = $0300, size = $0400, type = rw; #7xx reserved
   WRAM:   start = $7000, size = $1000, type = rw;
   HEADER: start = $7f00, size = $0010, type = ro, file = %O, fill=yes, fillval=$00;
   ROM0:   start = $8000, size = $4000, type = ro, file = %O, fill=yes, fillval=$00;

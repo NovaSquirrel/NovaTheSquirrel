@@ -31,6 +31,9 @@ GraphicsList:
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGFrozenFG,   >BGFrozenFG
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGFrozenBG,   >BGFrozenBG
   .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy2,    >PalEnemy2
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGBummer,     >BGBummer
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <LevelSelCHR,  >LevelSelCHR
+  .byt GRAPHICS_BANK1|IS_PALETTE, <PalLevelSel,  >PalLevelSel
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)
 DoGraphicUpload:

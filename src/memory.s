@@ -112,8 +112,10 @@
   CutsceneBufIndex   = CutsceneCurSpeaker+1
   CutsceneScriptBank = CutsceneBufIndex+1
   CutsceneCurFace    = CutsceneScriptBank+1
+  CutsceneNoSkip     = CutsceneCurFace+1
 
   LevelNumber: .res 1 ; current level number
+  StartedLevelNumber: .res 1 ; level number that was picked from the level select
   NeedLevelReload: .res 1
 
   OamPtr:      .res 1 ; index the next sprite goes in
@@ -142,9 +144,9 @@
   ; LevelDecodePointer and LevelSpritePointer aren't needed during gameplay or outside level decompression
   ; so they can be reused elsewhere if needed
 
-  ScriptPtr = TouchTemp
+  ScriptPtr: .res 2
 
-  ScriptIf = ScriptPtr+2 ; 0 (normal), 2 (enable), 3 (disable)
+  ScriptIf = TouchTemp ; 0 (normal), 2 (enable), 3 (disable)
   ScriptReturn = ScriptIf+1
   ScriptChoice = ScriptReturn+2
   ScriptPageEnded = ScriptChoice+1 ; page is already ended, don't prompt the user for a key press
@@ -165,8 +167,12 @@
   StringBuffer:
   Attributes:      .res 64
                    .res 64
+  ; bigger temp space!!
+  ScratchPage = $700
+
   NeedAbilityChange: .res 1
   NeedLevelRerender: .res 1
+  NeedDialog:        .res 1
   IsNormalDoor:       .res 1 ; 1 if the level is loading due to a door
   InventoryCursorY:   .res 1
   InventoryCursorYSwap: .res 1
@@ -222,7 +228,7 @@
   CollectedBits:      .res 128 ; stores bits for broken blocks and opened blocks, that sort of thing
   CollectedAlternate: .res 128 ; alternate buffer to allow going to a different level and back and having it still work
   ColumnBytes:        .res 256 ; stores a byte for each column, for ? block contents and other things
-  ScriptFlags:        .res 32  ; flags for scripts
+  ScriptFlags:        .res 32  ; flags for scripts. first two bytes reset when entering a level on the level select
 
   ; LevelLinkUp/Down are offsets for what screen to move to if you go off the top or bottom
   LevelLinkUp:        .res 16  ; \
@@ -261,4 +267,3 @@ SaveStart:
   SavedAbility:       .res 1
 SaveEnd:
 .code   
-

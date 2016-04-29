@@ -197,6 +197,17 @@ XForMiddle = TempSpace+5
 .endproc
 
 .proc TouchedSignpost
+  lda keynew
+  and #KEY_UP
+  beq Nope
+  jsr GetBlockX
+  tax
+  lda ColumnBytes+0,x
+  sta ScriptPtr+0,x
+  lda ColumnBytes+1,x
+  sta ScriptPtr+1,x
+  inc NeedDialog
+Nope:
   rts
 .endproc
 
@@ -209,24 +220,35 @@ XForMiddle = TempSpace+5
     cmp #Metatiles::EXIT_DOOR_TOP
     beq ExitDoor
     ; regular door
-    ; XX 0Y    - X and Y only
-    ; XX 1Y LL - X and Y with level number
+    ; 0Y XX    - X and Y only
+    ; 1Y XX LL - X and Y with level number
+    ; 2Y AA AA - start dialog
     inc NeedLevelRerender
     inc IsNormalDoor
     jsr GetBlockX        ; Get the block's X position
     tax
-    lda ColumnBytes,x    ; Read the X position
-    sta PlayerPXH
-    lda ColumnBytes+1,x  ; Read the Y position plus the flag
-    and #15              ; (but only use the flag)
-    sta PlayerPYH
-    lda ColumnBytes+1,x  ; Read the flag again
-    and #$10             ; Is the level specified too?
-    beq Nope
+    lda ColumnBytes,x    ; Read the flag to check for special handling
+    cmp #$20
+    beq DoDialogInstead
+    and #$10
+    beq NoLevelChange
     lda ColumnBytes+2,x
     sta LevelNumber
     inc NeedLevelReload
+NoLevelChange:
+  lda ColumnBytes+0,x    ; Read the Y position plus the flag
+  and #15                ; (but only use the flag)
+  sta PlayerPYH
+  lda ColumnBytes+1,x    ; Read the X position
+  sta PlayerPXH
 Nope:
+  rts
+DoDialogInstead:
+  lda ColumnBytes+1,x
+  sta ScriptPtr+0
+  lda ColumnBytes+2
+  sta ScriptPtr+1
+  inc NeedDialog
   rts
 ExitDoor:
   inc LevelNumber

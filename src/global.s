@@ -803,6 +803,24 @@ SkipAddr:
   jmp SetPRG_Restore
 .endproc
 
+; A = level to start
+.proc StartLevel
+  pha
+  sta StartedLevelNumber
+  jsr WaitVblank
+  lda #0
+  sta PPUMASK
+  sta ScriptFlags+0 ; clear first 16 flags
+  sta ScriptFlags+1
+
+; Decompress Nova tiles and common sprite tiles
+  jsr UploadNovaAndCommon
+  pla
+; Finally decompress the level and start the game engine
+  jsr DecompressLevel
+  jmp MainLoopInit
+.endproc
+
 ; Uploads graphics for Nova as well as the common sprite tiles
 .proc UploadNovaAndCommon
   lda #GRAPHICS_BANK1
@@ -851,5 +869,51 @@ WriteIncreasing16:
   iny
   dex
   bne :-
+  rts
+.endproc
+
+; Looks for an item in the inventory
+; input: A (item to look for)
+; output: carry (set if item found)
+; preserves A
+.proc InventoryHasItem
+  ldx #InventoryLen-1
+: cmp InventoryType,x
+  beq :+
+  dex
+  bpl :-
+  clc ; no
+  rts
+: sec ; yes
+  rts
+.endproc
+
+; Gives an item only if you don't have any of it yet
+; inputs: A (item to give)
+.proc InventoryGiveIfDontHave
+  jsr InventoryHasItem
+  bcc InventoryGiveItem
+  jmp InventoryGiveItem
+  clc
+  rts
+.endproc
+
+; Puts an item into a blank slot
+; inputs: A (item to give)
+; outputs: carry (item was given)
+.proc InventoryGiveItem
+  ldx #InventoryLen-1
+: ldy InventoryType,x
+  beq Empty
+  dex
+  bpl :-
+  clc ; No free slots
+  rts
+
+Empty: ; Empty slot, put in item
+  sta InventoryType,x
+  lda #1
+  sta InventoryAmount,x
+  sec
   rts
 .endproc

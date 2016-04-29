@@ -120,6 +120,8 @@ int main(int argc, char *argv[]) {
         fprintf(OutputFile, ".byt SCR::SCENE, SCENES::%s\r\n", Arg);
       if(!strcmp(Command, "transition"))
         fprintf(OutputFile, ".byt SCR::TRANSITION\r\n", Arg);
+      if(!strcmp(Command, "noskip"))
+        fprintf(OutputFile, ".byt SCR::NO_SKIP\r\n", Arg);
       if(Buffer[0] == '?') {
         if(!strcmp(Command, "on"))
           fprintf(OutputFile, ".byt SCR::IF_FLAG_ON, EventFlags::%s\r\n", Arg);

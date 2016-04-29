@@ -142,18 +142,13 @@ NoInitSave:
   sta InventoryLen+4
   sta InventoryLen+5
 
-; Decompress Nova tiles and common sprite tiles
-  jsr UploadNovaAndCommon
-
 ; Turn on NMI and make sprites use $1xxx in CHR RAM
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
 
-; Decompress the first level
-  lda #0
-  jsr DecompressLevel
-
-  jmp MainLoopInit
+  lda #VWF_BANK
+  jsr SetPRG
+  jsr ShowLevelSelect
 .endproc
 
 SaveTagString: .byt "NovaSquirrel"

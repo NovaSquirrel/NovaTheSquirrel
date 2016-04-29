@@ -60,6 +60,7 @@ DIALOG_BANK = $8
 .include "musicseq.s"
 .include "inventoryitems.s"
 .include "cutscenedata.s"
+.include "levelselect.s"
 .segment "PRG8" ; dialog
 .include "../tools/dialog.s"
 .segment "PRGf" ; important stuff

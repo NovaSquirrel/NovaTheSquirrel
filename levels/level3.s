@@ -12,8 +12,10 @@ level3:
   .byt GraphicsUpload::PAL_GRASSY
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_GRASSY
+  .byt GraphicsUpload::BG_GRASSYBG
+  .byt GraphicsUpload::PAL_ENEMY2
   .byt 255 ; end
-  .word %0000000000000000 ; boundaries
+  .byt $00, $02 ; boundaries
 
 level3Data:
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 55
@@ -34,11 +36,11 @@ level3Data:
   LObj  LO::S_SPRING,         0, 12
   LObjN LO::WIDE_1,           1, 8, 4, LN1::TALLGRASS
   LObjN LO::RECT_1,           0, 9, 3, LN1::GROUND, 21
-  LObjN LO::TALL_2,           5, 7, 2, LN2::TRUNK_L
-  LObjN LO::R_AIR,            0, 9, 3, 0
-  LObjN LO::R_GROUND,         5, 3, 6, 3
-  LObjN LO::RECT_2,           2, 7, 1, LN2::BLACK, 4
-  LObjN LO::R_BRICK,          5, 5, 4, 0
+  LObjN LO::R_AIR,            5, 9, 3, 0
+  LObjN LO::TALL_2,           1, 7, 2, LN2::TRUNK_L
+  LObjN LO::R_GROUND,         4, 3, 6, 3
+  LObjN LO::RECT_2,           1, 7, 1, LN2::BLACK, 4
+  LObjN LO::R_BRICK,          6, 5, 4, 0
   LObj  LO::S_FLOWER,         0, 8
   LObj  LO::S_PRIZE,          2, 5
   LObjN LO::R_AIR,            1, 9, 1, 1
@@ -53,7 +55,8 @@ level3Data:
   LObj  LO::S_SPRING,         5, 8
   LObjN LO::R_SOLID_BLOCK,    2, 9, 0, 3
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 33
-  LObjN LO::WIDE_2,           2, 12, 1, LN2::FLOWER
+  LObj  LO::S_SOLID_ROCK,     1, 12
+  LObjN LO::WIDE_2,           1, 12, 1, LN2::FLOWER
   LObjN LO::R_GROUND,         3, 7, 6, 3
   LObjN LO::WIDE_1,           1, 6, 4, LN1::FENCE
   LObjN LO::RECT_2,           0, 11, 1, LN2::BLACK, 14
@@ -137,7 +140,8 @@ level3Data:
   LObjN LO::WIDE_1,           0, 8, 3, LN1::SOLID_LEDGE
   LObjN LO::WIDE_2,           4, 12, 3, LN2::BUSH
   LObjN LO::R_GROUND,         0, 13, 10, 1
-  LObj  LO::S_SOLID_BLOCK,    6, 12
+  LObjN LO::WIDE_1,           1, 10, 1, LN1::SOLID_LEDGE
+  LObj  LO::S_SOLID_BLOCK,    5, 12
   LObjN LO::R_SOLID_BLOCK,    1, 11, 0, 1
   LObjN LO::R_SOLID_BLOCK,    1, 10, 0, 2
   LObjN LO::R_SOLID_BLOCK,    1, 9, 0, 3
@@ -145,8 +149,8 @@ level3Data:
   LObjN LO::R_SOLID_BLOCK,    9, 9, 0, 1
   LObjN LO::RECT_1,           0, 11, 3, LN1::GROUND, 29
   LObj  LO::S_SOLID_BLOCK,    1, 10
-  LObjN LO::WIDE_1,           2, 10, 7, LN1::FENCE
-  LObj  LO::S_EXIT_DOOR,      9, 9
+  LObjN LO::WIDE_1,           2, 10, 6, LN1::FENCE
+  LObj  LO::S_EXIT_DOOR,      8, 9
   LFinished
 
 level3Sprite:

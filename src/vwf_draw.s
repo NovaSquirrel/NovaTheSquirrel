@@ -480,3 +480,17 @@ chrWidths:
   .byt   5,  5,  4,  5,  4,  5,  5,  6,  5,  5,  5,  5,  2,  5,  5,  6
   .byt   8,  8,  8,  5,  6,  6,  6,  6
 .popseg
+
+.proc vwfPutsAtRow
+  sta TempVal+0
+  sty TempVal+1
+  stx TempVal+2
+  jsr clearLineImg
+  ldx #0
+  lda TempVal+0
+  ldy TempVal+1
+  jsr vwfPuts
+  ldy #0
+  lda TempVal+2
+  jmp copyLineImg
+.endproc

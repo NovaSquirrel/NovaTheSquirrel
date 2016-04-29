@@ -31,12 +31,10 @@ DemoCutscene:
   .byt SCR::END_SCRIPT
 .endif
 
-.proc StartCutscene
-  lda #<Intro
-  sta ScriptPtr+0
-  lda #>Intro
-  sta ScriptPtr+1
+ScriptEndPointer:
+  .byt SCR::END_SCRIPT
 
+.proc StartCutscene
   lda PRGBank ; we'll return to the original bank when we're done
   pha
 
@@ -47,11 +45,50 @@ DemoCutscene:
 
   jsr WaitVblank
   ldx #0
+  stx NeedDialog
   stx PPUMASK
   jsr ClearOAM
   lda #2
   sta ScriptPageEnded
   sta OAM_DMA
+
+; --------------------------------------------------
+; load dictionary addresses into RAM
+; --------------------------------------------------
+  ; Preload dictionary word starting addresses into RAM
+  lda #DIALOG_BANK
+  jsr SetPRG
+
+  ; Load first word into table, and load pointers
+  lda #<CutsceneDictionary
+  sta ScratchPage+0
+  sta 0
+  lda #>CutsceneDictionary
+  sta ScratchPage+128  
+  sta 1
+
+  ldy #0
+  ldx #1 ; 1st word
+MoreDictionary:
+  lda (0),y
+  bmi DictionaryWordFound
+  iny
+  bne MoreDictionary
+  inc 1
+  bne MoreDictionary
+
+DictionaryWordFound:
+  inc16 0
+  tya
+  add 0
+  sta ScratchPage+0,x
+  lda 1
+  adc #0
+  sta ScratchPage+128,x
+  inx
+  cpx #129
+  bcc MoreDictionary
+; --------------------------------------------------
 
 ; Clear cutscene related variables
   ldx #0
@@ -166,6 +203,12 @@ DemoCutscene:
 IsDictionaryWord:
   ; Get table index
   sub #$80
+  tax
+  lda ScratchPage+0,x
+  sta 0
+  lda ScratchPage+128,x
+  sta 1
+.if 0
   sta 2 ; target
 ; Still in dialog bank
 ;  lda #DIALOG_BANK
@@ -176,7 +219,7 @@ IsDictionaryWord:
   sta 0
   lda #>CutsceneDictionary
   sta 1
-  ; Start at eginning
+  ; Start at beginning
   ldy #0
 @Loop:
   lda 2
@@ -202,6 +245,7 @@ IsDictionaryWord:
   adc #0
   sta 1
 @IsFirstWord:
+.endif
 
   ; Write word to buffer
   ldx CutsceneBufIndex
@@ -210,6 +254,12 @@ IsDictionaryWord:
   and #127             ; Ignore top bit
   sta StringBuffer,x   ; Write character
   inx
+
+  cpx #128             ; Not sure what's going on here but there's some bug
+  bne @NoFix           ; where X goes past the length of the buffer
+  ldx #0               ; and overwrites important stuff. This fixes it but
+@NoFix:                ; I really should fix the root cause.
+
   lda (0),y            ; Reread character to check for high bit
   bmi @Done
   iny
@@ -285,10 +335,12 @@ IsCommand:
   .raddr ShowChoice ; xx - choice set 
   .raddr ShowScene  ; xx - scene number
   .raddr Transition ;
+  .raddr NoSkip     ;
 
-; Command, ends the script
-EndScript:
-  jmp DoEndPage
+; Command, disables skipping the dialog
+NoSkip:
+  inc CutsceneNoSkip
+  jmp ScriptLoop
 
 ; Command, does a transition effect
 Transition:
@@ -322,6 +374,13 @@ EndPage:
   jsr DoEndPage
   jmp ScriptLoop
 
+; Command, ends the script
+EndScript:
+  lda ScriptPageEnded
+  bne :+
+  jmp DoEndPage
+: rts
+
 DoEndPage:
   lda #VWF_BANK
   jsr SetPRG
@@ -330,9 +389,25 @@ DoEndPage:
   jsr ScriptRenderOn
 : jsr WaitVblank
   jsr ReadJoy
+  lda CutsceneNoSkip
+  bne @NoSkip
+  lda keynew
+  and #KEY_START
+  beq @NoSkip
+  ; If Start is pressed and the dialog is skippable, set the script pointer
+  ; to a script ending command. This seems like a clean way of doing it.
+  ; To do: figure out why this is so slowww
+  inc ScriptPageEnded
+  lda #<ScriptEndPointer
+  sta ScriptPtr+0
+  lda #>ScriptEndPointer
+  sta ScriptPtr+1
+  jmp @Done
+@NoSkip:
   lda keynew
   and #KEY_A
   beq :-
+@Done:
   jsr ScriptRenderOff
 
   lda #VWF_BANK
@@ -860,18 +935,6 @@ IfChoice:
   cmp ScriptChoice
   bne IfFalse
   jmp IncreaseBy1
-
-; Carry is set if the item number (in the accumulator) is found
-InventoryHasItem:
-  ldx #InventoryLen-1
-: cmp InventoryType,x
-  beq :+
-  dex
-  bpl :-
-  clc ; no
-  rts
-: sec ; yes
-  rts
 
 ; If ScriptIf is 0, it's set to 2, meaning execute anyway
 ; If it's 3 it's kept 3, meaning don't execute

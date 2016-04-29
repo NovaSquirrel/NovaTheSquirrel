@@ -76,6 +76,8 @@
   BG_FROZEN_BG
   PAL_ENEMY2
   BG_BUMMER
+  CHR_LEVELSEL
+  PAL_LEVELSEL
 .endenum
 
 .enum SFX
@@ -306,6 +308,7 @@ MS_EMPTY = 32
   CHOICES       ; xx - choice set
   SCENE         ; xx - scene number
   TRANSITION    ; transition effect
+  NO_SKIP       ; disable skipping the dialog
   SPEAKER_0 = %0000000
   SPEAKER_1 = %0100000
   SPEAKER_2 = %1000000
@@ -340,9 +343,11 @@ SCRIPT_LAST_IF = SCR::IF_CHOICE
   UNUSED_2
   NOVA_AW
   NOVA_YAY
-  NOVA_FUNNY
-  NOVA_WHOA
+  NOVA_SILLY
+  NOVA_WOW
   NOVA_MAD
+
+NOVA_STRAIGHT = 18
 .endenum
 
 ; -------------------- level stuff --------------------------------------
