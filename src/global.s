@@ -82,9 +82,12 @@ WritePPURepeated16:
 Pointer = TempVal
 Length = TempVal+2
   sta PlayerAbility
+  jsr WaitVblank
+  lda #%11100001 ; dim
+  sta PPUMASK
   lda #SFX::GET_ABILITY
   sta NeedSFX
-
+WithoutSFX:
 ; Because the graphics will be rewritten, erase any projectiles using the old graphics
   ldx #0
 : lda ObjectF1,x
@@ -99,10 +102,6 @@ Length = TempVal+2
 ; Ability graphics are in the graphics bank
   lda #GRAPHICS_BANK1
   jsr _SetPRG
-
-  jsr WaitVblank
-  lda #%11100001 ; dim
-  sta PPUMASK
 
 ; Calculate pointer to the ability icon
   lda #0
@@ -173,6 +172,7 @@ NoExtraTiles:
 ; Restore the old bank
   jmp SetPRG_Restore
 .endproc
+ChangePlayerAbilityWithoutSFX = ChangePlayerAbility::WithoutSFX
 
 ; Updates PPUSCROLL and PPUCTRL to account for ScrollX
 ; locals: 0
@@ -856,6 +856,12 @@ SkipAddr:
   sta PPUDATA
   lda #$30
   sta PPUDATA
+
+  lda PlayerAbility
+  beq :+
+  lda PlayerAbility
+  jsr ChangePlayerAbilityWithoutSFX
+:
 
   jmp SetPRG_Restore
 .endproc
