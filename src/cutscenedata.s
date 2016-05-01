@@ -1,5 +1,5 @@
 ; Princess Engine
-; Copyright (C) 2014-2016 NovaSquirrel
+; Copyright (C) 2016 NovaSquirrel
 ;
 ; This program is free software: you can redistribute it and/or
 ; modify it under the terms of the GNU General Public License as
@@ -88,6 +88,7 @@ Bill:     .byt "Bill",0
   .byt CHAR::NOVA|(1<<5), CHAR::LUVI|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::KEE|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::KEE|(2<<5), CHAR::LUVI|(3<<5)|FLIP, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::LUVI|(2<<5)|FLIP, CHAR::KEE|(3<<5)|FLIP, 0
   .byt CHAR::S_TEAM|(1<<5), CHAR::S_TEAM|(2<<5)|FLIP, 0, 0
   .byt CHAR::SHERWIN|(1<<5), CHAR::S_TEAM|(0<<5), CHAR::S_TEAM|(3<<5)|FLIP, 0
   .byt CHAR::SHERWIN|(1<<5), 0, 0, 0
@@ -115,6 +116,7 @@ Bill:     .byt "Bill",0
   NOVA_AND_LUVI
   NOVA_AND_KEE
   NOVA_KEE_LUVI
+  NOVA_LUVI_KEE
   TWO_BAD_GUYS
   SHERWIN_WITH_BAD_GUYS_AS_POLICE
   SHERWIN_ALONE

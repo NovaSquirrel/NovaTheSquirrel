@@ -957,3 +957,11 @@ C .byt $d2
 C .byt $d2
 C .byt $d3
 C .byt $d3
+
+R BG_LINE_TOP
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $39
+C .byt $3f
+C .byt $39
+C .byt $3f

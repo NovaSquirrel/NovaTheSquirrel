@@ -54,7 +54,10 @@ IconList = TempSpace ; can use this since the level will be redrawn anyway
   jsr _SetPRG
 
   jsr pently_init
+  lda LevelSelectInventory
+  bne :+
   inc pently_music_playing
+:
 
 DrawAgain:
   ; Clear icon list
@@ -171,14 +174,25 @@ DoNametable:
   bne :-
 
 ; Write an item name
+  lda LevelSelectInventory
+  bne :+
   ldy #<PausedString
   lda #>PausedString
   ldx #2
-  jsr WriteVWFLine
+  jsr vwfPutsAtRow
+:
+  lda LevelSelectInventory
+  beq :+
+  ldy #<LevelSelectString
+  lda #>LevelSelectString
+  ldx #2
+  jsr vwfPutsAtRow
+:
+
   ldy #<InventoryString
   lda #>InventoryString
   ldx #4
-  jsr WriteVWFLine
+  jsr vwfPutsAtRow
 
 ; copyLineImg uses vertical writing mode, so switch it back
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
@@ -209,9 +223,12 @@ Loop:
   sta OAM_DMA
   jsr ReadJoy
 
+  lda LevelSelectInventory
+  bne :+
   lda keydown
   and #KEY_A
   jne DoInventoryCode
+:
 
   lda keynew
   and #KEY_SELECT
@@ -259,6 +276,31 @@ Loop:
     sta InventoryCursorY
   :
 
+  lda PlayerAbility
+  beq NoAbilityIcon
+  ; Draw current ability icon
+  ldy #$4c
+  sty OAM_TILE+(4*2)
+  iny
+  sty OAM_TILE+(4*3)
+  iny
+  sty OAM_TILE+(4*4)
+  iny
+  sty OAM_TILE+(4*5)
+  lda #21*8
+  sta OAM_XPOS+(4*2)
+  sta OAM_XPOS+(4*3)
+  lda #22*8
+  sta OAM_XPOS+(4*4)
+  sta OAM_XPOS+(4*5)
+  lda #8*8
+  sta OAM_YPOS+(4*2)
+  sta OAM_YPOS+(4*4)
+  lda #9*8
+  sta OAM_YPOS+(4*3)
+  sta OAM_YPOS+(4*5)
+NoAbilityIcon:
+
   ; Draw cursor
   lda #7*8
   sta OAM_XPOS
@@ -274,6 +316,10 @@ Loop:
   sta OAM_TILE+4
   ldx #0
   stx OAM_ATTR+0
+  stx OAM_ATTR+(4*2)
+  stx OAM_ATTR+(4*3)
+  stx OAM_ATTR+(4*4)
+  stx OAM_ATTR+(4*5)
   inx
   stx OAM_ATTR+4
 
@@ -307,6 +353,9 @@ DoInventoryCode:
   jsr CallInventoryCode
 :
 
+  lda LevelSelectInventory
+  jne ShowLevelSelect
+
   ; Restore old background tiles and palette
   jsr WaitVblank
   lda #0
@@ -318,20 +367,6 @@ DoInventoryCode:
   sta OAM_DMA
   inc NeedLevelRerender
   jmp UpdateScrollRegister
-
-; input: AY (address), X (row)
-WriteVWFLine:
-  sta TempVal
-  stx TempX
-  sty TempY
-  jsr clearLineImg
-  ldx #0
-  ldy TempY
-  lda TempVal
-  jsr vwfPuts
-  lda TempX
-  ldy #0
-  jmp copyLineImg
 
 CallInventoryCode:
   ldx InventoryCursorY
@@ -358,5 +393,7 @@ InventoryPalette:
 .endproc
 PausedString:
   .byt "P A U S E D",0
+LevelSelectString:
+  .byt "Nova the Squirrel",0
 InventoryString:
   .byt " - Inventory - ",0

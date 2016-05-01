@@ -203,9 +203,9 @@ XForMiddle = TempSpace+5
   jsr GetBlockX
   tax
   lda ColumnBytes+0,x
-  sta ScriptPtr+0,x
+  sta ScriptPtr+0
   lda ColumnBytes+1,x
-  sta ScriptPtr+1,x
+  sta ScriptPtr+1
   inc NeedDialog
 Nope:
   rts
@@ -251,9 +251,49 @@ DoDialogInstead:
   inc NeedDialog
   rts
 ExitDoor:
-  inc LevelNumber
-  inc NeedLevelReload
-  rts
+  ; Mark current level as cleared
+  ldy StartedLevelNumber
+  jsr IndexToBitmap
+  ora LevelCleared,y
+  sta LevelCleared,y
+
+  ; Mark the next level as available
+  ldy StartedLevelNumber
+  iny
+  sty LevelNumber
+  sty StartedLevelNumber
+  jsr IndexToBitmap
+  ora LevelAvailable,y
+  sta LevelAvailable,y
+
+  ; If not puzzle mode, save things
+  lda PuzzleMode
+  bne @NotPuzzleMode
+    ldx #InventoryLen*2-1
+  : lda InventoryType,x
+    sta InventorySaved,x
+    dex
+    bpl :-
+    lda PlayerAbility
+    sta SavedAbility
+@NotPuzzleMode:
+
+.if 0
+  lda EndLevelDialog+1
+  beq :+
+    inc NeedDialog
+    lda EndLevelDialog+0
+    sta ScriptPtr+0
+    lda EndLevelDialog+1
+    sta ScriptPtr+1
+    lda #0
+    sta EndLevelDialog+0
+    sta EndLevelDialog+1
+  :
+.endif
+
+  lda StartedLevelNumber
+  jmp StartLevel
 .endproc
 
 .proc TouchedSpringDown

@@ -255,71 +255,34 @@ Found:
 ; Does a collision check on two rectangles
 ; input: TouchTopA/B, TouchLeftA/B, TouchWidthA/B, TouchHeightA/B
 ; output: carry (rectangles are overlapping)
-.proc ChkTouchGeneric ; 92 cycles, worst case
-.if 0
-  lda TouchTopA
-  sub #20
-  cmp #<-20
-  bcs No
-  lda TouchTopB
-  sub #20
-  cmp #<-20
-  bcs No
-.endif
-
-.if 0
-; formula expects coordinates to be the middle of the object
-; but, it's probably faster to just offset the coordinates before ChkTouchGeneric
-  lda TouchWidthA
-  lsr
-  add TouchLeftA
-  sta TouchLeftA
-
+.proc ChkTouchGeneric
+  ; http://atariage.com/forums/topic/71120-6502-killer-hacks/page-3?&#entry1054049
+; X positions
   lda TouchWidthB
-  lsr
-  add TouchLeftB
-  sta TouchLeftB
-
-  lda TouchHeightA
-  lsr
-  add TouchTopA
-  sta TouchTopA
-
-  lda TouchHeightB
-  lsr
-  add TouchTopB
-  sta TouchTopB
-.endif
-
-; (abs(a.x - b.x) * 2 < (a.width + b.width))
-  lda TouchWidthA
-  add TouchWidthB
+  sub #1
   sta TouchTemp
+  add TouchWidthA
+  sta TouchTemp2  ; carry now set
 
   lda TouchLeftA
-  sub TouchLeftB
-  bcs :+    ; make it positive if it's negative
-  eor #255
-  adc #1    ; carry guaranted to be unset
-:
-  asl
-  cmp TouchTemp
-  bcs No
+  sbc TouchLeftB ; Note will subtract n-1
+  sbc TouchTemp  ;#SIZE2-1
+  adc TouchTemp2 ;#SIZE1+SIZE2-1 ; Carry set if overlap
+  bcc No
 
-; (abs(a.y - b.y) * 2 < (a.height + b.height))
-  lda TouchHeightA
-  add TouchHeightB
+; Y positions
+  lda TouchHeightB
+  sub #1
   sta TouchTemp
+  add TouchHeightA
+  sta TouchTemp2   ; carry now set
 
   lda TouchTopA
-  sub TouchTopB
-  bcs :+    ; make it positive if it's negative
-  eor #255
-  adc #1    ; carry guaranted to be unset
-:
-  asl
-  cmp TouchTemp
-  bcs No
+  sbc TouchTopB   ; Note will subtract n-1
+  sbc TouchTemp  ;#SIZE2-1
+  adc TouchTemp2 ;#SIZE1+SIZE2-1 ; Carry set if overlap
+  bcc No
+
   sec
   rts
 No:
@@ -807,11 +770,26 @@ SkipAddr:
 .proc StartLevel
   pha
   sta StartedLevelNumber
+  lda SavedAbility
+  sta PlayerAbility
+  ; Copy inventory
+  ldx #InventoryLen*2-1
+: lda InventorySaved,x
+  sta InventoryType,x
+  dex
+  bpl :-
+
+  lda #4
+  sta PlayerHealth
   jsr WaitVblank
   lda #0
   sta PPUMASK
   sta ScriptFlags+0 ; clear first 16 flags
   sta ScriptFlags+1
+  sta PlayerVXL
+  sta PlayerVXH
+  sta PlayerVYL
+  sta PlayerVYH
 
 ; Decompress Nova tiles and common sprite tiles
   jsr UploadNovaAndCommon

@@ -228,6 +228,11 @@ ProcessGround:
   iny
   lda (Pointer),y
   jsr IsGround
+  lda (Pointer),y
+  bne DontPutLine
+  lda #Metatiles::BG_LINE_TOP
+  sta (Pointer),y
+DontPutLine:
   dey
   ldx Temp1
   cpx #15

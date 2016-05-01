@@ -116,6 +116,7 @@
   BG_TREETOP_LL
   BG_TREETOP_LR
   BG_TRUNK
+  BG_LINE_TOP
 .endenum
 
 M_FIRST_SPECIAL_MISC = Metatiles::COIN
@@ -239,6 +240,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_PAL_0 ;BG_TREETOP_LL
   .byt M_PAL_0 ;BG_TREETOP_LR
   .byt M_PAL_2 ;BG_TRUNK
+  .byt M_PAL_0 ;BG_LINE_TOP
 .endproc
 
 .pushseg
@@ -361,6 +363,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_EMPTY ;BG_TREETOP_LL
   .byt M_EMPTY ;BG_TREETOP_LR
   .byt M_EMPTY ;BG_TRUNK
+  .byt M_EMPTY ;BG_LINE_TOP
 .endproc
 
 .popseg
@@ -482,6 +485,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $c7 ;BG_TREETOP_LL
   .byt $3d ;BG_TREETOP_LR
   .byt $d2 ;BG_TRUNK
+  .byt $39 ;BG_LINE_TOP
 .endproc
 
 .proc MetatileLL
@@ -602,6 +606,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $d7 ;BG_TREETOP_LL
   .byt $d8 ;BG_TREETOP_LR
   .byt $d2 ;BG_TRUNK
+  .byt $3f ;BG_LINE_TOP
 .endproc
 
 .proc MetatileUR
@@ -722,6 +727,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $3d ;BG_TREETOP_LL
   .byt $c9 ;BG_TREETOP_LR
   .byt $d3 ;BG_TRUNK
+  .byt $39 ;BG_LINE_TOP
 .endproc
 
 .proc MetatileLR
@@ -842,5 +848,6 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $d8 ;BG_TREETOP_LL
   .byt $d9 ;BG_TREETOP_LR
   .byt $d3 ;BG_TRUNK
+  .byt $3f ;BG_LINE_TOP
 .endproc
 

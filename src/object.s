@@ -164,6 +164,8 @@ ObjectNone = DoNothing
   ; If already activated, just exit
   lda ObjectF2,x
   beq Exit
+  cmp #ENEMY_STATE_STUNNED
+  beq Exit
   ; If it's initializing, automatically start pausing
   cmp #ENEMY_STATE_INIT
   bne :+ ; change it to paused
@@ -375,10 +377,10 @@ Loop:
    sta TouchWidthB
    sta TouchHeightB
    lda TouchLeftB
-   add PlayerProjectileHalfSizeTable,y
+;   add PlayerProjectileHalfSizeTable,y
    sta TouchLeftB
    lda TouchTopB
-   add PlayerProjectileHalfSizeTable,y
+;   add PlayerProjectileHalfSizeTable,y
    sta TouchTopB
   jsr ChkTouchGeneric
   bcc Nope
@@ -649,6 +651,20 @@ No:
 .endproc
 
 .proc ObjectFireWalk
+  jsr EnemyFall
+  lda #$10
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+
+  ; Alternate between two frames
+  lda retraces
+  lsr
+  and #4
+  ora #$10
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+
+  jmp EnemyPlayerTouchHurt
   rts
 .endproc
 
@@ -841,10 +857,10 @@ AfterHeightWidth:
   ; ChkTouchGeneric wants the center of each object, so add width and height divided by 2
   ; maybe these could be adc instead of add?
   lda O_RAM::OBJ_DRAWX
-  add #16/2
+;  add #16/2
   sta TouchLeftA
   lda O_RAM::OBJ_DRAWY
-  add #16/2
+;  add #16/2
   sta TouchTopA
   lda PlayerDrawX
   ;add #8/2 <-- already handled when PlayerDrawX is written

@@ -58,7 +58,7 @@ PalLevelSel: .byt $07
              .byt $1c, $2c, $3c
              .byt $12, $2a, $30
              .byt $15, $25, $35
-             .byt $14, $24, $34
+             .byt $1a, $2a, $3a
              .byt $00, $10, $30
 
 AbilityIcons: .incbin "chr/sppowericons.chr"

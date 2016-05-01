@@ -14,6 +14,7 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;
+;DEBUG = 1
 
 .macro iNES_Header Banks, MapperNum
   .segment "INESHDR"
@@ -484,4 +485,5 @@ LSpecialCmd = $f7
 .enum LevelSpecialConfig
   PUZZLE_MODE       ; [ii] ... 00 - item IDs
   MAKE_BACKGROUNDS  ; sl bb - start screen, length, background id
+  SET_START_DIALOG  ; aa aa - dialog address
 .endenum

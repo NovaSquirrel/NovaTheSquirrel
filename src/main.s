@@ -24,35 +24,18 @@
   lda #0
   jsr pently_start_music
 
-  lda #4
-  sta PlayerHealth
-
   lda #0
   sta UploadTileAddress+1
 
-;  ldy #<HelloString
-;  lda #>HelloString
-;  jsr CopyToStringBuffer
-
-;  lda #VWF_BANK
-;  jsr SetPRG
-;  jsr ClearDynamicVRAM
-;  jsr clearLineImg
-;  ldx #0
-;  ldy #<StringBuffer
-;  lda #>StringBuffer
-;  jsr vwfPuts
-;  ldy #<$0c00
-;  lda #>$0c00
-;  jsr copyLineImg
-
   lda #MAINLOOP_BANK
   jsr SetPRG
+  lda NeedDialog
+  bne :+
   jsr RenderLevelScreens
   jsr WaitVblank
   lda #BG_ON
   sta PPUMASK
-  
+: 
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
   jsr ClearOAM
@@ -269,6 +252,11 @@ NotDie:
     jsr ChangePlayerAbility
   :
 
+  lda NeedDialog
+  beq :+
+    jsr StartCutscene ; this routine clears NeedDialog
+  :
+
   lda NeedLevelReload
   beq :+
     dec NeedLevelReload
@@ -282,11 +270,16 @@ NotDie:
     jmp MainLoopInit
   :
 
-  lda NeedDialog
-  beq :+
-    jsr StartCutscene ; this routine clears NeedDialog
-  :
+  lda keydown
+  and #KEY_SELECT|KEY_A|KEY_B
+  cmp #KEY_SELECT|KEY_A|KEY_B
+  bne :+
+  lda #VWF_BANK
+  jsr SetPRG
+  jmp ShowLevelSelect
+:
 
+.if 0
   ; Debugging feature
   lda keydown
   and #KEY_SELECT
@@ -300,6 +293,7 @@ NotDie:
     sta ScriptPtr+1
     inc NeedDialog
   :
+.endif
 
 ;  lda #OBJ_ON | BG_ON ;OBJ_CLIP | BG_CLIP
 ;  sta PPUMASK

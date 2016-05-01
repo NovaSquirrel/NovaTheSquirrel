@@ -82,13 +82,13 @@ DoNothing:
   bne :-
 
   ; Initialize the savefile if it's corrupted
-  ldx #11
+  ldx #7
 : lda SaveTag,x
   cmp SaveTagString,x
   bne InitSave
   dex
   bpl :-
-  bne NoInitSave
+  jmp NoInitSave
 InitSave:
   ; Clear out the save section
   lda #0
@@ -97,8 +97,11 @@ InitSave:
   sta $7f00,x
   inx
   bne :-
+  ; Mark the first level as available
+  lda #1
+  sta LevelAvailable
   ; Write tag to SRAM
-  ldx #11
+  ldx #7
 : lda SaveTagString,x
   sta SaveTag,x
   dex
@@ -121,37 +124,38 @@ NoInitSave:
   inx
   stx random2+1
 
+  .ifdef DEBUG
 ; Sample testing inventory
   lda #InventoryItem::HEALTH_RESTORE
-  sta InventoryType+0
+  sta InventorySaved+0
   lda #InventoryItem::ABILITY_GLIDER
-  sta InventoryType+1
+  sta InventorySaved+1
   lda #InventoryItem::ABILITY_BURGER
-  sta InventoryType+2
+  sta InventorySaved+2
   lda #InventoryItem::GREEN_KEY
-  sta InventoryType+3
+  sta InventorySaved+3
   lda #InventoryItem::BLOCK
-  sta InventoryType+4
+  sta InventorySaved+4
   lda #InventoryItem::ICE_SKATES
-  sta InventoryType+5
-  lda #1
-  sta InventoryLen+0
-  sta InventoryLen+1
-  sta InventoryLen+2
-  sta InventoryLen+3
-  sta InventoryLen+4
-  sta InventoryLen+5
+  sta InventorySaved+5
+  .endif
 
 ; Turn on NMI and make sprites use $1xxx in CHR RAM
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
 
+  lda LevelAvailable
+  cmp #1
+  beq SkipLevelSelect
   lda #VWF_BANK
   jsr SetPRG
-  jsr ShowLevelSelect
+  jmp ShowLevelSelect
+SkipLevelSelect:
+  lda #0
+  jmp StartLevel
 .endproc
 
-SaveTagString: .byt "NovaSquirrel"
+SaveTagString: .byt "squirrel"
 
 .proc InitMapper
   ; UNROM needs no intialization

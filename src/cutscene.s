@@ -1,5 +1,5 @@
 ; Princess Engine
-; Copyright (C) 2014-2016 NovaSquirrel
+; Copyright (C) 2016 NovaSquirrel
 ;
 ; This program is free software: you can redistribute it and/or
 ; modify it under the terms of the GNU General Public License as
@@ -356,6 +356,9 @@ Transition:
   sta PPUADDR
   lda FadeColors,y
   sta PPUDATA
+  lda #0
+  sta PPUSCROLL
+  sta PPUSCROLL
   ldx #4
 : jsr WaitVblank
   dex
@@ -796,8 +799,8 @@ Think:
 ; Command, switch speaker and style
 Narrate:
   jsr EndPageIfNeeded
-  jsr EraseOldTail
   jsr SwitchSpeaker
+  jsr EraseOldTail
   jmp IncreaseBy1
 
 ConditionalGotoCall:

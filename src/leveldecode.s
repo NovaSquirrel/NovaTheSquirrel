@@ -76,6 +76,7 @@
 
 .proc DecompressLevel ; A = level number
 LevelBank = 15 ; figure out what to put in here later; for now it's just gonna be LEVELS_BANK1
+  sta LevelNumber
   tax
   lda #SOUND_BANK
   jsr SetPRG
@@ -405,6 +406,9 @@ ObjectXY = DecodeObjectXY
   cmp #$f0
   bcs SpecialCommand
 
+  ; IDs below $f0 are regular commands
+NormalCommand:
+
   sta ObjectType
   iny
   lda (LevelDecodePointer),y ; read XY byte too
@@ -425,9 +429,8 @@ ObjectXY = DecodeObjectXY
 
   lda #2
   jsr IncreasePointerBy ; skip pointer over type byte and XY byte
+  ; pointer is now at the optional settings byte, if it exists
 
-  ; in that case it's just a normal command
-NormalCommand:
   lda ObjectType
   asl
   tay
@@ -438,12 +441,12 @@ NormalCommand:
   lda DecodeObjectTypesAddressesL,x
   pha
   lda ObjectTypesTable+1,y ; read byte specified for this command
-  ldy #0                   ; prepare Y for reading more bytes
+  ldy #0                   ; point Y at the optional settings byte again
   rts
 
 SpecialCommand:
-  inc16 LevelDecodePointer
-  ; Y is still zero
+  inc16 LevelDecodePointer ; skip over special command type byte
+  ; Y is still zero, A is still type byte
   and #$0f
   asl
   tax
@@ -464,7 +467,18 @@ SpecialCommandTable:
 SpecialConfigTable:
   .raddr SpecialConfigEnablePuzzle
   .raddr SpecialConfigMakeBackgrounds
+  .raddr SpecialConfigStartDialog
 SpecialConfigMakeBackgrounds:
+  rts
+
+SpecialConfigStartDialog:
+  inc NeedDialog
+  lda (LevelDecodePointer),y
+  sta ScriptPtr
+  iny
+  lda (LevelDecodePointer),y
+  sta ScriptPtr+1
+  jmp IncreasePointerBy2
 
 SpecialConfigEnablePuzzle:
   lda #1
@@ -489,10 +503,13 @@ SpecialConfigEnablePuzzle:
   inx
   jsr IncreasePointerBy1
   jmp @Loop
+
+; Special config command
 SpecialConfig:
   lda (LevelDecodePointer),y
   asl
   tax
+  inc16 LevelDecodePointer
   lda SpecialConfigTable+1,x
   pha
   lda SpecialConfigTable+0,x
@@ -500,7 +517,7 @@ SpecialConfig:
   rts
 IncreasePointerBy2:
   lda #2
-  skip2
+  bne IncreasePointerBy
 IncreasePointerBy1:
   lda #1
 IncreasePointerBy:
@@ -515,27 +532,21 @@ SpecialSetX:
   jmp IncreasePointerBy1
 SpecialWrite1Column:
   lda LevelDecodeXPos
-  ;lsr
   tax
   lda (LevelDecodePointer),y
   sta ColumnBytes,x
-  iny
-;  lda #1
   jmp IncreasePointerBy1
 SpecialWrite2Column:
   lda LevelDecodeXPos
-  ;lsr
   tax
   lda (LevelDecodePointer),y
   sta ColumnBytes,x
   iny
   lda (LevelDecodePointer),y
   sta ColumnBytes+1,x
-;  iny
   jmp IncreasePointerBy2
 SpecialWrite3Column:
   lda LevelDecodeXPos
-  ;lsr
   tax
   lda (LevelDecodePointer),y
   sta ColumnBytes,x
@@ -545,7 +556,6 @@ SpecialWrite3Column:
   iny
   lda (LevelDecodePointer),y
   sta ColumnBytes+2,x
-;  iny
   lda #3
   jmp IncreasePointerBy
 SpecialXMinus16:

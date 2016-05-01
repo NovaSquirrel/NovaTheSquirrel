@@ -109,13 +109,13 @@ int main(int argc, char *argv[]) {
       if(!strcmp(Command, "p"))
         fprintf(OutputFile, ".byt SCR::END_PAGE\r\n");
       if(!strcmp(Command, "goto"))
-        fprintf(OutputFile, ".byt SCR::GOTO %s\r\n", Arg);
+        fprintf(OutputFile, ".byt SCR::GOTO, <%s, >%s\r\n", Arg, Arg);
       if(!strcmp(Command, "call"))
-        fprintf(OutputFile, ".byt SCR::CALL %s\r\n", Arg);
+        fprintf(OutputFile, ".byt SCR::CALL, <%s, >%s\r\n", Arg, Arg);
       if(!strcmp(Command, "return"))
         fprintf(OutputFile, ".byt SCR::RETURN\r\n");
       if(!strcmp(Command, "choose"))
-        fprintf(OutputFile, ".byt SCR::CHOICES CHOICELIST::%s\r\n", Arg);
+        fprintf(OutputFile, ".byt SCR::CHOICES, CHOICELIST::%s\r\n", Arg);
       if(!strcmp(Command, "scene"))
         fprintf(OutputFile, ".byt SCR::SCENE, SCENES::%s\r\n", Arg);
       if(!strcmp(Command, "transition"))

@@ -130,6 +130,7 @@
   ; variables for the collision routine, ChkTouchGeneric
   ; uses screen pixels
   TouchTemp:       .res 1
+  TouchTemp2:      .res 1
   TouchTopA:       .res 1
   TouchTopB:       .res 1
   TouchLeftA:      .res 1
@@ -254,16 +255,22 @@ SCREEN_BOUNDARY = 1 ; boundary on left side of screen
 INVENTORY_UNLIMITED = 255
 INVENTORY_EQUIPPED  = 254
 
+  PlayerJumpCancel: .res 1
+
   IRQAddress:       .res 2
+
+  CurWorld:         .res 1 ; current world for level select
+  LevelSelectInventory: .res 1
 
   ; the sprite list from the ROM has to be copied here so we can access it in gameplay banks
   SpriteListRAM:      .res 256
 .segment "SAVE"
 SaveStart:
-  SaveTag:            .res 12
+  SaveTag:            .res 8
   InventorySaved:     .res InventoryLen*2
   ScriptFlagsSaved:   .res 32  ; version of the flags for scripts that are actually in the save file. 256 flags
   LevelCleared:       .res 8   ; 64 levels, bit = enabled
+  LevelAvailable:     .res 8   ; 64 levels, bit = enabled
   SavedAbility:       .res 1
 SaveEnd:
 .code   

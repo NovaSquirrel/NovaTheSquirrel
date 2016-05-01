@@ -21,7 +21,11 @@ TempAngle = 11
 IsSpinning = 12
 NovaDirection = 13
 IconNum = 14
-WorldNum = 15
+WorldTimes8 = 15
+
+  lda SavedAbility
+  sta PlayerAbility
+
 ; Stop any music that was playing
   lda #SOUND_BANK
   jsr SetPRG
@@ -67,6 +71,9 @@ WorldNum = 15
   lda #>Instructions4
   ldy #<Instructions4
   jsr CopyToStringBuffer
+  lda CurWorld
+  add #'1'
+  sta StringBuffer+9
   jsr clearLineImg
   ldx #0
   jsr vwfPutsBuffer
@@ -117,7 +124,6 @@ WorldNum = 15
   lda #OBJ_ON|BG_ON
   sta PPUMASK
 
-
 ; Get ready for main loop
   lda #24
   sta CurrentAngle
@@ -125,6 +131,12 @@ WorldNum = 15
   sta NovaDirection
   sta IsSpinning
   sta CurLevel
+  sta LevelSelectInventory
+  lda CurWorld
+  asl
+  asl
+  asl
+  sta WorldTimes8
 
 ; Main loop
 Loop:
@@ -139,8 +151,26 @@ Loop:
   lda keynew
   and #KEY_A
   beq :+
+    .ifndef DEBUG
+      lda WorldTimes8
+      ora CurLevel
+      tay
+      jsr IndexToBitmap
+      and LevelAvailable,y
+      beq :+
+    .endif
     lda CurLevel
     jmp StartLevel
+  :
+  lda keynew
+  and #KEY_START
+  beq :+
+    jsr WaitVblank
+    lda #0
+    sta PPUMASK
+    jsr UploadNovaAndCommon
+    inc LevelSelectInventory
+    jmp PauseScreen
   :
   lda keynew
   and #KEY_LEFT
@@ -149,6 +179,25 @@ Loop:
     sta NovaDirection
     dec CurLevel
     jmp EndSpinStart
+  :
+  lda keynew
+  and #KEY_UP
+  beq :+
+    ldy CurWorld
+    cpy #7
+    beq :+ ; Can't go past last world
+    lda LevelAvailable+1,y
+    beq :+ ; Can't go past last available world
+    inc CurWorld
+    jmp ShowLevelSelect
+  :
+  lda keynew
+  and #KEY_DOWN
+  beq :+
+    lda CurWorld ; Can't go before first world
+    beq :+
+    dec CurWorld
+    jmp ShowLevelSelect
   :
   lda keynew
   and #KEY_RIGHT
@@ -230,6 +279,7 @@ DrawLoop:
   lda #$20
   jsr DrawLevelIcon
   inc IconNum
+
   dec 6
   bne DrawLoop
 
@@ -280,12 +330,37 @@ DrawLevelIcon:
   add #(240/2)-4
   sta OAM_YPOS+(4*4),y
 
-  ; Write attributes
+  ; Change the color based on whether the level is available or cleared
+  ; Attributes byte
+  lda #OAM_COLOR_3
+  sta 2
+
+  ; Determine the right attributes and write them
+  tya
+  pha
+  lda IconNum
+  ora WorldTimes8
+  tay
+  jsr IndexToBitmap
+  pha ; save mask to reuse it
+  and LevelAvailable,y
+  beq :+
   lda #OAM_COLOR_1
+  sta 2
+: pla ; reuse mask
+  and LevelCleared,y
+  beq :+
+  lda #OAM_COLOR_2
+  sta 2
+:
+  pla
+  tay
+  lda 2
   sta OAM_ATTR+(4*0),y
   sta OAM_ATTR+(4*1),y
   sta OAM_ATTR+(4*2),y
   sta OAM_ATTR+(4*3),y
+  ; Attribute for number
   lda #OAM_COLOR_3
   sta OAM_ATTR+(4*4),y
 

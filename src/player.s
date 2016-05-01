@@ -262,10 +262,13 @@ NotOffTopBottom:
     :
     jmp SkipTail
 NoTail:
+  lda PlayerJumping
+  bne OkayIfLeftRight
   lda keylast
   and #KEY_B|KEY_LEFT|KEY_RIGHT
   bne :+
-  lda keydown
+OkayIfLeftRight:
+  lda keynew
   and #KEY_B
   beq :+
     lda PlayerPYH
@@ -309,16 +312,39 @@ SkipTail:
 
   lda PlayerVYH
   bpl :+
+    lda PlayerJumpCancel
+    bne :+
     lda keydown        ; cancel a jump
     and #KEY_A
     bne :+
       lda PlayerJumpCancelLock
       bne :+
+        inc PlayerJumpCancel
+
+        ; Forced jump like when climbing are handled differently
+        lda ForceControllerTime
+        beq @IsNotForce
         lda #0
+        sta PlayerVYL
         sta PlayerVYH
+        beq :+
+@IsNotForce:
+
+        lda PlayerVYL
+        cmp #<(-$20)
+        bcs :+
+        lda #>(-$20)
+        sta PlayerVYH
+        lda #<(-$20)
         sta PlayerVYL
   :
 
+  lda PlayerJumpCancel
+  beq :+
+    lda PlayerVYH
+    sta PlayerJumpCancel
+  :
+ 
   lda PlayerWalkLock
   bne NotWalk
   ; handle left and right
@@ -759,7 +785,7 @@ FC___LR:
     cmp #M_SOLID_TOP|M_FALLABLE_LEDGE
     bne NotFallthrough
       lda PlayerDownTimer
-      cmp #15
+      cmp #8
       bcc NotFallthrough
         lda #KEY_DOWN
         sta ForceControllerBits
@@ -776,8 +802,12 @@ FC___LR:
   cmp #Metatiles::LADDER_TOP
   bne :+
     lda PlayerDownTimer
-    cmp #15
+    cmp #4
     bcc :+
+     lda #KEY_DOWN
+     sta ForceControllerBits
+     lda #2
+     sta ForceControllerTime
      rts
   :
 
@@ -799,10 +829,7 @@ FC___LR:
   sta PlayerPYL
 
 OfferJump:
-  lda keylast
-  and #KEY_A
-  bne :+
-  lda keydown
+  lda keynew
   and #KEY_A
   beq :+
     lda #0
@@ -868,10 +895,10 @@ DrawX2 = 4
   ; copy to PlayerDrawX and PlayerDrawY which are used for collision detection
   ; PlayerDrawY is also used for the coin display when you get coins
   lda DrawX
-  add #8/2
+;  add #8/2
   sta PlayerDrawX
   lda DrawY
-  add #24/2
+;  add #24/2
   sta PlayerDrawY
 
   ; if the player's invincible, flicker their sprite
@@ -1228,7 +1255,7 @@ AbilityNone:
 : tya
   jsr MakeShot
   bcc Exit
-  lda #$20
+  lda #$40
   jsr SetXVelocity
   lda #20/4
   sta ObjectTimer,x
@@ -1281,7 +1308,7 @@ AbilityBomb:
 @Exit:
   rts
 AbilityFire:
-  lda #3
+  lda #2
   jsr LimitObjectAmount
   lda #PlayerProjectileType::FIREBALL
   jsr MakeShotWide

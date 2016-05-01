@@ -60,15 +60,14 @@ level1Data:
   LObjN LO::R_GROUND,         2, 5, 6, 5
   LObjN LO::RECT_2,           1, 11, 1, LN2::BLACK, 4
   LObj  LO::S_SIGNPOST,       1, 4
-  LObjN LO::R_GROUND,         3, 4, 8, 0
+  LObjN LO::R_GROUND,         3, 4, 7, 0
   LObjN LO::WIDE_2,           2, 3, 3, LN2::FLOWER
   LObj  LO::S_SOLID_BLOCK,    0, 7
   LObj  LO::S_PRIZE,          1, 4
   LObjN LO::WIDE_1,           0, 8, 4, LN1::FALLTHROUGH_LEDGE
   LObj  LO::S_SPRING,         0, 12
-  LObjN LO::TALL_2,           5, 5, 2, LN2::TRUNK
-  LObj  LO::S_SOLID_BLOCK,    0, 8
-  LObjN LO::TALL_2,           0, 9, 3, LN2::TRUNK
+  LObj  LO::S_SOLID_BLOCK,    5, 4
+  LObjN LO::TALL_2,           0, 5, 7, LN2::TRUNK
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 21
   LObjN LO::WIDE_1,           1, 4, 2, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           0, 8, 1, LN1::SOLID_LEDGE
