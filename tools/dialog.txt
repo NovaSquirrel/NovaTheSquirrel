@@ -1,0 +1,348 @@
+:Intro:
+`scene NOVA_AND_KEE
+<0 NOVA_WOW>Wow, where are we? This doesn't look like the same forest...
+<1 KEE>Not sure. Not sure why you're suddenly a lot taller either, and... green?
+<0 NOVA_WOW>Am I? You're different too. Hey, maybe that weird cat over there knows something about this place.
+`scene NOVA_KEE_LUVI
+<0 NOVA>Hellooo cat!
+<2 LUVI>Hiiii Nova!
+<0 NOVA>... you know my name already?
+<2 LUVI>Of course. It says it right there above your speech bubble. I'm Luvi, the spacecat, and I'm gonna help you get started on your adventure. Your changes came with new powers, and you're gonna need to know how to use them. You're going to be really important here pretty soon.
+<1 KEE>And me too, right?
+<2 LUVI>Nope! You're needed somewhere else, though. Someone else will have to help. Anyway, Nova, press Up when you're at a sign and I'll help you.
+`end
+
+:Tutorial1:
+`scene NOVA_LUVI_KEE
+<1 LUVI>First I'll explain the controls. A to jump, like most games. However, B can either be attack or run, based on if you're walking or not.
+<0 NOVA_YAY>I can attack? With what?
+<1 LUVI>Your tail. You can swish it to shoot out a star in front of you that stuns enemies.
+<0 NOVA>Oh really? I'll try that
+<1 LUVI>Also, there are spikes right up ahead. Those obviously hurt you. Don't step in lava or whatever if you come across it later either.
+<0 NOVA>I'll make sure not to.
+`end
+
+:Tutorial2:
+`scene NOVA_LUVI_KEE
+<1 LUVI>One cool thing you can do is copy the abilities of certain enemies. Stun this one and then press Up+B while facing it.
+>2 KEE<Hmph, sure hope I have some cool abilities too.
+<0 NOVA>And what if I want to get rid of it later?
+<1 LUVI>To get rid of an ability, press Down+Select.
+>0 NOVA<I'd better remember all these button combinations.
+`end
+
+:Tutorial3:
+`scene NOVA_LUVI_KEE
+<1 LUVI>You can jump down from this white colored platform. Stand on it and then hold Down.
+<0 NOVA>White platform? Like in the third Super M-
+<1 LUVI>Yes.
+`end
+
+:Tutorial4:
+`scene NOVA_LUVI_KEE
+<1 LUVI>Use Up to grab onto a ladder or Down to drop down onto it from the top.
+<2 KEE>Yeah Nova, show off your rad climbing skills.
+`end
+
+:Tutorial5:
+`scene NOVA_LUVI_KEE
+<1 LUVI>That should be everything you need to get started. I'm going to go take Kee somewhere that I think will help him. Good luck!
+<0 NOVA_AW>Aw, bye Luvi!
+>2 KEE<Adventure fox~
+<0 NOVA>Where should I go now, though?
+<1 LUVI>Just keep heading forward, I suppose. Until you get to Bummer Club. By the way, the name of this world is Caffie.
+`end
+
+:Nice_Announcement:
+`scene FORUMS
+[KIERAN]New announcement!
+[KIERAN]Henceforth, replying to any post with nothing more than the word "nice" or a loopholed "you think you're being witty but you're not" variation of it will result in an immediate arrest. Yes, this has seriously become this large of a problem and it's going to stop.
+[KIERAN]This law also covers Smiloids, those super dangerous robots that shoot people while wishing them a NICE day. I honestly don't know why they haven't been banned until now. With the recent event where the robot Scheme Team army tried to kill everyone we really need to tighten up on security around here. I'm just glad the two Blaster Guys were able to take care of things, but no one knows where they are now, so we can't just rely on them to save us. I have also IP banned the Scheme Team from our forums, just in case.
+`end
+
+:SherwinKidnap:
+`scene TWO_BAD_GUYS
+<0 S_TEAM>So one of the Blaster Guys is around here, right? We'd better capture him so that he can't interfere with the plans, now that we've broken out of jail and stuff.
+<1 S_TEAM>Yeah, let's go do that. Also let's pretend to be cops.
+<0 S_TEAM>GOOD idea. Hey, I think he's over there checking his mail!
+`scene SHERWIN_ALONE
+<0 SHERWIN>Oh it's a fine day. *checks mail*
+`scene SHERWIN_WITH_BAD_GUYS_AS_POLICE
+<0 SHERWIN>Whoa, could you two maybe knock?
+<2 S_TEAM>You're coming with us!!
+<0 SHERWIN>Wait, am I being arrested? Hi police guy!
+<1 S_TEAM>Yeah, we know who you are, you're one of the blaster guys.
+<0 SHERWIN>Uh, no! I'm Sherwin actually.
+<1 S_TEAM>Suuuuure. I'd recognize that beard and orange shirt anywhere.
+<2 S_TEAM>We're going to lock you up forever yes you heard me FOREVER.
+[]-Sherwin gets taken to the Scheme Team lair-
+`transition
+`scene SHERWIN_ALONE
+<0 SHERWIN>WELL I guess I'll go post about this on SMWCentral.
+`scene FORUMS
+[]-halp I've been taken-
+[SHERWIN]yeah so these robot guys with guns just took me. this is illegal you know!
+[KIERAN]omg they must be the scheme team
+[SHERWIN]maybe??
+[KIERAN]I *JUST* arrested those idiots, and they're already out again. great! Well I guess we're doomed now!
+`end
+
+
+:FirstSchemeTeamEncounter:
+`scene NOVA_AND_BAD_GUYS
+<0 NOVA>Oh hey, do you know how to get to Bummer Club from here?
+<1 S_TEAM>Oh look, target practice!!
+<0 NOVA_AW>W-wait! That's not nice!
+<1 S_TEAM>We're the Scheme Team, we're not supposed to be nice, and you're going down!!
+<0 NOVA_MAD>Oh, is that how it's going to be? Fine, I'll fight you, but you're going to lose~
+`end
+
+`#(boss battle I guess?)
+`scene TWO_BAD_GUYS
+<0 S_TEAM>Ouch. We're going to have to do something about that squirrel, because she could take our entire operation down if she found out. We need to tell the boss.
+`transition
+`scene BAD_GUYS_AND_LEADER
+<0 S_TEAM>Hey Bill???
+<2 BILL>What? Why do you guys look beat-up?
+<0 S_TEAM>There's this weird green squirrel that might be an issue for us. She was able to kick our butts, and she seems stronger than the Blaster Guys were and she doesn't even have a gun. She went on towards Bummer Club afterwards, not sure what she's doing.
+<2 BILL>Well, she won't be a problem for much longer. We'll just send the Smiloids after her when they're done.
+`end
+
+:AfterFirstBattle:
+`scene FORUMS
+[]-halp I've been taken-
+[SHERWIN]So, I guess one benefit to being stuck here with the bad guys is I get to leak out information on whatever they're doing. They can't read this forum, right?
+[KIERAN]They're IP banned. Anyone else can read it though.
+[SHERWIN]Anyway, I heard there was a fight with some weird green squirrel? She totally kicked some Scheme Team members' butts. I'll keep reporting on this.
+[KIERAN]Oh good! Oh! Do you know exactly WHERE you are? It would really help to know where their base is.
+[SHERWIN]I think this place is named Atomic Videoclip Zone?? And Nova said she was going to Bummer Club.
+[KIERAN]Well then, I'll be waiting for her there.
+[SHERWIN]Btw guys I'm not weak and I could totally break out of here. I'm just staying so I can give you guys info. That, and they would probably catch me again and I would be worse off.
+[KIERAN]Understood.
+`transition
+`scene NOVA_AND_KIERAN
+<1 KIERAN>Heyyy squirrel.
+<0 NOVA_YAY>Oh hi!
+<1 KIERAN>You probably want some answers. This is a virtual world named Caffie, and I'm Kieran, its leader. And now I'm going to be needing your help.
+<0 NOVA>Oh yeah, I heard I would be needed around here!
+<1 KIERAN>Anyway, those robot guys you fought? They're members of the Scheme Team, a big group of bad guys that seems intent on taking over the world or destroying it or whatever. I don't even know. We arrested them after they tried last time and now they're back at it. Will you help?
+<0 NOVA>Yeah, of course!
+<1 KIERAN>Great. This place has its own forum, and we're keeping track of the situation on there. You should go look.
+<0 NOVA>Alright. I'll go register.
+<1 KIERAN>In the meantime you should focus on getting ready for facing off against the Scheme Team while we still have time. This place, Bummer Club, is a big puzzle challenge and there's a prize waiting at the end which should help give you the advantage.
+<0 NOVA>Oh, okay.
+`end
+
+:SmiloidAtBummerClub:
+`scene NOVA_AND_SMILOID
+<2 S_TEAM>Hey squirrel! Your adventure stops here!
+<1 SMILOID>Have a nice day!!!! Prepare to die!
+<0 NOVA_MAD>Uh, no! I'm still going to win.
+`end
+
+:AfterSmiloidAtBummerClub:
+`scene NOVA_AND_SMILOID
+<2 S_TEAM>Oh is that so? Then we'll just have to build a bigger and stronger model!!
+`end
+
+:NovaAndEclipse:
+`scene NOVA_AND_ECLIPSE
+<0 NOVA>Another squirrel!
+<1 ECLIPSE>Oh wow. Hi, Nova! 
+<0 NOVA>You know me?
+<1 ECLIPSE>Yeah, I'm your long-lost sister, Eclipse. Anyway, the prize for completing Bummer Club is pretty rad. I'm awarding you some cool pants.
+<0 NOVA_STRAIGHT>...What? 
+<1 ECLIPSE>Specifically, Nuclear Power Pants. This pair will power up any explosions you make. I'm not making this up.
+<0 NOVA>Alright, bigger explosions sound like they'll help. Thank you, Eclipse.
+`end
+
+:JustGotPants:
+`scene FORUMS
+[]-halp I've been taken-
+[NOVA_SILLY]Hey guys. I just got through Bummer Club and all I have to show for it are these new pants, hahaha. Where should I go next?
+[KIERAN]Hey, Nuclear Power Pants are NOT a laughing matter.
+[SHERWIN]I dunno I'm kind of laughing right now.
+[KIERAN]Anyway, head over to Frozen Volcano. Just trust me on this - I thnk it's really important that you get some Fa-a-ancy cola.
+[NOVA]What's so fancy about it?
+[KIERAN]No, it's fa-a-ancy. Completely different. Anyway, in Frozen Volcano, there's this dude named MolSno. He has a real problem so he bought every single can of fa-a-ancy cola there is and you'll just have to get some from him.
+[NOVA]Sure, I guess I'll try that. But why cola?
+[KIERAN]I'll let you in on a little secret - the name Caffie comes from caffeine, and caffeine is this really powerful thing here, especially if a squirrel uses it.
+`end
+
+:MolSnoMeet:
+`scene NOVA_AND_MOLSNO
+<0 NOVA>Heyyy I assume you're MolSno? I need some of your fa-a-ancy cola so I can save the world.
+<1 MOLSNO>Yeah, no. This cola is all mine, all 65535 cans of it I have here. I absolutely need every single one for myself. Totally.
+<0 NOVA_AW>What? Kieran told me that it was really important. Please?
+<1 MOLSNO>No. Fight me!
+<0 NOVA_SILLY>Haha, okay.
+`end
+`
+:MolSnoAfterFight:
+`scene NOVA_AND_MOLSNO
+<1 MOLSNO>Okay, sure, I guess you can have some cola.
+<0 NOVA>Thank you. Don't be so unreasonable next time!
+`end
+
+:NovaAndRaoul:
+`scene NOVA_AND_RAOUL
+<1 RAOUL>Hey, it's me, Raoul, I can get you to the Scheme Team's headquarters with this teleporter I made.
+<0 NOVA>Okay, k00l, that sounds way faster than walking all the way there!
+`scene BAD_GUYS_AND_LEADER
+`transition
+[]A little while earlier
+<0 S_TEAM>Sooo some fox was going to give Nova a teleporter to get into our base. Obviously this isn't OK.
+<1 S_TEAM>We already took care of it though. We sabotaged it so it's actually going to teleport her to the World of Insanity.
+<2 BILL>Haha yeah hopefully she won't survive there.
+`transition
+`scene NOVA_AND_RAOUL
+<1 RAOUL>Alright, you ready? I'll go send you on your way then.
+<0 NOVA>Okay, send me to the Scheme Team's headquarters.
+`transition
+`scene NOVA_ALONE
+>0 NOVA_MAD<Okayyyy this is NOT the right place, dumb fox. Let's see if I can get out of here.
+
+:WrongPlace:
+`scene FORUMS
+[]-halp I've been taken-
+[NOVA_MAD]Yeah I've been sent to the wrong place!!
+[SHERWIN]WHAT? Well, hopefully you can get to Atomic Videoclip Zone soon! The Scheme Team are doing some really strange things.
+[SHERWIN]They have one of those spinner things that make animal noises, but I think it's some sort of secret doomsday device. OR maybe they're just trying to throw us off. That sounds likely too.
+[NOVA]I'll try. Hopefully I find someone who can help.
+`end
+
+:SmiloidAtWOI:
+`scene NOVA_AND_SMILOID
+<2 S_TEAM>We made the Smiloids better and stronger and now we're pretty sure we'll win.
+<1 SMILOID>Have a nice day! Or maybe a bad one hahaha.
+<0 NOVA>Nope, you're not going to stop this squirrelll
+`end
+
+:AfterSmiloidAtWOI:
+`scene NOVA_AND_SMILOID
+<2 S_TEAM>You're still going down, even if Bill has to be the one to do it!! We will succeed!
+`end
+
+:MeetRemy:
+`scene NOVA_AND_REMY
+<0 NOVA>Hi, I'm Nova. Whatcha doing here?
+<1 REMY>Ay, I'mma bounty huntin' space squirrel, an' I've been lookin' for work 'ere.
+<0 NOVA_WOW>SPACE squirrel? So I imagine you have a cool ship?
+<1 REMY>Ya, d'ya need ta' get somewhere?
+<0 NOVA>Yes actually. Do you think you could get me to Atomic Videoclip Zone?
+<1 REMY>Sure. Nothin' betta ta' do.
+`transition
+`scene NOVA_ALONE
+<0 NOVA>Okay, now this is the right place. Alright, Remy, wanna go with me to go save the world?
+<0 NOVA_AW>... Remy?
+`scene NOVA_REMY_JAFGUAR
+<1 REMY>Oh, my bad, I juss met dis genie guy, an' he promised ta' grant "butt wishes" an' I dunno what he means, buuuut dat sounds more fun, so seeya!
+<2 JAFGUAR>Yeah Remy let's go!!
+<0 NOVA>Remy! Fine, I'll go by myself.
+`end
+
+`scene NOVA_ALONE
+>0 NOVA_AW<Here it is, the final battle. I've got to give it my best shot.
+[]Nova drinks the F-a-ancy cola and equips the Nuclear Power Pants in preparation for the battle, then nervously walks through the door...
+`transition
+`scene NOVA_AND_BILL
+<1 BILL>So, you managed to get all the way here? Looks like I'm going to have to take you down myself!
+<0 NOVA_MAD>Not a chance, giant floating head guy!
+<1 BILL>What did you just call me?? Time to die, squirrel!
+`end
+
+`scene NOVA_ALONE
+<0 NOVA_WOW>W-wow, did I really just win?
+[]Having defeated Bill and the Scheme Team, Nova then finally frees Sherwin.
+`scene NOVA_AND_SHERWIN
+<1 SHERWIN>Thank you for rescuing me! I always believed in you, Nova.
+[]Kieran also shows up.
+`scene NOVA_SHERWIN_KIERAN
+<2 KIERAN>Wow Nova, Caffie will be eternally grateful.
+<0 NOVA_YAY>Haha yeah. I'm the hero!~
+<2 KIERAN>You're very popular with Caffie residents. One of them, Jafguar said he'd grant you one free wish...
+<0 NOVA_AW>Not interested in any of his "butt wishes".
+<2 KIERAN>Uh, no? Regular ones! Like, maybe you want to be a princess or something.
+<0 NOVA_WOW>Oh my goodness, I totally might.
+`transition
+`scene NOTHING
+[]-Epilogue-
+Nova, with the help of a wish, went on to found the kingdom of Toasterland as a nation of cute animals like herself. Sherwin made a second home there, and a lot of cuties just decided to move there.
+`end
+
+`#---MISC STUFF---
+
+:NoFlippersJoke:
+`scene NOTHING
+[]Ooops! Nova can't swim without flippers!
+Haha just kidding. That won't come until World 2.
+`end
+
+:SignBummerAbout:
+`scene NOVA_AND_SIGN
+<1 SIGN>Welcome to Bummer Club! This place is a giant puzzle clubhouse and if you're clever enough to reach the end there is a fabulous prize waiting for you! These puzzle levels may assign you a specific ability to use or certain items to use, and many of them require using items or abilities on the environment.
+`end
+
+:SignChipAbout:
+`scene NOVA_AND_SIGN
+<1 SIGN>If you see computer chips in a level that means that you need to collect all or most of them to finish the level.
+`end
+
+:SignBootsAbout:
+`scene NOVA_AND_SIGN
+<1 SIGN>In puzzle levels, water is deadly, unless you get blue boots (flippers) first. Red boots protect you from fire, green boots let you get past green forcefields, and gray boots let you walk on ice without sliding.
+`end
+
+:SignWrapAbout:
+`scene NOVA_AND_SIGN
+<1 SIGN>In puzzle levels, falling off the bottom of the screen wraps you to the top, instead of killing you.
+`end
+
+:SignPickupAbout:
+`scene NOVA_AND_SIGN
+<1 SIGN>You can pick up these blocks. Stand on them and press Down+A.
+`end
+
+:SignWaterFire:
+`scene NOVA_AND_SIGN
+<1 SIGN>PROTIP: Water puts out fire.
+`end
+
+:SignPrize:
+`scene NOVA_AND_SIGN
+<1 SIGN>Congratulations for completing the puzzle challenge! Your prize awaits in the next room.
+`end
+
+:NoFlippers:
+`scene NOTHING
+[]Ooooops! Nova can't swim without flippers!!!
+`end
+
+:AboutMinecarts:
+`scene NOVA_AND_SIGN
+<1 SIGN>Enjoy Frozen Volcano's really cool minecart rides. 
+`end
+
+:LiaCameo:
+`scene NOVA_AND_LIA
+`ifitem ABILITY_BOMB
+`goto LiaCameoAlreadyBombs
+`asm 
+: lda InventoryItem::ABILITY_BOMB
+: jsr InventoryGiveIfDontHave
+: brk
+<1 LIA>Hey Nova, I'm Lia. To help you on your adventure, I'm giving you my infinite supply of bombs. Have fun!
+<0 NOVA>Wow, thanks Lia!
+`end
+:LiaCameoAlreadyBombs:
+<1 LIA>Nooooova stop hanging around here and go save the world!
+`end
+
+:ItiCameo:
+`scene NOVA_AND_ITI
+`end
+
+:NekoEdCameo:
+`scene NOVA_AND_NEKOED
+<1 NEKOED>I wanted to be in this game, so here I am! I should probably give you something cool.
+`end
