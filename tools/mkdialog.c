@@ -94,50 +94,50 @@ int main(int argc, char *argv[]) {
     if(!*Buffer)
       continue;
     if(Buffer[0] == ':')
-      fprintf(OutputFile, "%s\r\n", Buffer+1);
+      fprintf(OutputFile, "%s", Buffer+1);
     else if(Buffer[0] == '`' || Buffer[0] == '?') {
       char *Arg = strchr(Buffer, ' ');
       if(Arg) // If argument found, separate it from command
         *(Arg++) = 0;
       char *Command = Buffer+1;
       if(!strcmp(Command, "end"))
-        fprintf(OutputFile, ".byt SCR::END_SCRIPT\r\n");
+        fprintf(OutputFile, ".byt SCR::END_SCRIPT");
       if(!strcmp(Command, "poke"))
-        fprintf(OutputFile, ".byt SCR::POKE, <%s, >%s\r\n", Arg, Arg);
+        fprintf(OutputFile, ".byt SCR::POKE, <%s, >%s", Arg, Arg);
       if(!strcmp(Command, "asm"))
-        fprintf(OutputFile, ".byt SCR::RUN_ASM\r\n");
+        fprintf(OutputFile, ".byt SCR::RUN_ASM");
       if(!strcmp(Command, "p"))
-        fprintf(OutputFile, ".byt SCR::END_PAGE\r\n");
+        fprintf(OutputFile, ".byt SCR::END_PAGE");
       if(!strcmp(Command, "goto"))
-        fprintf(OutputFile, ".byt SCR::GOTO, <%s, >%s\r\n", Arg, Arg);
+        fprintf(OutputFile, ".byt SCR::GOTO, <%s, >%s", Arg, Arg);
       if(!strcmp(Command, "call"))
-        fprintf(OutputFile, ".byt SCR::CALL, <%s, >%s\r\n", Arg, Arg);
+        fprintf(OutputFile, ".byt SCR::CALL, <%s, >%s", Arg, Arg);
       if(!strcmp(Command, "return"))
-        fprintf(OutputFile, ".byt SCR::RETURN\r\n");
+        fprintf(OutputFile, ".byt SCR::RETURN");
       if(!strcmp(Command, "choose"))
-        fprintf(OutputFile, ".byt SCR::CHOICES, CHOICELIST::%s\r\n", Arg);
+        fprintf(OutputFile, ".byt SCR::CHOICES, CHOICELIST::%s", Arg);
       if(!strcmp(Command, "scene"))
-        fprintf(OutputFile, ".byt SCR::SCENE, SCENES::%s\r\n", Arg);
+        fprintf(OutputFile, ".byt SCR::SCENE, SCENES::%s", Arg);
       if(!strcmp(Command, "transition"))
-        fprintf(OutputFile, ".byt SCR::TRANSITION\r\n", Arg);
+        fprintf(OutputFile, ".byt SCR::TRANSITION", Arg);
       if(!strcmp(Command, "noskip"))
-        fprintf(OutputFile, ".byt SCR::NO_SKIP\r\n", Arg);
+        fprintf(OutputFile, ".byt SCR::NO_SKIP", Arg);
       if(Buffer[0] == '?') {
         if(!strcmp(Command, "on"))
-          fprintf(OutputFile, ".byt SCR::IF_FLAG_ON, EventFlags::%s\r\n", Arg);
+          fprintf(OutputFile, ".byt SCR::IF_FLAG_ON, EventFlags::%s", Arg);
         if(!strcmp(Command, "off"))
-          fprintf(OutputFile, ".byt SCR::IF_FLAG_OFF, EventFlags::%s\r\n", Arg);
+          fprintf(OutputFile, ".byt SCR::IF_FLAG_OFF, EventFlags::%s", Arg);
         if(!strcmp(Command, "item"))
-          fprintf(OutputFile, ".byt SCR::IF_ITEM, InventoryItem::%s\r\n", Arg);
+          fprintf(OutputFile, ".byt SCR::IF_ITEM, InventoryItem::%s", Arg);
         if(!strcmp(Command, "notitem"))
-          fprintf(OutputFile, ".byt SCR::IF_NOT_ITEM, InventoryItem::%s\r\n", Arg);
+          fprintf(OutputFile, ".byt SCR::IF_NOT_ITEM, InventoryItem::%s", Arg);
       } else {
         if(!strcmp(Command, "on"))
-          fprintf(OutputFile, ".byt SCR::FLAG_ON, EventFlags::%s\r\n", Arg);
+          fprintf(OutputFile, ".byt SCR::FLAG_ON, EventFlags::%s", Arg);
         if(!strcmp(Command, "off"))
-          fprintf(OutputFile, ".byt SCR::FLAG_OFF, EventFlags::%s\r\n", Arg);
+          fprintf(OutputFile, ".byt SCR::FLAG_OFF, EventFlags::%s", Arg);
         if(!strcmp(Command, "toggle"))
-          fprintf(OutputFile, ".byt SCR::FLAG_TOGGLE, EventFlags::%s\r\n", Arg);
+          fprintf(OutputFile, ".byt SCR::FLAG_TOGGLE, EventFlags::%s", Arg);
       }
     } else {
       Text = Buffer;
