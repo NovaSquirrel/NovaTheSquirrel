@@ -62,7 +62,9 @@ introData:
   LObjN LO::WIDE_2,           2, 12, 2, LN2::BUSH
   LObjN LO::TALL_1,           4, 8, 4, LN1::LADDER
   LObjN LO::R_GROUND,         1, 8, 7, 4
-  LObj  LO::S_EXIT_DOOR,      4, 6
+  LObj  LO::S_SIGNPOST,       1, 7
+  LWriteCol <Tutorial5, >Tutorial5
+  LObj  LO::S_EXIT_DOOR,      3, 6
   LFinished
 
 introSprite:

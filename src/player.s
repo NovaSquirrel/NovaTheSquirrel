@@ -895,10 +895,8 @@ DrawX2 = 4
   ; copy to PlayerDrawX and PlayerDrawY which are used for collision detection
   ; PlayerDrawY is also used for the coin display when you get coins
   lda DrawX
-;  add #8/2
   sta PlayerDrawX
   lda DrawY
-;  add #24/2
   sta PlayerDrawY
 
   ; if the player's invincible, flicker their sprite
@@ -1106,7 +1104,7 @@ NoExtraTile:
   beq NoCoinShow
     dec CoinShowTimer
     lda PlayerDrawY ; PlayerDrawY is offset to the center, so change the offset
-    sub #12+12
+    sub #12
     sta OAM_YPOS+(4*0),x
     sta OAM_YPOS+(4*1),x
     sta OAM_YPOS+(4*2),x
