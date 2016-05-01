@@ -766,18 +766,24 @@ SkipAddr:
   jmp SetPRG_Restore
 .endproc
 
-; A = level to start
-.proc StartLevel
-  pha
-  sta StartedLevelNumber
-  lda SavedAbility
-  sta PlayerAbility
+.proc CopyFromSavedInventory
   ; Copy inventory
   ldx #InventoryLen*2-1
 : lda InventorySaved,x
   sta InventoryType,x
   dex
   bpl :-
+  rts
+.endproc
+
+; A = level to start
+.proc StartLevel
+  pha
+  sta StartedLevelNumber
+  lda SavedAbility
+  sta PlayerAbility
+
+  jsr CopyFromSavedInventory
 
   lda #4
   sta PlayerHealth
@@ -886,11 +892,26 @@ WriteIncreasing16:
 ; inputs: A (item to give)
 ; outputs: carry (item was given)
 .proc InventoryGiveItem
+  sta TempVal+2
+; See if the item is already in the list
   ldx #InventoryLen-1
 : ldy InventoryType,x
-  beq Empty
+  cpy TempVal+2
+  bne :+
+  ; Item found
+  inc InventoryAmount,x
+  rts
+: ; Item not found, keep looking
   dex
-  bpl :-
+  bpl :--
+
+; If item isn't in the list, put it in the first blank slot
+  ldx #0
+: ldy InventoryType,x
+  beq Empty
+  inx
+  cpy #InventoryLen
+  bne :-
   clc ; No free slots
   rts
 

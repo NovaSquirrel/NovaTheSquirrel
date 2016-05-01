@@ -23,8 +23,10 @@ NovaDirection = 13
 IconNum = 14
 WorldTimes8 = 15
 
+  ; Make the inventory have the correct information
   lda SavedAbility
   sta PlayerAbility
+  jsr CopyFromSavedInventory
 
 ; Stop any music that was playing
   lda #SOUND_BANK

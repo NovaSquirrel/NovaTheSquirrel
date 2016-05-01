@@ -28,21 +28,43 @@ NameSpring: .byt "Spring",0
 NameNuclearPowerPants: .byt "Nuclear Power Pants",0
 NameAlwaysJumping: .byt "Always jumping",0
 
+.proc RemoveOneItem
+  lda InventoryAmount,x
+  beq EmptyNow
+  cmp #INVENTORY_UNLIMITED
+  beq Unlimited
+  ; Not unlimited and not empty - just decrement the amount
+  dec InventoryAmount,x
+Unlimited: ; Was unlimited, so just skip
+  rts
+EmptyNow: ; Is empty now, so remove the item
+  lda #0
+  sta InventoryType,x
+  rts
+.endproc
+
 .proc DoHealthRestore
   lda #4
   sta PlayerHealth
-  rts
+  jmp RemoveOneItem
 .endproc
+
 .proc DoPlaceBlock
-  rts
+  jmp RemoveOneItem
 .endproc
+
 .proc DoPlaceSpring
-  rts
+  jmp RemoveOneItem
 .endproc
+
 .proc DoPlaceRope
   rts
 .endproc
+
 .proc DoSwitchAbility
+  pha
+  jsr RemoveOneItem
+  pla
   sub #InventoryItem::ABILITY_BLASTER-1
   jmp ChangePlayerAbility
 .endproc
@@ -198,8 +220,60 @@ DoNametable:
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
 
-; Turn rendering back on
+
+; Write item quantities as sprites
   jsr ClearOAM
+  ldy #4*8
+  ldx #0   ; slot 0
+ItemQuantityLoop:
+  lda InventoryAmount,x
+  beq @Skip
+  txa
+  asl
+  asl
+  asl
+  add #11*8-1
+  sta OAM_YPOS+0,y
+  sta OAM_YPOS+4,y
+  lda #22*8
+  sta OAM_XPOS+0,y
+  lda #23*8
+  sta OAM_XPOS+4,y
+  lda #OAM_COLOR_0
+  sta OAM_ATTR+0,y
+  sta OAM_ATTR+4,y
+  lda InventoryAmount,x
+  cmp #INVENTORY_UNLIMITED
+  bne :+
+  lda #$51
+  sta OAM_TILE+0,y
+  sta OAM_TILE+4,y
+  bne @Increase
+:
+  ; Write digits
+  sty 0
+  ldy InventoryAmount,x
+  iny
+  lda BCD99,y
+  unpack 1, 2
+  ldy 0
+  lda 2
+  ora #$40
+  sta OAM_TILE+0,y
+  lda 1
+  ora #$40
+  sta OAM_TILE+4,y
+
+@Increase:
+  tya
+  add #8
+  tay
+@Skip:
+  inx
+  cpx #InventoryLen
+  bne ItemQuantityLoop
+
+; Turn rendering back on
   jsr WaitVblank
   lda #2
   sta OAM_DMA
@@ -376,6 +450,8 @@ CallInventoryCode:
   lda InventoryICodeL,y
   pha
   tya
+  ; Y = inventory type
+  ; X = inventory slot
   rts
 MakeBG:
   ldx #8
