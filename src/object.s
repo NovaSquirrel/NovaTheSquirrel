@@ -977,6 +977,7 @@ SkipGravity:
 .proc EnemyFall
   jsr EnemyGravity
 
+  ; Remove enemy if it falls too far off the bottom
   lda ObjectPYH,x
   bmi :+
     cmp #15
@@ -1007,6 +1008,7 @@ SkipGravity:
 .proc ObjectFallSmall
   jsr EnemyGravity
 
+  ; Automatically remove if too far off the bottom
   lda ObjectPYH,x
   bmi :+
     cmp #17
@@ -1018,11 +1020,26 @@ SkipGravity:
       rts
   :
 
+  ; If going upwards, check on top
   lda ObjectVYH,x
+  bpl NotUp
+  lda ObjectPXL,x
+  add #$40
+  lda ObjectPXH,x
+  adc #0
+  ldy ObjectPYH,x
+  jsr GetLevelColumnPtr
+  tay
+  lda MetatileFlags,y
   bpl :+
-  clc
+  lda #0
+  sta ObjectVYH,x
+  lda #$10
+  sta ObjectVYL,x
+: clc
   rts
-: lda ObjectPYL,x
+NotUp:
+  lda ObjectPYL,x
   add #$80
   lda ObjectPYH,x
   adc #0
@@ -1033,6 +1050,7 @@ SkipGravity:
   lda MetatileFlags,y
   cmp #M_SOLID_TOP
   bcc :+ ; no touching solid
+YesSolid:
     lda #$80
     sta ObjectPYL,x
     lda #0
