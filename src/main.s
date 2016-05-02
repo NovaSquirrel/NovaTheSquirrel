@@ -21,7 +21,7 @@
   lda #SOUND_BANK
   jsr _SetPRG
   jsr pently_init
-  lda #0
+  lda LevelMusic
   jsr pently_start_music
 
   lda #0
@@ -186,6 +186,11 @@ NotSlowTimer:
   jsr RunObjects
   jsr FlickerEnemies
 
+  lda NeedDialog
+  beq :+
+    jsr StartCutscene ; this routine clears NeedDialog
+  :
+
   lda #SOUND_BANK
   jsr SetPRG
 
@@ -224,6 +229,14 @@ NotDie:
 
   lda NeedLevelRerender
   beq :+
+    ; Mute sound
+;    lda #SOUND_BANK
+;    jsr SetPRG
+;    jsr pently_init
+;    inc pently_music_playing
+
+    lda #MAINLOOP_BANK
+    jsr SetPRG
     lsr NeedLevelRerender
     jsr WaitVblank
     jsr RenderLevelScreens
@@ -250,11 +263,6 @@ NotDie:
   beq :+
     lda #0
     jsr ChangePlayerAbility
-  :
-
-  lda NeedDialog
-  beq :+
-    jsr StartCutscene ; this routine clears NeedDialog
   :
 
   lda NeedLevelReload

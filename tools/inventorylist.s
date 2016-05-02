@@ -25,6 +25,8 @@
   ABILITY_BURGER
   LAMP_OIL
   ROPE
+  BALLOON
+  SMALL_HEALTH_RESTORE
 .endenum
 
 .proc InventoryIIcon
@@ -54,6 +56,8 @@
   .byt InventoryIcon::ABILITY ;ABILITY_BURGER
   .byt InventoryIcon::BULLET ;LAMP_OIL
   .byt InventoryIcon::PLACEABLE ;ROPE
+  .byt InventoryIcon::BULLET ;BALLOON
+  .byt InventoryIcon::HEART ;SMALL_HEALTH_RESTORE
 .endproc
 
 .proc InventoryINameL
@@ -83,6 +87,8 @@
   .byt <NameBurger ;ABILITY_BURGER
   .byt <NameLampOil ;LAMP_OIL
   .byt <NameRope ;ROPE
+  .byt <NameBalloon ;BALLOON
+  .byt <NameHealthSmall ;SMALL_HEALTH_RESTORE
 .endproc
 
 .proc InventoryINameH
@@ -112,6 +118,8 @@
   .byt >NameBurger ;ABILITY_BURGER
   .byt >NameLampOil ;LAMP_OIL
   .byt >NameRope ;ROPE
+  .byt >NameBalloon ;BALLOON
+  .byt >NameHealthSmall ;SMALL_HEALTH_RESTORE
 .endproc
 
 .proc InventoryICodeL
@@ -141,6 +149,8 @@
   .byt <(DoSwitchAbility-1) ;ABILITY_BURGER
   .byt <(DoNothing-1) ;LAMP_OIL
   .byt <(DoPlaceRope-1) ;ROPE
+  .byt <(DoNothing-1) ;BALLOON
+  .byt <(DoHealthRestoreSmall-1) ;SMALL_HEALTH_RESTORE
 .endproc
 
 .proc InventoryICodeH
@@ -170,5 +180,7 @@
   .byt >(DoSwitchAbility-1) ;ABILITY_BURGER
   .byt >(DoNothing-1) ;LAMP_OIL
   .byt >(DoPlaceRope-1) ;ROPE
+  .byt >(DoNothing-1) ;BALLOON
+  .byt >(DoHealthRestoreSmall-1) ;SMALL_HEALTH_RESTORE
 .endproc
 

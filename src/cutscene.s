@@ -132,6 +132,12 @@ DictionaryWordFound:
   jsr WaitVblank
 
   pla ; restore old bank
+  lda NeedDialog
+  lda LevelMusic
+  jsr pently_start_music
+
+
+
   lda PRGBank
   jsr _SetPRG
   rts
@@ -208,44 +214,6 @@ IsDictionaryWord:
   sta 0
   lda ScratchPage+128,x
   sta 1
-.if 0
-  sta 2 ; target
-; Still in dialog bank
-;  lda #DIALOG_BANK
-;  jsr _SetPRG
-  
-  ; Look up the dictionary word
-  lda #<CutsceneDictionary
-  sta 0
-  lda #>CutsceneDictionary
-  sta 1
-  ; Start at beginning
-  ldy #0
-@Loop:
-  lda 2
-  beq @IsFirstWord
-@Loop2:
-  iny
-  bne :+
-    inc 1   ; Increment high byte
-  :
-  lda (0),y ; Is this the last character?
-  bpl :+
-    dec 2   ; If at target now, exit
-  :
-  bne @Loop2
-@TargetMet:
-
-  ; Add Y to pointer
-  tya
-  sec
-  adc 0
-  sta 0
-  lda 1
-  adc #0
-  sta 1
-@IsFirstWord:
-.endif
 
   ; Write word to buffer
   ldx CutsceneBufIndex
@@ -473,6 +441,7 @@ ShowScene:
   bne @Read
 
   jsr ClearOAM
+  jsr WaitVblank
 
   ; Set up the four characters
   ldy #0

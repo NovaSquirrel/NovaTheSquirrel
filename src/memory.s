@@ -272,5 +272,6 @@ SaveStart:
   LevelCleared:       .res 8   ; 64 levels, bit = enabled
   LevelAvailable:     .res 8   ; 64 levels, bit = enabled
   SavedAbility:       .res 1
+  SavedCoins:         .res 2
 SaveEnd:
 .code   

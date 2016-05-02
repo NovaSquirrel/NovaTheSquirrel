@@ -782,6 +782,10 @@ SkipAddr:
   sta StartedLevelNumber
   lda SavedAbility
   sta PlayerAbility
+  lda SavedCoins+0
+  sta Coins+0
+  lda SavedCoins+1
+  sta Coins+1
 
   jsr CopyFromSavedInventory
 

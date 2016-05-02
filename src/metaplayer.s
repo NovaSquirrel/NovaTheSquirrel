@@ -277,20 +277,10 @@ ExitDoor:
     lda PlayerAbility
     sta SavedAbility
 @NotPuzzleMode:
-
-.if 0
-  lda EndLevelDialog+1
-  beq :+
-    inc NeedDialog
-    lda EndLevelDialog+0
-    sta ScriptPtr+0
-    lda EndLevelDialog+1
-    sta ScriptPtr+1
-    lda #0
-    sta EndLevelDialog+0
-    sta EndLevelDialog+1
-  :
-.endif
+  lda Coins+0
+  sta SavedCoins+0
+  lda Coins+1
+  sta SavedCoins+1
 
   lda StartedLevelNumber
   jmp StartLevel

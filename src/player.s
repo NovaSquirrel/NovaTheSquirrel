@@ -789,7 +789,7 @@ FC___LR:
       bcc NotFallthrough
         lda #KEY_DOWN
         sta ForceControllerBits
-        lda #15
+        lda #2
         sta ForceControllerTime
         rts
   NotFallthrough:

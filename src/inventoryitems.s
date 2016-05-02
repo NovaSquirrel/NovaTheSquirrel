@@ -1,7 +1,8 @@
 .include "../tools/inventorylist.s"
 
-NameHealth: .byt "Health restore"
+NameHealth: .byt "Pizza"
 NameEmpty: .byt 0
+NameHealthSmall: .byt "Pizza slice"
 NameLampOil: .byt "Lamp oil",0
 NameRope: .byt "Rope",0
 NameBlaster: .byt "Blaster Gun",0
@@ -27,6 +28,7 @@ NameBlock: .byt "Block",0
 NameSpring: .byt "Spring",0
 NameNuclearPowerPants: .byt "Nuclear Power Pants",0
 NameAlwaysJumping: .byt "Always jumping",0
+NameBalloon: .byt "Balloon",0
 
 .proc RemoveOneItem
   lda InventoryAmount,x
@@ -44,9 +46,23 @@ EmptyNow: ; Is empty now, so remove the item
 .endproc
 
 .proc DoHealthRestore
+  ; Set health to 4 if it's not already 4
   lda #4
+  cmp PlayerHealth
+  beq :+
   sta PlayerHealth
   jmp RemoveOneItem
+: rts
+.endproc
+
+.proc DoHealthRestoreSmall
+  ; Only increase health if not 4
+  lda PlayerHealth
+  cmp #4
+  beq :+
+  inc PlayerHealth
+  jmp RemoveOneItem
+: rts
 .endproc
 
 .proc DoPlaceBlock

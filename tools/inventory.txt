@@ -186,3 +186,17 @@ C .byt <NameRope
 C .byt >NameRope
 C .byt <(DoPlaceRope-1)
 C .byt >(DoPlaceRope-1)
+
+R BALLOON
+C .byt InventoryIcon::BULLET
+C .byt <NameBalloon
+C .byt >NameBalloon
+C .byt <(DoNothing-1)
+C .byt >(DoNothing-1)
+
+R SMALL_HEALTH_RESTORE
+C .byt InventoryIcon::HEART
+C .byt <NameHealthSmall
+C .byt >NameHealthSmall
+C .byt <(DoHealthRestoreSmall-1)
+C .byt >(DoHealthRestoreSmall-1)
