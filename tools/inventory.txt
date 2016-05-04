@@ -200,3 +200,10 @@ C .byt <NameHealthSmall
 C .byt >NameHealthSmall
 C .byt <(DoHealthRestoreSmall-1)
 C .byt >(DoHealthRestoreSmall-1)
+
+R BIG_HEALTH_RESTORE
+C .byt InventoryIcon::HEART
+C .byt <NameHealthBig
+C .byt >NameHealthBig
+C .byt <(DoHealthRestoreBig-1)
+C .byt >(DoHealthRestoreBig-1)

@@ -246,6 +246,7 @@ SCREEN_BOUNDARY = 1 ; boundary on left side of screen
 
   PlayerDrawX:        .res 1  ; X position the player was drawn to
   PlayerDrawY:        .res 1  ; Y position the player was drawn to
+  PlayerHasBalloon:   .res 1
 
   InventoryLen = 10
   InventoryType:      .res InventoryLen

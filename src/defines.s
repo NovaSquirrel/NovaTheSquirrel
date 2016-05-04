@@ -255,6 +255,7 @@ MS_EMPTY = 32
   POOF
   PLAYER_PROJECTILE
   ENEMY_PROJECTILE
+  BALLOON_FLYAWAY
 .endenum
 
 .enum PlayerProjectileType

@@ -2,7 +2,8 @@
 
 NameHealth: .byt "Pizza"
 NameEmpty: .byt 0
-NameHealthSmall: .byt "Pizza slice"
+NameHealthSmall: .byt "Pizza slice",0
+NameHealthBig: .byt "Great Pizza",0
 NameLampOil: .byt "Lamp oil",0
 NameRope: .byt "Rope",0
 NameBlaster: .byt "Blaster Gun",0
@@ -48,18 +49,24 @@ EmptyNow: ; Is empty now, so remove the item
 .proc DoHealthRestore
   ; Set health to 4 if it's not already 4
   lda #4
+AfterAmount:
   cmp PlayerHealth
-  beq :+
+  bcs :+
   sta PlayerHealth
   jmp RemoveOneItem
 : rts
+.endproc
+
+.proc DoHealthRestoreBig
+  lda #8
+  jmp DoHealthRestore::AfterAmount
 .endproc
 
 .proc DoHealthRestoreSmall
   ; Only increase health if not 4
   lda PlayerHealth
   cmp #4
-  beq :+
+  bcs :+
   inc PlayerHealth
   jmp RemoveOneItem
 : rts

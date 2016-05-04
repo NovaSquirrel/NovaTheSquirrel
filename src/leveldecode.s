@@ -82,6 +82,13 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
   jsr SetPRG
   jsr pently_init
 
+  ; Remove all sprites
+  lda #0
+  ldy #ObjectLen-1
+: sta ObjectF1,y
+  dey
+  bpl :-
+
   lda #LEVELS_BANK1 ; get this out of the way
   sta LevelBank
   jsr SetPRG

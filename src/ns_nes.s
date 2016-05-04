@@ -491,3 +491,9 @@ DJ_Label:
   cmp #$80
   ror
 .endmacro
+
+.macro notcarry ; toggles carry
+ rol
+ eor #1
+ ror
+.endmacro

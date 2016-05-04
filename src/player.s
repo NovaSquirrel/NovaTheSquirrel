@@ -143,6 +143,68 @@ MaxSpeedRight = 10
   sta MaxSpeedRight
 NotWalkSpeed:
 
+
+  ; Handle holding and letting go of a balloon
+  lda PlayerHasBalloon
+  beq @NoBalloon
+    ; Lift the player up
+    lda #255
+    sta PlayerVYH
+    lda #<-$10
+    sta PlayerVYL
+
+    ; Let go if pressing A or B, or if too high
+    lda keynew
+    and #KEY_B|KEY_A
+    bne @LetGo
+    lda PlayerPYH
+    cmp #$04
+    bcc @LetGo
+    ; Also if they touch something solid above
+    lda PlayerPXL
+    add #$40
+    lda PlayerPXH
+    adc #0
+    ldy PlayerPYH
+    jsr GetLevelColumnPtr
+    sta BlockLR
+    tax
+    lda MetatileFlags,x
+    bmi @LetGo
+    bpl @NoLetGo
+@LetGo:
+    lsr PlayerHasBalloon
+    jsr FindFreeObjectY
+    bcc @NoSlotFree
+    lda #Enemy::POOF*2
+    sta ObjectF1,y
+
+    ; Copy the X over with an offset
+    ldx PlayerDir
+    lda PlayerPXL
+    add BalloonOffsetLo,x
+    sta ObjectPXL,y
+    lda PlayerPXH
+    adc BalloonOffsetHi,x
+    sta ObjectPXH,y
+    ; Copy other stuff
+    lda PlayerPYL
+    sub #$80
+    sta ObjectPYL,y
+    lda PlayerPYH
+    sbc #0
+    sta ObjectPYH,y
+    lda #2
+    sta ObjectF2,y
+    lda #0
+    sta ObjectVYL,y
+    sta ObjectVYH,y
+    sta ObjectTimer,y
+  @NoSlotFree:
+@NoLetGo:
+@NoBalloon:
+
+
   lda PlayerOnLadder       ; skip gravity if on a ladder
   bne HandleLadderClimbing
   ; add gravity
@@ -847,6 +909,10 @@ LevelLinkStartYL:
   .byt 0, 0
 LevelLinkStartYH:
   .byt 13, 1
+BalloonOffsetLo:
+  .byt <-$20, <$20
+BalloonOffsetHi:
+  .byt >-$20, >$20
 .endproc
 ; -----------------------------
 ; END OF PLAYER HANDLING CODE
@@ -1019,6 +1085,45 @@ NoSpecialAnimation:
     beq DoHorizTileFlip
     bne NoHorizTileFlip 
   :
+
+; Draw balloon on top of player, if balloon is being used
+  lda PlayerHasBalloon
+  beq NoBalloon
+  ldx OamPtr
+
+  lda #$5c
+  sta OAM_TILE+(4*0),x
+  lda #$5d
+  sta OAM_TILE+(4*1),x
+  lda #OAM_COLOR_1
+  sta OAM_ATTR+(4*0),x
+  sta OAM_ATTR+(4*1),x
+
+  lda DrawX
+  sub #2
+  ldy PlayerDir
+  beq :+
+    add #4
+  :
+  sta OAM_XPOS+(4*0),x
+  sta OAM_XPOS+(4*1),x
+  lda DrawY
+  sta OAM_YPOS+(4*1),x
+  sub #8
+  sta OAM_YPOS+(4*0),x
+
+  lda #$00
+  sta PlayerTiles+0
+  lda #$1f
+  sta PlayerTiles+1
+  lda #$02
+  sta PlayerTiles+2
+  lda #$2f
+  sta PlayerTiles+3
+  txa
+  add #8
+  sta OamPtr
+NoBalloon:
 
   ; flip horizontally
   lda PlayerDir

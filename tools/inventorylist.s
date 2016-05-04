@@ -27,6 +27,7 @@
   ROPE
   BALLOON
   SMALL_HEALTH_RESTORE
+  BIG_HEALTH_RESTORE
 .endenum
 
 .proc InventoryIIcon
@@ -58,6 +59,7 @@
   .byt InventoryIcon::PLACEABLE ;ROPE
   .byt InventoryIcon::BULLET ;BALLOON
   .byt InventoryIcon::HEART ;SMALL_HEALTH_RESTORE
+  .byt InventoryIcon::HEART ;BIG_HEALTH_RESTORE
 .endproc
 
 .proc InventoryINameL
@@ -89,6 +91,7 @@
   .byt <NameRope ;ROPE
   .byt <NameBalloon ;BALLOON
   .byt <NameHealthSmall ;SMALL_HEALTH_RESTORE
+  .byt <NameHealthBig ;BIG_HEALTH_RESTORE
 .endproc
 
 .proc InventoryINameH
@@ -120,6 +123,7 @@
   .byt >NameRope ;ROPE
   .byt >NameBalloon ;BALLOON
   .byt >NameHealthSmall ;SMALL_HEALTH_RESTORE
+  .byt >NameHealthBig ;BIG_HEALTH_RESTORE
 .endproc
 
 .proc InventoryICodeL
@@ -151,6 +155,7 @@
   .byt <(DoPlaceRope-1) ;ROPE
   .byt <(DoNothing-1) ;BALLOON
   .byt <(DoHealthRestoreSmall-1) ;SMALL_HEALTH_RESTORE
+  .byt <(DoHealthRestoreBig-1) ;BIG_HEALTH_RESTORE
 .endproc
 
 .proc InventoryICodeH
@@ -182,5 +187,6 @@
   .byt >(DoPlaceRope-1) ;ROPE
   .byt >(DoNothing-1) ;BALLOON
   .byt >(DoHealthRestoreSmall-1) ;SMALL_HEALTH_RESTORE
+  .byt >(DoHealthRestoreBig-1) ;BIG_HEALTH_RESTORE
 .endproc
 

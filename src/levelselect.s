@@ -75,7 +75,7 @@ WorldTimes8 = 15
   jsr CopyToStringBuffer
   lda CurWorld
   add #'1'
-  sta StringBuffer+9
+  sta StringBuffer+11
   jsr clearLineImg
   ldx #0
   jsr vwfPutsBuffer
@@ -101,16 +101,16 @@ WorldTimes8 = 15
   ldy #$50
   ldx #9
   jsr WriteIncreasing
-  lda #$21
+  lda #$23
   sta PPUADDR
-  lda #$ec
+  lda #$2c
   sta PPUADDR
   ldy #$60
   ldx #9
   jsr WriteIncreasing
-  lda #$22
+  lda #$21
   sta PPUADDR
-  lda #$0c
+  lda #$ec
   sta PPUADDR
   ldy #$70
   ldx #9
@@ -122,6 +122,7 @@ WorldTimes8 = 15
   sta PPUCTRL
   lda #0
   sta PPUSCROLL
+  lda #<-5
   sta PPUSCROLL
   lda #OBJ_ON|BG_ON
   sta PPUMASK
@@ -394,9 +395,9 @@ Lda1AsrAsrNegAdd1:
 Instructions1:
   .byt "- Level Select -",0
 Instructions2:
-  .byt "A: Start level",0
+  .byt "  A: Start level",0
 Instructions3:
   .byt "Start: Inventory",0
 Instructions4:
-  .byt " ( World 1 )",0
+  .byt "   ( World 1 )",0
 .endproc

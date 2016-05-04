@@ -151,6 +151,7 @@ Exit:
   .raddr ObjectBombGuy
   .raddr ObjectPoof
   .raddr ObjectPlayerProjectile
+  .raddr ObjectPlayerProjectile
 .endproc
 
 ; other enemy attributes
@@ -248,13 +249,79 @@ DrawY = O_RAM::OBJ_DRAWY
   jmp GenericPoof
 .endproc
 
+.proc ObjectFlyawayBalloon
+DrawX = O_RAM::OBJ_DRAWX
+DrawY = O_RAM::OBJ_DRAWY
+  ldy OamPtr
+  lda DrawY
+  sta OAM_YPOS+(4*0),y
+  add #8
+  sta OAM_YPOS+(4*1),y
+
+  lda #OAM_COLOR_1
+  sta OAM_ATTR+(4*0),y
+  sta OAM_ATTR+(4*1),y
+
+  lda DrawX
+  sta OAM_XPOS+(4*0),y
+  sta OAM_XPOS+(4*1),y
+
+  ; Balloon tail animation
+  lda retraces
+  lsr
+  lsr
+  lsr
+  lsr
+  bcs :+
+    lda #OAM_XFLIP|OAM_COLOR_1
+    sta OAM_ATTR+(4*1),y
+    lda OAM_XPOS+(4*1),y
+    add #1
+    sta OAM_XPOS+(4*1),y
+  :
+
+  lda #$5c
+  sta OAM_TILE+(4*0),y
+  lda #$5d
+  sta OAM_TILE+(4*1),y
+  tya
+  add #8
+  sta OamPtr
+
+  ; Apply velocity
+  lda ObjectPYL,x
+  add ObjectVYL,x
+  sta ObjectPYL,x
+  lda ObjectPYH,x
+  adc ObjectVYH,x
+  sta ObjectPYH,x
+
+  ; Add velocity
+  lda ObjectVYL,x
+  sub #$02
+  sta ObjectVYL,x
+  lda ObjectVYH,x
+  sbc #0
+  sta ObjectVYH,x
+
+  ; Automatically remove balloon if off the top of the screen
+  lda ObjectPYH,x
+  bpl :+
+  lda #0
+  sta ObjectF1,x
+: rts
+.endproc
+
 .proc ObjectPoof ; also for particle effects
 DrawX = O_RAM::OBJ_DRAWX
 DrawY = O_RAM::OBJ_DRAWY
   RealXPosToScreenPosByX ObjectPXL, ObjectPXH, DrawX
   RealYPosToScreenPosByX ObjectPYL, ObjectPYH, DrawY
   lda ObjectF2,x
-  jne BrickPoof
+  cmp #1
+  jeq BrickPoof
+  cmp #2
+  jeq ObjectFlyawayBalloon
 
   lda #OAM_COLOR_1
   sta 1

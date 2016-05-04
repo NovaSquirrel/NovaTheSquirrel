@@ -246,7 +246,7 @@ Nope:
 DoDialogInstead:
   lda ColumnBytes+1,x
   sta ScriptPtr+0
-  lda ColumnBytes+2
+  lda ColumnBytes+2,x
   sta ScriptPtr+1
   inc NeedDialog
   rts

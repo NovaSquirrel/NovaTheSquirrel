@@ -373,7 +373,7 @@ ProjBoomerang:
 ProjFireball:
   jsr ObjectFallSmall
   bcc :+
-  lda #<-$20
+  lda #<-$18
   sta ObjectVYL,x
   lda #255
   sta ObjectVYH,x

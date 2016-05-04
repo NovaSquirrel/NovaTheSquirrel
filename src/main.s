@@ -186,11 +186,6 @@ NotSlowTimer:
   jsr RunObjects
   jsr FlickerEnemies
 
-  lda NeedDialog
-  beq :+
-    jsr StartCutscene ; this routine clears NeedDialog
-  :
-
   lda #SOUND_BANK
   jsr SetPRG
 
@@ -286,6 +281,11 @@ NotDie:
   jsr SetPRG
   jmp ShowLevelSelect
 :
+
+  lda NeedDialog
+  beq :+
+    jsr StartCutscene ; this routine clears NeedDialog
+  :
 
 .if 0
   ; Debugging feature

@@ -132,11 +132,12 @@ DictionaryWordFound:
   jsr WaitVblank
 
   pla ; restore old bank
-  lda NeedDialog
-  lda LevelMusic
-  jsr pently_start_music
 
-
+  ; This prevents Start from immediately launching into the inventory
+  lda #0
+  sta keydown
+  sta keynew
+  sta keylast
 
   lda PRGBank
   jsr _SetPRG
