@@ -49,7 +49,6 @@
   PlayerNonSolidPYL: .res 1
   PlayerNonSolidPYH: .res 1
  
-  PlayerInvincible: .res 1     ; player invincibility timer, for when getting hurt or otherwise
   PlayerWasRunning: .res 1     ; was the player running when they jumped?
   PlayerDir:        .res 1     ; currently facing left?
   PlayerDirForScroll: .res 1   ; similar but for scrolling purposes
@@ -62,13 +61,11 @@
   PlayerHealth:     .res 1     ; current health, measured in half hearts
   PlayerTailAttack: .res 1     ; timer for tail attack animation
   PlayerAnimationFrame: .res 1 ; base frame of the player's animations to use
-  PlayerAbility:    .res 1     ; current ability, see the AbilityType enum
   PlayerTiles:      .res 7     ; tiles to use while drawing the player
   SoundDebounce:    .res 1     ; timer, while nonzero no new sounds effects start
   ForceControllerBits:  .res 1
   ForceControllerTime:  .res 1
 
-  IsScrollUpdate:     .res 1   ; nonzero = yes
   ScrollUpdateChunk:  .res 1   ; current 32 pixel chunk we're updating
 
   ; the NES CPU can't access VRAM outside of vblank, so this is a queue
@@ -114,9 +111,9 @@
   CutsceneCurFace    = CutsceneScriptBank+1
   CutsceneNoSkip     = CutsceneCurFace+1
 
-  LevelNumber: .res 1 ; current level number
-  StartedLevelNumber: .res 1 ; level number that was picked from the level select
-  NeedLevelReload: .res 1
+  LevelNumber:           .res 1 ; current level number
+  StartedLevelNumber:    .res 1 ; level number that was picked from the level select
+  NeedLevelReload:       .res 1
 
   OamPtr:      .res 1 ; index the next sprite goes in
 
@@ -174,14 +171,11 @@
   NeedAbilityChange: .res 1
   NeedLevelRerender: .res 1
   NeedDialog:        .res 1
-  IsNormalDoor:       .res 1 ; 1 if the level is loading due to a door
   InventoryCursorY:   .res 1
   InventoryCursorYSwap: .res 1
 
   PRGBank:         .res 1  ; current program bank
-  Coins:           .res 2  ; 2 digits, BCD
   CoinShowTimer:   .res 1  ; timer for how long to show the current coin value
-  PlayerOnLadder:  .res 1  ; true if player is on a ladder
 
   LevelUploadList: .res 20 ; list of graphics resources to upload while the level loads
                            ; must be preserved because it's needed after level load too
@@ -191,9 +185,6 @@
   AttributeWriteA2: .res 4 ; low address; only four are used because I use the increment by 32 mode
   AttributeWriteD:  .res 8 ; data to write in the eight attributes
 
-  NeedSFX:          .res 4 ; sound effects that need to be played the next time the music engine is banked in
-  PuzzleMode:       .res 1
-
   ; PlayerLocationLast/Now contain the low byte of the player's position in the level
   ; and are for detecting when entering a new block
   PlayerLocationLast: .res 1
@@ -201,7 +192,7 @@
 
   ; DelayedMetaEdits set a timer for when a block in the level should be replaced with something else
   MaxDelayedMetaEdits = 10
-  DelayedMetaEditIndexHi: .res MaxDelayedMetaEdits  ; high address in the level array, or 0 if unused
+; DelayedMetaEditIndexHi
   DelayedMetaEditIndexLo: .res MaxDelayedMetaEdits  ; low address in the level array
   DelayedMetaEditTime:    .res MaxDelayedMetaEdits  ; amount of time
   DelayedMetaEditType:    .res MaxDelayedMetaEdits  ; new block type
@@ -215,13 +206,33 @@
   ObjectVXL:   .res ObjectLen ;  \
   ObjectVYH:   .res ObjectLen ;  /
   ObjectVYL:   .res ObjectLen ; /
-
-  ObjectF1:    .res ObjectLen ; TTTTTTTD, Type, Direction
+; ObjectF1
   ObjectF2:    .res ObjectLen ; ----SSSS, State
   ObjectF3:    .res ObjectLen ; -------- ;\ free to use
   ObjectF4:    .res ObjectLen ; -------- ;/
   ObjectIndexInLevel: .res ObjectLen ; object's index in level list, prevents object from being respawned until it's despawned
   ObjectTimer: .res ObjectLen ; when timer reaches 0, reset state
+
+LevelZeroWhenLoad_Start:
+  ObjectF1:               .res ObjectLen ; TTTTTTTD, Type, Direction
+  PlayerHasBalloon:       .res 1
+  DelayedMetaEditIndexHi: .res MaxDelayedMetaEdits  ; high address in the level array, or 0 if unused
+  IsNormalDoor:           .res 1 ; 1 if the level is loading due to a door
+  IsScrollUpdate:         .res 1   ; nonzero = yes
+  PlayerOnLadder:         .res 1  ; true if player is on a ladder
+  PuzzleMode:             .res 1
+  NeedSFX:                .res 1
+  PlayerInvincible:       .res 1     ; player invincibility timer, for when getting hurt or otherwise
+
+  ; LevelLinkUp/Down are offsets for what screen to move to if you go off the top or bottom
+  LevelLinkUp:        .res 16
+  LevelLinkDown:      .res 16
+  ScreenFlags:        .res 16
+  ScreenFlagsDummy:   .res 1
+
+  ; ScreenFlags stores flags for each screen in the level; so far there's just one flag:
+  SCREEN_BOUNDARY = 1 ; boundary on left side of screen
+LevelZeroWhenLoad_End:
   
   LevelMap = $6000            ; lasts until $6fff
 
@@ -229,25 +240,12 @@
   CollectedBits:      .res 128 ; stores bits for broken blocks and opened blocks, that sort of thing
   CollectedAlternate: .res 128 ; alternate buffer to allow going to a different level and back and having it still work
   ColumnBytes:        .res 256 ; stores a byte for each column, for ? block contents and other things
-  ScriptFlags:        .res 32  ; flags for scripts. first two bytes reset when entering a level on the level select
 
-  ; LevelLinkUp/Down are offsets for what screen to move to if you go off the top or bottom
-  LevelLinkUp:        .res 16  ; \
-  LevelLinkDown:      .res 16  ; | cleared together
-  ScreenFlags:        .res 16  ; / so keep them in order
-  ScreenFlagsDummy:   .res 1
-
-; ScreenFlags stores flags for each screen in the level; so far there's just one flag:
-SCREEN_BOUNDARY = 1 ; boundary on left side of screen
-
-  LevelSize:          .res 1  ; last screen number in the level
-  LastSpriteIndex:    .res 1  ; the index of the end marker in the sprite list, not initialized correctly yet?
-  LevelMusic:         .res 1  ; music number for levels
-
-  PlayerDrawX:        .res 1  ; X position the player was drawn to
-  PlayerDrawY:        .res 1  ; Y position the player was drawn to
-  PlayerHasBalloon:   .res 1
-
+  
+  ; Current game state
+CurrentGameState:
+  PlayerAbility:    .res 1     ; current ability, see the AbilityType enum
+  Coins:            .res 2  ; 2 digits, BCD
   InventoryLen = 10
   InventoryType:      .res InventoryLen
   InventoryAmount:    .res InventoryLen
@@ -255,24 +253,41 @@ SCREEN_BOUNDARY = 1 ; boundary on left side of screen
   ; InventoryAmount is also used for flags when it's values above 99:
 INVENTORY_UNLIMITED = 255
 INVENTORY_EQUIPPED  = 254
+  ScriptFlags:        .res 32  ; flags for scripts. first two bytes reset when entering a level on the level select
+GameStateLen = 1+2+10+10+2 ; update if more stuff is added
+
+; Checkpoint information
+  CheckpointGameState:   .res GameStateLen
+  CheckpointLevelNumber: .res 1
+  CheckpointX:           .res 1
+  CheckpointY:           .res 1
+  MakeCheckpoint:        .res 1
+
+  LevelSize:          .res 1  ; last screen number in the level
+  LastSpriteIndex:    .res 1  ; the index of the end marker in the sprite list, not initialized correctly yet?
+  LevelMusic:         .res 1  ; music number for levels
+
+  PlayerDrawX:        .res 1  ; X position the player was drawn to
+  PlayerDrawY:        .res 1  ; Y position the player was drawn to
 
   PlayerJumpCancel: .res 1
 
   IRQAddress:       .res 2
 
   CurWorld:         .res 1 ; current world for level select
-  LevelSelectInventory: .res 1
+  LevelSelectInventory: .res 1 ; flag, set to 1 if accessing the inventory via the level select
 
   ; the sprite list from the ROM has to be copied here so we can access it in gameplay banks
   SpriteListRAM:      .res 256
 .segment "SAVE"
 SaveStart:
   SaveTag:            .res 8
+SavedGameState_Start:
+  SavedAbility:       .res 1
+  SavedCoins:         .res 2
   InventorySaved:     .res InventoryLen*2
   ScriptFlagsSaved:   .res 32  ; version of the flags for scripts that are actually in the save file. 256 flags
   LevelCleared:       .res 8   ; 64 levels, bit = enabled
   LevelAvailable:     .res 8   ; 64 levels, bit = enabled
-  SavedAbility:       .res 1
-  SavedCoins:         .res 2
 SaveEnd:
 .code   

@@ -235,6 +235,7 @@ Nope:
     lda ColumnBytes+2,x
     sta LevelNumber
     inc NeedLevelReload
+    inc MakeCheckpoint 
 NoLevelChange:
   lda ColumnBytes+0,x    ; Read the Y position plus the flag
   and #15                ; (but only use the flag)

@@ -91,8 +91,23 @@ Exit:
   jsr SetPRG
   jsr quadpcm_play_die
 
-  lda StartedLevelNumber
-  jmp StartLevel
+  ; Restore checkpoint
+  ldy #GameStateLen-1
+: lda CheckpointGameState,y
+  sta CurrentGameState,y
+  dey
+  bpl :-
+
+  lda CheckpointX
+  sta PlayerPXH
+  lda #0
+  sta PlayerPXL
+  lda CheckpointY
+  sta PlayerPYH
+  inc IsNormalDoor ; skip setting X and Y
+
+  lda CheckpointLevelNumber
+  jmp StartLevel_FromCheckpoint
 .endproc
 
 .proc ShowCredits

@@ -303,6 +303,24 @@ NotDie:
   :
 .endif
 
+  lda MakeCheckpoint
+  beq :++
+    lda #0
+    sta MakeCheckpoint
+    lda PlayerPXH
+    sta CheckpointX
+    lda PlayerPYH
+    sta CheckpointY
+    lda LevelNumber
+    sta CheckpointLevelNumber
+
+    ldy #GameStateLen-1
+  : lda CurrentGameState,y
+    sta CheckpointGameState,y
+    dey
+    bpl :-
+  :
+
 ;  lda #OBJ_ON | BG_ON ;OBJ_CLIP | BG_CLIP
 ;  sta PPUMASK
 

@@ -82,10 +82,9 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
   jsr SetPRG
   jsr pently_init
 
-  ; Remove all sprites
   lda #0
-  ldy #ObjectLen-1
-: sta ObjectF1,y
+  ldy #LevelZeroWhenLoad_End-LevelZeroWhenLoad_Start-1
+: sta LevelZeroWhenLoad_Start,y
   dey
   bpl :-
 
@@ -115,18 +114,11 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
   cpx #$70
   bne :-
 
-; clear out some other stuff
+; Reset the column bytes
   ldx #0
   txa
 : sta ColumnBytes,x
   inx
-  bne :-
-
-  ; A is still zero
-  tax ; so X = 0 too
-: sta LevelLinkUp,x
-  inx
-  cpx #16+16+16
   bne :-
 
 ; now read the header
@@ -152,7 +144,7 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
   ldx IsNormalDoor
   bne :+
   sta PlayerPXH
-: lda #4
+: lda #$40
   sta PlayerPXL
 
 ; read starting player Y position and number of screens
@@ -173,7 +165,6 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
 
 ; read the four sprite slots and level and sprite pointers
   ldx #0 ; also writes LevelDecodePointer and LevelSpritePointer and LevelBackgroundColor
-  stx IsNormalDoor
 : iny
   lda (LevelHeaderPointer),y
   sta SpriteTileSlots,x
@@ -324,6 +315,7 @@ ArrowLoop:
   bpl ArrowLoop
   rts
 
+; Draw arrows on screens that have links on the top and/or bottom sides of the screen
 PutArrows:
   txa
   ora #$60
@@ -510,13 +502,17 @@ SpecialConfigEnablePuzzle:
   dex
   bpl :-
 
+  ; Write the current ability
+  lda (LevelDecodePointer),y
+  sta PlayerAbility
+  jsr IncreasePointerBy1
+
   ; Write a new inventory specifically for this level
   ldx #0
 @Loop:
   lda (LevelDecodePointer),y
   beq IncreasePointerBy1
   sta InventoryType,x
-  iny
   lda #1
   sta InventoryAmount,x
   inx

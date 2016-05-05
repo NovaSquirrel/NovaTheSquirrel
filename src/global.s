@@ -788,14 +788,18 @@ SkipAddr:
   sta Coins+1
 
   jsr CopyFromSavedInventory
-
+  lda #0
+  sta ScriptFlags+0 ; clear first 16 flags
+  sta ScriptFlags+1
+  pla
+FromCheckpoint:
+  pha
   lda #4
   sta PlayerHealth
+  sta MakeCheckpoint
   jsr WaitVblank
   lda #0
   sta PPUMASK
-  sta ScriptFlags+0 ; clear first 16 flags
-  sta ScriptFlags+1
   sta PlayerVXL
   sta PlayerVXH
   sta PlayerVYL
@@ -808,6 +812,7 @@ SkipAddr:
   jsr DecompressLevel
   jmp MainLoopInit
 .endproc
+StartLevel_FromCheckpoint = StartLevel::FromCheckpoint
 
 ; Uploads graphics for Nova as well as the common sprite tiles
 .proc UploadNovaAndCommon
