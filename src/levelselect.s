@@ -265,6 +265,30 @@ YesKeyCheck:
   sta OAM_TILE+(4*3)
 NotSpinningDontAnimate:
 
+  ; Display a checkmark if level was completed already
+  lda IsSpinning
+  bne :+
+  lda WorldTimes8
+  ora CurLevel
+  tay
+  jsr IndexToBitmap
+  and LevelCleared,y
+  beq :+
+    lda #$0c
+    sta OAM_TILE,x
+    lda #OAM_COLOR_2
+    sta OAM_ATTR,x
+    lda #18*8
+    sta OAM_XPOS,x
+    lda #4*8+4
+    sta OAM_YPOS,x
+    inx
+    inx
+    inx
+    inx
+    stx OamPtr
+  :
+
   lda CurrentAngle
   sta TempAngle
   lda #0
@@ -305,8 +329,9 @@ NovaSpriteFrames:
 AngleChangeForDir:
   .byt <-1, 1
 
-; inputs: X (angle), A (tile)
+; inputs: X (angle)
 DrawLevelIcon:
+  lda #$2c ; default to unavailable icon
   sta 0
   ldy OamPtr
   lda CosineTable,x
@@ -350,6 +375,8 @@ DrawLevelIcon:
   beq :+
   lda #OAM_COLOR_1
   sta 2
+  lda #$20
+  sta 0
 : pla ; reuse mask
   and LevelCleared,y
   beq :+

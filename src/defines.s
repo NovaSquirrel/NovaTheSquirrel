@@ -484,7 +484,7 @@ NOVA_STRAIGHT = 18
 LSpecialCmd = $f7
 
 .enum LevelSpecialConfig
-  PUZZLE_MODE       ; [ii] ... 00 - item IDs
+  PUZZLE_MODE       ; [aa][ii] ... 00 - ability, item IDs
   MAKE_BACKGROUNDS  ; sl bb - start screen, length, background id
   SET_START_DIALOG  ; aa aa - dialog address
 .endenum

@@ -208,10 +208,8 @@ noUndoHorizontal:
   adc #33   ; plus one because we came in with clc
 noUndoVertical:
 
-  cmp #32   ; fixes a bug where it tries to get a value past the end of the table
-  bcc :+
-  lda #0
-: rts
+  and #31   ; this routine tends to give 32 instead of 0 when aiming directly to the right
+  rts
 .endproc
 
 ; Tangents of angles between the ordinary angles, used by getAngle.

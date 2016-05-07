@@ -786,6 +786,7 @@ SkipAddr:
   lda #0
   sta ScriptFlags+0 ; clear first 16 flags
   sta ScriptFlags+1
+  sta PuzzleMode
   pla
 FromCheckpoint:
   pha
