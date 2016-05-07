@@ -57,7 +57,7 @@ noadd:
   ror prodlo  ; pull another bit out for the next iteration
   dey         ; inc/dec don't modify carry; only shifts and adds do
   bne loop
-  ldy TempVal
+  ldy prodlo
   rts
 .endproc
 

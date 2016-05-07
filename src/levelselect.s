@@ -388,8 +388,9 @@ Lda1AsrAsrNegAdd1:
   lda 1
   asr
   asr
-  neg
-  add 1
+  eor #255
+  sec ; +1 for the negate
+  adc 1
   rts
 
 Instructions1:

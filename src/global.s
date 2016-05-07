@@ -24,32 +24,27 @@ Speed = 5
   sty Angle
   sta Speed
 
-  lda CosineTable,y
-  php
-  bpl :+
-  eor #255
-  add #1
-: ldy Speed
-  jsr mul8
+  lda CosineTable,y    ; Horizontal speed uses cosine
+  php                  ; Save the sign bit
+  abs                  ; Take the absolute value
+  ldy Speed
+  jsr mul8             ; Multiply the speed and cosine value
   sty 0
   sta 1
-
-  plp
+  plp                  ; If it was originally negative, make it negative again
   bpl :+
   neg16 0, 1
 :
 
   ldy Angle
-  lda SineTable,y
-  php
-  bpl :+
-  eor #255
-  add #1
-: ldy Speed
-  jsr mul8
+  lda SineTable,y      ; Vertical speed uses sine
+  php                  ; Save the sign bit
+  abs                  ; Take the absolute value
+  ldy Speed
+  jsr mul8             ; Multiply the speed and sine value
   sty 2
   sta 3
-  plp
+  plp                  ; If it was originally negative, make it negative again
   bpl :+
   neg16 2, 3
 :

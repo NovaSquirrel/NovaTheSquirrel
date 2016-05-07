@@ -15,6 +15,11 @@
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;
 
+; Format for 16-bit X and Y positions and speeds:
+; HHHHHHHH LLLLSSSS
+; |||||||| ||||++++ - subpixels
+; ++++++++ ++++------ actual pixels
+
 .segment "ZEROPAGE"
   retraces:	        .res 1 ; incremented every frame
   slowtimer:        .res 1 ; incremented every 4 frames
@@ -25,15 +30,10 @@
   random1:          .res 2 ; \ two separate random states
   random2:          .res 2 ; / combined to get a 2147385345 period randomizer
 
-  ScrollX:          .res 2  ; current X scroll value, using 12.4 coordinates for some reason
+  ScrollX:          .res 2  ; Current X scroll value, using 12.4 coordinates for easy math with object coordinates
   ScrollSpeed:      .res 2
 
   LevelBlockPtr:    .res 2  ; written to by GetLevelColumnPtr
-
-  ; 16-bit X and Y positions:
-  ; HHHHHHHH LLLLSSSS
-  ; |||||||| ||||++++ - subpixels
-  ; ++++++++ ++++------ actual pixels
 
   ; player state stuff
   PlayerPXL:        .res 1 ; \ player X and Y positions
@@ -44,6 +44,9 @@
   PlayerVXL:        .res 1 ;  \
   PlayerVYH:        .res 1 ;  /
   PlayerVYL:        .res 1 ; /
+
+  ; The most recent position the player was in where they were not colliding with any solid blocks at all.
+  ; Used to return the player to this position if all four points are colliding.
   PlayerNonSolidPXL: .res 1
   PlayerNonSolidPXH: .res 1
   PlayerNonSolidPYL: .res 1
@@ -85,21 +88,22 @@
   TileUpdateA2:    .res MaxNumTileUpdates ; /
   TileUpdateT:     .res MaxNumTileUpdates ; new byte
 
-  ; there is also a buffer for writing 30 tiles vertically, for scrolling
+  ; Scrolling makes use of a buffer that holds 30 tiles that are then written vertically
   ThirtyUpdateAddr: .res 2      ; PPU address to write the buffer to
   ThirtyUpdateTile: .res 30     ; 30 tiles to write
-  TempSpace = ThirtyUpdateTile  ; also used by various non-gameplay stuff
-  ScrollLevelPointer: .res 2    ; pointer to level data, used while scrolling in new tiles
+
+  TempSpace = ThirtyUpdateTile  ; The buffer is also used by non-gameplay stuff, so give it another name
+  ScrollLevelPointer: .res 2    ; Pointer to level data, used while scrolling in new tiles
 
   ; variables for decoding objects during level decompression
-  DecodeObjectType   = TempSpace+0
-  DecodeObjectXY     = TempSpace+1
-  DecodeObjectBlock  = TempSpace+2
-  DecodeObjectWidth  = TempSpace+3
-  DecodeObjectHeight = TempSpace+4
+  DecodeObjectType   = TempSpace+0 ; object type ID
+  DecodeObjectXY     = TempSpace+1 ; X and Y position of the block
+  DecodeObjectBlock  = TempSpace+2 ; block ID to rectangle fill with
+  DecodeObjectWidth  = TempSpace+3 ; width to rectangle fill with
+  DecodeObjectHeight = TempSpace+4 ; height to rectangle fill with
 
   ; variables for controlling cutscenes
-  ; (safe because cutscenes discard the buffer anyway)
+  ; (safe because cutscenes discard the scrolling buffer anyway)
   ; also see ScriptPtr and such
   CutsceneRenderRow  = TempSpace
   CutsceneRenderCol  = CutsceneRenderRow+1
@@ -111,11 +115,11 @@
   CutsceneCurFace    = CutsceneScriptBank+1
   CutsceneNoSkip     = CutsceneCurFace+1
 
-  LevelNumber:           .res 1 ; current level number
-  StartedLevelNumber:    .res 1 ; level number that was picked from the level select
-  NeedLevelReload:       .res 1
+  LevelNumber:           .res 1 ; Current level number
+  StartedLevelNumber:    .res 1 ; Level number that was picked from the level select
+  NeedLevelReload:       .res 1 ; If set, decode LevelNumber again
 
-  OamPtr:      .res 1 ; index the next sprite goes in
+  OamPtr:      .res 1 ; Index the next OAM entry goes in
 
   ; temporary spots for saving something and then loading it afterwards
   TempVal:     .res 4
@@ -124,8 +128,8 @@
   TempXSwitch: .res 1 ; SetPRG needs X on UNROM and MMC3, so provide a place to save it
                       ; also general temporary variable for routines that don't switch
 
-  ; variables for the collision routine, ChkTouchGeneric
-  ; uses screen pixels
+  ; Parameters for the collision routine. ChkTouchGeneric uses screen pixels.
+  ; Usable as 10 free RAM bytes.
   TouchTemp:       .res 1
   TouchTemp2:      .res 1
   TouchTopA:       .res 1
@@ -137,11 +141,8 @@
   TouchHeightA:    .res 1
   TouchHeightB:    .res 1
 
-; level decode stuff
-  LevelHeaderPointer = TouchTemp ; pointer to the level header, for reading it
-  ; LevelDecodePointer and LevelSpritePointer aren't needed during gameplay or outside level decompression
-  ; so they can be reused elsewhere if needed
-
+  ; Pointer for cutscenes.
+  ; Not reusable because many things set the pointer and trigger a cutscene later.
   ScriptPtr: .res 2
 
   ScriptIf = TouchTemp ; 0 (normal), 2 (enable), 3 (disable)
@@ -153,7 +154,12 @@
   LevelDecodePointer: .res 2   ;  \ in this order
   LevelSpritePointer: .res 2   ;  /
   LevelBackgroundColor: .res 1 ; /
-  LevelDecodeXPos:    .res 1   ; current X position
+  ; LevelDecodePointer and LevelSpritePointer aren't used elsewhere and can be reused.
+  ; The reason they're not already in one of the temporary space buffers is that they're
+  ; written as a group, and LevelBackgroundColor and SpriteTileSlots *are* used elsewhere
+
+  LevelHeaderPointer = TouchTemp ; pointer to the level header, for reading it
+  LevelDecodeXPos = TouchTemp+2  ; current X position
   CollectedBitsIndex: .res 1 ; 0 or 128, for alternate or current collectedbits
 
 .segment "BSS"
@@ -241,7 +247,6 @@ LevelZeroWhenLoad_End:
   CollectedAlternate: .res 128 ; alternate buffer to allow going to a different level and back and having it still work
   ColumnBytes:        .res 256 ; stores a byte for each column, for ? block contents and other things
 
-  
   ; Current game state
 CurrentGameState:
   PlayerAbility:    .res 1     ; current ability, see the AbilityType enum
