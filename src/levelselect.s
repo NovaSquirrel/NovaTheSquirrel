@@ -265,30 +265,6 @@ YesKeyCheck:
   sta OAM_TILE+(4*3)
 NotSpinningDontAnimate:
 
-  ; Display a checkmark if level was completed already
-  lda IsSpinning
-  bne :+
-  lda WorldTimes8
-  ora CurLevel
-  tay
-  jsr IndexToBitmap
-  and LevelCleared,y
-  beq :+
-    lda #$0c
-    sta OAM_TILE,x
-    lda #OAM_COLOR_2
-    sta OAM_ATTR,x
-    lda #18*8
-    sta OAM_XPOS,x
-    lda #4*8+4
-    sta OAM_YPOS,x
-    inx
-    inx
-    inx
-    inx
-    stx OamPtr
-  :
-
   lda CurrentAngle
   sta TempAngle
   lda #0
@@ -303,7 +279,6 @@ DrawLoop:
   pla
   and #31
   tax
-  lda #$20
   jsr DrawLevelIcon
   inc IconNum
 
@@ -358,33 +333,37 @@ DrawLevelIcon:
   add #(240/2)-4
   sta OAM_YPOS+(4*4),y
 
-  ; Change the color based on whether the level is available or cleared
-  ; Attributes byte
-  lda #OAM_COLOR_3
+  ; Look up the right attributes and tiles to use
+  pushay
+
+  lda #0
   sta 2
 
-  ; Determine the right attributes and write them
-  tya
-  pha
   lda IconNum
   ora WorldTimes8
   tay
   jsr IndexToBitmap
   pha ; save mask to reuse it
-  and LevelAvailable,y
-  beq :+
-  lda #OAM_COLOR_1
-  sta 2
-  lda #$20
-  sta 0
-: pla ; reuse mask
   and LevelCleared,y
-  beq :+
-  lda #OAM_COLOR_2
-  sta 2
-:
+  cmp #1
+  rol 2
   pla
+  and LevelAvailable,y
+  cmp #1
+  rol 2
+
+  lda 2 ; Tile is this value * 4 + $20 
   tay
+  asl
+  asl
+  ora #$20
+  sta 0
+
+  lda IconPalettes,y
+  sta 2
+
+  pullay
+
   lda 2
   sta OAM_ATTR+(4*0),y
   sta OAM_ATTR+(4*1),y
@@ -410,6 +389,9 @@ DrawLevelIcon:
   add #4*5
   sta OamPtr
   rts
+
+IconPalettes:
+  .byt OAM_COLOR_3, OAM_COLOR_1, OAM_COLOR_3, OAM_COLOR_2
 
 Lda1AsrAsrNegAdd1:
   lda 1
