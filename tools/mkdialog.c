@@ -141,6 +141,8 @@ int main(int argc, char *argv[]) {
       }
     } else {
       Text = Buffer;
+
+      fprintf(OutputFile, "; %s\r\n", Text);
       switch(Buffer[0]) {
         case '<':
           Text = strchr(Buffer, '>')+1;

@@ -25,12 +25,10 @@ YesNo:
 .endenum
 
 .proc CharacterNameData
-Sign:     .byt "-SIGN-"
 None:     .byt 0
 Nova:     .byt "Nova",0
 Kee:      .byt "Kee",0
 Sherwin:  .byt "Sherwin",0
-Luvi:     .byt "Luvi",0
 Kieran:   .byt "Kieran",0
 Remy:     .byt "Remy D.",0
 Eclipse:  .byt "Eclipse",0
@@ -48,11 +46,11 @@ Bill:     .byt "Bill",0
 
 .proc CharacterInfoTable
   .byt CharacterNameData::None - CharacterNameData,    $00, $00, $00
-  .byt CharacterNameData::Sign - CharacterNameData,    $17, $27, $37
+  .byt CharacterNameData::None - CharacterNameData,    $17, $27, $37 ; sign
   .byt CharacterNameData::Nova - CharacterNameData,    $12, $2a, $30
   .byt CharacterNameData::Kee - CharacterNameData,     $17, $27, $38
   .byt CharacterNameData::Sherwin - CharacterNameData, $17, $27, $37
-  .byt CharacterNameData::Luvi - CharacterNameData,    $13, $21, $37
+  .byt CharacterNameData::None - CharacterNameData,    $0f, $27, $2c ; forum
   .byt CharacterNameData::Kieran - CharacterNameData,  $12, $21, $31
   .byt CharacterNameData::Remy - CharacterNameData,    $0f, $2a, $30
   .byt CharacterNameData::Eclipse - CharacterNameData, $15, $25, $38
@@ -84,13 +82,12 @@ Bill:     .byt "Bill",0
   ;  +-------- horizontally flipped?
   .byt 0, 0, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::SIGN|(2<<5), 0, 0
-  .byt 0, 0, 0, 0
-  .byt CHAR::NOVA|(1<<5), CHAR::LUVI|(2<<5)|FLIP, 0, 0
+  .byt CHAR::FORUM|(0<<5), CHAR::FORUM|(1<<5), CHAR::FORUM|(2<<5), CHAR::FORUM|(3<<5)
   .byt CHAR::NOVA|(1<<5), CHAR::KEE|(2<<5)|FLIP, 0, 0
-  .byt CHAR::NOVA|(1<<5), CHAR::KEE|(2<<5), CHAR::LUVI|(3<<5)|FLIP, 0
-  .byt CHAR::NOVA|(1<<5), CHAR::LUVI|(2<<5)|FLIP, CHAR::KEE|(3<<5)|FLIP, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::KEE|(2<<5), CHAR::SIGN|(3<<5)|FLIP, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::SIGN|(2<<5)|FLIP, CHAR::KEE|(0<<5), 0
   .byt CHAR::S_TEAM|(1<<5), CHAR::S_TEAM|(2<<5)|FLIP, 0, 0
-  .byt CHAR::SHERWIN|(1<<5), CHAR::S_TEAM|(0<<5), CHAR::S_TEAM|(3<<5)|FLIP, 0
+  .byt CHAR::SHERWIN|(1<<5), CHAR::S_TEAM|(0<<5), CHAR::S_TEAM|(2<<5)|FLIP, 0
   .byt CHAR::SHERWIN|(1<<5), 0, 0, 0
   .byt CHAR::S_TEAM|(1<<5), CHAR::S_TEAM|(2<<5), CHAR::BILL|(3<<5)|FLIP, 0
   .byt CHAR::NOVA|(1<<5), CHAR::ECLIPSE|(2<<5)|FLIP, 0, 0
@@ -114,10 +111,9 @@ Bill:     .byt "Bill",0
   NOTHING
   NOVA_AND_SIGN
   FORUMS
-  NOVA_AND_LUVI
   NOVA_AND_KEE
-  NOVA_KEE_LUVI
-  NOVA_LUVI_KEE
+  NOVA_KEE_SIGN
+  NOVA_SIGN_KEE
   TWO_BAD_GUYS
   SHERWIN_WITH_BAD_GUYS_AS_POLICE
   SHERWIN_ALONE

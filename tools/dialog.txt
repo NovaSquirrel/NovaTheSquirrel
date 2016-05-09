@@ -2,73 +2,56 @@
 `scene NOVA_AND_KEE
 <0 NOVA_WOW>Wow, where are we? This doesn't look like the same forest...
 <1 KEE>Not sure. Not sure why you're suddenly a lot taller either, and... green?
-<0 NOVA_WOW>Am I? You're different too. Hey, maybe that weird cat over there knows something about this place.
-`scene NOVA_KEE_LUVI
-<0 NOVA>Hellooo cat!
-<2 LUVI>Hiiii Nova!
-<0 NOVA>... you know my name already?
-<2 LUVI>Of course. It says it right there above your speech bubble. I'm Luvi, the spacecat, and I'm gonna help you get started on your adventure. Your changes came with new powers, and you're gonna need to know how to use them. You're going to be really important here pretty soon.
-<1 KEE>And me too, right?
-<2 LUVI>Nope! You're needed somewhere else, though. Someone else will have to help. Anyway, Nova, press Up when you're at a sign and I'll help you.
+<0 NOVA_WOW>Am I? You're different too. Hey, there's a sign over there, maybe it'll have useful information.
+`scene NOVA_KEE_SIGN
+<0 NOVA>Okay, let's see...
+<2 SIGN>Welcome to the tutorial! You have ended up in Caffie, a video game world. These signs will explain how to play.
 `end
 
 :Tutorial1:
-`scene NOVA_LUVI_KEE
-<1 LUVI>First I'll explain the controls. A to jump, like most games. However, B can either be attack or run, based on if you're walking or not.
-<0 NOVA_YAY>I can attack? With what?
-<1 LUVI>Your tail. You can swish it to shoot out a star in front of you that stuns enemies.
-<0 NOVA>Oh really? I'll try that
-<1 LUVI>Also, there are spikes right up ahead. Those obviously hurt you. Don't step in lava or whatever if you come across it later either.
-<0 NOVA>I'll make sure not to.
+`scene NOVA_SIGN_KEE
+<1 SIGN>First, the controls: A to jump, like most games. However, B can either be a tail attack or run, based on if you're walking or not. Don't step on the spikes.
 `end
 
 :Tutorial2:
-`scene NOVA_LUVI_KEE
-<1 LUVI>One cool thing you can do is copy the abilities of certain enemies. Stun this one and then press Up+B while facing it.
->2 KEE<Hmph, sure hope I have some cool abilities too.
-<0 NOVA>And what if I want to get rid of it later?
-<1 LUVI>To get rid of an ability, press Down+Select.
->0 NOVA<I'd better remember all these button combinations.
+`scene NOVA_SIGN_KEE
+<1 SIGN>Some enemies can have their abilities copied. Try stunning this enemy with B and then press Up+B while facing it to copy its ability. Press Down+Select to reset.
 `end
 
 :Tutorial3:
-`scene NOVA_LUVI_KEE
-<1 LUVI>You can jump down from this white colored platform. Stand on it and then hold Down.
+`scene NOVA_SIGN_KEE
+<1 SIGN>You can jump down from this white colored platform. Stand on it and then hold Down.
 <0 NOVA>White platform? Like in the third Super M-
-<1 LUVI>Yes.
+<2 KEE>Yes. Shhhh.
 `end
 
 :Tutorial4:
-`scene NOVA_LUVI_KEE
-<1 LUVI>Use Up to grab onto a ladder or Down to drop down onto it from the top.
+`scene NOVA_SIGN_KEE
+<1 SIGN>Use Up to grab onto a ladder or Down to drop down onto it from the top.
 <2 KEE>Yeah Nova, show off your rad climbing skills.
 `end
 
 :Tutorial5:
-`scene NOVA_LUVI_KEE
-<1 LUVI>That should be everything you need to get started. I'm going to go take Kee somewhere that I think will help him. Good luck!
-<0 NOVA_AW>Aw, bye Luvi!
->2 KEE<Adventure fox~
-<0 NOVA>Where should I go now, though?
-<1 LUVI>Just keep heading forward, I suppose. Until you get to Bummer Club. By the way, the name of this world is Caffie.
+`scene NOVA_SIGN_KEE
+<1 SIGN>That should be everything you need to get started. Keep heading forward until you get to Bummer Club. Good Luck!
+<0 NOVA>Okay then! Still dunno what I'm doing here.
+<2 KEE>*I'm* going to go back and explore some more. I think I saw a hut back there.
 `end
 
 :Nice_Announcement:
 `scene FORUMS
-[KIERAN]New announcement!
+[KIERAN]New announcement for the Caffieverse:
 [KIERAN]Henceforth, replying to any post with nothing more than the word "nice" or a loopholed "you think you're being witty but you're not" variation of it will result in an immediate arrest. Yes, this has seriously become this large of a problem and it's going to stop.
 [KIERAN]This law also covers Smiloids, those super dangerous robots that shoot people while wishing them a NICE day. I honestly don't know why they haven't been banned until now. With the recent event where the robot Scheme Team army tried to kill everyone we really need to tighten up on security around here. I'm just glad the two Blaster Guys were able to take care of things, but no one knows where they are now, so we can't just rely on them to save us. I have also IP banned the Scheme Team from our forums, just in case.
-`end
-
-:SherwinKidnap:
+[]Meanwhile...
 `scene TWO_BAD_GUYS
 <0 S_TEAM>So one of the Blaster Guys is around here, right? We'd better capture him so that he can't interfere with the plans, now that we've broken out of jail and stuff.
 <1 S_TEAM>Yeah, let's go do that. Also let's pretend to be cops.
-<0 S_TEAM>GOOD idea. Hey, I think he's over there checking his mail!
+<0 S_TEAM>GOOD idea. Hey, I think he's over there checking his mail!!
+<0 SHERWIN>Oh it's a fine day. *checks mail* 
 `scene SHERWIN_ALONE
-<0 SHERWIN>Oh it's a fine day. *checks mail*
-`scene SHERWIN_WITH_BAD_GUYS_AS_POLICE
 <0 SHERWIN>Whoa, could you two maybe knock?
+`scene SHERWIN_WITH_BAD_GUYS_AS_POLICE
 <2 S_TEAM>You're coming with us!!
 <0 SHERWIN>Wait, am I being arrested? Hi police guy!
 <1 S_TEAM>Yeah, we know who you are, you're one of the blaster guys.
@@ -77,8 +60,7 @@
 <2 S_TEAM>We're going to lock you up forever yes you heard me FOREVER.
 []-Sherwin gets taken to the Scheme Team lair-
 `transition
-`scene SHERWIN_ALONE
-<0 SHERWIN>WELL I guess I'll go post about this on SMWCentral.
+[SHERWIN]WELL I guess I'll go post about this on the forums. I'll create a new thread. I'll need a good name, hmmm...
 `scene FORUMS
 []-halp I've been taken-
 [SHERWIN]yeah so these robot guys with guns just took me. this is illegal you know!

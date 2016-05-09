@@ -69,6 +69,7 @@ ScriptEndPointer:
 
   ldy #0
   ldx #1 ; 1st word
+  stx CutsceneIsBlank
 MoreDictionary:
   lda (0),y
   bmi DictionaryWordFound
@@ -205,7 +206,9 @@ DictionaryWordFound:
   ldx CutsceneBufIndex
   inc CutsceneBufIndex
   sta StringBuffer,x
-  bne ScriptLoop
+  lda #0
+  sta CutsceneIsBlank
+  beq ScriptLoop
 
 IsDictionaryWord:
   ; Get table index
@@ -215,6 +218,9 @@ IsDictionaryWord:
   sta 0
   lda ScratchPage+128,x
   sta 1
+
+  lda #0
+  sta CutsceneIsBlank
 
   ; Write word to buffer
   ldx CutsceneBufIndex
@@ -240,6 +246,7 @@ IsDictionaryWord:
 IsCommand:
   ; Terminate StringBuffer
   ldx CutsceneBufIndex
+  beq NopeNothingToDraw
   pha
   lda #VWF_BANK
   jsr _SetPRG
@@ -257,6 +264,7 @@ IsCommand:
   pla
   ldy #0 ; reset Y to zero
   sty CutsceneBufIndex
+NopeNothingToDraw:
 
   ; Call the cutscene command
   asl
@@ -388,6 +396,7 @@ DoEndPage:
   ; Clear VWF space
   jsr clearLineImg
   lda #4
+  sta CutsceneIsBlank
 : ldy #0
   pha
   jsr copyLineImg
@@ -413,6 +422,12 @@ NewLine:
 
 ; Command, switch to a different scene
 ShowScene:
+  pha
+  lda CutsceneIsBlank
+  beq :+
+    jsr DoEndPage
+  :
+  pla
   asl
   asl
   tax
