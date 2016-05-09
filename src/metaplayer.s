@@ -222,12 +222,15 @@ Nope:
     ; regular door
     ; 0Y XX    - X and Y only
     ; 1Y XX LL - X and Y with level number
-    ; 2Y AA AA - start dialog
+    ; 20 AA AA - start dialog
+    ; 21 AA    - just switch to level
     inc NeedLevelRerender
     inc IsNormalDoor
     jsr GetBlockX        ; Get the block's X position
     tax
     lda ColumnBytes,x    ; Read the flag to check for special handling
+    cmp #$21
+    beq NewLevel
     cmp #$20
     beq DoDialogInstead
     and #$10
@@ -235,7 +238,7 @@ Nope:
     lda ColumnBytes+2,x
     sta LevelNumber
     inc NeedLevelReload
-    inc MakeCheckpoint 
+    inc MakeCheckpoint
 NoLevelChange:
   lda ColumnBytes+0,x    ; Read the Y position plus the flag
   and #15                ; (but only use the flag)
@@ -243,6 +246,13 @@ NoLevelChange:
   lda ColumnBytes+1,x    ; Read the X position
   sta PlayerPXH
 Nope:
+  rts
+
+NewLevel:
+  lda ColumnBytes+1,x
+  sta LevelNumber
+  inc NeedLevelReload
+  inc MakeCheckpoint
   rts
 DoDialogInstead:
   lda ColumnBytes+1,x

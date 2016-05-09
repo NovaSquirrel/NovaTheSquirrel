@@ -79,8 +79,8 @@ funkundergroundData:
   LObjN LO::R_BRICK,          0, 6, 8, 3
   LObjN LO::WIDE_1,           0, 12, 9, LN1::TALLGRASS
   LObjN LO::R_COIN,           1, 5, 5, 0
-  LObj  LO::S_BRICKPRIZE,     2, 2
-  LObjN LO::RECT_1,           5, 1, 0, LN1::BRICKS, 23
+  LObj  LO::S_BRICKPRIZE,     3, 2
+  LObjN LO::RECT_1,           4, 1, 0, LN1::BRICKS, 23
   LObjN LO::R_SOLID_BLOCK,    3, 10, 1, 2
   LObjN LO::R_BRICK,          6, 2, 2, 3
   LObjN LO::R_BRICK,          0, 6, 8, 3
@@ -129,6 +129,7 @@ funkundergroundData:
   LObjN LO::R_AIR,            1, 1, 2, 1
   LObj  LO::S_SPRING,         0, 6
   LObj  LO::S_DOOR,           1, 1
+  LWriteCol 11, 243
   LObjN LO::R_BRICK,          7, 1, 11, 1
   LObj  LO::S_PRIZE,          0, 9
   LObj  LO::S_FLOWER,         1, 12
@@ -137,13 +138,15 @@ funkundergroundData:
   LObjN LO::WIDE_1,           6, 12, 3, LN1::FENCE
   LObjN LO::TALL_2,           6, 11, 1, LN2::TRUNK_L
   LObjN LO::TALL_2,           2, 11, 1, LN2::TRUNK_L
-  LObj  LO::S_EXIT_DOOR,      3, 11
+  LObj  LO::S_DOOR,           3, 11
+  LWriteCol $21, LevelId::Underground2
   LXPlus16
   LObjN LO::R_SOLID_BLOCK,    3, 1, 15, 1
   LObjN LO::R_SOLID_BLOCK,    0, 3, 1, 9
   LObjN LO::R_GROUND,         0, 13, 15, 1
-  LObj  LO::S_DOOR,           3, 12
-  LObjN LO::R_COIN,           1, 5, 7, 5
+  LObj  LO::S_DOOR,           3, 11
+  LWriteCol 1, 190
+  LObjN LO::R_COIN,           1, 6, 7, 4
   LObj  LO::S_SPRING,         2, 12
   LObj  LO::S_SPRING,         3, 12
   LObjN LO::R_SOLID_BLOCK,    5, 3, 1, 9

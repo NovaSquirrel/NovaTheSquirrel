@@ -114,6 +114,7 @@
   CutsceneScriptBank = CutsceneBufIndex+1
   CutsceneCurFace    = CutsceneScriptBank+1
   CutsceneNoSkip     = CutsceneCurFace+1
+  CutsceneIsBlank    = CutsceneNoSkip+1
 
   LevelNumber:           .res 1 ; Current level number
   StartedLevelNumber:    .res 1 ; Level number that was picked from the level select
@@ -226,7 +227,6 @@ LevelZeroWhenLoad_Start:
   IsNormalDoor:           .res 1 ; 1 if the level is loading due to a door
   IsScrollUpdate:         .res 1   ; nonzero = yes
   PlayerOnLadder:         .res 1  ; true if player is on a ladder
-  PuzzleMode:             .res 1
   NeedSFX:                .res 1
   PlayerInvincible:       .res 1     ; player invincibility timer, for when getting hurt or otherwise
 
@@ -239,6 +239,8 @@ LevelZeroWhenLoad_Start:
   ; ScreenFlags stores flags for each screen in the level; so far there's just one flag:
   SCREEN_BOUNDARY = 1 ; boundary on left side of screen
 LevelZeroWhenLoad_End:
+
+  PuzzleMode:             .res 1
   
   LevelMap = $6000            ; lasts until $6fff
 

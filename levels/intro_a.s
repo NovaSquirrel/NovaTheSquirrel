@@ -1,4 +1,4 @@
-intro:
+intro_a:
   .byt MusicTracks::NONE|0
   .byt 3
   .byt $4b
@@ -6,8 +6,8 @@ intro:
   .byt GraphicsUpload::SP_CANNON
   .byt GraphicsUpload::SP_FIRE
   .byt GraphicsUpload::SP_KING
-  .addr introData
-  .addr introSprite
+  .addr intro_aData
+  .addr intro_aSprite
   .byt $31 ; background
   .byt GraphicsUpload::PAL_GRASSY
   .byt GraphicsUpload::PAL_ENEMY1
@@ -17,7 +17,7 @@ intro:
   .byt 255 ; end
   .byt $08, $00 ; boundaries
 
-introData:
+intro_aData:
   .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <Intro, >Intro
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 79
   LObj  LO::S_COIN,           6, 11
@@ -64,10 +64,11 @@ introData:
   LObjN LO::R_GROUND,         1, 8, 7, 4
   LObj  LO::S_SIGNPOST,       1, 7
   LWriteCol <Tutorial5, >Tutorial5
-  LObj  LO::S_EXIT_DOOR,      3, 6
+  LObj  LO::S_DOOR,           3, 6
+  LWriteCol $21, LevelId::IntroB
   LFinished
 
-introSprite:
+intro_aSprite:
   LSpr Enemy::OWL,                 1,  29,  10
   LSpr Enemy::FIRE_WALK,           1,  51,   7
   .byt 255 ; end

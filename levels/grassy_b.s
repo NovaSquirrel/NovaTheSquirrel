@@ -1,4 +1,4 @@
-level3:
+grassy_b:
   .byt MusicTracks::NONE|0
   .byt 3
   .byt $fb
@@ -6,18 +6,18 @@ level3:
   .byt GraphicsUpload::SP_CANNON
   .byt GraphicsUpload::SP_FIRE
   .byt GraphicsUpload::SP_KING
-  .addr level3Data
-  .addr level3Sprite
+  .addr grassy_bData
+  .addr grassy_bSprite
   .byt $31 ; background
   .byt GraphicsUpload::PAL_GRASSY
+  .byt GraphicsUpload::PAL_ENEMY2
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_GRASSY
   .byt GraphicsUpload::BG_GRASSYBG
-  .byt GraphicsUpload::PAL_ENEMY2
   .byt 255 ; end
   .byt $00, $02 ; boundaries
 
-level3Data:
+grassy_bData:
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 55
   LObj  LO::S_FLOWER,         7, 12
   LObj  LO::S_FLOWER,         3, 12
@@ -153,7 +153,7 @@ level3Data:
   LObj  LO::S_EXIT_DOOR,      8, 9
   LFinished
 
-level3Sprite:
+grassy_bSprite:
   LSpr Enemy::GOOMBA,              1,  18,  10
   LSpr Enemy::GEORGE,              1,  36,   9
   LSpr Enemy::GOOMBA,              1,  39,   2

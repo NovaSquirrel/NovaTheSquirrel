@@ -1,4 +1,4 @@
-level2:
+grassy_a:
   .byt MusicTracks::NONE|0
   .byt 133
   .byt $7b
@@ -6,20 +6,20 @@ level2:
   .byt GraphicsUpload::SP_CANNON
   .byt GraphicsUpload::SP_FIRE
   .byt GraphicsUpload::SP_KING
-  .addr level2Data
-  .addr level2Sprite
+  .addr grassy_aData
+  .addr grassy_aSprite
   .byt $31 ; background
   .byt GraphicsUpload::PAL_GRASSY
+  .byt GraphicsUpload::PAL_ENEMY1
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_GRASSY
   .byt GraphicsUpload::BG_GRASSYBG
-  .byt GraphicsUpload::PAL_ENEMY1
   .byt 255 ; end
   .byt $01, $01 ; boundaries
   .byt $07, $08 ; link
   .byt $07, $80 ; link
 
-level2Data:
+grassy_aData:
   LObjN LO::R_GROUND,         7, 6, 7, 2
   LObjN LO::WIDE_2,           1, 5, 5, LN2::BUSH
   LObjN LO::R_GROUND,         0, 9, 9, 3
@@ -103,10 +103,11 @@ level2Data:
   LObjN LO::R_GROUND,         0, 6, 9, 3
   LObjN LO::TALL_1,           5, 0, 3, LN1::LADDER
   LObjN LO::RECT_1,           5, 0, 5, LN1::GROUND, 16
-  LObj  LO::S_EXIT_DOOR,      7, 11
+  LObj  LO::S_DOOR,           7, 11
+  LWriteCol $21, LevelId::GrassyB
   LFinished
 
-level2Sprite:
+grassy_aSprite:
   LSpr Enemy::OWL,                 0,  25,   8
   LSpr Enemy::FIRE_WALK,           0,  32,  12
   LSpr Enemy::SNEAKER,             0,  48,   7

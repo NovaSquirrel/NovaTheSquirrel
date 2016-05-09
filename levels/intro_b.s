@@ -1,4 +1,4 @@
-level1:
+intro_b:
   .byt MusicTracks::NONE|0
   .byt 3
   .byt $db
@@ -6,8 +6,8 @@ level1:
   .byt GraphicsUpload::SP_CANNON
   .byt GraphicsUpload::SP_FIRE
   .byt GraphicsUpload::SP_KING
-  .addr level1Data
-  .addr level1Sprite
+  .addr intro_bData
+  .addr intro_bSprite
   .byt $31 ; background
   .byt GraphicsUpload::PAL_GRASSY
   .byt GraphicsUpload::PAL_ENEMY1
@@ -17,7 +17,8 @@ level1:
   .byt 255 ; end
   .byt $00, $04 ; boundaries
 
-level1Data:
+intro_bData:
+  .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <Nice_Announcement, >Nice_Announcement
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 31
   LObjN LO::WIDE_1,           2, 12, 3, LN1::TALLGRASS
   LObjN LO::TALL_2,           4, 10, 2, LN2::TRUNK_L
@@ -159,7 +160,7 @@ level1Data:
   LObj  LO::S_EXIT_DOOR,      7, 11
   LFinished
 
-level1Sprite:
+intro_bSprite:
   LSpr Enemy::GOOMBA,              1,  23,   4
   LSpr Enemy::OWL,                 1,  42,   8
   LSpr Enemy::OWL,                 1,  70,   3
