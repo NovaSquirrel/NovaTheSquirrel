@@ -644,12 +644,19 @@ No:
   lda #$10
   jsr EnemyWalkOnPlatform
 
+  lda #$18
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+
+  jsr EnemyPlayerTouchHurt
+
   lda retraces
   and #15
   bne :+
     jsr huge_rand
     and #7
-    bne :+
+    cmp #3
+    bcs :+
       jsr FindFreeObjectY
       bcc :+
         lda #0
@@ -669,26 +676,37 @@ No:
         adc #0
         sta ObjectPYH,y
 
-        ; to do: actually calculate projectile trajectory
+        ; Crappy trajectory calculation
+        sty TempY
+        lda O_RAM::OBJ_DRAWX
+        sta 0
+        lda O_RAM::OBJ_DRAWY
+        sta 1
+        lda PlayerDrawX
+        sta 2
+        lda PlayerDrawY
+        sta 3
+        jsr getAngle
+        tay
+        lda #1
+        jsr SpeedAngle2Offset
+        ldy TempY
+        lda 0
+        asr
+        sta ObjectVXL,y
+        lda 1
+        sta ObjectVXH,y
         lda #<(-$40)
         sta ObjectVYL,y
         lda #>(-$40)
         sta ObjectVYH,y
-        lda #0
-        sta ObjectVXL,y
-        sta ObjectVXH,y       
 
         lda #Enemy::WATER_BOTTLE*2
         sta ObjectF1,y
         lda #10
         sta ObjectTimer,y
   :
-
-  lda #$18
-  ldy #OAM_COLOR_3
-  jsr DispEnemyWide
-
-  jmp EnemyPlayerTouchHurt
+  rts
 .endproc
 
 .proc ObjectBigGeorge
