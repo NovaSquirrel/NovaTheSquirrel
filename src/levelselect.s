@@ -73,7 +73,10 @@ WorldTimes8 = 15
   lda #>Instructions4
   ldy #<Instructions4
   jsr CopyToStringBuffer
-  lda CurWorld
+  lda StartedLevelNumber ; World
+  lsr
+  lsr
+  lsr
   add #'1'
   sta StringBuffer+11
   jsr clearLineImg
@@ -128,18 +131,27 @@ WorldTimes8 = 15
   sta PPUMASK
 
 ; Get ready for main loop
-  lda #24
+  lda StartedLevelNumber
+  and #%000111
+  sta CurLevel
+  asl
+  asl
+  eor #255 ; Negate
+  sec
+  adc #24
+  and #31
   sta CurrentAngle
   lda #0
   sta NovaDirection
   sta IsSpinning
-  sta CurLevel
   sta LevelSelectInventory
-  lda CurWorld
-  asl
-  asl
-  asl
+  lda StartedLevelNumber
+  and #%111000
   sta WorldTimes8
+  lsr
+  lsr
+  lsr
+  sta CurWorld
 
 ; Main loop
 Loop:

@@ -149,6 +149,31 @@ NoInitSave:
   beq SkipLevelSelect
   lda #VWF_BANK
   jsr SetPRG
+
+  ; Calculate the starting world
+  ldy #0
+: lda LevelAvailable,y
+  beq :+
+  iny
+  cpy #8
+  bne :-
+: dey
+  tya
+  asl
+  asl
+  asl
+  sta StartedLevelNumber
+
+  ; Calculate the level to have pre-selected
+  lda #0
+  sta StartedLevelNumber
+  lda LevelAvailable,y
+: lsr
+  beq :+
+  inc StartedLevelNumber
+  bne :-
+:
+
   jmp ShowLevelSelect
 SkipLevelSelect:
   lda #0
