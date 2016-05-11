@@ -131,7 +131,6 @@ KEY_A     = %10000000
 ; and now macros ----------------------------------------------------------
 
 .feature leading_dot_in_identifiers
-;.feature force_range
 .macpack generic
 .macpack longbranch
 
@@ -173,7 +172,6 @@ DJ_Label:
   .endscope
 .endmacro
 
-
 ; swap using X
 .macro swapx mema, memb
   ldx mema
@@ -181,6 +179,7 @@ DJ_Label:
   stx memb
   sta mema
 .endmacro
+
 ; swap using Y
 .macro swapy mema, memb
   ldy mema
@@ -188,6 +187,7 @@ DJ_Label:
   sty memb
   sta mema
 .endmacro
+
 ; swap using just A + stack
 .macro swapa mema, memb
   lda mema
@@ -214,7 +214,6 @@ DJ_Label:
   .endif
   bne Label
 .endmacro
-
 
 ; Working with X,Y is much more fun than working with PPU addresses
 ; give it an X and Y position, as well as a nametable number (0-3),
@@ -252,45 +251,6 @@ DJ_Label:
  .addr This-1
 .endmacro
 
-.macro btr Num, Here
-.if .match({Num},"eq")
-	beq Here
-.elseif .match({Num},"ne")
-	bne Here
-.elseif .match({Num},"cs")
-	bcs Here
-.elseif .match({Num},"cc")
-	bcc Here
-.elseif .match({Num},"vs")
-	bvs Here
-.elseif .match({Num},"vc")
-	bvc Here
-.elseif .match({Num},"pl")
-	bpl Here
-.elseif .match({Num},"mi")
-	bmi Here
-.endif
-.endmacro
-.macro bfl Num, Here
-.if .match({Num},"eq")
-	beq Here
-.elseif .match({Num},"ne")
-	bne Here
-.elseif .match({Num},"cs")
-	bcs Here
-.elseif .match({Num},"cc")
-	bcc Here
-.elseif .match({Num},"vs")
-	bvs Here
-.elseif .match({Num},"vc")
-	bvc Here
-.elseif .match({Num},"pl")
-	bpl Here
-.elseif .match({Num},"mi")
-	bmi Here
-.endif
-.endmacro
-
 .macro neg
   eor #255
   add #1
@@ -319,6 +279,16 @@ DJ_Label:
   lda #0          ;Load constant zero again
   sbc hi          ;... subtract the most significant byte
   sta hi          ;... and store the result
+.endmacro
+
+.macro neg16x lo, hi
+  sec             ;Ensure carry is set
+  lda #0          ;Load constant zero
+  sbc lo,x        ;... subtract the least significant byte
+  sta lo,x        ;... and store the result
+  lda #0          ;Load constant zero again
+  sbc hi,x        ;... subtract the most significant byte
+  sta hi,x        ;... and store the result
 .endmacro
 
 .macro inc16 variable

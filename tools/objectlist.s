@@ -34,7 +34,13 @@
   .byt GraphicsUpload::SP_EXPLODE ;BOMBGUY
   .byt 0 ;POOF
   .byt 0 ;PLAYER_PROJECTILE
-  .byt 0 ;ENEMY_PROJECTILE
+  .byt 0 ;BLASTER_SHOT
+  .byt 0 ;SMALL_GLIDER
+  .byt 0 ;BOOMERANG
+  .byt GraphicsUpload::SP_FIRE ;FIREBALL
+  .byt GraphicsUpload::SP_FIRE ;FLAMES
+  .byt GraphicsUpload::SP_KING ;WATER_BOTTLE
+  .byt 0 ;ICE_BLOCK
 .endproc
 
 .proc ObjGraphics2
@@ -73,7 +79,13 @@
   .byt GraphicsUpload::SP_EXPLODE ;BOMBGUY
   .byt 0 ;POOF
   .byt 0 ;PLAYER_PROJECTILE
-  .byt 0 ;ENEMY_PROJECTILE
+  .byt 0 ;BLASTER_SHOT
+  .byt 0 ;SMALL_GLIDER
+  .byt 0 ;BOOMERANG
+  .byt GraphicsUpload::SP_FIRE ;FIREBALL
+  .byt GraphicsUpload::SP_FIRE ;FLAMES
+  .byt GraphicsUpload::SP_GEORGE ;WATER_BOTTLE
+  .byt 0 ;ICE_BLOCK
 .endproc
 
 .proc ObjBehaviors
@@ -112,6 +124,12 @@
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BOMBGUY
   .byt 0 ;POOF
   .byt 0 ;PLAYER_PROJECTILE
-  .byt 0 ;ENEMY_PROJECTILE
+  .byt 0 ;BLASTER_SHOT
+  .byt 0 ;SMALL_GLIDER
+  .byt 0 ;BOOMERANG
+  .byt 0 ;FIREBALL
+  .byt 0 ;FLAMES
+  .byt 0 ;WATER_BOTTLE
+  .byt 0 ;ICE_BLOCK
 .endproc
 

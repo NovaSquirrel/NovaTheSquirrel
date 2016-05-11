@@ -151,7 +151,13 @@ Exit:
   .raddr ObjectBombGuy
   .raddr ObjectPoof
   .raddr ObjectPlayerProjectile
-  .raddr ObjectPlayerProjectile
+  .raddr ObjectBlasterShot
+  .raddr ObjectSmallGlider
+  .raddr ObjectBoomerang
+  .raddr ObjectFireball
+  .raddr ObjectFlames
+  .raddr ObjectWaterBottle
+  .raddr ObjectIceBlock
 .endproc
 
 ; other enemy attributes
@@ -444,10 +450,8 @@ Loop:
    sta TouchWidthB
    sta TouchHeightB
    lda TouchLeftB
-;   add PlayerProjectileHalfSizeTable,y
    sta TouchLeftB
    lda TouchTopB
-;   add PlayerProjectileHalfSizeTable,y
    sta TouchTopB
   jsr ChkTouchGeneric
   bcc Nope
@@ -559,6 +563,26 @@ EnemyAbilityTable:
   .byt 0
 .endproc
 
+; Copies the position from object X to object Y
+; (also initializes state in object Y to zero)
+.proc ObjectCopyPosXY
+  lda #0
+  sta ObjectF2,y
+
+  lda ObjectPXH,x
+  sta ObjectPXH,y
+
+  lda ObjectPXL,x
+  sta ObjectPXL,y
+
+  lda ObjectPYH,x
+  sta ObjectPYH,y
+
+  lda ObjectPYL,x
+  sta ObjectPYL,y
+  rts
+.endproc
+
 .proc EnemyTurnAround
   lda ObjectF1,x
   beq No
@@ -620,6 +644,46 @@ No:
   lda #$10
   jsr EnemyWalkOnPlatform
 
+  lda retraces
+  and #15
+  bne :+
+    jsr huge_rand
+    and #7
+    bne :+
+      jsr FindFreeObjectY
+      bcc :+
+        lda #0
+        sta ObjectF2,y
+
+        lda ObjectPXL,x
+        add #$40
+        sta ObjectPXL,y
+        lda ObjectPXH,x
+        adc #0
+        sta ObjectPXH,y
+
+        lda ObjectPYL,x
+        add #$40
+        sta ObjectPYL,y
+        lda ObjectPYH,x
+        adc #0
+        sta ObjectPYH,y
+
+        ; to do: actually calculate projectile trajectory
+        lda #<(-$40)
+        sta ObjectVYL,y
+        lda #>(-$40)
+        sta ObjectVYH,y
+        lda #0
+        sta ObjectVXL,y
+        sta ObjectVXH,y       
+
+        lda #Enemy::WATER_BOTTLE*2
+        sta ObjectF1,y
+        lda #10
+        sta ObjectTimer,y
+  :
+
   lda #$18
   ldy #OAM_COLOR_3
   jsr DispEnemyWide
@@ -648,6 +712,29 @@ No:
 .endproc
 
 .proc ObjectBallGuy
+  jsr EnemyFall
+  bcc :+
+    ; Bounce when reaching the ground, if not stunned
+    lda ObjectF2,x
+    bne :+
+      jsr huge_rand
+      sec
+      ror
+      sec
+      ror
+      sta ObjectVYL,x
+      lda #255
+      sta ObjectVYH,x
+  :
+  lda #$10
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+
+  lda #4
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+
+  jmp EnemyPlayerTouchHurt
   rts
 .endproc
 
@@ -723,6 +810,36 @@ No:
   jsr EnemyWalk
   jsr EnemyAutoBump
 
+  ; Make flames sometimes
+  lda ObjectF2,x
+  bne :+
+    lda retraces
+    and #15
+    bne :+
+      jsr FindFreeObjectY
+      bcc :+
+        jsr ObjectCopyPosXY
+
+        ; Throw fires in the air
+        lda #<(-$20)
+        sta ObjectVYL,y
+        lda #>(-$20)
+        sta ObjectVYH,y
+
+        ; Random X velocity
+        jsr huge_rand
+        asr
+        asr
+        sta ObjectVXL,y
+        sex
+        sta ObjectVXH,y
+
+        lda #Enemy::FLAMES*2
+        sta ObjectF1,y
+        lda #8
+        sta ObjectTimer,y
+  :
+
   ; Alternate between two frames
   lda retraces
   lsr
@@ -738,12 +855,23 @@ No:
 .proc ObjectFireJump
   jsr EnemyFall
   bcc :+
+    ; Bounce and make fire when reaching the ground, if not stunned
     lda ObjectF2,x
     bne :+
-    lda #<(-$40)
-    sta ObjectVYL,x
-    lda #>(-$40)
-    sta ObjectVYH,x
+      lda #<(-$40)
+      sta ObjectVYL,x
+      lda #>(-$40)
+      sta ObjectVYH,x
+
+      jsr FindFreeObjectY
+      bcc :+
+        jsr ObjectClearY
+        jsr ObjectCopyPosXY
+
+        lda #Enemy::FLAMES*2
+        sta ObjectF1,y
+        lda #10
+        sta ObjectTimer,y
   :
   lda #$10
   jsr EnemyWalk
@@ -866,6 +994,19 @@ YOnly:
   rts
 .endproc
 
+; hurts the player if they're touching the 8x8 enemy
+; input: X (object slot)
+.proc SmallEnemyPlayerTouchHurt
+  lda ObjectF2,x
+  and #ENEMY_STATE_BITS
+  cmp #ENEMY_STATE_STUNNED
+  beq :+
+  jsr SmallPlayerTouch
+  bcc :+
+  jsr HurtPlayer
+: rts
+.endproc
+
 ; hurts the player if they're touching the enemy
 ; input: X (object slot)
 .proc EnemyPlayerTouchHurt
@@ -897,11 +1038,11 @@ AfterHeightWidth:
 ;  clc
 ;  rts
 ;:
-  ; aside from skipping collisions and saving CPU time,
-  ; these checks keep the collision detection routine from
-  ; having problems with overflow
+  ; Skips collisions if too far away horizontally or vertically.
+  ; Saves some CPU. Used to be necessary because the old collision
+  ; detection routine had overflow problems.
 
-  ; skip if too far away horizontally
+  ; Skip if too far away horizontally
   lda ObjectPXH,x
   sub PlayerPXH
   abs
@@ -910,7 +1051,7 @@ AfterHeightWidth:
   clc
   rts
 :
-  ; skip if too far away vertically
+  ; Skip if too far away vertically
   lda ObjectPYH,x
   sub PlayerPYH
   abs
@@ -921,21 +1062,28 @@ AfterHeightWidth:
 :
 
   ; Now to actually call the collision detection routine!
-  ; ChkTouchGeneric wants the center of each object, so add width and height divided by 2
-  ; maybe these could be adc instead of add?
   lda O_RAM::OBJ_DRAWX
-;  add #16/2
   sta TouchLeftA
   lda O_RAM::OBJ_DRAWY
-;  add #16/2
   sta TouchTopA
   lda PlayerDrawX
-  ;add #8/2 <-- already handled when PlayerDrawX is written
   sta TouchLeftB
   lda PlayerDrawY
-  ;add #24/2
   sta TouchTopB
   jmp ChkTouchGeneric
+.endproc
+
+; Checks if the player is touching the enemy projectile
+; input: X (object slot)
+; output: carry (touching enemy)
+.proc SmallPlayerTouch ; assumes 8x8 enemies and 8x24 player
+  lda #8
+  sta TouchWidthA
+  sta TouchHeightA
+  sta TouchWidthB
+  lda #24
+  sta TouchHeightB
+  jmp EnemyPlayerTouch::AfterHeightWidth
 .endproc
 
 ; Makes the enemy walk forward and checks for collision
@@ -1330,6 +1478,22 @@ Good:
   sta ObjectVXL,x
   sta ObjectVYH,x
   sta ObjectVYL,x
+  rts
+.endproc
+
+; Clears out an object slot
+; input: Y (object slot)
+.proc ObjectClearY
+  lda #255
+  sta ObjectIndexInLevel,y
+  lda #0
+  sta ObjectF2,y
+  sta ObjectF3,y
+  sta ObjectF4,y
+  sta ObjectVXH,y
+  sta ObjectVXL,y
+  sta ObjectVYH,y
+  sta ObjectVYL,y
   rts
 .endproc
 

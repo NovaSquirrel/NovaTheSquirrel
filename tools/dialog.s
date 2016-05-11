@@ -44,6 +44,8 @@ Tutorial5:
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f8, $c6, " ", $df, $a0, " ", $ba, "e", "v", $ed, "y", $e0, $b1, SCR::NEWLINE, $a6, " ", $f9, $d6, $bb, $af, " ", $de, "a", $ee, "e", "d", ".", SCR::NEWLINE, "K", $d7, "p", " ", $c3, $f7, $b1, " ", $a5, "w", "a", "r", $ff, $f2, "t", $dc, SCR::NEWLINE, $a6, " ", $af, " ", $bb, "B", "u", "m", $d0, $ea, "C", "l", "u", "b", $f6, "G", $e4, "d", SCR::NEWLINE, "L", "u", $f3, "!"
 ; <0 NOVA>Okay then! Still dunno what I'm doing here.
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "O", "k", "a", $fe, $94, $fd, "S", "t", $dc, "l", " ", "d", $f2, $d1, " ", $8b, SCR::NEWLINE, $d4, $c5, $b1, " ", $a9, "e", "."
+; <2 KEE>*I'm* going to go back and explore some more. I think I saw a hut back there.
+.byt SCR::SAY, SCR::SPEAKER_2|CHAR::KEE, "*", "I", "'", "m", "*", " ", $cf, $b1, " ", $bb, $cf, " ", "b", "a", $f3, " ", $ca, "d", SCR::NEWLINE, "e", "x", "p", "l", $c9, $e7, $9c, " ", "m", $c9, "e", $f6, $c0, $82, " ", "I", SCR::NEWLINE, "s", "a", "w", " ", $be, "h", "u", $d3, "b", "a", $f3, " ", $88, "."
 .byt SCR::END_SCRIPT
 Nice_Announcement:
 .byt SCR::SCENE, SCENES::FORUMS
@@ -83,8 +85,8 @@ Nice_Announcement:
 ; []-Sherwin gets taken to the Scheme Team lair-
 .byt SCR::NARRATE, CHAR::NONE, "-", "S", $a9, "w", $bf, $af, $fb, $90, "n", " ", $bb, $a2, SCR::NEWLINE, "S", $e2, "e", $d0, " ", "T", $ec, "m", " ", "l", "a", "i", "r", "-"
 .byt SCR::TRANSITION
-; [SHERWIN]WELL I guess I'll go post about this on the forums. I'll create a new topic. I'll need a good name, hmmm...
-.byt SCR::NARRATE, CHAR::SHERWIN, "W", "E", "L", "L", " ", $c0, "g", "u", "e", $f1, " ", $d5, " ", $cf, " ", "p", "o", $de, SCR::NEWLINE, $8a, $99, " ", $c2, " ", $a2, " ", $a5, "u", "m", "s", $f6, $d5, SCR::NEWLINE, "c", "r", $ec, $eb, " ", $be, $f9, "w", " ", $bc, "p", "i", "c", $f6, $d5, " ", $f9, $d6, "a", SCR::NEWLINE, $cf, "o", $ff, "n", "a", $d0, $f5, "h", "m", "m", "m", ".", ".", "."
+; [SHERWIN]WELL I guess I'll go post about this on the forums. I'll create a new thread. I'll need a good name, hmmm...
+.byt SCR::NARRATE, CHAR::SHERWIN, "W", "E", "L", "L", " ", $c0, "g", "u", "e", $f1, " ", $d5, " ", $cf, " ", "p", "o", $de, SCR::NEWLINE, $8a, $99, " ", $c2, " ", $a2, " ", $a5, "u", "m", "s", $f6, $d5, SCR::NEWLINE, "c", "r", $ec, $eb, " ", $be, $f9, "w", " ", $e0, "r", $ec, "d", $f6, $d5, " ", $f9, "e", "d", SCR::NEWLINE, $be, $cf, "o", $ff, "n", "a", $d0, $f5, "h", "m", "m", "m", ".", ".", "."
 .byt SCR::SCENE, SCENES::FORUMS
 ; []-halp I've been taken-
 .byt SCR::NARRATE, CHAR::NONE, $86

@@ -177,7 +177,37 @@ C .byt 0
 C .byt 0
 C .byt 0
 
-R ENEMY_PROJECTILE
+R BLASTER_SHOT
+C .byt 0
+C .byt 0
+C .byt 0
+
+R SMALL_GLIDER
+C .byt 0
+C .byt 0
+C .byt 0
+
+R BOOMERANG
+C .byt 0
+C .byt 0
+C .byt 0
+
+R FIREBALL
+C .byt GraphicsUpload::SP_FIRE
+C .byt GraphicsUpload::SP_FIRE
+C .byt 0
+
+R FLAMES
+C .byt GraphicsUpload::SP_FIRE
+C .byt GraphicsUpload::SP_FIRE
+C .byt 0
+
+R WATER_BOTTLE
+C .byt GraphicsUpload::SP_KING
+C .byt GraphicsUpload::SP_GEORGE
+C .byt 0
+
+R ICE_BLOCK
 C .byt 0
 C .byt 0
 C .byt 0

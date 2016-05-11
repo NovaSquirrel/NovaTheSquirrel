@@ -656,9 +656,11 @@ DispEnemyMetaspriteLeft:
 .endif
 .endproc
 
+.if 0
 .proc SampleMetasprite
   MetaspriteHeader 3, 3, 0
   .byt 0, 1, 1
   .byt 2, MS_EMPTY, 3
   .byt 4, 5, 5
 .endproc
+.endif

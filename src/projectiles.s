@@ -15,10 +15,10 @@
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;
 
+; Different projectile actions for the table after this
 .enum PlayerProjectileAction
   NOTHING
   BUMP
-;  KNOCK
   STUN
   DAMAGE
   BLOW_AWAY
@@ -26,6 +26,8 @@
   REMOVE_SHOT = 128
 .endenum
 
+; Actions to take when a projectile hits an enemy.
+; REMOVE_SHOT means delete the projectile after a collision.
 .proc PlayerProjectileActionTable
   .byt PlayerProjectileAction::STUN   | PlayerProjectileAction::REMOVE_SHOT
   .byt PlayerProjectileAction::COPY
@@ -45,6 +47,7 @@
   .byt PlayerProjectileAction::BUMP
 .endproc
 
+; Used for setting widths and heights for collisions
 .proc PlayerProjectileSizeTable
   .byt 8
   .byt 8
@@ -64,26 +67,9 @@
   .byt 16
 .endproc
 
-.proc PlayerProjectileHalfSizeTable
-  .byt 4
-  .byt 4
-  .byt 4
-  .byt 4
-  .byt 4
-  .byt 4
-  .byt 4
-  .byt 4
-  .byt 4
-  .byt 8
-  .byt 4
-  .byt 8
-  .byt 8
-  .byt 8
-  .byt 8
-  .byt 8
-.endproc
-
-.proc PlayerProjectileRightCornerTable ; used by ObjectBounceHoriz
+; Used by ObjectBounceHoriz. If these values are added to ObjectPXL
+; the new coordinate will be the top right corner.
+.proc PlayerProjectileRightCornerTable
   .byt $70
   .byt $70
   .byt $70
@@ -103,24 +89,10 @@
 .endproc
 
 .proc ProjectilePlayerTouchHurt
-  jsr ProjectilePlayerTouch
+  jsr SmallPlayerTouch
   bcc :+
   jsr HurtPlayer
 : rts
-.endproc
-
-.proc ProjectilePlayerTouch
-  ldy ObjectF2,x
-  lda PlayerProjectileSizeTable,y
-  sta TouchWidthA
-  sta TouchHeightA
-
-  lda #8
-  sta TouchWidthB
-  lda #24
-  sta TouchHeightB
-
-  jmp EnemyPlayerTouch::AfterHeightWidth
 .endproc
 
 .proc ObjectBounceHoriz
@@ -206,14 +178,7 @@ GotIt:
   lda MetatileFlags,y
   bpl _rts ; not solid
 
-  ; negate 16
-  sec             ;Ensure carry is set
-  lda #0          ;Load constant zero
-  sbc ObjectVXL,x ;... subtract the least significant byte
-  sta ObjectVXL,x ;... and store the result
-  lda #0          ;Load constant zero again
-  sbc ObjectVXH,x ;... subtract the most significant byte
-  sta ObjectVXH,x ;... and store the result
+  neg16x ObjectVXL, ObjectVXH
 
   ldy ObjectF2,x
   lda PlayerProjectileSizeTable,y
@@ -225,6 +190,7 @@ _rts:
 
 .endproc
 
+; Adds an offset to the X and Y coordinates of an object
 .proc ObjectOffsetXY
   sta 0
 ; X
@@ -240,6 +206,7 @@ _rts:
   rts
 .endproc
 
+; Subtracts an offset from the X and Y coordinates of an objects
 .proc ObjectOffsetXYNegative
   sta 0
 ; X
@@ -255,15 +222,9 @@ _rts:
   rts
 .endproc
 
+; Handler for all the different types of player projectiles
 .proc ObjectPlayerProjectile
   jsr EnemyDespawnTimer
-
-  lda ObjectF1,x
-  and #<~1
-  cmp #Enemy::ENEMY_PROJECTILE*2
-  bne NotEnemyProjectile
-  jsr ProjectilePlayerTouchHurt
-NotEnemyProjectile:
 
   lda ObjectF2,x
   and #31
@@ -296,15 +257,18 @@ ProjStunStar:
   jsr EnemyApplyVelocity
   lda #$51
   jmp DispObject8x8
+
 ProjCopyOrb:
   jsr EnemyApplyVelocity
   lda #$2d
   jmp DispObject8x8
+
 ProjBlasterShot:
   jsr EnemyApplyVelocity
   lda #$70
   jmp DispObject8x8
-ProjLifeGlider:
+
+DoGlider:
   lda ObjectF1,x    ; if facing left, turn on horizontal flip bit
   and #1
   beq :+
@@ -357,7 +321,10 @@ ProjLifeGlider:
     lda #OAM_YFLIP
 : ora 1
   sta 1
+  rts
 
+ProjLifeGlider:
+  jsr DoGlider
   lda 0
   add #$70
   jmp DispObject8x8_Attr
@@ -370,7 +337,7 @@ ProjBoomerang:
   jsr EnemyApplyVelocity
   lda #$70
   jmp DispObject8x8
-ProjFireball:
+DoFireball:
   jsr ObjectFallSmall
   bcc :+
   lda #<-$18
@@ -390,7 +357,10 @@ ProjFireball:
   sta ObjectTimer,x
   rts
 NotFlame:
+  rts
 
+ProjFireball:
+  jsr DoFireball
   lda retraces
   lsr
   lsr
@@ -398,22 +368,27 @@ NotFlame:
   add #$70
   jsr DispObject8x8
   jmp ObjectBounceHoriz
-ProjFlame:
+
+DoFlame:
   jsr EnemyFall
   bcc :+
-  lda #0
-  sta ObjectVXH,x
-  sta ObjectVXL,x
+    lda #0
+    sta ObjectVXH,x
+    sta ObjectVXL,x
 :
   jsr EnemyApplyVelocity
   lda retraces
   and #8
   bne :+
     jsr EnemyTurnAround
-  :
+: rts
+
+ProjFlame:
+  jsr DoFlame
   lda #$74
   ldy #OAM_COLOR_1
   jmp DispEnemyWide
+
 ProjWaterBottle:
   jsr EnemyGravity
   jsr EnemyApplyVelocity
@@ -444,14 +419,20 @@ ProjWaterBottle:
   lda SpinningBottleT2,y
   jmp DispObject8x8_XYOffset
 
+; E versions for enemies
 SpinningBottleT1:  .byt $70, $72, $70, $72
 SpinningBottleT2:  .byt $71, $73, $71, $73
+SpinningBottleT1E: .byt $1c, $1e, $1c, $1e
+SpinningBottleT2E: .byt $1d, $1f, $1d, $1f
 SpinningBottleX1:  .byt 0, 4, 0, <-4
 SpinningBottleY1:  .byt <-4, 0, 4, 0
 SpinningBottleX2:  .byt 0, <-4, 0, 4
 SpinningBottleY2:  .byt 4, 0, <-4, 0
 SpinningBottleA:
   .byt OAM_COLOR_1, OAM_COLOR_1 | OAM_XFLIP, OAM_COLOR_1|OAM_YFLIP, OAM_COLOR_1
+SpinningBottleAE:
+  .byt OAM_COLOR_3, OAM_COLOR_3 | OAM_XFLIP, OAM_COLOR_3|OAM_YFLIP, OAM_COLOR_3
+
 ProjFireworksCursor:
   jsr EnemyApplyVelocity
   lda #0
@@ -553,6 +534,7 @@ ProjBall:
   jmp ObjectBounceHoriz
 .endproc
 
+; Enemy routine. Checks for player projectiles and reacts to them.
 .proc EnemyTouchPlayerProjectiles
 Action = 0
 Object = 1
@@ -600,4 +582,83 @@ Skip:
   rts
 .endproc
 
+.proc ObjectBlasterShot
+  jsr EnemyDespawnTimer
+  jmp SmallEnemyPlayerTouchHurt
+.endproc
 
+.proc ObjectSmallGlider
+  jsr EnemyDespawnTimer
+  jmp SmallEnemyPlayerTouchHurt
+.endproc
+
+.proc ObjectBoomerang
+  jsr EnemyDespawnTimer
+  jmp SmallEnemyPlayerTouchHurt
+.endproc
+
+.proc ObjectFireball
+  jsr EnemyDespawnTimer
+  jsr ObjectPlayerProjectile::DoFireball
+  lda #OAM_COLOR_3
+  sta 1
+  lda retraces
+  lsr
+  lsr
+  and #3
+  ora #$18
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_Attr
+  jmp SmallEnemyPlayerTouchHurt
+.endproc
+
+.proc ObjectFlames
+  jsr EnemyDespawnTimer
+  jsr ObjectPlayerProjectile::DoFlame
+  lda #$1c
+  ora O_RAM::TILEBASE
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+  jmp EnemyPlayerTouchHurt
+.endproc
+
+.proc ObjectWaterBottle
+  jsr EnemyDespawnTimer
+  jsr EnemyGravity
+  jsr EnemyApplyVelocity
+
+  ; Draw the water bottle
+  lda retraces
+  lsr
+  lsr
+  lsr
+  and #3
+  tay
+  sty 4
+  ; Draw tile 1
+  lda ObjectPlayerProjectile::SpinningBottleAE,y
+  sta 1
+  lda ObjectPlayerProjectile::SpinningBottleX1,y
+  sta 2
+  lda ObjectPlayerProjectile::SpinningBottleY1,y
+  sta 3
+  lda ObjectPlayerProjectile::SpinningBottleT1E,y
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_XYOffset
+  ; Draw tile 2
+  ldy 4
+  lda ObjectPlayerProjectile::SpinningBottleX2,y
+  sta 2
+  lda ObjectPlayerProjectile::SpinningBottleY2,y
+  sta 3
+  lda ObjectPlayerProjectile::SpinningBottleT2E,y
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_XYOffset
+  jmp SmallEnemyPlayerTouchHurt
+.endproc
+
+.proc ObjectIceBlock
+  jsr EnemyDespawnTimer
+  jsr EnemyApplyVelocity
+  rts
+.endproc
