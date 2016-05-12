@@ -216,6 +216,7 @@ MS_EMPTY = 32
   WATER
   FAN
   BURGER
+  LAST
 .endenum
 
 .enum Enemy

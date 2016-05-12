@@ -273,15 +273,6 @@ NotDie:
     jmp MainLoopInit
   :
 
-  lda keydown
-  and #KEY_SELECT|KEY_A|KEY_B
-  cmp #KEY_SELECT|KEY_A|KEY_B
-  bne :+
-  lda #VWF_BANK
-  jsr SetPRG
-  jmp ShowLevelSelect
-:
-
   lda NeedDialog
   beq :+
     jsr StartCutscene ; this routine clears NeedDialog

@@ -307,6 +307,16 @@ ItemQuantityLoop:
   sta PPUSCROLL
 ; Wait for Start unpress
 : jsr ReadJoy
+  ; Start+Select = exit level
+  lda keynew
+  and #KEY_SELECT
+  beq @NotSelect
+  lda LevelSelectInventory
+  bne :+
+  pla
+  pla
+  jmp ShowLevelSelect
+@NotSelect:
   lda keydown
   and #KEY_START
   bne :-
@@ -439,12 +449,69 @@ NoAbilityIcon:
   and #KEY_START
   jeq Loop
 
-; Wait for unpress
-: jsr ReadJoy
-  lda keydown
-  and #KEY_START
-  bne :-
+; Wait for unpress (and keep track of key presses, for codes)
+  ; Reset code space first
+  lda #0
+  ldy #8
+: sta TempSpace,y
+  dey
+  bpl :-
 
+  tay ; A is still zero
+@WaitUnpress:
+  jsr ReadJoy
+  ; If more keys are pressed, add them to the list
+  lda keynew
+  beq :+
+  cpy #8
+  beq :+
+  sta TempSpace,y
+  iny
+: lda keydown
+  and #KEY_START
+  bne @WaitUnpress
+
+  ; Look for matches with the codes
+  .scope
+  ; Lazy, shorten this *maybe*
+  ldx #0
+TryCode:
+  lda CheatCodeKeys+0,x
+  beq Done
+  cmp TempSpace+0
+  bne Nope
+  lda CheatCodeKeys+1,x
+  cmp TempSpace+1
+  bne Nope
+  lda CheatCodeKeys+2,x
+  cmp TempSpace+2
+  bne Nope
+  lda CheatCodeKeys+3,x
+  cmp TempSpace+3
+  bne Nope
+  lda CheatCodeKeys+4,x
+  cmp TempSpace+4
+  bne Nope
+  lda CheatCodeKeys+5,x
+  cmp TempSpace+5
+  bne Nope
+  lda CheatCodeKeys+6,x
+  cmp TempSpace+6
+  bne Nope
+  lda CheatCodeKeys+7,x
+  cmp TempSpace+7
+  bne Nope
+  jsr CheatCodeRoutines
+  jmp Done
+Nope:
+  txa
+  add #8
+  tax
+  jmp TryCode
+Done:
+  .endscope
+
+; Skip over this
   jmp :+
 DoInventoryCode:
   jsr CallInventoryCode
@@ -490,6 +557,72 @@ MakeBG_Alt:
 InventoryPalette:
   .byt $30, $0f, $00, $2a
 .endproc
+
+.proc CheatCodeKeys
+KL = KEY_LEFT
+KR = KEY_RIGHT
+KU = KEY_UP
+KD = KEY_DOWN
+KA = KEY_A
+KB = KEY_B
+  .byt KU, KU, KD, KD, KL, KR, KL, KR ; Konami code
+  .byt KA, KB, KL, KR, KL, KR, KD, KD ; reverse Konami code
+  .byt KL, KL, KL, KL, KL, KL, KL, KL ; left
+  .byt KU, KR, KD, KL, KU, KR, KD, KL ; circles
+  .byt KL, KR, KL, KR, KL, KR, KL, KR ; left/right
+  .byt KU, KD, KU, KD, KU, KD, KU, KD ; up/down
+  .byt KB, KA, KL, KL, KB, KA, KL, KL ; BALL
+  .byt KL, KD, KU, KR, KL, KD, KU, KR ; ddr pattern
+  .byt 0
+.endproc
+
+.proc CheatCodeRoutines
+  txa
+  lsr
+  lsr
+  tax
+  lda Routines+1,x
+  pha
+  lda Routines+0,x
+  pha
+  rts
+
+Routines:
+  .raddr Health ; Konami Code
+  .raddr Health ; reverse Konami code
+  .raddr Fireball ; left
+  .raddr Health ; circles
+  .raddr NextAbility ; left/right
+  .raddr Water ; up/down
+  .raddr Firework ; BALL
+  .raddr Bomb ; ddr pattern
+Fireball:
+  lda #AbilityType::FIRE
+  jmp ChangePlayerAbility
+Water:
+  lda #AbilityType::WATER
+  jmp ChangePlayerAbility
+Bomb:
+  lda #AbilityType::BOMB
+  jmp ChangePlayerAbility
+Firework:
+  lda #AbilityType::FIREWORK
+  jmp ChangePlayerAbility
+Health:
+  lda #4
+  sta PlayerHealth
+  rts
+NextAbility:
+  ldx PlayerAbility
+  inx
+  cpx #AbilityType::LAST
+  bne :+
+  ldx #0
+: stx PlayerAbility
+  txa
+  jmp ChangePlayerAbility
+.endproc
+
 PausedString:
   .byt "P A U S E D",0
 LevelSelectString:
