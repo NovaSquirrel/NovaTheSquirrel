@@ -35,7 +35,7 @@ C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESE
 R TOASTBOT
 C .byt GraphicsUpload::SP_KING
 C .byt GraphicsUpload::SP_KING
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
 
 R BALL
 C .byt GraphicsUpload::SP_CANNON
@@ -90,17 +90,17 @@ C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESE
 R CANNON1
 C .byt GraphicsUpload::SP_CANNON
 C .byt GraphicsUpload::SP_CANNON
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
+C .byt ObjBehavior::AUTO_REMOVE
 
 R CANNON2
 C .byt GraphicsUpload::SP_CANNON
 C .byt GraphicsUpload::SP_CANNON
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
+C .byt ObjBehavior::AUTO_REMOVE
 
 R BURGER
 C .byt GraphicsUpload::SP_CANNON
 C .byt GraphicsUpload::SP_CANNON
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
 
 R FIREWALK
 C .byt GraphicsUpload::SP_FIRE

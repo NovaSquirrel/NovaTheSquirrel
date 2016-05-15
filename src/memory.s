@@ -204,7 +204,7 @@
   DelayedMetaEditTime:    .res MaxDelayedMetaEdits  ; amount of time
   DelayedMetaEditType:    .res MaxDelayedMetaEdits  ; new block type
 
-  ObjectLen = 12
+  ObjectLen = 14
   ObjectPXH:   .res ObjectLen ; \ horizontal and vertical positions
   ObjectPXL:   .res ObjectLen ;  \
   ObjectPYH:   .res ObjectLen ;  /

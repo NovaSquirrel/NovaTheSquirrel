@@ -696,10 +696,35 @@ SpinnerFrame2:
   jmp EnemyPlayerTouchHurt
 .endproc
 
+; Counts the amount of a certain object that currently exists
+; inputs: A (object type)
+; outputs: Y (count)
+; locals: 0
+.proc CountObjectAmount
+  stx TempX
+  sta 0  ; 0 = object num
+  ldx #0
+  ldy #0 ; Y = counter for number of matching objects
+: lda ObjectF1,x
+  and #<~1
+  cmp 0
+  bne :+
+  iny ; yes, this is the object
+: inx
+  cpx #ObjectLen
+  bne :--
+  ldx TempX
+  rts
+.endproc
+
 .proc ObjectKing
   jsr LakituMovement
 
-  ; Drop fries sometimes
+  ; Drop toast bots sometimes
+  lda #Enemy::TOASTBOT*2
+  jsr CountObjectAmount
+  cpy #2
+  bcs :+
   lda ObjectF2,x
   bne :+
     lda retraces
@@ -739,18 +764,36 @@ MetaspriteL:
   .byt $00|OAM_XFLIP, $01|OAM_XFLIP, $08|OAM_XFLIP, $09|OAM_XFLIP
 .endproc
 
+.proc EnemyLookAtPlayer
+  lda ObjectPXH,x
+  cmp PlayerPXH
+  lda ObjectF1,x
+  and #<~1
+  adc #0
+  sta ObjectF1,x
+  rts
+.endproc
+
 .proc ObjectToastBot
   jsr EnemyFall
 
+  ; Make robots poof automatically after awhile
+  inc ObjectTimer,x
+  lda ObjectTimer,x
+  cmp #240
+  bcc :+
+    lda #0
+    sta ObjectTimer,x
+    sta ObjectF2,x
+    lda #Enemy::POOF*2
+    sta ObjectF1,x
+  :
+
+  ; Look at the player sometimes
   lda retraces
   and #31
   bne :+
-    lda ObjectPXH,x
-    cmp PlayerPXH
-    lda ObjectF1,x
-    and #<~1
-    adc #0
-    sta ObjectF1,x
+    jsr EnemyLookAtPlayer
   :
 
   lda #$10
@@ -946,15 +989,163 @@ MetaspriteL:
   jmp EnemyPlayerTouchHurt
 .endproc
 
-.proc ObjectCannon1
+
+.proc EnemyHover
+  ldy ObjectTimer,x
+
+  lda Wavy,y
+  sex
+  sta 0
+  lda ObjectPYL,x
+  add Wavy,y
+  sta ObjectPYL,x
+  lda ObjectPYH,x
+  adc 0
+  sta ObjectPYH,x
+
+  inc ObjectTimer,x
+  lda ObjectTimer,x
+  and #63
+  sta ObjectTimer,x
   rts
+Wavy:
+  .byt 0, 0, 1, 2, 3, 3, 4
+  .byt 5, 5, 6, 6, 7, 7, 7
+  .byt 7, 7, 7, 7, 7, 7, 7
+  .byt 6, 6, 5, 5, 4, 3, 3
+  .byt 2, 1, 0, 0
+
+  .byt <-0, <-0, <-1, <-2, <-3, <-3, <-4
+  .byt <-5, <-5, <-6, <-6, <-7, <-7, <-7
+  .byt <-7, <-7, <-7, <-7, <-7, <-7, <-7
+  .byt <-6, <-6, <-5, <-5, <-4, <-3, <-3
+  .byt <-2, <-1, <-0, <-0
+.endproc
+
+.proc ObjectCannon1
+  jsr EnemyHover
+
+  ; Get speeds for projectiles
+  lda ObjectF1,x
+  and #1
+  tay
+  lda HSpeedL,y
+  sta 0
+  lda HSpeedH,y
+  sta 1
+
+  lda retraces
+  and #7
+  bne NoShoot
+    jsr huge_rand
+    and #7
+    bne NoShoot
+      jsr FindFreeObjectY
+      bcc NoShoot
+        jsr ObjectCopyPosXY
+
+        lda 0
+        sta ObjectVXL,y
+        lda 1
+        sta ObjectVXH,y
+        lda #0
+        sta ObjectVYL,y
+        sta ObjectVYH,y
+
+        lda #10
+        sta ObjectTimer,y
+
+        lda #Enemy::BURGER*2
+        sta ObjectF1,y
+
+        lda ObjectF3,x
+        sta ObjectF3,y
+NoShoot:
+
+  lda #<CannonFrame
+  ldy #>CannonFrame
+  jsr DispEnemyWideNonsequential
+  rts
+CannonFrame:
+  .byt $0c, $0c, $0d, $0d, OAM_COLOR_2, OAM_COLOR_2|OAM_YFLIP, OAM_COLOR_2, OAM_COLOR_2|OAM_YFLIP
+HSpeedL:
+  .byt <$38, <-$38
+HSpeedH:
+  .byt >$38, >-$38
 .endproc
 
 .proc ObjectCannon2
+  jsr EnemyHover
+  ; Get speeds for projectiles
+  lda ObjectF1,x
+  and #1
+  tay
+  lda HSpeedL,y
+  sta 2
+  lda HSpeedH,y
+  sta 3
+
+  ; Get projectile type
+  ldy ObjectPXH,x
+  lda ColumnBytes,y
+  asl
+  sta 1
+
+  lda retraces
+  and #7
+  bne NoShoot
+    ; Limit object amount
+    lda 1
+    jsr CountObjectAmount
+    tya
+    cmp ObjectF3,x
+    bcs NoShoot
+    jsr huge_rand
+    and #7
+    bne NoShoot
+      jsr FindFreeObjectY
+      bcc NoShoot
+        jsr ObjectCopyPosXY
+        jsr ObjectClearY
+
+        lda 2
+        sta ObjectVXL,y
+        lda 3
+        sta ObjectVXH,y
+        lda #0
+        sta ObjectVYL,y
+        sta ObjectVYH,y
+
+        ; Copy object and direction
+        lda ObjectF1,x
+        and #1
+        ora 1
+        sta ObjectF1,y
+NoShoot:
+
+  lda #<CannonFrame
+  ldy #>CannonFrame
+  jsr DispEnemyWideNonsequential
   rts
+CannonFrame:
+  .byt $0e, $0e, $0f, $0f, OAM_COLOR_2, OAM_COLOR_2|OAM_YFLIP, OAM_COLOR_2, OAM_COLOR_2|OAM_YFLIP
+HSpeedL:
+  .byt <$38, <-$38
+HSpeedH:
+  .byt >$38, >-$38
 .endproc
 
 .proc ObjectBurger
+  jsr EnemyDespawnTimer
+  jsr EnemyApplyVelocity
+  ; Display the different burger varieties differently
+  lda ObjectF3,x
+  asl
+  asl
+  ora #$10
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+  jmp EnemyPlayerTouchHurt
   rts
 .endproc
 
@@ -1102,12 +1293,7 @@ Frames: .byt 0, 4, 8, 12, 0, 4, 8, 12
   jsr EnemyFall
 
   ; Change direction to face the player
-  lda ObjectPXH,x
-  cmp PlayerPXH
-  lda ObjectF1,x
-  and #<~1
-  adc #0
-  sta ObjectF1,x
+  jsr EnemyLookAtPlayer
 
   ; Save speed for the fireball
   and #1
@@ -1200,12 +1386,7 @@ TooBig:
   jsr EnemyApplyVelocity
 
   ; Change direction to face the player
-  lda ObjectPXH,x
-  cmp PlayerPXH
-  lda ObjectF1,x
-  and #<~1
-  adc #0
-  sta ObjectF1,x
+  jsr EnemyLookAtPlayer
   and #1
   tay
 

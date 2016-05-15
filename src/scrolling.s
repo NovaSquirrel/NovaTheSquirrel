@@ -455,6 +455,7 @@ NotAlreadyMade:              ; okay, go spawn the object
   lsr
   lsr
   sta ObjectF3,x
+.if 0 ; This is for an unused feature
   and #%1000
   beq NoFlags    ; if the high bit isn't set, not using extended flags
   tya            ; save Y since we'll need it again right after
@@ -468,6 +469,7 @@ NotAlreadyMade:              ; okay, go spawn the object
   sta ObjectF3,x
   pla
   tay
+.endif
 NoFlags:
   iny
   lda SpriteListRAM,y         ; get type and direction flag
