@@ -51,6 +51,84 @@ Speed = 5
   rts
 .endproc
 
+; Calculates a horizontal and vertical speed from a speed and an angle
+; input: A (speed) Y (angle, 0-31)
+; output: 0,1 (X position), 2,3 (Y position)
+.proc SpeedAngle2OffsetHalf
+Angle = 4
+Speed = 5
+  sty Angle
+  sta Speed
+
+  lda CosineTable,y    ; Horizontal speed uses cosine
+  php                  ; Save the sign bit
+  abs                  ; Take the absolute value
+  lsr
+  ldy Speed
+  jsr mul8             ; Multiply the speed and cosine value
+  sty 0
+  sta 1
+  plp                  ; If it was originally negative, make it negative again
+  bpl :+
+  neg16 0, 1
+:
+
+  ldy Angle
+  lda SineTable,y      ; Vertical speed uses sine
+  php                  ; Save the sign bit
+  abs                  ; Take the absolute value
+  lsr
+  ldy Speed
+  jsr mul8             ; Multiply the speed and sine value
+  sty 2
+  sta 3
+  plp                  ; If it was originally negative, make it negative again
+  bpl :+
+  neg16 2, 3
+:
+  rts
+.endproc
+
+; Calculates a horizontal and vertical speed from a speed and an angle
+; input: A (speed) Y (angle, 0-31)
+; output: 0,1 (X position), 2,3 (Y position)
+.proc SpeedAngle2OffsetQuarter
+Angle = 4
+Speed = 5
+  sty Angle
+  sta Speed
+
+  lda CosineTable,y    ; Horizontal speed uses cosine
+  php                  ; Save the sign bit
+  abs                  ; Take the absolute value
+  lsr
+  lsr
+  ldy Speed
+  jsr mul8             ; Multiply the speed and cosine value
+  sty 0
+  sta 1
+  plp                  ; If it was originally negative, make it negative again
+  bpl :+
+  neg16 0, 1
+:
+
+  ldy Angle
+  lda SineTable,y      ; Vertical speed uses sine
+  php                  ; Save the sign bit
+  abs                  ; Take the absolute value
+  lsr
+  lsr
+  ldy Speed
+  jsr mul8             ; Multiply the speed and sine value
+  sty 2
+  sta 3
+  plp                  ; If it was originally negative, make it negative again
+  bpl :+
+  neg16 2, 3
+:
+  rts
+.endproc
+
 ; quick way to convert the numbers 0 to 99 from binary to decimal
 .proc BCD99
   .byt $00, $01, $02, $03, $04, $05, $06, $07, $08, $09, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19

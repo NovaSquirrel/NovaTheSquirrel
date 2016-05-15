@@ -79,6 +79,8 @@
   BG_BUMMER
   CHR_LEVELSEL
   PAL_LEVELSEL
+  SP_RONALD
+  SP_MINES
 .endenum
 
 .enum SFX
@@ -242,7 +244,6 @@ MS_EMPTY = 32
   BURGER
   FIRE_WALK
   FIRE_JUMP
-  FIRE_BURNING
   MINE
   ROCKET
   ROCKET_LAUNCHER
@@ -262,6 +263,12 @@ MS_EMPTY = 32
   FLAMES
   WATER_BOTTLE
   ICE_BLOCK
+  RONALD
+  RONALD_BURGER
+  FRIES
+  FRY
+  SUN
+  SUNKEY
 .endenum
 
 .enum PlayerProjectileType
@@ -308,11 +315,11 @@ MS_EMPTY = 32
   IF_NOT_ITEM   ; xx - item
   IF_CHOICE     ; xx - choice number
   GOTO          ; goto
-  CALL          ; call in same bank
+  CALL          ; call
   RETURN        ; returns from a call
-  SAY           ; .ssn nnnn            |
-  THINK         ; .||+-++++- name/face |
-  NARRATE       ; .++------- speaker   |
+  SAY           ; .ssn nnnn
+  THINK         ; .||+-++++- name/face
+  NARRATE       ; .++------- speaker
   CHOICES       ; xx - choice set
   SCENE         ; xx - scene number
   TRANSITION    ; transition effect

@@ -573,6 +573,7 @@ KB = KEY_B
   .byt KU, KD, KU, KD, KU, KD, KU, KD ; up/down
   .byt KB, KA, KL, KL, KB, KA, KL, KL ; BALL
   .byt KL, KD, KU, KR, KL, KD, KU, KR ; ddr pattern
+  .byt KU, KU, KU, KU, KU, KU, KU, KU ; up
   .byt 0
 .endproc
 
@@ -596,6 +597,7 @@ Routines:
   .raddr Water ; up/down
   .raddr Firework ; BALL
   .raddr Bomb ; ddr pattern
+  .raddr Balloon ; up
 Fireball:
   lda #AbilityType::FIRE
   jmp ChangePlayerAbility
@@ -621,6 +623,9 @@ NextAbility:
 : stx PlayerAbility
   txa
   jmp ChangePlayerAbility
+Balloon:
+  inc PlayerHasBalloon
+  rts
 .endproc
 
 PausedString:

@@ -21,7 +21,6 @@
   .byt GraphicsUpload::SP_CANNON ;BURGER
   .byt GraphicsUpload::SP_FIRE ;FIREWALK
   .byt GraphicsUpload::SP_FIRE ;FIREJUMP
-  .byt GraphicsUpload::SP_FIRE ;FIREBURNING
   .byt GraphicsUpload::SP_CANNON ;MINE
   .byt GraphicsUpload::SP_EXPLODE ;ROCKET
   .byt GraphicsUpload::SP_EXPLODE ;ROCKETLAUNCHER
@@ -41,6 +40,12 @@
   .byt GraphicsUpload::SP_FIRE ;FLAMES
   .byt GraphicsUpload::SP_KING ;WATER_BOTTLE
   .byt 0 ;ICE_BLOCK
+  .byt GraphicsUpload::SP_RONALD ;RONALD
+  .byt GraphicsUpload::SP_RONALD ;RONALD_BURGER
+  .byt GraphicsUpload::SP_RONALD ;FRIES
+  .byt GraphicsUpload::SP_RONALD ;FRY
+  .byt GraphicsUpload::SP_SUN ;SUN
+  .byt GraphicsUpload::SP_SUN ;SUNKEY
 .endproc
 
 .proc ObjGraphics2
@@ -66,7 +71,6 @@
   .byt GraphicsUpload::SP_CANNON ;BURGER
   .byt GraphicsUpload::SP_FIRE ;FIREWALK
   .byt GraphicsUpload::SP_FIRE ;FIREJUMP
-  .byt GraphicsUpload::SP_FIRE ;FIREBURNING
   .byt GraphicsUpload::SP_CANNON ;MINE
   .byt GraphicsUpload::SP_EXPLODE ;ROCKET
   .byt GraphicsUpload::SP_EXPLODE ;ROCKETLAUNCHER
@@ -86,6 +90,12 @@
   .byt GraphicsUpload::SP_FIRE ;FLAMES
   .byt GraphicsUpload::SP_GEORGE ;WATER_BOTTLE
   .byt 0 ;ICE_BLOCK
+  .byt GraphicsUpload::SP_RONALD ;RONALD
+  .byt GraphicsUpload::SP_RONALD ;RONALD_BURGER
+  .byt GraphicsUpload::SP_RONALD ;FRIES
+  .byt GraphicsUpload::SP_RONALD ;FRY
+  .byt GraphicsUpload::SP_SUN ;SUN
+  .byt GraphicsUpload::SP_SUN ;SUNKEY
 .endproc
 
 .proc ObjBehaviors
@@ -111,7 +121,6 @@
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BURGER
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;FIREWALK
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;FIREJUMP
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;FIREBURNING
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;MINE
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;ROCKET
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;ROCKETLAUNCHER
@@ -131,5 +140,11 @@
   .byt 0 ;FLAMES
   .byt 0 ;WATER_BOTTLE
   .byt 0 ;ICE_BLOCK
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET | ObjBehavior::WAIT_UNTIL_NEAR ;RONALD
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::AUTO_RESET | ObjBehavior::WAIT_UNTIL_NEAR ;RONALD_BURGER
+  .byt ObjBehavior::AUTO_REMOVE ;FRIES
+  .byt ObjBehavior::AUTO_REMOVE ;FRY
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET | ObjBehavior::WAIT_UNTIL_NEAR ;SUN
+  .byt 0 ;SUNKEY
 .endproc
 

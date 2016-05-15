@@ -25,6 +25,8 @@ BGFrozenFG: ChrFile "../chr/bgfrozenfg.pb53", 768,  $0500
 BGFrozenBG: ChrFile "../chr/bgfrozenbg.pb53", 512,  $0c00
 BGBummer:   ChrFile "../chr/bgbummer.pb53",   768,  $0500
 LevelSelCHR: ChrFile "../chr/levelselect.pb53",  1024,  $0000
+SPRonald:   ChrFile "../chr/spronald.pb53",   512,  $1800
+SPMines:    ChrFile "../chr/spmines.pb53",    512,  $1800
 
 PalGrassy:  .byt $03
             .byt $1a, $2a, $37

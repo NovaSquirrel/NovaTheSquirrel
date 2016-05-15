@@ -35,7 +35,7 @@ Scheme Team
 Sherwin
 	FL4SHK
 
-Kee, Luvi
-Remy, Eclipse
-MolSno, Lia, Iti
+Kee, Iti, NekoEd
+Remy, Eclipse, Lia
+MolSno, Kieran
 	themselves

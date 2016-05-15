@@ -523,6 +523,7 @@ RightClip:
   bne @SkipTile
   lda (Data),y
   pha
+  and #%00011111
   ora O_RAM::TILEBASE
   sta OAM_TILE,x
   pla

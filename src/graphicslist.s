@@ -34,6 +34,8 @@ GraphicsList:
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGBummer,     >BGBummer
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <LevelSelCHR,  >LevelSelCHR
   .byt GRAPHICS_BANK1|IS_PALETTE, <PalLevelSel,  >PalLevelSel
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPRonald,     >SPRonald
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPMines,      >SPMines
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)
 DoGraphicUpload:

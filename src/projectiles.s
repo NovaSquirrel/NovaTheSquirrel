@@ -345,10 +345,13 @@ DoFireball:
   lda #255
   sta ObjectVYH,x
 : jsr EnemyApplyVelocity
+  rts
 
+ProjFireball:
+  jsr DoFireball
   lda ObjectTimer,x
-  cmp #1
-  bne NotFlame
+  cmp #2
+  bcs NotFlame
   lda #$40
   jsr ObjectOffsetXYNegative
   lda #PlayerProjectileType::FLAME
@@ -357,10 +360,6 @@ DoFireball:
   sta ObjectTimer,x
   rts
 NotFlame:
-  rts
-
-ProjFireball:
-  jsr DoFireball
   lda retraces
   lsr
   lsr
@@ -598,7 +597,12 @@ Skip:
 .endproc
 
 .proc ObjectFireball
-  jsr EnemyDespawnTimer
+  dec ObjectTimer,x
+  lda ObjectTimer,x
+  bne :+
+    lda #0
+    sta ObjectF1,x
+  :
   jsr ObjectPlayerProjectile::DoFireball
   lda #OAM_COLOR_3
   sta 1

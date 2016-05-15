@@ -138,7 +138,6 @@ Exit:
   .raddr ObjectBurger
   .raddr ObjectFireWalk
   .raddr ObjectFireJump
-  .raddr ObjectFireBurning
   .raddr ObjectMine
   .raddr ObjectRocket
   .raddr ObjectRocketLauncher
@@ -158,6 +157,12 @@ Exit:
   .raddr ObjectFlames
   .raddr ObjectWaterBottle
   .raddr ObjectIceBlock
+  .raddr ObjectRonald
+  .raddr ObjectRonaldBurger
+  .raddr ObjectFries
+  .raddr ObjectFry
+  .raddr ObjectSun
+  .raddr ObjectSunKey
 .endproc
 
 ; other enemy attributes
@@ -342,7 +347,7 @@ DrawY = O_RAM::OBJ_DRAWY
   jsr EnemyWalk
   jsr EnemyAutoBump
 
-  ; Alternate between two frames
+  ; Switch between three frames
   lda retraces
   lsr
   lsr
@@ -389,13 +394,23 @@ Frames:
 .endproc
 
 .proc EnemyGetShot
+  jsr EnemyGetShotTest
+  bcc :+
+  jsr EnemyGotShot
+: rts
+.endproc
+
+.proc EnemyGetShotTest
 CenterX = TempVal+0
 CenterY = TempVal+1
 ProjectileIndex = TempVal+2
 ProjectileType  = 0
   ; Skip offscreen enemies
   lda O_RAM::ON_SCREEN
-  rtseq
+  bne :+
+  clc
+  rts
+:
 
   ; Move the X and Y to the centers
   lda O_RAM::OBJ_DRAWX
@@ -425,43 +440,40 @@ Loop:
   sub ObjectPXH,y
   abs
   cmp #2
-  bcc :+
-  clc
-  rts
-:
+  bcs Nope
+
   ; Skip if too far away vertically
   lda ObjectPYH,x
   sub ObjectPYH,y
   abs
   cmp #3
-  bcc :+
-  clc
-  rts
-:
+  bcs Nope
 
   RealXPosToScreenPosByY ObjectPXL, ObjectPXH, TouchLeftB
   RealYPosToScreenPosByY ObjectPYL, ObjectPYH, TouchTopB
 
   ; ChkTouchGeneric wants the center of each object, so add width and height divided by 2
-   lda ObjectF2,y
-   tay
-   sta ProjectileType
-   lda PlayerProjectileSizeTable,y
-   sta TouchWidthB
-   sta TouchHeightB
-   lda TouchLeftB
-   sta TouchLeftB
-   lda TouchTopB
-   sta TouchTopB
+  lda ObjectF2,y
+  tay
+  sta ProjectileType
+  lda PlayerProjectileSizeTable,y
+  sta TouchWidthB
+  sta TouchHeightB
+  lda TouchLeftB
+  sta TouchLeftB
+  lda TouchTopB
+  sta TouchTopB
   jsr ChkTouchGeneric
   bcc Nope
-  jsr EnemyGotShot
+  sec
+  rts
 Nope: 
   ldy ProjectileIndex
   ; Try the next one
   iny
   cpy #ObjectLen
   jne Loop
+  clc
   rts
 .endproc
 
@@ -550,7 +562,7 @@ EnemyAbilityTable:
   .byt Enemy::BURGER,           AbilityType::BURGER
   .byt Enemy::FIRE_WALK,        AbilityType::FIRE
   .byt Enemy::FIRE_JUMP,        AbilityType::FIRE
-  .byt Enemy::FIRE_BURNING,     AbilityType::FIRE
+  .byt Enemy::FLAMES,           AbilityType::FIRE
   .byt Enemy::ROCKET,           AbilityType::FIREWORK
   .byt Enemy::ROCKET_LAUNCHER,  AbilityType::FIREWORK
   .byt Enemy::FIREWORK_SHOOTER, AbilityType::FIREWORK
@@ -560,6 +572,9 @@ EnemyAbilityTable:
   .byt Enemy::BOUNCER,          AbilityType::BLASTER
   .byt Enemy::GREMLIN,          AbilityType::BLASTER
   .byt Enemy::BOMB_GUY,         AbilityType::BOMB
+  .byt Enemy::RONALD,           AbilityType::BURGER
+  .byt Enemy::SUN,              AbilityType::FIRE
+  .byt Enemy::BALL_GUY,         AbilityType::BALL
   .byt 0
 .endproc
 
@@ -608,7 +623,65 @@ No:
 .endproc
 
 .proc ObjectSpinner
+  lda ObjectF2,x
+  bne :+
+  jsr EnemyApplyVelocity
+:
+
+  lda retraces
+  and #8
+  beq OtherFrame
+  lda #<SpinnerFrame1
+  ldy #>SpinnerFrame1
+  bne NotOtherFrame
+OtherFrame:
+  lda #<SpinnerFrame2
+  ldy #>SpinnerFrame2
+NotOtherFrame:
+  jsr DispEnemyWideNonsequential
+
+  ; Aim at player sometimes
+  lda O_RAM::ON_SCREEN
+  beq OffScreen
+  lda retraces
+  and #31
+  cmp #5
+  bne DontAimAtPlayer
+  jsr AimAtPlayer
+  ; Vary the angle a little
+  jsr huge_rand
+  lsr
+  bcc :+
+  iny
+: lsr
+  bcc :+
+  dey
+: tya
+  and #31 ; Keep angle within bounds
+  tay
+  lda #1
+  jsr SpeedAngle2OffsetQuarter
+  lda 0
+  sta ObjectVXL,x
+  lda 1
+  sta ObjectVXH,x
+  lda 2
+  sta ObjectVYL,x
+  lda 3
+  sta ObjectVYH,x
+DontAimAtPlayer:
+  jmp EnemyPlayerTouchHurt
+OffScreen:
+  lda #0
+  sta ObjectVXL,x
+  sta ObjectVYL,x
+  sta ObjectVXH,x
+  sta ObjectVYH,x
   rts
+SpinnerFrame1:
+  .byt $08, $09, $08, $09, OAM_COLOR_2, OAM_COLOR_2, OAM_COLOR_2|OAM_XFLIP, OAM_COLOR_2|OAM_XFLIP
+SpinnerFrame2:
+  .byt $0a, $0b, $0a, $0b, OAM_COLOR_2, OAM_COLOR_2, OAM_COLOR_2|OAM_XFLIP, OAM_COLOR_2|OAM_XFLIP 
 .endproc
 
 .proc ObjectOwl
@@ -624,11 +697,72 @@ No:
 .endproc
 
 .proc ObjectKing
-  rts
+  jsr LakituMovement
+
+  ; Drop fries sometimes
+  lda ObjectF2,x
+  bne :+
+    lda retraces
+    bne :+
+      jsr FindFreeObjectY
+      bcc :+
+        jsr ObjectCopyPosXY
+        jsr ObjectClearY
+        lda ObjectF1,x
+        and #1
+        ora #Enemy::TOASTBOT*2
+        sta ObjectF1,y
+  :
+
+  ; Draw the sprite
+  lda ObjectF1,x
+  lsr
+  bcs Left
+Right:
+  lda #<MetaspriteR
+  ldy #>MetaspriteR
+  jmp WasRight
+Left:
+  lda #<MetaspriteL
+  ldy #>MetaspriteL
+WasRight:
+  jsr DispEnemyMetasprite
+
+  jmp EnemyPlayerTouchHurt
+MetaspriteR:
+  MetaspriteHeader 2, 4, 2
+  .byt $00, $01, $08, $09
+  .byt $02, $03, $0a, $0b
+MetaspriteL:
+  MetaspriteHeader 2, 4, 2
+  .byt $02|OAM_XFLIP, $03|OAM_XFLIP, $0a|OAM_XFLIP, $0b|OAM_XFLIP
+  .byt $00|OAM_XFLIP, $01|OAM_XFLIP, $08|OAM_XFLIP, $09|OAM_XFLIP
 .endproc
 
 .proc ObjectToastBot
-  rts
+  jsr EnemyFall
+
+  lda retraces
+  and #31
+  bne :+
+    lda ObjectPXH,x
+    cmp PlayerPXH
+    lda ObjectF1,x
+    and #<~1
+    adc #0
+    sta ObjectF1,x
+  :
+
+  lda #$10
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+
+  lda retraces
+  and #4
+  add #$0c
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  jmp EnemyPlayerTouchHurt
 .endproc
 
 .proc ObjectBall
@@ -636,6 +770,20 @@ No:
 .endproc
 
 .proc ObjectPotion
+  rts
+.endproc
+
+.proc AimAtPlayer
+  lda O_RAM::OBJ_DRAWX
+  sta 0
+  lda O_RAM::OBJ_DRAWY
+  sta 1
+  lda PlayerDrawX
+  sta 2
+  lda PlayerDrawY
+  sta 3
+  jsr getAngle
+  tay
   rts
 .endproc
 
@@ -678,16 +826,7 @@ No:
 
         ; Crappy trajectory calculation
         sty TempY
-        lda O_RAM::OBJ_DRAWX
-        sta 0
-        lda O_RAM::OBJ_DRAWY
-        sta 1
-        lda PlayerDrawX
-        sta 2
-        lda PlayerDrawY
-        sta 3
-        jsr getAngle
-        tay
+        jsr AimAtPlayer
         lda #1
         jsr SpeedAngle2Offset
         ldy TempY
@@ -736,10 +875,7 @@ No:
     lda ObjectF2,x
     bne :+
       jsr huge_rand
-      sec
-      ror
-      sec
-      ror
+      ora #$80      
       sta ObjectVYL,x
       lda #255
       sta ObjectVYH,x
@@ -922,10 +1058,6 @@ Flip: .byt %00, %00, %00, %00, %11, %11, %11, %11
 Frames: .byt 0, 4, 8, 12, 0, 4, 8, 12
 .endproc
 
-.proc ObjectFireBurning
-  rts
-.endproc
-
 .proc ObjectMine
   rts
 .endproc
@@ -963,6 +1095,309 @@ Frames: .byt 0, 4, 8, 12, 0, 4, 8, 12
 .endproc
 
 .proc ObjectBombGuy
+  rts
+.endproc
+
+.proc ObjectRonald
+  jsr EnemyFall
+
+  ; Change direction to face the player
+  lda ObjectPXH,x
+  cmp PlayerPXH
+  lda ObjectF1,x
+  and #<~1
+  adc #0
+  sta ObjectF1,x
+
+  ; Save speed for the fireball
+  and #1
+  tay
+  lda SpeedL,y
+  sta 0
+  lda SpeedH,y
+  sta 1
+
+  lda ObjectF2,x
+  bne NoShoot
+  lda retraces
+  and #63
+  cmp #42
+  bne NoShoot
+      jsr FindFreeObjectY
+      bcc NoShoot
+        jsr ObjectClearY
+        jsr ObjectCopyPosXY
+
+        lda ObjectPXL,y
+        add #$40
+        sta ObjectPXL,y
+        lda ObjectPXH,y
+        adc #0
+        sta ObjectPXH,y
+
+        lda 0
+        sta ObjectVXL,y
+        lda 1
+        sta ObjectVXH,y
+        lda #<-$20
+        sta ObjectVYL,y
+        lda #>-$20
+        sta ObjectVYH,y
+        lda #90
+        sta ObjectTimer,y
+
+        lda #Enemy::FIREBALL*2
+        sta ObjectF1,y
+NoShoot:
+
+  lda retraces
+  and #63
+  cmp #42
+  lda #0
+  adc #0
+  asl
+  asl
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+
+  jmp EnemyPlayerTouchHurt
+SpeedL:
+  .byt <$20, <-$20
+SpeedH:
+  .byt >$20, >-$20
+.endproc
+
+.proc EnemySpeedLimit
+  ; Limit speed
+  ; Maybe I can make this smaller?
+  php
+  lda ObjectVXH,x
+  sta TouchTemp
+  ; Flip to positive if needed
+  bpl :+
+    neg16x ObjectVXL, ObjectVXH
+: lda ObjectVXH,x
+  bne TooBig
+  lda ObjectVXL,x
+  cmp #$30
+  bcc :+
+TooBig:
+    lda #$30
+    sta ObjectVXL,x
+    lda #0
+    sta ObjectVXH,x
+  :
+
+  ; Flip back to negative if it was negative
+  lda TouchTemp
+  bpl :+
+    neg16x ObjectVXL, ObjectVXH
+: plp
+  rts
+.endproc
+
+.proc LakituMovement
+  jsr EnemyApplyVelocity
+
+  ; Change direction to face the player
+  lda ObjectPXH,x
+  cmp PlayerPXH
+  lda ObjectF1,x
+  and #<~1
+  adc #0
+  sta ObjectF1,x
+  and #1
+  tay
+
+  ; Only speed up if not around player
+  lda ObjectPXH,x
+  sub PlayerPXH
+  abs
+  cmp #3
+  bcc :+
+  lda SpeedL,y
+  add ObjectVXL,x
+  sta ObjectVXL,x
+  lda SpeedH,y
+  adc ObjectVXH,x
+  sta ObjectVXH,x
+  jsr EnemySpeedLimit
+:
+  rts
+SpeedL:
+  .byt <$04, <-$04
+SpeedH:
+  .byt >$04, >-$04
+.endproc
+
+.proc ObjectRonaldBurger
+  jsr LakituMovement
+
+  ; Drop fries sometimes
+  lda ObjectF2,x
+  bne :+
+    lda retraces
+    bne :+
+      jsr FindFreeObjectY
+      bcc :+
+        jsr ObjectCopyPosXY
+        jsr ObjectClearY
+        lda #Enemy::FRIES*2
+        sta ObjectF1,y
+  :
+
+  ; Draw the sprite
+  lda ObjectF1,x
+  lsr
+  bcs Left
+Right:
+  lda #<MetaspriteR
+  ldy #>MetaspriteR
+  jmp WasRight
+Left:
+  lda #<MetaspriteL
+  ldy #>MetaspriteL
+WasRight:
+  jsr DispEnemyMetasprite
+
+  jsr EnemyGetShotTest
+  bcc :+
+ProjectileIndex = TempVal+2
+  ldy ProjectileIndex
+  lda #0
+  sta ObjectF1,y
+  lda #Enemy::RONALD*2
+  sta ObjectF1,x
+:
+
+  jmp EnemyPlayerTouchHurt
+MetaspriteR:
+  MetaspriteHeader 2, 3, 3
+  .byt $14, $15, $18
+  .byt $16, $17, $19
+MetaspriteL:
+  MetaspriteHeader 2, 3, 3
+  .byt $16|OAM_XFLIP, $17|OAM_XFLIP, $19|OAM_XFLIP
+  .byt $14|OAM_XFLIP, $15|OAM_XFLIP, $18|OAM_XFLIP
+.endproc
+
+.proc ObjectFries
+  jsr EnemyFall
+  bcc InAir
+  inc ObjectTimer,x
+
+  ; Remove fries if around for too long
+  lda ObjectTimer,x
+  cmp #100
+  bcc :+
+  lda #0
+  sta ObjectF1,x
+: ; Explode fries if around long enough
+  lda ObjectTimer,x
+  cmp #50
+  bne NotExplode
+  lda #4
+  sta ObjectF3,x
+  jsr LaunchFry
+  jsr LaunchFry
+  jsr LaunchFry
+  jsr LaunchFry
+NotExplode:
+InAir:
+
+  lda #$0c
+  add ObjectF3,x
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+  rts
+LaunchFry:
+  jsr FindFreeObjectY
+  bcc :+
+   jsr ObjectClearY
+   lda ObjectPXL,x
+   add #$40
+   sta ObjectPXL,y
+   lda ObjectPXH,x
+   adc #0
+   sta ObjectPXH,y
+
+   lda ObjectPYL,x
+   sta ObjectPYL,y
+   lda ObjectPYH,x
+   sta ObjectPYH,y
+
+   ; Throw fries in the air
+   lda #<(-$40)
+   sta ObjectVYL,y
+   lda #>(-$40)
+   sta ObjectVYH,y
+
+   ; Random X velocity
+   jsr huge_rand
+   sta ObjectF3,y
+   asr
+   asr
+   sta ObjectVXL,y
+   sex
+   sta ObjectVXH,y
+
+   lda #Enemy::FRY*2
+   sta ObjectF1,y
+:
+  rts
+.endproc
+
+.proc ObjectFry
+  jsr EnemyApplyVelocity
+  jsr EnemyGravity
+
+  ; Remove enemy if offscreen
+  lda ObjectPYH,x
+  cmp #17
+  bcc :+
+    lda #0
+    sta ObjectF1,x
+  :
+
+  ; Generate the random flips and stuff
+  lda ObjectF3,x
+  and #3
+  asl
+  add #$1a
+  cmp #$20
+  bcc :+
+  lda #$1a
+: sta TempVal ; Tile
+
+  ; Draw tile 1
+  lda ObjectF3,x
+  asl
+  asl
+  and #OAM_XFLIP
+  ora #OAM_COLOR_3
+  sta 1
+  lda #0
+  sta 2
+  lda #<-4
+  sta 3
+  lda #$1a
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_XYOffset
+  ; Draw tile 2
+  lda #4
+  sta 3
+  lda #$1b
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_XYOffset
+  jmp SmallEnemyPlayerTouchHurt
+  rts
+.endproc
+
+.proc ObjectSun
+  rts
+.endproc
+
+.proc ObjectSunKey
   rts
 .endproc
 
@@ -1252,7 +1687,6 @@ SkipGravity:
       pla
       rts
   :
-
   ; If going upwards, check on top
   lda ObjectVYH,x
   bpl NotUp
@@ -1512,6 +1946,7 @@ Good:
   sta ObjectVXL,y
   sta ObjectVYH,y
   sta ObjectVYL,y
+  sta ObjectTimer,y
   rts
 .endproc
 
@@ -1595,4 +2030,3 @@ WithXYOffset:
   sta ObjectF1,x
 : rts
 .endproc
-
