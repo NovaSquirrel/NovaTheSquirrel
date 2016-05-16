@@ -98,6 +98,8 @@ NoSlotFree:
 
 SpecialMiscLo:
   .byt <(TouchedCoin-1)
+  .byt <(TouchedBigHeart-1)
+  .byt <(TouchedHeart-1)
   .byt <(TouchedLadder-1)
   .byt <(TouchedLadder-1)
   .byt <(TouchedSpring-1)
@@ -125,6 +127,8 @@ SpecialMiscLo:
 
 SpecialMiscHi:
   .byt >(TouchedCoin-1)
+  .byt >(TouchedBigHeart-1)
+  .byt >(TouchedHeart-1)
   .byt >(TouchedLadder-1)
   .byt >(TouchedLadder-1)
   .byt >(TouchedSpring-1)
@@ -149,6 +153,31 @@ SpecialMiscHi:
   .byt >(TouchedForce-1)
   .byt >(TouchedForce-1)
   .byt >(TouchedChip-1)
+
+.proc TouchedBigHeart
+  lda PlayerHealth
+  cmp #4
+  bcs :+
+  lda #0
+  jsr ChangeBlock
+  lda #SFX::COIN
+  jsr PlaySound
+  lda #4
+  sta PlayerHealth
+: rts
+.endproc
+
+.proc TouchedHeart
+  lda PlayerHealth
+  cmp #4
+  bcs :+
+  lda #0
+  jsr ChangeBlock
+  lda #SFX::COIN
+  jsr PlaySound
+  inc PlayerHealth
+: rts
+.endproc
 
 .proc TouchedCoin
   lda #0

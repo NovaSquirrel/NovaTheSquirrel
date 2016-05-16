@@ -11,6 +11,8 @@
   SOLID_BLOCK
   SPIKES
   COIN
+  BIG_HEART
+  HEART
   LADDER
   LADDER_TOP
   SPRING
@@ -135,6 +137,8 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_PAL_1 ;SOLID_BLOCK
   .byt M_PAL_1 ;SPIKES
   .byt M_PAL_2 ;COIN
+  .byt M_PAL_2 ;BIG_HEART
+  .byt M_PAL_2 ;HEART
   .byt M_PAL_2 ;LADDER
   .byt M_PAL_2 ;LADDER_TOP
   .byt M_PAL_2 ;SPRING
@@ -258,6 +262,8 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_SOLID_ALL|M_SOLID_TOP ;SOLID_BLOCK
   .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_GROUND ;SPIKES
   .byt M_EMPTY|M_SPECIAL_MISC ;COIN
+  .byt M_EMPTY|M_SPECIAL_MISC ;BIG_HEART
+  .byt M_EMPTY|M_SPECIAL_MISC ;HEART
   .byt M_SPECIAL_MISC|M_POST_PROCESS ;LADDER
   .byt M_SOLID_TOP|M_SPECIAL_MISC ;LADDER_TOP
   .byt M_EMPTY|M_SPECIAL_MISC ;SPRING
@@ -380,6 +386,8 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $0c ;SOLID_BLOCK
   .byt $12 ;SPIKES
   .byt $14 ;COIN
+  .byt $34 ;BIG_HEART
+  .byt $38 ;HEART
   .byt $10 ;LADDER
   .byt $10 ;LADDER_TOP
   .byt $3f ;SPRING
@@ -501,6 +509,8 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $0d ;SOLID_BLOCK
   .byt $13 ;SPIKES
   .byt $15 ;COIN
+  .byt $35 ;BIG_HEART
+  .byt $3f ;HEART
   .byt $10 ;LADDER
   .byt $10 ;LADDER_TOP
   .byt $18 ;SPRING
@@ -622,6 +632,8 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $0e ;SOLID_BLOCK
   .byt $12 ;SPIKES
   .byt $16 ;COIN
+  .byt $36 ;BIG_HEART
+  .byt $3a ;HEART
   .byt $11 ;LADDER
   .byt $11 ;LADDER_TOP
   .byt $3f ;SPRING
@@ -743,6 +755,8 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $0f ;SOLID_BLOCK
   .byt $13 ;SPIKES
   .byt $17 ;COIN
+  .byt $37 ;BIG_HEART
+  .byt $3f ;HEART
   .byt $11 ;LADDER
   .byt $11 ;LADDER_TOP
   .byt $19 ;SPRING

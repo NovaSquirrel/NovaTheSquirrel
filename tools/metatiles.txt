@@ -111,6 +111,22 @@ C .byt $15
 C .byt $16
 C .byt $17
 
+R BIG_HEART
+C .byt M_PAL_2
+C .byt M_EMPTY|M_SPECIAL_MISC
+C .byt $34
+C .byt $35
+C .byt $36
+C .byt $37
+
+R HEART
+C .byt M_PAL_2
+C .byt M_EMPTY|M_SPECIAL_MISC
+C .byt $38
+C .byt $3f
+C .byt $3a
+C .byt $3f
+
 R LADDER
 C .byt M_PAL_2
 C .byt M_SPECIAL_MISC|M_POST_PROCESS

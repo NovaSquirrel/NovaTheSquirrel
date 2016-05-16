@@ -358,6 +358,12 @@ DrawY = O_RAM::OBJ_DRAWY
   ldy #OAM_COLOR_2
   jsr DispEnemyWide
 
+  jmp GoombaSmoosh
+Frames:
+  .byt $0c, $10, $14, $10
+.endproc
+
+.proc GoombaSmoosh
   jsr EnemyPlayerTouch
   bcc NoTouch
   ; Custom behavior, so can't use EnemyPlayerTouchHurt
@@ -372,8 +378,6 @@ DrawY = O_RAM::OBJ_DRAWY
   jsr EnemyTurnAround
 NoTouch:
   rts
-Frames:
-  .byt $0c, $10, $14, $10
 .endproc
 
 .proc FlattenGoomba
@@ -751,9 +755,8 @@ Left:
   lda #<MetaspriteL
   ldy #>MetaspriteL
 WasRight:
-  jsr DispEnemyMetasprite
+  jmp DispEnemyMetasprite
 
-  jmp EnemyPlayerTouchHurt
 MetaspriteR:
   MetaspriteHeader 2, 4, 2
   .byt $00, $01, $08, $09
@@ -923,6 +926,23 @@ MetaspriteL:
       lda #255
       sta ObjectVYH,x
   :
+
+  ; Bounce against ceilings
+  lda ObjectPYL,x
+  sub #$20
+  lda ObjectPYH,x
+  sbc #0
+  tay
+  lda ObjectPXH,x
+  jsr GetLevelColumnPtr
+  tay
+  lda MetatileFlags,y
+  bpl :+
+  lda #0
+  sta ObjectVYL,x
+  sta ObjectVYH,x
+:
+
   lda #$10
   jsr EnemyWalk
   jsr EnemyAutoBump
@@ -1052,7 +1072,7 @@ Wavy:
         sta ObjectVYL,y
         sta ObjectVYH,y
 
-        lda #10
+        lda #15
         sta ObjectTimer,y
 
         lda #Enemy::BURGER*2
@@ -1145,8 +1165,7 @@ HSpeedH:
   ora #$10
   ldy #OAM_COLOR_3
   jsr DispEnemyWide
-  jmp EnemyPlayerTouchHurt
-  rts
+  jmp GoombaSmoosh
 .endproc
 
 .proc ObjectFireWalk
@@ -1194,7 +1213,6 @@ HSpeedH:
   jsr DispEnemyWide
 
   jmp EnemyPlayerTouchHurt
-  rts
 .endproc
 
 .proc ObjectFireJump

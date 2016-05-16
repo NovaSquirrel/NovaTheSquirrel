@@ -103,6 +103,7 @@ intro_bData:
   LObjN LO::R_SOLID_BLOCK,    1, 2, 0, 4
   LObjN LO::R_GROUND,         0, 7, 6, 3
   LObjN LO::R_BRICK,          1, 3, 4, 0
+  LObj  LO::S_HEART,          0, 6
   LObjN LO::RECT_2,           0, 11, 1, LN2::BLACK, 4
   LObj  LO::S_PRIZE,          1, 3
   LObj  LO::S_PRIZE,          2, 3

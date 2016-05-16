@@ -68,6 +68,8 @@
   .byt BLOCK_SINGLE,           Metatiles::BG_TALL_GRASS
   .byt BLOCK_SINGLE,           Metatiles::BG_FLOWER_1
   .byt BLOCK_SINGLE,           Metatiles::BG_BUSH_BOT
+  .byt BLOCK_SINGLE,           Metatiles::BIG_HEART
+  .byt BLOCK_SINGLE,           Metatiles::HEART
 .endproc
 
 .proc ObjectTypesList

@@ -400,6 +400,8 @@ NOVA_STRAIGHT = 18
   S_TALL_GRASS
   S_FLOWER
   S_BUSH
+  S_BIGHEART
+  S_HEART
 .endenum
 
 .enum LN1

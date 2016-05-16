@@ -55,7 +55,8 @@ funkundergroundData:
   LObj  LO::S_FLOWER,         0, 12
   LObjN LO::R_BRICK,          3, 3, 1, 6
   LObj  LO::S_FLOWER,         0, 12
-  LObj  LO::S_BRICKPRIZE,     2, 9
+  LObjN LO::R_SOLID_BLOCK,    1, 3, 0, 5
+  LObj  LO::S_BRICKPRIZE,     1, 9
   LObjN LO::WIDE_2,           2, 12, 2, LN2::BUSH
   LObj  LO::S_SOLID_BLOCK,    2, 10
   LObj  LO::S_SOLID_BLOCK,    2, 8
@@ -103,6 +104,7 @@ funkundergroundData:
   LObjN LO::R_SOLID_BLOCK,    3, 8, 4, 0
   LObjN LO::RECT_1,           1, 13, 1, LN1::GROUND, 24
   LObj  LO::S_PRIZE,          1, 10
+  LObj  LO::S_BIGHEART,       0, 12
   LObjN LO::R_SOLID_BLOCK,    2, 9, 0, 3
   LObjN LO::R_BRICK,          1, 1, 10, 0
   LObjN LO::R_BRICK,          0, 5, 7, 7

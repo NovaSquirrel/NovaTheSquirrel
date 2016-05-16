@@ -23,12 +23,14 @@ undergroundData:
   LObj  LO::S_PRIZE,          1, 3
   LObjN LO::R_AIR,            1, 4, 2, 1
   LObjN LO::WIDE_1,           1, 7, 0, LN1::SOLID_LEDGE
-  LObjN LO::R_BRICK,          6, 4, 15, 1
-  LObjN LO::R_AIR,            2, 4, 2, 0
+  LObjN LO::R_SOLID_BLOCK,    5, 1, 0, 2
+  LObjN LO::R_BRICK,          1, 4, 15, 1
+  LObj  LO::S_BIGHEART,       1, 3
+  LObjN LO::R_AIR,            1, 4, 2, 0
   LObj  LO::S_PRIZE,          1, 2
   LObjN LO::WIDE_1,           1, 9, 0, LN1::SPIKES
   LObjN LO::WIDE_1,           2, 13, 1, LN1::SOLID_LEDGE
-  LObjN LO::R_SOLID_BLOCK,    1, 6, 0, 2
+  LObjN LO::R_SOLID_BLOCK,    1, 4, 0, 4
   LObjN LO::R_BRICK,          0, 9, 3, 0
   LObjN LO::R_COIN,           2, 7, 1, 0
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 19
@@ -103,6 +105,7 @@ undergroundData:
   LObj  LO::S_PRIZE,          1, 4
   LObj  LO::S_PRIZE,          3, 4
   LObjN LO::R_GROUND,         3, 0, 1, 4
+  LObj  LO::R_CUSTOM,         0, 6, Metatiles::HEART, (1<<4)|0
   LObjN LO::RECT_1,           2, 0, 1, LN1::GROUND, 18
   LObjN LO::RECT_1,           0, 2, 2, LN1::BRICKS, 18
   LObjN LO::RECT_1,           0, 11, 3, LN1::GROUND, 18
@@ -149,9 +152,10 @@ undergroundSprite:
   LSpr Enemy::GOOMBA,              1,  34,   9
   LSpr Enemy::THWOMP,              0,  37,   3
   LSpr Enemy::THWOMP,              0,  41,   3
-  LSpr Enemy::BALL_GUY,            0,  51,  11
+  LSpr Enemy::FIRE_JUMP,           0,  52,  11
   LSpr Enemy::FIRE_JUMP,           1,  54,   2
-  LSpr Enemy::BALL_GUY,            0,  55,  12
+  LSpr Enemy::FIRE_JUMP,           0,  55,  12
+  LSpr Enemy::FIRE_JUMP,           1,  59,  12
   LSpr Enemy::GEORGE,              1,  70,   6
   LSpr Enemy::THWOMP,              0,  79,   8
   LSpr Enemy::OWL,                 0,  96,   3
