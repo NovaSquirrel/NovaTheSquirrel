@@ -24,8 +24,8 @@ IconNum = 14
 WorldTimes8 = 15
 
   ; Make the inventory have the correct information
-  lda SavedAbility
-  sta PlayerAbility
+;  lda SavedAbility
+;  sta PlayerAbility
   jsr CopyFromSavedInventory
 
 ; Stop any music that was playing
@@ -162,7 +162,7 @@ Loop:
   jsr ClearOAM
 
   lda IsSpinning
-  bne NoKeyCheck
+  jne NoKeyCheck
   lda keynew
   and #KEY_A
   beq :+
@@ -183,6 +183,9 @@ Loop:
     jsr WaitVblank
     lda #0
     sta PPUMASK
+    lda WorldTimes8
+    ora CurLevel
+    sta StartedLevelNumber
     jsr UploadNovaAndCommon
     inc LevelSelectInventory
     jmp PauseScreen

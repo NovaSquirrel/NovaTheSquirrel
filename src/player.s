@@ -1079,9 +1079,15 @@ NoSpecialAnimation:
 
   ; horizontally flip as the player moves up and down the ladder
   lda PlayerOnLadder
-  beq :+
-    lda retraces
-    and #%10000
+  beq :++
+    lda keydown
+    and #KEY_UP|KEY_DOWN
+    beq :+
+      lda retraces
+      sta PlayerLadderMoveFrame
+    :
+    lda PlayerLadderMoveFrame
+    and #%1000
     beq DoHorizTileFlip
     bne NoHorizTileFlip 
   :

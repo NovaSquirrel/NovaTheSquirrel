@@ -853,8 +853,8 @@ SkipAddr:
 .proc StartLevel
   pha
   sta StartedLevelNumber
-  lda SavedAbility
-  sta PlayerAbility
+;  lda SavedAbility
+;  sta PlayerAbility
   lda SavedCoins+0
   sta Coins+0
   lda SavedCoins+1
@@ -929,7 +929,6 @@ StartLevel_FromCheckpoint = StartLevel::FromCheckpoint
   lda PlayerAbility
   jsr ChangePlayerAbilityWithoutSFX
 :
-
   jmp SetPRG_Restore
 .endproc
 

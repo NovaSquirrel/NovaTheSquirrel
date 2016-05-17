@@ -19,8 +19,10 @@ Tutorial1:
 .byt SCR::END_SCRIPT
 Tutorial2:
 .byt SCR::SCENE, SCENES::NOVA_SIGN_KEE
-; <1 SIGN>Some enemies can have their abilities copied. Try stunning this enemy with B and then press Up+B while facing it to copy its ability. Press Down+Select to reset.
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "S", "o", $d0, " ", $e6, "e", "m", $e3, $fb, $b0, " ", $9b, $a2, "i", "r", SCR::NEWLINE, "a", "b", $dc, "i", "t", $e3, $fb, "c", "o", "p", $e3, "d", $f6, "T", "r", $fe, $de, $f2, "n", $b1, SCR::NEWLINE, $99, " ", $e6, "e", $cb, " ", $9d, " ", "B", " ", $a4, $94, SCR::NEWLINE, "p", "r", "e", $f1, " ", "U", "p", "+", "B", " ", $da, $dc, $e7, "f", "a", "c", $b1, " ", $c1, $bc, SCR::NEWLINE, "c", "o", "p", $fe, "i", "t", $fb, "a", "b", $dc, "i", "t", "y", $f6, "P", "r", "e", $f1, SCR::NEWLINE, "D", "o", "w", "n", "+", "S", "e", "l", "e", $c7, " ", $bb, "r", "e", $e5, "t", "."
+; <1 SIGN>Some enemies can have their abilities copied. Try stunning this enemy with B and then press Up+B while facing it to copy its ability.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "S", "o", $d0, " ", $e6, "e", "m", $e3, $fb, $b0, " ", $9b, $a2, "i", "r", SCR::NEWLINE, "a", "b", $dc, "i", "t", $e3, $fb, "c", "o", "p", $e3, "d", $f6, "T", "r", $fe, $de, $f2, "n", $b1, SCR::NEWLINE, $99, " ", $e6, "e", $cb, " ", $9d, " ", "B", " ", $a4, $94, SCR::NEWLINE, "p", "r", "e", $f1, " ", "U", "p", "+", "B", " ", $da, $dc, $e7, "f", "a", "c", $b1, " ", $c1, $bc, SCR::NEWLINE, "c", "o", "p", $fe, "i", "t", $fb, "a", "b", $dc, "i", "t", "y", "."
+; <1 SIGN>Hold Select to get rid of the ability you have. If an enemy throws projectiles, it is usually copyable.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "H", "o", $ef, " ", "S", "e", "l", "e", $c7, " ", $bb, $af, " ", $fc, $ff, $bd, $a2, SCR::NEWLINE, "a", "b", $dc, "i", "t", $fe, $a6, " ", "h", "a", "v", "e", $f6, "I", "f", " ", $ca, " ", $e6, "e", $cb, SCR::NEWLINE, $e0, "r", "o", "w", $fb, "p", "r", "o", "j", "e", $c7, $dc, "e", "s", $f5, $c1, $b9, SCR::NEWLINE, "u", "s", "u", $ad, $fe, "c", "o", "p", "y", "a", "b", "l", "e", "."
 .byt SCR::END_SCRIPT
 Tutorial3:
 .byt SCR::SCENE, SCENES::NOVA_SIGN_KEE
@@ -40,12 +42,14 @@ Tutorial4:
 .byt SCR::END_SCRIPT
 Tutorial5:
 .byt SCR::SCENE, SCENES::NOVA_SIGN_KEE
+; <1 SIGN>Many abilities have altered behavior if you hold Up or Down while you press B. Try holding up while shooting a fireball and see if you can hit this enemy.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "M", $ab, " ", "a", "b", $dc, "i", "t", $e3, $fb, $9b, "a", "l", $eb, "r", "e", "d", SCR::NEWLINE, "b", "e", "h", "a", "v", "i", $c9, " ", $ce, " ", $a6, " ", "h", "o", $ef, " ", "U", "p", " ", $c9, SCR::NEWLINE, "D", "o", "w", "n", " ", $da, $dc, $e7, $a6, " ", "p", "r", "e", $f1, " ", "B", $f6, "T", "r", "y", SCR::NEWLINE, "h", "o", $ef, $b1, " ", $cd, " ", $da, $dc, $e7, $df, $e4, "t", $b1, " ", "a", SCR::NEWLINE, "f", "i", "r", "e", "b", $ad, " ", $a4, $b3, " ", $ce, " ", $a6, " ", $b0, " ", "h", "i", "t", SCR::NEWLINE, $99, " ", $e6, "e", $cb, "."
 ; <1 SIGN>That should be everything you need to get started. Keep heading forward until you get to Bummer Club. Good Luck!
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f8, $c6, " ", $df, $a0, " ", $ba, "e", "v", $ed, "y", $e0, $b1, SCR::NEWLINE, $a6, " ", $f9, $d6, $bb, $af, " ", $de, "a", $ee, "e", "d", ".", SCR::NEWLINE, "K", $d7, "p", " ", $c3, $f7, $b1, " ", $a5, "w", "a", "r", $ff, $f2, "t", $dc, SCR::NEWLINE, $a6, " ", $af, " ", $bb, "B", "u", "m", $d0, $ea, "C", "l", "u", "b", $f6, "G", $e4, "d", SCR::NEWLINE, "L", "u", $f3, "!"
 ; <0 NOVA>Okay then! Still dunno what I'm doing here.
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "O", "k", "a", $fe, $94, $fd, "S", "t", $dc, "l", " ", "d", $f2, $d1, " ", $8b, SCR::NEWLINE, $d4, $c5, $b1, " ", $a9, "e", "."
-; <2 KEE>*I'm* going to go back and explore some more. I think I saw a hut back there.
-.byt SCR::SAY, SCR::SPEAKER_2|CHAR::KEE, "*", "I", "'", "m", "*", " ", $cf, $b1, " ", $bb, $cf, " ", "b", "a", $f3, " ", $ca, "d", SCR::NEWLINE, "e", "x", "p", "l", $c9, $e7, $9c, " ", "m", $c9, "e", $f6, $c0, $82, " ", "I", SCR::NEWLINE, "s", "a", "w", " ", $be, "h", "u", $d3, "b", "a", $f3, " ", $88, "."
+; <2 KEE>*I'm* going to go back and explore some more. I think I saw a hut back there. You should go on through this door though.
+.byt SCR::SAY, SCR::SPEAKER_2|CHAR::KEE, "*", "I", "'", "m", "*", " ", $cf, $b1, " ", $bb, $cf, " ", "b", "a", $f3, " ", $ca, "d", SCR::NEWLINE, "e", "x", "p", "l", $c9, $e7, $9c, " ", "m", $c9, "e", $f6, $c0, $82, " ", "I", SCR::NEWLINE, "s", "a", "w", " ", $be, "h", "u", $d3, "b", "a", $f3, " ", $88, $f6, "Y", $f4, SCR::NEWLINE, $df, $a0, " ", $cf, " ", $c2, " ", $e0, "r", $f4, $db, " ", $99, SCR::NEWLINE, $c5, $c9, " ", $e0, $f4, $db, "."
 .byt SCR::END_SCRIPT
 Nice_Announcement:
 .byt SCR::SCENE, SCENES::FORUMS

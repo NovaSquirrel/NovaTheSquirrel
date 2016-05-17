@@ -15,7 +15,8 @@
 
 :Tutorial2:
 `scene NOVA_SIGN_KEE
-<1 SIGN>Some enemies can have their abilities copied. Try stunning this enemy with B and then press Up+B while facing it to copy its ability. Press Down+Select to reset.
+<1 SIGN>Some enemies can have their abilities copied. Try stunning this enemy with B and then press Up+B while facing it to copy its ability.
+<1 SIGN>Hold Select to get rid of the ability you have. If an enemy throws projectiles, it is usually copyable.
 `end
 
 :Tutorial3:
@@ -33,9 +34,10 @@
 
 :Tutorial5:
 `scene NOVA_SIGN_KEE
+<1 SIGN>Many abilities have altered behavior if you hold Up or Down while you press B. Try holding up while shooting a fireball and see if you can hit this enemy.
 <1 SIGN>That should be everything you need to get started. Keep heading forward until you get to Bummer Club. Good Luck!
 <0 NOVA>Okay then! Still dunno what I'm doing here.
-<2 KEE>*I'm* going to go back and explore some more. I think I saw a hut back there.
+<2 KEE>*I'm* going to go back and explore some more. I think I saw a hut back there. You should go on through this door though.
 `end
 
 :Nice_Announcement:

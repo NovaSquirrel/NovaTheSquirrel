@@ -69,7 +69,7 @@ funkundergroundData:
   LObjN LO::R_BRICK,          1, 7, 2, 0
   LObj  LO::S_BRICKPRIZE,     0, 7
   LObjN LO::R_BRICK,          2, 2, 0, 1
-  LObj  LO::S_SOLID_BLOCK,    0, 10
+  LObjN LO::R_SOLID_BLOCK,    0, 10, 0, 1
   LObjN LO::R_BRICK,          6, 1, 7, 0
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 23
   LObjN LO::R_GROUND,         1, 11, 4, 1
@@ -80,20 +80,27 @@ funkundergroundData:
   LObjN LO::R_BRICK,          0, 6, 8, 3
   LObjN LO::WIDE_1,           0, 12, 9, LN1::TALLGRASS
   LObjN LO::R_COIN,           1, 5, 5, 0
+  LObjN LO::R_SOLID_BLOCK,    0, 7, 6, 1
   LObj  LO::S_BRICKPRIZE,     3, 2
   LObjN LO::RECT_1,           4, 1, 0, LN1::BRICKS, 23
   LObjN LO::R_SOLID_BLOCK,    3, 10, 1, 2
   LObjN LO::R_BRICK,          6, 2, 2, 3
   LObjN LO::R_BRICK,          0, 6, 8, 3
-  LObjN LO::WIDE_1,           1, 12, 3, LN1::FENCE
+  LObjN LO::R_SOLID_BLOCK,    1, 3, 0, 3
+  LObjN LO::R_SOLID_BLOCK,    0, 7, 6, 1
+  LObjN LO::WIDE_1,           0, 12, 3, LN1::FENCE
   LObjN LO::WIDE_1,           0, 13, 3, LN1::SOLID_LEDGE
   LObjN LO::R_GROUND,         5, 13, 12, 1
-  LObjN LO::WIDE_1,           3, 8, 5, LN1::FENCE
+  LObjN LO::WIDE_1,           3, 8, 4, LN1::FENCE
   LObjN LO::R_SOLID_BLOCK,    0, 9, 5, 0
   LObjN LO::R_COIN,           1, 7, 3, 0
-  LObj  LO::S_SPRING,         5, 12
-  LObjN LO::WIDE_1,           2, 12, 1, LN1::TALLGRASS
-  LObjN LO::WIDE_1,           5, 12, 2, LN1::TALLGRASS
+  LObj  LO::S_SPRING,         4, 8
+  LObjN LO::WIDE_1,           1, 12, 1, LN1::TALLGRASS
+  LObj  LO::S_SPRING,         2, 12
+  LObjN LO::R_SOLID_BLOCK,    1, 7, 0, 5
+  LObj  LO::S_SPRING,         3, 9
+  LObjN LO::WIDE_1,           0, 10, 2, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           1, 12, 2, LN1::TALLGRASS
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 16
   LObjN LO::RECT_1,           2, 1, 3, LN1::BRICKS, 22
   LObj  LO::S_SPRING,         2, 12
@@ -108,7 +115,8 @@ funkundergroundData:
   LObjN LO::R_SOLID_BLOCK,    2, 9, 0, 3
   LObjN LO::R_BRICK,          1, 1, 10, 0
   LObjN LO::R_BRICK,          0, 5, 7, 7
-  LObjN LO::R_BRICK,          8, 9, 11, 3
+  LObjN LO::R_SOLID_BLOCK,    1, 5, 0, 2
+  LObjN LO::R_BRICK,          7, 9, 11, 3
   LObjN LO::R_BRICK,          3, 1, 0, 5
   LObj  LO::S_SPRING,         1, 5
   LObj  LO::S_SOLID_BLOCK,    0, 6
@@ -165,7 +173,6 @@ funkundergroundSprite:
   LSpr Enemy::GOOMBA,              1,  95,  12
   LSpr Enemy::FIRE_JUMP,           1,  98,   5
   LSpr Enemy::SNEAKER,             0, 111,   5
-  LSpr Enemy::SNEAKER,             0, 113,   5
   LSpr Enemy::OWL,                 1, 140,   8
   LSpr Enemy::SNEAKER,             1, 161,   4
   LSpr Enemy::SNEAKER,             1, 172,   2

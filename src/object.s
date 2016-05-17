@@ -487,13 +487,19 @@ ProjectileType  = 0
   ldy ProjectileType
   lda PlayerProjectileActionTable,y
   asl    ; most significant bit = remove projectile
-  bcc :+
+  bcc NoRemove
+    cpy #PlayerProjectileType::STUN_STAR ; if not stun, OK
+    bne RemoveOK
+    ldy ObjectF2,x
+    cpy #ENEMY_STATE_STUNNED
+    beq NoRemove
+RemoveOK:
     ldy ProjectileIndex
     pha
     lda #0
     sta ObjectF1,y
     pla
-  :
+NoRemove:
   tay
   lda Responses+1,y
   pha
@@ -517,6 +523,10 @@ Bump:
   lda ObjectF1,x
   eor #1
   sta ObjectF1,x
+  lda #ENEMY_STATE_STUNNED
+  sta ObjectF2,x
+  lda #90
+  sta ObjectTimer,x
 Nothing:
   rts
 Stun:
@@ -613,15 +623,33 @@ No:
 
 .proc ObjectSneaker
   jsr EnemyFall
-  lda #$30
+  lda ObjectF2,x
+  bne :+
+  lda ObjectF4,x
+  cmp #$20
+  bcc :+
+  sub #$20
+  asl
   jsr EnemyWalk
   jsr EnemyAutoBump
+:
 
   ; Alternate between two frames
   lda retraces
   and #4
   ldy #OAM_COLOR_2
   jsr DispEnemyWide
+
+  ; Count up a timer before starting to move
+  lda ObjectF2,x
+  bne :+
+    lda O_RAM::ON_SCREEN
+    beq :+
+      lda ObjectF4,x
+      cmp #$20+$30/2
+      beq :+
+        inc ObjectF4,x
+  :
 
   jmp EnemyPlayerTouchHurt
 .endproc
@@ -844,13 +872,38 @@ MetaspriteL:
 
   jsr EnemyPlayerTouchHurt
 
-  lda retraces
-  and #15
-  bne :+
+
+  lda ObjectF3,x ; even harder
+  beq RegularBehavior
+  cmp #1
+  beq Tricky
+    lda retraces
+    and #7
+    bne :+
     jsr huge_rand
     and #7
-    cmp #3
-    bcs :+
+    beq ThrowBottle
+: rts
+
+Tricky:
+  lda ObjectF3,x ; alternate behavior that makes them harder
+  cmp #1
+  bne RegularBehavior
+    lda retraces
+    and #31
+    bne :+
+    jsr huge_rand
+    lsr
+    bcc ThrowBottle
+: rts
+
+RegularBehavior:
+  lda ObjectF2,x
+  bne :+
+    lda retraces
+    and #63
+    bne :+
+ThrowBottle:
       jsr FindFreeObjectY
       bcc :+
         lda #0
@@ -1117,6 +1170,7 @@ HSpeedH:
     ; Limit object amount
     lda 1
     jsr CountObjectAmount
+    iny
     tya
     cmp ObjectF3,x
     bcs NoShoot
@@ -1402,6 +1456,14 @@ TooBig:
 
 .proc LakituMovement
   jsr EnemyApplyVelocity
+
+  ; Stop if stunned
+  lda ObjectF2,x
+  beq :+
+    lda #0
+    sta ObjectVXL,x
+    sta ObjectVXH,x
+  :
 
   ; Change direction to face the player
   jsr EnemyLookAtPlayer

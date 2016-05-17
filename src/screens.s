@@ -102,6 +102,7 @@ Exit:
   sta PlayerPXH
   lda #0
   sta PlayerPXL
+  sta PlayerAbility
   lda CheckpointY
   sta PlayerPYH
   inc IsNormalDoor ; skip setting X and Y

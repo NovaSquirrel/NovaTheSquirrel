@@ -253,8 +253,35 @@ ObjectPlayerProjectileRoutines:
   .raddr ProjBurger
   .raddr ProjBall
 
+BreakBricks:
+  ; Break any bricks the projectile touches
+  lda ObjectPYL,x
+  add #$40
+  lda ObjectPYH,x
+  adc #0
+  tay
+  lda ObjectPXL,x
+  add #$40
+  lda ObjectPXH,x
+  adc #0
+  jsr GetLevelColumnPtr
+  sty 0
+  tay
+  lda MetatileFlags,y
+  and #M_BEHAVIOR
+  cmp #M_BRICKS
+  bne :+
+  ldy 0           ; Reload Y position
+  jsr DoBreakBricks
+  lda #0          ; Remove the shot
+  sta ObjectF1,x
+: rts
+
 ProjStunStar:
   jsr EnemyApplyVelocity
+
+  jsr BreakBricks
+
   lda #$51
   jmp DispObject8x8
 
@@ -324,6 +351,7 @@ DoGlider:
   rts
 
 ProjLifeGlider:
+  jsr BreakBricks
   jsr DoGlider
   lda 0
   add #$70
@@ -497,7 +525,9 @@ ProjExplosion:
   jmp DispObject8x8
 
 ProjIceBlock:
-  jsr EnemyApplyVelocity
+  lda #$30
+  jsr EnemyWalk
+  jsr EnemyAutoBump
   lda #$70
   ldy #OAM_COLOR_1
   jmp DispEnemyWide

@@ -61,6 +61,7 @@
   PlayerWalkLock:   .res 1     ; timer for the player being unable to move left/right
   PlayerDownTimer:  .res 1     ; timer for how long the player has been holding down
                                ; (used for fallthrough platforms)
+  PlayerSelectTimer:  .res 1   ; timer for how long the player has been holding select
   PlayerHealth:     .res 1     ; current health, measured in half hearts
   PlayerTailAttack: .res 1     ; timer for tail attack animation
   PlayerAnimationFrame: .res 1 ; base frame of the player's animations to use
@@ -220,6 +221,8 @@
   ObjectIndexInLevel: .res ObjectLen ; object's index in level list, prevents object from being respawned until it's despawned
   ObjectTimer: .res ObjectLen ; when timer reaches 0, reset state
 
+  PlayerLadderMoveFrame:  .res 1
+
 LevelZeroWhenLoad_Start:
   ObjectF1:               .res ObjectLen ; TTTTTTTD, Type, Direction
   PlayerHasBalloon:       .res 1
@@ -252,7 +255,7 @@ LevelZeroWhenLoad_End:
   ; Current game state
 CurrentGameState:
   PlayerAbility:    .res 1     ; current ability, see the AbilityType enum
-  Coins:            .res 2  ; 2 digits, BCD
+  Coins:            .res 2     ; 2 digits, BCD
   InventoryLen = 10
   InventoryType:      .res InventoryLen
   InventoryAmount:    .res InventoryLen

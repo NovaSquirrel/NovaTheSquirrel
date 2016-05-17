@@ -248,16 +248,27 @@ NotDie:
   :
 
   ; Let player reset their ability
-  lda PlayerAbility
-  beq :+
   lda keydown
-  and #KEY_DOWN
-  beq :+
-  lda keynew
+  and #KEY_SELECT
+  bne :+
+    lda #0
+    sta PlayerSelectTimer
+  :
+  lda keydown
   and #KEY_SELECT
   beq :+
-    lda #0
-    jsr ChangePlayerAbility
+    lda PlayerAbility
+    beq :+
+      lda keydown
+      and #KEY_DOWN
+      bne @ForceResetAbility
+      inc PlayerSelectTimer
+      lda PlayerSelectTimer
+      cmp #30
+      bne :+
+@ForceResetAbility:
+        lda #0
+        jsr ChangePlayerAbility
   :
 
   lda NeedLevelReload
