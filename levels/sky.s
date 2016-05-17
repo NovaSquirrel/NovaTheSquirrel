@@ -58,15 +58,13 @@ skyData:
   LObjN LO::WIDE_1,           0, 11, 3, LN1::SOLID_LEDGE
   LObj  LO::S_SPRING,         3, 9
   LObj  LO::S_SOLID_BLOCK,    0, 10
-  LObjN LO::R_GROUND,         1, 2, 0, 1
-  LObjN LO::R_GROUND,         0, 4, 3, 10
-  LObjN LO::WIDE_1,           1, 3, 1, LN1::FENCE
-  LObjN LO::TALL_1,           3, 4, 4, LN1::LADDER
-  LObjN LO::R_GROUND,         0, 9, 8, 5
-  LObjN LO::WIDE_1,           1, 4, 5, LN1::FALLTHROUGH_LEDGE
-  LObjN LO::R_BRICK,          1, 5, 4, 0
-  LObj  LO::S_PRIZE,          2, 5
-  LObj  LO::S_COIN,           4, 6
+  LObjN LO::R_GROUND,         1, 3, 0, 1
+  LObjN LO::R_GROUND,         0, 5, 2, 9
+  LObjN LO::WIDE_1,           1, 4, 1, LN1::FENCE
+  LObjN LO::R_GROUND,         4, 9, 7, 5
+  LObjN LO::WIDE_1,           2, 4, 3, LN1::SPIKES
+  LObjN LO::WIDE_1,           0, 5, 3, LN1::SOLID_LEDGE
+  LObj  LO::S_COIN,           5, 6
   LObjN LO::R_COIN,           2, 5, 1, 0
   LObj  LO::S_COIN,           3, 6
   LObjN LO::WIDE_2,           0, 8, 1, LN2::BUSH
@@ -87,16 +85,11 @@ skyData:
   LObj  LO::S_BIGHEART,       0, 12
   LObj  LO::S_SPRING,         2, 7
   LObjN LO::TALL_1,           1, 8, 5, LN1::LADDER
-  LObjN LO::WIDE_1,           2, 5, 2, LN1::SOLID_LEDGE
-  LObj  LO::S_SOLID_BLOCK,    1, 5
-  LObj  LO::S_SOLID_BLOCK,    0, 5
-  LObjN LO::TALL_2,           0, 6, 8, LN2::TRUNK
-  LObjN LO::R_GROUND,         3, 5, 0, 1
-  LObjN LO::R_GROUND,         0, 7, 4, 7
-  LObj  LO::S_GROUND_CLIMB_R, 1, 5
-  LObj  LO::S_GROUND,         0, 6
-  LObj  LO::S_GROUND_CLIMB_R, 1, 6
-  LObj  LO::S_FLOWER,         2, 6
+  LObjN LO::WIDE_1,           2, 7, 2, LN1::SOLID_LEDGE
+  LObj  LO::S_SOLID_BLOCK,    1, 7
+  LObjN LO::TALL_2,           0, 8, 6, LN2::TRUNK
+  LObjN LO::R_GROUND,         3, 7, 4, 7
+  LObj  LO::S_FLOWER,         4, 6
   LObjN LO::WIDE_1,           5, 6, 4, LN1::FENCE
   LObjN LO::R_GROUND,         0, 7, 4, 7
   LObj  LO::S_GROUND_CLIMB_R, 5, 7
@@ -125,24 +118,24 @@ skyData:
   LObjN LO::R_WATER,          0, 11, 4, 3
   LObjN LO::R_COIN,           1, 6, 2, 0
   LObjN LO::R_GROUND,         4, 8, 3, 6
-  LObjN LO::RECT_1,           4, 11, 3, LN1::GROUND, 21
-  LObjN LO::WIDE_1,           2, 10, 1, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_1,           2, 8, 1, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_1,           1, 10, 7, LN1::TALLGRASS
-  LObjN LO::WIDE_1,           2, 6, 1, LN1::SOLID_LEDGE
-  LObjN LO::R_COIN,           3, 8, 2, 1
-  LObjN LO::WIDE_1,           1, 5, 1, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_2,           2, 4, 3, LN2::BUSH
-  LObjN LO::R_GROUND,         0, 5, 8, 5
-  LObjN LO::WIDE_1,           5, 4, 2, LN1::FENCE
-  LObj  LO::S_SPRING,         4, 8
-  LObjN LO::R_GROUND,         0, 9, 8, 5
-  LObjN LO::WIDE_1,           2, 8, 4, LN1::TALLGRASS
-  LObjN LO::R_COIN,           1, 7, 2, 0
-  LObj  LO::S_SPRING,         5, 8
-  LObjN LO::R_GROUND,         7, 9, 8, 5
-  LObj  LO::S_GROUND_CLIMB_R, 9, 9
-  LObjN LO::R_GROUND,         0, 10, 6, 4
+  LObjN LO::RECT_1,           4, 13, 1, LN1::GROUND, 21
+  LObjN LO::R_SOLID_BLOCK,    2, 4, 0, 6
+  LObjN LO::WIDE_1,           0, 11, 2, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           2, 9, 1, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           1, 12, 7, LN1::TALLGRASS
+  LObjN LO::WIDE_1,           2, 7, 1, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           3, 8, 1, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           0, 10, 2, 1
+  LObjN LO::WIDE_2,           3, 8, 3, LN2::BUSH
+  LObjN LO::R_GROUND,         0, 9, 8, 3
+  LObjN LO::WIDE_1,           5, 8, 2, LN1::FENCE
+  LObj  LO::S_SPRING,         4, 11
+  LObjN LO::R_GROUND,         0, 12, 8, 2
+  LObjN LO::WIDE_1,           2, 11, 4, LN1::TALLGRASS
+  LObjN LO::R_COIN,           1, 9, 2, 0
+  LObj  LO::S_SPRING,         5, 11
+  LObjN LO::R_GROUND,         7, 12, 8, 2
+  LObjN LO::R_GROUND,         9, 10, 6, 4
   LObj  LO::S_GROUND_CLIMB_R, 7, 10
   LObjN LO::R_GROUND,         0, 11, 3, 3
   LObjN LO::WIDE_1,           1, 10, 2, LN1::FENCE
@@ -162,13 +155,13 @@ skySprite:
   LSpr Enemy::FIRE_JUMP,           1,  53,   3
   LSpr Enemy::CANNON_1,            1,  57,   6
   LSpr Enemy::GOOMBA,              0,  73,   5
-  LSpr Enemy::KING,                0,  92,   1
+  LSpr Enemy::KING,                0,  95,   1
   LSpr Enemy::GOOMBA,              1, 103,   8
-  LSpr Enemy::GOOMBA,              1, 116,   4
+  LSpr Enemy::GOOMBA,              1, 116,   6
   LSpr Enemy::OWL,                 0, 130,   6
   LSpr Enemy::THWOMP,              0, 139,   7
   LSpr Enemy::GOOMBA,              1, 161,   7
-  LSpr Enemy::GOOMBA,              1, 184,   5
+  LSpr Enemy::GOOMBA,              1, 184,   6
   LSpr Enemy::KING,                0, 216,   2
   LSpr Enemy::GOOMBA,              1, 232,  10
   LSpr Enemy::GOOMBA,              1, 236,  11

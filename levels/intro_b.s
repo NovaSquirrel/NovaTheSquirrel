@@ -132,7 +132,8 @@ intro_bData:
   LObj  LO::S_GROUND_CLIMB_L, 0, 10
   LObjN LO::R_BRICK,          2, 7, 2, 0
   LObj  LO::S_COIN,           1, 6
-  LObj  LO::S_GROUND_CLIMB_R, 3, 10
+  LObj  LO::S_HEART,          1, 6
+  LObj  LO::S_GROUND_CLIMB_R, 2, 10
   LObjN LO::R_GROUND,         1, 12, 4, 0
   LObjN LO::R_GROUND,         0, 13, 14, 1
   LObj  LO::S_GROUND_CLIMB_R, 4, 12

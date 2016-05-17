@@ -95,7 +95,8 @@ grassy_bData:
   LObj  LO::S_PRIZE,          0, 10
   LObjN LO::TALL_2,           0, 11, 1, LN2::TRUNK
   LObjN LO::TALL_2,           3, 8, 4, LN2::TRUNK
-  LObjN LO::WIDE_1,           3, 8, 2, LN1::SOLID_LEDGE
+  LObj  LO::S_BIGHEART,       2, 12
+  LObjN LO::WIDE_1,           1, 8, 2, LN1::SOLID_LEDGE
   LObj  LO::S_SOLID_ROCK,     0, 12
   LObjN LO::WIDE_1,           5, 6, 4, LN1::FENCE
   LObjN LO::R_GROUND,         0, 7, 4, 7
@@ -137,7 +138,8 @@ grassy_bData:
   LObjN LO::WIDE_1,           2, 12, 2, LN1::TALLGRASS
   LObjN LO::R_COIN,           1, 6, 3, 0
   LObjN LO::WIDE_1,           0, 7, 3, LN1::SOLID_LEDGE
-  LObjN LO::R_COIN,           7, 7, 3, 0
+  LObj  LO::S_HEART,          1, 11
+  LObjN LO::R_COIN,           6, 7, 3, 0
   LObjN LO::WIDE_1,           0, 8, 3, LN1::SOLID_LEDGE
   LObjN LO::WIDE_2,           4, 12, 3, LN2::BUSH
   LObjN LO::R_GROUND,         0, 13, 9, 1

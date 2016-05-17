@@ -60,15 +60,17 @@ intro_aData:
   LObj  LO::S_SIGNPOST,       4, 12
   LWriteCol <Tutorial4, >Tutorial4
   LObjN LO::WIDE_2,           2, 12, 2, LN2::BUSH
-  LObjN LO::TALL_1,           4, 8, 4, LN1::LADDER
+  LObjN LO::WIDE_1,           1, 4, 2, LN1::SOLID_LEDGE
+  LObjN LO::TALL_1,           3, 8, 4, LN1::LADDER
   LObjN LO::R_GROUND,         1, 8, 7, 4
-  LObj  LO::S_SIGNPOST,       1, 7
+  LObj  LO::S_SIGNPOST,       2, 7
   LWriteCol <Tutorial5, >Tutorial5
-  LObj  LO::S_DOOR,           3, 6
+  LObj  LO::S_DOOR,           2, 6
   LWriteCol $21, LevelId::IntroB
   LFinished
 
 intro_aSprite:
   LSpr Enemy::OWL,                 1,  29,  10
   LSpr Enemy::FIRE_WALK,           1,  51,   7
+  LSpr Enemy::OWL,                 0,  68,   3
   .byt 255 ; end
