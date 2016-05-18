@@ -235,7 +235,22 @@ NoLinks:
 
   ; display a "now loading" or whatever
   ; currently it says PLZ WAIT
+  ; also display the level number
   jsr ClearName
+  jsr ClearOAM
+  lda #19*8
+  sta OAM_XPOS
+  lda #15*8-1
+  sta OAM_YPOS
+  lda StartedLevelNumber
+  and #7
+  add #$41
+  sta OAM_TILE
+  lda #OAM_COLOR_1
+  sta OAM_ATTR
+  lda #2
+  sta OAM_DMA
+
   lda #>($1000 - 64)
   sta PPUADDR
   lda #<($1000 - 64)
@@ -260,7 +275,9 @@ NoLinks:
   sta PPUSCROLL
   sta PPUSCROLL
   jsr WaitVblank
-  lda #BG_ON
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
+  sta PPUCTRL
+  lda #BG_ON|OBJ_ON
   sta PPUMASK
 
   lda LevelBank
