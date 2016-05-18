@@ -985,3 +985,11 @@ C .byt $39
 C .byt $3f
 C .byt $39
 C .byt $3f
+
+R GRAY_BRICKS
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $00
+C .byt $01
+C .byt $02
+C .byt $03

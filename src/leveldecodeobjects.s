@@ -70,6 +70,7 @@
   .byt BLOCK_SINGLE,           Metatiles::BG_BUSH_BOT
   .byt BLOCK_SINGLE,           Metatiles::BIG_HEART
   .byt BLOCK_SINGLE,           Metatiles::HEART
+  .byt BLOCK_RECTANGLE,        Metatiles::GRAY_BRICKS
 .endproc
 
 .proc ObjectTypesList
@@ -95,7 +96,7 @@
   .byt Metatiles::BG_BUSH_BOT
   .byt Metatiles::BG_TRUNK_L
   .byt Metatiles::BG_TRUNK
-  .byt Metatiles::EMPTY
+  .byt Metatiles::GRAY_BRICKS
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY

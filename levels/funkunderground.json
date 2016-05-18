@@ -800,12 +800,6 @@
 					"H":	1
 				}, {
 					"Id":	"SOLID_BLOCK",
-					"X":	62,
-					"Y":	3,
-					"W":	1,
-					"H":	6
-				}, {
-					"Id":	"SOLID_BLOCK",
 					"X":	125,
 					"Y":	7,
 					"W":	1,
@@ -829,25 +823,31 @@
 					"W":	3,
 					"H":	1
 				}, {
-					"Id":	"SOLID_BLOCK",
+					"Id":	"GRAY_BRICKS",
+					"X":	62,
+					"Y":	3,
+					"W":	1,
+					"H":	6
+				}, {
+					"Id":	"GRAY_BRICKS",
 					"X":	91,
 					"Y":	7,
 					"W":	7,
 					"H":	2
 				}, {
-					"Id":	"SOLID_BLOCK",
+					"Id":	"GRAY_BRICKS",
 					"X":	108,
 					"Y":	7,
 					"W":	7,
 					"H":	2
 				}, {
-					"Id":	"SOLID_BLOCK",
+					"Id":	"GRAY_BRICKS",
 					"X":	108,
-					"Y":	3,
+					"Y":	2,
 					"W":	1,
-					"H":	4
+					"H":	5
 				}, {
-					"Id":	"SOLID_BLOCK",
+					"Id":	"GRAY_BRICKS",
 					"X":	155,
 					"Y":	5,
 					"W":	1,

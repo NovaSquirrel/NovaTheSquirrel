@@ -402,6 +402,7 @@ NOVA_STRAIGHT = 18
   S_BUSH
   S_BIGHEART
   S_HEART
+  R_GRAYBRICKS
 .endenum
 
 .enum LN1
@@ -429,6 +430,7 @@ NOVA_STRAIGHT = 18
   BUSH
   TRUNK_L
   TRUNK
+  GRAY_BRICKS
 .endenum
 
 .macro LSpr Type, Direction, XPos, YPos, Extra
