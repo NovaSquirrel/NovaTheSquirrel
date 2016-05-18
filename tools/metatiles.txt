@@ -1,5 +1,7 @@
 # this file defines the metatiles used in this game
-I M_FIRST_SPECIAL_MISC = Metatiles::COIN
+I M_FIRST_SPECIAL_MISC = Metatiles::LADDER
+I M_FIRST_COLLECTIBLE = Metatiles::COIN
+I M_LAST_COLLECTIBLE = Metatiles::CHIP
 I M_FIRST_SPECIAL_WALL = Metatiles::LOCK_RED
 I M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
 E Metatiles
@@ -102,31 +104,6 @@ C .byt $12
 C .byt $13
 
 ##### M_SPECIAL_MISC list starts here #####
-
-R COIN
-C .byt M_PAL_2
-C .byt M_EMPTY|M_SPECIAL_MISC
-C .byt $14
-C .byt $15
-C .byt $16
-C .byt $17
-
-R BIG_HEART
-C .byt M_PAL_2
-C .byt M_EMPTY|M_SPECIAL_MISC
-C .byt $34
-C .byt $35
-C .byt $36
-C .byt $37
-
-R HEART
-C .byt M_PAL_2
-C .byt M_EMPTY|M_SPECIAL_MISC
-C .byt $38
-C .byt $3f
-C .byt $3a
-C .byt $3f
-
 R LADDER
 C .byt M_PAL_2
 C .byt M_SPECIAL_MISC|M_POST_PROCESS
@@ -175,30 +152,6 @@ C .byt $3f
 C .byt $2d
 C .byt $3f
 
-R KEY_RED
-C .byt M_PAL_2
-C .byt M_SPECIAL_MISC
-C .byt $ac
-C .byt $ad
-C .byt $ae
-C .byt $af
-
-R KEY_GREEN
-C .byt M_PAL_0
-C .byt M_SPECIAL_MISC
-C .byt $ac
-C .byt $ad
-C .byt $ae
-C .byt $af
-
-R KEY_BLUE
-C .byt M_PAL_3
-C .byt M_SPECIAL_MISC
-C .byt $ac
-C .byt $ad
-C .byt $ae
-C .byt $af
-
 R TOGGLE_SWITCH
 C .byt M_PAL_0
 C .byt M_SPECIAL_MISC
@@ -230,38 +183,6 @@ C .byt $3f
 C .byt $89
 C .byt $3f
 C .byt $8b
-
-R RED_BOOTS
-C .byt M_PAL_2
-C .byt M_SPECIAL_MISC
-C .byt $3f
-C .byt $88
-C .byt $3f
-C .byt $8a
-
-R GREEN_BOOTS
-C .byt M_PAL_0
-C .byt M_SPECIAL_MISC
-C .byt $3f
-C .byt $88
-C .byt $3f
-C .byt $8a
-
-R GRAY_BOOTS
-C .byt M_PAL_1
-C .byt M_SPECIAL_MISC
-C .byt $3f
-C .byt $88
-C .byt $3f
-C .byt $8a
-
-R BLUE_BOOTS
-C .byt M_PAL_3
-C .byt M_SPECIAL_MISC
-C .byt $3f
-C .byt $88
-C .byt $3f
-C .byt $8a
 
 R CHERRY_BOMB
 C .byt M_PAL_2
@@ -311,15 +232,98 @@ C .byt $a3
 C .byt $a1
 C .byt $a3
 
+##### M_SPECIAL_MISC list ends here #####
+
+##### M_COLLECTIBLE list starts here #####
+R COIN
+C .byt M_PAL_2
+C .byt M_COLLECTIBLE
+C .byt $14
+C .byt $15
+C .byt $16
+C .byt $17
+
+R BIG_HEART
+C .byt M_PAL_2
+C .byt M_COLLECTIBLE
+C .byt $34
+C .byt $35
+C .byt $36
+C .byt $37
+
+R HEART
+C .byt M_PAL_2
+C .byt M_COLLECTIBLE
+C .byt $38
+C .byt $3f
+C .byt $3a
+C .byt $3f
+
+R KEY_RED
+C .byt M_PAL_2
+C .byt M_COLLECTIBLE
+C .byt $ac
+C .byt $ad
+C .byt $ae
+C .byt $af
+
+R KEY_GREEN
+C .byt M_PAL_0
+C .byt M_COLLECTIBLE
+C .byt $ac
+C .byt $ad
+C .byt $ae
+C .byt $af
+
+R KEY_BLUE
+C .byt M_PAL_3
+C .byt M_COLLECTIBLE
+C .byt $ac
+C .byt $ad
+C .byt $ae
+C .byt $af
+
+R RED_BOOTS
+C .byt M_PAL_2
+C .byt M_COLLECTIBLE
+C .byt $3f
+C .byt $88
+C .byt $3f
+C .byt $8a
+
+R GREEN_BOOTS
+C .byt M_PAL_0
+C .byt M_COLLECTIBLE
+C .byt $3f
+C .byt $88
+C .byt $3f
+C .byt $8a
+
+R GRAY_BOOTS
+C .byt M_PAL_1
+C .byt M_COLLECTIBLE
+C .byt $3f
+C .byt $88
+C .byt $3f
+C .byt $8a
+
+R BLUE_BOOTS
+C .byt M_PAL_3
+C .byt M_COLLECTIBLE
+C .byt $3f
+C .byt $88
+C .byt $3f
+C .byt $8a
+
 R CHIP
 C .byt M_PAL_1
-C .byt M_SPECIAL_MISC
+C .byt M_COLLECTIBLE
 C .byt $94
 C .byt $95
 C .byt $96
 C .byt $97
 
-##### M_SPECIAL_MISC list ends here #####
+##### M_COLLECTIBLE list ends here #####
 
 R SPRING_PRESSED
 C .byt M_PAL_2

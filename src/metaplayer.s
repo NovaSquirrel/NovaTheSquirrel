@@ -95,64 +95,66 @@ NoSlotFree:
   lda #SFX::SMASH
   jmp PlaySoundDebounce
 .endproc
-
-SpecialMiscLo:
+CollectibleLo:
   .byt <(TouchedCoin-1)
   .byt <(TouchedBigHeart-1)
   .byt <(TouchedHeart-1)
+  .byt <(TouchedKey-1)
+  .byt <(TouchedKey-1)
+  .byt <(TouchedKey-1)
+  .byt <(TouchedBoots-1)
+  .byt <(TouchedBoots-1)
+  .byt <(TouchedBoots-1)
+  .byt <(TouchedBoots-1)
+  .byt <(TouchedChip-1)
+CollectibleHi:
+  .byt >(TouchedCoin-1)
+  .byt >(TouchedBigHeart-1)
+  .byt >(TouchedHeart-1)
+  .byt >(TouchedKey-1)
+  .byt >(TouchedKey-1)
+  .byt >(TouchedKey-1)
+  .byt >(TouchedBoots-1)
+  .byt >(TouchedBoots-1)
+  .byt >(TouchedBoots-1)
+  .byt >(TouchedBoots-1)
+  .byt >(TouchedChip-1)
+
+SpecialMiscLo:
   .byt <(TouchedLadder-1)
   .byt <(TouchedLadder-1)
   .byt <(TouchedSpring-1)
   .byt <(TouchedSignpost-1)
   .byt <(TouchedDoorBottom-1)
   .byt <(TouchedSpringDown-1)
-  .byt <(TouchedKey-1)
-  .byt <(TouchedKey-1)
-  .byt <(TouchedKey-1)
   .byt <(TouchedToggleSwitch-1)
   .byt <(TouchedTeleporter-1)
   .byt <(TouchedCloneSwitch-1)
   .byt <(TouchedGenericSwitch-1)
-  .byt <(TouchedBoots-1)
-  .byt <(TouchedBoots-1)
-  .byt <(TouchedBoots-1)
-  .byt <(TouchedBoots-1)
   .byt <(TouchedCherryBomb-1)
   .byt <(TouchedCampfire-1)
   .byt <(TouchedForce-1)
   .byt <(TouchedForce-1)
   .byt <(TouchedForce-1)
   .byt <(TouchedForce-1)
-  .byt <(TouchedChip-1)
 
 SpecialMiscHi:
-  .byt >(TouchedCoin-1)
-  .byt >(TouchedBigHeart-1)
-  .byt >(TouchedHeart-1)
   .byt >(TouchedLadder-1)
   .byt >(TouchedLadder-1)
   .byt >(TouchedSpring-1)
   .byt >(TouchedSignpost-1)
   .byt >(TouchedDoorBottom-1)
   .byt >(TouchedSpringDown-1)
-  .byt >(TouchedKey-1)
-  .byt >(TouchedKey-1)
-  .byt >(TouchedKey-1)
   .byt >(TouchedToggleSwitch-1)
   .byt >(TouchedTeleporter-1)
   .byt >(TouchedCloneSwitch-1)
   .byt >(TouchedGenericSwitch-1)
-  .byt >(TouchedBoots-1)
-  .byt >(TouchedBoots-1)
-  .byt >(TouchedBoots-1)
-  .byt >(TouchedBoots-1)
   .byt >(TouchedCherryBomb-1)
   .byt >(TouchedCampfire-1)
   .byt >(TouchedForce-1)
   .byt >(TouchedForce-1)
   .byt >(TouchedForce-1)
   .byt >(TouchedForce-1)
-  .byt >(TouchedChip-1)
 
 .proc TouchedBigHeart
   lda PlayerHealth
@@ -384,10 +386,39 @@ ExitDoor:
   rts
 .endproc
 
+.proc DoCollectible
+  sty TempY
+  stx TempX
+  sta TempVal
+  ; Is this a collectible??
+  sub #M_FIRST_COLLECTIBLE
+  cmp #M_LAST_COLLECTIBLE-M_FIRST_COLLECTIBLE
+  bcs :+
+  jsr Call
+: ldy TempY
+  ldx TempX
+  lda TempVal
+  rts
+Call:
+  lda TempVal
+  sub #M_FIRST_COLLECTIBLE
+  tay
+  lda CollectibleHi,y
+  pha
+  lda CollectibleLo,y
+  pha
+  ldy TempY
+  ldx TempX
+  lda TempVal
+  rts
+.endproc
+
 .proc DoSpecialWall
   rts
 .endproc
 
+; Breaks the bricks at (LevelBlockPtr),y
+; Be certain that it's pointing at bricks though or it'll crash!
 .proc DoBreakBricks
   lda (LevelBlockPtr),y
   sty TempY

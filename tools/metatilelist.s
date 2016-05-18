@@ -10,32 +10,32 @@
   USED_PRIZE
   SOLID_BLOCK
   SPIKES
-  COIN
-  BIG_HEART
-  HEART
   LADDER
   LADDER_TOP
   SPRING
   SIGNPOST
   DOOR_BOTTOM
   SPRING_DOWN
-  KEY_RED
-  KEY_GREEN
-  KEY_BLUE
   TOGGLE_SWITCH
   TELEPORTER
   CLONE_SWITCH
   GENERIC_SWITCH
-  RED_BOOTS
-  GREEN_BOOTS
-  GRAY_BOOTS
-  BLUE_BOOTS
   CHERRY_BOMB
   CAMPFIRE
   FORCE_LEFT
   FORCE_RIGHT
   FORCE_UP
   FORCE_DOWN
+  COIN
+  BIG_HEART
+  HEART
+  KEY_RED
+  KEY_GREEN
+  KEY_BLUE
+  RED_BOOTS
+  GREEN_BOOTS
+  GRAY_BOOTS
+  BLUE_BOOTS
   CHIP
   SPRING_PRESSED
   SOLID_LEDGE_L
@@ -121,7 +121,9 @@
   BG_LINE_TOP
 .endenum
 
-M_FIRST_SPECIAL_MISC = Metatiles::COIN
+M_FIRST_SPECIAL_MISC = Metatiles::LADDER
+M_FIRST_COLLECTIBLE = Metatiles::COIN
+M_LAST_COLLECTIBLE = Metatiles::CHIP
 M_FIRST_SPECIAL_WALL = Metatiles::LOCK_RED
 M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
 .proc MetatilePalettes
@@ -136,32 +138,32 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_PAL_2 ;USED_PRIZE
   .byt M_PAL_1 ;SOLID_BLOCK
   .byt M_PAL_1 ;SPIKES
-  .byt M_PAL_2 ;COIN
-  .byt M_PAL_2 ;BIG_HEART
-  .byt M_PAL_2 ;HEART
   .byt M_PAL_2 ;LADDER
   .byt M_PAL_2 ;LADDER_TOP
   .byt M_PAL_2 ;SPRING
   .byt M_PAL_2 ;SIGNPOST
   .byt M_PAL_1 ;DOOR_BOTTOM
   .byt M_PAL_0 ;SPRING_DOWN
-  .byt M_PAL_2 ;KEY_RED
-  .byt M_PAL_0 ;KEY_GREEN
-  .byt M_PAL_3 ;KEY_BLUE
   .byt M_PAL_0 ;TOGGLE_SWITCH
   .byt M_PAL_2 ;TELEPORTER
   .byt M_PAL_2 ;CLONE_SWITCH
   .byt M_PAL_1 ;GENERIC_SWITCH
-  .byt M_PAL_2 ;RED_BOOTS
-  .byt M_PAL_0 ;GREEN_BOOTS
-  .byt M_PAL_1 ;GRAY_BOOTS
-  .byt M_PAL_3 ;BLUE_BOOTS
   .byt M_PAL_2 ;CHERRY_BOMB
   .byt M_PAL_2 ;CAMPFIRE
   .byt M_PAL_0 ;FORCE_LEFT
   .byt M_PAL_0 ;FORCE_RIGHT
   .byt M_PAL_0 ;FORCE_UP
   .byt M_PAL_0 ;FORCE_DOWN
+  .byt M_PAL_2 ;COIN
+  .byt M_PAL_2 ;BIG_HEART
+  .byt M_PAL_2 ;HEART
+  .byt M_PAL_2 ;KEY_RED
+  .byt M_PAL_0 ;KEY_GREEN
+  .byt M_PAL_3 ;KEY_BLUE
+  .byt M_PAL_2 ;RED_BOOTS
+  .byt M_PAL_0 ;GREEN_BOOTS
+  .byt M_PAL_1 ;GRAY_BOOTS
+  .byt M_PAL_3 ;BLUE_BOOTS
   .byt M_PAL_1 ;CHIP
   .byt M_PAL_2 ;SPRING_PRESSED
   .byt M_PAL_1 ;SOLID_LEDGE_L
@@ -261,33 +263,33 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_SOLID_ALL|M_SOLID_TOP ;USED_PRIZE
   .byt M_SOLID_ALL|M_SOLID_TOP ;SOLID_BLOCK
   .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_GROUND ;SPIKES
-  .byt M_EMPTY|M_SPECIAL_MISC ;COIN
-  .byt M_EMPTY|M_SPECIAL_MISC ;BIG_HEART
-  .byt M_EMPTY|M_SPECIAL_MISC ;HEART
   .byt M_SPECIAL_MISC|M_POST_PROCESS ;LADDER
   .byt M_SOLID_TOP|M_SPECIAL_MISC ;LADDER_TOP
   .byt M_EMPTY|M_SPECIAL_MISC ;SPRING
   .byt M_EMPTY|M_SPECIAL_MISC ;SIGNPOST
   .byt M_SPECIAL_MISC ;DOOR_BOTTOM
   .byt M_SPECIAL_MISC ;SPRING_DOWN
-  .byt M_SPECIAL_MISC ;KEY_RED
-  .byt M_SPECIAL_MISC ;KEY_GREEN
-  .byt M_SPECIAL_MISC ;KEY_BLUE
   .byt M_SPECIAL_MISC ;TOGGLE_SWITCH
   .byt M_SPECIAL_MISC ;TELEPORTER
   .byt M_SPECIAL_MISC ;CLONE_SWITCH
   .byt M_SPECIAL_MISC ;GENERIC_SWITCH
-  .byt M_SPECIAL_MISC ;RED_BOOTS
-  .byt M_SPECIAL_MISC ;GREEN_BOOTS
-  .byt M_SPECIAL_MISC ;GRAY_BOOTS
-  .byt M_SPECIAL_MISC ;BLUE_BOOTS
   .byt M_SPECIAL_MISC ;CHERRY_BOMB
   .byt M_SPECIAL_MISC ;CAMPFIRE
   .byt M_SPECIAL_MISC ;FORCE_LEFT
   .byt M_SPECIAL_MISC ;FORCE_RIGHT
   .byt M_SPECIAL_MISC ;FORCE_UP
   .byt M_SPECIAL_MISC ;FORCE_DOWN
-  .byt M_SPECIAL_MISC ;CHIP
+  .byt M_COLLECTIBLE ;COIN
+  .byt M_COLLECTIBLE ;BIG_HEART
+  .byt M_COLLECTIBLE ;HEART
+  .byt M_COLLECTIBLE ;KEY_RED
+  .byt M_COLLECTIBLE ;KEY_GREEN
+  .byt M_COLLECTIBLE ;KEY_BLUE
+  .byt M_COLLECTIBLE ;RED_BOOTS
+  .byt M_COLLECTIBLE ;GREEN_BOOTS
+  .byt M_COLLECTIBLE ;GRAY_BOOTS
+  .byt M_COLLECTIBLE ;BLUE_BOOTS
+  .byt M_COLLECTIBLE ;CHIP
   .byt M_EMPTY ;SPRING_PRESSED
   .byt M_SOLID_TOP ;SOLID_LEDGE_L
   .byt M_SOLID_TOP|M_POST_PROCESS ;SOLID_LEDGE_M
@@ -385,32 +387,32 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $08 ;USED_PRIZE
   .byt $0c ;SOLID_BLOCK
   .byt $12 ;SPIKES
-  .byt $14 ;COIN
-  .byt $34 ;BIG_HEART
-  .byt $38 ;HEART
   .byt $10 ;LADDER
   .byt $10 ;LADDER_TOP
   .byt $3f ;SPRING
   .byt $1c ;SIGNPOST
   .byt $3c ;DOOR_BOTTOM
   .byt $2c ;SPRING_DOWN
-  .byt $ac ;KEY_RED
-  .byt $ac ;KEY_GREEN
-  .byt $ac ;KEY_BLUE
   .byt $3f ;TOGGLE_SWITCH
   .byt $3f ;TELEPORTER
   .byt $3f ;CLONE_SWITCH
   .byt $3f ;GENERIC_SWITCH
-  .byt $3f ;RED_BOOTS
-  .byt $3f ;GREEN_BOOTS
-  .byt $3f ;GRAY_BOOTS
-  .byt $3f ;BLUE_BOOTS
   .byt $9c ;CHERRY_BOMB
   .byt $90 ;CAMPFIRE
   .byt $a4 ;FORCE_LEFT
   .byt $a6 ;FORCE_RIGHT
   .byt $a0 ;FORCE_UP
   .byt $a1 ;FORCE_DOWN
+  .byt $14 ;COIN
+  .byt $34 ;BIG_HEART
+  .byt $38 ;HEART
+  .byt $ac ;KEY_RED
+  .byt $ac ;KEY_GREEN
+  .byt $ac ;KEY_BLUE
+  .byt $3f ;RED_BOOTS
+  .byt $3f ;GREEN_BOOTS
+  .byt $3f ;GRAY_BOOTS
+  .byt $3f ;BLUE_BOOTS
   .byt $94 ;CHIP
   .byt $3f ;SPRING_PRESSED
   .byt $57 ;SOLID_LEDGE_L
@@ -508,32 +510,32 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $09 ;USED_PRIZE
   .byt $0d ;SOLID_BLOCK
   .byt $13 ;SPIKES
-  .byt $15 ;COIN
-  .byt $35 ;BIG_HEART
-  .byt $3f ;HEART
   .byt $10 ;LADDER
   .byt $10 ;LADDER_TOP
   .byt $18 ;SPRING
   .byt $1d ;SIGNPOST
   .byt $3c ;DOOR_BOTTOM
   .byt $3f ;SPRING_DOWN
-  .byt $ad ;KEY_RED
-  .byt $ad ;KEY_GREEN
-  .byt $ad ;KEY_BLUE
   .byt $89 ;TOGGLE_SWITCH
   .byt $8c ;TELEPORTER
   .byt $89 ;CLONE_SWITCH
   .byt $89 ;GENERIC_SWITCH
-  .byt $88 ;RED_BOOTS
-  .byt $88 ;GREEN_BOOTS
-  .byt $88 ;GRAY_BOOTS
-  .byt $88 ;BLUE_BOOTS
   .byt $9d ;CHERRY_BOMB
   .byt $91 ;CAMPFIRE
   .byt $a5 ;FORCE_LEFT
   .byt $a7 ;FORCE_RIGHT
   .byt $a2 ;FORCE_UP
   .byt $a3 ;FORCE_DOWN
+  .byt $15 ;COIN
+  .byt $35 ;BIG_HEART
+  .byt $3f ;HEART
+  .byt $ad ;KEY_RED
+  .byt $ad ;KEY_GREEN
+  .byt $ad ;KEY_BLUE
+  .byt $88 ;RED_BOOTS
+  .byt $88 ;GREEN_BOOTS
+  .byt $88 ;GRAY_BOOTS
+  .byt $88 ;BLUE_BOOTS
   .byt $95 ;CHIP
   .byt $1a ;SPRING_PRESSED
   .byt $3f ;SOLID_LEDGE_L
@@ -631,32 +633,32 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $0a ;USED_PRIZE
   .byt $0e ;SOLID_BLOCK
   .byt $12 ;SPIKES
-  .byt $16 ;COIN
-  .byt $36 ;BIG_HEART
-  .byt $3a ;HEART
   .byt $11 ;LADDER
   .byt $11 ;LADDER_TOP
   .byt $3f ;SPRING
   .byt $1e ;SIGNPOST
   .byt $3c ;DOOR_BOTTOM
   .byt $2d ;SPRING_DOWN
-  .byt $ae ;KEY_RED
-  .byt $ae ;KEY_GREEN
-  .byt $ae ;KEY_BLUE
   .byt $3f ;TOGGLE_SWITCH
   .byt $3f ;TELEPORTER
   .byt $3f ;CLONE_SWITCH
   .byt $3f ;GENERIC_SWITCH
-  .byt $3f ;RED_BOOTS
-  .byt $3f ;GREEN_BOOTS
-  .byt $3f ;GRAY_BOOTS
-  .byt $3f ;BLUE_BOOTS
   .byt $9e ;CHERRY_BOMB
   .byt $92 ;CAMPFIRE
   .byt $a4 ;FORCE_LEFT
   .byt $a6 ;FORCE_RIGHT
   .byt $a0 ;FORCE_UP
   .byt $a1 ;FORCE_DOWN
+  .byt $16 ;COIN
+  .byt $36 ;BIG_HEART
+  .byt $3a ;HEART
+  .byt $ae ;KEY_RED
+  .byt $ae ;KEY_GREEN
+  .byt $ae ;KEY_BLUE
+  .byt $3f ;RED_BOOTS
+  .byt $3f ;GREEN_BOOTS
+  .byt $3f ;GRAY_BOOTS
+  .byt $3f ;BLUE_BOOTS
   .byt $96 ;CHIP
   .byt $3f ;SPRING_PRESSED
   .byt $58 ;SOLID_LEDGE_L
@@ -754,32 +756,32 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $0b ;USED_PRIZE
   .byt $0f ;SOLID_BLOCK
   .byt $13 ;SPIKES
-  .byt $17 ;COIN
-  .byt $37 ;BIG_HEART
-  .byt $3f ;HEART
   .byt $11 ;LADDER
   .byt $11 ;LADDER_TOP
   .byt $19 ;SPRING
   .byt $1f ;SIGNPOST
   .byt $3c ;DOOR_BOTTOM
   .byt $3f ;SPRING_DOWN
-  .byt $af ;KEY_RED
-  .byt $af ;KEY_GREEN
-  .byt $af ;KEY_BLUE
   .byt $8b ;TOGGLE_SWITCH
   .byt $8e ;TELEPORTER
   .byt $8b ;CLONE_SWITCH
   .byt $8b ;GENERIC_SWITCH
-  .byt $8a ;RED_BOOTS
-  .byt $8a ;GREEN_BOOTS
-  .byt $8a ;GRAY_BOOTS
-  .byt $8a ;BLUE_BOOTS
   .byt $9f ;CHERRY_BOMB
   .byt $93 ;CAMPFIRE
   .byt $a5 ;FORCE_LEFT
   .byt $a7 ;FORCE_RIGHT
   .byt $a2 ;FORCE_UP
   .byt $a3 ;FORCE_DOWN
+  .byt $17 ;COIN
+  .byt $37 ;BIG_HEART
+  .byt $3f ;HEART
+  .byt $af ;KEY_RED
+  .byt $af ;KEY_GREEN
+  .byt $af ;KEY_BLUE
+  .byt $8a ;RED_BOOTS
+  .byt $8a ;GREEN_BOOTS
+  .byt $8a ;GRAY_BOOTS
+  .byt $8a ;BLUE_BOOTS
   .byt $97 ;CHIP
   .byt $1b ;SPRING_PRESSED
   .byt $3f ;SOLID_LEDGE_L

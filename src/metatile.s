@@ -25,13 +25,14 @@ M_PAL_3 = %11111111
 M_EMPTY           ; no special behaviors
 M_FALLABLE_LEDGE  ; ledges you can fall through
 M_WATER           ; any sort of water
-M_SPECIAL_MISC    ; coins, springs
+M_SPECIAL_MISC    ; doors, springs
 M_SPECIAL_WALL    ; locks, pushable blocks
 M_SPECIAL_CEILING ; ? blocks
 M_SPECIAL_GROUND  ; spikes
 M_ICE             ; slip on if you're in puzzle mode. also thaws to fire
 M_BRICKS          ; breakable bricks
 M_LAVA            ;
+M_COLLECTIBLE     ; coins
 ; must not have more than 32 entries
 .endenum
 

@@ -599,6 +599,7 @@ DoneCheckMiddle:
   lda PlayerPXH
   jsr GetLevelColumnPtr
   sta BlockUL
+  jsr DoCollectible
   tax
   lda MetatileFlags,x
   cmp #$80
@@ -609,6 +610,7 @@ DoneCheckMiddle:
   adc #0
   jsr GetLevelColumnPtr
   sta BlockUR
+  jsr DoCollectible
   tax
   lda MetatileFlags,x
   cmp #$80
@@ -626,6 +628,7 @@ DoneCheckMiddle:
   adc #0
   jsr GetLevelColumnPtr
   sta BlockLL
+  jsr DoCollectible
   tax
   lda MetatileFlags,x
   cmp BottomCMP
@@ -636,6 +639,7 @@ DoneCheckMiddle:
   adc #0
   jsr GetLevelColumnPtr
   sta BlockLR
+  jsr DoCollectible
   tax
   lda MetatileFlags,x
   cmp BottomCMP
