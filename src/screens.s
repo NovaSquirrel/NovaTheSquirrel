@@ -94,7 +94,7 @@ Exit:
   rts
 .endproc
 
-NoRAMError: .byt "Game won't work though, lol",0
+NoRAMError: .byt "No WRAM, so game won't work!",0
 
 .proc ShowDie
   jsr WaitVblank
