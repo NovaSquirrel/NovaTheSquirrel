@@ -35,6 +35,34 @@
   lda #2
   sta OAM_DMA
 
+  ; See if we have extra RAM
+  ; and display an error if it's missing
+  ldx #7
+  lda SaveTag
+  cmp SaveTagString
+  beq HaveExtraRAM
+  lda #$0f
+  sta PPUADDR
+  lda #$00
+  sta PPUADDR
+  tax
+  jsr WritePPURepeated
+
+  lda #VWF_BANK
+  jsr SetPRG
+  lda #$23
+  sta PPUADDR
+  lda #$48
+  sta PPUADDR
+  ldy #$f0
+  ldx #16
+  jsr WriteIncreasing
+  ldx #15
+  lda #>NoRAMError
+  ldy #<NoRAMError
+  jsr vwfPutsAtRow
+HaveExtraRAM:
+
 ; Turn on the display and get it ready
   jsr WaitVblank
   lda #BG_ON
@@ -65,6 +93,8 @@ Exit:
   sta PPUMASK
   rts
 .endproc
+
+NoRAMError: .byt "Game won't work though, lol",0
 
 .proc ShowDie
   jsr WaitVblank
