@@ -256,11 +256,11 @@ Nova, with the help of a wish, went on to found the kingdom of Toasterland as a 
 
 `#---MISC STUFF---
 
-:NoFlippersJoke:
-`scene NOTHING
-[]Ooops! Nova can't swim without flippers!
-Haha just kidding. That won't come until World 2.
+:WaterAbout:
+`scene NOVA_AND_SIGN
+<1 SIGN>You can swim in the water. Use Up/Down to change your height.
 `end
+
 
 :SignBummerAbout:
 `scene NOVA_AND_SIGN

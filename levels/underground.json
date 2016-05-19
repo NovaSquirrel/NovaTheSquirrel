@@ -14,7 +14,7 @@
 	"Header":	{
 		"Music":	"NONE",
 		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_FIRE", "SP_KING"],
-		"GFXUpload":	["PAL_GRASSY", "BG_COMMON", "BG_GRASSY"],
+		"GFXUpload":	["PAL_GRASSY", "PAL_ENEMY1", "BG_COMMON", "BG_GRASSY", "BG_GRASSYBG"],
 		"BGColor":	49
 	},
 	"Layers":	[{

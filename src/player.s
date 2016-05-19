@@ -109,7 +109,7 @@ BlockFootL = TempSpace+1  ; TempSpace is free here because
 BlockFootR = TempSpace+2  ; the buffer isn't filled until after Handleplayer
 FourCorners = 6
 FootCorners = TempSpace+3
-BlockMiddle = TempSpace+4
+;BlockMiddle = TempSpace+4 - moved to its own variable
 XForMiddle  = TempSpace+5
 BottomCMP = 7
 SkipFourCorners = 8
@@ -120,6 +120,7 @@ MaxSpeedRight = 10
   sta FourCorners
   sta FootCorners
   sta SkipFourCorners
+  sta PlayerSwimming
 
   lda ForceControllerTime
   beq :+
@@ -142,7 +143,6 @@ MaxSpeedRight = 10
   lda #NOVA_WALK_SPEED*16
   sta MaxSpeedRight
 NotWalkSpeed:
-
 
   ; Handle holding and letting go of a balloon
   lda PlayerHasBalloon
@@ -204,6 +204,16 @@ NotWalkSpeed:
 @NoLetGo:
 @NoBalloon:
 
+  ldy BlockMiddle
+  lda MetatileFlags,y
+  and #M_BEHAVIOR
+  cmp #M_WATER
+  bne :+
+    lda #0
+    sta PlayerWasRunning
+    inc PlayerSwimming
+    bne HandleLadderClimbing
+  :
 
   lda PlayerOnLadder       ; skip gravity if on a ladder
   bne HandleLadderClimbing
@@ -250,7 +260,6 @@ PlayerIsntOnLadder:
   sta PlayerPYL
   lda PlayerPYH
   adc PlayerVYH
-;  and #$0f
   sta PlayerPYH
 
   ; Handle the player going off the top and bottom of the screen
@@ -711,12 +720,12 @@ SavePosition:
   lda PlayerPYH
   sta PlayerNonSolidPYH
   rts
-FC__RL_:
-FC_L__R:
 FC_LR_R:
 FC_LRL_:
   rts
 
+FC__RL_:
+FC_L__R:
 FC_LRLR:
   lda PlayerNonSolidPXL
   sta PlayerPXL
@@ -1035,12 +1044,28 @@ CustomFrameBase:
   sty PlayerTiles+5
 EndAnimationFrame:
 
+  lda PlayerSwimming
+  beq :+
+    lda retraces
+    lsr
+    lsr
+    lsr
+    and #1
+    tay
+    lda SwimmingFeet1,y
+    sta PlayerTiles+4
+    lda SwimmingFeet2,y
+    sta PlayerTiles+5
+    jmp NoSpecialAnimation
+  :
+
   lda PlayerOnLadder
   jne NoSpecialAnimation
   lda PlayerJumping
   beq :+
     lda #$0c
     sta PlayerTiles+3
+JumpingTilesForSwimming:
     lda #$08
     sta PlayerTiles+4
     lda #$09
@@ -1285,6 +1310,8 @@ Anim4: .byt $00, $00, $00, $00, $1d ;$24
 AnimO: .byt   0,   0,   0,   2,   3 ;  4
 TailAttackFrame:
   .byt 1, 1, 2, 2, 3, 3, 4, 4, 4, 3, 3, 2, 2, 1
+SwimmingFeet1: .byt $8, $a
+SwimmingFeet2: .byt $9, $b
 
 MakeDrawX:
   RealXPosToScreenPos PlayerPXL, PlayerPXH, DrawX

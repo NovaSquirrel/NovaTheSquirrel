@@ -373,12 +373,10 @@ MeetRemy:
 .byt SCR::NEWLINE, $a1, $f5, $9d, " ", $a2, " ", $c3, "l", "p", " ", $bd, $be, "w", $b9, "h", ",", SCR::NEWLINE, $c8, $e1, " ", $c2, " ", $bb, "f", $f4, $f0, " ", $a2, " ", "k", $b1, $c5, "m", SCR::NEWLINE, $bd, "T", "o", $c4, $eb, "r", "l", $a4, $c4, " ", $be, "n", $c6, "i", $c2, " ", "o", "f", SCR::NEWLINE, "c", "u", $eb, " ", $ca, "i", "m", "a", "l", $fb, $8d, " ", $a9, $e5, "l", "f", ".", SCR::NEWLINE, "S", $a9, "w", $bf, "m", $f7, $e7, $be, $e5, "c", $c2, $ff, "h", "o", $d0, SCR::NEWLINE, $88, $f5, $a4, $be, "l", "o", $d3, $bd, "c", "u", "t", $e3, $fb, "j", "u", $de, SCR::NEWLINE, "d", "e", "c", "i", "d", $d6, $bb, "m", "o", "v", $e7, $88, "."
 .byt SCR::END_SCRIPT
 
-NoFlippersJoke:
-.byt SCR::SCENE, SCENES::NOTHING
-; []Ooops! Nova can't swim without flippers!
-.byt SCR::NARRATE, CHAR::NONE, "O", $e4, "p", "s", $fd, $a1, " ", $b0, $e8, "s", "w", "i", "m", SCR::NEWLINE, $9d, $ae, " ", "f", "l", "i", "p", "p", $ed, "s", "!"
-; Haha just kidding. That won't come until World 2.
-.byt SCR::NEWLINE, "H", "a", "h", $be, $8e, "k", "i", "d", "d", $b1, $f6, $f8, $c6, " ", "w", $c2, "'", "t", SCR::NEWLINE, $96, " ", $f2, "t", $dc, " ", "W", $c9, $ef, " ", "2", "."
+WaterAbout:
+.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
+; <1 SIGN>You can swim in the water. Use Up/Down to change your height.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "Y", $f4, " ", $b0, " ", "s", "w", "i", "m", " ", $bf, $a2, " ", "w", $c6, $ed, ".", SCR::NEWLINE, "U", $e5, " ", "U", "p", "/", "D", "o", "w", "n", " ", $bb, $e2, $ca, "g", $e7, $91, SCR::NEWLINE, $c3, "i", $db, "t", "."
 .byt SCR::END_SCRIPT
 SignBummerAbout:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN

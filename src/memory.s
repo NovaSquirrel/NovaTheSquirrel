@@ -121,6 +121,8 @@
   StartedLevelNumber:    .res 1 ; Level number that was picked from the level select
   NeedLevelReload:       .res 1 ; If set, decode LevelNumber again
 
+  BlockMiddle: .res 1 ; what block the middle of the player is overlapping
+
   OamPtr:      .res 1 ; Index the next OAM entry goes in
 
   ; temporary spots for saving something and then loading it afterwards
@@ -281,6 +283,7 @@ GameStateLen = 1+2+10+10+2 ; update if more stuff is added
   PlayerDrawY:        .res 1  ; Y position the player was drawn to
 
   PlayerJumpCancel: .res 1
+  PlayerSwimming:   .res 1
 
   IRQAddress:       .res 2
 
