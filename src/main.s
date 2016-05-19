@@ -273,9 +273,9 @@ NotDie:
 
   lda NeedLevelReload
   beq :+
-    dec NeedLevelReload
     jsr WaitVblank
     lda #0
+    sta NeedLevelReload
     sta PPUMASK
     lda LevelNumber
     jsr DecompressLevel

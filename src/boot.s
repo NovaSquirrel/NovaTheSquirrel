@@ -47,8 +47,7 @@ DoNothing:
   bpl :-
 
 ; Clear out RAM 
-; clear RAM while waiting for next frame
-  inx ; x goes from $ff to $00
+  ldx #0
   txa
 : sta $000,x
   sta $100,x
