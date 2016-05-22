@@ -222,6 +222,16 @@ _rts:
   rts
 .endproc
 
+.proc ObjectRemoveTooLow
+  lda ObjectPYH,x
+  cmp #15
+  bcc :+
+    lda #0
+    sta ObjectF1,x
+  :
+  rts
+.endproc
+
 ; Handler for all the different types of player projectiles
 .proc ObjectPlayerProjectile
   jsr EnemyDespawnTimer
@@ -352,6 +362,7 @@ DoGlider:
 
 ProjLifeGlider:
   jsr BreakBricks
+  jsr ObjectRemoveTooLow
   jsr DoGlider
   lda 0
   add #$70
@@ -363,6 +374,7 @@ GliderPushY:
 
 ProjBoomerang:
   jsr EnemyApplyVelocity
+  jsr ObjectRemoveTooLow
   lda #$70
   jmp DispObject8x8
 DoFireball:
@@ -507,12 +519,11 @@ ChangeToExplosion:
   sta ObjectF2,x
   lda #10
   sta ObjectTimer,x
-  jsr CloneObjectX
   jmp CloneObjectX
 
 NotBombExplode:
   lda #$70
-  ldy #0
+  ldy #OAM_COLOR_1
   jsr DispEnemyWide
   jmp ObjectBounceHoriz
 

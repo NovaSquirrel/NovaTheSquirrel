@@ -624,7 +624,8 @@ NextAbility:
   txa
   jmp ChangePlayerAbility
 Balloon:
-  inc PlayerHasBalloon
+  lda #128
+  sta PlayerHasBalloon
   rts
 .endproc
 

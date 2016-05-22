@@ -416,16 +416,14 @@ ProjectileType  = 0
   rts
 :
 
-  ; Move the X and Y to the centers
+  ; Copy the position
   lda O_RAM::OBJ_DRAWX
-  add #8-1
   sta TouchLeftA
   lda O_RAM::OBJ_DRAWY
-  add #8-1
   sta TouchTopA
 
   ; Set collision size
-  lda #16+2
+  lda #16
   sta TouchWidthA
   sta TouchHeightA
 
@@ -1483,6 +1481,10 @@ TooBig:
     sta ObjectVXH,x
   :
 
+  lda #0 ; the "bounce" effect gives vertical velocity, so don't let it
+  sta ObjectVYL,x
+  sta ObjectVYH,x
+
   ; Change direction to face the player
   jsr EnemyLookAtPlayer
   and #1
@@ -2101,10 +2103,10 @@ Good:
 ; and any past that aren't drawn. This way sprites are don't just drop out of visibility.
 .proc FlickerEnemies
   lda retraces
-  and #7
+  and #15
   tax
   jsr huge_rand
-  and #7
+  and #15
   tay
 
   lda ObjectPXH,x

@@ -157,10 +157,12 @@ NotWalkSpeed:
     lda keynew
     and #KEY_B|KEY_A
     bne @LetGo
+    lda PlayerHasBalloon ; (but height limit can be removed)
+    bmi :+
     lda PlayerPYH
     cmp #$04
     bcc @LetGo
-    ; Also if they touch something solid above
+:   ; Also if they touch something solid above
     lda PlayerPXL
     add #$40
     lda PlayerPXH
@@ -1430,6 +1432,9 @@ AbilityBomb:
   sta ObjectTimer,x
   lda keydown
   and #KEY_UP|KEY_DOWN
+  beq :+
+    lsr ObjectTimer,x
+  :
   sta ObjectF3,x
   and #KEY_UP
   beq :+
@@ -1439,7 +1444,6 @@ AbilityBomb:
     sta ObjectVYL,x
     lda #255
     sta ObjectVYH,x
-    lsr ObjectTimer,x
   :
 @Exit:
   rts
