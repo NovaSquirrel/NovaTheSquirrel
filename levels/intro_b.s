@@ -60,8 +60,7 @@ intro_bData:
   LObjN LO::TALL_2,           0, 10, 2, LN2::TRUNK_L
   LObjN LO::R_GROUND,         2, 5, 6, 5
   LObjN LO::RECT_2,           1, 11, 1, LN2::BLACK, 4
-  LObj  LO::S_SIGNPOST,       1, 4
-  LObjN LO::R_GROUND,         3, 4, 7, 0
+  LObjN LO::R_GROUND,         4, 4, 7, 0
   LObjN LO::WIDE_2,           2, 3, 3, LN2::FLOWER
   LObj  LO::S_SOLID_BLOCK,    0, 7
   LObj  LO::S_PRIZE,          1, 4
