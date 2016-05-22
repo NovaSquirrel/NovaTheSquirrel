@@ -367,11 +367,7 @@ OkayIfLeftRight:
     sta ObjectTimer,y
     lda #PlayerProjectileType::EXPLOSION
     sta ObjectF2,y
-    lda #0 ; when it's not cleared it's cool and flies off
-    sta ObjectVXH,y
-    sta ObjectVXL,y
-    sta ObjectVYH,y
-    sta ObjectVYL,y
+    jsr EnemyPosToVel
     lda #SFX::BOOM1
     sta NeedSFX
   @No:

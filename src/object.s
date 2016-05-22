@@ -514,6 +514,11 @@ Responses:
   .raddr BlowAway
   .raddr Copy
 Bump:
+  ldy ProjectileIndex
+  lda ObjectVXL,y ; no bump if object isn't moving
+  ora ObjectVYL,y
+  beq Nothing
+
   lda #SFX::BUMP
   jsr PlaySoundDebounce
   lda #>-1
@@ -527,6 +532,13 @@ Bump:
   sta ObjectF2,x
   lda #90
   sta ObjectTimer,x
+
+;  jsr huge_rand
+;  asr
+;  asr
+;  sta ObjectVXL,x
+;  sex
+;  sta ObjectVXH,x
 Nothing:
   rts
 Stun:
@@ -1225,8 +1237,14 @@ HSpeedH:
 .proc ObjectFireWalk
   jsr EnemyFall
   lda #$10
+  ldy ObjectF3,x
+  bne :+
   jsr EnemyWalk
   jsr EnemyAutoBump
+  jmp NormalWalk
+: 
+  jsr EnemyWalkOnPlatform
+NormalWalk:
 
   ; Make flames sometimes
   lda ObjectF2,x
@@ -2290,4 +2308,41 @@ WithXYOffset:
   lda #0
   sta ObjectF1,x
 : rts
+.endproc
+
+.proc EnemyPosToVel
+  lda ObjectPXL,x
+  sta ObjectVXL,x
+  lda ObjectPXH,x
+  sta ObjectVXH,x
+  lda ObjectPYL,x
+  sta ObjectVYL,x
+  lda ObjectPYH,x
+  sta ObjectVYH,x
+  rts
+.endproc
+
+.proc CloneObjectX
+  sty TempY
+  jsr FindFreeObjectY
+  bcc :+
+  jsr ObjectCopyPosXY
+  lda ObjectTimer,x
+  sta ObjectTimer,y
+  lda ObjectF1,x
+  sta ObjectF1,y
+  lda ObjectF2,x
+  sta ObjectF2,y
+  lda #0
+  sta ObjectF3,y
+  lda ObjectVXL,x
+  sta ObjectVXL,y
+  lda ObjectVXH,x
+  sta ObjectVXH,y
+  lda ObjectVYL,x
+  sta ObjectVYL,y
+  lda ObjectVYH,x
+  sta ObjectVYH,y
+: ldy TempY
+  rts
 .endproc

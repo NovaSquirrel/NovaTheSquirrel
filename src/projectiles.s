@@ -497,15 +497,19 @@ ProjBomb:
   lda ObjectTimer,x
   cmp #1
   bne NotBombExplode
-  lda #SFX::BOOM1
-  sta NeedSFX
   lda #$40
   jsr ObjectOffsetXY
+ChangeToExplosion:
+  lda #SFX::BOOM1
+  sta NeedSFX
+  jsr EnemyPosToVel
   lda #PlayerProjectileType::EXPLOSION
   sta ObjectF2,x
   lda #10
   sta ObjectTimer,x
-  rts
+  jsr CloneObjectX
+  jmp CloneObjectX
+
 NotBombExplode:
   lda #$70
   ldy #0
@@ -514,15 +518,34 @@ NotBombExplode:
 
 ProjExplosion:
   jsr huge_rand
-  add ObjectPXL,x
-  sta ObjectPXL,x
-  jsr huge_rand
-  add ObjectPYL,x
-  sta ObjectPYL,x
+  and #31
+  tay
+  lda ObjectF3,x
+  lsr
+  lsr
+  jsr SpeedAngle2Offset
+  inc ObjectF3,x
 
-  jsr EnemyApplyVelocity
-  lda #$53
-  jmp DispObject8x8
+  lda 0
+  add ObjectVXL,x
+  sta ObjectPXL,x
+  lda ObjectVXH,x
+  adc 1
+  sta ObjectPXH,x
+
+  lda 2
+  add ObjectVYL,x
+  sta ObjectPYL,x
+  lda ObjectVYH,x
+  adc 3
+  sta ObjectPYH,x
+
+  lda #OAM_COLOR_0
+  sta 1
+  lda retraces
+  and #1
+  add #$53
+  jmp DispObject8x8_Attr
 
 ProjIceBlock:
   lda #$30
