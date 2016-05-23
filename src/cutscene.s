@@ -31,9 +31,6 @@ DemoCutscene:
   .byt SCR::END_SCRIPT
 .endif
 
-ScriptEndPointer:
-  .byt SCR::END_SCRIPT
-
 .proc StartCutscene
   lda PRGBank ; we'll return to the original bank when we're done
   pha
@@ -116,6 +113,7 @@ DictionaryWordFound:
 
 ; Run script
   jsr ScriptLoopInit
+SkipTheScript:
   jsr ClearOAM
 
 ; Clean up and restore gameplay graphics
@@ -374,15 +372,12 @@ DoEndPage:
   lda keynew
   and #KEY_START
   beq @NoSkip
-  ; If Start is pressed and the dialog is skippable, set the script pointer
-  ; to a script ending command. This seems like a clean way of doing it.
-  ; To do: figure out why this is so slowww
-  inc ScriptPageEnded
-  lda #<ScriptEndPointer
-  sta ScriptPtr+0
-  lda #>ScriptEndPointer
-  sta ScriptPtr+1
-  jmp @Done
+  ; If Start is pressed and the dialog is skippable, end the script
+  pla
+  pla
+  pla
+  pla
+  jmp StartCutscene::SkipTheScript
 @NoSkip:
   lda keynew
   and #KEY_A
