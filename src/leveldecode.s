@@ -88,6 +88,11 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
   dey
   bpl :-
 
+  ldy #ObjectLen-1
+: sta ObjectF1,x
+  dey
+  bpl :-
+
   lda #LEVELS_BANK1 ; get this out of the way
   sta LevelBank
   jsr SetPRG
@@ -610,7 +615,7 @@ IncreaseDecodePointerBy = LevelDecodeCommand::IncreasePointerBy
 
 .proc DO_CustomBlockSingle
   lda (LevelDecodePointer),y
-  ldy 1
+  ldy DecodeObjectXY
   sta (LevelBlockPtr),y
   lda #1
   jmp IncreaseDecodePointerBy

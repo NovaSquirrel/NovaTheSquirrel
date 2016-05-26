@@ -45,6 +45,9 @@
   PlayerVYH:        .res 1 ;  /
   PlayerVYL:        .res 1 ; /
 
+  ObjectLen = 16
+  ObjectF1:         .res ObjectLen ; TTTTTTTD, Type, Direction
+
   ; The most recent position the player was in where they were not colliding with any solid blocks at all.
   ; Used to return the player to this position if all four points are colliding.
   PlayerNonSolidPXL: .res 1
@@ -207,7 +210,6 @@
   DelayedMetaEditTime:    .res MaxDelayedMetaEdits  ; amount of time
   DelayedMetaEditType:    .res MaxDelayedMetaEdits  ; new block type
 
-  ObjectLen = 16
   ObjectPXH:   .res ObjectLen ; \ horizontal and vertical positions
   ObjectPXL:   .res ObjectLen ;  \
   ObjectPYH:   .res ObjectLen ;  /
@@ -226,7 +228,6 @@
   PlayerLadderMoveFrame:  .res 1
 
 LevelZeroWhenLoad_Start:
-  ObjectF1:               .res ObjectLen ; TTTTTTTD, Type, Direction
   PlayerHasBalloon:       .res 1
   DelayedMetaEditIndexHi: .res MaxDelayedMetaEdits  ; high address in the level array, or 0 if unused
   IsNormalDoor:           .res 1 ; 1 if the level is loading due to a door
@@ -267,6 +268,7 @@ INVENTORY_UNLIMITED = 255
 INVENTORY_EQUIPPED  = 254
   ScriptFlags:        .res 32  ; flags for scripts. first two bytes reset when entering a level on the level select
 GameStateLen = 1+2+10+10+2 ; update if more stuff is added
+  PlayerAbilityVar: .res 1
 
 ; Checkpoint information
   CheckpointGameState:   .res GameStateLen

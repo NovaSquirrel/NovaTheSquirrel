@@ -289,9 +289,7 @@ BreakBricks:
 
 ProjStunStar:
   jsr EnemyApplyVelocity
-
   jsr BreakBricks
-
   lda #$51
   jmp DispObject8x8
 
@@ -375,8 +373,42 @@ GliderPushY:
 ProjBoomerang:
   jsr EnemyApplyVelocity
   jsr ObjectRemoveTooLow
-  lda #$70
-  jmp DispObject8x8
+
+  lda ObjectPYL,x
+  add #$40
+  lda ObjectPYH,x
+  adc #0
+  tay
+  lda ObjectPXL,x
+  add #$40
+  lda ObjectPXH,x
+  adc #0
+  jsr GetLevelColumnPtr
+  jsr DoCollectible
+
+  lda retraces
+  lsr
+  lsr
+  and #7
+  tay
+  lda BoomerangSpinA,y
+  sta 1
+  lda BoomerangSpinT,y
+  jsr DispObject8x8_Attr
+
+  inc ObjectF3,x
+  lda ObjectF3,x
+  cmp #28
+  bne NoFlip
+  lda #1
+  neg16x ObjectVXL, ObjectVXH
+  neg16x ObjectVYL, ObjectVYH
+NoFlip:
+  rts
+BoomerangSpinT: .byt $70, $71, $72, $71, $70, $71, $72, $71
+BoomerangSpinA:
+  .byt OAM_COLOR_1, OAM_COLOR_1, OAM_COLOR_1, OAM_COLOR_1|OAM_YFLIP
+  .byt OAM_COLOR_1|OAM_YFLIP, OAM_COLOR_1|OAM_XFLIP|OAM_YFLIP, OAM_COLOR_1|OAM_XFLIP|OAM_YFLIP, OAM_COLOR_1|OAM_XFLIP
 DoFireball:
   jsr ObjectFallSmall
   bcc :+

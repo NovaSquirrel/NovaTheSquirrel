@@ -592,12 +592,15 @@ Routines:
   .raddr Health ; Konami Code
   .raddr Health ; reverse Konami code
   .raddr Fireball ; left
-  .raddr Health ; circles
+  .raddr Boomerang ; circles
   .raddr NextAbility ; left/right
   .raddr Water ; up/down
   .raddr Firework ; BALL
   .raddr Bomb ; ddr pattern
   .raddr Balloon ; up
+Boomerang:
+  lda #AbilityType::BOOMERANG
+  jmp ChangePlayerAbility  
 Fireball:
   lda #AbilityType::FIRE
   jmp ChangePlayerAbility

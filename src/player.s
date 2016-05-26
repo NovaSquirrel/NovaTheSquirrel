@@ -108,7 +108,7 @@ BlockLR = 5
 BlockFootL = TempSpace+1  ; TempSpace is free here because
 BlockFootR = TempSpace+2  ; the buffer isn't filled until after Handleplayer
 FourCorners = 6
-FootCorners = TempSpace+3
+SkipTop = TempSpace+3
 ;BlockMiddle = TempSpace+4 - moved to its own variable
 XForMiddle  = TempSpace+5
 BottomCMP = 7
@@ -117,8 +117,8 @@ MaxSpeedLeft = 9
 MaxSpeedRight = 10
   lda #0
   sta PlayerOnGround
+  sta SkipTop
   sta FourCorners
-  sta FootCorners
   sta SkipFourCorners
   sta PlayerSwimming
 
@@ -553,7 +553,19 @@ NoFixWalkSpeed:
 
   ; Don't react to collision if off the top of the screen
   lda PlayerPYH
-  rtsmi
+  cmp #255
+  bne :+
+    lda #0
+    sta BlockUL
+    sta BlockUR
+    inc SkipTop
+    bne TopWasSkipped
+  :
+  lda PlayerPYH
+  bpl :+
+    inc SkipFourCorners
+  :
+TopWasSkipped:
 
   lda #M_SOLID_ALL
   sta BottomCMP
@@ -597,6 +609,8 @@ NoFixWalkSpeed:
   jsr DoSpecialMisc
 DoneCheckMiddle:
 
+  lda SkipTop
+  bne SkipTheTop
   ; top
   lda PlayerPYL
   add #<(8*16)
@@ -622,6 +636,7 @@ DoneCheckMiddle:
   lda MetatileFlags,x
   cmp #$80
   rol FourCorners
+SkipTheTop:
 
   ;bottom
   lda PlayerPYL
@@ -938,9 +953,10 @@ DrawX2 = 4
   jsr MakeDrawX
   RealYPosToScreenPos PlayerPYL, PlayerPYH, DrawY
 
-  ; skip drawing if off the top of the screen
-  ; to do: clip off only the top of the player sprite?
+  ; skip drawing if too far off the top of the screen
   lda PlayerPYH
+  cmp #255
+  beq :+
   bpl :+
     rts
   :
@@ -1494,7 +1510,37 @@ AbilityNice:
 @Exit:
   rts
 AbilityBoomerang:
+  lda #2
+  jsr LimitObjectAmount
+  lda #PlayerProjectileType::BOOMERANG
+  jsr MakeShot
+  bcc @Exit
+  lda #56/4
+  sta ObjectTimer,x
+
+  lda keydown
+  and #KEY_UP|KEY_DOWN
+  bne @NoXVelocity
+  lda #$30
+  jsr SetXVelocity
+@Exit:
   rts
+@NoXVelocity:
+  tay
+  cpy #KEY_DOWN
+  beq :+
+  lda #<(-$30)
+  sta ObjectVYL,x
+  lda #>(-$30)
+  sta ObjectVYH,x
+: cpy #KEY_UP
+  beq :+
+  lda #<($30)
+  sta ObjectVYL,x
+  lda #>($30)
+  sta ObjectVYH,x
+: rts
+
 AbilityBall:
   lda #1
   jsr LimitObjectAmount

@@ -163,6 +163,7 @@ Length = TempVal+2
 WithoutSFX:
 ; Because the graphics will be rewritten, erase any projectiles using the old graphics
   ldx #0
+  stx PlayerAbilityVar
 : lda ObjectF1,x
   and #<~1
   cmp #Enemy::PLAYER_PROJECTILE*2

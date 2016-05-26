@@ -26,12 +26,11 @@
 .endscope
 
 ; ObjectF2 usually holds an enemy state number
-ENEMY_STATE_BITS    = %1111
 ENEMY_STATE_NORMAL  = 0
-ENEMY_STATE_PAUSE   = 1
-ENEMY_STATE_STUNNED = 2
-ENEMY_STATE_ACTIVE  = 3
-ENEMY_STATE_INIT    = 4
+ENEMY_STATE_PAUSE   = 128|1
+ENEMY_STATE_STUNNED = 128|2
+ENEMY_STATE_ACTIVE  = 128|3
+ENEMY_STATE_INIT    = 128|4
 
 ; common object behaviors that get put in ORAM::OBJ_FLAG
 .enum ObjBehavior
@@ -1015,7 +1014,6 @@ ThrowBottle:
   jsr DispEnemyWide
 
   jmp EnemyPlayerTouchHurt
-  rts
 .endproc
 
 .proc ObjectThwomp
@@ -1732,7 +1730,6 @@ YOnly:
 ; input: X (object slot)
 .proc SmallEnemyPlayerTouchHurt
   lda ObjectF2,x
-  and #ENEMY_STATE_BITS
   cmp #ENEMY_STATE_STUNNED
   beq :+
   jsr SmallPlayerTouch
@@ -1745,7 +1742,6 @@ YOnly:
 ; input: X (object slot)
 .proc EnemyPlayerTouchHurt
   lda ObjectF2,x
-  and #ENEMY_STATE_BITS
   cmp #ENEMY_STATE_STUNNED
   beq :+
   jsr EnemyPlayerTouch
@@ -1830,7 +1826,6 @@ NewXH = 2
   sta WalkDistance
 
   lda ObjectF2,x
-  and #ENEMY_STATE_BITS
   ; Change this when I have nonzero states that still involve walking
   beq Yes
   clc
@@ -2102,6 +2097,7 @@ Good:
 ; Randomly swaps two object slots, because the NES can only display 8 sprites per scanline
 ; and any past that aren't drawn. This way sprites are don't just drop out of visibility.
 .proc FlickerEnemies
+  rts
   lda retraces
   and #15
   tax
