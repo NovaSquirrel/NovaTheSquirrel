@@ -495,6 +495,9 @@ SpecialConfigMakeBackgrounds:
 SpecialConfigStartDialog:
 ; Only re-show the dialog for a level that was already cleared
 ; if the player is holding Select
+  lda IntroShownAlready
+  bne SkipDialog
+  inc IntroShownAlready
   lda keydown
   and #KEY_SELECT
   bne ShowDialogAnyway    ; Select = show no matter what
