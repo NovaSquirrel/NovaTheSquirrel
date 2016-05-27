@@ -27,7 +27,6 @@ NMI:
   pha
   lda LagFrame
   beq NoNMIMusic
-
   ; Save X and Y
   txa
   pha
@@ -46,6 +45,10 @@ NMI:
   cpx #8
   bne :-
 
+.ifdef MAPPER_MMC1
+  lda #$80  ; reset MMC1
+  sta $8000
+.endif
   ; Update music
   lda #SOUND_BANK
   jsr _SetPRG
@@ -53,6 +56,9 @@ NMI:
 
   ; Restore locals
   ldx #7
+.ifdef NeedNMIInterrupted
+  stx NMIInterrupted
+.endif
 : pla
   sta 0,x
   dex
@@ -285,7 +291,6 @@ SaveTagString: .byt "squirrel"
     sta $5000
   .endif
   rts
-
 .endproc
 
 ; restores the program bank after a _SetPRG
@@ -296,9 +301,11 @@ SetPRG_Restore:
 .proc SetPRG
   sta PRGBank
 Temporary:
+  lsr NMIInterrupted
   .ifdef NMI_MUSIC
     sta RealPRGBank
   .endif
+NMIVersion:
   .ifdef MAPPER_UNROM
     stx TempXSwitch
     tax
@@ -315,6 +322,15 @@ Temporary:
       lsr a
       sta $e000
     .endrep
+    .ifdef NMI_MUSIC
+      lda NMIInterrupted
+      beq :+
+        lda #$80  ; reset MMC1
+        sta $8000
+        lda RealPRGBank
+        bpl Temporary
+      :
+    .endif
     rts
   .endif
   .ifdef MAPPER_MMC3
@@ -329,6 +345,13 @@ Temporary:
     sta $8000
     stx $8001
     ldx TempXSwitch
+    .ifdef NMI_MUSIC
+      lda NMIInterrupted
+      beq :+
+        lda RealPRGBank
+        bpl Temporary
+      :
+    .endif
     rts
   .endif
   .ifdef MAPPER_ACTION53
@@ -337,6 +360,7 @@ Temporary:
   .endif
 .endproc
 _SetPRG = SetPRG::Temporary
+SetPRGNMI = SetPRG::NMIVersion
 
 .ifdef MAPPER_MMC1
 .proc SetControl

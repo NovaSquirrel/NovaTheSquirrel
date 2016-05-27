@@ -172,6 +172,9 @@
 .ifdef NMI_MUSIC
   LagFrame:     .res 1 ; used to detect lag frames
   RealPRGBank:  .res 1 ; set even if _SetPRG is used
+.ifdef NeedNMIInterrupted
+  NMIInterrupted: .res 1
+.endif
 .endif
 
 .segment "BSS"

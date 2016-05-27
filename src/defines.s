@@ -33,21 +33,22 @@
 .macro Mapper_UNROM Banks
   MAPPER_UNROM = 1
   iNES_Header Banks, 2
-  NMI_MUSIC = 1
 .endmacro
 .macro Mapper_MMC1 Banks
   MAPPER_MMC1 = 1
   iNES_Header Banks, 1
+  NeedNMIInterrupted = 1
 .endmacro
 .macro Mapper_MMC3 Banks
   MAPPER_MMC3 = 1
   iNES_Header Banks, 4
+  NeedNMIInterrupted = 1
 .endmacro
 .macro Mapper_Action53 Banks
   MAPPER_ACTION53 = 1
   iNES_Header Banks, 28
-  NMI_MUSIC = 1
 .endmacro
+NMI_MUSIC = 1
 ; -------------------------------------
 
 .enum GraphicsUpload
