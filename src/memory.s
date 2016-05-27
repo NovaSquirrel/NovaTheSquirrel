@@ -189,6 +189,7 @@
   ; bigger temp space!!
   ScratchPage = $700
 
+  IntroShownAlready: .res 1
   NeedAbilityChange: .res 1
   NeedLevelRerender: .res 1
   NeedDialog:        .res 1

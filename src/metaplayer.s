@@ -246,7 +246,9 @@ Nope:
   lda keynew
   and #KEY_UP
   beq Nope
-    dey  
+    dey
+    lda #0
+    sta IntroShownAlready
     lda (LevelBlockPtr),y
     cmp #Metatiles::EXIT_DOOR_TOP
     beq ExitDoor

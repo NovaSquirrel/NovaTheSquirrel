@@ -56,8 +56,10 @@ NMI:
 
   ; Restore locals
   ldx #7
+.ifdef NMI_MUSIC
 .ifdef NeedNMIInterrupted
   stx NMIInterrupted
+.endif
 .endif
 : pla
   sta 0,x
