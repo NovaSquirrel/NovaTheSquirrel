@@ -15,9 +15,9 @@
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;
 .include "ns_nes.s"
-.include "memory.s"
 .include "defines.s"
 Mapper_MMC1 16
+.include "memory.s"
 ;-------------------------------------------------------------------------------------
 
 LEVELS_BANK1 = $0

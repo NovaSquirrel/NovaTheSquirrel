@@ -140,6 +140,10 @@
   lda #OBJ_ON | BG_ON ;| %11100000
   sta PPUMASK
 :
+  .ifdef NMI_MUSIC
+    lda #1
+    sta LagFrame
+  .endif
   countdown IsScrollUpdate ; decrease scroll update stage
   jsr ReadJoy
   jsr ClearOAM
@@ -216,6 +220,9 @@ NotDie:
   lda keydown
   and #KEY_START
   beq NoPause
+.ifdef NMI_MUSIC
+    lsr LagFrame
+.endif
     jsr PauseScreen
   NoPause:
 
@@ -286,6 +293,9 @@ NotDie:
 
   lda NeedDialog
   beq :+
+.ifdef NMI_MUSIC
+    lsr LagFrame
+.endif
     jsr StartCutscene ; this routine clears NeedDialog
   :
 
@@ -325,6 +335,9 @@ NotDie:
 
 ;  lda #OBJ_ON | BG_ON ;OBJ_CLIP | BG_CLIP
 ;  sta PPUMASK
-
+  .ifdef NMI_MUSIC
+    lda #0
+    sta LagFrame
+  .endif
   jmp VBlankUpdates
 .endproc

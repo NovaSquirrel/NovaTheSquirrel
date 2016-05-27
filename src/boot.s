@@ -22,6 +22,55 @@
 
 NMI:
   inc retraces
+.ifdef NMI_MUSIC
+  ; Save accumulator
+  pha
+  lda LagFrame
+  beq NoNMIMusic
+
+  ; Save X and Y
+  txa
+  pha
+  tya
+  pha
+
+  ; Save the bank
+  lda RealPRGBank
+  pha
+
+  ; Save locals
+  ldx #0
+: lda 0,x
+  pha
+  inx
+  cpx #8
+  bne :-
+
+  ; Update music
+  lda #SOUND_BANK
+  jsr _SetPRG
+  jsr pently_update
+
+  ; Restore locals
+  ldx #7
+: pla
+  sta 0,x
+  dex
+  bpl :-
+
+  ; Restore the bank
+  pla
+  jsr _SetPRG
+
+  ; Restore X and Y
+  pla
+  tay
+  pla
+  tax
+NoNMIMusic:
+  ; Restore accumulator
+  pla
+.endif
 DefaultIRQ:
   rti
 IRQ:
@@ -247,6 +296,9 @@ SetPRG_Restore:
 .proc SetPRG
   sta PRGBank
 Temporary:
+  .ifdef NMI_MUSIC
+    sta RealPRGBank
+  .endif
   .ifdef MAPPER_UNROM
     stx TempXSwitch
     tax

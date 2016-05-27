@@ -169,6 +169,11 @@
   LevelDecodeXPos = TouchTemp+2  ; current X position
   CollectedBitsIndex: .res 1 ; 0 or 128, for alternate or current collectedbits
 
+.ifdef NMI_MUSIC
+  LagFrame:     .res 1 ; used to detect lag frames
+  RealPRGBank:  .res 1 ; set even if _SetPRG is used
+.endif
+
 .segment "BSS"
   UploadTileAddress: .res 2
 

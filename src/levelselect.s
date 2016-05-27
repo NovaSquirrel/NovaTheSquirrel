@@ -398,7 +398,7 @@ DrawLevelIcon:
   adc #1
   sta OAM_TILE+(4*3),y
   lda IconNum
-  add #1
+  add #2
   sta OAM_TILE+(4*4),y
   tya
   add #4*5
