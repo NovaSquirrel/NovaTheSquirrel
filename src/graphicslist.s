@@ -36,6 +36,7 @@ GraphicsList:
   .byt GRAPHICS_BANK1|IS_PALETTE, <PalLevelSel,  >PalLevelSel
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPRonald,     >SPRonald
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPMines,      >SPMines
+  .byt GRAPHICS_BANK1|IS_GRAPHIC, <CHRFont,      >CHRFont
 
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)

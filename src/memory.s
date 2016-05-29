@@ -236,6 +236,14 @@
 
   PlayerLadderMoveFrame:  .res 1
 
+  ; Physics variables that are translated from the saved options
+  NovaAccelSpeed: .res 1
+  NovaDecelSpeed: .res 1
+  NovaRunSpeedL:  .res 1
+  NovaRunSpeedR:  .res 1
+  TapRunTimer: .res 1
+  TapRunKey:   .res 1
+
 LevelZeroWhenLoad_Start:
   PlayerHasBalloon:       .res 1
   DelayedMetaEditIndexHi: .res MaxDelayedMetaEdits  ; high address in the level array, or 0 if unused
@@ -313,5 +321,10 @@ SavedGameState_Start:
   ScriptFlagsSaved:   .res 32  ; version of the flags for scripts that are actually in the save file. 256 flags
   LevelCleared:       .res 8   ; 64 levels, bit = enabled
   LevelAvailable:     .res 8   ; 64 levels, bit = enabled
+SavedOptions:
+  SavedAcceleration:  .res 1
+  SavedRunSpeed:      .res 1
+  SavedRunStyle:      .res 1
+  DeleteSavePlaceholder: .res 1 ; "delete file" placeholder
 SaveEnd:
-.code   
+.code

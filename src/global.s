@@ -856,6 +856,19 @@ SkipAddr:
   sta StartedLevelNumber
 ;  lda SavedAbility
 ;  sta PlayerAbility
+
+  ; Copy options to physics variables
+  ldx SavedAcceleration
+  lda AccelSpeeds,x
+  sta NovaAccelSpeed
+  lda DecelSpeeds,x
+  sta NovaDecelSpeed
+  ldx SavedRunSpeed
+  lda RunSpeedsL,x
+  sta NovaRunSpeedL
+  lda RunSpeedsR,x
+  sta NovaRunSpeedR
+
   lda SavedCoins+0
   sta Coins+0
   lda SavedCoins+1
@@ -886,6 +899,11 @@ FromCheckpoint:
 ; Finally decompress the level and start the game engine
   jsr DecompressLevel
   jmp MainLoopInit
+
+AccelSpeeds: .byt 2,        4
+DecelSpeeds: .byt 4,        8
+RunSpeedsL:  .byt <-(4*16), <-(3*16)
+RunSpeedsR:  .byt 4*16,     3*16
 .endproc
 StartLevel_FromCheckpoint = StartLevel::FromCheckpoint
 
@@ -1004,4 +1022,31 @@ Empty: ; Empty slot, put in item
   sta InventoryAmount,x
   sec
   rts
+.endproc
+
+; Writes a zero terminated string to the screen
+.proc PutStringImmediate
+	DPL = $02
+	DPH = $03
+	pla					; Get the low part of "return" address
+                        ; (data start address)
+	sta     DPL     
+	pla 
+	sta     DPH         ; Get the high part of "return" address
+                        ; (data start address)
+						; Note: actually we're pointing one short
+PSINB:	ldy #1
+	lda (DPL),y         ; Get the next string character
+	inc DPL             ; update the pointer
+	bne PSICHO          ; if not, we're pointing to next character
+	inc DPH             ; account for page crossing
+PSICHO:	ora #0          ; Set flags according to contents of 
+                        ;    Accumulator
+	beq     PSIX1       ; don't print the final NULL 
+	sta PPUDATA         ; write it out
+	jmp     PSINB       ; back around
+PSIX1:	inc     DPL     ; 
+	bne     PSIX2       ;
+	inc     DPH         ; account for page crossing
+PSIX2:	jmp     (DPL)   ; return to byte following final NULL
 .endproc

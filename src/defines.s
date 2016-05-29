@@ -81,6 +81,7 @@ NMI_MUSIC = 1
   PAL_LEVELSEL
   SP_RONALD
   SP_MINES
+  CHR_FONT
 .endenum
 
 .enum SFX

@@ -20,8 +20,6 @@
   jmp HandlePlayer
 .endproc
 
-NOVA_ACCEL_SPEED = 2
-NOVA_DECEL_SPEED = 4
 NOVA_WALK_SPEED = 2
 NOVA_RUN_SPEED = 4
 
@@ -133,9 +131,9 @@ MaxSpeedRight = 10
 
   lda PlayerWasRunning ; nonzero = B button, only updated when on ground
   beq :+
-    lda #<-(NOVA_RUN_SPEED*16)
+    lda NovaRunSpeedL ;<-(NOVA_RUN_SPEED*16)
     sta MaxSpeedLeft
-    lda #NOVA_RUN_SPEED*16
+    lda NovaRunSpeedR ;NOVA_RUN_SPEED*16
     sta MaxSpeedRight
     bne NotWalkSpeed
 : lda #<-(NOVA_WALK_SPEED*16)
@@ -335,6 +333,8 @@ NotOffTopBottom:
     :
     jmp SkipTail
 NoTail:
+  lda SavedRunStyle
+  bne OkayIfLeftRight
   lda PlayerJumping
   bne OkayIfLeftRight
   lda keylast
@@ -433,7 +433,7 @@ SkipTail:
     lda PlayerVXL
     bne :+
        dec PlayerVXH
-  : sub #NOVA_ACCEL_SPEED
+  : sub NovaAccelSpeed
     sta PlayerVXL
 NotLeft:
 
@@ -464,14 +464,14 @@ NotLeft:
     beq NotRight
 
     lda PlayerVXL
-    add #NOVA_ACCEL_SPEED
+    add NovaAccelSpeed
     sta PlayerVXL
     bne NotRight
       inc PlayerVXH
 NotRight:
 NotWalk:
 
-  lda #NOVA_DECEL_SPEED ; adjust the deceleration speed if you're trying to turn around
+  lda NovaDecelSpeed ; adjust the deceleration speed if you're trying to turn around
   sta Temp
 .if 1
   lda keydown
@@ -506,7 +506,7 @@ NotWalk:
       :
 
       lda PlayerVXL
-      sub Temp ;#NOVA_DECEL_SPEED
+      sub Temp ; Deceleration speed
       sta PlayerVXL
       bcs @NotCarry
         dec PlayerVXH
@@ -532,7 +532,7 @@ IsMoving:
    cmp MaxSpeedRight
    beq NoFixWalkSpeed
    bcc NoFixWalkSpeed
-   sub #NOVA_DECEL_SPEED
+   sub NovaDecelSpeed
    bit PlayerVXH
    bpl :+
      neg
@@ -900,9 +900,50 @@ FC___LR:
   :
 
   inc PlayerOnGround
+  lda SavedRunStyle
+  bne RunStyleTap
   lda keydown
   and #KEY_B
   sta PlayerWasRunning
+  jmp RunStyleWasB
+RunStyleTap:
+  countdown TapRunTimer
+
+  ; If you turn around you're not longer running
+  lda keydown
+  and #KEY_LEFT|KEY_RIGHT
+  beq :+
+  cmp TapRunKey
+  bne RunCancel
+
+  ; If you let go you're no longer running
+  lda keydown
+  and #KEY_LEFT|KEY_RIGHT
+  bne :+
+    lda PlayerWasRunning
+    beq :+
+RunCancel:
+      lda #0
+      sta PlayerWasRunning
+      sta TapRunTimer
+  :
+
+  ; Set the timer if you press the button and the timer isn't going
+  lda keynew
+  and #KEY_LEFT|KEY_RIGHT
+  beq :+
+    ldy TapRunTimer
+    beq @SetTapTimer
+    lda #1
+    sta PlayerWasRunning
+    bne :+
+@SetTapTimer:
+    sta TapRunKey
+    lda #15
+    sta TapRunTimer
+:
+
+RunStyleWasB:
 
   lda #0
   sta PlayerVYH

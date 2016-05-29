@@ -108,7 +108,8 @@ intro_bData:
   LObj  LO::S_PRIZE,          2, 3
   LObjN LO::WIDE_1,           5, 9, 1, LN1::FALLTHROUGH_LEDGE
   LObj  LO::S_SPRING,         0, 12
-  LObjN LO::R_GROUND,         2, 5, 3, 3
+  LObjN LO::R_GROUND,         1, 5, 0, 1
+  LObjN LO::R_GROUND,         1, 5, 3, 3
   LObjN LO::WIDE_2,           1, 4, 2, LN2::FLOWER
   LObjN LO::R_GROUND,         0, 9, 2, 3
   LObjN LO::R_GROUND,         3, 7, 4, 7
