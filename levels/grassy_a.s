@@ -20,6 +20,7 @@ grassy_a:
   .byt $07, $80 ; link
 
 grassy_aData:
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $07, LevelBackgroundId::CLOUDS
   LObjN LO::R_GROUND,         7, 6, 7, 2
   LObjN LO::WIDE_2,           1, 5, 5, LN2::BUSH
   LObjN LO::R_GROUND,         0, 9, 9, 3

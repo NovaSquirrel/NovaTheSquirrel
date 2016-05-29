@@ -18,6 +18,7 @@ water:
   .byt $00, $00 ; boundaries
 
 waterData:
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 19
   LObjN LO::WIDE_1,           6, 12, 6, LN1::TALLGRASS
   LObjN LO::R_GROUND,         9, 11, 4, 1

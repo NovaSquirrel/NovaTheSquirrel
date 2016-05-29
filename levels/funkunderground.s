@@ -18,6 +18,7 @@ funkunderground:
   .byt $00, $06 ; boundaries
 
 funkundergroundData:
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LObjN LO::R_GROUND,         0, 13, 10, 1
   LObjN LO::R_SOLID_BLOCK,    10, 11, 0, 1
   LObjN LO::WIDE_1,           4, 12, 4, LN1::FENCE

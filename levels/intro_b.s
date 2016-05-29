@@ -19,6 +19,7 @@ intro_b:
 
 intro_bData:
   .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <Nice_Announcement, >Nice_Announcement
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0d, LevelBackgroundId::CLOUDS
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 31
   LObjN LO::WIDE_1,           2, 12, 3, LN1::TALLGRASS
   LObjN LO::TALL_2,           4, 10, 2, LN2::TRUNK_L

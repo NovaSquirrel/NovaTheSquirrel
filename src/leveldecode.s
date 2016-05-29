@@ -318,7 +318,6 @@ NoLinks:
   lda #LEVELPROCESS_BANK
   jsr SetPRG
   jsr PostProcessLevel
-  jsr MakeBackground
 
   ; add arrows to mark links
   ldx #15
@@ -485,12 +484,37 @@ SpecialCommandTable:
   .raddr SpecialXMinus16
   .raddr SpecialXPlus16
   .raddr SpecialConfig
+
 SpecialConfigTable:
   .raddr SpecialConfigEnablePuzzle
   .raddr SpecialConfigMakeBackgrounds
   .raddr SpecialConfigStartDialog
+
 SpecialConfigMakeBackgrounds:
+  lda (LevelDecodePointer),y
+  unpack 1, 0
+  lda 0
+  sec
+  adc 1
+  sta 1
+  ; 0 = starting page
+  ; 1 = ending page
+  iny
+  lda (LevelDecodePointer),y
+  asl
+  tax
+  jsr IncreasePointerBy2
+
+  ; Push the routine for the background type
+  lda BackgroundRoutines+1,x
+  pha
+  lda BackgroundRoutines+0,x
+  pha
   rts
+
+BackgroundRoutines:
+  .raddr BGClouds
+  .raddr BGCloudsEverywhere
 
 SpecialConfigStartDialog:
 ; Only re-show the dialog for a level that was already cleared
@@ -832,3 +856,80 @@ SkipFill:
 
   jmp PointLoop
 .endproc
+
+; --------- backgrounds, move to another bank maybe? ----------
+.proc BGClouds
+StartPage = 0
+EndPage   = 1
+Column    = 0
+RowChooseMask = 2
+
+  lda #3
+  bne NotCloudsEverywhere
+CloudsEverywhere:
+  lda #15 
+NotCloudsEverywhere:
+  sta RowChooseMask
+
+  lda StartPage
+  asl
+  asl
+  asl
+  asl
+  sta Column
+  lda EndPage
+  asl
+  asl
+  asl
+  asl
+  sta EndPage
+Loop:
+  jsr huge_rand
+  and #3
+  add #9
+  add Column
+  bcs Exit
+  ldy EndPage
+  beq :+
+  cmp EndPage
+  bcs Exit
+: cmp #256-3-9 ; ??
+  bcs Exit
+  sta Column
+
+  lda Column
+  jsr GetLevelColumnPtr
+
+  ; pick a row
+  jsr huge_rand
+  lsr
+  and RowChooseMask
+  tay
+
+  ; insert the cloud metatiles
+  lda (LevelBlockPtr),y
+  bne :+
+  lda #Metatiles::CLOUD_L
+  sta (LevelBlockPtr),y
+: jsr NextColumn
+  lda (LevelBlockPtr),y
+  bne :+
+  lda #Metatiles::CLOUD_M
+  sta (LevelBlockPtr),y
+: jsr NextColumn
+  lda (LevelBlockPtr),y
+  bne :+
+  lda #Metatiles::CLOUD_R
+  sta (LevelBlockPtr),y
+: bne Loop
+
+Exit:
+  rts
+
+NextColumn:
+  tya
+  add #16
+  tay
+  rts
+.endproc
+BGCloudsEverywhere = BGClouds::CloudsEverywhere

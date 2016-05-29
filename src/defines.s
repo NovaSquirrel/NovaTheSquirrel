@@ -506,3 +506,8 @@ LSpecialCmd = $f7
   MAKE_BACKGROUNDS  ; sl bb - start screen, length, background id
   SET_START_DIALOG  ; aa aa - dialog address
 .endenum
+
+.enum LevelBackgroundId
+  CLOUDS
+  CLOUDS_EVERYWHERE
+.endenum
