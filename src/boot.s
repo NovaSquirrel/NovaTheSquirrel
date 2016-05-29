@@ -169,16 +169,7 @@ NoInitSave:
   bpl :-
 
   jsr ShowTitle
-
-; Set some random seeds
-  ldx retraces
-  stx random1+0
-  inx
-  stx random1+1
-  inx
-  stx random2+0
-  inx
-  stx random2+1
+  jsr ReseedRandomizer
 
   .ifdef DEBUG
 ; Sample testing inventory

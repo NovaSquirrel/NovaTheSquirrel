@@ -84,7 +84,11 @@ DisplayLoop:
   jsr ReadJoy
   lda keynew
   and #KEY_SELECT
-  jne ShowOptions
+  beq :+
+  pla
+  pla
+  jmp ShowOptions
+:
   lda keydown
   and #KEY_START
   bne Exit

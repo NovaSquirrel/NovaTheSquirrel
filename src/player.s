@@ -1711,7 +1711,7 @@ MakeShot:
   beq Left
 Right:
   lda PlayerPXL
-  add #$80
+  add #$40
   sta ObjectPXL,x
   lda PlayerPXH
   adc #0

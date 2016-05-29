@@ -857,6 +857,8 @@ SkipAddr:
 ;  lda SavedAbility
 ;  sta PlayerAbility
 
+  jsr ReseedRandomizer
+
   ; Copy options to physics variables
   ldx SavedAcceleration
   lda AccelSpeeds,x
@@ -1049,4 +1051,17 @@ PSIX1:	inc     DPL     ;
 	bne     PSIX2       ;
 	inc     DPH         ; account for page crossing
 PSIX2:	jmp     (DPL)   ; return to byte following final NULL
+.endproc
+
+.proc ReseedRandomizer
+; Set some random seeds
+  ldx retraces
+  stx random1+0
+  inx
+  stx random1+1
+  inx
+  stx random2+0
+  inx
+  stx random2+1
+  rts
 .endproc
