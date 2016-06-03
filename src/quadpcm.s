@@ -1,5 +1,5 @@
 .pushseg
-.segment "PRGeSamp"
+.segment "PRGdSamp"
 ciBlocksLeft = ciBufEnd
 .align 256
 .proc quadpcm_playPages

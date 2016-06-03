@@ -24,20 +24,21 @@ LEVELS_BANK1 = $0
 LEVELS_BANK2 = $1
 LEVELS_BANK3 = $2
 LEVELS_BANK4 = $3
-MAINLOOP_BANK2 = $9
-MAINLOOP_BANK = $a
-GRAPHICS_BANK3 = $b
-GRAPHICS_BANK2 = $c
-GRAPHICS_BANK1 = $d
+DIALOG_BANK = $7
+MAINLOOP_BANK2 = $8
+MAINLOOP_BANK = $9
+GRAPHICS_BANK3 = $a
+GRAPHICS_BANK2 = $b
+GRAPHICS_BANK1 = $c
+VOICE_BANK = $d
 LEVELPROCESS_BANK = $e
 SOUND_BANK = $e
 VWF_BANK = $e
-DIALOG_BANK = $8
 
 .segment "PRG6" ;
 .segment "PRG7" ;
-.segment "PRG9" ; extra main loop stuff
-.segment "PRGa" ; main loop stuff
+.segment "PRG8" ; extra main loop stuff
+.segment "PRG9" ; main loop stuff
 .include "metatile.s"
 .include "../tools/metatilelist.s"
 .include "player.s"
@@ -46,13 +47,15 @@ DIALOG_BANK = $8
 .include "object.s"
 .include "projectiles.s"
 .include "drawsprite.s"
+.segment "PRGa" ; compressed graphics
 .segment "PRGb" ; compressed graphics
 .segment "PRGc" ; compressed graphics
-.segment "PRGd" ; compressed graphics
 .include "graphics.s"
 
-.segment "PRGe" ; voice samples, dialogs, inventory, VWF engine
+.segment "PRGd"
 .include "quadpcm.s"
+
+.segment "PRGe" ; voice samples, dialogs, inventory, VWF engine
 .include "vwf_draw.s"
 .include "levelprocess.s"
 .include "pentlysound.s"
@@ -61,7 +64,7 @@ DIALOG_BANK = $8
 .include "inventoryitems.s"
 .include "cutscenedata.s"
 .include "levelselect.s"
-.segment "PRG8" ; dialog
+.segment "PRG7" ; dialog
 .include "../tools/dialog.s"
 .segment "PRGf" ; important stuff
 .code

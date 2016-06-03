@@ -131,7 +131,7 @@ SelectForOptions: .byt "          Select: options",0
   jsr UpdateScrollRegister
 
   ; Play the sample
-  lda #SOUND_BANK
+  lda #VOICE_BANK
   jsr SetPRG
   jsr quadpcm_play_die
 
@@ -278,6 +278,8 @@ Cursor = 13
   lda #255
   sta retraces
 
+LastOptionNum = 4
+
 Loop:
   jsr WaitVblank
   lda #OBJ_ON|BG_ON
@@ -342,7 +344,7 @@ NoOptionChange:
   ; otherwise it doesn't
   lda Cursor ; 0 = Start game
   jeq JumpToLevelSelect
-  cmp #4 ; 4 = Delete save
+  cmp #LastOptionNum ; 4 = Delete save
   bne NoA
   lda DeleteSavePlaceholder
   jne ShowDeleteSaveScreen
@@ -361,7 +363,7 @@ NoA:
   and #KEY_DOWN
   beq :+
     lda Cursor
-    cmp #4
+    cmp #LastOptionNum
     beq :+
     inc Cursor
   :

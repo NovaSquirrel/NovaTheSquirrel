@@ -173,7 +173,8 @@ NotWalkSpeed:
     bmi @LetGo
     bpl @NoLetGo
 @LetGo:
-    lsr PlayerHasBalloon
+    lda #0
+    sta PlayerHasBalloon
     jsr FindFreeObjectY
     bcc @NoSlotFree
     lda #Enemy::POOF*2
