@@ -82,6 +82,7 @@ DontHaveExtraRAM:
 DisplayLoop:
   jsr WaitVblank
   jsr ReadJoy
+  jsr ReseedRandomizer
   lda keynew
   and #KEY_SELECT
   beq :+

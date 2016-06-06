@@ -169,7 +169,6 @@ NoInitSave:
   bpl :-
 
   jsr ShowTitle
-  jsr ReseedRandomizer
 
   .ifdef DEBUG
 ; Sample testing inventory

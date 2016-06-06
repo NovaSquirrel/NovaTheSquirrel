@@ -14,7 +14,6 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;
-;DEBUG = 1
 
 .macro iNES_Header Banks, MapperNum
   .segment "INESHDR"
@@ -49,6 +48,8 @@
   iNES_Header Banks, 28
 .endmacro
 NMI_MUSIC = 1
+LEVEL_INTROS = 1
+;DEBUG = 1
 ; -------------------------------------
 
 .enum GraphicsUpload
