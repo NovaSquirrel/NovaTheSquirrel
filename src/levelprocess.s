@@ -131,7 +131,7 @@ ListOfProcessTiles:
   .byt Metatiles::STRIPED_LOG_HORIZ
   .byt Metatiles::TROPICAL_FLOWER
   .byt Metatiles::TROPICAL_FLOWER_2
-  .byt Metatiles::BIG_BUSH
+  .byt Metatiles::BG_TREETOP_LL
   .byt Metatiles::BIG_SPIKY_BUSH
 
 ListOfProcessAddrLo:
@@ -269,12 +269,12 @@ ProcessTropicalFlower:
   lda #Metatiles::FLOWER_STEM
   jmp ContinueDown
 ProcessBigBush:
-  lda #Metatiles::BIG_BUSH_LR
+  lda #Metatiles::BG_TREETOP_LR
   sta (RightPointer),y
   dey
-  lda #Metatiles::BIG_BUSH_UL
+  lda #Metatiles::BG_TREETOP_UL
   sta (Pointer),y
-  lda #Metatiles::BIG_BUSH_UR
+  lda #Metatiles::BG_TREETOP_UR
   sta (RightPointer),y 
   rts
 ProcessBigSpikyBush:

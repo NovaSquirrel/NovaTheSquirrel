@@ -34,13 +34,13 @@ intro_aData:
   LObj  LO::S_GROUND_CLIMB_R, 1, 11
   LObj  LO::S_GROUND_CLIMB_R, 1, 12
   LObjN LO::R_BRICK,          2, 6, 3, 0
-  LObjN LO::R_BRICK,          1, 9, 3, 0
   LObj  LO::S_PRIZE,          1, 6
+  LObjN LO::R_BRICK,          0, 9, 3, 0
   LObj  LO::S_PRIZE,          1, 9
   LObj  LO::S_SPRING,         2, 12
   LObjN LO::WIDE_1,           3, 12, 0, LN1::SPIKES
   LObjN LO::WIDE_1,           3, 11, 5, LN1::SOLID_LEDGE
-  LObjN LO::R_COIN,           7, 10, 8, 0
+  LObjN LO::R_COIN,           8, 10, 8, 0
   LObjN LO::WIDE_2,           1, 12, 2, LN2::BUSH
   LObj  LO::S_SIGNPOST,       3, 12
   LWriteCol <Tutorial2, >Tutorial2

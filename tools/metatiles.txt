@@ -956,7 +956,7 @@ C .byt $d6
 
 R BG_TREETOP_LL
 C .byt M_PAL_0
-C .byt M_EMPTY
+C .byt M_EMPTY|M_POST_PROCESS
 C .byt $c7
 C .byt $d7
 C .byt $3d
@@ -1162,38 +1162,6 @@ C .byt $84
 C .byt $3f
 C .byt $84
 C .byt $3f
-
-R BIG_BUSH
-C .byt M_PAL_0
-C .byt M_EMPTY|M_POST_PROCESS
-C .byt $c7
-C .byt $d7
-C .byt $3d
-C .byt $d8
-
-R BIG_BUSH_UL
-C .byt M_PAL_0
-C .byt M_EMPTY
-C .byt $3f
-C .byt $c5
-C .byt $3f
-C .byt $c6
-
-R BIG_BUSH_UR
-C .byt M_PAL_0
-C .byt M_EMPTY
-C .byt $3f
-C .byt $d5
-C .byt $3f
-C .byt $d6
-
-R BIG_BUSH_LR
-C .byt M_PAL_0
-C .byt M_EMPTY
-C .byt $3d
-C .byt $d8
-C .byt $c9
-C .byt $d9
 
 R BIG_SPIKY_BUSH
 C .byt M_PAL_0

@@ -75,7 +75,7 @@
   .byt BLOCK_SINGLE,           Metatiles::MOAI_LEFT
   .byt BLOCK_SINGLE,           Metatiles::TROPICAL_FLOWER
   .byt BLOCK_SINGLE,           Metatiles::TROPICAL_FLOWER_2
-  .byt BLOCK_SINGLE,           Metatiles::BIG_BUSH
+  .byt BLOCK_SINGLE,           Metatiles::BG_TREETOP_LL
   .byt BLOCK_SINGLE,           Metatiles::BIG_SPIKY_BUSH
   .byt BLOCK_SINGLE,           Metatiles::WOOD_PLATFORM_TOP
   .byt BLOCK_SINGLE,           Metatiles::WOOD_PLATFORM
