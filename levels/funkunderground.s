@@ -14,6 +14,7 @@ funkunderground:
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_GRASSY
   .byt GraphicsUpload::BG_GRASSYBG
+  .byt GraphicsUpload::BG_TROPICAL
   .byt 255 ; end
   .byt $00, $06 ; boundaries
 
@@ -89,8 +90,7 @@ funkundergroundData:
   LObjN LO::R_BRICK,          0, 6, 8, 3
   LObjN LO::TALL_2,           1, 2, 4, LN2::GRAY_BRICKS
   LObjN LO::R_GRAYBRICKS,     0, 7, 6, 1
-  LObjN LO::WIDE_1,           0, 12, 3, LN1::FENCE
-  LObjN LO::WIDE_1,           0, 13, 3, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_2,           0, 13, 3, LN2::STONE_BRIDGE
   LObjN LO::R_GROUND,         5, 13, 12, 1
   LObjN LO::WIDE_1,           3, 8, 4, LN1::FENCE
   LObjN LO::R_SOLID_BLOCK,    0, 9, 5, 0

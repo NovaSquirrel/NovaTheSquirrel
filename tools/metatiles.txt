@@ -993,3 +993,244 @@ C .byt $00
 C .byt $01
 C .byt $02
 C .byt $03
+
+# tropical stuff
+R STONE_BRIDGE_TOP
+C .byt M_PAL_2
+C .byt M_EMPTY
+C .byt $3f
+C .byt $80
+C .byt $3f
+C .byt $82
+
+R STONE_BRIDGE_LEFT
+C .byt M_PAL_1
+C .byt M_SOLID_TOP
+C .byt $81
+C .byt $3f
+C .byt $83
+C .byt $3f
+
+R STONE_BRIDGE
+C .byt M_PAL_1
+C .byt M_SOLID_TOP|M_POST_PROCESS
+C .byt $83
+C .byt $3f
+C .byt $83
+C .byt $3f
+
+R STONE_BRIDGE_RIGHT
+C .byt M_PAL_1
+C .byt M_SOLID_TOP
+C .byt $83
+C .byt $3f
+C .byt $85
+C .byt $3f
+
+R PALM_TREE
+C .byt M_PAL_2
+C .byt M_EMPTY|M_POST_PROCESS
+C .byt $3f
+C .byt $3f
+C .byt $93
+C .byt $93
+
+R PALM_TREE_TOP_L
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $90
+C .byt $91
+C .byt $92
+C .byt $d8
+
+R PALM_TREE_TOP_R
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $94
+C .byt $95
+C .byt $3f
+C .byt $3f
+
+R SAND_UL
+C .byt M_PAL_2
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $96
+C .byt $97
+C .byt $98
+C .byt $99
+
+R SAND_U
+C .byt M_PAL_2
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $98
+C .byt $99
+C .byt $98
+C .byt $99
+
+R SAND_UR
+C .byt M_PAL_2
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $98
+C .byt $99
+C .byt $9a
+C .byt $9b
+
+R SAND_L
+C .byt M_PAL_2
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $97
+C .byt $97
+C .byt $99
+C .byt $99
+
+R SAND
+C .byt M_PAL_2
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_POST_PROCESS
+C .byt $99
+C .byt $99
+C .byt $99
+C .byt $99
+
+R SAND_R
+C .byt M_PAL_2
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $99
+C .byt $99
+C .byt $9b
+C .byt $9b
+
+R STRIPED_LOG_HORIZ_L
+C .byt M_PAL_2
+C .byt M_SOLID_TOP
+C .byt $9c
+C .byt $3f
+C .byt $9e
+C .byt $3f
+
+R STRIPED_LOG_HORIZ
+C .byt M_PAL_2
+C .byt M_SOLID_TOP|M_POST_PROCESS
+C .byt $9e
+C .byt $3f
+C .byt $9e
+C .byt $3f
+
+R STRIPED_LOG_HORIZ_R
+C .byt M_PAL_2
+C .byt M_SOLID_TOP
+C .byt $9e
+C .byt $3f
+C .byt $9d
+C .byt $3f
+
+R MOAI_RIGHT
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $a4
+C .byt $a5
+C .byt $a6
+C .byt $a7
+
+R MOAI_LEFT
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $a8
+C .byt $a9
+C .byt $aa
+C .byt $ab
+
+R TROPICAL_FLOWER
+C .byt M_PAL_2
+C .byt M_EMPTY|M_POST_PROCESS
+C .byt $8c
+C .byt $8d
+C .byt $8e
+C .byt $8f
+
+R TROPICAL_FLOWER_2
+C .byt M_PAL_2
+C .byt M_EMPTY|M_POST_PROCESS
+C .byt $88
+C .byt $89
+C .byt $8a
+C .byt $8b
+
+R LOG_HORIZ
+C .byt M_PAL_2
+C .byt M_SOLID_TOP
+C .byt $84
+C .byt $3f
+C .byt $84
+C .byt $3f
+
+R BIG_BUSH
+C .byt M_PAL_0
+C .byt M_EMPTY|M_POST_PROCESS
+C .byt $c7
+C .byt $d7
+C .byt $3d
+C .byt $d8
+
+R BIG_BUSH_UL
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $3f
+C .byt $c5
+C .byt $3f
+C .byt $c6
+
+R BIG_BUSH_UR
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $3f
+C .byt $d5
+C .byt $3f
+C .byt $d6
+
+R BIG_BUSH_LR
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $3d
+C .byt $d8
+C .byt $c9
+C .byt $d9
+
+R BIG_SPIKY_BUSH
+C .byt M_PAL_0
+C .byt M_EMPTY|M_POST_PROCESS
+C .byt $90
+C .byt $91
+C .byt $92
+C .byt $d8
+
+R BIG_SPIKY_BUSH_R
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $92
+C .byt $d8
+C .byt $94
+C .byt $95
+
+R WOOD_PLATFORM_TOP
+C .byt M_PAL_2
+C .byt M_SOLID_TOP
+C .byt $a0
+C .byt $a1
+C .byt $a2
+C .byt $a3
+
+R WOOD_PLATFORM
+C .byt M_PAL_2
+C .byt M_EMPTY
+C .byt $a1
+C .byt $a1
+C .byt $a3
+C .byt $a3
+
+R FLOWER_STEM
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $da
+C .byt $da
+C .byt $db
+C .byt $db

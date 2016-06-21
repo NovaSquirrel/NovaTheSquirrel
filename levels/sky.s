@@ -14,6 +14,7 @@ sky:
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_GRASSY
   .byt GraphicsUpload::BG_GRASSYBG
+  .byt GraphicsUpload::BG_TROPICAL
   .byt 255 ; end
   .byt $00, $00 ; boundaries
 
@@ -113,8 +114,7 @@ skyData:
   LObjN LO::R_GROUND,         1, 8, 5, 0
   LObjN LO::WIDE_1,           1, 7, 0, LN1::SPIKES
   LObj  LO::S_BIGHEART,       2, 7
-  LObjN LO::WIDE_1,           3, 7, 4, LN1::FENCE
-  LObjN LO::R_SOLID_BLOCK,    0, 8, 4, 0
+  LObjN LO::WIDE_2,           3, 8, 4, LN2::STONE_BRIDGE
   LObjN LO::R_WATER,          0, 11, 4, 3
   LObjN LO::R_COIN,           1, 6, 2, 0
   LObjN LO::R_GROUND,         4, 8, 3, 6

@@ -125,6 +125,15 @@ ListOfProcessTiles:
   .byt Metatiles::BG_FLOWER_1
   .byt Metatiles::BG_BUSH_BOT
   .byt Metatiles::BG_TRUNK_L
+  .byt Metatiles::STONE_BRIDGE
+  .byt Metatiles::PALM_TREE
+  .byt Metatiles::SAND
+  .byt Metatiles::STRIPED_LOG_HORIZ
+  .byt Metatiles::TROPICAL_FLOWER
+  .byt Metatiles::TROPICAL_FLOWER_2
+  .byt Metatiles::BIG_BUSH
+  .byt Metatiles::BIG_SPIKY_BUSH
+
 ListOfProcessAddrLo:
   .byt <(ProcessGround-1)
   .byt <(ProcessRock-1)
@@ -138,6 +147,14 @@ ListOfProcessAddrLo:
   .byt <(ProcessFlower-1)
   .byt <(ProcessBushBot-1)
   .byt <(ProcessTrunkL-1)
+  .byt <(ProcessStoneBridge-1)
+  .byt <(ProcessPalmTree-1)
+  .byt <(ProcessSand-1)
+  .byt <(ProcessStripedLogHoriz-1)
+  .byt <(ProcessTropicalFlower-1)
+  .byt <(ProcessTropicalFlower-1)
+  .byt <(ProcessBigBush-1)
+  .byt <(ProcessBigSpikyBush-1)
 ListOfProcessAddrHi:
   .byt >(ProcessGround-1)
   .byt >(ProcessRock-1)
@@ -151,6 +168,119 @@ ListOfProcessAddrHi:
   .byt >(ProcessFlower-1)
   .byt >(ProcessBushBot-1)
   .byt >(ProcessTrunkL-1)
+  .byt >(ProcessStoneBridge-1)
+  .byt >(ProcessPalmTree-1)
+  .byt >(ProcessSand-1)
+  .byt >(ProcessStripedLogHoriz-1)
+  .byt >(ProcessTropicalFlower-1)
+  .byt >(ProcessTropicalFlower-1)
+  .byt >(ProcessBigBush-1)
+  .byt >(ProcessBigSpikyBush-1)
+
+ContinueDown:
+  sta Temp1
+: iny
+  cpy #15
+  bcc @Exit
+  lda (Pointer),y
+  bne @Exit
+  lda Temp1
+  sta (Pointer),y
+  bne :-
+@Exit:
+  rts
+ProcessStoneBridge:
+  dey
+  lda (Pointer),y
+  bne :+
+  lda #Metatiles::STONE_BRIDGE_TOP
+  sta (Pointer),y
+: iny
+  lda (RightPointer),y
+  cmp #Metatiles::STONE_BRIDGE
+  beq @OK2
+  lda #Metatiles::STONE_BRIDGE_RIGHT
+  sta (Pointer),y
+  rts
+@OK2:
+  lda (LeftPointer),y
+  cmp #Metatiles::STONE_BRIDGE_LEFT
+  beq @OK
+  cmp #Metatiles::STONE_BRIDGE
+  beq @OK
+  lda #Metatiles::STONE_BRIDGE_LEFT
+  sta (Pointer),y
+  rts
+@OK:
+  rts
+ProcessPalmTree:
+  dey
+  lda (Pointer),y
+  bne @Exit
+  lda #Metatiles::PALM_TREE_TOP_L
+  sta (Pointer),y
+  lda #Metatiles::PALM_TREE_TOP_R
+  sta (RightPointer),y
+@Exit:
+  rts
+ProcessSand:
+  lda #0
+  sta Temp1
+  dey
+  lda (Pointer),y
+  jsr IsSand
+  iny
+  lda (RightPointer),y
+  jsr IsSand
+  lda (LeftPointer),y
+  jsr IsSand
+  ldx Temp1
+  lda SandLUT,x
+  sta (Pointer),y
+  iny
+  lda (Pointer),y ; put line if needed
+  bne :+
+  lda #Metatiles::BG_LINE_TOP
+  sta (Pointer),y
+: rts
+ProcessStripedLogHoriz:
+  dey
+  lda #Metatiles::STONE_BRIDGE_TOP
+  sta (Pointer),y
+  iny
+  lda (RightPointer),y
+  cmp #Metatiles::STRIPED_LOG_HORIZ
+  beq @OK2
+  lda #Metatiles::STRIPED_LOG_HORIZ_R
+  sta (Pointer),y
+  rts
+@OK2:
+  lda (LeftPointer),y
+  cmp #Metatiles::STRIPED_LOG_HORIZ_L
+  beq @OK
+  cmp #Metatiles::STRIPED_LOG_HORIZ
+  beq @OK
+  lda #Metatiles::STRIPED_LOG_HORIZ_L
+  sta (Pointer),y
+  rts
+@OK:
+  rts
+ProcessTropicalFlower:
+  lda #Metatiles::FLOWER_STEM
+  jmp ContinueDown
+ProcessBigBush:
+  lda #Metatiles::BIG_BUSH_LR
+  sta (RightPointer),y
+  dey
+  lda #Metatiles::BIG_BUSH_UL
+  sta (Pointer),y
+  lda #Metatiles::BIG_BUSH_UR
+  sta (RightPointer),y 
+  rts
+ProcessBigSpikyBush:
+  lda #Metatiles::BIG_SPIKY_BUSH_R
+  sta (RightPointer),y
+  rts
 ProcessBushBot:
   dey
   lda (Pointer),y
@@ -280,6 +410,16 @@ ProcessRock:
   sta (Pointer),y
   rts
 
+SandLUT:
+  .byt Metatiles::SAND_U
+  .byt Metatiles::SAND_UR
+  .byt Metatiles::SAND_UL
+  .byt Metatiles::SAND_U
+  .byt Metatiles::SAND
+  .byt Metatiles::SAND_R
+  .byt Metatiles::SAND_L
+  .byt Metatiles::SAND
+
 GroundLUT:                            ; ULRD
   .byt Metatiles::GROUND_NARROW_TOP   ; 0000
   .byt Metatiles::GROUND_NARROW_TOP   ; 0001
@@ -328,6 +468,14 @@ IsSolidLedge:
   cmp #Metatiles::SOLID_LEDGE_L
   bcc NoItIsnt
   cmp #Metatiles::SOLID_LEDGE_S+1
+  bcs NoItIsnt
+  sec
+  rol Temp1
+  rts
+IsSand:
+  cmp #Metatiles::SAND_UL
+  bcc NoItIsnt
+  cmp #Metatiles::SAND_R+1
   bcs NoItIsnt
   sec
   rol Temp1

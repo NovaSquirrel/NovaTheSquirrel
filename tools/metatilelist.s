@@ -120,6 +120,36 @@
   BG_TRUNK
   BG_LINE_TOP
   GRAY_BRICKS
+  STONE_BRIDGE_TOP
+  STONE_BRIDGE_LEFT
+  STONE_BRIDGE
+  STONE_BRIDGE_RIGHT
+  PALM_TREE
+  PALM_TREE_TOP_L
+  PALM_TREE_TOP_R
+  SAND_UL
+  SAND_U
+  SAND_UR
+  SAND_L
+  SAND
+  SAND_R
+  STRIPED_LOG_HORIZ_L
+  STRIPED_LOG_HORIZ
+  STRIPED_LOG_HORIZ_R
+  MOAI_RIGHT
+  MOAI_LEFT
+  TROPICAL_FLOWER
+  TROPICAL_FLOWER_2
+  LOG_HORIZ
+  BIG_BUSH
+  BIG_BUSH_UL
+  BIG_BUSH_UR
+  BIG_BUSH_LR
+  BIG_SPIKY_BUSH
+  BIG_SPIKY_BUSH_R
+  WOOD_PLATFORM_TOP
+  WOOD_PLATFORM
+  FLOWER_STEM
 .endenum
 
 M_FIRST_SPECIAL_MISC = Metatiles::LADDER
@@ -249,6 +279,36 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_PAL_2 ;BG_TRUNK
   .byt M_PAL_0 ;BG_LINE_TOP
   .byt M_PAL_1 ;GRAY_BRICKS
+  .byt M_PAL_2 ;STONE_BRIDGE_TOP
+  .byt M_PAL_1 ;STONE_BRIDGE_LEFT
+  .byt M_PAL_1 ;STONE_BRIDGE
+  .byt M_PAL_1 ;STONE_BRIDGE_RIGHT
+  .byt M_PAL_2 ;PALM_TREE
+  .byt M_PAL_0 ;PALM_TREE_TOP_L
+  .byt M_PAL_0 ;PALM_TREE_TOP_R
+  .byt M_PAL_2 ;SAND_UL
+  .byt M_PAL_2 ;SAND_U
+  .byt M_PAL_2 ;SAND_UR
+  .byt M_PAL_2 ;SAND_L
+  .byt M_PAL_2 ;SAND
+  .byt M_PAL_2 ;SAND_R
+  .byt M_PAL_2 ;STRIPED_LOG_HORIZ_L
+  .byt M_PAL_2 ;STRIPED_LOG_HORIZ
+  .byt M_PAL_2 ;STRIPED_LOG_HORIZ_R
+  .byt M_PAL_1 ;MOAI_RIGHT
+  .byt M_PAL_1 ;MOAI_LEFT
+  .byt M_PAL_2 ;TROPICAL_FLOWER
+  .byt M_PAL_2 ;TROPICAL_FLOWER_2
+  .byt M_PAL_2 ;LOG_HORIZ
+  .byt M_PAL_0 ;BIG_BUSH
+  .byt M_PAL_0 ;BIG_BUSH_UL
+  .byt M_PAL_0 ;BIG_BUSH_UR
+  .byt M_PAL_0 ;BIG_BUSH_LR
+  .byt M_PAL_0 ;BIG_SPIKY_BUSH
+  .byt M_PAL_0 ;BIG_SPIKY_BUSH_R
+  .byt M_PAL_2 ;WOOD_PLATFORM_TOP
+  .byt M_PAL_2 ;WOOD_PLATFORM
+  .byt M_PAL_0 ;FLOWER_STEM
 .endproc
 
 .pushseg
@@ -375,6 +435,36 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_EMPTY ;BG_TRUNK
   .byt M_EMPTY ;BG_LINE_TOP
   .byt M_SOLID_ALL|M_SOLID_TOP ;GRAY_BRICKS
+  .byt M_EMPTY ;STONE_BRIDGE_TOP
+  .byt M_SOLID_TOP ;STONE_BRIDGE_LEFT
+  .byt M_SOLID_TOP|M_POST_PROCESS ;STONE_BRIDGE
+  .byt M_SOLID_TOP ;STONE_BRIDGE_RIGHT
+  .byt M_EMPTY|M_POST_PROCESS ;PALM_TREE
+  .byt M_EMPTY ;PALM_TREE_TOP_L
+  .byt M_EMPTY ;PALM_TREE_TOP_R
+  .byt M_SOLID_ALL|M_SOLID_TOP ;SAND_UL
+  .byt M_SOLID_ALL|M_SOLID_TOP ;SAND_U
+  .byt M_SOLID_ALL|M_SOLID_TOP ;SAND_UR
+  .byt M_SOLID_ALL|M_SOLID_TOP ;SAND_L
+  .byt M_SOLID_ALL|M_SOLID_TOP|M_POST_PROCESS ;SAND
+  .byt M_SOLID_ALL|M_SOLID_TOP ;SAND_R
+  .byt M_SOLID_TOP ;STRIPED_LOG_HORIZ_L
+  .byt M_SOLID_TOP|M_POST_PROCESS ;STRIPED_LOG_HORIZ
+  .byt M_SOLID_TOP ;STRIPED_LOG_HORIZ_R
+  .byt M_SOLID_ALL|M_SOLID_TOP ;MOAI_RIGHT
+  .byt M_SOLID_ALL|M_SOLID_TOP ;MOAI_LEFT
+  .byt M_EMPTY|M_POST_PROCESS ;TROPICAL_FLOWER
+  .byt M_EMPTY|M_POST_PROCESS ;TROPICAL_FLOWER_2
+  .byt M_SOLID_TOP ;LOG_HORIZ
+  .byt M_EMPTY|M_POST_PROCESS ;BIG_BUSH
+  .byt M_EMPTY ;BIG_BUSH_UL
+  .byt M_EMPTY ;BIG_BUSH_UR
+  .byt M_EMPTY ;BIG_BUSH_LR
+  .byt M_EMPTY|M_POST_PROCESS ;BIG_SPIKY_BUSH
+  .byt M_EMPTY ;BIG_SPIKY_BUSH_R
+  .byt M_SOLID_TOP ;WOOD_PLATFORM_TOP
+  .byt M_EMPTY ;WOOD_PLATFORM
+  .byt M_EMPTY ;FLOWER_STEM
 .endproc
 
 .popseg
@@ -500,6 +590,36 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $d2 ;BG_TRUNK
   .byt $39 ;BG_LINE_TOP
   .byt $00 ;GRAY_BRICKS
+  .byt $3f ;STONE_BRIDGE_TOP
+  .byt $81 ;STONE_BRIDGE_LEFT
+  .byt $83 ;STONE_BRIDGE
+  .byt $83 ;STONE_BRIDGE_RIGHT
+  .byt $3f ;PALM_TREE
+  .byt $90 ;PALM_TREE_TOP_L
+  .byt $94 ;PALM_TREE_TOP_R
+  .byt $96 ;SAND_UL
+  .byt $98 ;SAND_U
+  .byt $98 ;SAND_UR
+  .byt $97 ;SAND_L
+  .byt $99 ;SAND
+  .byt $99 ;SAND_R
+  .byt $9c ;STRIPED_LOG_HORIZ_L
+  .byt $9e ;STRIPED_LOG_HORIZ
+  .byt $9e ;STRIPED_LOG_HORIZ_R
+  .byt $a4 ;MOAI_RIGHT
+  .byt $a8 ;MOAI_LEFT
+  .byt $8c ;TROPICAL_FLOWER
+  .byt $88 ;TROPICAL_FLOWER_2
+  .byt $84 ;LOG_HORIZ
+  .byt $c7 ;BIG_BUSH
+  .byt $3f ;BIG_BUSH_UL
+  .byt $3f ;BIG_BUSH_UR
+  .byt $3d ;BIG_BUSH_LR
+  .byt $90 ;BIG_SPIKY_BUSH
+  .byt $92 ;BIG_SPIKY_BUSH_R
+  .byt $a0 ;WOOD_PLATFORM_TOP
+  .byt $a1 ;WOOD_PLATFORM
+  .byt $da ;FLOWER_STEM
 .endproc
 
 .proc MetatileLL
@@ -624,6 +744,36 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $d2 ;BG_TRUNK
   .byt $3f ;BG_LINE_TOP
   .byt $01 ;GRAY_BRICKS
+  .byt $80 ;STONE_BRIDGE_TOP
+  .byt $3f ;STONE_BRIDGE_LEFT
+  .byt $3f ;STONE_BRIDGE
+  .byt $3f ;STONE_BRIDGE_RIGHT
+  .byt $3f ;PALM_TREE
+  .byt $91 ;PALM_TREE_TOP_L
+  .byt $95 ;PALM_TREE_TOP_R
+  .byt $97 ;SAND_UL
+  .byt $99 ;SAND_U
+  .byt $99 ;SAND_UR
+  .byt $97 ;SAND_L
+  .byt $99 ;SAND
+  .byt $99 ;SAND_R
+  .byt $3f ;STRIPED_LOG_HORIZ_L
+  .byt $3f ;STRIPED_LOG_HORIZ
+  .byt $3f ;STRIPED_LOG_HORIZ_R
+  .byt $a5 ;MOAI_RIGHT
+  .byt $a9 ;MOAI_LEFT
+  .byt $8d ;TROPICAL_FLOWER
+  .byt $89 ;TROPICAL_FLOWER_2
+  .byt $3f ;LOG_HORIZ
+  .byt $d7 ;BIG_BUSH
+  .byt $c5 ;BIG_BUSH_UL
+  .byt $d5 ;BIG_BUSH_UR
+  .byt $d8 ;BIG_BUSH_LR
+  .byt $91 ;BIG_SPIKY_BUSH
+  .byt $d8 ;BIG_SPIKY_BUSH_R
+  .byt $a1 ;WOOD_PLATFORM_TOP
+  .byt $a1 ;WOOD_PLATFORM
+  .byt $da ;FLOWER_STEM
 .endproc
 
 .proc MetatileUR
@@ -748,6 +898,36 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $d3 ;BG_TRUNK
   .byt $39 ;BG_LINE_TOP
   .byt $02 ;GRAY_BRICKS
+  .byt $3f ;STONE_BRIDGE_TOP
+  .byt $83 ;STONE_BRIDGE_LEFT
+  .byt $83 ;STONE_BRIDGE
+  .byt $85 ;STONE_BRIDGE_RIGHT
+  .byt $93 ;PALM_TREE
+  .byt $92 ;PALM_TREE_TOP_L
+  .byt $3f ;PALM_TREE_TOP_R
+  .byt $98 ;SAND_UL
+  .byt $98 ;SAND_U
+  .byt $9a ;SAND_UR
+  .byt $99 ;SAND_L
+  .byt $99 ;SAND
+  .byt $9b ;SAND_R
+  .byt $9e ;STRIPED_LOG_HORIZ_L
+  .byt $9e ;STRIPED_LOG_HORIZ
+  .byt $9d ;STRIPED_LOG_HORIZ_R
+  .byt $a6 ;MOAI_RIGHT
+  .byt $aa ;MOAI_LEFT
+  .byt $8e ;TROPICAL_FLOWER
+  .byt $8a ;TROPICAL_FLOWER_2
+  .byt $84 ;LOG_HORIZ
+  .byt $3d ;BIG_BUSH
+  .byt $3f ;BIG_BUSH_UL
+  .byt $3f ;BIG_BUSH_UR
+  .byt $c9 ;BIG_BUSH_LR
+  .byt $92 ;BIG_SPIKY_BUSH
+  .byt $94 ;BIG_SPIKY_BUSH_R
+  .byt $a2 ;WOOD_PLATFORM_TOP
+  .byt $a3 ;WOOD_PLATFORM
+  .byt $db ;FLOWER_STEM
 .endproc
 
 .proc MetatileLR
@@ -872,5 +1052,35 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $d3 ;BG_TRUNK
   .byt $3f ;BG_LINE_TOP
   .byt $03 ;GRAY_BRICKS
+  .byt $82 ;STONE_BRIDGE_TOP
+  .byt $3f ;STONE_BRIDGE_LEFT
+  .byt $3f ;STONE_BRIDGE
+  .byt $3f ;STONE_BRIDGE_RIGHT
+  .byt $93 ;PALM_TREE
+  .byt $d8 ;PALM_TREE_TOP_L
+  .byt $3f ;PALM_TREE_TOP_R
+  .byt $99 ;SAND_UL
+  .byt $99 ;SAND_U
+  .byt $9b ;SAND_UR
+  .byt $99 ;SAND_L
+  .byt $99 ;SAND
+  .byt $9b ;SAND_R
+  .byt $3f ;STRIPED_LOG_HORIZ_L
+  .byt $3f ;STRIPED_LOG_HORIZ
+  .byt $3f ;STRIPED_LOG_HORIZ_R
+  .byt $a7 ;MOAI_RIGHT
+  .byt $ab ;MOAI_LEFT
+  .byt $8f ;TROPICAL_FLOWER
+  .byt $8b ;TROPICAL_FLOWER_2
+  .byt $3f ;LOG_HORIZ
+  .byt $d8 ;BIG_BUSH
+  .byt $c6 ;BIG_BUSH_UL
+  .byt $d6 ;BIG_BUSH_UR
+  .byt $d9 ;BIG_BUSH_LR
+  .byt $d8 ;BIG_SPIKY_BUSH
+  .byt $95 ;BIG_SPIKY_BUSH_R
+  .byt $a3 ;WOOD_PLATFORM_TOP
+  .byt $a3 ;WOOD_PLATFORM
+  .byt $db ;FLOWER_STEM
 .endproc
 

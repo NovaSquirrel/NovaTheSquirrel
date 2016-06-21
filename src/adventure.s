@@ -49,6 +49,7 @@ VWF_BANK = $e
 .include "drawsprite.s"
 .segment "PRGa" ; compressed graphics
 .segment "PRGb" ; compressed graphics
+.include "graphics2.s"
 .segment "PRGc" ; compressed graphics
 .include "graphics.s"
 

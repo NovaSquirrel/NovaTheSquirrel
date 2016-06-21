@@ -37,10 +37,10 @@ int CharWidth(char C) {
 void RemoveLineEndings(char *Buffer) {
   char *Text;
   Text = strrchr(Buffer, '\n');
-  if(*Text)
+  if(Text)
     *Text = 0;
   Text = strrchr(Buffer, '\r');
-  if(*Text)
+  if(Text)
     *Text = 0;
 }
 

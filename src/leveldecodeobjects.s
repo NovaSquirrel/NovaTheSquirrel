@@ -71,6 +71,17 @@
   .byt BLOCK_SINGLE,           Metatiles::BIG_HEART
   .byt BLOCK_SINGLE,           Metatiles::HEART
   .byt BLOCK_RECTANGLE,        Metatiles::GRAY_BRICKS
+  .byt BLOCK_SINGLE,           Metatiles::MOAI_RIGHT
+  .byt BLOCK_SINGLE,           Metatiles::MOAI_LEFT
+  .byt BLOCK_SINGLE,           Metatiles::TROPICAL_FLOWER
+  .byt BLOCK_SINGLE,           Metatiles::TROPICAL_FLOWER_2
+  .byt BLOCK_SINGLE,           Metatiles::BIG_BUSH
+  .byt BLOCK_SINGLE,           Metatiles::BIG_SPIKY_BUSH
+  .byt BLOCK_SINGLE,           Metatiles::WOOD_PLATFORM_TOP
+  .byt BLOCK_SINGLE,           Metatiles::WOOD_PLATFORM
+  .byt BLOCK_RECTANGLE,        Metatiles::WOOD_PLATFORM
+  .byt BLOCK_RECTANGLE_SERIES, Metatiles::SAND       
+  .byt BLOCK_RECTANGLE,        Metatiles::SAND
 .endproc
 
 .proc ObjectTypesList
@@ -97,13 +108,13 @@
   .byt Metatiles::BG_TRUNK_L
   .byt Metatiles::BG_TRUNK
   .byt Metatiles::GRAY_BRICKS
-  .byt Metatiles::EMPTY
-  .byt Metatiles::EMPTY
-  .byt Metatiles::EMPTY
-  .byt Metatiles::EMPTY
-  .byt Metatiles::EMPTY
-  .byt Metatiles::EMPTY
-  .byt Metatiles::EMPTY
+  .byt Metatiles::STONE_BRIDGE
+  .byt Metatiles::SAND
+  .byt Metatiles::PALM_TREE
+  .byt Metatiles::STRIPED_LOG_HORIZ
+  .byt Metatiles::LOG_HORIZ
+  .byt Metatiles::WOOD_PLATFORM_TOP
+  .byt Metatiles::WOOD_PLATFORM
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY

@@ -14,6 +14,7 @@ intro_b:
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_GRASSY
   .byt GraphicsUpload::BG_GRASSYBG
+  .byt GraphicsUpload::BG_TROPICAL
   .byt 255 ; end
   .byt $00, $04 ; boundaries
 
@@ -91,8 +92,7 @@ intro_bData:
   LObj  LO::S_GROUND_CLIMB_L, 1, 7
   LObj  LO::S_GROUND,         0, 8
   LObjN LO::R_GROUND,         1, 7, 0, 1
-  LObjN LO::WIDE_1,           1, 6, 4, LN1::FENCE
-  LObjN LO::WIDE_1,           0, 7, 4, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_2,           1, 7, 4, LN2::STONE_BRIDGE
   LObjN LO::R_WATER,          0, 12, 4, 2
   LObjN LO::R_GROUND,         5, 7, 1, 1
   LObjN LO::R_GROUND,         0, 9, 6, 5

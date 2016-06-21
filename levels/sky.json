@@ -14,7 +14,7 @@
 	"Header":	{
 		"Music":	"NONE",
 		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_FIRE", "SP_KING"],
-		"GFXUpload":	["PAL_GRASSY", "PAL_ENEMY1", "BG_COMMON", "BG_GRASSY", "BG_GRASSYBG"],
+		"GFXUpload":	["PAL_GRASSY", "PAL_ENEMY1", "BG_COMMON", "BG_GRASSY", "BG_GRASSYBG", "BG_TROPICAL"],
 		"BGColor":	49
 	},
 	"Layers":	[{
@@ -544,12 +544,6 @@
 					"W":	1,
 					"H":	1
 				}, {
-					"Id":	"SOLID_BLOCK",
-					"X":	167,
-					"Y":	8,
-					"W":	5,
-					"H":	1
-				}, {
 					"Id":	"GROUND",
 					"X":	172,
 					"Y":	8,
@@ -561,12 +555,6 @@
 					"Y":	11,
 					"W":	5,
 					"H":	4
-				}, {
-					"Id":	"BG_FENCE",
-					"X":	167,
-					"Y":	7,
-					"W":	5,
-					"H":	1
 				}, {
 					"Id":	"BIG_HEART",
 					"X":	76,
@@ -788,6 +776,12 @@
 					"X":	87,
 					"Y":	4,
 					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"STONE_BRIDGE",
+					"X":	167,
+					"Y":	8,
+					"W":	5,
 					"H":	1
 				}]
 		}, {
