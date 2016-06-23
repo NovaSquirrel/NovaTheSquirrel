@@ -272,6 +272,7 @@ MS_EMPTY = 32
   FRY
   SUN
   SUNKEY
+  MOVING_PLATFORM_HORIZ
 .endenum
 
 .enum PlayerProjectileType

@@ -693,6 +693,13 @@ SkipTheTop:
   lda SkipFourCorners
   rtsne
 
+  lsr PlayerRidingSomething
+  bcc :+
+    lda FourCorners
+    ora #%0011
+    sta FourCorners
+  :
+
   ; now call the right routine
   ldx FourCorners
   lda FourCornersH,x

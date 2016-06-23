@@ -46,6 +46,7 @@
   .byt GraphicsUpload::SP_RONALD ;FRY
   .byt GraphicsUpload::SP_SUN ;SUN
   .byt GraphicsUpload::SP_SUN ;SUNKEY
+  .byt 0 ;MOVING_PLATFORM_HORIZ
 .endproc
 
 .proc ObjGraphics2
@@ -96,6 +97,7 @@
   .byt GraphicsUpload::SP_RONALD ;FRY
   .byt GraphicsUpload::SP_SUN ;SUN
   .byt GraphicsUpload::SP_SUN ;SUNKEY
+  .byt 0 ;MOVING_PLATFORM_HORIZ
 .endproc
 
 .proc ObjBehaviors
@@ -146,5 +148,6 @@
   .byt ObjBehavior::AUTO_REMOVE ;FRY
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET | ObjBehavior::WAIT_UNTIL_NEAR ;SUN
   .byt 0 ;SUNKEY
+  .byt ObjBehavior::AUTO_REMOVE ;MOVING_PLATFORM_HORIZ
 .endproc
 

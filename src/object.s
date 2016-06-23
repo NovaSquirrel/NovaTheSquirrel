@@ -162,6 +162,7 @@ Exit:
   .raddr ObjectFry
   .raddr ObjectSun
   .raddr ObjectSunKey
+  .raddr ObjectMovingPlatformH
 .endproc
 
 ; other enemy attributes
@@ -1680,6 +1681,113 @@ LaunchFry:
   rts
 .endproc
 
+.proc ObjectMovingPlatformH
+SavedDirection = TempVal+1
+  ; Move forward
+  lda ObjectF1,x
+  and #1
+  tay
+  sty SavedDirection
+  lda ObjectPXL,x
+  add OffsetLo,y
+  sta ObjectPXL,x
+  lda ObjectPXH,x
+  adc OffsetHi,y
+  sta ObjectPXH,x
+
+  ; If initializing, shift F3 over 4 bits so we can compare directly against it
+  lda ObjectF2,x
+  cmp #ENEMY_STATE_INIT
+  bne :+
+    lda ObjectF3,x
+    asl
+    asl
+    asl
+    asl
+    sta ObjectF3,x
+  :
+
+  inc ObjectTimer,x
+  lda ObjectTimer,x
+  cmp ObjectF3,x
+  bne :+
+    jsr EnemyTurnAround
+    lda #0
+    sta ObjectTimer,x
+  :
+
+  ; Draw the platform
+  lda #$60
+  sta O_RAM::TILEBASE
+  lda #<Metasprite
+  ldy #>Metasprite
+  jsr DispEnemyMetasprite
+
+  ; Check for collision with player
+  lda PlayerVYH
+  bmi _rts
+  lda ObjectPXH,x
+  sub PlayerPXH
+  abs
+  cmp #3
+  bcc :+
+_rts:
+  rts
+:
+  lda #8
+  sta TouchWidthB
+  sta TouchHeightA
+  lda #6
+  sta TouchHeightB
+  lda #32
+  sta TouchWidthA
+  lda O_RAM::OBJ_DRAWX
+  sta TouchLeftA
+  lda O_RAM::OBJ_DRAWY
+  sta TouchTopA
+  lda PlayerDrawX
+  sta TouchLeftB
+  lda PlayerDrawY
+  add #24
+  sta TouchTopB
+  jsr ChkTouchGeneric
+  bcc NoTouch
+    lda PlayerPYL
+    add #<(24*16)
+    lda PlayerPYH
+    adc #>(24*16)
+    cmp ObjectPYH,x
+    beq :+
+      inc PlayerPYH
+    :
+
+    lda #0
+    sta PlayerVYH
+    sta PlayerVYL
+
+    lda ObjectF1,x
+    and #1
+    tay
+    lda PlayerPXL
+    add OffsetLo,y
+    sta PlayerPXL
+    lda PlayerPXH
+    adc OffsetHi,y
+    sta PlayerPXH
+
+    lda #1
+    sta PlayerRidingSomething
+NoTouch:
+  rts
+
+OffsetLo: .byt <($10), <(-$10)
+OffsetHi: .byt >($10), >(-$10) 
+
+Metasprite:
+  MetaspriteHeader 4, 1, 1
+  .byt 0, 1, 1, 2
+.endproc
+
 ; ------------------------------------------------------------------------------------------------
 ; adds the object's X and Y speeds to its X and Y positions
 ; input: X (object slot)
@@ -1802,6 +1910,7 @@ AfterHeightWidth:
   sta TouchTopB
   jmp ChkTouchGeneric
 .endproc
+EnemyPlayerTouchCustomSize = EnemyPlayerTouch::AfterHeightWidth
 
 ; Checks if the player is touching the enemy projectile
 ; input: X (object slot)

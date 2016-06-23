@@ -236,3 +236,9 @@ R SUNKEY
 C .byt GraphicsUpload::SP_SUN
 C .byt GraphicsUpload::SP_SUN
 C .byt 0
+
+R MOVING_PLATFORM_HORIZ
+C .byt 0
+C .byt 0
+C .byt ObjBehavior::AUTO_REMOVE
+
