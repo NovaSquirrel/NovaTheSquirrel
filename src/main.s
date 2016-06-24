@@ -315,6 +315,34 @@ NotDie:
   :
 .endif
 
+  ; Display the level number if it's a new level
+  lda DisplayLevelNumber
+  beq NoDisplayLevelNumber
+  and #31
+  tay
+  ldx OamPtr
+  lda StartedLevelNumber
+  and #7
+  add #$41
+  sta OAM_TILE,x
+  lda #OAM_COLOR_1
+  sta OAM_ATTR,x
+  lda #256/2-4
+  sta OAM_XPOS,x
+  lda #240/2-4
+  sta OAM_YPOS,x
+  txa
+  add #4
+  stx OamPtr
+
+  inc DisplayLevelNumber
+  lda DisplayLevelNumber
+  cmp #64
+  bcc NoDisplayLevelNumber
+  lda #0
+  sta DisplayLevelNumber
+NoDisplayLevelNumber:
+
   lda MakeCheckpoint
   beq :++
     lda #0

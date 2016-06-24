@@ -854,6 +854,8 @@ SkipAddr:
 .proc StartLevel
   pha
   sta StartedLevelNumber
+
+  inc DisplayLevelNumber
 ;  lda SavedAbility
 ;  sta PlayerAbility
 
