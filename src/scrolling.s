@@ -456,6 +456,7 @@ NotAlreadyMade:              ; okay, go spawn the object
   lsr
   sta ObjectF3,x
 .if 0 ; This is for an unused feature
+      ; if I need more than 4 bits per sprite I can use the column bytes feature
   and #%1000
   beq NoFlags    ; if the high bit isn't set, not using extended flags
   tya            ; save Y since we'll need it again right after
