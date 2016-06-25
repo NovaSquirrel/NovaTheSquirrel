@@ -23,7 +23,7 @@
 char ColNames[32][50];
 char ColInclude[32][512];
 char RowNames[256][70];
-char ColData[256][32][64];
+char ColData[256][32][200];
 char EnumName[70] = "";
 int NumCols = 0;
 int NumRows = 0;

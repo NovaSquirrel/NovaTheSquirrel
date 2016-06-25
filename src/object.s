@@ -40,6 +40,14 @@ ENEMY_STATE_INIT    = 128|4
   WAIT_UNTIL_NEAR = $8
 .endenum
 
+; object flags
+.enum ObjFlag
+  SECONDARY     = 0
+  PRIMARY       = 1
+  ESSENTIAL     = 2
+  PRIORITY_BITS = 3
+.endenum
+
 ; run the list of sprites
 .proc RunObjects
   ldx #0
@@ -103,11 +111,8 @@ Launch:
   ldy O_RAM::OBJ_TYPE
   lda ObjBehaviors,y
   sta O_RAM::OBJ_FLAG
-  lda ObjGraphics1,y
-  sta 0
-  lda ObjGraphics2,y
-  ldy 0
-  jsr DetectSpriteSlot2
+  lda ObjGraphics,y
+  jsr DetectSpriteSlot
   sta O_RAM::TILEBASE
 Exit:
   rts
@@ -1681,6 +1686,49 @@ LaunchFry:
   rts
 .endproc
 
+; Displays a 32 pixel wide platform and tests for player collision
+.proc DrawPlatformAndCollide
+  ; Draw the platform
+  lda #$60
+  sta O_RAM::TILEBASE
+  lda #<Metasprite
+  ldy #>Metasprite
+  jsr DispEnemyMetasprite
+
+  ; Check for collision with player
+  lda PlayerVYH
+  bmi _rts
+  lda ObjectPXH,x
+  sub PlayerPXH
+  abs
+  cmp #3
+  bcc :+
+_rts:
+  pla
+  pla
+  rts
+: lda #8
+  sta TouchWidthB
+  sta TouchHeightA
+  lda #6
+  sta TouchHeightB
+  lda #32
+  sta TouchWidthA
+  lda O_RAM::OBJ_DRAWX
+  sta TouchLeftA
+  lda O_RAM::OBJ_DRAWY
+  sta TouchTopA
+  lda PlayerDrawX
+  sta TouchLeftB
+  lda PlayerDrawY
+  add #24
+  sta TouchTopB
+  jmp ChkTouchGeneric
+Metasprite:
+  MetaspriteHeader 4, 1, 1
+  .byt 0, 1, 1, 2
+.endproc
+
 .proc ObjectMovingPlatformH
 SavedDirection = TempVal+1
   ; Move forward
@@ -1716,41 +1764,7 @@ SavedDirection = TempVal+1
     sta ObjectTimer,x
   :
 
-  ; Draw the platform
-  lda #$60
-  sta O_RAM::TILEBASE
-  lda #<Metasprite
-  ldy #>Metasprite
-  jsr DispEnemyMetasprite
-
-  ; Check for collision with player
-  lda PlayerVYH
-  bmi _rts
-  lda ObjectPXH,x
-  sub PlayerPXH
-  abs
-  cmp #3
-  bcc :+
-_rts:
-  rts
-:
-  lda #8
-  sta TouchWidthB
-  sta TouchHeightA
-  lda #6
-  sta TouchHeightB
-  lda #32
-  sta TouchWidthA
-  lda O_RAM::OBJ_DRAWX
-  sta TouchLeftA
-  lda O_RAM::OBJ_DRAWY
-  sta TouchTopA
-  lda PlayerDrawX
-  sta TouchLeftB
-  lda PlayerDrawY
-  add #24
-  sta TouchTopB
-  jsr ChkTouchGeneric
+  jsr DrawPlatformAndCollide
   bcc NoTouch
     lda PlayerPYL
     add #<(24*16)
@@ -1782,10 +1796,6 @@ NoTouch:
 
 OffsetLo: .byt <($10), <(-$10)
 OffsetHi: .byt >($10), >(-$10) 
-
-Metasprite:
-  MetaspriteHeader 4, 1, 1
-  .byt 0, 1, 1, 2
 .endproc
 
 ; ------------------------------------------------------------------------------------------------
