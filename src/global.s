@@ -291,6 +291,86 @@ Found:
 .endproc
 
 ; Finds a free object slot, if there is one
+; and sets the new object's type, also using the
+; value for priority and handling running out of slots
+; output: A (new object's type), X (object slot), carry (success)
+; locals: TempXSwitch, TempY
+.proc FindFreeObjectForTypeX
+NewType = TempXSwitch
+  sta NewType
+  sty TempY
+
+; Look for a free slot
+  ldx #ObjectLen-1
+: lda ObjectF1,x
+  beq Success
+  dex
+  bpl :-
+
+; Not found, so deal with this according to the priority
+NotFound:
+  jsr GetPriority
+  ; If secondary (zero), fail
+  beq Failure
+
+; Second Loop. Look for secondary priority object to overwrite
+  ldx #ObjectLen-1
+: lda ObjectF1,x
+  lsr
+  tay
+  lda ObjFlags,y
+  and #ObjFlag::PRIORITY_BITS
+  beq Success
+  dex
+  bpl :-
+
+; No secondary objects. Is this an essential object?
+  jsr GetPriority
+  cmp #ObjFlag::ESSENTIAL
+  bne Failure ; nope
+
+; THIRD loop, overwrite any non-essential objects
+  ldx #ObjectLen-1
+: lda ObjectF1,x
+  lsr
+  tax
+  lda ObjFlags,x
+  and #ObjFlag::PRIORITY_BITS
+  cmp #ObjFlag::ESSENTIAL
+  bne Success
+  dex
+  bpl :-
+; Otherwise, drop into Failure
+
+; Exit with clear carry
+Failure: ; without PLA
+  ldy TempY
+  clc
+  rts
+
+; Found a free slot, write the object type
+Success:
+  ldy TempY
+  lda #255
+  sta ObjectIndexInLevel,x
+  lda NewType
+  sta ObjectF1,x
+  sec
+  rts
+
+; Gets the object type's priority bits
+; (Honestly, if we have 16 sprites onscreen, fast code here
+;  isn't going to help, so it's okay to recalculate this)
+GetPriority:
+  lda NewType
+  lsr
+  tax
+  lda ObjFlags,x
+  and #ObjFlag::PRIORITY_BITS
+  rts
+.endproc
+
+; Finds a free object slot, if there is one
 ; output: Y (object slot), carry (success)
 .proc FindFreeObjectY
   pha

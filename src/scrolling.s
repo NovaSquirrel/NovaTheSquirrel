@@ -421,15 +421,16 @@ Exit:
 AlreadyMade:
   rts
 NotAlreadyMade:              ; okay, go spawn the object
-  jsr FindFreeObjectX
+  lda SpriteListRAM+2,y
+  jsr FindFreeObjectForTypeX
   bcs :+
   rts
 :
 
-  lda SpriteListRAM,y        ; get X
-  sta ObjectPXH,x
+  lda SpriteListRAM,y        ; get object X position
+  sta ObjectPXH,x            ; write it
 
-  lda #0                     ; clear stuff out
+  lda #0                     ; clear stuff out in the new sprite
   sta ObjectF3,x
   sta ObjectF4,x
   sta ObjectTimer,x
@@ -440,16 +441,15 @@ NotAlreadyMade:              ; okay, go spawn the object
   sta ObjectPXL,x
   sta ObjectPYL,x
 
-  lda #ENEMY_STATE_INIT
+  lda #ENEMY_STATE_INIT      ; objects have the "INIT" state for one frame
   sta ObjectF2,x
 
-  iny
-  lda SpriteListRAM,y  ; get Y and flags
-  and #15
+  lda SpriteListRAM+1,y  ; get Y and flags
+  and #15                ; write only Y position to object's Y
   sta ObjectPYH,x
-  cmp SpriteListRAM,y  ; check if Y = the Y+Flags byte; if so, no flags
+  cmp SpriteListRAM+1,y  ; check if Y = the Y+Flags byte; if so, no flags
   beq NoFlags
-  lda SpriteListRAM,y
+  lda SpriteListRAM+1,y
   lsr
   lsr
   lsr
@@ -466,15 +466,12 @@ NotAlreadyMade:              ; okay, go spawn the object
   sec            ; add LastSpriteIndex+1 since at LastSpriteIndex it's the end of sprite list marker
   adc LastSpriteIndex
   tay
-  lda SpriteListRAM,y
+  lda SpriteListRAM+1,y
   sta ObjectF3,x
   pla
   tay
 .endif
 NoFlags:
-  iny
-  lda SpriteListRAM,y         ; get type and direction flag
-  sta ObjectF1,x              ; store
   ldy 0                       ; restore Y to what it was
   tya
   sta ObjectIndexInLevel,x    ; no "sty absolute,x" so transfer first
