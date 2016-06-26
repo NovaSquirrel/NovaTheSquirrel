@@ -49,6 +49,7 @@
 .endmacro
 NMI_MUSIC = 1
 LEVEL_INTROS = 1
+;CPU_METER = 1
 ;DEBUG = 1
 ; -------------------------------------
 

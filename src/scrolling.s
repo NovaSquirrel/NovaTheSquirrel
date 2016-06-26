@@ -375,19 +375,33 @@ LoopRight:
 
 ; ------------------------------------------------------------------------------------
 .proc SpritePointerAdjust
-; version that iterates through the ENTIRE list, but isn't buggy
-; to do: fix?
-  lda ScrollUpdateChunk
-  asl
-  sta 1
+  lda ScrollUpdateChunk ; convert update chunk to level column
+  asl                   ; by multiplying by 2
+  sta 1                 ; 1 = first column to look for
   ora #1
-  sta 2
+  sta 2                 ; 2 = second column to look for
+  and #$f0
+  sta 3                 ; 3 = screen number
+  ; Get index for FirstSpriteOnScreen
+  lsr
+  lsr
+  lsr
+  lsr
+  tay
+  lda FirstSpriteOnScreen,y
+  cmp #255
+  beq Exit
 
-  ldy #0
+  tay
 Loop:
   lda SpriteListRAM,y
   cmp #255
   beq Exit
+  pha
+  and #$f0
+  cmp 3
+  bne Exit_PLA
+  pla
   cmp 1
   beq Make
   cmp 2
@@ -401,12 +415,17 @@ Next:
 Make:
   jsr TryMakeSprite
   jmp Next
-
+Exit_PLA:
+  pla
 Exit:
   rts
 .endproc
 
-.proc TryMakeSprite ; sprite at index Y in the sprite list
+; Try to make a sprite from the level sprite list
+; inputs: Y (sprite index)
+; locals: 0
+; preserves Y
+.proc TryMakeSprite
   sty 0
   ldx #0
 : lda ObjectF1,x             ; if there's a sprite in that location

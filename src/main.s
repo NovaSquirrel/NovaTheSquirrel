@@ -137,8 +137,13 @@
 .proc MainLoop
   lda NeedLevelRerender
   bne :+
-  lda #OBJ_ON | BG_ON ;| %11100000
+.ifdef CPU_METER
+  lda #OBJ_ON | BG_ON | %11100000
   sta PPUMASK
+.else
+  lda #OBJ_ON | BG_ON
+  sta PPUMASK
+.endif
 :
   .ifdef NMI_MUSIC
     lda #1
@@ -231,12 +236,6 @@ NotDie:
 
   lda NeedLevelRerender
   beq :+
-    ; Mute sound
-;    lda #SOUND_BANK
-;    jsr SetPRG
-;    jsr pently_init
-;    inc pently_music_playing
-
     lda #MAINLOOP_BANK
     jsr SetPRG
     lsr NeedLevelRerender
@@ -361,8 +360,10 @@ NoDisplayLevelNumber:
     bpl :-
   :
 
-;  lda #OBJ_ON | BG_ON ;OBJ_CLIP | BG_CLIP
-;  sta PPUMASK
+.ifdef CPU_METER
+  lda #OBJ_ON | BG_ON
+  sta PPUMASK
+.endif
   .ifdef NMI_MUSIC
     lda #0
     sta LagFrame

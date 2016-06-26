@@ -313,6 +313,9 @@ GameStateLen = 1+2+10+10+2 ; update if more stuff is added
 
   ; the sprite list from the ROM has to be copied here so we can access it in gameplay banks
   SpriteListRAM:      .res 256
+  ; For speeding up enemy spawning
+  FirstSpriteOnScreen:     .res 16
+
 .segment "SAVE"
 SaveStart:
   SaveTag:            .res 8

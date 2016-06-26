@@ -82,14 +82,17 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
   jsr SetPRG
   jsr pently_init
 
+  ; Using Y for these loops because X needs to be preserved for a bit later
   lda #0
   ldy #LevelZeroWhenLoad_End-LevelZeroWhenLoad_Start-1
 : sta LevelZeroWhenLoad_Start,y
   dey
   bpl :-
 
-  ldy #ObjectLen-1
-: sta ObjectF1,x
+  ; Clear FirstSpriteOnScreen list too
+  ldy #15
+  lda #255
+: sta FirstSpriteOnScreen,y
   dey
   bpl :-
 
@@ -310,6 +313,35 @@ NoLinks:
   sta SpriteListRAM,y
   iny
   bne :-
+
+  .scope
+  ; Find the first sprite on each screen
+  ldy #0
+@Loop:
+  lda SpriteListRAM,y
+  cmp #255 ; 255 marks the end of the list
+  beq @Exit
+  ; Get screen number
+  lsr
+  lsr
+  lsr
+  lsr
+  tax
+  ; Write sprite number to the list, if the
+  ; screen doesn't already have a sprite set for it
+  lda FirstSpriteOnScreen,x
+  cmp #255
+  bne :+
+  tya
+  sta FirstSpriteOnScreen,x
+:
+  iny
+  iny
+  iny
+  bne @Loop
+@Exit:
+  .endscope
+
 
   jsr LevelDecodeLoop
 

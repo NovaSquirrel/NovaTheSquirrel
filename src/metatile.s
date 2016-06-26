@@ -79,7 +79,6 @@ M_BEHAVIOR =       %00011111 ; mask for the block's behavior only
     sta ScrollX+0
 : sta ScrollX+1
 
-
   ; Check for scroll locks and adjust for them
   ; Get the screen first
   lda PlayerPXH
@@ -115,6 +114,51 @@ M_BEHAVIOR =       %00011111 ; mask for the block's behavior only
     lda #0
     sta ScrollX+0
 @OnSkip:
+
+.scope
+  Low = 14
+  High = 15
+  ; Object stuff ---- add bank switching if object code is separated from metatile code!
+  ; Clear objects
+  lda #0
+  ldy #ObjectLen-1
+: sta ObjectF1,y
+  dey
+  bpl :-
+  ; Try to spawn enemies
+  ; - get low column
+  lda ScrollX+1
+  sub #4
+  bcs :+
+    lda #0
+  :
+  sta Low
+  ; - get high column
+  lda ScrollX+1
+  add #25
+  bcc :+
+    lda #255
+  :
+  sta High
+  ; Now look through the list
+  ldy #0
+EnemyLoop:
+  lda SpriteListRAM,y
+  cmp #255
+  beq Exit
+  cmp Low
+  bcc Nope
+  cmp High
+  bcs Nope
+  jsr TryMakeSprite
+Nope:
+  iny
+  iny
+  iny
+  bne EnemyLoop
+Exit:
+.endscope
+
 
   ; Start writing chunks
   lda ScrollX+1
