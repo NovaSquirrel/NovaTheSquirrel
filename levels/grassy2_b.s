@@ -42,7 +42,9 @@ grassy2_bData:
   LObjN LO::TALL_2,           1, 10, 4, LN2::TRUNK_L
   LObjN LO::WIDE_1,           3, 7, 2, LN1::FENCE
   LObjN LO::WIDE_1,           0, 8, 2, LN1::SOLID_LEDGE
-  LObjN LO::R_SOLID_BLOCK,    1, 8, 0, 6
+  LObj  LO::S_SIGNPOST,       1, 7
+  LWriteCol <LineFollowingAbout, >LineFollowingAbout
+  LObjN LO::R_SOLID_BLOCK,    0, 8, 0, 6
   LObjN LO::TALL_2,           3, 7, 4, LN2::PATH_LINE
   LObjN LO::WIDE_2,           1, 11, 4, LN2::PATH_LINE
   LObjN LO::R_GROUND,         1, 0, 3, 8
@@ -58,18 +60,18 @@ grassy2_bData:
   LObjN LO::R_GROUND,         9, 4, 4, 10
   LObjN LO::WIDE_2,           5, 6, 4, LN2::BUSH
   LObjN LO::R_GROUND,         0, 7, 7, 7
-  LObjN LO::WIDE_1,           5, 4, 0, LN1::SOLID_LEDGE
+  LObj  LO::S_HEART,          5, 6
   LObj  LO::S_GROUND_CLIMB_L, 2, 6
   LObjN LO::R_GROUND,         1, 6, 5, 8
   LObjN LO::R_AIR,            1, 11, 4, 1
   LObjN LO::R_COIN,           0, 12, 3, 0
   LObj  LO::S_DOOR,           1, 11
   LWriteCol 3, 212
-  LObjN LO::R_AIR,            2, 10, 1, 0
+  LObjN LO::R_AIR,            2, 10, 4, 0
   LObjN LO::R_GROUND,         2, 9, 2, 5
-  LObjN LO::R_BRICK,          0, 10, 2, 1
   LObj  LO::S_BIG_BUSH, 1, 8
-  LObjN LO::TALL_2,           2, 9, 4, LN2::PATH_LINE
+  LObjN LO::R_AIR,            1, 11, 0, 0
+  LObjN LO::TALL_2,           1, 9, 4, LN2::PATH_LINE
   LObjN LO::R_COIN,           1, 5, 2, 0
   LObjN LO::WIDE_1,           2, 13, 0, LN1::SOLID_LEDGE
   LObj  LO::S_SPRING,         1, 12
@@ -110,13 +112,13 @@ grassy2_bData:
   LObjN LO::R_GROUND,         1, 7, 4, 3
   LObj  LO::S_EXIT_DOOR,      2, 5
   LObjN LO::WIDE_1,           3, 8, 0, LN1::SOLID_LEDGE
-  LObjN LO::TALL_2,           1, 10, 3, LN2::PATH_LINE
-  LObjN LO::WIDE_2,           0, 14, 15, LN2::PATH_LINE
+  LObjN LO::TALL_2,           1, 10, 2, LN2::PATH_LINE
+  LObjN LO::WIDE_2,           0, 13, 15, LN2::PATH_LINE
   LObjN LO::R_GROUND,         10, 3, 2, 3
-  LObjN LO::R_GROUND,         0, 7, 5, 5
+  LObjN LO::R_GROUND,         0, 7, 5, 4
   LObjN LO::R_COIN,           3, 5, 1, 1
-  LObjN LO::WIDE_2,           3, 14, 1, LN2::PATH_LINE
-  LObjN LO::TALL_2,           1, 11, 2, LN2::PATH_LINE
+  LObjN LO::WIDE_2,           3, 13, 1, LN2::PATH_LINE
+  LObjN LO::TALL_2,           1, 11, 1, LN2::PATH_LINE
   LObj  LO::S_SPRING,         2, 10
   LObjN LO::R_GROUND,         0, 11, 5, 3
   LObj  LO::S_PRIZE,          3, 8
@@ -145,7 +147,6 @@ grassy2_bSprite:
   LSpr Enemy::GEORGE,              0,  76,   8
   LSpr Enemy::MOVING_PLATFORM_HORIZ, 0,  78,   4, 8
   LSpr Enemy::SNEAKER,             1,  92,   3
-  LSpr Enemy::FIRE_WALK,           0,  98,   3, 1
   LSpr Enemy::MOVING_PLATFORM_HORIZ, 0, 107,   6, 9
   LSpr Enemy::MOVING_PLATFORM_LINE, 0, 110,  12
   LSpr Enemy::OWL,                 0, 119,   5

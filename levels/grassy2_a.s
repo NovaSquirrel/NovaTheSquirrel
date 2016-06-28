@@ -1,7 +1,7 @@
 grassy2_a:
   .byt MusicTracks::NONE|0
-  .byt 177
-  .byt $f4
+  .byt 2
+  .byt $fb
   .byt GraphicsUpload::SP_WALKER
   .byt GraphicsUpload::SP_CANNON
   .byt GraphicsUpload::SP_FIRE

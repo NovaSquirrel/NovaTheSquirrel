@@ -393,6 +393,11 @@ SignBootsAbout:
 ; <1 SIGN>In puzzle levels, water is deadly, unless you get blue boots (flippers) first. Red boots protect you from fire, green boots let you get past green forcefields, and gray boots let you walk on ice without sliding.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "I", "n", " ", "p", "u", "z", "z", "l", $e7, "l", "e", "v", "e", "l", "s", $f5, "w", $c6, $ed, " ", $b9, SCR::NEWLINE, "d", $ec, "d", "l", "y", $f5, $f2, "l", "e", $f1, " ", $a6, " ", $af, " ", "b", "l", "u", "e", SCR::NEWLINE, "b", $e4, "t", $fb, "(", "f", "l", "i", "p", "p", $ed, "s", ")", " ", "f", "i", "r", $de, $f6, "R", "e", "d", SCR::NEWLINE, "b", $e4, "t", $fb, "p", "r", "o", $eb, $c7, " ", $a6, " ", $97, "f", "i", "r", "e", ",", SCR::NEWLINE, "g", "r", $d7, "n", " ", "b", $e4, "t", $fb, $a8, " ", $a6, " ", $af, " ", "p", $c4, "t", SCR::NEWLINE, "g", "r", $d7, "n", " ", $a5, "c", "e", "f", $e3, $ef, "s", $f5, $a4, "g", "r", "a", "y", SCR::NEWLINE, "b", $e4, "t", $fb, $a8, " ", $a6, " ", "w", "a", "l", "k", " ", $c2, " ", "i", "c", "e", SCR::NEWLINE, $9d, $ae, " ", "s", "l", "i", "d", $b1, "."
 .byt SCR::END_SCRIPT
+LineFollowingAbout:
+.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
+; <1 SIGN>This is a line following platform. Wait for it to come around.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f8, $b8, $b8, $be, "l", $d8, $e7, "f", "o", "l", "l", "o", "w", $b1, SCR::NEWLINE, "p", "l", $c6, $a5, "m", $f6, "W", "a", $c1, $a5, " ", $c1, $bb, $96, SCR::NEWLINE, "a", "r", $f4, $f0, "."
+.byt SCR::END_SCRIPT
 SignWrapAbout:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
 ; <1 SIGN>In puzzle levels, falling off the bottom of the screen wraps you to the top, instead of killing you.
