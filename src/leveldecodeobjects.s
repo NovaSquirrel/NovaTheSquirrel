@@ -115,7 +115,7 @@
   .byt Metatiles::LOG_HORIZ
   .byt Metatiles::WOOD_PLATFORM_TOP
   .byt Metatiles::WOOD_PLATFORM
-  .byt Metatiles::EMPTY
+  .byt Metatiles::PATH_LINE
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY
 .endproc

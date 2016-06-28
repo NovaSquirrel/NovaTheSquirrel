@@ -239,5 +239,11 @@ C .byt ObjFlag::ESSENTIAL
 
 R MOVING_PLATFORM_HORIZ
 C .byt 0
-C .byt ObjBehavior::AUTO_REMOVE
+C .byt 0
+C .byt ObjFlag::ESSENTIAL
+
+
+R MOVING_PLATFORM_LINE
+C .byt 0
+C .byt 0
 C .byt ObjFlag::ESSENTIAL

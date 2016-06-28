@@ -693,8 +693,8 @@ SkipTheTop:
   lda SkipFourCorners
   rtsne
 
-  lsr PlayerRidingSomething
-  bcc :+
+  lda PlayerRidingSomething
+  beq :+
     lda FourCorners
     ora #%0011
     sta FourCorners
@@ -957,6 +957,9 @@ RunStyleWasB:
   sta PlayerVYH
   sta PlayerVYL
 
+  lda PlayerRidingSomething
+  cmp #2
+  beq @SkipSnap
   lda PlayerPYL
   bmi :+
     dec PlayerPYH
@@ -964,6 +967,7 @@ RunStyleWasB:
 
   lda #$80
   sta PlayerPYL
+@SkipSnap:
 
 OfferJump:
   lda keynew
@@ -1001,6 +1005,9 @@ DrawX2 = 4
   ; need to do this first even if we skip the drawing, because of PlayerDrawX and PlayerDrawY
   jsr MakeDrawX
   RealYPosToScreenPos PlayerPYL, PlayerPYH, DrawY
+
+  lda #0
+  sta PlayerRidingSomething
 
   ; skip drawing if too far off the top of the screen
   lda PlayerPYH

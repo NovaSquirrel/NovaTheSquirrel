@@ -274,6 +274,7 @@ MS_EMPTY = 32
   SUN
   SUNKEY
   MOVING_PLATFORM_HORIZ
+  MOVING_PLATFORM_LINE
 .endenum
 
 .enum PlayerProjectileType
@@ -454,6 +455,7 @@ NOVA_STRAIGHT = 18
   LOG_HORIZ
   WOOD_PLATFORM_TOP
   WOOD_PLATFORM
+  PATH_LINE
 .endenum
 
 .macro LSpr Type, Direction, XPos, YPos, Extra

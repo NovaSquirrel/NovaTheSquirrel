@@ -1202,3 +1202,11 @@ C .byt $da
 C .byt $da
 C .byt $db
 C .byt $db
+
+R PATH_LINE
+C .byt M_PAL_1
+C .byt M_EMPTY
+C .byt $3f
+C .byt $3f
+C .byt $3f
+C .byt $3b

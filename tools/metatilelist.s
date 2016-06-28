@@ -146,6 +146,7 @@
   WOOD_PLATFORM_TOP
   WOOD_PLATFORM
   FLOWER_STEM
+  PATH_LINE
 .endenum
 
 M_FIRST_SPECIAL_MISC = Metatiles::LADDER
@@ -301,6 +302,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_PAL_2 ;WOOD_PLATFORM_TOP
   .byt M_PAL_2 ;WOOD_PLATFORM
   .byt M_PAL_0 ;FLOWER_STEM
+  .byt M_PAL_1 ;PATH_LINE
 .endproc
 
 .pushseg
@@ -453,6 +455,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_SOLID_TOP ;WOOD_PLATFORM_TOP
   .byt M_EMPTY ;WOOD_PLATFORM
   .byt M_EMPTY ;FLOWER_STEM
+  .byt M_EMPTY ;PATH_LINE
 .endproc
 
 .popseg
@@ -604,6 +607,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $a0 ;WOOD_PLATFORM_TOP
   .byt $a1 ;WOOD_PLATFORM
   .byt $da ;FLOWER_STEM
+  .byt $3f ;PATH_LINE
 .endproc
 
 .proc MetatileLL
@@ -754,6 +758,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $a1 ;WOOD_PLATFORM_TOP
   .byt $a1 ;WOOD_PLATFORM
   .byt $da ;FLOWER_STEM
+  .byt $3f ;PATH_LINE
 .endproc
 
 .proc MetatileUR
@@ -904,6 +909,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $a2 ;WOOD_PLATFORM_TOP
   .byt $a3 ;WOOD_PLATFORM
   .byt $db ;FLOWER_STEM
+  .byt $3f ;PATH_LINE
 .endproc
 
 .proc MetatileLR
@@ -1054,5 +1060,6 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $a3 ;WOOD_PLATFORM_TOP
   .byt $a3 ;WOOD_PLATFORM
   .byt $db ;FLOWER_STEM
+  .byt $3b ;PATH_LINE
 .endproc
 

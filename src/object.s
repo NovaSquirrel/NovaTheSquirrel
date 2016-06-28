@@ -168,6 +168,7 @@ Exit:
   .raddr ObjectSun
   .raddr ObjectSunKey
   .raddr ObjectMovingPlatformH
+  .raddr ObjectMovingPlatformLine
 .endproc
 
 ; other enemy attributes
@@ -1688,6 +1689,8 @@ LaunchFry:
 
 ; Displays a 32 pixel wide platform and tests for player collision
 .proc DrawPlatformAndCollide
+  jsr EnemyAutoRemoveFar
+
   ; Draw the platform
   lda #$60
   sta O_RAM::TILEBASE
@@ -1727,6 +1730,129 @@ _rts:
 Metasprite:
   MetaspriteHeader 4, 1, 1
   .byt 0, 1, 1, 2
+.endproc
+
+.proc ObjectMovingPlatformLine
+  ; convert horizontal flip to direction
+  lda ObjectF2,x
+  cmp #ENEMY_STATE_INIT
+  bne :+
+    lda ObjectF1,x
+    and #1
+    asl
+    sta ObjectF2,x
+  :
+
+  ; change directions if on grid and it's needed
+  lda ObjectPXL,x
+  ora ObjectPYL,x
+  bne NotOnGrid
+
+  lda ObjectPXH,x
+  sub #1
+  jsr GetLevelColumnPtr
+  ldy ObjectF2,x
+  lda ForwardIndex,y
+  add ObjectPYH,x
+  tay
+  lda (LevelBlockPtr),y
+  cmp #Metatiles::PATH_LINE
+  beq NoChange
+
+  ; Try left
+  ldy ObjectF2,x
+  lda LeftIndex,y
+  add ObjectPYH,x
+  tay
+  lda (LevelBlockPtr),y
+  cmp #Metatiles::PATH_LINE
+  bne :+
+    dec ObjectF2,x
+    jmp NoChange
+: ; Try right
+  ldy ObjectF2,x
+  lda RightIndex,y
+  add ObjectPYH,x
+  tay
+  lda (LevelBlockPtr),y
+  cmp #Metatiles::PATH_LINE
+  bne :+
+    inc ObjectF2,x
+    jmp NoChange
+: ; If neither left or right work, go backwards
+  lda ObjectF2,x
+  eor #2
+  sta ObjectF2,x
+NoChange:
+NotOnGrid:
+  lda ObjectF2,x
+  and #3
+  sta ObjectF2,x
+
+  ; Move the platform forward
+  ldy ObjectF2,x
+  lda ObjectPXL,x
+  add XOffsetLo,y
+  sta ObjectPXL,x
+  lda ObjectPXH,x
+  adc XOffsetHi,y
+  sta ObjectPXH,x
+  lda ObjectPYL,x
+  add YOffsetLo,y
+  sta ObjectPYL,x
+  lda ObjectPYH,x
+  adc YOffsetHi,y
+  sta ObjectPYH,x
+
+  jsr DrawPlatformAndCollide
+  bcc :+
+    lda #2
+    sta PlayerRidingSomething
+    lda #0
+    sta PlayerVYL
+    sta PlayerVYH
+
+    ; Move the player with the platform
+    lda ObjectPYL,x
+    sub #$80
+    sta PlayerPYL
+    lda ObjectPYH,x
+    sbc #1
+    sta PlayerPYH
+
+    ; (this part fixes the 1 frame delay there would otherwise be vertically)
+    ldy ObjectF2,x
+    lda PlayerPYL
+    add YOffsetLo,y
+    sta PlayerPYL
+    lda PlayerPYH
+    adc YOffsetHi,y
+    sta PlayerPYH
+
+    lda PlayerPXL
+    add XOffsetLo,y
+    sta PlayerPXL
+    lda PlayerPXH
+    adc XOffsetHi,y
+    sta PlayerPXH
+:
+  rts
+
+XOffsetLo: .byt <($10), 0, <(-$10), 0
+XOffsetHi: .byt >($10), 0, >(-$10), 0
+YOffsetLo: .byt 0, <($10), 0, <(-$10)
+YOffsetHi: .byt 0, >($10), 0, >(-$10)
+
+LEFT  = 0
+DOWN  = 16+1
+UP    = 16-1
+RIGHT = 16*2
+ForwardIndex:
+  .byt RIGHT, DOWN,  LEFT, UP
+LeftIndex:
+  .byt UP,    RIGHT, DOWN, LEFT
+RightIndex:
+  .byt DOWN,  LEFT,  UP,   RIGHT
 .endproc
 
 .proc ObjectMovingPlatformH
@@ -2211,6 +2337,18 @@ OffsetAmountH:
   sta ObjectF1,x
 Good:
   rts  
+.endproc
+
+.proc EnemyAutoRemoveFar
+  lda ObjectPXH,x
+  sub ScrollX+1
+  abs
+  cmp #34
+  bcc Good
+  lda #0
+  sta ObjectF1,x
+Good:
+  rts
 .endproc
 
 ; Randomly swaps two object slots, because the NES can only display 8 sprites per scanline
