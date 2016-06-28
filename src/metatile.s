@@ -115,12 +115,15 @@ M_BEHAVIOR =       %00011111 ; mask for the block's behavior only
     sta ScrollX+0
 @OnSkip:
 
+  lda JustTeleported
+  beq DidntTeleport
 .scope
   Low = 14
   High = 15
   ; Object stuff ---- add bank switching if object code is separated from metatile code!
   ; Clear objects
   lda #0
+  sta JustTeleported
   ldy #ObjectLen-1
 : sta ObjectF1,y
   dey
@@ -158,7 +161,7 @@ Nope:
   bne EnemyLoop
 Exit:
 .endscope
-
+DidntTeleport:
 
   ; Start writing chunks
   lda ScrollX+1

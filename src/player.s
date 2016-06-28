@@ -308,6 +308,7 @@ LevelLinkNonzero:
   sta PlayerPXH
 
   inc NeedLevelRerender
+  inc JustTeleported
   lda LevelLinkStartYL,y
   sta PlayerPYL
   lda LevelLinkStartYH,y

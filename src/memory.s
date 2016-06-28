@@ -192,6 +192,7 @@
   IntroShownAlready: .res 1
   NeedAbilityChange: .res 1
   NeedLevelRerender: .res 1
+  JustTeleported:    .res 1 ; if 0, don't redo sprites
   NeedDialog:        .res 1
   InventoryCursorY:   .res 1
   InventoryCursorYSwap: .res 1

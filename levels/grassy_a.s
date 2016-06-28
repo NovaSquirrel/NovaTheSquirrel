@@ -99,10 +99,10 @@ grassy_aData:
   LObjN LO::WIDE_1,           1, 6, 4, LN1::TALLGRASS
   LObjN LO::WIDE_1,           5, 12, 4, LN1::TALLGRASS
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 22
-  LObjN LO::WIDE_1,           2, 3, 4, LN1::TALLGRASS
-  LObjN LO::R_GROUND,         0, 4, 9, 1
+  LObjN LO::WIDE_1,           2, 4, 4, LN1::TALLGRASS
+  LObjN LO::R_GROUND,         0, 5, 9, 0
   LObjN LO::R_GROUND,         0, 6, 9, 3
-  LObjN LO::TALL_1,           5, 0, 3, LN1::LADDER
+  LObjN LO::TALL_1,           5, 0, 4, LN1::LADDER
   LObjN LO::RECT_1,           5, 0, 5, LN1::GROUND, 16
   LObj  LO::S_DOOR,           7, 11
   LWriteCol $21, LevelId::GrassyB
@@ -122,5 +122,5 @@ grassy_aSprite:
   LSpr Enemy::OWL,                 1, 173,   6
   LSpr Enemy::OWL,                 0, 219,  10
   LSpr Enemy::FIRE_JUMP,           0, 223,   6
-  LSpr Enemy::OWL,                 0, 231,   3
+  LSpr Enemy::OWL,                 0, 231,   4
   .byt 255 ; end

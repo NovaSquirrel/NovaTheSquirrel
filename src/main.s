@@ -31,6 +31,7 @@
   jsr SetPRG
   lda NeedDialog
   bne :+
+  inc JustTeleported
   jsr RenderLevelScreens
   jsr WaitVblank
   lda #BG_ON

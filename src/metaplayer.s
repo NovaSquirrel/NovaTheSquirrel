@@ -256,6 +256,7 @@ Nope:
     ; 20 AA AA - start dialog
     ; 21 AA    - just switch to level
     inc NeedLevelRerender
+    inc JustTeleported
     inc IsNormalDoor
     jsr GetBlockX        ; Get the block's X position
     tax
