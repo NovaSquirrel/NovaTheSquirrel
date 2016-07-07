@@ -41,10 +41,10 @@ VWF_BANK = $e
 .segment "PRG9" ; main loop stuff
 .include "metatile.s"
 .include "../tools/metatilelist.s"
+.include "object.s"
 .include "player.s"
 .include "scrolling.s"
 .include "metaplayer.s"
-.include "object.s"
 .include "projectiles.s"
 .include "drawsprite.s"
 .segment "PRGa" ; compressed graphics

@@ -1,3 +1,4 @@
+E Enemy
 L ObjGraphics
 L ObjBehaviors
 L ObjFlags
@@ -52,7 +53,7 @@ C .byt GraphicsUpload::SP_KING
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
 
-R BIGGEORGE
+R BIG_GEORGE
 C .byt GraphicsUpload::SP_GEORGE
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::ESSENTIAL
@@ -67,17 +68,17 @@ C .byt 0
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
 
-R ICE1
+R ICE_1
 C .byt 0
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
 
-R ICE2
+R ICE_2
 C .byt 0
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
 
-R BALLGUY
+R BALL_GUY
 C .byt GraphicsUpload::SP_CANNON
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
@@ -87,12 +88,12 @@ C .byt GraphicsUpload::SP_CANNON
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
 
-R CANNON1
+R CANNON_1
 C .byt GraphicsUpload::SP_CANNON
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::PRIMARY
 
-R CANNON2
+R CANNON_2
 C .byt GraphicsUpload::SP_CANNON
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::PRIMARY
@@ -102,12 +103,12 @@ C .byt GraphicsUpload::SP_CANNON
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
 C .byt ObjFlag::PRIMARY
 
-R FIREWALK
+R FIRE_WALK
 C .byt GraphicsUpload::SP_FIRE
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
 
-R FIREJUMP
+R FIRE_JUMP
 C .byt GraphicsUpload::SP_FIRE
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
@@ -122,12 +123,12 @@ C .byt GraphicsUpload::SP_EXPLODE
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
 
-R ROCKETLAUNCHER
+R ROCKET_LAUNCHER
 C .byt GraphicsUpload::SP_EXPLODE
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
 
-R FIREWORKSHOOTER
+R FIREWORK_SHOOTER
 C .byt GraphicsUpload::SP_EXPLODE
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
@@ -137,7 +138,7 @@ C .byt 0
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
 
-R ELECTRICFAN
+R ELECTRIC_FAN
 C .byt 0
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
@@ -157,7 +158,7 @@ C .byt 0
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
 
-R BOMBGUY
+R BOMB_GUY
 C .byt GraphicsUpload::SP_EXPLODE
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
