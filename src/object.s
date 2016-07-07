@@ -169,6 +169,7 @@ Exit:
   .raddr ObjectSunKey
   .raddr ObjectMovingPlatformH
   .raddr ObjectMovingPlatformLine
+  .raddr ObjectFirebar
 .endproc
 
 ; other enemy attributes
@@ -1685,6 +1686,47 @@ LaunchFry:
 
 .proc ObjectSunKey
   rts
+.endproc
+
+.proc ObjectFirebar
+  lda ObjectF2,x
+  cmp #ENEMY_STATE_INIT
+  bne :+
+    jsr EnemyPosToVel
+  :
+
+  lda ObjectF1,x
+  and #1
+  tay
+  lda ObjectF4,x
+  add Direction,y
+  sta ObjectF4,x
+  lsr
+  and #31
+  tay
+  lda ObjectF3,x
+  jsr SpeedAngle2Offset
+
+  lda 0
+  add ObjectVXL,x
+  sta ObjectPXL,x
+  lda ObjectVXH,x
+  adc 1
+  sta ObjectPXH,x
+
+  lda 2
+  add ObjectVYL,x
+  sta ObjectPYL,x
+  lda ObjectVYH,x
+  adc 3
+  sta ObjectPYH,x
+
+  lda #$1c
+  ora O_RAM::TILEBASE
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+  jmp EnemyPlayerTouchHurt
+Direction: .byt <-1, 1
 .endproc
 
 ; Displays a 32 pixel wide platform and tests for player collision

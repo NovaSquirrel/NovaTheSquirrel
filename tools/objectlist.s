@@ -48,6 +48,7 @@
   .byt GraphicsUpload::SP_SUN ;SUNKEY
   .byt 0 ;MOVING_PLATFORM_HORIZ
   .byt 0 ;MOVING_PLATFORM_LINE
+  .byt GraphicsUpload::SP_FIRE ;FIREBAR
 .endproc
 
 .proc ObjBehaviors
@@ -100,6 +101,7 @@
   .byt 0 ;SUNKEY
   .byt 0 ;MOVING_PLATFORM_HORIZ
   .byt 0 ;MOVING_PLATFORM_LINE
+  .byt 0 ;FIREBAR
 .endproc
 
 .proc ObjFlags
@@ -152,5 +154,6 @@
   .byt ObjFlag::ESSENTIAL ;SUNKEY
   .byt ObjFlag::ESSENTIAL ;MOVING_PLATFORM_HORIZ
   .byt ObjFlag::ESSENTIAL ;MOVING_PLATFORM_LINE
+  .byt ObjFlag::PRIMARY ;FIREBAR
 .endproc
 

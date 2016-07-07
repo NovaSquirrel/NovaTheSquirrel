@@ -247,3 +247,8 @@ R MOVING_PLATFORM_LINE
 C .byt 0
 C .byt 0
 C .byt ObjFlag::ESSENTIAL
+
+R FIREBAR
+C .byt GraphicsUpload::SP_FIRE
+C .byt ObjBehavior::AUTO_REMOVE
+C .byt ObjFlag::PRIMARY

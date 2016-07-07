@@ -277,6 +277,7 @@ MS_EMPTY = 32
   SUNKEY
   MOVING_PLATFORM_HORIZ
   MOVING_PLATFORM_LINE
+  FIREBAR
 .endenum
 
 .enum PlayerProjectileType
