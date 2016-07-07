@@ -428,6 +428,11 @@ AboutMinecarts:
 ; <1 SIGN>Enjoy Frozen Volcano's really cool minecart rides. 
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "E", "n", "j", "o", $fe, "F", "r", "o", "z", $e6, " ", "V", "o", "l", $b0, "o", "'", "s", SCR::NEWLINE, "r", $ec, "l", $d2, "c", $e4, "l", " ", "m", $d8, "e", "c", "a", $ee, " ", $fc, "d", "e", "s", $f6
 .byt SCR::END_SCRIPT
+AboutSpinnerEnemy:
+.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
+; <1 SIGN>The spinner enemy homes in on your position. If you don't have a weapon to kill it with, run away. It will stop chasing you once it's off-screen.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f8, $e7, $dd, $d8, $f9, $ea, $e6, "e", $cb, " ", "h", "o", $d0, $fb, $d8, SCR::NEWLINE, $c2, " ", $91, " ", "p", "o", "s", "i", "t", "i", $c2, $f6, "I", "f", " ", $a6, " ", $c5, "n", "'", "t", SCR::NEWLINE, $9b, $be, $c8, "a", "p", $c2, " ", $bb, "k", $dc, "l", " ", $c1, $9d, ",", SCR::NEWLINE, "r", $f2, " ", "a", $b7, $f6, "I", $d3, $9e, " ", $de, "o", "p", " ", $e2, $c4, $b1, SCR::NEWLINE, $a6, " ", $c2, "c", $e7, "i", "t", $e9, "o", "f", "f", "-", "s", "c", "r", $d7, "n", "."
+.byt SCR::END_SCRIPT
 LiaCameo:
 .byt SCR::SCENE, SCENES::NOVA_AND_LIA
 

@@ -133,7 +133,9 @@ ListOfProcessTiles:
   .byt Metatiles::TROPICAL_FLOWER_2
   .byt Metatiles::BG_TREETOP_LL
   .byt Metatiles::BIG_SPIKY_BUSH
-
+  .byt Metatiles::K_STATUE_TOP
+  .byt Metatiles::BRICKWALL_MIDDLE
+  .byt Metatiles::WHITEFENCE_MIDDLE
 ListOfProcessAddrLo:
   .byt <(ProcessGround-1)
   .byt <(ProcessRock-1)
@@ -155,6 +157,9 @@ ListOfProcessAddrLo:
   .byt <(ProcessTropicalFlower-1)
   .byt <(ProcessBigBush-1)
   .byt <(ProcessBigSpikyBush-1)
+  .byt <(ProcessStatue-1)
+  .byt <(ProcessBrickwall-1)
+  .byt <(ProcessWhitefence-1)
 ListOfProcessAddrHi:
   .byt >(ProcessGround-1)
   .byt >(ProcessRock-1)
@@ -176,6 +181,44 @@ ListOfProcessAddrHi:
   .byt >(ProcessTropicalFlower-1)
   .byt >(ProcessBigBush-1)
   .byt >(ProcessBigSpikyBush-1)
+  .byt >(ProcessStatue-1)
+  .byt >(ProcessBrickwall-1)
+  .byt >(ProcessWhitefence-1)
+
+ProcessStatue:
+  iny
+  lda #Metatiles::K_STATUE_BOTTOM
+  sta (Pointer),y
+  rts
+ProcessBrickwall:
+  dey
+  lda (Pointer),y
+  cmp #Metatiles::BRICKWALL_MIDDLE
+  beq :+
+  cmp #Metatiles::BRICKWALL_TOP
+  beq :+
+  iny
+  lda #Metatiles::BRICKWALL_TOP
+  sta (Pointer),y
+: rts
+ProcessWhitefence:
+  lda (RightPointer),y
+  cmp #Metatiles::WHITEFENCE_MIDDLE
+  beq @OK2
+  lda #Metatiles::WHITEFENCE_RIGHT
+  sta (Pointer),y
+  rts
+@OK2:
+  lda (LeftPointer),y
+  cmp #Metatiles::WHITEFENCE_LEFT
+  beq @OK
+  cmp #Metatiles::WHITEFENCE_MIDDLE
+  beq @OK
+  lda #Metatiles::WHITEFENCE_LEFT
+  sta (Pointer),y
+  rts
+@OK:
+  rts
 
 ContinueDown:
   sta Temp1
@@ -244,10 +287,6 @@ ProcessSand:
   sta (Pointer),y
 : rts
 ProcessStripedLogHoriz:
-  dey
-  lda #Metatiles::STONE_BRIDGE_TOP
-  sta (Pointer),y
-  iny
   lda (RightPointer),y
   cmp #Metatiles::STRIPED_LOG_HORIZ
   beq @OK2

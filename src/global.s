@@ -152,8 +152,8 @@ WritePPURepeated16:
 ; input: A (new ability)
 ; locals: TempVal, TempVal+1, TempVal+2
 .proc ChangePlayerAbility
-Pointer = TempVal
-Length = TempVal+2
+Pointer = TempVal+1
+Length = TempVal+0
   sta PlayerAbility
   jsr WaitVblank
   lda #%11100001 ; dim
@@ -164,14 +164,16 @@ WithoutSFX:
 ; Because the graphics will be rewritten, erase any projectiles using the old graphics
   ldx #0
   stx PlayerAbilityVar
+
+  ldx #ObjectLen-1
 : lda ObjectF1,x
   and #<~1
   cmp #Enemy::PLAYER_PROJECTILE*2
   bne :+
   lda #0
   sta ObjectF1,x
-: inx
-  bne :--
+: dex
+  bpl :--
 
 ; Ability graphics are in the graphics bank
   lda #GRAPHICS_BANK1

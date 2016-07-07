@@ -313,6 +313,11 @@ Nova, with the help of a wish, went on to found the kingdom of Toasterland as a 
 <1 SIGN>Enjoy Frozen Volcano's really cool minecart rides. 
 `end
 
+:AboutSpinnerEnemy:
+`scene NOVA_AND_SIGN
+<1 SIGN>The spinner enemy homes in on your position. If you don't have a weapon to kill it with, run away. It will stop chasing you once it's off-screen.
+`end
+
 :LiaCameo:
 `scene NOVA_AND_LIA
 `ifitem ABILITY_BOMB

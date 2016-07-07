@@ -43,6 +43,9 @@
   .byt BLOCK_WIDE_FROM_LIST,   16
   .byt BLOCK_TALL_FROM_LIST,   16
   .byt BLOCK_RECT_FROM_LIST,   16
+  .byt BLOCK_WIDE_FROM_LIST,   32
+  .byt BLOCK_TALL_FROM_LIST,   32
+  .byt BLOCK_RECT_FROM_LIST,   32
   .byt BLOCK_RECTANGLE,        Metatiles::EMPTY
   .byt BLOCK_RECTANGLE,        Metatiles::BRICKS
   .byt BLOCK_RECTANGLE,        Metatiles::SOLID_BLOCK
@@ -80,8 +83,23 @@
   .byt BLOCK_SINGLE,           Metatiles::WOOD_PLATFORM_TOP
   .byt BLOCK_SINGLE,           Metatiles::WOOD_PLATFORM
   .byt BLOCK_RECTANGLE,        Metatiles::WOOD_PLATFORM
-  .byt BLOCK_RECTANGLE_SERIES, Metatiles::SAND       
+  .byt BLOCK_RECTANGLE_SERIES, Metatiles::SAND
   .byt BLOCK_RECTANGLE,        Metatiles::SAND
+  .byt BLOCK_SINGLE,           Metatiles::SQUIRREL_BUSH
+  .byt BLOCK_SINGLE,           Metatiles::K_STATUE_TOP
+  .byt BLOCK_RECTANGLE,        Metatiles::BRICKWALL_MIDDLE
+  .byt BLOCK_SINGLE,           Metatiles::WOOD_ARROW_LEFT
+  .byt BLOCK_SINGLE,           Metatiles::WOOD_ARROW_DOWN
+  .byt BLOCK_SINGLE,           Metatiles::WOOD_ARROW_UP
+  .byt BLOCK_SINGLE,           Metatiles::WOOD_ARROW_RIGHT
+  .byt BLOCK_SINGLE,           Metatiles::WOOD_BOMB
+  .byt BLOCK_SINGLE,           Metatiles::WOOD_CRATE
+  .byt BLOCK_SINGLE,           Metatiles::METAL_ARROW_LEFT
+  .byt BLOCK_SINGLE,           Metatiles::METAL_ARROW_DOWN
+  .byt BLOCK_SINGLE,           Metatiles::METAL_ARROW_UP
+  .byt BLOCK_SINGLE,           Metatiles::METAL_ARROW_RIGHT
+  .byt BLOCK_SINGLE,           Metatiles::METAL_BOMB
+  .byt BLOCK_SINGLE,           Metatiles::METAL_CRATE
 .endproc
 
 .proc ObjectTypesList
@@ -116,6 +134,23 @@
   .byt Metatiles::WOOD_PLATFORM_TOP
   .byt Metatiles::WOOD_PLATFORM
   .byt Metatiles::PATH_LINE
+  .byt Metatiles::WOOD_CRATE
+  .byt Metatiles::METAL_CRATE
+  ; list 3
+  .byt Metatiles::WHITEFENCE_MIDDLE
+  .byt Metatiles::ROCK_MID_M
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY
 .endproc

@@ -1789,6 +1789,8 @@ NotOnGrid:
   and #3
   sta ObjectF2,x
 
+  lda ObjectF3,x
+  bne :+
   ; Move the platform forward
   ldy ObjectF2,x
   lda ObjectPXL,x
@@ -1803,6 +1805,7 @@ NotOnGrid:
   lda ObjectPYH,x
   adc YOffsetHi,y
   sta ObjectPYH,x
+:
 
   jsr DrawPlatformAndCollide
   bcc :+
@@ -1811,6 +1814,7 @@ NotOnGrid:
     lda #0
     sta PlayerVYL
     sta PlayerVYH
+    sta ObjectF3,x
 
     ; Move the player with the platform
     lda ObjectPYL,x

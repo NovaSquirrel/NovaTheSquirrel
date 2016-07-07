@@ -38,6 +38,8 @@ GraphicsList:
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPMines,      >SPMines
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <CHRFont,      >CHRFont
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGTropical,   >BGTropical
+  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGSuburbs,    >BGSuburbs
+  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGHannah,     >BGHannah
 
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)

@@ -106,6 +106,12 @@ CollectibleLo:
   .byt <(TouchedBoots-1)
   .byt <(TouchedBoots-1)
   .byt <(TouchedBoots-1)
+  .byt <(TouchedWoodArrow-1)
+  .byt <(TouchedWoodArrow-1)
+  .byt <(TouchedWoodArrow-1)
+  .byt <(TouchedWoodArrow-1)
+  .byt <(TouchedWoodBomb-1)
+  .byt <(TouchedWoodCrate-1)
   .byt <(TouchedChip-1)
 CollectibleHi:
   .byt >(TouchedCoin-1)
@@ -118,6 +124,12 @@ CollectibleHi:
   .byt >(TouchedBoots-1)
   .byt >(TouchedBoots-1)
   .byt >(TouchedBoots-1)
+  .byt >(TouchedWoodArrow-1)
+  .byt >(TouchedWoodArrow-1)
+  .byt >(TouchedWoodArrow-1)
+  .byt >(TouchedWoodArrow-1)
+  .byt >(TouchedWoodBomb-1)
+  .byt >(TouchedWoodCrate-1)
   .byt >(TouchedChip-1)
 
 SpecialMiscLo:
@@ -370,6 +382,18 @@ ExitDoor:
 .endproc
 
 .proc TouchedBoots
+  rts
+.endproc
+
+.proc TouchedWoodArrow
+  rts
+.endproc
+
+.proc TouchedWoodBomb
+  rts
+.endproc
+
+.proc TouchedWoodCrate
   rts
 .endproc
 

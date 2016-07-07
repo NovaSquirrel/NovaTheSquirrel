@@ -55,7 +55,9 @@ funkundergroundData:
   LObjN LO::R_BRICK,          2, 2, 4, 0
   LObjN LO::R_BRICK,          0, 9, 4, 0
   LObj  LO::S_FLOWER,         0, 12
-  LObjN LO::R_BRICK,          3, 3, 1, 6
+  LObj  LO::S_SIGNPOST,       1, 12
+  LWriteCol <AboutSpinnerEnemy, >AboutSpinnerEnemy
+  LObjN LO::R_BRICK,          2, 3, 1, 6
   LObj  LO::S_FLOWER,         0, 12
   LObjN LO::TALL_2,           1, 3, 5, LN2::GRAY_BRICKS
   LObj  LO::S_BRICKPRIZE,     1, 9

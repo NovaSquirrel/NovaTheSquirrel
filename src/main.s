@@ -274,8 +274,8 @@ NotDie:
       cmp #30
       bne :+
 @ForceResetAbility:
-        lda #0
-        jsr ChangePlayerAbility
+        lda #128
+        sta NeedAbilityChange
   :
 
   lda NeedLevelReload

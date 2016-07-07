@@ -63,15 +63,12 @@ grassy2_bData:
   LObj  LO::S_HEART,          5, 6
   LObj  LO::S_GROUND_CLIMB_L, 2, 6
   LObjN LO::R_GROUND,         1, 6, 5, 8
-  LObjN LO::R_AIR,            1, 11, 4, 1
-  LObjN LO::R_COIN,           0, 12, 3, 0
-  LObj  LO::S_DOOR,           1, 11
+  LObjN LO::R_GROUND,         6, 9, 2, 5
+  LObjN LO::R_AIR,            0, 11, 2, 1
+  LObj  LO::S_DOOR,           0, 11
   LWriteCol 3, 212
-  LObjN LO::R_AIR,            2, 10, 4, 0
-  LObjN LO::R_GROUND,         2, 9, 2, 5
   LObj  LO::S_BIG_BUSH, 1, 8
-  LObjN LO::R_AIR,            1, 11, 0, 0
-  LObjN LO::TALL_2,           1, 9, 4, LN2::PATH_LINE
+  LObjN LO::TALL_2,           2, 9, 4, LN2::PATH_LINE
   LObjN LO::R_COIN,           1, 5, 2, 0
   LObjN LO::WIDE_1,           2, 13, 0, LN1::SOLID_LEDGE
   LObj  LO::S_SPRING,         1, 12
@@ -126,7 +123,7 @@ grassy2_bData:
   LObjN LO::R_COIN,           1, 3, 1, 1
   LObjN LO::R_GROUND,         0, 5, 6, 0
   LObj  LO::S_DOOR,           3, 3
-  LWriteCol 11, 103
+  LWriteCol 11, 107
   LObj  LO::S_HEART,          2, 4
   LObj  LO::S_SOLID_BLOCK,    0, 11
   LObjN LO::R_SOLID_BLOCK,    1, 8, 0, 1

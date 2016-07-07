@@ -1682,9 +1682,6 @@ MakeShotCommon:
   jsr ObjectClearX
   lda 0
   sta ObjectF2,x
-  lda PlayerPYH
-  adc #0
-  sta ObjectPYH,x
   rts
 
 MakeShotWide:
@@ -1699,6 +1696,9 @@ MakeShotWide:
   lda PlayerPYL
   add #8*16
   sta ObjectPYL,x
+  lda PlayerPYH
+  adc #0
+  sta ObjectPYH,x
   ldy PlayerDir
   beq Right
 Left16Wide:
@@ -1723,6 +1723,9 @@ MakeShot:
   lda PlayerPYL
   add #13*16
   sta ObjectPYL,x
+  lda PlayerPYH
+  adc #0
+  sta ObjectPYH,x
   ldy PlayerDir
   beq Left
 Right:
