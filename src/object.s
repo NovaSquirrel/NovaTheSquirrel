@@ -1701,6 +1701,11 @@ LaunchFry:
   lda ObjectF4,x
   add Direction,y
   sta ObjectF4,x
+;  and #3
+;  beq :+
+;  rts
+;: lda ObjectF4,x
+  lsr
   lsr
   and #31
   tay
@@ -1727,6 +1732,39 @@ LaunchFry:
   jsr DispEnemyWide
   jmp EnemyPlayerTouchHurt
 Direction: .byt <-1, 1
+.endproc
+
+; Check for collision with a rideable 16x16 thing
+.proc CollideRide16
+  ; Check for collision with player
+  lda PlayerVYH
+  bmi _rts
+  lda ObjectPXH,x
+  sub PlayerPXH
+  abs
+  cmp #3
+  bcc :+
+_rts:
+  pla
+  pla
+  rts
+: lda #8
+  sta TouchWidthB
+  sta TouchHeightA
+  lda #6
+  sta TouchHeightB
+  lda #16
+  sta TouchWidthA
+  lda O_RAM::OBJ_DRAWX
+  sta TouchLeftA
+  lda O_RAM::OBJ_DRAWY
+  sta TouchTopA
+  lda PlayerDrawX
+  sta TouchLeftB
+  lda PlayerDrawY
+  add #24
+  sta TouchTopB
+  jmp ChkTouchGeneric
 .endproc
 
 ; Displays a 32 pixel wide platform and tests for player collision

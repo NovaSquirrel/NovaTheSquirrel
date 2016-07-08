@@ -14,7 +14,7 @@
 	"Header":	{
 		"Music":	"NONE",
 		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_FIRE", "SP_KING"],
-		"GFXUpload":	["PAL_GRASSY", "PAL_ENEMY1", "BG_COMMON", "BG_GRASSY", "BG_GRASSYBG"],
+		"GFXUpload":	["PAL_GRASSY", "PAL_ENEMY1", "BG_COMMON", "BG_GRASSY", "BG_GRASSYBG", "BG_SUBURBS"],
 		"BGColor":	49
 	},
 	"Layers":	[{
@@ -103,7 +103,7 @@
 					"Id":	"BG_TALL_GRASS",
 					"X":	35,
 					"Y":	21,
-					"W":	5,
+					"W":	2,
 					"H":	1
 				}, {
 					"Id":	"BG_TALL_GRASS",
@@ -128,12 +128,6 @@
 					"X":	48,
 					"Y":	8,
 					"W":	10,
-					"H":	1
-				}, {
-					"Id":	"BG_FENCE",
-					"X":	39,
-					"Y":	12,
-					"W":	8,
 					"H":	1
 				}, {
 					"Id":	"PRIZE",
@@ -190,22 +184,10 @@
 					"W":	1,
 					"H":	5
 				}, {
-					"Id":	"SOLID_BLOCK",
-					"X":	23,
-					"Y":	11,
-					"W":	8,
-					"H":	2
-				}, {
-					"Id":	"SOLID_BLOCK",
-					"X":	25,
-					"Y":	9,
-					"W":	4,
-					"H":	2
-				}, {
 					"Id":	"GROUND",
 					"X":	57,
 					"Y":	19,
-					"W":	32,
+					"W":	24,
 					"H":	7
 				}, {
 					"Id":	"GROUND",
@@ -520,6 +502,96 @@
 					"W":	1,
 					"H":	1,
 					"Extra":	"GrassyB"
+				}, {
+					"Id":	"WHITEFENCE_MIDDLE",
+					"X":	39,
+					"Y":	12,
+					"W":	6,
+					"H":	1
+				}, {
+					"Id":	"BRICKWALL_MIDDLE",
+					"X":	23,
+					"Y":	11,
+					"W":	8,
+					"H":	2
+				}, {
+					"Id":	"BRICKWALL_MIDDLE",
+					"X":	83,
+					"Y":	24,
+					"W":	6,
+					"H":	2
+				}, {
+					"Id":	"SQUIRREL_BUSH",
+					"X":	18,
+					"Y":	12,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BG_FLOWER_1",
+					"X":	19,
+					"Y":	12,
+					"W":	2,
+					"H":	1
+				}, {
+					"Id":	"BG_FLOWER_1",
+					"X":	22,
+					"Y":	12,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BG_FLOWER_1",
+					"X":	35,
+					"Y":	12,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BG_FLOWER_1",
+					"X":	37,
+					"Y":	21,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"GROUND",
+					"X":	81,
+					"Y":	23,
+					"W":	1,
+					"H":	3
+				}, {
+					"Id":	"FALLTHROUGH_LEDGE",
+					"X":	88,
+					"Y":	22,
+					"W":	5,
+					"H":	1
+				}, {
+					"Id":	"SOLID_BLOCK",
+					"X":	88,
+					"Y":	19,
+					"W":	1,
+					"H":	3
+				}, {
+					"Id":	"COIN",
+					"X":	84,
+					"Y":	21,
+					"W":	3,
+					"H":	2
+				}, {
+					"Id":	"BG_FLOWER_1",
+					"X":	108,
+					"Y":	19,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"GROUND",
+					"X":	97,
+					"Y":	15,
+					"W":	9,
+					"H":	1
+				}, {
+					"Id":	"BIG_HEART",
+					"X":	81,
+					"Y":	22,
+					"W":	1,
+					"H":	1
 				}]
 		}, {
 			"Name":	"Sprites",
@@ -554,7 +626,7 @@
 				}, {
 					"Id":	"OWL",
 					"X":	25,
-					"Y":	8,
+					"Y":	10,
 					"W":	1,
 					"H":	1
 				}, {

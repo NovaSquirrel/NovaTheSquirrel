@@ -54,7 +54,8 @@ intro_bData:
   LObjN LO::TALL_1,           2, 9, 3, LN1::LADDER
   LObjN LO::TALL_2,           3, 10, 2, LN2::TRUNK_L
   LObjN LO::WIDE_1,           3, 12, 4, LN1::TALLGRASS
-  LObj  LO::S_SOLID_BLOCK,    2, 5
+  LObj  LO::S_BIGHEART,       2, 4
+  LObj  LO::S_SOLID_BLOCK,    0, 5
   LObjN LO::TALL_2,           0, 6, 6, LN2::TRUNK
   LObjN LO::R_COIN,           1, 4, 4, 0
   LObjN LO::WIDE_1,           0, 5, 3, LN1::SOLID_LEDGE

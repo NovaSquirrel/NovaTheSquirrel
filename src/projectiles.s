@@ -557,6 +557,29 @@ NotBombExplode:
   lda #$70
   ldy #OAM_COLOR_1
   jsr DispEnemyWide
+
+; ride on the bomb
+  lda ObjectVYL,x
+  ora ObjectVYH,x
+  bne :+
+  jsr CollideRide16
+  bcc :+
+    lda PlayerDrawY
+    add #8
+    cmp O_RAM::OBJ_DRAWY
+    bcs :+
+      lda #2
+      sta PlayerRidingSomething
+      lda ObjectPYL,x
+      sub #$80
+      sta PlayerPYL
+      lda ObjectPYH,x
+      sbc #1
+      sta PlayerPYH
+      lda #0
+      sta PlayerVYL
+      sta PlayerVYH
+  :
   jmp ObjectBounceHoriz
 
 ProjExplosion:

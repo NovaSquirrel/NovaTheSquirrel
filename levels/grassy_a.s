@@ -14,6 +14,7 @@ grassy_a:
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_GRASSY
   .byt GraphicsUpload::BG_GRASSYBG
+  .byt GraphicsUpload::BG_SUBURBS
   .byt 255 ; end
   .byt $01, $01 ; boundaries
   .byt $07, $08 ; link
@@ -25,14 +26,17 @@ grassy_aData:
   LObjN LO::WIDE_2,           1, 5, 5, LN2::BUSH
   LObjN LO::R_GROUND,         0, 9, 9, 3
   LObjN LO::R_GROUND,         2, 13, 10, 1
-  LObj  LO::S_PRIZE,          9, 9
+  LObj  LO::S_SKWIRLBUSH,     8, 12
+  LObj  LO::S_PRIZE,          1, 9
+  LObjN LO::WIDE_2,           0, 12, 1, LN2::FLOWER
   LObjN LO::TALL_1,           2, 13, 1, LN1::LADDER
-  LObjN LO::RECT_1,           1, 13, 1, LN1::GROUND, 24
-  LObjN LO::R_SOLID_BLOCK,    1, 11, 7, 1
-  LObjN LO::R_SOLID_BLOCK,    2, 9, 3, 1
-  LObjN LO::TALL_2,           8, 10, 2, LN2::TRUNK_L
-  LObjN LO::TALL_2,           3, 10, 2, LN2::TRUNK_L
-  LObjN LO::WIDE_1,           3, 12, 7, LN1::FENCE
+  LObj  LO::S_FLOWER,         1, 12
+  LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 24
+  LObjN LO::R_BRICKWALL,      1, 11, 7, 1
+  LObjN LO::TALL_2,           10, 10, 2, LN2::TRUNK_L
+  LObj  LO::S_FLOWER,         2, 12
+  LObjN LO::TALL_2,           1, 10, 2, LN2::TRUNK_L
+  LObjN LO::WIDE_3,           3, 12, 5, LN3::WHITEFENCE
   LObjN LO::TALL_1,           8, 13, 1, LN1::LADDER
   LObjN LO::WIDE_1,           1, 8, 9, LN1::SOLID_LEDGE
   LObjN LO::R_GROUND,         0, 13, 14, 1
@@ -81,9 +85,10 @@ grassy_aData:
   LObj  LO::S_SPRING,         3, 9
   LObjN LO::WIDE_1,           3, 7, 5, LN1::SOLID_LEDGE
   LObjN LO::R_COIN,           1, 5, 3, 0
-  LObjN LO::WIDE_1,           6, 6, 4, LN1::TALLGRASS
+  LObjN LO::WIDE_1,           6, 6, 1, LN1::TALLGRASS
   LObjN LO::R_GROUND,         0, 7, 15, 1
-  LObjN LO::R_GROUND,         2, 9, 11, 5
+  LObjN LO::WIDE_2,           2, 6, 2, LN2::FLOWER
+  LObjN LO::R_GROUND,         0, 9, 11, 5
   LObjN LO::R_GROUND,         2, 0, 7, 3
   LObjN LO::RECT_2,           1, 4, 2, LN2::BLACK, 5
   LObjN LO::WIDE_1,           6, 6, 4, LN1::TALLGRASS
@@ -92,24 +97,32 @@ grassy_aData:
   LObj  LO::S_SPRING,         5, 10
   LObjN LO::RECT_1,           0, 11, 3, LN1::GROUND, 45
   LObjN LO::R_COIN,           1, 7, 2, 2
-  LObjN LO::RECT_1,           3, 4, 6, LN1::GROUND, 31
-  LSetX 217
-  LObjN LO::WIDE_1,           0, 10, 6, LN1::TALLGRASS
+  LObjN LO::RECT_1,           3, 4, 6, LN1::GROUND, 23
+  LXPlus16
+  LObj  LO::S_BIGHEART,       8, 7
+  LObjN LO::R_GROUND,         0, 8, 0, 2
+  LObjN LO::R_BRICKWALL,      2, 9, 5, 1
+  LObjN LO::R_COIN,           1, 6, 2, 1
+  LObjN LO::R_SOLID_BLOCK,    4, 4, 0, 2
+  LObjN LO::WIDE_1,           0, 7, 4, LN1::FALLTHROUGH_LEDGE
+  LObjN LO::WIDE_1,           1, 10, 6, LN1::TALLGRASS
   LObjN LO::R_GROUND,         4, 7, 7, 1
   LObjN LO::WIDE_1,           1, 6, 4, LN1::TALLGRASS
-  LObjN LO::WIDE_1,           5, 12, 4, LN1::TALLGRASS
+  LObjN LO::R_GROUND,         3, 0, 8, 0
+  LObjN LO::WIDE_1,           2, 12, 4, LN1::TALLGRASS
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 22
   LObjN LO::WIDE_1,           2, 4, 4, LN1::TALLGRASS
   LObjN LO::R_GROUND,         0, 5, 9, 0
   LObjN LO::R_GROUND,         0, 6, 9, 3
   LObjN LO::TALL_1,           5, 0, 4, LN1::LADDER
-  LObjN LO::RECT_1,           5, 0, 5, LN1::GROUND, 16
+  LObjN LO::WIDE_2,           2, 4, 2, LN2::FLOWER
+  LObjN LO::RECT_1,           3, 0, 5, LN1::GROUND, 16
   LObj  LO::S_DOOR,           7, 11
   LWriteCol $21, LevelId::GrassyB
   LFinished
 
 grassy_aSprite:
-  LSpr Enemy::OWL,                 0,  25,   8
+  LSpr Enemy::OWL,                 0,  25,  10
   LSpr Enemy::FIRE_WALK,           0,  32,  12
   LSpr Enemy::SNEAKER,             0,  48,   7
   LSpr Enemy::SNEAKER,             1,  72,  12

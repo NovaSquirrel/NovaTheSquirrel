@@ -67,7 +67,7 @@ intro_aData:
   LObj  LO::S_SIGNPOST,       2, 7
   LWriteCol <Tutorial5, >Tutorial5
   LObj  LO::S_DOOR,           2, 6
-  LWriteCol $21, LevelId::IntroB
+  LWriteCol $21, LevelId::Garden
   LFinished
 
 intro_aSprite:

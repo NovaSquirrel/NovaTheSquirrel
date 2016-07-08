@@ -17,9 +17,6 @@
 		"GFXUpload":	["PAL_GRASSY", "PAL_ENEMY1", "BG_COMMON", "BG_GRASSY", "BG_GRASSYBG", "BG_TROPICAL"],
 		"BGColor":	49
 	},
-	"Config":	{
-		"StartDialog":	"Nice_Announcement"
-	},
 	"Layers":	[{
 			"Name":	"Foreground",
 			"Type":	"Rectangle",
@@ -863,6 +860,12 @@
 					"X":	93,
 					"Y":	7,
 					"W":	5,
+					"H":	1
+				}, {
+					"Id":	"BIG_HEART",
+					"X":	53,
+					"Y":	4,
+					"W":	1,
 					"H":	1
 				}]
 		}, {

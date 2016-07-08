@@ -270,6 +270,8 @@ Nope:
     inc NeedLevelRerender
     inc JustTeleported
     inc IsNormalDoor
+    lda #0
+    sta IntroShownAlready
     jsr GetBlockX        ; Get the block's X position
     tax
     lda ColumnBytes,x    ; Read the flag to check for special handling

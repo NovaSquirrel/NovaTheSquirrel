@@ -1334,7 +1334,7 @@ C .byt $b5
 
 R BRICKWALL_MIDDLE
 C .byt M_PAL_3
-C .byt M_SOLID_TOP|M_POST_PROCESS
+C .byt M_POST_PROCESS
 C .byt $b6
 C .byt $b7
 C .byt $b8
