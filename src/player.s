@@ -124,7 +124,7 @@ MaxSpeedRight = 10
   beq :+
     dec ForceControllerTime
     lda keydown
-    and #<~(KEY_LEFT|KEY_RIGHT)
+;    and #<~(KEY_LEFT|KEY_RIGHT)
     ora ForceControllerBits
     sta keydown
   :
@@ -422,10 +422,8 @@ SkipTail:
   lda keydown
   and #KEY_LEFT
   beq NotLeft
-    ldy #0
-    sty PlayerDownTimer
-    iny
-    sty PlayerDir
+    lda #1
+    sta PlayerDir
     lda PlayerVXL
     cmp MaxSpeedLeft ; can be either run speed or walk speed
     beq NotLeft
@@ -456,9 +454,7 @@ NotLeft:
   and #KEY_RIGHT
   beq NotRight
     lda #0
-    sta PlayerDownTimer
     sta PlayerDir
-
     lda PlayerVXL
     cmp MaxSpeedRight ; can be either run speed or walk speed
     beq NotRight
@@ -775,6 +771,7 @@ FC__R_R:
   lda #$8f
   sta PlayerPXL
 
+.ifdef AUTO_CLIMB
   lda PlayerDir
   bne NoClimb
   lda #KEY_RIGHT
@@ -794,6 +791,7 @@ DoClimb:
     lda #15
     sta ForceControllerTime
 NoClimb:
+.endif
   rts
 
 FC_L___:
@@ -804,6 +802,7 @@ FC_L_L_:
   sta PlayerVXH
   sta PlayerPXL
   inc PlayerPXH
+.ifdef AUTO_CLIMB
   lda PlayerDir
   beq NoClimb
   lda #KEY_LEFT
@@ -811,6 +810,7 @@ FC_L_L_:
   lda BlockUL
   cmp #Metatiles::GROUND_CLIMB_R
   beq DoClimb
+.endif
   rts
 
 FC_LR__:
@@ -819,9 +819,11 @@ FC_LR__:
   sta PlayerVYL
 
   jsr BumpBlocksAbove
+  lda PlayerSwimming
+  bne :+
   lda #SFX::BUMP
   jmp PlaySoundDebounce
-
+:
 BumpBlocksAbove: ; handle bumping into stuff
   lda PlayerJumping
   rtseq
@@ -1069,9 +1071,8 @@ DrawX2 = 4
     bne CustomFrameBase
   :
 
-  lda PlayerTailAttack
+  ldx PlayerTailAttack
   beq :+
-    tax
     lda TailAttackFrame,x
     sta PlayerAnimationFrame
   :
@@ -1414,6 +1415,27 @@ MakeDrawX:
 .endproc
 
 .proc DoTailAttack
+  ; Break bricks first
+  lda PlayerPYH
+  tay
+  iny
+  ldx PlayerDir
+  lda PlayerPXL
+  add XOffsetL,x
+  lda PlayerPXH
+  adc XOffsetH,x
+  jsr GetLevelColumnPtr
+  sty 0
+  tay
+  lda MetatileFlags,y
+  and #M_BEHAVIOR
+  cmp #M_BRICKS
+  bne :+
+  ldy 0           ; Reload Y position
+  jsr DoBreakBricks
+:
+
+  ; Launch the routine for the ability
   lda PlayerAbility
   asl
   tax
@@ -1422,6 +1444,9 @@ MakeDrawX:
   lda AbilityTable+0,x
   pha
   rts
+
+XOffsetL: .byt <($40), <(-$40)
+XOffsetH: .byt >($40), >(-$40)
 
 AbilityTable:
   .raddr AbilityNone
@@ -1739,7 +1764,7 @@ Right:
   rts
 Left:
   lda PlayerPXL
-  sub #8
+  sub #$40
   sta ObjectPXL,x
   lda PlayerPXH
   sbc #0

@@ -1227,8 +1227,10 @@ HSpeedH:
 
 .proc ObjectBurger
   jsr EnemyDespawnTimer
+  lda ObjectF2,x
+  bne :+
   jsr EnemyApplyVelocity
-  ; Display the different burger varieties differently
+: ; Display the different burger varieties differently
   lda ObjectF3,x
   asl
   asl

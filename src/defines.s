@@ -51,6 +51,7 @@ NMI_MUSIC = 1
 LEVEL_INTROS = 1
 ;CPU_METER = 1
 ;DEBUG = 1
+;AUTO_CLIMB = 1
 ; -------------------------------------
 
 .enum GraphicsUpload

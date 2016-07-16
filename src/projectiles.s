@@ -289,7 +289,7 @@ BreakBricks:
 
 ProjStunStar:
   jsr EnemyApplyVelocity
-  jsr BreakBricks
+;  jsr BreakBricks
   lda #$51
   jmp DispObject8x8
 

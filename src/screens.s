@@ -258,6 +258,11 @@ Cursor = 13
   PositionXY 0, 3, 18
   jsr PutStringImmediate
   .byt "Delete save",0
+  PositionXY 0, 3, 24
+  jsr PutStringImmediate
+  .scope
+  .byt .sprintf("Project day %d", (.TIME / 86400) - 16611),0
+  .endscope
 
   ; Preset the colors for the cycling
   lda #$35
