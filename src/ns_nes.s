@@ -198,6 +198,16 @@ DJ_Label:
   sta memb
 .endmacro
 
+; swap array,x and array,y
+.macro swaparray list
+  lda list,x
+  pha
+  lda list,y
+  sta list,x
+  pla
+  sta list,y
+.endmacro
+
 ; Imitation of z80's djnz opcode.
 ; Can be on A, X, Y, or a zeropage memory location
 ; Label - Label to jump to

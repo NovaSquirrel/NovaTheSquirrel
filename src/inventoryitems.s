@@ -50,8 +50,11 @@ EmptyNow: ; Is empty now, so remove the item
   ; Set health to 4 if it's not already 4
   lda #4
 AfterAmount:
-  cmp PlayerHealth
+  sta 0
+  lda PlayerHealth
+  cmp 0
   bcs :+
+  lda 0
   sta PlayerHealth
   jmp RemoveOneItem
 : rts
@@ -95,6 +98,9 @@ AfterAmount:
 .proc PauseScreen
 Counter = 0
 IconList = TempSpace ; can use this since the level will be redrawn anyway
+IconListOffset = IconList+3 ; 3 is where the actual item icons start
+SwapList = ScratchPage ; to help with avoiding screen blanking when swapping two items
+
   lda #VWF_BANK
   jsr _SetPRG
 
@@ -111,6 +117,15 @@ DrawAgain:
 : sta IconList,x
   dex
   bpl :-
+
+  ; Init swap list
+  ldx #0
+  lda #$50
+: sta SwapList,x
+  add #$10
+  inx
+  cpx #InventoryLen
+  bne :-
 
   ; No swap
   lda #128
@@ -148,7 +163,7 @@ DrawAgain:
   ldy #0
 : ldx InventoryType,y
   lda InventoryIIcon,x
-  sta IconList+3,y
+  sta IconListOffset,y
   sty TouchTemp
 
   ; Write item name
@@ -243,58 +258,7 @@ DoNametable:
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
 
-
-; Write item quantities as sprites
-  jsr ClearOAM
-  ldy #4*8
-  ldx #0   ; slot 0
-ItemQuantityLoop:
-  lda InventoryAmount,x
-  beq @Skip
-  txa
-  asl
-  asl
-  asl
-  add #11*8-1
-  sta OAM_YPOS+0,y
-  sta OAM_YPOS+4,y
-  lda #22*8
-  sta OAM_XPOS+0,y
-  lda #23*8
-  sta OAM_XPOS+4,y
-  lda #OAM_COLOR_0
-  sta OAM_ATTR+0,y
-  sta OAM_ATTR+4,y
-  lda InventoryAmount,x
-  cmp #INVENTORY_UNLIMITED
-  bne :+
-  lda #$51
-  sta OAM_TILE+0,y
-  sta OAM_TILE+4,y
-  bne @Increase
-:
-  ; Write digits
-  sty 0
-  ldy InventoryAmount,x
-  iny
-  lda BCD99,y
-  unpack 1, 2
-  ldy 0
-  lda 2
-  ora #$40
-  sta OAM_TILE+0,y
-  lda 1
-  ora #$40
-  sta OAM_TILE+4,y
-
-@Increase:
-  tya
-  add #8
-  tay
-@Skip:
-  inx
-  cpx #InventoryLen
-  bne ItemQuantityLoop
+  jsr UpdateItemQuantity
 
 ; Turn rendering back on
   jsr WaitVblank
@@ -344,20 +308,23 @@ Loop:
     bmi @SetSwap
     ldx InventoryCursorYSwap
     ldy InventoryCursorY
-    lda InventoryType,x
-    pha
-    lda InventoryType,y
-    sta InventoryType,x
-    pla
-    sta InventoryType,y
+    swaparray InventoryType
+    swaparray InventoryAmount
+    swaparray IconListOffset
+    swaparray SwapList
 
-    lda InventoryAmount,x
-    pha
-    lda InventoryAmount,y
-    sta InventoryAmount,x
-    pla
-    sta InventoryAmount,y
-    jmp DrawAgain
+    jsr WaitVblank
+    jsr UpdateOneLine
+    tya
+    tax
+    jsr UpdateOneLine
+    jsr UpdateItemQuantity
+    lda #128 ; no swap
+    sta InventoryCursorYSwap
+    lda #0
+    sta PPUSCROLL
+    sta PPUSCROLL
+    jmp Loop
 @SetSwap:
     lda InventoryCursorY
     sta InventoryCursorYSwap
@@ -552,6 +519,93 @@ MakeBG_Alt:
   sta PPUDATA
   dex
   bne :-
+  rts
+
+; Updates line X in the items list
+UpdateOneLine:
+  lda UpdateOneLineAddrH,x
+  sta PPUADDR
+  lda UpdateOneLineAddrL,x
+  sta PPUADDR
+  lda IconListOffset,x
+  sta PPUDATA
+  lda #0
+  sta PPUDATA
+
+  ; Counter
+  lda #$e
+  sta Counter
+
+  ; Write the tiles
+  lda SwapList,x
+  clc
+: sta PPUDATA
+  adc #1
+  dec Counter
+  bne :-
+
+  rts
+UpdateOneLineAddrL:
+.repeat 10, I
+  .byt <(($2168)+(I*32))
+.endrep
+UpdateOneLineAddrH:
+.repeat 10, I
+  .byt >(($2168)+(I*32))
+.endrep
+
+UpdateItemQuantity:
+; Write item quantities as sprites
+  jsr ClearOAM
+  ldy #4*8
+  ldx #0   ; slot 0
+ItemQuantityLoop:
+  lda InventoryAmount,x
+  beq @Skip
+  txa
+  asl
+  asl
+  asl
+  add #11*8-1
+  sta OAM_YPOS+0,y
+  sta OAM_YPOS+4,y
+  lda #22*8
+  sta OAM_XPOS+0,y
+  lda #23*8
+  sta OAM_XPOS+4,y
+  lda #OAM_COLOR_0
+  sta OAM_ATTR+0,y
+  sta OAM_ATTR+4,y
+  lda InventoryAmount,x
+  cmp #INVENTORY_UNLIMITED
+  bne :+
+  lda #$51
+  sta OAM_TILE+0,y
+  sta OAM_TILE+4,y
+  bne @Increase
+:
+  ; Write digits
+  sty 0
+  ldy InventoryAmount,x
+  iny
+  lda BCD99,y
+  unpack 1, 2
+  ldy 0
+  lda 2
+  ora #$40
+  sta OAM_TILE+0,y
+  lda 1
+  ora #$40
+  sta OAM_TILE+4,y
+
+@Increase:
+  tya
+  add #8
+  tay
+@Skip:
+  inx
+  cpx #InventoryLen
+  bne ItemQuantityLoop
   rts
 
 InventoryPalette:
