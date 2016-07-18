@@ -10,6 +10,7 @@ grassy2_a:
   .addr grassy2_aSprite
   .byt $31 ; background
   .byt GraphicsUpload::PAL_GRASSY
+  .byt GraphicsUpload::PAL_ALTGRASS2
   .byt GraphicsUpload::PAL_ENEMY2
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_GRASSY
@@ -76,8 +77,8 @@ grassy2_aData:
   LObjN LO::TALL_2,           6, 7, 5, LN2::TRUNK
   LObjN LO::R_GROUND,         0, 13, 4, 1
   LObjN LO::R_GROUND,         1, 7, 2, 0
-  LObj  LO::S_TROPICAL_FLOWER, 1, 10
-  LObj  LO::S_MOAI_LEFT, 2, 12
+  LObj  LO::S_TROPICAL_FLOWER,1, 10
+  LObj  LO::S_MOAI_LEFT,      2, 12
   LObjN LO::R_GROUND,         1, 10, 5, 4
   LObjN LO::R_GROUND,         2, 1, 8, 0
   LObjN LO::WIDE_2,           0, 5, 3, LN2::LOG_HORIZ
@@ -179,10 +180,10 @@ grassy2_aData:
   LObj  LO::S_BIG_SPIKY_BUSH, 1, 4
   LObj  LO::S_SOLID_BLOCK,    4, 6
   LObjN LO::R_ROCK,           1, 0, 2, 3
-  LObj  LO::S_TROPICAL_FLOWER, 1, 10
+  LObj  LO::S_TROPICAL_FLOWER,1, 10
   LObjN LO::R_COIN,           2, 1, 1, 2
   LObjN LO::WIDE_1,           0, 4, 1, LN1::FALLTHROUGH_LEDGE
-  LObj  LO::S_TROPICAL_FLOWER, 2, 10
+  LObj  LO::S_TROPICAL_FLOWER,2, 10
   LObjN LO::R_ROCK,           1, 0, 2, 3
   LObj  LO::S_SOLID_BLOCK,    1, 6
   LObjN LO::R_SAND,           1, 5, 4, 9

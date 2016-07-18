@@ -40,6 +40,8 @@ GraphicsList:
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGTropical,   >BGTropical
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGSuburbs,    >BGSuburbs
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGHannah,     >BGHannah
+  .byt GRAPHICS_BANK1|IS_PALETTE, <AltGrassy1,   >AltGrassy1
+  .byt GRAPHICS_BANK1|IS_PALETTE, <AltGrassy2,   >AltGrassy2
 
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)

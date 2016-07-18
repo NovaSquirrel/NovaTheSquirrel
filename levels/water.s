@@ -10,6 +10,7 @@ water:
   .addr waterSprite
   .byt $31 ; background
   .byt GraphicsUpload::PAL_GRASSY
+  .byt GraphicsUpload::PAL_ALTGRASS1
   .byt GraphicsUpload::PAL_ENEMY2
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_GRASSY
@@ -23,11 +24,11 @@ waterData:
   LObjN LO::R_GROUND,         0, 13, 7, 1
   LObjN LO::WIDE_1,           6, 12, 6, LN1::TALLGRASS
   LObjN LO::R_SAND,           2, 13, 11, 1
-  LObj  LO::S_TROPICAL_FLOWER, 5, 10
+  LObj  LO::S_TROPICAL_FLOWER,5, 10
   LObjN LO::R_SAND,           2, 11, 4, 1
   LObj  LO::S_SIGNPOST,       1, 10
   LWriteCol <WaterAbout, >WaterAbout
-  LObj  LO::S_MOAI_LEFT, 3, 3
+  LObj  LO::S_MOAI_LEFT,      3, 3
   LObj  LO::S_WOOD_PLATFORM_TOP, 0, 4
   LObjN LO::R_WOOD_PLATFORM,  0, 5, 0, 4
   LObj  LO::S_SOLID_BLOCK,    0, 10
@@ -63,13 +64,13 @@ waterData:
   LObjN LO::R_WATER,          2, 2, 5, 1
   LObjN LO::WIDE_1,           0, 11, 2, LN1::SPIKES
   LObj  LO::S_BIGHEART,       4, 11
-  LObj  LO::S_MOAI_LEFT, 1, 11
+  LObj  LO::S_MOAI_LEFT,      1, 11
   LObjN LO::R_SOLID_BLOCK,    1, 7, 0, 4
   LObjN LO::R_COIN,           1, 2, 1, 1
-  LObj  LO::S_TROPICAL_FLOWER, 0, 6
+  LObj  LO::S_TROPICAL_FLOWER,0, 6
   LObjN LO::R_GROUND,         0, 9, 10, 5
   LObj  LO::S_BIG_BUSH, 2, 8
-  LObj  LO::S_TROPICAL_FLOWER, 2, 6
+  LObj  LO::S_TROPICAL_FLOWER,2, 6
   LObjN LO::R_GROUND,         1, 1, 3, 1
   LObjN LO::RECT_1,           1, 0, 1, LN1::GROUND, 24
   LObj  LO::S_BIG_BUSH, 0, 8
@@ -116,12 +117,12 @@ waterData:
   LObjN LO::R_GROUND,         0, 11, 2, 3
   LObj  LO::S_PRIZE,          1, 8
   LObjN LO::R_GROUND,         2, 7, 8, 7
-  LObj  LO::S_MOAI_RIGHT, 3, 4
+  LObj  LO::S_MOAI_RIGHT,     3, 4
   LObjN LO::WIDE_2,           6, 7, 3, LN2::STONE_BRIDGE
   LObjN LO::R_WATER,          0, 10, 3, 4
   LObjN LO::R_COIN,           1, 4, 1, 0
   LObjN LO::R_SAND,           3, 7, 8, 7
-  LObj  LO::S_MOAI_LEFT, 1, 6
+  LObj  LO::S_MOAI_LEFT,      1, 6
   LObjN LO::TALL_2,           2, 4, 2, LN2::TRUNK_L
   LObjN LO::WIDE_1,           3, 6, 2, LN1::TALLGRASS
   LObjN LO::RECT_1,           1, 0, 1, LN1::GROUND, 19
@@ -155,10 +156,10 @@ waterData:
   LObjN LO::WIDE_1,           3, 9, 0, LN1::SPIKES
   LObjN LO::TALL_2,           3, 10, 2, LN2::TRUNK_L
   LObjN LO::TALL_2,           3, 10, 2, LN2::TRUNK_L
-  LObj  LO::S_MOAI_RIGHT, 3, 12
-  LObj  LO::S_MOAI_RIGHT, 3, 11
+  LObj  LO::S_MOAI_RIGHT,     3, 12
+  LObj  LO::S_MOAI_RIGHT,     3, 11
   LObj  LO::S_WOOD_PLATFORM_TOP, 0, 12
-  LObj  LO::S_MOAI_RIGHT, 3, 10
+  LObj  LO::S_MOAI_RIGHT,     3, 10
   LObj  LO::S_WOOD_PLATFORM_TOP, 0, 11
   LObj  LO::S_WOOD_PLATFORM,  0, 12
   LObj  LO::S_SPRING,         2, 12

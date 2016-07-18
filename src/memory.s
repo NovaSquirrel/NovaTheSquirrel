@@ -231,7 +231,8 @@
   ObjectVYH:   .res ObjectLen ;  /
   ObjectVYL:   .res ObjectLen ; /
 ; ObjectF1
-  ObjectF2:    .res ObjectLen ; ----SSSS, State
+  ObjectF2:    .res ObjectLen ; 1SSSSSSS, State
+                              ; 0------- free to use
   ObjectF3:    .res ObjectLen ; -------- ;\ free to use
   ObjectF4:    .res ObjectLen ; -------- ;/
   ObjectIndexInLevel: .res ObjectLen ; object's index in level list, prevents object from being respawned until it's despawned

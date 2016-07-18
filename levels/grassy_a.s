@@ -10,6 +10,7 @@ grassy_a:
   .addr grassy_aSprite
   .byt $31 ; background
   .byt GraphicsUpload::PAL_GRASSY
+  .byt GraphicsUpload::PAL_ALTGRASS1
   .byt GraphicsUpload::PAL_ENEMY1
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_GRASSY
