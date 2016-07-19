@@ -186,7 +186,7 @@
 				}, {
 					"Id":	"SPIKES",
 					"X":	53,
-					"Y":	8,
+					"Y":	9,
 					"W":	1,
 					"H":	1
 				}, {
@@ -1075,6 +1075,35 @@
 					"W":	1,
 					"H":	1,
 					"Extra":	"2"
+				}, {
+					"Id":	"FIRE_JUMP",
+					"X":	228,
+					"Y":	5,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true,
+					"Extra":	"1"
+				}, {
+					"Id":	"FIRE_JUMP",
+					"X":	205,
+					"Y":	7,
+					"W":	1,
+					"H":	1,
+					"Extra":	"1"
+				}, {
+					"Id":	"GOOMBA",
+					"X":	201,
+					"Y":	9,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"GOOMBA",
+					"X":	203,
+					"Y":	9,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
 				}]
 		}, {
 			"Name":	"Control",

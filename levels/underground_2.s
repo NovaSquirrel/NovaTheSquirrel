@@ -55,7 +55,7 @@ underground_2Data:
   LObjN LO::R_GROUND,         0, 11, 3, 3
   LObjN LO::R_GROUND,         6, 9, 3, 5
   LObjN LO::R_GROUND,         1, 0, 5, 2
-  LObjN LO::WIDE_1,           0, 8, 0, LN1::SPIKES
+  LObjN LO::WIDE_1,           0, 9, 0, LN1::SPIKES
   LObj  LO::S_FLOWER,         2, 8
   LObj  LO::S_BIG_BUSH, 3, 6
   LObjN LO::R_GROUND,         0, 7, 3, 7
@@ -196,4 +196,8 @@ underground_2Sprite:
   LSpr Enemy::MOVING_PLATFORM_LINE, 0, 166,   8, 1
   LSpr Enemy::CANNON_1,            0, 172,   5
   LSpr Enemy::CANNON_1,            0, 172,   9
+  LSpr Enemy::GOOMBA,              1, 201,   9
+  LSpr Enemy::GOOMBA,              1, 203,   9
+  LSpr Enemy::FIRE_JUMP,           0, 205,   7, 1
+  LSpr Enemy::FIRE_JUMP,           1, 228,   5, 1
   .byt 255 ; end

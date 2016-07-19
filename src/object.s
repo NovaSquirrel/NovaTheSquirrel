@@ -1376,7 +1376,7 @@ ObjectFireTrig:
 
       lda #Enemy::FIREBALL*2
       sta ObjectF1,y
-      lda #30
+      lda #27
       sta ObjectTimer,y
       sta ObjectF3,y ; no-gravity fireball
 
