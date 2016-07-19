@@ -15,7 +15,7 @@
 		"Music":	"NONE",
 		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_FIRE", "SP_KING"],
 		"GFXUpload":	["PAL_GRASSY", "PAL_ENEMY1", "BG_COMMON", "BG_GRASSY", "BG_GRASSYBG", "BG_TROPICAL"],
-		"BGColor":	49
+		"BGColor":	54
 	},
 	"Layers":	[{
 			"Name":	"Foreground",

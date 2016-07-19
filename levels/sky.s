@@ -8,7 +8,7 @@ sky:
   .byt GraphicsUpload::SP_KING
   .addr skyData
   .addr skySprite
-  .byt $31 ; background
+  .byt $36 ; background
   .byt GraphicsUpload::PAL_GRASSY
   .byt GraphicsUpload::PAL_ENEMY1
   .byt GraphicsUpload::BG_COMMON

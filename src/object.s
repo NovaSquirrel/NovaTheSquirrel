@@ -1304,6 +1304,8 @@ NormalWalk:
       lda #>(-$40)
       sta ObjectVYH,x
 
+      lda ObjectF3,x
+      bne ObjectFireTrig
       jsr FindFreeObjectY
       bcc :+
         jsr ObjectClearY
@@ -1314,6 +1316,8 @@ NormalWalk:
         lda #10
         sta ObjectTimer,y
   :
+  lda ObjectF3,x
+  bne ObjectFireTrig
   lda #$10
   jsr EnemyWalk
   jsr EnemyAutoBump
@@ -1325,7 +1329,7 @@ NormalWalk:
   lsr
   and #7
   tay
-
+Display:
   ; calculate the flip
   lda ObjectF1,x
   and #1
@@ -1338,11 +1342,62 @@ NormalWalk:
   tay
   lda 0
   jsr DispEnemyWideFlipped
-
   jmp EnemyPlayerTouchHurt
 
 Flip: .byt %00, %00, %00, %00, %11, %11, %11, %11
 Frames: .byt 0, 4, 8, 12, 0, 4, 8, 12
+
+ObjectFireTrig:
+  lda ObjectF4,x
+  tay
+  jsr Display
+
+  lda O_RAM::ON_SCREEN
+  bne :+
+    rts
+:
+
+  jsr AimAtPlayer
+  sta 3
+  lsr
+  lsr
+  sta ObjectF4,x
+
+  ; Shoot at the player?
+  lda retraces
+  and #127
+  bne :+
+      lda ObjectF2,x ; don't shoot if stunned
+      bne :+
+      jsr FindFreeObjectY
+      bcc :+
+      jsr ObjectClearY
+      jsr ObjectCopyPosXY
+
+      lda #Enemy::FIREBALL*2
+      sta ObjectF1,y
+      lda #30
+      sta ObjectTimer,y
+      sta ObjectF3,y ; no-gravity fireball
+
+      tya
+      pha
+      ldy 3
+      lda #1
+      jsr SpeedAngle2Offset
+      pla
+      tay
+      lda 0
+      sta ObjectVXL,y
+      lda 1
+      sta ObjectVXH,y
+      lda 2
+      sta ObjectVYL,y
+      lda 3
+      sta ObjectVYH,y
+:
+  rts
+
 .endproc
 
 .proc ObjectMine

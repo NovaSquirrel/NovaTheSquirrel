@@ -300,6 +300,7 @@ PlayerIsntOnLadder:
 
   jmp NotOffTopBottom
 LevelLinkNonzero:
+  ; A = item from LevelLinkUp or LevelLinkDown
   asl
   asl
   asl

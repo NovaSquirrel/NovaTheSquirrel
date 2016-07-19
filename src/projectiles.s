@@ -716,13 +716,19 @@ Skip:
 .endproc
 
 .proc ObjectFireball
+  lda ObjectF3,x
+  beq YesGravity
+    jsr EnemyApplyVelocity
+    jmp NoGravity
+YesGravity:
+  jsr ObjectPlayerProjectile::DoFireball
+NoGravity:
   dec ObjectTimer,x
   lda ObjectTimer,x
   bne :+
     lda #0
     sta ObjectF1,x
   :
-  jsr ObjectPlayerProjectile::DoFireball
   lda #OAM_COLOR_3
   sta 1
   lda retraces
