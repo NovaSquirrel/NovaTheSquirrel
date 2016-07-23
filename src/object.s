@@ -434,7 +434,7 @@ ProjectileType  = 0
   sta TouchWidthA
   sta TouchHeightA
 
-  ldy #0
+  ldy #ObjectLen-1
 Loop:
   sty ProjectileIndex
 
@@ -479,9 +479,8 @@ Loop:
 Nope: 
   ldy ProjectileIndex
   ; Try the next one
-  iny
-  cpy #ObjectLen
-  jne Loop
+  dey
+  jpl Loop
   clc
   rts
 .endproc
@@ -752,16 +751,15 @@ SpinnerFrame2:
 .proc CountObjectAmount
   stx TempX
   sta 0  ; 0 = object num
-  ldx #0
+  ldx #ObjectLen-1
   ldy #0 ; Y = counter for number of matching objects
 : lda ObjectF1,x
   and #<~1
   cmp 0
   bne :+
   iny ; yes, this is the object
-: inx
-  cpx #ObjectLen
-  bne :--
+: dex
+  bpl :--
   ldx TempX
   rts
 .endproc

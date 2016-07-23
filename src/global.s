@@ -274,12 +274,11 @@ ChangePlayerAbilityWithoutSFX = ChangePlayerAbility::WithoutSFX
 ; output: X (object slot), carry (success)
 .proc FindFreeObjectX
   pha
-  ldx #0
+  ldx #ObjectLen-1
 : lda ObjectF1,x
   beq Found
-  inx
-  cpx #ObjectLen
-  bne :-
+  dex
+  bpl :-
 NotFound:
   pla
   clc
@@ -376,12 +375,11 @@ GetPriority:
 ; output: Y (object slot), carry (success)
 .proc FindFreeObjectY
   pha
-  ldy #0
+  ldy #ObjectLen-1
 : lda ObjectF1,y
   beq Found
-  iny
-  cpy #ObjectLen
-  bne :-
+  dey
+  bpl :-
 NotFound:
   pla
   clc
