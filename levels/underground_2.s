@@ -172,7 +172,8 @@ underground_2Data:
   LObj  LO::S_BIGHEART,       1, 4
   LObjN LO::WIDE_1,           1, 9, 0, LN1::SOLID_LEDGE
   LObjN LO::R_ROCK,           1, 0, 2, 8
-  LObjN LO::RECT_3,           3, 0, 4, LN3::ROCK, 22
+  LObjN LO::R_AIR,            1, 8, 1, 0
+  LObjN LO::RECT_3,           2, 0, 4, LN3::ROCK, 22
   LObjN LO::R_ROCK,           0, 10, 2, 4
   LObjN LO::RECT_3,           3, 8, 6, LN3::ROCK, 19
   LObj  LO::S_EXIT_DOOR,      12, 6
