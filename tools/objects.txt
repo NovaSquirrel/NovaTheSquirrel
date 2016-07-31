@@ -253,3 +253,8 @@ R FIREBAR
 C .byt GraphicsUpload::SP_FIRE
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::PRIMARY
+
+R BOSS_FIGHT
+C .byt 0
+C .byt 0
+C .byt ObjFlag::ESSENTIAL

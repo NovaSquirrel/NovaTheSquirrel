@@ -49,6 +49,7 @@
   MOVING_PLATFORM_HORIZ
   MOVING_PLATFORM_LINE
   FIREBAR
+  BOSS_FIGHT
 .endenum
 
 .proc ObjGraphics
@@ -102,6 +103,7 @@
   .byt 0 ;MOVING_PLATFORM_HORIZ
   .byt 0 ;MOVING_PLATFORM_LINE
   .byt GraphicsUpload::SP_FIRE ;FIREBAR
+  .byt 0 ;BOSS_FIGHT
 .endproc
 
 .proc ObjBehaviors
@@ -155,6 +157,7 @@
   .byt 0 ;MOVING_PLATFORM_HORIZ
   .byt 0 ;MOVING_PLATFORM_LINE
   .byt ObjBehavior::AUTO_REMOVE ;FIREBAR
+  .byt 0 ;BOSS_FIGHT
 .endproc
 
 .proc ObjFlags
@@ -208,5 +211,6 @@
   .byt ObjFlag::ESSENTIAL ;MOVING_PLATFORM_HORIZ
   .byt ObjFlag::ESSENTIAL ;MOVING_PLATFORM_LINE
   .byt ObjFlag::PRIMARY ;FIREBAR
+  .byt ObjFlag::ESSENTIAL ;BOSS_FIGHT
 .endproc
 

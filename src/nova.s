@@ -42,6 +42,7 @@ VWF_BANK = $e
 .include "metatile.s"
 .include "../tools/metatilelist.s"
 .include "object.s"
+.include "enemy.s"
 .include "player.s"
 .include "scrolling.s"
 .include "metaplayer.s"

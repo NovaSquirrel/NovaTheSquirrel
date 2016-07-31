@@ -170,6 +170,7 @@ Exit:
   .raddr ObjectMovingPlatformH
   .raddr ObjectMovingPlatformLine
   .raddr ObjectFirebar
+  .raddr ObjectBossFight
 .endproc
 
 ; other enemy attributes
@@ -206,204 +207,6 @@ Exit:
   rts
 .endproc
 
-.proc GenericPoof
-DrawX = O_RAM::OBJ_DRAWX
-DrawY = O_RAM::OBJ_DRAWY
-  lda ObjectTimer,x
-  asl
-  sta 0
-
-  ldy OamPtr
-  lda DrawY
-  sub 0
-  sta OAM_YPOS+(4*0),y
-  sta OAM_YPOS+(4*1),y
-  lda DrawY
-  add #8
-  add 0
-  sta OAM_YPOS+(4*2),y
-  sta OAM_YPOS+(4*3),y
-
-  lda DrawX
-  sub 0
-  sta OAM_XPOS+(4*0),y
-  sta OAM_XPOS+(4*2),y
-  lda DrawX
-  add #8
-  add 0
-  sta OAM_XPOS+(4*1),y
-  sta OAM_XPOS+(4*3),y
-
-  lda 1
-  sta OAM_ATTR+(4*0),y
-  sta OAM_ATTR+(4*1),y
-  sta OAM_ATTR+(4*2),y
-  sta OAM_ATTR+(4*3),y
-  lda 2
-  sta OAM_TILE+(4*0),y
-  sta OAM_TILE+(4*1),y
-  sta OAM_TILE+(4*2),y
-  sta OAM_TILE+(4*3),y
-  tya
-  add #4*4
-  sta OamPtr
-
-  inc ObjectTimer,x
-  lda ObjectTimer,x
-  cmp #6
-  bcc :+
-  lda #0
-  sta ObjectF1,x
-: rts
-.endproc
-
-.proc BrickPoof ; the particles used for brick poofs
-  lda #OAM_COLOR_1
-  sta 1
-  lda retraces
-  and #1
-  ora #$56
-  sta 2
-  jmp GenericPoof
-.endproc
-
-.proc ObjectFlyawayBalloon
-DrawX = O_RAM::OBJ_DRAWX
-DrawY = O_RAM::OBJ_DRAWY
-  ldy OamPtr
-  lda DrawY
-  sta OAM_YPOS+(4*0),y
-  add #8
-  sta OAM_YPOS+(4*1),y
-
-  lda #OAM_COLOR_1
-  sta OAM_ATTR+(4*0),y
-  sta OAM_ATTR+(4*1),y
-
-  lda DrawX
-  sta OAM_XPOS+(4*0),y
-  sta OAM_XPOS+(4*1),y
-
-  ; Balloon tail animation
-  lda retraces
-  lsr
-  lsr
-  lsr
-  lsr
-  bcs :+
-    lda #OAM_XFLIP|OAM_COLOR_1
-    sta OAM_ATTR+(4*1),y
-    lda OAM_XPOS+(4*1),y
-    add #1
-    sta OAM_XPOS+(4*1),y
-  :
-
-  lda #$5c
-  sta OAM_TILE+(4*0),y
-  lda #$5d
-  sta OAM_TILE+(4*1),y
-  tya
-  add #8
-  sta OamPtr
-
-  ; Apply velocity
-  lda ObjectPYL,x
-  add ObjectVYL,x
-  sta ObjectPYL,x
-  lda ObjectPYH,x
-  adc ObjectVYH,x
-  sta ObjectPYH,x
-
-  ; Add velocity
-  lda ObjectVYL,x
-  sub #$02
-  sta ObjectVYL,x
-  lda ObjectVYH,x
-  sbc #0
-  sta ObjectVYH,x
-
-  ; Automatically remove balloon if off the top of the screen
-  lda ObjectPYH,x
-  bpl :+
-  lda #0
-  sta ObjectF1,x
-: rts
-.endproc
-
-.proc ObjectPoof ; also for particle effects
-DrawX = O_RAM::OBJ_DRAWX
-DrawY = O_RAM::OBJ_DRAWY
-  RealXPosToScreenPosByX ObjectPXL, ObjectPXH, DrawX
-  RealYPosToScreenPosByX ObjectPYL, ObjectPYH, DrawY
-  lda ObjectF2,x
-  cmp #1
-  jeq BrickPoof
-  cmp #2
-  jeq ObjectFlyawayBalloon
-
-  lda #OAM_COLOR_1
-  sta 1
-  lda #$51
-  sta 2
-  jmp GenericPoof
-.endproc
-
-.proc ObjectGoomba
-  jsr EnemyFall
-  lda #$10
-  jsr EnemyWalk
-  jsr EnemyAutoBump
-
-  ; Switch between three frames
-  lda retraces
-  lsr
-  lsr
-  lsr
-  and #3
-  tay
-  lda Frames,y
-  ldy #OAM_COLOR_2
-  jsr DispEnemyWide
-
-  jmp GoombaSmoosh
-Frames:
-  .byt $0c, $10, $14, $10
-.endproc
-
-.proc GoombaSmoosh
-  jsr EnemyPlayerTouch
-  bcc NoTouch
-  ; Custom behavior, so can't use EnemyPlayerTouchHurt
-  lda PlayerDrawY
-  add #8
-  cmp O_RAM::OBJ_DRAWY
-  bcc FlattenGoomba
-  lda ObjectF2,x
-  cmp #ENEMY_STATE_STUNNED
-  beq NoTouch
-  jsr HurtPlayer
-  jsr EnemyTurnAround
-NoTouch:
-  rts
-.endproc
-
-.proc FlattenGoomba
-  lda #Enemy::POOF * 2
-  sta ObjectF1,x
-  lda #0
-  sta ObjectTimer,x
-  sta ObjectF2,x
-  lda #<-1
-  sta PlayerVYH
-  lda #<-$60
-  sta PlayerVYL
-  lda #22
-  sta PlayerJumpCancelLock
-  lda #SFX::ENEMY_SMOOSH
-  sta NeedSFX
-  rts
-.endproc
-
 .proc EnemyGetShot
   jsr EnemyGetShotTest
   bcc :+
@@ -412,10 +215,14 @@ NoTouch:
 .endproc
 
 .proc EnemyGetShotTest
-CenterX = TempVal+0
-CenterY = TempVal+1
 ProjectileIndex = TempVal+2
 ProjectileType  = 0
+  ; Set collision size
+  lda #16
+  sta TouchWidthA
+  sta TouchHeightA
+CustomSize:
+
   ; Skip offscreen enemies
   lda O_RAM::ON_SCREEN
   bne :+
@@ -428,11 +235,6 @@ ProjectileType  = 0
   sta TouchLeftA
   lda O_RAM::OBJ_DRAWY
   sta TouchTopA
-
-  ; Set collision size
-  lda #16
-  sta TouchWidthA
-  sta TouchHeightA
 
   ldy #ObjectLen-1
 Loop:
@@ -484,10 +286,11 @@ Nope:
   clc
   rts
 .endproc
+EnemyGetShotTestCustomSize = EnemyGetShotTest::CustomSize
 
 .proc EnemyGotShot
-ProjectileIndex = TempVal+2
-ProjectileType  = 0
+ProjectileIndex = EnemyGetShotTest::ProjectileIndex
+ProjectileType  = EnemyGetShotTest::ProjectileType
   ldy ProjectileType
   lda PlayerProjectileActionTable,y
   asl    ; most significant bit = remove projectile
@@ -637,113 +440,6 @@ No:
   rts
 .endproc
 
-.proc ObjectSneaker
-  jsr EnemyFall
-  lda ObjectF2,x
-  bne :+
-  lda ObjectF4,x
-  cmp #$20
-  bcc :+
-  sub #$20
-  asl
-  jsr EnemyWalk
-  jsr EnemyAutoBump
-:
-
-  ; Alternate between two frames
-  lda retraces
-  and #4
-  ldy #OAM_COLOR_2
-  jsr DispEnemyWide
-
-  ; Count up a timer before starting to move
-  lda ObjectF2,x
-  bne :+
-    lda O_RAM::ON_SCREEN
-    beq :+
-      lda ObjectF4,x
-      cmp #$20+$30/2
-      beq :+
-        inc ObjectF4,x
-  :
-
-  jmp EnemyPlayerTouchHurt
-.endproc
-
-.proc ObjectSpinner
-  lda ObjectF2,x
-  bne :+
-  jsr EnemyApplyVelocity
-:
-
-  lda retraces
-  and #8
-  beq OtherFrame
-  lda #<SpinnerFrame1
-  ldy #>SpinnerFrame1
-  bne NotOtherFrame
-OtherFrame:
-  lda #<SpinnerFrame2
-  ldy #>SpinnerFrame2
-NotOtherFrame:
-  jsr DispEnemyWideNonsequential
-
-  ; Aim at player sometimes
-  lda O_RAM::ON_SCREEN
-  beq OffScreen
-  lda retraces
-  and #31
-  cmp #5
-  bne DontAimAtPlayer
-  jsr AimAtPlayer
-  ; Vary the angle a little
-  jsr huge_rand
-  lsr
-  bcc :+
-  iny
-: lsr
-  bcc :+
-  dey
-: tya
-  and #31 ; Keep angle within bounds
-  tay
-  lda #1
-  jsr SpeedAngle2OffsetQuarter
-  lda 0
-  sta ObjectVXL,x
-  lda 1
-  sta ObjectVXH,x
-  lda 2
-  sta ObjectVYL,x
-  lda 3
-  sta ObjectVYH,x
-DontAimAtPlayer:
-  jmp EnemyPlayerTouchHurt
-OffScreen:
-  lda #0
-  sta ObjectVXL,x
-  sta ObjectVYL,x
-  sta ObjectVXH,x
-  sta ObjectVYH,x
-  rts
-SpinnerFrame1:
-  .byt $08, $09, $08, $09, OAM_COLOR_2, OAM_COLOR_2, OAM_COLOR_2|OAM_XFLIP, OAM_COLOR_2|OAM_XFLIP
-SpinnerFrame2:
-  .byt $0a, $0b, $0a, $0b, OAM_COLOR_2, OAM_COLOR_2, OAM_COLOR_2|OAM_XFLIP, OAM_COLOR_2|OAM_XFLIP 
-.endproc
-
-.proc ObjectOwl
-  jsr EnemyFall
-  lda #$10
-  jsr EnemyWalkOnPlatform
-  lda retraces
-  and #4
-  add #$18
-  ldy #OAM_COLOR_2
-  jsr DispEnemyWide
-  jmp EnemyPlayerTouchHurt
-.endproc
-
 ; Counts the amount of a certain object that currently exists
 ; inputs: A (object type)
 ; outputs: Y (count)
@@ -764,52 +460,6 @@ SpinnerFrame2:
   rts
 .endproc
 
-.proc ObjectKing
-  jsr LakituMovement
-
-  ; Drop toast bots sometimes
-  lda #Enemy::TOASTBOT*2
-  jsr CountObjectAmount
-  cpy #2
-  bcs :+
-  lda ObjectF2,x
-  bne :+
-    lda retraces
-    bne :+
-      jsr FindFreeObjectY
-      bcc :+
-        jsr ObjectCopyPosXY
-        jsr ObjectClearY
-        lda ObjectF1,x
-        and #1
-        ora #Enemy::TOASTBOT*2
-        sta ObjectF1,y
-  :
-
-  ; Draw the sprite
-  lda ObjectF1,x
-  lsr
-  bcs Left
-Right:
-  lda #<MetaspriteR
-  ldy #>MetaspriteR
-  jmp WasRight
-Left:
-  lda #<MetaspriteL
-  ldy #>MetaspriteL
-WasRight:
-  jmp DispEnemyMetasprite
-
-MetaspriteR:
-  MetaspriteHeader 2, 4, 2
-  .byt $00, $01, $08, $09
-  .byt $02, $03, $0a, $0b
-MetaspriteL:
-  MetaspriteHeader 2, 4, 2
-  .byt $02|OAM_XFLIP, $03|OAM_XFLIP, $0a|OAM_XFLIP, $0b|OAM_XFLIP
-  .byt $00|OAM_XFLIP, $01|OAM_XFLIP, $08|OAM_XFLIP, $09|OAM_XFLIP
-.endproc
-
 .proc EnemyLookAtPlayer
   lda ObjectPXH,x
   cmp PlayerPXH
@@ -817,48 +467,6 @@ MetaspriteL:
   and #<~1
   adc #0
   sta ObjectF1,x
-  rts
-.endproc
-
-.proc ObjectToastBot
-  jsr EnemyFall
-
-  ; Make robots poof automatically after awhile
-  inc ObjectTimer,x
-  lda ObjectTimer,x
-  cmp #240
-  bcc :+
-    lda #0
-    sta ObjectTimer,x
-    sta ObjectF2,x
-    lda #Enemy::POOF*2
-    sta ObjectF1,x
-  :
-
-  ; Look at the player sometimes
-  lda retraces
-  and #31
-  bne :+
-    jsr EnemyLookAtPlayer
-  :
-
-  lda #$10
-  jsr EnemyWalk
-  jsr EnemyAutoBump
-
-  lda retraces
-  and #4
-  add #$0c
-  ldy #OAM_COLOR_2
-  jsr DispEnemyWide
-  jmp EnemyPlayerTouchHurt
-.endproc
-
-.proc ObjectBall
-  rts
-.endproc
-
-.proc ObjectPotion
   rts
 .endproc
 
