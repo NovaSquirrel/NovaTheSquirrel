@@ -258,3 +258,8 @@ R BOSS_FIGHT
 C .byt 0
 C .byt 0
 C .byt ObjFlag::ESSENTIAL
+
+R SCHEME_TEAM
+C .byt GraphicsUpload::SP_SCHEME_TEAM
+C .byt ObjBehavior::AUTO_RESET
+C .byt ObjFlag::PRIMARY

@@ -1,9 +1,9 @@
 boss1:
   .byt MusicTracks::NONE|0
-  .byt 5
+  .byt 12
   .byt $1b
   .byt GraphicsUpload::SP_WALKER
-  .byt GraphicsUpload::SP_CANNON
+  .byt GraphicsUpload::SP_SCHEME_TEAM
   .byt GraphicsUpload::SP_FIRE
   .byt GraphicsUpload::SP_KING
   .addr boss1Data
@@ -38,7 +38,8 @@ boss1Data:
   LObjN LO::WIDE_1,           1, 7, 1, LN1::SPIKES
   LObjN LO::WIDE_2,           0, 8, 1, LN2::WOOD_PLATFORM_TOP
   LObjN LO::R_WOOD_PLATFORM,  0, 9, 1, 3
-  LObjN LO::WIDE_1,           3, 10, 1, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           3, 9, 0, LN1::FALLTHROUGH_LEDGE
+  LObjN LO::WIDE_1,           0, 10, 1, LN1::SOLID_LEDGE
   LObj  LO::S_FLOWER,         1, 12
   LObjN LO::R_GROUND,         0, 13, 9, 1
   LObjN LO::WIDE_1,           1, 3, 2, LN1::FALLTHROUGH_LEDGE
@@ -54,5 +55,14 @@ boss1Data:
   LFinished
 
 boss1Sprite:
-  LSpr Enemy::GOOMBA,              1,  19,   6
+  LSpr Enemy::BOSS_FIGHT,          0,   0,   0
+  LSpr Enemy::SCHEME_TEAM,         1,   2,   9
+  LSpr Enemy::SCHEME_TEAM,         0,   3,   3
+  LSpr Enemy::SCHEME_TEAM,         0,   9,   4, 1
+  LSpr Enemy::SCHEME_TEAM,         1,  16,   3
+  LSpr Enemy::SCHEME_TEAM,         1,  18,   6, 2
+  LSpr Enemy::SCHEME_TEAM,         1,  20,   9, 1
+  LSpr Enemy::FIRE_WALK,           0,  22,   8, 1
+  LSpr Enemy::SCHEME_TEAM,         1,  27,   4, 2
+  LSpr Enemy::SCHEME_TEAM,         1,  29,  12
   .byt 255 ; end

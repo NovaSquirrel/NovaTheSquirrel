@@ -47,6 +47,7 @@
 
   ObjectLen = 16
   ObjectF1:         .res ObjectLen ; TTTTTTTD, Type, Direction
+  EnemyRightEdge:   .res 1     ; Usually $f0 but can be $70 for 8 pixel wide enemies
 
   ; The most recent position the player was in where they were not colliding with any solid blocks at all.
   ; Used to return the player to this position if all four points are colliding.
@@ -233,7 +234,7 @@
 ; ObjectF1
   ObjectF2:    .res ObjectLen ; 1SSSSSSS, State
                               ; 0------- free to use
-  ObjectF3:    .res ObjectLen ; -------- ;\ free to use
+  ObjectF3:    .res ObjectLen ; -------- ;\ free to use. initialized with object variant
   ObjectF4:    .res ObjectLen ; -------- ;/
   ObjectIndexInLevel: .res ObjectLen ; object's index in level list, prevents object from being respawned until it's despawned
   ObjectTimer: .res ObjectLen ; when timer reaches 0, reset state

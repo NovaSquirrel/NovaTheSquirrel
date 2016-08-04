@@ -50,6 +50,7 @@
   MOVING_PLATFORM_LINE
   FIREBAR
   BOSS_FIGHT
+  SCHEME_TEAM
 .endenum
 
 .proc ObjGraphics
@@ -104,6 +105,7 @@
   .byt 0 ;MOVING_PLATFORM_LINE
   .byt GraphicsUpload::SP_FIRE ;FIREBAR
   .byt 0 ;BOSS_FIGHT
+  .byt GraphicsUpload::SP_SCHEME_TEAM ;SCHEME_TEAM
 .endproc
 
 .proc ObjBehaviors
@@ -158,6 +160,7 @@
   .byt 0 ;MOVING_PLATFORM_LINE
   .byt ObjBehavior::AUTO_REMOVE ;FIREBAR
   .byt 0 ;BOSS_FIGHT
+  .byt ObjBehavior::AUTO_RESET ;SCHEME_TEAM
 .endproc
 
 .proc ObjFlags
@@ -212,5 +215,6 @@
   .byt ObjFlag::ESSENTIAL ;MOVING_PLATFORM_LINE
   .byt ObjFlag::PRIMARY ;FIREBAR
   .byt ObjFlag::ESSENTIAL ;BOSS_FIGHT
+  .byt ObjFlag::PRIMARY ;SCHEME_TEAM
 .endproc
 

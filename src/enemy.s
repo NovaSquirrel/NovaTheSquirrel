@@ -15,10 +15,6 @@
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;
 
-.proc ObjectBossFight
-  rts
-.endproc
-
 .proc ObjectGoomba
   jsr EnemyFall
   lda #$10
@@ -215,32 +211,6 @@ DrawY = O_RAM::OBJ_DRAWY
   lda #$51
   sta 2
   jmp GenericPoof
-.endproc
-
-.proc EnemyInteractionDABG
-ProjectileIndex = EnemyGetShotTest::ProjectileIndex
-ProjectileType  = EnemyGetShotTest::ProjectileType
-  lda #8
-  sta TouchWidthA
-  asl
-  sta TouchHeightA
-  jsr EnemyGetShotTestCustomSize
-  bcc TouchPlayer
-  lda ObjectF2,x
-  beq :+
-    ; stun the enemy
-    lda #ENEMY_STATE_STUNNED
-    sta ObjectF2,x
-    lda #180
-    sta ObjectTimer,x
-
-    ; remove the projectile
-    ldy ProjectileIndex
-    lda #0
-    sta ObjectF1,y
-TouchPlayer:
-
-  rts
 .endproc
 
 .proc ObjectSneaker
@@ -1248,3 +1218,166 @@ LaunchFry:
 Direction: .byt <-1, 1
 .endproc
 
+.proc ObjectBossFight
+  ; Get the boss number
+  lda ObjectF3,x
+  asl
+  ; Run the init routine if initializing
+  ldy ObjectF2,x
+  cpy #ENEMY_STATE_INIT
+  bne :+
+  ; carry is set if equal
+  adc #NumRoutines*2-1
+: tay
+  lda RunBossRoutine+1,y
+  pha
+  lda RunBossRoutine+0,y
+  pha
+  rts
+
+NumRoutines = 1
+
+RunBossRoutine:
+  .raddr DABGFight
+InitBossRoutine:
+  .raddr DABGInit
+
+DABGInit:
+  rts
+DABGFight:
+  lda #Enemy::SCHEME_TEAM
+  jsr CountObjectAmount
+  rts
+
+.endproc
+
+.proc ObjectSchemeTeam
+WALKER = 0
+JUMPER = 1
+DIAGONAL = 2
+BOMBER = 3
+
+HeadTile = 0
+BodyTile = 1
+; weapons = OR with $0c or $1c
+ProjectileIndex = EnemyGetShotTest::ProjectileIndex
+ProjectileType  = EnemyGetShotTest::ProjectileType
+
+  ; Fall and move forward if not falling
+  lda #$70
+  sta EnemyRightEdge
+  jsr EnemyFall
+  bcc :+
+  lda #$10
+  jsr EnemyWalk
+: jsr EnemyAutoBump
+  lda #$f0
+  sta EnemyRightEdge
+
+  ; Wrap positions around
+  lda ObjectPYH,x
+  bmi :+
+    cmp #14
+    bcc :+
+      lda #0
+      sta ObjectPYH,x
+      sta ObjectPYL,x
+      
+      jsr huge_rand
+      and #$1f
+      sta ObjectPXH,x
+  :
+
+  jsr DrawSchemeTeam
+
+EnemyInteraction:
+  lda #8
+  sta TouchWidthA
+  asl
+  sta TouchHeightA
+  jsr EnemyGetShotTestCustomSize
+  bcc TouchPlayer
+  lda ObjectF2,x
+  beq :+
+    ; stun the enemy
+    lda #ENEMY_STATE_STUNNED
+    sta ObjectF2,x
+    lda #180
+    sta ObjectTimer,x
+
+    ; remove the projectile
+    ldy ProjectileIndex
+    lda #0
+    sta ObjectF1,y
+:
+TouchPlayer:
+  rts
+
+DrawSchemeTeam:
+XGunOffset = 1
+Attribute = 2
+  jsr DispEnemyWideCalculatePositions
+  ldy OamPtr
+
+  lda O_RAM::OBJ_DRAWY
+  sta OAM_YPOS+(4*0),y
+  add #6
+  sta OAM_YPOS+(4*2),y
+  add #2
+  sta OAM_YPOS+(4*1),y
+
+  lda O_RAM::TILEBASE
+  sta OAM_TILE+(4*0),y
+
+  ; Save Y because it's the OAM pointer
+  sty 0
+  ; Get X offset for gun
+  lda ObjectF1,x
+  and #1
+  tay
+  lda DirOffsetX,y
+  sta XGunOffset
+  lda DirAttribute,y
+  sta Attribute
+
+  lda retraces
+  lsr
+  lsr
+  and #3
+  tay
+  lda BodyAnim,y
+  ora O_RAM::TILEBASE
+  ldy 0
+  sta OAM_TILE+(4*1),y
+  lda O_RAM::TILEBASE
+  ora #$0c
+  sta OAM_TILE+(4*2),y
+
+  lda O_RAM::OBJ_DRAWX
+  sta OAM_XPOS+(4*0),y
+  sta OAM_XPOS+(4*1),y
+  add XGunOffset
+  sta OAM_XPOS+(4*2),y
+
+  lda Attribute
+  sta OAM_ATTR+(4*0),y
+  sta OAM_ATTR+(4*1),y
+  sta OAM_ATTR+(4*2),y
+
+  tya
+  add #4*3
+  sta OamPtr
+  rts
+
+; X gun offsets for both directions
+DirOffsetX:
+  .byt 8, <-8
+; attributes for both directions
+DirAttribute:
+  .byt OAM_COLOR_2, OAM_COLOR_2|OAM_XFLIP
+
+BodyAnim:
+  .byt $10, $11, $10, $12 ; walking
+  .byt $14, $15, $14, $15 ; jumping
+  .byt $13, $13, $13, $13 ; flying
+.endproc

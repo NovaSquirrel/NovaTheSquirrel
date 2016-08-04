@@ -171,6 +171,7 @@ Exit:
   .raddr ObjectMovingPlatformLine
   .raddr ObjectFirebar
   .raddr ObjectBossFight
+  .raddr ObjectSchemeTeam
 .endproc
 
 ; other enemy attributes
@@ -1034,7 +1035,7 @@ FacingRight:
   adc #0
   sta NewXH
   lda NewXL ; check at the object's right edge instead
-  add #$f0
+  add EnemyRightEdge
   lda NewXH
   adc #0
 NotFacingRight:
@@ -1212,7 +1213,7 @@ YesSolid:
   pla ; get right side
   tay ; reuse same Y
   lda ObjectPXL,x
-  add #$f0
+  add EnemyRightEdge
   lda ObjectPXH,x
   adc #0
   jsr GetLevelColumnPtr

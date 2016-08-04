@@ -18,6 +18,9 @@
   lda #0
   sta PPUMASK
 
+  lda #$f0
+  sta EnemyRightEdge
+
   lda #SOUND_BANK
   jsr _SetPRG
   jsr pently_init
