@@ -1298,7 +1298,7 @@ EnemyInteraction:
   jsr EnemyGetShotTestCustomSize
   bcc TouchPlayer
   lda ObjectF2,x
-  beq :+
+  bne :+
     ; stun the enemy
     lda #ENEMY_STATE_STUNNED
     sta ObjectF2,x
@@ -1309,9 +1309,28 @@ EnemyInteraction:
     ldy ProjectileIndex
     lda #0
     sta ObjectF1,y
+
+    lda #SFX::ENEMY_HURT
+    sta NeedSFX
 :
 TouchPlayer:
-  rts
+  lda ObjectF2,x
+  beq :+
+  lda #8
+  sta TouchWidthB
+  sta TouchWidthA
+  asl
+  sta TouchHeightA
+  lda #24
+  sta TouchHeightB
+  jsr EnemyPlayerTouch::AfterHeightWidth
+  bcc :+
+    lda #SFX::ENEMY_SMOOSH
+    sta NeedSFX
+
+    lda #0
+    sta ObjectF1,x
+: rts
 
 DrawSchemeTeam:
 XGunOffset = 1
@@ -1363,6 +1382,18 @@ Attribute = 2
   sta OAM_ATTR+(4*0),y
   sta OAM_ATTR+(4*1),y
   sta OAM_ATTR+(4*2),y
+
+  lda ObjectF2,x
+  beq :+
+    ; turn into the card thing if stunned
+    lda O_RAM::TILEBASE
+    ora #4
+    sta OAM_TILE+(4*0),y
+    ora #1
+    sta OAM_TILE+(4*1),y
+    lda #$f0
+    sta OAM_YPOS+(4*2),y
+:
 
   tya
   add #4*3
