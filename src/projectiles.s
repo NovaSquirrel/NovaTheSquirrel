@@ -701,7 +701,13 @@ Skip:
 .endproc
 
 .proc ObjectBlasterShot
+  jsr EnemyApplyVelocity
   jsr EnemyDespawnTimer
+  lda #OAM_COLOR_2
+  sta 1
+  lda ObjectF3,x
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_Attr
   jmp SmallEnemyPlayerTouchHurt
 .endproc
 

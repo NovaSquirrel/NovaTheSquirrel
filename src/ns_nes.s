@@ -378,10 +378,11 @@ DJ_Label:
 .endmacro
 
 .macro countdown counter
+.local @Skip
   lda counter
-  beq :+
+  beq @Skip
     dec counter
-  :
+@Skip:
 .endmacro
 
 ; --- conditional return ---

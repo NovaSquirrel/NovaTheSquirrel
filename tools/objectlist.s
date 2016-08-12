@@ -88,7 +88,7 @@
   .byt GraphicsUpload::SP_EXPLODE ;BOMB_GUY
   .byt 0 ;POOF
   .byt 0 ;PLAYER_PROJECTILE
-  .byt 0 ;BLASTER_SHOT
+  .byt GraphicsUpload::SP_SCHEME_TEAM ;BLASTER_SHOT
   .byt 0 ;SMALL_GLIDER
   .byt 0 ;BOOMERANG
   .byt GraphicsUpload::SP_FIRE ;FIREBALL

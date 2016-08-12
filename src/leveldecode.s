@@ -242,7 +242,7 @@ NoLinks:
   jsr DoLevelUploadListAndSprites
 
   ; display a "now loading" or whatever
-  ; currently it says PLZ WAIT
+  ; currently it says Loading
   ; also display the level number
   jsr ClearName
   jsr ClearOAM
@@ -309,6 +309,7 @@ NoLinks:
   ; copy the sprite list in
   ; To do: stop when we reach the end of the list
   ldy #0
+  sty LevelVariable ; zero this too
 : lda (LevelSpritePointer),y
   sta SpriteListRAM,y
   iny
@@ -341,7 +342,6 @@ NoLinks:
   bne @Loop
 @Exit:
   .endscope
-
 
   jsr LevelDecodeLoop
 

@@ -19,9 +19,11 @@ boss1:
   .byt $40, $00 ; boundaries
 
 boss1Data:
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $01, LevelBackgroundId::CLOUDS
   LObjN LO::WIDE_1,           2, 10, 2, LN1::FALLTHROUGH_LEDGE
   LObj  LO::S_SOLID_BLOCK,    1, 4
   LObjN LO::WIDE_1,           0, 5, 2, LN1::FALLTHROUGH_LEDGE
+  LObj  LO::S_HEART,          0, 9
   LObj  LO::S_SPRING,         0, 12
   LObjN LO::R_GROUND,         0, 13, 4, 1
   LObjN LO::WIDE_1,           4, 8, 2, LN1::FALLTHROUGH_LEDGE
@@ -35,6 +37,7 @@ boss1Data:
   LObj  LO::S_SPRING,         1, 12
   LObjN LO::WIDE_1,           1, 7, 6, LN1::FALLTHROUGH_LEDGE
   LObjN LO::WIDE_1,           1, 4, 2, LN1::FALLTHROUGH_LEDGE
+  LObjN LO::R_SOLID_BLOCK,    0, 10, 0, 2
   LObjN LO::WIDE_1,           1, 7, 1, LN1::SPIKES
   LObjN LO::WIDE_2,           0, 8, 1, LN2::WOOD_PLATFORM_TOP
   LObjN LO::R_WOOD_PLATFORM,  0, 9, 1, 3
@@ -58,11 +61,10 @@ boss1Sprite:
   LSpr Enemy::BOSS_FIGHT,          0,   0,   0
   LSpr Enemy::SCHEME_TEAM,         1,   2,   9
   LSpr Enemy::SCHEME_TEAM,         0,   3,   3
-  LSpr Enemy::SCHEME_TEAM,         0,   9,   4, 1
+  LSpr Enemy::SCHEME_TEAM,         0,   9,   4
   LSpr Enemy::SCHEME_TEAM,         1,  16,   3
-  LSpr Enemy::SCHEME_TEAM,         1,  18,   6, 2
-  LSpr Enemy::SCHEME_TEAM,         1,  20,   9, 1
-  LSpr Enemy::FIRE_WALK,           0,  22,   8, 1
-  LSpr Enemy::SCHEME_TEAM,         1,  27,   4, 2
+  LSpr Enemy::SCHEME_TEAM,         1,  18,   6
+  LSpr Enemy::SCHEME_TEAM,         1,  22,   8
+  LSpr Enemy::SCHEME_TEAM,         1,  27,   4
   LSpr Enemy::SCHEME_TEAM,         1,  29,  12
   .byt 255 ; end

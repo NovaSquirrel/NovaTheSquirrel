@@ -16,13 +16,13 @@ MasterLevelListH:
   Water
   Grassy2A
   Underground_2
+  Boss1
   EmptyLevel
   IntroB
   GrassyB
   Grassy2B
   Underground2
   Garden
-  Boss1
 .endenum
 
 .include "../levels/intro_a.s"

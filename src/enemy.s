@@ -1243,6 +1243,8 @@ InitBossRoutine:
   .raddr DABGInit
 
 DABGInit:
+  lda #20
+  sta LevelVariable
   rts
 DABGFight:
   lda #Enemy::SCHEME_TEAM
@@ -1268,7 +1270,7 @@ ProjectileType  = EnemyGetShotTest::ProjectileType
   sta EnemyRightEdge
   jsr EnemyFall
   bcc :+
-  lda #$10
+  lda #$0e
   jsr EnemyWalk
 : jsr EnemyAutoBump
   lda #$f0
@@ -1289,6 +1291,46 @@ ProjectileType  = EnemyGetShotTest::ProjectileType
   :
 
   jsr DrawSchemeTeam
+
+ShootPlayerMaybe:
+  lda ObjectF2,x
+  bne NoShoot
+
+  lda retraces
+  and #3
+  bne NoShoot
+
+  jsr huge_rand
+  and #%1111
+  bne NoShoot
+    lda ObjectPXH,x
+    cmp PlayerPXH
+    lda ObjectF1,x
+    and #<~1
+    adc #0
+    sta ObjectF1,x
+    and #1
+    tay
+    lda BulletSpeedXL,y
+    sta 1
+    lda BulletSpeedXH,y
+    sta 2
+
+    jsr FindFreeObjectY
+    bcc :+
+      jsr ObjectCopyPosXY
+      jsr ObjectClearY
+      lda #Enemy::BLASTER_SHOT*2
+      sta ObjectF1,y
+      lda #$1c
+      sta ObjectF3,y
+      lda #10
+      sta ObjectTimer,y
+      lda 1
+      sta ObjectVXL,y
+      lda 2
+      sta ObjectVXH,y
+NoShoot:
 
 EnemyInteraction:
   lda #8
@@ -1327,6 +1369,8 @@ TouchPlayer:
   bcc :+
     lda #SFX::ENEMY_SMOOSH
     sta NeedSFX
+
+    countdown LevelVariable
 
     lda #0
     sta ObjectF1,x
@@ -1406,6 +1450,11 @@ DirOffsetX:
 ; attributes for both directions
 DirAttribute:
   .byt OAM_COLOR_2, OAM_COLOR_2|OAM_XFLIP
+
+BulletSpeedXL:
+  .byt <($11), <(-$11)
+BulletSpeedXH:
+  .byt >($11), >(-$11)
 
 BodyAnim:
   .byt $10, $11, $10, $12 ; walking

@@ -174,7 +174,7 @@ C .byt 0
 C .byt ObjFlag::ESSENTIAL
 
 R BLASTER_SHOT
-C .byt 0
+C .byt GraphicsUpload::SP_SCHEME_TEAM
 C .byt 0
 C .byt ObjFlag::SECONDARY
 
