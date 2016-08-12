@@ -1147,3 +1147,53 @@ PSIX2:	jmp     (DPL)   ; return to byte following final NULL
   stx random2+1
   rts
 .endproc
+
+.proc DoTeleport
+  stx TempX
+  ; regular door
+  ; 0Y XX    - X and Y only
+  ; 1Y XX LL - X and Y with level number
+  ; 20 AA AA - start dialog
+  ; 21 AA    - just switch to level
+  inc NeedLevelRerender
+  inc JustTeleported
+  inc IsNormalDoor
+  lda #0
+  sta IntroShownAlready
+  jsr GetBlockX        ; Get the block's X position
+  tax
+  lda ColumnBytes,x    ; Read the flag to check for special handling
+  cmp #$21
+  beq NewLevel
+  cmp #$20
+  beq DoDialogInstead
+  and #$10
+  beq NoLevelChange
+    lda ColumnBytes+2,x
+    sta LevelNumber
+    inc NeedLevelReload
+    inc MakeCheckpoint
+NoLevelChange:
+  lda ColumnBytes+0,x    ; Read the Y position plus the flag
+  and #15                ; (but only use the flag)
+  sta PlayerPYH
+  lda ColumnBytes+1,x    ; Read the X position
+  sta PlayerPXH
+  ldx TempX
+  rts
+NewLevel:
+  lda ColumnBytes+1,x
+  sta LevelNumber
+  inc NeedLevelReload
+  inc MakeCheckpoint
+  ldx TempX
+  rts
+DoDialogInstead:
+  lda ColumnBytes+1,x
+  sta ScriptPtr+0
+  lda ColumnBytes+2,x
+  sta ScriptPtr+1
+  inc NeedDialog
+  ldx TempX
+  rts
+.endproc

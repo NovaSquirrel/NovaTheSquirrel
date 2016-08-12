@@ -257,56 +257,15 @@ Nope:
 .proc TouchedDoorBottom
   lda keynew
   and #KEY_UP
-  beq Nope
+  beq NoPressUp
     dey  
     lda (LevelBlockPtr),y
     cmp #Metatiles::EXIT_DOOR_TOP
     beq ExitDoor
-    ; regular door
-    ; 0Y XX    - X and Y only
-    ; 1Y XX LL - X and Y with level number
-    ; 20 AA AA - start dialog
-    ; 21 AA    - just switch to level
-    inc NeedLevelRerender
-    inc JustTeleported
-    inc IsNormalDoor
-    lda #0
-    sta IntroShownAlready
-    jsr GetBlockX        ; Get the block's X position
-    tax
-    lda ColumnBytes,x    ; Read the flag to check for special handling
-    cmp #$21
-    beq NewLevel
-    cmp #$20
-    beq DoDialogInstead
-    and #$10
-    beq NoLevelChange
-    lda ColumnBytes+2,x
-    sta LevelNumber
-    inc NeedLevelReload
-    inc MakeCheckpoint
-NoLevelChange:
-  lda ColumnBytes+0,x    ; Read the Y position plus the flag
-  and #15                ; (but only use the flag)
-  sta PlayerPYH
-  lda ColumnBytes+1,x    ; Read the X position
-  sta PlayerPXH
-Nope:
+    jsr DoTeleport
+NoPressUp:
   rts
 
-NewLevel:
-  lda ColumnBytes+1,x
-  sta LevelNumber
-  inc NeedLevelReload
-  inc MakeCheckpoint
-  rts
-DoDialogInstead:
-  lda ColumnBytes+1,x
-  sta ScriptPtr+0
-  lda ColumnBytes+2,x
-  sta ScriptPtr+1
-  inc NeedDialog
-  rts
 ExitDoor:
   ; Mark current level as cleared
   ldy StartedLevelNumber
@@ -323,17 +282,6 @@ ExitDoor:
   ora LevelAvailable,y
   sta LevelAvailable,y
 
-  ; If not puzzle mode, save things
-  lda PuzzleMode
-  bne @NotPuzzleMode
-    ldx #InventoryLen*2-1
-  : lda InventoryType,x
-    sta InventorySaved,x
-    dex
-    bpl :-
-    lda PlayerAbility
-    sta SavedAbility
-@NotPuzzleMode:
   lda Coins+0
   sta SavedCoins+0
   lda Coins+1
