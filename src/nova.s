@@ -34,6 +34,7 @@ VOICE_BANK = $d
 LEVELPROCESS_BANK = $e
 SOUND_BANK = $e
 VWF_BANK = $e
+THINFONT_BANK = $d
 
 .segment "PRG6" ;
 .segment "PRG7" ;
@@ -56,6 +57,7 @@ VWF_BANK = $e
 
 .segment "PRGd"
 .include "quadpcm.s"
+.include "thinfont.s"
 
 .segment "PRGe" ; voice samples, dialogs, inventory, VWF engine
 .include "vwf_draw.s"
