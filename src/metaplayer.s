@@ -262,6 +262,7 @@ Nope:
     lda (LevelBlockPtr),y
     cmp #Metatiles::EXIT_DOOR_TOP
     beq ExitDoor
+    jsr GetBlockX        ; Get the block's X position
     jsr DoTeleport
 NoPressUp:
   rts

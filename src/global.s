@@ -1148,9 +1148,11 @@ PSIX2:	jmp     (DPL)   ; return to byte following final NULL
   rts
 .endproc
 
+; Triggers a teleport stored at column A
+; inputs: A (column to read the teleport from)
 .proc DoTeleport
   stx TempX
-  ; regular door
+  tax
   ; 0Y XX    - X and Y only
   ; 1Y XX LL - X and Y with level number
   ; 20 AA AA - start dialog
@@ -1160,8 +1162,6 @@ PSIX2:	jmp     (DPL)   ; return to byte following final NULL
   inc IsNormalDoor
   lda #0
   sta IntroShownAlready
-  jsr GetBlockX        ; Get the block's X position
-  tax
   lda ColumnBytes,x    ; Read the flag to check for special handling
   cmp #$21
   beq NewLevel
