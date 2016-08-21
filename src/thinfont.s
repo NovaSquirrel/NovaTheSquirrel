@@ -28,10 +28,10 @@ Index = 8
   ldy #63
 : sta UploadTileSpace,y
   dey
-  bne :-
+  bpl :-
 
 ; A and X still zero
-  tay ; and now Y is too. Y will be used for the 
+  tay ; and now Y is too. Y will be used for the index into UploadTileSpace
 
 Loop:
   ; Left character
