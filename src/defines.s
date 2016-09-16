@@ -392,6 +392,19 @@ NOVA_STRAIGHT = 18
   S_M_ARROW_RIGHT
   S_M_BOMB
   S_M_CRATE
+  S_BG_GLASS_GREEN
+  S_BG_GLASS_GRAY
+  S_BG_GLASS_RED
+  S_BG_GLASS_BLUE
+  S_FG_GLASS_RED
+  S_FG_GLASS_BLUE
+  R_BG_GLASS_GREEN
+  R_BG_GLASS_GRAY
+  R_BG_GLASS_RED
+  R_BG_GLASS_BLUE
+  R_FG_GLASS_RED
+  R_FG_GLASS_BLUE
+  R_SOLID_ROCK
 .endenum
 
 .enum LN1
@@ -435,6 +448,9 @@ NOVA_STRAIGHT = 18
 .enum LN3
   WHITEFENCE
   ROCK
+  FG_GLASS_RED
+  FG_GLASS_BLUE
+  SOLID_ROCK
 .endenum
 
 .macro LSpr Type, Direction, XPos, YPos, Extra
@@ -514,3 +530,17 @@ LSpecialCmd = $f7
   CLOUDS
   CLOUDS_EVERYWHERE
 .endenum
+
+.macro ThinFontText String
+  .repeat 8, I
+    .scope
+      Char = .strat(String, I)
+      .if Char = ' '
+        .byt 0
+      .endif
+      .if Char >= 'A' && Char <= 'Z'
+        .byt 1 + Char-'A'
+      .endif
+    .endscope
+  .endrep
+.endmacro

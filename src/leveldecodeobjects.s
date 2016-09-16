@@ -100,6 +100,19 @@
   .byt BLOCK_SINGLE,           Metatiles::METAL_ARROW_RIGHT
   .byt BLOCK_SINGLE,           Metatiles::METAL_BOMB
   .byt BLOCK_SINGLE,           Metatiles::METAL_CRATE
+  .byt BLOCK_SINGLE,           Metatiles::BG_GLASS_GREEN
+  .byt BLOCK_SINGLE,           Metatiles::BG_GLASS_GRAY
+  .byt BLOCK_SINGLE,           Metatiles::BG_GLASS_RED
+  .byt BLOCK_SINGLE,           Metatiles::BG_GLASS_BLUE
+  .byt BLOCK_SINGLE,           Metatiles::FG_GLASS_RED
+  .byt BLOCK_SINGLE,           Metatiles::FG_GLASS_BLUE
+  .byt BLOCK_RECTANGLE,        Metatiles::BG_GLASS_GREEN
+  .byt BLOCK_RECTANGLE,        Metatiles::BG_GLASS_GRAY
+  .byt BLOCK_RECTANGLE,        Metatiles::BG_GLASS_RED
+  .byt BLOCK_RECTANGLE,        Metatiles::BG_GLASS_BLUE
+  .byt BLOCK_RECTANGLE,        Metatiles::FG_GLASS_RED
+  .byt BLOCK_RECTANGLE,        Metatiles::FG_GLASS_BLUE
+  .byt BLOCK_RECTANGLE,        Metatiles::SOLID_ROCK
 .endproc
 
 .proc ObjectTypesList
@@ -139,9 +152,9 @@
   ; list 3
   .byt Metatiles::WHITEFENCE_MIDDLE
   .byt Metatiles::ROCK_MID_M
-  .byt Metatiles::EMPTY
-  .byt Metatiles::EMPTY
-  .byt Metatiles::EMPTY
+  .byt Metatiles::FG_GLASS_RED
+  .byt Metatiles::FG_GLASS_BLUE
+  .byt Metatiles::SOLID_ROCK
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY

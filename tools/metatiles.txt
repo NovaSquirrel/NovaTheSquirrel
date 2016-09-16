@@ -1371,3 +1371,51 @@ C .byt $aa
 C .byt $ab
 C .byt $ac
 C .byt $ad
+
+R BG_GLASS_GREEN
+C .byt M_PAL_0
+C .byt M_EMPTY
+C .byt $6c
+C .byt $6e
+C .byt $6d
+C .byt $6f
+
+R BG_GLASS_GRAY
+C .byt M_PAL_1
+C .byt M_EMPTY
+C .byt $6c
+C .byt $6e
+C .byt $6d
+C .byt $6f
+
+R BG_GLASS_RED
+C .byt M_PAL_2
+C .byt M_EMPTY
+C .byt $6c
+C .byt $6e
+C .byt $6d
+C .byt $6f
+
+R BG_GLASS_BLUE
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $6c
+C .byt $6e
+C .byt $6d
+C .byt $6f
+
+R FG_GLASS_RED
+C .byt M_PAL_2
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $52
+C .byt $62
+C .byt $53
+C .byt $63
+
+R FG_GLASS_BLUE
+C .byt M_PAL_3
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $52
+C .byt $62
+C .byt $53
+C .byt $63
