@@ -190,3 +190,35 @@
   .byt >(DoHealthRestoreBig-1) ;BIG_HEALTH_RESTORE
 .endproc
 
+.proc InventoryShortName
+  ThinFontText "        " ;NOTHING
+  ThinFontText "PIZZA   " ;HEALTH_RESTORE
+  ThinFontText "RED KEY " ;RED_KEY
+  ThinFontText "GREENKEY" ;GREEN_KEY
+  ThinFontText "BLUE KEY" ;BLUE_KEY
+  ThinFontText "FLIPPERS" ;FLIPPERS
+  ThinFontText "FIREBOOT" ;FIRE_BOOTS
+  ThinFontText "ICESKATE" ;ICE_SKATES
+  ThinFontText "SUCKBOOT" ;SUCTION_BOOTS
+  ThinFontText "BLOCK   " ;BLOCK
+  ThinFontText "SPRING  " ;SPRING
+  ThinFontText "NUCLEAR " ;NUCLEAR_PANTS
+  ThinFontText "JUMPING " ;ALWAYS_JUMPING
+  ThinFontText "BLASTER " ;ABILITY_BLASTER
+  ThinFontText "GLIDER  " ;ABILITY_GLIDER
+  ThinFontText "BOMBS   " ;ABILITY_BOMB
+  ThinFontText "FIREBALL" ;ABILITY_FIRE
+  ThinFontText "FIREWORK" ;ABILITY_FIREWORK
+  ThinFontText "NICECUBE" ;ABILITY_NICE
+  ThinFontText "BOOMRANG" ;ABILITY_BOOMERANG
+  ThinFontText "BALL    " ;ABILITY_BALL
+  ThinFontText "WATER   " ;ABILITY_WATER
+  ThinFontText "TORNADO " ;ABILITY_FAN
+  ThinFontText "BURGERS " ;ABILITY_BURGER
+  ThinFontText "LAMP OIL" ;LAMP_OIL
+  ThinFontText "ROPE    " ;ROPE
+  ThinFontText "BALLOON " ;BALLOON
+  ThinFontText "PIZZA SL" ;SMALL_HEALTH_RESTORE
+  ThinFontText "XL PIZZA" ;BIG_HEALTH_RESTORE
+.endproc
+

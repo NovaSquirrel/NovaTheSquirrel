@@ -4,6 +4,7 @@ L InventoryINameL
 L InventoryINameH
 L InventoryICodeL
 L InventoryICodeH
+L InventoryShortName
 
 R NOTHING
 C .byt InventoryIcon::NOTHING
@@ -11,6 +12,7 @@ C .byt <NameEmpty
 C .byt >NameEmpty
 C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
+C ThinFontText "        "
 
 R HEALTH_RESTORE
 C .byt InventoryIcon::HEART
@@ -18,6 +20,7 @@ C .byt <NameHealth
 C .byt >NameHealth
 C .byt <(DoHealthRestore-1)
 C .byt >(DoHealthRestore-1)
+C ThinFontText "PIZZA   "
 
 R RED_KEY
 C .byt InventoryIcon::KEY
@@ -25,6 +28,7 @@ C .byt <NameRedKey
 C .byt >NameRedKey
 C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
+C ThinFontText "RED KEY "
 
 R GREEN_KEY
 C .byt InventoryIcon::KEY
@@ -32,6 +36,7 @@ C .byt <NameGreenKey
 C .byt >NameGreenKey
 C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
+C ThinFontText "GREENKEY"
 
 R BLUE_KEY
 C .byt InventoryIcon::KEY
@@ -39,6 +44,7 @@ C .byt <NameBlueKey
 C .byt >NameBlueKey
 C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
+C ThinFontText "BLUE KEY"
 
 R FLIPPERS
 C .byt InventoryIcon::SHIELD
@@ -46,6 +52,7 @@ C .byt <NameFlippers
 C .byt >NameFlippers
 C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
+C ThinFontText "FLIPPERS"
 
 R FIRE_BOOTS
 C .byt InventoryIcon::SHIELD
@@ -53,6 +60,7 @@ C .byt <NameFireBoots
 C .byt >NameFireBoots
 C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
+C ThinFontText "FIREBOOT"
 
 R ICE_SKATES
 C .byt InventoryIcon::SHIELD
@@ -60,6 +68,7 @@ C .byt <NameIceSkates
 C .byt >NameIceSkates
 C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
+C ThinFontText "ICESKATE"
 
 R SUCTION_BOOTS
 C .byt InventoryIcon::SHIELD
@@ -67,6 +76,7 @@ C .byt <NameSuctionBoots
 C .byt >NameSuctionBoots
 C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
+C ThinFontText "SUCKBOOT"
 
 R BLOCK
 C .byt InventoryIcon::PLACEABLE
@@ -74,6 +84,7 @@ C .byt <NameBlock
 C .byt >NameBlock
 C .byt <(DoPlaceBlock-1)
 C .byt >(DoPlaceBlock-1)
+C ThinFontText "BLOCK   "
 
 R SPRING
 C .byt InventoryIcon::PLACEABLE
@@ -81,6 +92,7 @@ C .byt <NameSpring
 C .byt >NameSpring
 C .byt <(DoPlaceSpring-1)
 C .byt >(DoPlaceSpring-1)
+C ThinFontText "SPRING  "
 
 R NUCLEAR_PANTS
 C .byt InventoryIcon::PANTS
@@ -88,6 +100,7 @@ C .byt <NameNuclearPowerPants
 C .byt >NameNuclearPowerPants
 C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
+C ThinFontText "NUCLEAR "
 
 R ALWAYS_JUMPING
 C .byt InventoryIcon::EFFECT
@@ -95,6 +108,7 @@ C .byt <NameAlwaysJumping
 C .byt >NameAlwaysJumping
 C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
+C ThinFontText "JUMPING "
 
 R ABILITY_BLASTER
 C .byt InventoryIcon::ABILITY
@@ -102,6 +116,7 @@ C .byt <NameBlaster
 C .byt >NameBlaster
 C .byt <(DoSwitchAbility-1)
 C .byt >(DoSwitchAbility-1)
+C ThinFontText "BLASTER "
 
 R ABILITY_GLIDER
 C .byt InventoryIcon::ABILITY
@@ -109,6 +124,7 @@ C .byt <NameGlider
 C .byt >NameGlider
 C .byt <(DoSwitchAbility-1)
 C .byt >(DoSwitchAbility-1)
+C ThinFontText "GLIDER  "
 
 R ABILITY_BOMB
 C .byt InventoryIcon::ABILITY
@@ -116,6 +132,7 @@ C .byt <NameBomb
 C .byt >NameBomb
 C .byt <(DoSwitchAbility-1)
 C .byt >(DoSwitchAbility-1)
+C ThinFontText "BOMBS   "
 
 R ABILITY_FIRE
 C .byt InventoryIcon::ABILITY
@@ -123,6 +140,7 @@ C .byt <NameFire
 C .byt >NameFire
 C .byt <(DoSwitchAbility-1)
 C .byt >(DoSwitchAbility-1)
+C ThinFontText "FIREBALL"
 
 R ABILITY_FIREWORK
 C .byt InventoryIcon::ABILITY
@@ -130,6 +148,7 @@ C .byt <NameFirework
 C .byt >NameFirework
 C .byt <(DoSwitchAbility-1)
 C .byt >(DoSwitchAbility-1)
+C ThinFontText "FIREWORK"
 
 R ABILITY_NICE
 C .byt InventoryIcon::ABILITY
@@ -137,6 +156,7 @@ C .byt <NameNice
 C .byt >NameNice
 C .byt <(DoSwitchAbility-1)
 C .byt >(DoSwitchAbility-1)
+C ThinFontText "NICECUBE"
 
 R ABILITY_BOOMERANG
 C .byt InventoryIcon::ABILITY
@@ -144,6 +164,7 @@ C .byt <NameBoomerang
 C .byt >NameBoomerang
 C .byt <(DoSwitchAbility-1)
 C .byt >(DoSwitchAbility-1)
+C ThinFontText "BOOMRANG"
 
 R ABILITY_BALL
 C .byt InventoryIcon::ABILITY
@@ -151,6 +172,7 @@ C .byt <NameBall
 C .byt >NameBall
 C .byt <(DoSwitchAbility-1)
 C .byt >(DoSwitchAbility-1)
+C ThinFontText "BALL    "
 
 R ABILITY_WATER
 C .byt InventoryIcon::ABILITY
@@ -158,6 +180,7 @@ C .byt <NameWater
 C .byt >NameWater
 C .byt <(DoSwitchAbility-1)
 C .byt >(DoSwitchAbility-1)
+C ThinFontText "WATER   "
 
 R ABILITY_FAN
 C .byt InventoryIcon::ABILITY
@@ -165,6 +188,7 @@ C .byt <NameFan
 C .byt >NameFan
 C .byt <(DoSwitchAbility-1)
 C .byt >(DoSwitchAbility-1)
+C ThinFontText "TORNADO "
 
 R ABILITY_BURGER
 C .byt InventoryIcon::ABILITY
@@ -172,6 +196,7 @@ C .byt <NameBurger
 C .byt >NameBurger
 C .byt <(DoSwitchAbility-1)
 C .byt >(DoSwitchAbility-1)
+C ThinFontText "BURGERS "
 
 R LAMP_OIL
 C .byt InventoryIcon::BULLET
@@ -179,6 +204,7 @@ C .byt <NameLampOil
 C .byt >NameLampOil
 C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
+C ThinFontText "LAMP OIL"
 
 R ROPE
 C .byt InventoryIcon::PLACEABLE
@@ -186,6 +212,7 @@ C .byt <NameRope
 C .byt >NameRope
 C .byt <(DoPlaceRope-1)
 C .byt >(DoPlaceRope-1)
+C ThinFontText "ROPE    "
 
 R BALLOON
 C .byt InventoryIcon::BULLET
@@ -193,6 +220,7 @@ C .byt <NameBalloon
 C .byt >NameBalloon
 C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
+C ThinFontText "BALLOON "
 
 R SMALL_HEALTH_RESTORE
 C .byt InventoryIcon::HEART
@@ -200,6 +228,7 @@ C .byt <NameHealthSmall
 C .byt >NameHealthSmall
 C .byt <(DoHealthRestoreSmall-1)
 C .byt >(DoHealthRestoreSmall-1)
+C ThinFontText "PIZZA SL"
 
 R BIG_HEALTH_RESTORE
 C .byt InventoryIcon::HEART
@@ -207,3 +236,4 @@ C .byt <NameHealthBig
 C .byt >NameHealthBig
 C .byt <(DoHealthRestoreBig-1)
 C .byt >(DoHealthRestoreBig-1)
+C ThinFontText "XL PIZZA"
