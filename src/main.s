@@ -24,8 +24,9 @@
   lda #SOUND_BANK
   jsr _SetPRG
   jsr pently_init
-  lda LevelMusic
-  jsr pently_start_music
+;  lda LevelMusic
+;  jsr pently_start_music
+  jsr pently_stop_music
 
   lda #0
   sta UploadTileAddress+1
