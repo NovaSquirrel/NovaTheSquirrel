@@ -55,6 +55,22 @@ HealthCount = 1
   add #4*4
   tay
 
+; Draw the chip for puzzle mode if needed
+  lda PuzzleMode
+  beq :+
+  lda #$5f
+  sta OAM_TILE,y
+  lda #OAM_COLOR_1
+  sta OAM_ATTR,y
+  lda #15
+  sta OAM_YPOS,y
+  lda #15+16
+  sta OAM_XPOS,y
+  tya
+  add #4
+  tay
+:
+
 ; Draw all hearts needed
   lda PlayerHealth
   lsr
