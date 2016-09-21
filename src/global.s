@@ -1197,3 +1197,61 @@ DoDialogInstead:
   ldx TempX
   rts
 .endproc
+
+; inputs: A (item number), Y (Y position)
+.proc MakeFloatingTextAtBlock
+  sty TempVal+1 ; Save Y position
+  pha           ; And item number
+
+  ; Build the address needed in InventoryShortName
+  lda #0
+  sta 9
+  lda #INVENTORY_BANK
+  jsr _SetPRG
+  pla
+  .repeat 3
+    asl
+    rol 9
+  .endrep
+  ; Add offset to the address
+  sta 8
+  add #<InventoryShortName
+  sta 8
+  lda 9
+  adc #>InventoryShortName
+  sta 9
+
+  ; Copy the name in
+  ldy #7
+: lda (8),y
+  sta 0,y
+  dey
+  bpl :-
+
+  ; Render the string
+  lda #THINFONT_BANK
+  jsr _SetPRG
+  jsr RenderThinString
+
+  jsr FindFreeObjectY
+  bcc NoSlotFree
+  lda #Enemy::POOF*2
+  sta ObjectF1,y
+  lda #PoofSubtype::FLOAT_TEXT
+  sta ObjectF2,y
+  jsr GetBlockX
+  sub #1            ; Offset left 8 pixels
+  sta ObjectPXH,y
+  lda TempVal+1
+  sta ObjectPYH,y
+  lda #$80          ; Offset left 8 pixels
+  sta ObjectPXL,y
+  lda #0
+  sta ObjectPYL,y
+  sta ObjectTimer,y
+  beq Exit ; unconditional branch
+NoSlotFree:
+  pla
+Exit:
+  jmp SetPRG_Restore
+.endproc

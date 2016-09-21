@@ -122,6 +122,40 @@ DrawY = O_RAM::OBJ_DRAWY
 : rts
 .endproc
 
+.proc ObjectFloatingText
+; Disappear
+  inc ObjectTimer,x
+  lda ObjectTimer,x
+  cmp #15
+  bcs :+ ; float up
+    ; A is still ObjectTimer,x, don't reload it
+    asl
+    asl
+    sta 0
+    lda ObjectPYL,x
+    sub 0
+    sta ObjectPYL,x
+    subcarryx ObjectPYH
+    jmp :++
+  :
+  cmp #60
+  bcc :+
+    lda #0
+    sta ObjectF1,x
+  :
+
+; Display
+  lda #$60
+  sta O_RAM::TILEBASE
+  lda #<Metasprite
+  ldy #>Metasprite
+  jmp DispEnemyMetasprite
+
+Metasprite:
+  MetaspriteHeader 4, 1, 0
+  .byt $1c, $1d, $1e, $1f
+.endproc
+
 .proc BrickPoof ; the particles used for brick poofs
   lda #OAM_COLOR_1
   sta 1
@@ -201,10 +235,12 @@ DrawY = O_RAM::OBJ_DRAWY
   RealXPosToScreenPosByX ObjectPXL, ObjectPXH, DrawX
   RealYPosToScreenPosByX ObjectPYL, ObjectPYH, DrawY
   lda ObjectF2,x
-  cmp #1
+  cmp #PoofSubtype::BRICKS
   jeq BrickPoof
-  cmp #2
+  cmp #PoofSubtype::BALLOON
   jeq ObjectFlyawayBalloon
+  cmp #PoofSubtype::FLOAT_TEXT
+  jeq ObjectFloatingText
 
   lda #OAM_COLOR_1
   sta 1

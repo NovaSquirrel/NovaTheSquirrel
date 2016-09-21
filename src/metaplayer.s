@@ -18,6 +18,24 @@
 OpenPrize: ; insert effects here
   lda #Metatiles::USED_PRIZE
   jsr ChangeBlock
+
+  stx TempX
+  jsr GetBlockX
+  tax
+  lda ColumnBytes,x
+  beq JustACoin
+  ; Open a prize
+  ldx TempX
+  pha ; item number
+  dey
+  lda #Metatiles::INVENTORY_ITEM
+  jsr ChangeBlock
+  iny
+  pla ; item number  
+  jmp MakeFloatingTextAtBlock
+
+JustACoin:
+  ldx TempX
   lda #PoofSubtype::POOF
   jsr MakePoofAtBlock
 
@@ -62,6 +80,7 @@ BricksHi:
   jmp OpenPrize
 .endproc
 
+; inputs: A (Poof subtype)
 .proc MakePoofAtBlock
   pha
   sty TempVal+1
@@ -112,6 +131,7 @@ CollectibleLo:
   .byt <(TouchedWoodArrow-1)
   .byt <(TouchedWoodBomb-1)
   .byt <(TouchedWoodCrate-1)
+  .byt <(TouchedInventoryItem-1)
   .byt <(TouchedChip-1)
 CollectibleHi:
   .byt >(TouchedCoin-1)
@@ -130,6 +150,7 @@ CollectibleHi:
   .byt >(TouchedWoodArrow-1)
   .byt >(TouchedWoodBomb-1)
   .byt >(TouchedWoodCrate-1)
+  .byt >(TouchedInventoryItem-1)
   .byt >(TouchedChip-1)
 
 SpecialMiscLo:
@@ -199,6 +220,18 @@ SpecialMiscHi:
   lda #SFX::COIN
   jsr PlaySound
   jmp AddCoin
+.endproc
+
+.proc TouchedInventoryItem
+  lda #0
+  jsr ChangeBlock
+  jsr GetBlockX
+  tay
+  lda ColumnBytes,y
+  jsr InventoryGiveItem
+
+  lda #SFX::COIN ; todo: make a more suitable sound effect
+  jmp PlaySound
 .endproc
 
 .proc TouchedLadder
@@ -321,6 +354,8 @@ ExitDoor:
 .endproc
 
 .proc TouchedChip
+  lda #0
+  jsr ChangeBlock
   rts
 .endproc
 
@@ -368,7 +403,7 @@ ExitDoor:
   sta TempVal
   ; Is this a collectible??
   sub #M_FIRST_COLLECTIBLE
-  cmp #M_LAST_COLLECTIBLE-M_FIRST_COLLECTIBLE
+  cmp #M_LAST_COLLECTIBLE+1-M_FIRST_COLLECTIBLE
   bcs :+
   jsr Call
 : ldy TempY

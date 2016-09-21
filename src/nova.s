@@ -34,6 +34,7 @@ VOICE_BANK = $d
 LEVELPROCESS_BANK = $e
 SOUND_BANK = $e
 VWF_BANK = $e
+INVENTORY_BANK = $e
 THINFONT_BANK = $d
 
 .segment "PRG6" ;

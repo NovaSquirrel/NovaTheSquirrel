@@ -253,6 +253,8 @@ MS_EMPTY = 32
 .enum PoofSubtype
   POOF
   BRICKS
+  BALLOON
+  FLOAT_TEXT
 .endenum
 
 .enum MusicTracks
