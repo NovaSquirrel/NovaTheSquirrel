@@ -1,2 +1,2 @@
-tblmake objects.txt objectlist.s
+tblmake objects.txt objectlist.s objectenum.s
 pause

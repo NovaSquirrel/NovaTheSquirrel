@@ -785,7 +785,7 @@ C .byt $b3
 
 R LOCK_RED
 C .byt M_PAL_2
-C .byt M_SPECIAL_WALL
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL
 C .byt $a8
 C .byt $a9
 C .byt $aa
@@ -793,7 +793,7 @@ C .byt $ab
 
 R LOCK_GREEN
 C .byt M_PAL_0
-C .byt M_SPECIAL_WALL
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL
 C .byt $a8
 C .byt $a9
 C .byt $aa
@@ -801,7 +801,7 @@ C .byt $ab
 
 R LOCK_BLUE
 C .byt M_PAL_3
-C .byt M_SPECIAL_WALL
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL
 C .byt $a8
 C .byt $a9
 C .byt $aa
@@ -809,7 +809,7 @@ C .byt $ab
 
 R CHIP_SOCKET
 C .byt M_PAL_1
-C .byt M_SPECIAL_WALL
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL
 C .byt $98
 C .byt $99
 C .byt $9a
@@ -817,7 +817,7 @@ C .byt $9b
 
 R PICKUP_BLOCK
 C .byt M_PAL_1
-C .byt M_SPECIAL_WALL
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL
 C .byt $28
 C .byt $0d
 C .byt $2a
@@ -825,7 +825,7 @@ C .byt $0f
 
 R PUSHABLE_BLOCK
 C .byt M_PAL_1
-C .byt M_SPECIAL_WALL
+C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL
 C .byt $0c
 C .byt $29
 C .byt $0e

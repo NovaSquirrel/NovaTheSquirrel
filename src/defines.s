@@ -54,6 +54,10 @@ LEVEL_INTROS = 1
 ;AUTO_CLIMB = 1
 ; -------------------------------------
 
+.include "../tools/objectenum.s"
+.include "../tools/inventoryenum.s"
+.include "../tools/metatileenum.s"
+
 .enum GraphicsUpload
   BG_COMMON
   BG_GRASSY
@@ -91,6 +95,7 @@ LEVEL_INTROS = 1
   PAL_ALTGRASS1
   PAL_ALTGRASS2
   SP_SCHEME_TEAM
+  SP_HANNAH
 .endenum
 
 .enum SFX

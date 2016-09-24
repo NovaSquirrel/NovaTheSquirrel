@@ -1,2 +1,2 @@
-tblmake inventory.txt inventorylist.s
+tblmake inventory.txt inventorylist.s inventoryenum.s
 pause

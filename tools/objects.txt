@@ -263,3 +263,18 @@ R SCHEME_TEAM
 C .byt GraphicsUpload::SP_SCHEME_TEAM
 C .byt ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+
+R FLYING_ARROW
+C .byt GraphicsUpload::SP_HANNAH
+C .byt 0
+C .byt ObjFlag::ESSENTIAL
+
+R FALLING_BOMB
+C .byt GraphicsUpload::SP_HANNAH
+C .byt 0
+C .byt ObjFlag::ESSENTIAL
+
+R BOULDER
+C .byt GraphicsUpload::SP_HANNAH
+C .byt ObjBehavior::AUTO_REMOVE
+C .byt ObjFlag::ESSENTIAL

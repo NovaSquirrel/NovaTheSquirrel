@@ -1,58 +1,3 @@
-.enum Enemy
-  NONE
-  GOOMBA
-  SNEAKER
-  SPINNER
-  OWL
-  KING
-  TOASTBOT
-  BALL
-  POTION
-  GEORGE
-  BIG_GEORGE
-  ALAN
-  GLIDER
-  ICE_1
-  ICE_2
-  BALL_GUY
-  THWOMP
-  CANNON_1
-  CANNON_2
-  BURGER
-  FIRE_WALK
-  FIRE_JUMP
-  MINE
-  ROCKET
-  ROCKET_LAUNCHER
-  FIREWORK_SHOOTER
-  TORNADO
-  ELECTRIC_FAN
-  CLOUD
-  BOUNCER
-  GREMLIN
-  BOMB_GUY
-  POOF
-  PLAYER_PROJECTILE
-  BLASTER_SHOT
-  SMALL_GLIDER
-  BOOMERANG
-  FIREBALL
-  FLAMES
-  WATER_BOTTLE
-  ICE_BLOCK
-  RONALD
-  RONALD_BURGER
-  FRIES
-  FRY
-  SUN
-  SUNKEY
-  MOVING_PLATFORM_HORIZ
-  MOVING_PLATFORM_LINE
-  FIREBAR
-  BOSS_FIGHT
-  SCHEME_TEAM
-.endenum
-
 .proc ObjGraphics
   .byt 0 ;NONE
   .byt GraphicsUpload::SP_WALKER ;GOOMBA
@@ -106,6 +51,9 @@
   .byt GraphicsUpload::SP_FIRE ;FIREBAR
   .byt 0 ;BOSS_FIGHT
   .byt GraphicsUpload::SP_SCHEME_TEAM ;SCHEME_TEAM
+  .byt GraphicsUpload::SP_HANNAH ;FLYING_ARROW
+  .byt GraphicsUpload::SP_HANNAH ;FALLING_BOMB
+  .byt GraphicsUpload::SP_HANNAH ;BOULDER
 .endproc
 
 .proc ObjBehaviors
@@ -161,6 +109,9 @@
   .byt ObjBehavior::AUTO_REMOVE ;FIREBAR
   .byt 0 ;BOSS_FIGHT
   .byt ObjBehavior::AUTO_RESET ;SCHEME_TEAM
+  .byt 0 ;FLYING_ARROW
+  .byt 0 ;FALLING_BOMB
+  .byt ObjBehavior::AUTO_REMOVE ;BOULDER
 .endproc
 
 .proc ObjFlags
@@ -216,5 +167,8 @@
   .byt ObjFlag::PRIMARY ;FIREBAR
   .byt ObjFlag::ESSENTIAL ;BOSS_FIGHT
   .byt ObjFlag::PRIMARY ;SCHEME_TEAM
+  .byt ObjFlag::ESSENTIAL ;FLYING_ARROW
+  .byt ObjFlag::ESSENTIAL ;FALLING_BOMB
+  .byt ObjFlag::ESSENTIAL ;BOULDER
 .endproc
 

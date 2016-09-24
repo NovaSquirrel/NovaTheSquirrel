@@ -31,9 +31,10 @@ int CurCol = 0;
 
 int main(int argc, char *argv[]) {
   if(argc < 3) {
-    puts("syntax: tblmake in.txt out.s");
+    puts("syntax: tblmake in.txt out.s [enum.txt]");
     return 0;
   }
+  int SeparateEnum = argc == 4;
 
   char Buffer[700];
 
@@ -88,13 +89,21 @@ int main(int argc, char *argv[]) {
     return 0;
   }
 
+  FILE *EnumFile;
+  if(SeparateEnum)
+    EnumFile = fopen(argv[3], "wb");
+  else
+    EnumFile = OutputFile;
+
   if(EnumName[0]) {
-    fprintf(OutputFile, ".enum %s\r\n", EnumName);
+    fprintf(EnumFile, ".enum %s\r\n", EnumName);
     for(j=0; j<NumRows; j++) {
-      fprintf(OutputFile, "  %s\r\n", RowNames[j]);
+      fprintf(EnumFile, "  %s\r\n", RowNames[j]);
     }
-    fprintf(OutputFile, ".endenum\r\n\r\n");
+    fprintf(EnumFile, ".endenum\r\n\r\n");
   }
+  if(SeparateEnum)
+    fclose(EnumFile);
 
   for(i=0; i<NumCols; i++) {
     fprintf(OutputFile, "%s", ColInclude[i]);
