@@ -640,6 +640,11 @@ DoneCheckMiddle:
   lda MetatileFlags,x
   cmp #$80
   rol FourCorners
+  cmp #M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL
+  bne :+
+    lda BlockUL
+    jsr DoSpecialWall
+  :
   lda #$70
   add PlayerPXL            ; right side
   lda PlayerPXH
@@ -651,6 +656,11 @@ DoneCheckMiddle:
   lda MetatileFlags,x
   cmp #$80
   rol FourCorners
+  cmp #M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL
+  bne :+
+    lda BlockUR
+    jsr DoSpecialWall
+  :
 SkipTheTop:
 
   ;bottom

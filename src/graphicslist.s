@@ -43,6 +43,7 @@ GraphicsList:
   .byt GRAPHICS_BANK1|IS_PALETTE, <AltGrassy1,   >AltGrassy1
   .byt GRAPHICS_BANK1|IS_PALETTE, <AltGrassy2,   >AltGrassy2
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPSchemeTeam, >SPSchemeTeam
+  .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPHannah,     >SPHannah
 
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)

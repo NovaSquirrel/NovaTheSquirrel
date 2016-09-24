@@ -294,7 +294,8 @@ Found:
 ; Finds a free object slot, if there is one
 ; and sets the new object's type, also using the
 ; value for priority and handling running out of slots
-; output: A (new object's type), X (object slot), carry (success)
+; input: A (new object's type)
+; output: X (object slot), carry (success)
 ; locals: TempXSwitch, TempY
 .proc FindFreeObjectForTypeX
 NewType = TempXSwitch
@@ -1049,7 +1050,7 @@ WriteIncreasing16:
 
 ; Looks for an item in the inventory
 ; input: A (item to look for)
-; output: carry (set if item found)
+; output: carry (set if item found), X (item index)
 ; preserves A
 .proc InventoryHasItem
   ldx #InventoryLen-1
@@ -1060,6 +1061,17 @@ WriteIncreasing16:
   clc ; no
   rts
 : sec ; yes
+  rts
+.endproc
+
+; Removes one item from a slot
+; inputs: X (item slot to take one from)
+.proc InventoryTakeItem
+  dec InventoryAmount,x
+  bpl :+
+    lda #0
+    sta InventoryType,x
+  :
   rts
 .endproc
 
@@ -1102,7 +1114,7 @@ WriteIncreasing16:
 
 Empty: ; Empty slot, put in item
   sta InventoryType,x
-  lda #1
+  lda #0
   sta InventoryAmount,x
   sec
   rts

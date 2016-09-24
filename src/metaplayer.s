@@ -189,6 +189,44 @@ SpecialMiscHi:
   .byt >(TouchedForce-1)
   .byt >(TouchedForce-1)
 
+SpecialWallLo:
+  .byt <(TouchedLock-1)
+  .byt <(TouchedLock-1)
+  .byt <(TouchedLock-1)
+  .byt <(TouchedChipSocket-1)
+  .byt <(TouchedPickupBlock-1)
+  .byt <(TouchedPushableBlock-1)
+
+SpecialWallHi:
+  .byt >(TouchedLock-1)
+  .byt >(TouchedLock-1)
+  .byt >(TouchedLock-1)
+  .byt >(TouchedChipSocket-1)
+  .byt >(TouchedPickupBlock-1)
+  .byt >(TouchedPushableBlock-1)
+
+.proc TouchedChipSocket
+  rts
+.endproc
+.proc TouchedPickupBlock
+  rts
+.endproc
+.proc TouchedPushableBlock
+  rts
+.endproc
+
+.proc TouchedLock
+  sub #Metatiles::LOCK_RED
+  add #InventoryItem::RED_KEY
+  jsr InventoryHasItem
+  bcc NoItem
+  jsr InventoryTakeItem
+  lda #0
+  jsr ChangeBlock
+NoItem:
+  rts
+.endproc
+
 .proc TouchedBigHeart
   lda PlayerHealth
   cmp #4
@@ -330,7 +368,16 @@ ExitDoor:
 .endproc
 
 .proc TouchedKey
-  rts
+  pha
+  lda #0
+  jsr ChangeBlock
+  pla
+  sub #Metatiles::KEY_RED
+  add #InventoryItem::RED_KEY
+  jsr InventoryGiveItem
+
+  lda #SFX::COIN ; todo: make a more suitable sound effect
+  jmp PlaySound  
 .endproc
 
 .proc TouchedToggleSwitch
@@ -372,15 +419,75 @@ ExitDoor:
 .endproc
 
 .proc TouchedWoodArrow
+SaveY = 10
+Offset = 11
+  sty SaveY
+  sub #Metatiles::WOOD_ARROW_LEFT
+  sta Offset
+
+  pha
+  ; X and Y are preserved
+  lda #0
+  jsr ChangeBlock
+  pla
+
+  lda #Enemy::FLYING_ARROW*2
+  jsr FindFreeObjectForTypeX
+  bcc Exit
+  jsr GetBlockX
+  sta ObjectPXH,x
+  lda SaveY
+  sta ObjectPYH,x
+
+  ldy Offset
+  jsr ArrowChangeDirection
+Exit:
+
+  ldy SaveY
+  lda #PoofSubtype::POOF
+  jsr MakePoofAtBlock
   rts
+.endproc
+.proc ArrowChangeDirection
+  lda #0
+  sta ObjectPXL,x
+  sta ObjectPYL,x
+
+  lda FlyingArrowVX,y
+  sta ObjectVXL,x
+  sex
+  sta ObjectVXH,x
+
+  lda FlyingArrowVY,y
+  sta ObjectVYL,x
+  sex
+  sta ObjectVYH,x
+
+  lda #60
+  sta ObjectTimer,x
+  rts
+FlyingArrowVX:
+  .byt <(-$28), 0, 0, <($28)
+FlyingArrowVY:
+  .byt 0, <($28), <(-$28), 0
 .endproc
 
 .proc TouchedWoodBomb
+  lda #0
+  jsr ChangeBlock
   rts
 .endproc
 
 .proc TouchedWoodCrate
-  rts
+  lda #4
+  sta 0
+  lda #Metatiles::EMPTY
+  jsr DelayChangeBlock
+  lda #Metatiles::SPRING
+  jsr ChangeBlock
+
+  lda #PoofSubtype::BRICKS
+  jmp MakePoofAtBlock
 .endproc
 
 .proc DoSpecialMisc
@@ -425,6 +532,16 @@ Call:
 .endproc
 
 .proc DoSpecialWall
+  sty TempY
+  sta TempVal
+  sub #M_FIRST_SPECIAL_WALL
+  tay
+  lda SpecialWallHi,y
+  pha
+  lda SpecialWallLo,y
+  pha
+  ldy TempY
+  lda TempVal
   rts
 .endproc
 

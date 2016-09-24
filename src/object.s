@@ -172,6 +172,9 @@ Exit:
   .raddr ObjectFirebar
   .raddr ObjectBossFight
   .raddr ObjectSchemeTeam
+  .raddr ObjectFlyingArrow
+  .raddr ObjectFallingBomb
+  .raddr ObjectBoulder
 .endproc
 
 ; other enemy attributes
@@ -1222,6 +1225,28 @@ YesSolid:
   cmp #M_SOLID_TOP
   rol 0
   lda 0
+  rts
+.endproc
+
+; Checks if an object's center is overlapping a solid block
+; input: X (object slot)
+; output: carry (set if overlapping a solid), 0 (block type), 1 (Y position)
+.proc EnemyCheckOverlappingOnSolid
+  lda ObjectPYL,x
+  add #$80
+  lda ObjectPYH,x
+  adc #0
+  tay
+  lda ObjectPXL,x
+  add #$80
+  lda ObjectPXH,x
+  adc #0
+  jsr GetLevelColumnPtr
+  sta 0
+  sty 1
+  tay
+  lda MetatileFlags,y
+  cmp #M_SOLID_ALL
   rts
 .endproc
 

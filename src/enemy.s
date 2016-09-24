@@ -1497,3 +1497,106 @@ BodyAnim:
   .byt $14, $15, $14, $15 ; jumping
   .byt $13, $13, $13, $13 ; flying
 .endproc
+
+.proc ObjectFlyingArrow
+  jsr EnemyDespawnTimer
+  jsr EnemyApplyVelocity
+
+  jsr EnemyCheckOverlappingOnSolid
+  bcc ArrowDidntHit
+  ldy #11
+: lda ReactWithTypes,y
+  cmp 0
+  beq ArrowHit
+  dey
+  bpl :-
+ArrowDidntHit:
+
+  ; Face left if going left
+  lda ObjectF1,x
+  and #<~1  
+  sta ObjectF1,x
+  lda ObjectVXL,x
+  bpl :+
+  inc ObjectF1,x
+:
+
+; Draw the arrow
+  lda ObjectVYL,x ; No vertical movement? Display a horizontal arrow
+  beq Horizontal
+  lda ObjectVYH,x ; Check if moving up or moving down
+  bmi Up          ; Negative = moving up
+  lda #4
+  bne Skip
+Horizontal:
+  lda #0
+Skip:
+  ldy #OAM_COLOR_3
+  jmp DispEnemyWide
+Up:
+  ldy #4
+  lda #%1101
+  jmp DispEnemyWideFlipped
+
+ArrowHit:
+  cpy #8
+  bcs WasNotArrow
+
+  ; Snap to right X and Y
+  lda ObjectPXL,x
+  add #$80
+  lda ObjectPXH,x
+  adc #0
+  sta ObjectPXH,x
+  lda ObjectPYL,x
+  add #$80
+  lda ObjectPYH,x
+  adc #0
+  sta ObjectPYH,x
+
+  tya
+  and #3
+  tay
+  jsr ArrowChangeDirection
+  jmp WasArrow
+WasNotArrow:
+  lda #0
+  sta ObjectF1,x
+WasArrow:
+  lda #0
+  ldy 1
+  jmp ChangeBlock
+
+ReactWithTypes:
+  .byt Metatiles::METAL_ARROW_LEFT,  Metatiles::METAL_ARROW_DOWN
+  .byt Metatiles::METAL_ARROW_UP,    Metatiles::METAL_ARROW_RIGHT
+  .byt Metatiles::WOOD_ARROW_LEFT,   Metatiles::WOOD_ARROW_DOWN
+  .byt Metatiles::WOOD_ARROW_UP,     Metatiles::WOOD_ARROW_RIGHT
+  .byt Metatiles::METAL_BOMB,        Metatiles::METAL_CRATE
+  .byt Metatiles::WOOD_BOMB,         Metatiles::WOOD_CRATE
+.endproc
+
+.proc ObjectFallingBomb
+  jsr EnemyApplyVelocity
+  jsr EnemyGravity
+
+  jsr EnemyCheckOverlappingOnSolid
+  bcc :+
+    ; No explosion yet
+    lda #0
+    sta ObjectF1,x
+  :
+
+  lda #8
+  ldy #OAM_COLOR_2
+  jmp DispEnemyWide
+.endproc
+
+.proc ObjectBoulder
+  jsr EnemyFall
+
+  lda #12
+  ldy #OAM_COLOR_2
+  jmp DispEnemyWide
+.endproc
+
