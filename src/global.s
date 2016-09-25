@@ -1071,6 +1071,7 @@ WriteIncreasing16:
   bpl :+
     lda #0
     sta InventoryType,x
+    sta InventoryAmount,x
   :
   rts
 .endproc
