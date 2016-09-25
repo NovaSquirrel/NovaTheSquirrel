@@ -495,7 +495,7 @@ FlyingArrowVY:
   bcc :+
   jsr GetBlockX
   sta PlayerPXH
-  lda #$80
+  lda #$40
   sta PlayerPXL
 :
 
