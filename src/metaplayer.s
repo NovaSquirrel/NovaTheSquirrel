@@ -489,16 +489,23 @@ FlyingArrowVY:
   ; Snap player to the block
   ; todo: maybe block left/right shortly after stepping on it?
   lda keydown
-  and #KEY_LEFT|KEY_RIGHT
-  bne :+
+;  and #KEY_LEFT|KEY_RIGHT
+;  bne :+
   cpy PlayerPYH ; make sure the player is actually above the block
   bcc :+
+  lda CollectedByProjectile
+  bne :+
   jsr GetBlockX
   sta PlayerPXH
   ldy PlayerDir
   lda Offset,y
   sta PlayerPXL
   ldy TempY
+  lda #0
+  sta PlayerVXL
+  sta PlayerVXH
+  lda #3
+  sta PlayerLeftRightLock
 :
 
   lda #PoofSubtype::BRICKS

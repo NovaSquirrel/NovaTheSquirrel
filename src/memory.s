@@ -219,6 +219,10 @@
   PlayerLocationLast: .res 1
   PlayerLocationNow:  .res 1
 
+  ; Set to 1 if a collectible was touched by something other than the player
+  CollectedByProjectile: .res 1
+  PlayerLeftRightLock:   .res 1
+
   ; DelayedMetaEdits set a timer for when a block in the level should be replaced with something else
   MaxDelayedMetaEdits = 10
 ; DelayedMetaEditIndexHi

@@ -336,6 +336,14 @@ NotOffTopBottom:
   countdown PlayerWalkLock
   countdown PlayerInvincible
 
+  lda PlayerLeftRightLock
+  beq :+
+    lda keydown
+    and #<~(KEY_LEFT|KEY_RIGHT)
+    sta keydown
+    dec PlayerLeftRightLock
+  :
+
   lda PlayerTailAttack
   beq NoTail
     inc PlayerTailAttack
