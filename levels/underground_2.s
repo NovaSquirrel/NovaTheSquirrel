@@ -57,11 +57,10 @@ underground_2Data:
   LObjN LO::R_GROUND,         1, 0, 5, 2
   LObjN LO::WIDE_1,           0, 9, 0, LN1::SPIKES
   LObj  LO::S_FLOWER,         2, 8
-  LObj  LO::S_BIG_BUSH, 3, 6
-  LObjN LO::R_GROUND,         0, 7, 3, 7
+  LObjN LO::R_GROUND,         3, 7, 3, 7
   LObjN LO::R_GROUND,         1, 0, 2, 3
-  LObj  LO::S_BIG_BUSH, 1, 6
-  LObjN LO::R_GROUND,         2, 10, 4, 4
+  LObj  LO::S_BIG_BUSH, 0, 6
+  LObjN LO::R_GROUND,         3, 10, 4, 4
   LObjN LO::R_AIR,            2, 10, 0, 4
   LObj  LO::S_SPRING,         1, 9
   LObjN LO::R_GROUND,         1, 0, 4, 3

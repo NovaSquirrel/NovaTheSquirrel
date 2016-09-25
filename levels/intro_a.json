@@ -139,7 +139,8 @@
 					"X":	17,
 					"Y":	9,
 					"W":	1,
-					"H":	1
+					"H":	1,
+					"Extra":	"HEALTH_RESTORE"
 				}, {
 					"Id":	"BRICKS",
 					"X":	15,

@@ -34,7 +34,8 @@ grassy_aData:
   LObj  LO::S_FLOWER,         1, 12
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 24
   LObjN LO::R_BRICKWALL,      1, 11, 7, 1
-  LObjN LO::TALL_2,           10, 10, 2, LN2::TRUNK_L
+  LObjN LO::R_COIN,           4, 9, 1, 1
+  LObjN LO::TALL_2,           6, 10, 2, LN2::TRUNK_L
   LObj  LO::S_FLOWER,         2, 12
   LObjN LO::TALL_2,           1, 10, 2, LN2::TRUNK_L
   LObjN LO::WIDE_3,           3, 12, 5, LN3::WHITEFENCE

@@ -37,6 +37,7 @@ intro_aData:
   LObj  LO::S_PRIZE,          1, 6
   LObjN LO::R_BRICK,          0, 9, 3, 0
   LObj  LO::S_PRIZE,          1, 9
+  LWriteCol InventoryItem::HEALTH_RESTORE
   LObj  LO::S_SPRING,         2, 12
   LObjN LO::WIDE_1,           3, 12, 0, LN1::SPIKES
   LObjN LO::WIDE_1,           3, 11, 5, LN1::SOLID_LEDGE
