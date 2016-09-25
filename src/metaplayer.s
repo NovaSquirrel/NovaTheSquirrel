@@ -486,6 +486,19 @@ FlyingArrowVY:
   lda #Metatiles::SPRING
   jsr ChangeBlock
 
+  ; Snap player to the block
+  ; todo: maybe block left/right shortly after stepping on it?
+  lda keydown
+  and #KEY_LEFT|KEY_RIGHT
+  bne :+
+  cpy PlayerPYH ; make sure the player is actually above the block
+  bcc :+
+  jsr GetBlockX
+  sta PlayerPXH
+  lda #$80
+  sta PlayerPXL
+:
+
   lda #PoofSubtype::BRICKS
   jmp MakePoofAtBlock
 .endproc
