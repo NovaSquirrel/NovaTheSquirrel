@@ -495,12 +495,16 @@ FlyingArrowVY:
   bcc :+
   jsr GetBlockX
   sta PlayerPXH
-  lda #$40
+  ldy PlayerDir
+  lda Offset,y
   sta PlayerPXL
+  ldy TempY
 :
 
   lda #PoofSubtype::BRICKS
   jmp MakePoofAtBlock
+Offset:
+  .byt $60, $20
 .endproc
 
 .proc DoSpecialMisc
