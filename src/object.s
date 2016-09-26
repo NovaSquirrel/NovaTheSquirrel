@@ -1413,39 +1413,6 @@ Good:
   rts
 .endproc
 
-; Clears out an object slot
-; input: X (object slot)
-.proc ObjectClearX
-  lda #255
-  sta ObjectIndexInLevel,x
-  lda #0
-  sta ObjectF2,x
-  sta ObjectF3,x
-  sta ObjectF4,x
-  sta ObjectVXH,x
-  sta ObjectVXL,x
-  sta ObjectVYH,x
-  sta ObjectVYL,x
-  rts
-.endproc
-
-; Clears out an object slot
-; input: Y (object slot)
-.proc ObjectClearY
-  lda #255
-  sta ObjectIndexInLevel,y
-  lda #0
-  sta ObjectF2,y
-  sta ObjectF3,y
-  sta ObjectF4,y
-  sta ObjectVXH,y
-  sta ObjectVXL,y
-  sta ObjectVYH,y
-  sta ObjectVYL,y
-  sta ObjectTimer,y
-  rts
-.endproc
-
 ; Draws an 8x8 sprite
 ; input: X (object slot), A (object tile)
 DispObject8x8:

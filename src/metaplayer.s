@@ -448,29 +448,6 @@ Exit:
   jsr MakePoofAtBlock
   rts
 .endproc
-.proc ArrowChangeDirection
-  lda #0
-  sta ObjectPXL,x
-  sta ObjectPYL,x
-
-  lda FlyingArrowVX,y
-  sta ObjectVXL,x
-  sex
-  sta ObjectVXH,x
-
-  lda FlyingArrowVY,y
-  sta ObjectVYL,x
-  sex
-  sta ObjectVYH,x
-
-  lda #60
-  sta ObjectTimer,x
-  rts
-FlyingArrowVX:
-  .byt <(-$28), 0, 0, <($28)
-FlyingArrowVY:
-  .byt 0, <($28), <(-$28), 0
-.endproc
 
 .proc TouchedWoodBomb
   lda #0

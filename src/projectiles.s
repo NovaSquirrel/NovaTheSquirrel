@@ -384,9 +384,7 @@ ProjBoomerang:
   lda ObjectPXH,x
   adc #0
   jsr GetLevelColumnPtr
-  inc CollectedByProjectile
-  jsr DoCollectible
-  dec CollectedByProjectile
+  jsr DoCollectibleFar
 
   lda retraces
   lsr

@@ -1565,7 +1565,7 @@ WasNotArrow:
 WasArrow:
   lda #0
   ldy 1
-  jmp ChangeBlock
+  jmp ChangeBlockFar
 
 ReactWithTypes:
   .byt Metatiles::METAL_ARROW_LEFT,  Metatiles::METAL_ARROW_DOWN

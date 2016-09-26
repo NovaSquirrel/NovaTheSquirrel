@@ -270,129 +270,6 @@ ChangePlayerAbilityWithoutSFX = ChangePlayerAbility::WithoutSFX
   rts
 .endproc
 
-; Finds a free object slot, if there is one
-; output: X (object slot), carry (success)
-.proc FindFreeObjectX
-  pha
-  ldx #ObjectLen-1
-: lda ObjectF1,x
-  beq Found
-  dex
-  bpl :-
-NotFound:
-  pla
-  clc
-  rts
-Found:
-  lda #255
-  sta ObjectIndexInLevel,x
-  pla
-  sec
-  rts
-.endproc
-
-; Finds a free object slot, if there is one
-; and sets the new object's type, also using the
-; value for priority and handling running out of slots
-; input: A (new object's type)
-; output: X (object slot), carry (success)
-; locals: TempXSwitch, TempY
-.proc FindFreeObjectForTypeX
-NewType = TempXSwitch
-  sta NewType
-  sty TempY
-
-; Look for a free slot
-  ldx #ObjectLen-1
-: lda ObjectF1,x
-  beq Success
-  dex
-  bpl :-
-
-; Not found, so deal with this according to the priority
-NotFound:
-  jsr GetPriority
-  ; If secondary (zero), fail
-  beq Failure
-
-; Second Loop. Look for secondary priority object to overwrite
-  ldx #ObjectLen-1
-: lda ObjectF1,x
-  lsr
-  tay
-  lda ObjFlags,y
-  and #ObjFlag::PRIORITY_BITS
-  beq Success
-  dex
-  bpl :-
-
-; No secondary objects. Is this an essential object?
-  jsr GetPriority
-  cmp #ObjFlag::ESSENTIAL
-  bne Failure ; nope
-
-; THIRD loop, overwrite any non-essential objects
-  ldx #ObjectLen-1
-: lda ObjectF1,x
-  lsr
-  tax
-  lda ObjFlags,x
-  and #ObjFlag::PRIORITY_BITS
-  cmp #ObjFlag::ESSENTIAL
-  bne Success
-  dex
-  bpl :-
-; Otherwise, drop into Failure
-
-; Exit with clear carry
-Failure: ; without PLA
-  ldy TempY
-  clc
-  rts
-
-; Found a free slot, write the object type
-Success:
-  ldy TempY
-  lda #255
-  sta ObjectIndexInLevel,x
-  lda NewType
-  sta ObjectF1,x
-  sec
-  rts
-
-; Gets the object type's priority bits
-; (Honestly, if we have 16 sprites onscreen, fast code here
-;  isn't going to help, so it's okay to recalculate this)
-GetPriority:
-  lda NewType
-  lsr
-  tax
-  lda ObjFlags,x
-  and #ObjFlag::PRIORITY_BITS
-  rts
-.endproc
-
-; Finds a free object slot, if there is one
-; output: Y (object slot), carry (success)
-.proc FindFreeObjectY
-  pha
-  ldy #ObjectLen-1
-: lda ObjectF1,y
-  beq Found
-  dey
-  bpl :-
-NotFound:
-  pla
-  clc
-  rts
-Found:
-  lda #255
-  sta ObjectIndexInLevel,y
-  pla
-  sec
-  rts
-.endproc
-
 ; Damages the player
 .proc HurtPlayer
   lda PlayerHealth
@@ -774,10 +651,11 @@ Temp = 3
 :
   ; queue the PPU update
 
-  ; switch to the bank with all the tile IDs
-  ; maybe unnecessary since if we call this routine we're probably there already
-  lda #MAINLOOP_BANK
-  jsr _SetPRG
+  ; This was originally supposed to restore the bank after temporarily switching to the one with metatile definitions,
+  ; however the boomerangs had a problem with calling ChangeBlock via DoCollectible so right now it's commented out.
+  ; Just use ChangeBlockFar for now if you need to call it from another bank.
+;  lda #MAINLOOP_BANK
+;  jsr _SetPRG
 
   lda MetatileUL,x
   sta BlockUpdateT1,y
@@ -789,8 +667,8 @@ Temp = 3
   sta BlockUpdateT4,y
 
   ; restore the bank back to the one we were in
-  lda PRGBank
-  jsr _SetPRG
+;  lda PRGBank
+;  jsr _SetPRG
 
   ; Y is still the block update index
 
@@ -918,6 +796,27 @@ SkipAddr:
   jsr _SetPRG
   pla
   jsr pently_start_music
+  jmp SetPRG_Restore
+.endproc
+
+.proc DoCollectibleFar
+  pha
+  lda #MAINLOOP_BANK
+  jsr _SetPRG
+  pla
+  inc CollectedByProjectile
+  jsr DoCollectible
+  dec CollectedByProjectile
+  lda #OBJECT_BANK
+  jmp _SetPRG
+.endproc
+
+.proc ChangeBlockFar
+  pha
+  lda #MAINLOOP_BANK
+  jsr _SetPRG
+  pla
+  jsr ChangeBlock
   jmp SetPRG_Restore
 .endproc
 
@@ -1268,3 +1167,208 @@ NoSlotFree:
 Exit:
   jmp SetPRG_Restore
 .endproc
+
+; Adds another coin to the counter, deals with BCD stuff and
+; sets a timer to display the counter.
+.proc AddCoin
+  lda #60
+  sta CoinShowTimer
+  inc Coins
+  lda Coins
+  cmp #100
+  bne :+
+    lda #0
+    sta Coins
+    inc Coins+1
+    lda Coins+1
+    cmp #100
+      bne :+
+      lda #99
+      sta Coins+1
+  :
+  rts
+.endproc
+
+; ---------------- Object related stuff -------------------
+; Clears out an object slot
+; input: X (object slot)
+.proc ObjectClearX
+  lda #255
+  sta ObjectIndexInLevel,x
+  lda #0
+  sta ObjectF2,x
+  sta ObjectF3,x
+  sta ObjectF4,x
+  sta ObjectVXH,x
+  sta ObjectVXL,x
+  sta ObjectVYH,x
+  sta ObjectVYL,x
+  rts
+.endproc
+
+; Clears out an object slot
+; input: Y (object slot)
+.proc ObjectClearY
+  lda #255
+  sta ObjectIndexInLevel,y
+  lda #0
+  sta ObjectF2,y
+  sta ObjectF3,y
+  sta ObjectF4,y
+  sta ObjectVXH,y
+  sta ObjectVXL,y
+  sta ObjectVYH,y
+  sta ObjectVYL,y
+  sta ObjectTimer,y
+  rts
+.endproc
+
+; Finds a free object slot, if there is one
+; output: X (object slot), carry (success)
+.proc FindFreeObjectX
+  pha
+  ldx #ObjectLen-1
+: lda ObjectF1,x
+  beq Found
+  dex
+  bpl :-
+NotFound:
+  pla
+  clc
+  rts
+Found:
+  lda #255
+  sta ObjectIndexInLevel,x
+  pla
+  sec
+  rts
+.endproc
+
+; Finds a free object slot, if there is one
+; and sets the new object's type, also using the
+; value for priority and handling running out of slots
+; input: A (new object's type)
+; output: X (object slot), carry (success)
+; locals: TempXSwitch, TempY
+.proc FindFreeObjectForTypeX
+NewType = TempXSwitch
+  sta NewType
+  sty TempY
+
+; Look for a free slot
+  ldx #ObjectLen-1
+: lda ObjectF1,x
+  beq Success
+  dex
+  bpl :-
+
+; Not found, so deal with this according to the priority
+NotFound:
+  jsr GetPriority
+  ; If secondary (zero), fail
+  beq Failure
+
+; Second Loop. Look for secondary priority object to overwrite
+  ldx #ObjectLen-1
+: lda ObjectF1,x
+  lsr
+  tay
+  lda ObjFlags,y
+  and #ObjFlag::PRIORITY_BITS
+  beq Success
+  dex
+  bpl :-
+
+; No secondary objects. Is this an essential object?
+  jsr GetPriority
+  cmp #ObjFlag::ESSENTIAL
+  bne Failure ; nope
+
+; THIRD loop, overwrite any non-essential objects
+  ldx #ObjectLen-1
+: lda ObjectF1,x
+  lsr
+  tax
+  lda ObjFlags,x
+  and #ObjFlag::PRIORITY_BITS
+  cmp #ObjFlag::ESSENTIAL
+  bne Success
+  dex
+  bpl :-
+; Otherwise, drop into Failure
+
+; Exit with clear carry
+Failure: ; without PLA
+  ldy TempY
+  clc
+  rts
+
+; Found a free slot, write the object type
+Success:
+  ldy TempY
+  lda #255
+  sta ObjectIndexInLevel,x
+  lda NewType
+  sta ObjectF1,x
+  sec
+  rts
+
+; Gets the object type's priority bits
+; (Honestly, if we have 16 sprites onscreen, fast code here
+;  isn't going to help, so it's okay to recalculate this)
+GetPriority:
+  lda NewType
+  lsr
+  tax
+  lda ObjFlags,x
+  and #ObjFlag::PRIORITY_BITS
+  rts
+.endproc
+
+; Finds a free object slot, if there is one
+; output: Y (object slot), carry (success)
+.proc FindFreeObjectY
+  pha
+  ldy #ObjectLen-1
+: lda ObjectF1,y
+  beq Found
+  dey
+  bpl :-
+NotFound:
+  pla
+  clc
+  rts
+Found:
+  lda #255
+  sta ObjectIndexInLevel,y
+  pla
+  sec
+  rts
+.endproc
+
+; --------------- end of object related stuff ----------------
+
+.proc ArrowChangeDirection
+  lda #0
+  sta ObjectPXL,x
+  sta ObjectPYL,x
+
+  lda FlyingArrowVX,y
+  sta ObjectVXL,x
+  sex
+  sta ObjectVXH,x
+
+  lda FlyingArrowVY,y
+  sta ObjectVYL,x
+  sex
+  sta ObjectVYH,x
+
+  lda #30
+  sta ObjectTimer,x
+  rts
+FlyingArrowVX:
+  .byt <(-$28), 0, 0, <($28)
+FlyingArrowVY:
+  .byt 0, <($28), <(-$28), 0
+.endproc
+

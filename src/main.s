@@ -197,6 +197,8 @@ NotSlowTimer:
   jsr RunPlayer
   jsr AdjustCamera
   jsr DisplayPlayer
+  lda #OBJECT_BANK
+  jsr SetPRG
   jsr RunObjects
   jsr FlickerEnemies
 

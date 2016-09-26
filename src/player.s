@@ -1428,27 +1428,6 @@ MakeDrawX:
 ; 04 05 | 12 05 | 12 05 | 17 18 | 1b 1c 1d  | 22 23 24
 .endproc
 
-; Adds another coin to the counter, deals with BCD stuff and
-; sets a timer to display the counter.
-.proc AddCoin
-  lda #60
-  sta CoinShowTimer
-  inc Coins
-  lda Coins
-  cmp #100
-  bne :+
-    lda #0
-    sta Coins
-    inc Coins+1
-    lda Coins+1
-    cmp #100
-      bne :+
-      lda #99
-      sta Coins+1
-  :
-  rts
-.endproc
-
 .proc DoTailAttack
   ; Break bricks first
   lda PlayerPYH

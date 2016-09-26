@@ -25,8 +25,8 @@ LEVELS_BANK2 = $1
 LEVELS_BANK3 = $2
 LEVELS_BANK4 = $3
 DIALOG_BANK = $7
-MAINLOOP_BANK2 = $8
 MAINLOOP_BANK = $9
+OBJECT_BANK = $8
 GRAPHICS_BANK3 = $a
 GRAPHICS_BANK2 = $b
 GRAPHICS_BANK1 = $c
@@ -39,17 +39,17 @@ THINFONT_BANK = $d
 
 .segment "PRG6" ;
 .segment "PRG7" ;
-.segment "PRG8" ; extra main loop stuff
+.segment "PRG8" ; object bank
+.include "object.s"
+.include "enemy.s"
+.include "drawsprite.s"
+.include "projectiles.s"
 .segment "PRG9" ; main loop stuff
 .include "metatile.s"
 .include "../tools/metatilelist.s"
-.include "object.s"
-.include "enemy.s"
 .include "player.s"
 .include "scrolling.s"
 .include "metaplayer.s"
-.include "projectiles.s"
-.include "drawsprite.s"
 .segment "PRGa" ; compressed graphics
 .segment "PRGb" ; compressed graphics
 .include "graphics2.s"
