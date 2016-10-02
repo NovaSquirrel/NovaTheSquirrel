@@ -1346,6 +1346,50 @@ Found:
   rts
 .endproc
 
+; Adds an offset to the X and Y coordinates of an object
+.proc ObjectOffsetXY
+  sta 0
+; X
+  lda ObjectPXL,x
+  add 0
+  sta ObjectPXL,x
+  addcarryx ObjectPXH
+; Y
+  lda ObjectPYL,x
+  add 0
+  sta ObjectPYL,x
+  addcarryx ObjectPYH
+  rts
+.endproc
+
+; Subtracts an offset from the X and Y coordinates of an objects
+.proc ObjectOffsetXYNegative
+  sta 0
+; X
+  lda ObjectPXL,x
+  sub 0
+  sta ObjectPXL,x
+  subcarryx ObjectPXH
+; Y
+  lda ObjectPYL,x
+  sub 0
+  sta ObjectPYL,x
+  subcarryx ObjectPYH
+  rts
+.endproc
+
+.proc EnemyPosToVel
+  lda ObjectPXL,x
+  sta ObjectVXL,x
+  lda ObjectPXH,x
+  sta ObjectVXH,x
+  lda ObjectPYL,x
+  sta ObjectVYL,x
+  lda ObjectPYH,x
+  sta ObjectVYH,x
+  rts
+.endproc
+
 ; --------------- end of object related stuff ----------------
 
 .proc ArrowChangeDirection

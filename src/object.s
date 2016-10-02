@@ -1494,18 +1494,6 @@ WithXYOffset:
 : rts
 .endproc
 
-.proc EnemyPosToVel
-  lda ObjectPXL,x
-  sta ObjectVXL,x
-  lda ObjectPXH,x
-  sta ObjectVXH,x
-  lda ObjectPYL,x
-  sta ObjectVYL,x
-  lda ObjectPYH,x
-  sta ObjectVYH,x
-  rts
-.endproc
-
 .proc CloneObjectX
   sty TempY
   jsr FindFreeObjectY
