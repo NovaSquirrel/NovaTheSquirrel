@@ -1365,7 +1365,9 @@ Found:
 
   lda #30
   sta ObjectTimer,x
-  rts
+
+  lda #SFX::ARROW_SHOOT
+  jmp PlaySound
 FlyingArrowVX:
   .byt <(-$28), 0, 0, <($28)
 FlyingArrowVY:

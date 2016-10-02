@@ -223,6 +223,8 @@ SpecialWallHi:
   jsr InventoryTakeItem
   lda #0
   jsr ChangeBlock
+  lda #SFX::UNLOCK
+  jsr PlaySound
 NoItem:
   rts
 .endproc
@@ -268,7 +270,7 @@ NoItem:
   lda ColumnBytes,y
   jsr InventoryGiveItem
 
-  lda #SFX::COIN ; todo: make a more suitable sound effect
+  lda #SFX::ITEM_GET
   jmp PlaySound
 .endproc
 
@@ -376,7 +378,7 @@ ExitDoor:
   add #InventoryItem::RED_KEY
   jsr InventoryGiveItem
 
-  lda #SFX::COIN ; todo: make a more suitable sound effect
+  lda #SFX::ITEM_GET
   jmp PlaySound  
 .endproc
 
@@ -445,8 +447,7 @@ Exit:
 
   ldy SaveY
   lda #PoofSubtype::POOF
-  jsr MakePoofAtBlock
-  rts
+  jmp MakePoofAtBlock
 .endproc
 
 .proc TouchedWoodBomb

@@ -120,6 +120,9 @@ LEVEL_INTROS = 1
   TAIL_WHOOSH
   SMASH
   GET_ABILITY
+  ITEM_GET
+  UNLOCK
+  ARROW_SHOOT
 .endenum
 
 .enum InventoryIcon

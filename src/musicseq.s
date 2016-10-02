@@ -46,8 +46,21 @@ pently_sfx_table:
   .byt $2c, 6
   .addr newability_snd
   .byt $20, 8
+  .addr itemget_snd
+  .byte $30,$07
+  .addr unlock_snd
+  .byte $1c,$05
+  .addr arrowshoot_snd
+  .byte $3c,$05
 
 ; alternating duty/volume and pitch bytes
+itemget_snd:
+  .byte $4b,$18+12,$4b,$15+12,$4b,$18+12,$4b,$1a+12,$4b,$1c+12,$48,$1c+12,$44,$1c+12
+unlock_snd:
+  .byte $0f,$0b,$08,$0b,$00,$00,$0f,$0d,$08,$0d
+arrowshoot_snd:
+  .byte $0f,$02,$0b,$01,$09,$00,$06,$00,$03,$00
+
 tailattack_snd:
   .dbyt $0f00,$0f02,$0f04,$0c06,$0908,$0609,$030a
 
