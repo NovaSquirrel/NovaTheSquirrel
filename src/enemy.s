@@ -1560,6 +1560,9 @@ ArrowHit:
   jsr ArrowChangeDirection
   jmp WasArrow
 WasNotArrow:
+  lda #SFX::SMASH
+  jsr PlaySound
+
   lda #0
   sta ObjectF1,x
 WasArrow:
