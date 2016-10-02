@@ -164,21 +164,21 @@ InitSave:
   bpl :-
 NoInitSave:
 
-
 : lda PPUSTATUS   ; Wait a PPU frame
   bpl :-
 
   jsr ShowTitle
 
-  .ifdef DEBUG
+;  .ifdef DEBUG
+  .if 1
 ; Sample testing inventory
   lda #InventoryItem::HEALTH_RESTORE
   sta InventorySaved+0
   lda #InventoryItem::ABILITY_GLIDER
   sta InventorySaved+1
-  lda #InventoryItem::ABILITY_BURGER
+  lda #InventoryItem::ABILITY_BOMB
   sta InventorySaved+2
-  lda #InventoryItem::GREEN_KEY
+  lda #InventoryItem::ABILITY_BOOMERANG
   sta InventorySaved+3
   lda #InventoryItem::BLOCK
   sta InventorySaved+4
@@ -287,7 +287,7 @@ NMIVersion:
         lda #$80  ; reset MMC1
         sta $8000
         lda RealPRGBank
-        bpl Temporary
+        bpl Temporary ; unconditional branch
       :
     .endif
     rts
