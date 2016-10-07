@@ -737,7 +737,7 @@ PPURowAddrLo:
   rts
 .endproc
 
-; Clears out the sprite graphics
+; Clears out the sprite graphics (second 4KB of CHR RAM)
 .proc ClearSprite4kb
   lda #>$1000
   sta PPUADDR
@@ -755,6 +755,7 @@ SkipAddr:
   rts
 .endproc
 
+; Clears out the first 4KB of CHR RAM
 .proc ClearBG4kb
   lda #0
   sta PPUADDR
@@ -980,7 +981,6 @@ WriteIncreasing16:
 .proc InventoryGiveIfDontHave
   jsr InventoryHasItem
   bcc InventoryGiveItem
-  jmp InventoryGiveItem
   clc
   rts
 .endproc
@@ -1347,6 +1347,8 @@ Found:
 .endproc
 
 ; Adds an offset to the X and Y coordinates of an object
+; inputs: A (offset in subpixels)
+; locals: 0
 .proc ObjectOffsetXY
   sta 0
 ; X
@@ -1363,6 +1365,8 @@ Found:
 .endproc
 
 ; Subtracts an offset from the X and Y coordinates of an objects
+; inputs: A (offset in subpixels)
+; locals: 0
 .proc ObjectOffsetXYNegative
   sta 0
 ; X
@@ -1378,6 +1382,9 @@ Found:
   rts
 .endproc
 
+; Copies an enemy's position into its velocity, for objects
+; that do not use velocity but need to hold onto a position
+; (like explosions, that need a center)
 .proc EnemyPosToVel
   lda ObjectPXL,x
   sta ObjectVXL,x
@@ -1392,6 +1399,8 @@ Found:
 
 ; --------------- end of object related stuff ----------------
 
+; Turns a flying arrow to face a new direction
+; inputs: Y (new direction, out of left, down, up, right)
 .proc ArrowChangeDirection
   lda #0
   sta ObjectPXL,x

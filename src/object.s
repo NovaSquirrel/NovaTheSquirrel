@@ -211,6 +211,8 @@ Exit:
   rts
 .endproc
 
+; Check for a collision with a player projectile
+; and run the default handler for it
 .proc EnemyGetShot
   jsr EnemyGetShotTest
   bcc :+
@@ -218,6 +220,9 @@ Exit:
 : rts
 .endproc
 
+; Check for collision with a player projectile
+; and stores the projectile type and index if found
+; outputs: carry (success), TempVal+2 (index), 0 (type)
 .proc EnemyGetShotTest
 ProjectileIndex = TempVal+2
 ProjectileType  = 0
@@ -292,6 +297,7 @@ Nope:
 .endproc
 EnemyGetShotTestCustomSize = EnemyGetShotTest::CustomSize
 
+; A handler for EnemyGetShotTest+
 .proc EnemyGotShot
 ProjectileIndex = EnemyGetShotTest::ProjectileIndex
 ProjectileType  = EnemyGetShotTest::ProjectileType
@@ -464,6 +470,7 @@ No:
   rts
 .endproc
 
+; Changes object X's direction to face the player
 .proc EnemyLookAtPlayer
   lda ObjectPXH,x
   cmp PlayerPXH
@@ -474,6 +481,8 @@ No:
   rts
 .endproc
 
+; Finds the angle between the object's screen position and the player's
+; outputs: A and Y (Direction)
 .proc AimAtPlayer
   lda O_RAM::OBJ_DRAWX
   sta 0
@@ -488,6 +497,7 @@ No:
   rts
 .endproc
 
+; Causes the object to hover in place
 .proc EnemyHover
   ldy ObjectTimer,x
 
@@ -520,6 +530,7 @@ Wavy:
   .byt <-2, <-1, <-0, <-0
 .endproc
 
+; Clamps down horizontal enemy speed to 3 px/frame
 .proc EnemySpeedLimit
   ; Limit speed
   ; Maybe I can make this smaller?
@@ -549,6 +560,8 @@ TooBig:
   rts
 .endproc
 
+; Causes the enemy to move back and forth horizontally,
+; seeking the player
 .proc LakituMovement
   jsr EnemyApplyVelocity
 
@@ -1494,6 +1507,9 @@ WithXYOffset:
 : rts
 .endproc
 
+; Finds a free slot and copies object X to the new slot
+; input: X (object to copy)
+; output: Y (new object), carry (success)
 .proc CloneObjectX
   sty TempY
   jsr FindFreeObjectY

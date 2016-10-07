@@ -60,7 +60,7 @@ THINFONT_BANK = $d
 .include "quadpcm.s"
 .include "thinfont.s"
 
-.segment "PRGe" ; voice samples, dialogs, inventory, VWF engine
+.segment "PRGe" ; dialogs, inventory, VWF engine
 .include "vwf_draw.s"
 .include "levelprocess.s"
 .include "pentlysound.s"
