@@ -676,10 +676,9 @@ NotFire:
 
 InitTimer:
   jsr huge_rand
-  cmp #60
-  bcs :+
-  ora #60
-: sta ObjectTimer,x
+  and #63
+  add #60
+  sta ObjectTimer,x
   clc
   rts
 HSpeedL:
