@@ -60,6 +60,8 @@ NoTouch:
   lda #0
   sta ObjectTimer,x
   sta ObjectF2,x
+  sta ObjectF3,x
+  sta ObjectF4,x
   lda #<-1
   sta PlayerVYH
   lda #<-$60
