@@ -499,7 +499,7 @@ No:
 
 ; Causes the object to hover in place
 .proc EnemyHover
-  ldy ObjectTimer,x
+  ldy ObjectF4,x
 
   lda Wavy,y
   sex
@@ -511,10 +511,10 @@ No:
   adc 0
   sta ObjectPYH,x
 
-  inc ObjectTimer,x
-  lda ObjectTimer,x
+  inc ObjectF4,x
+  lda ObjectF4,x
   and #63
-  sta ObjectTimer,x
+  sta ObjectF4,x
   rts
 Wavy:
   .byt 0, 0, 1, 2, 3, 3, 4

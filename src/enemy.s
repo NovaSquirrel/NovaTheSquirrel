@@ -644,8 +644,19 @@ ThrowBottle:
   jmp EnemyPlayerTouchHurt
 .endproc
 
-.proc ObjectCannon1
+; Hover the cannon and control logic relating to when to shoot
+.proc ObjectCannonCommon1
   jsr EnemyHover
+
+  ; initialize the timer if object is initializing
+  lda ObjectF2,x
+  cmp #ENEMY_STATE_INIT
+  beq InitTimer
+
+  ; decrease the timer otherwise
+  dec ObjectTimer,x
+  bne NotFire
+  jsr InitTimer
 
   ; Get speeds for projectiles
   lda ObjectF1,x
@@ -656,71 +667,99 @@ ThrowBottle:
   lda HSpeedH,y
   sta 1
 
-  lda retraces
-  and #7
-  bne NoShoot
-    jsr huge_rand
-    and #7
-    bne NoShoot
-      jsr FindFreeObjectY
-      bcc NoShoot
-        jsr ObjectCopyPosXY
-
-        lda 0
-        sta ObjectVXL,y
-        lda 1
-        sta ObjectVXH,y
-        lda #0
-        sta ObjectVYL,y
-        sta ObjectVYH,y
-
-        lda #15
-        sta ObjectTimer,y
-
-        lda #Enemy::BURGER*2
-        sta ObjectF1,y
-
-        lda ObjectF3,x
-        sta ObjectF3,y
-NoShoot:
-
-  lda #<CannonFrame
-  ldy #>CannonFrame
-  jsr DispEnemyWideNonsequential
+  sec ; carry set: fire
   rts
-CannonFrame:
-  .byt $0c, $0c, $0d, $0d, OAM_COLOR_2, OAM_COLOR_2|OAM_YFLIP, OAM_COLOR_2, OAM_COLOR_2|OAM_YFLIP
+
+NotFire:
+  clc ; carry clear: don't fire
+  rts
+
+InitTimer:
+  jsr huge_rand
+  cmp #60
+  bcs :+
+  ora #60
+: sta ObjectTimer,x
+  clc
+  rts
 HSpeedL:
   .byt <$38, <-$38
 HSpeedH:
   .byt >$38, >-$38
 .endproc
 
-.proc ObjectCannon2
-  jsr EnemyHover
-  ; Get speeds for projectiles
-  lda ObjectF1,x
-  and #1
-  tay
-  lda HSpeedL,y
-  sta 2
-  lda HSpeedH,y
-  sta 3
-
-  ; Get projectile type
-  ldy ObjectPXH,x
-  lda ColumnBytes,y
-  asl
-  sta 1
-
-  lda retraces
-  and #7
-  bne NoShoot
-    ; Limit object amount
-    lda 1
-    jsr CountObjectAmount
-    iny
+; Display an indicator when the cannon is about to fire
+.proc ObjectCannonCommon2
+  lda O_RAM::ON_SCREEN
+  beq :+
+  lda ObjectTimer,x
+  cmp #32
+  bcs :+
+    ldy OamPtr
+    lda #$50
+    sta OAM_TILE,y
+    lda #OAM_COLOR_1
+    sta OAM_ATTR,y
+    lda O_RAM::OBJ_DRAWX
+    add #4
+    sta OAM_XPOS,y
+    lda O_RAM::OBJ_DRAWY
+    sub ObjectTimer,x
+    sta OAM_YPOS,y
     tya
+    add #4
+    sta OamPtr
+  :
+  rts
+.endproc
+
+.proc ObjectCannon1
+  jsr ObjectCannonCommon1
+  bcc NoShoot
+    jsr FindFreeObjectY
+    bcc NoShoot
+      jsr ObjectCopyPosXY
+
+      lda 0
+      sta ObjectVXL,y
+      lda 1
+      sta ObjectVXH,y
+      lda #0
+      sta ObjectVYL,y
+      sta ObjectVYH,y
+
+      lda #15
+      sta ObjectTimer,y
+
+      lda #Enemy::BURGER*2
+      sta ObjectF1,y
+
+      lda ObjectF3,x
+      sta ObjectF3,y
+NoShoot:
+
+  lda #<CannonFrame
+  ldy #>CannonFrame
+  jsr DispEnemyWideNonsequential
+
+  jmp ObjectCannonCommon2
+CannonFrame:
+  .byt $0c, $0c, $0d, $0d, OAM_COLOR_2, OAM_COLOR_2|OAM_YFLIP, OAM_COLOR_2, OAM_COLOR_2|OAM_YFLIP
+.endproc
+
+.proc ObjectCannon2
+  jsr ObjectCannonCommon1
+  bcc NoShoot
+    ; Get projectile type
+    ldy ObjectPXH,x
+    lda ColumnBytes,y
+    asl
+    sta 1
+
+    ; Limit object amount
+    jsr CountObjectAmount
+    iny ; compare against the limit set in cannon's ObjectF3
+    tya ; and if it's too high then don't shoot
     cmp ObjectF3,x
     bcs NoShoot
     jsr huge_rand
@@ -749,13 +788,10 @@ NoShoot:
   lda #<CannonFrame
   ldy #>CannonFrame
   jsr DispEnemyWideNonsequential
-  rts
+
+  jmp ObjectCannonCommon2
 CannonFrame:
   .byt $0e, $0e, $0f, $0f, OAM_COLOR_2, OAM_COLOR_2|OAM_YFLIP, OAM_COLOR_2, OAM_COLOR_2|OAM_YFLIP
-HSpeedL:
-  .byt <$38, <-$38
-HSpeedH:
-  .byt >$38, >-$38
 .endproc
 
 .proc ObjectBurger
