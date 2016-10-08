@@ -511,13 +511,15 @@ ProjBomb:
   bne NotBombExplode
   lda #$40
   jsr ObjectOffsetXY
+  lda #10
 ChangeToExplosion:
+  pha
   lda #SFX::BOOM1
   sta NeedSFX
   jsr EnemyPosToVel
   lda #PlayerProjectileType::EXPLOSION
   sta ObjectF2,x
-  lda #10
+  pla
   sta ObjectTimer,x
   jmp CloneObjectX
 
@@ -531,7 +533,11 @@ NotBombExplode:
   ora ObjectVYH,x
   bne :+
   jsr CollideRide16
-  bcc :+
+  jsr RideOnProjectile
+  jmp ObjectBounceHoriz
+
+RideOnProjectile:
+  bcc :++
     lda PlayerDrawY
     add #8
     cmp O_RAM::OBJ_DRAWY
@@ -547,8 +553,10 @@ NotBombExplode:
       lda #0
       sta PlayerVYL
       sta PlayerVYH
-  :
-  jmp ObjectBounceHoriz
+      sec
+      rts
+: clc
+: rts
 
 ProjExplosion:
   jsr huge_rand
@@ -602,10 +610,37 @@ ProjTornado:
   ldy #OAM_COLOR_1
   jmp DispEnemyWide
 ProjBurger:
+  lda ObjectTimer,x
+  cmp #1
+  bne :+
+@DoExplosion:
+    lda #5
+    jmp ChangeToExplosion
+  :
+
+  lda ObjectPXH,x
+  ldy ObjectPYH,x
+  jsr GetLevelColumnPtr
+  tay
+  lda MetatileFlags,y
+  bmi @DoExplosion
+
   jsr EnemyApplyVelocity
   lda #$70
   ldy #OAM_COLOR_1
-  jmp DispEnemyWide
+  jsr DispEnemyWide
+  jsr CollideRide16
+  jsr RideOnProjectile
+  ; Also move the player when the burger moves
+  bcc :+
+  lda PlayerPXL
+  add ObjectVXL,x
+  sta PlayerPXL
+  lda PlayerPXH
+  adc ObjectVXH,x
+  sta PlayerPXH
+:
+  rts
 ProjBall:
   jsr EnemyFall
   bcc :+

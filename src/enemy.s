@@ -670,16 +670,13 @@ ThrowBottle:
   sec ; carry set: fire
   rts
 
-NotFire:
-  clc ; carry clear: don't fire
-  rts
-
 InitTimer:
   jsr huge_rand
   and #63
   add #60
   sta ObjectTimer,x
-  clc
+NotFire:
+  clc ; clear carry, don't fire
   rts
 HSpeedL:
   .byt <$38, <-$38
@@ -712,6 +709,7 @@ HSpeedH:
   rts
 .endproc
 
+; Shoots burgers only, ObjectF3 specifies the type of burger
 .proc ObjectCannon1
   jsr ObjectCannonCommon1
   bcc NoShoot
@@ -746,6 +744,7 @@ CannonFrame:
   .byt $0c, $0c, $0d, $0d, OAM_COLOR_2, OAM_COLOR_2|OAM_YFLIP, OAM_COLOR_2, OAM_COLOR_2|OAM_YFLIP
 .endproc
 
+; Shoots arbitary objects, ObjectF3 limits how many of the object will be made
 .proc ObjectCannon2
   jsr ObjectCannonCommon1
   bcc NoShoot

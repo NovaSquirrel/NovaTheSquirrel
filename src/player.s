@@ -1696,8 +1696,26 @@ AbilityBurger:
   lda #PlayerProjectileType::BURGER
   jsr MakeShotWide
   bcc @Exit
-  lda #80/4
+  lda #40/4
   sta ObjectTimer,x
+
+  lda keydown
+  and #KEY_DOWN
+  beq :+
+  lda PlayerPXH
+  sta ObjectPXH,x
+  lda PlayerPXL
+  sta ObjectPXL,x
+  dec PlayerPYH
+  lda PlayerDir
+  bne :+
+  lda ObjectPXL,x
+  add #$a0
+  sta PlayerPXL
+  lda ObjectPXH,x
+  adc #0
+  sta PlayerPXH
+:
   lda #$30
   jsr SetXVelocity
 @Exit:
