@@ -481,7 +481,7 @@ ProjFireworksCursor:
   lda keydown
   and #KEY_UP
   beq @NoUp
-  lda #<-$10
+  lda #<-$20
   sta ObjectVYL,x
   lda #<-1
   sta ObjectVYH,x
@@ -490,7 +490,7 @@ ProjFireworksCursor:
   lda keydown
   and #KEY_DOWN
   beq @NoDn
-  lda #$10
+  lda #$20
   sta ObjectVYL,x
 @NoDn:
 
