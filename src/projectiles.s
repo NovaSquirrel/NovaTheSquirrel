@@ -250,7 +250,7 @@ BreakBricks:
   cmp #M_BRICKS
   bne :+
   ldy 0           ; Reload Y position
-  jsr DoBreakBricks
+  jsr DoBreakBricksFar
   lda #0          ; Remove the shot
   sta ObjectF1,x
 : rts

@@ -812,6 +812,16 @@ SkipAddr:
   jmp _SetPRG
 .endproc
 
+.proc DoBreakBricksFar
+  pha
+  lda #MAINLOOP_BANK
+  jsr _SetPRG
+  pla
+  jsr DoBreakBricks
+  lda #OBJECT_BANK
+  jmp _SetPRG
+.endproc
+
 .proc ChangeBlockFar
   pha
   lda #MAINLOOP_BANK
