@@ -725,6 +725,14 @@ SkipTheTop:
   lda SkipFourCorners
   rtsne
 
+  ; If the player is standing on something, clear PlayerNeedsGround
+  lda FourCorners
+  and #%0011
+  beq :+
+    lda #0
+    sta PlayerNeedsGround
+  :
+
   lda PlayerRidingSomething
   beq :+
     lda FourCorners
@@ -1699,9 +1707,12 @@ AbilityBurger:
   lda #40/4
   sta ObjectTimer,x
 
-  lda keydown
+  lda keydown           ; down+B: burger ride
   and #KEY_DOWN
   beq :+
+  lda PlayerNeedsGround ; only allow one burger ride before touching the ground
+  bne :+
+  inc PlayerNeedsGround
   lda PlayerPXH
   sta ObjectPXH,x
   lda PlayerPXL

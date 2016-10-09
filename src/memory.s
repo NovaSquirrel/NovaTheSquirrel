@@ -298,6 +298,7 @@ INVENTORY_EQUIPPED  = 254
   ScriptFlags:        .res 32  ; flags for scripts. first two bytes reset when entering a level on the level select
 GameStateLen = 1+2+10+10+2 ; update if more stuff is added
   PlayerAbilityVar: .res 1
+  PlayerNeedsGround: .res 1 ; sets to zero whne the player touches the ground
 
 ; Checkpoint information
   CheckpointGameState:   .res GameStateLen

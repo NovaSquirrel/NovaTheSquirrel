@@ -302,6 +302,9 @@ XForMiddle = TempSpace+5
   lda #SFX::SPRING
   jsr PlaySoundDebounce
 
+  lda #0
+  sta PlayerNeedsGround
+
   ldy TempSpace
   ; animate the spring
   lda #1
