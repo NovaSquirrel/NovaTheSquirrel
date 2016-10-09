@@ -309,6 +309,15 @@ DJ_Label:
 @Skip:
 .endmacro
 
+.macro dec16 variable
+.local @Skip
+  lda variable+0
+  bne @Skip
+  dec variable+1
+@Skip:
+  dec variable+0
+.endmacro
+
 .macro pushaxy
   pha
   txa

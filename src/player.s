@@ -1692,7 +1692,24 @@ AbilityFan:
   lda #PlayerProjectileType::TORNADO
   jsr MakeShotWide
   bcc @Exit
-  lda #80/4
+
+  ; Normal acceleration, or fast if holding up
+  lda #1
+  sta ObjectF4,x
+  lda keydown
+  and #KEY_UP
+  beq :+
+    lda #3
+    sta ObjectF4,x
+  :
+  lda keydown
+  and #KEY_DOWN
+  beq :+
+    lda #0
+    sta ObjectF4,x
+  :
+
+  lda #100/4
   sta ObjectTimer,x
   lda #$30
   jsr SetXVelocity

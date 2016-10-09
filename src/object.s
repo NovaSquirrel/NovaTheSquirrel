@@ -374,6 +374,15 @@ Damage:
   sta ObjectF2,x
   rts
 BlowAway:
+  ldy ProjectileIndex
+  lda ObjectPYH,y
+  sta ObjectPYH,x
+  lda ObjectPYL,y
+  sta ObjectPYL,x
+  lda ObjectPXH,y
+  sta ObjectPXH,x
+  lda ObjectPXL,y
+  sta ObjectPXL,x
   rts
 Copy:
   ; maybe change it so they have to be stunned?

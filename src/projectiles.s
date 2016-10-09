@@ -604,6 +604,24 @@ ProjKickedIce:
   jmp ObjectBounceHoriz
 ProjTornado:
   jsr EnemyApplyVelocity
+
+  ; Disappear when a solid object is hit
+  lda ObjectPXH,x
+  ldy ObjectPYH,x
+  jsr GetLevelColumnPtr
+  tay
+  lda MetatileFlags,y
+  bpl :+
+    lda #0
+    sta ObjectF1,x
+  :
+
+  ; Float upwards
+  lda ObjectVYL,x
+  sub ObjectF4,x
+  sta ObjectVYL,x
+  subcarryx ObjectVYH
+
   lda retraces
   and #4
   ora #$70
