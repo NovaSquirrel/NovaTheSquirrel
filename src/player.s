@@ -1693,7 +1693,7 @@ AbilityFan:
   jsr MakeShotWide
   bcc @Exit
 
-  ; Normal acceleration, or fast if holding up
+  ; Up/down control acceleration
   lda #1
   sta ObjectF4,x
   lda keydown

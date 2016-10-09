@@ -375,14 +375,20 @@ Damage:
   rts
 BlowAway:
   ldy ProjectileIndex
-  lda ObjectPYH,y
-  sta ObjectPYH,x
-  lda ObjectPYL,y
-  sta ObjectPYL,x
-  lda ObjectPXH,y
-  sta ObjectPXH,x
   lda ObjectPXL,y
   sta ObjectPXL,x
+  lda ObjectPXH,y
+  sta ObjectPXH,x
+  lda ObjectPYL,y
+  sta ObjectPYL,x
+  lda ObjectPYH,y
+  sta ObjectPYH,x
+  ; Destroy if too far off top
+  cmp #255
+  bne :+
+  lda #0
+  sta ObjectF1,x
+:
   rts
 Copy:
   ; maybe change it so they have to be stunned?
