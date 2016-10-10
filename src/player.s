@@ -1711,7 +1711,7 @@ AbilityFan:
 
   lda #100/4
   sta ObjectTimer,x
-  lda #$30
+  lda #$2c
   jsr SetXVelocity
 @Exit:
   rts

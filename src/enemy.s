@@ -875,6 +875,12 @@ NormalWalk:
 
       lda ObjectF3,x
       bne ObjectFireTrig
+
+      lda #Enemy::FLAMES*2  ; limit the number of flames
+      jsr CountObjectAmount
+      cpy #3
+      bcs :+
+
       jsr FindFreeObjectY
       bcc :+
         jsr ObjectClearY
@@ -1319,7 +1325,7 @@ DABGInit:
   sta LevelVariable
   rts
 DABGFight:
-  lda #Enemy::SCHEME_TEAM
+  lda #Enemy::SCHEME_TEAM*2
   jsr CountObjectAmount
   rts
 

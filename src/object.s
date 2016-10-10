@@ -374,6 +374,9 @@ Damage:
   sta ObjectF2,x
   rts
 BlowAway:
+  lda #0
+  sta ObjectVYL,x
+  sta ObjectVYH,x
   ldy ProjectileIndex
   lda ObjectPXL,y
   sta ObjectPXL,x
@@ -466,7 +469,7 @@ No:
 .endproc
 
 ; Counts the amount of a certain object that currently exists
-; inputs: A (object type)
+; inputs: A (object type * 2)
 ; outputs: Y (count)
 ; locals: 0
 .proc CountObjectAmount

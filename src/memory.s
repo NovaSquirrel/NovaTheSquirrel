@@ -179,6 +179,8 @@
 .endif
 
 .segment "BSS"
+  .res 12 ; buffer
+
   UploadTileAddress: .res 2 ; little endian
 
   ; big scratch space, can be used for uploading tiles, for strings in cutscenes, or for building attributes of the screen
