@@ -524,9 +524,9 @@ ChangeToExplosion:
   jmp CloneObjectX
 
 NotBombExplode:
-  lda #$70
-  ldy #OAM_COLOR_1
-  jsr DispEnemyWide
+  lda #OAM_COLOR_1 << 2
+  ldy #$70
+  jsr DispEnemyWideFlipped
 
 ; ride on the bomb
   lda ObjectVYL,x
@@ -590,17 +590,64 @@ ProjExplosion:
   jmp DispObject8x8_Attr
 
 ProjIceBlock:
-  lda #$30
+  jsr EnemyFall
+  lda ObjectF3,x
+  sta TempVal ; keep the F3 that was actually used for later
   jsr EnemyWalk
   jsr EnemyAutoBump
-  lda #$70
-  ldy #OAM_COLOR_1
-  jmp DispEnemyWide
+
+  lda ObjectF3,x
+  beq :+
+  dec ObjectF3,x
+  lda #10
+  sta ObjectTimer,x
+: sta ObjectVXL,x ; required to be nonzero for the projectile to collide with enemies
+
+  ldy #$70
+  lda #OAM_COLOR_1 << 2
+  jsr DispEnemyWideFlipped
+  jsr CollideRide16
+  jsr RideOnProjectile
+  bcc @NotRiding
+  ; add the speed to the player so they move with the block
+  lda TempVal
+  beq @NotRiding
+  sta 0
+  lda #0
+  sta 1
+
+  ; let the player keep the block going
+  lda keydown
+  and #KEY_DOWN
+  beq :+
+  inc ObjectF3,x
+:
+
+  ; Face left if needed
+  lda ObjectF1,x
+  lsr
+  bcc :+
+  lda 0
+  neg
+  sta 0
+  lda #255
+  sta 1
+:
+
+  lda PlayerPXL
+  add 0
+  sta PlayerPXL
+  lda PlayerPXH
+  adc 1
+  sta PlayerPXH
+@NotRiding:
+  rts
+
 ProjKickedIce:
   jsr EnemyApplyVelocity
-  lda #$70
-  ldy #OAM_COLOR_1
-  jsr DispEnemyWide
+  ldy #$70
+  lda #OAM_COLOR_1 << 2
+  jsr DispEnemyWideFlipped
   jmp ObjectBounceHoriz
 ProjTornado:
   jsr EnemyApplyVelocity
@@ -667,9 +714,9 @@ ProjBall:
   lda #255
   sta ObjectVYH,x
 : jsr EnemyApplyVelocity
-  lda #$70
-  ldy #OAM_COLOR_1
-  jsr DispEnemyWide
+  lda #OAM_COLOR_1 << 2
+  ldy #$70
+  jsr DispEnemyWideFlipped
   jmp ObjectBounceHoriz
 .endproc
 

@@ -1044,6 +1044,11 @@ NewXH = 2
   lda ObjectF2,x
   ; Change this when I have nonzero states that still involve walking
   beq Yes
+  lda ObjectF1,x
+  ; Projectiles can always walk
+  and #<~1
+  cmp #Enemy::PLAYER_PROJECTILE*2
+  beq Yes
   clc
   rts
 Yes:

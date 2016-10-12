@@ -1610,7 +1610,24 @@ AbilityNice:
   lda #80/4
   sta ObjectTimer,x
   lda #$30
-  jsr SetXVelocity
+  sta ObjectF3,x
+
+  lda keydown
+  and #KEY_UP
+  beq :+
+  lda #$10
+  sta ObjectF3,x
+  lda #<-($40)
+  sta ObjectVYL,x
+  lda #>-($40)
+  sta ObjectVYH,x
+:
+
+  lda keydown           ; down+B: ice ride
+  and #KEY_DOWN
+  beq :+
+  jsr RideOnProjectile
+:
 @Exit:
   rts
 AbilityBoomerang:
@@ -1729,6 +1746,14 @@ AbilityBurger:
   beq :+
   lda PlayerNeedsGround ; only allow one burger ride before touching the ground
   bne :+
+  jsr RideOnProjectile
+:
+  lda #$30
+  jsr SetXVelocity
+@Exit:
+  rts
+
+RideOnProjectile:
   inc PlayerNeedsGround
   lda PlayerPXH
   sta ObjectPXH,x
@@ -1743,11 +1768,8 @@ AbilityBurger:
   lda ObjectPXH,x
   adc #0
   sta PlayerPXH
-:
-  lda #$30
-  jsr SetXVelocity
-@Exit:
-  rts
+: rts
+
 
 SetXVelocity:
   sta ObjectVXL,x
@@ -1792,6 +1814,7 @@ Left16Wide:
   lda PlayerPXH
   sub #1
   sta ObjectPXH,x
+  inc ObjectF1,x
   sec
   rts
 
