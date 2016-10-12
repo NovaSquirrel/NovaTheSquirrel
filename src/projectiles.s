@@ -384,7 +384,32 @@ DoFireball:
   sta ObjectVYL,x
   lda #255
   sta ObjectVYH,x
-: jsr EnemyApplyVelocity
+
+  ldy TempY
+  lda (LevelBlockPtr),y
+  cmp #Metatiles::WATER_FROZEN
+  bne :+
+  lda #Metatiles::WATER_TOP
+  jsr ChangeBlockFar
+  jmp @Done
+:
+  lda (LevelBlockPtr),y
+  cmp #Metatiles::ICE
+  bne :+
+  lda #Metatiles::EMPTY
+  jsr ChangeBlockFar
+  jmp @Done
+:
+  lda (LevelBlockPtr),y
+  cmp #Metatiles::LAVA_FROZEN
+  bne :+
+  lda #Metatiles::LAVA_TOP
+  jsr ChangeBlockFar
+  jmp @Done
+:
+
+@Done:
+  jsr EnemyApplyVelocity
   rts
 
 ProjFireball:
@@ -596,6 +621,35 @@ ProjIceBlock:
   jsr EnemyWalk
   jsr EnemyAutoBump
 
+  lda ObjectPXL,x
+  add #$f0
+  lda ObjectPXH,x
+  adc #0
+  ldy ObjectPYH,x
+  jsr GetLevelColumnPtr
+  cmp #Metatiles::WATER_TOP
+  bne @NotFreeze
+    lda #Metatiles::WATER_FROZEN
+    jsr ChangeBlockFar
+
+    ; Change block to the right
+    lda LevelBlockPtr
+    add #$10
+    sta LevelBlockPtr
+    addcarry LevelBlockPtr+1
+    jsr FreezeWaterCommon
+
+    ; Change block to the left
+    lda LevelBlockPtr
+    sub #$20
+    sta LevelBlockPtr
+    subcarry LevelBlockPtr+1
+    jsr FreezeWaterCommon
+
+    lda #0
+    sta ObjectF1,x
+@NotFreeze:
+
   lda ObjectF3,x
   beq :+
   dec ObjectF3,x
@@ -641,6 +695,7 @@ ProjIceBlock:
   sta 1
 :
 
+  ; Finally add the offset to the player position
   lda PlayerPXL
   add 0
   sta PlayerPXL
@@ -649,6 +704,16 @@ ProjIceBlock:
   sta PlayerPXH
 @NotRiding:
   rts
+
+FreezeWaterCommon:
+  lda (LevelBlockPtr),y
+  cmp #Metatiles::WATER_TOP
+  bne :+
+    lda #0
+    sta 0
+    lda #Metatiles::WATER_FROZEN
+    jsr DelayChangeBlockFar
+: rts
 
 ProjKickedIce:
   jsr EnemyApplyVelocity

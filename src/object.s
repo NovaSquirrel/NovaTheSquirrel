@@ -1192,6 +1192,7 @@ SkipGravity:
   lda ObjectPXH,x
   adc #0
   ldy ObjectPYH,x
+  sty TempY
   jsr GetLevelColumnPtr
   tay
   lda MetatileFlags,y
@@ -1208,6 +1209,7 @@ NotUp:
   lda ObjectPYH,x
   adc #0
   tay
+  sty TempY
   lda ObjectPXH,x
   jsr GetLevelColumnPtr
   tay

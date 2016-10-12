@@ -831,6 +831,15 @@ SkipAddr:
   jmp SetPRG_Restore
 .endproc
 
+.proc DelayChangeBlockFar
+  pha
+  lda #MAINLOOP_BANK
+  jsr _SetPRG
+  pla
+  jsr DelayChangeBlock
+  jmp SetPRG_Restore
+.endproc
+
 .proc CopyFromSavedInventory
   ; Copy inventory
   ldx #InventoryLen*2-1
