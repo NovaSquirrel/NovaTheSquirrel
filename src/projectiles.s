@@ -609,6 +609,13 @@ ProjIceBlock:
   jsr CollideRide16
   jsr RideOnProjectile
   bcc @NotRiding
+
+  ; without this, if the block falls fast enough the player will fall off
+  lda ObjectVYL,x
+  sta PlayerVYL
+  lda ObjectVYH,x
+  sta PlayerVYH
+
   ; add the speed to the player so they move with the block
   lda TempVal
   beq @NotRiding
