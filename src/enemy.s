@@ -45,8 +45,10 @@ Frames:
   add #8
   cmp O_RAM::OBJ_DRAWY
   bcc FlattenGoomba
+
+  ; Not flattening? Then hurt the player
   lda ObjectF2,x
-  cmp #ENEMY_STATE_STUNNED
+  cmp #ENEMY_STATE_STUNNED ; if the enemy isn't stunned, that is
   beq NoTouch
   jsr HurtPlayer
   jsr EnemyTurnAround
@@ -62,6 +64,7 @@ NoTouch:
   sta ObjectF2,x
   sta ObjectF3,x
   sta ObjectF4,x
+  sta O_RAM::OBJ_TYPE ; fixes a bug where after changing to the poof, it still checks for projectiles
   lda #<-1
   sta PlayerVYH
   lda #<-$60
