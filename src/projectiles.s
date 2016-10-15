@@ -725,9 +725,7 @@ ProjTornado:
   jsr EnemyApplyVelocity
 
   ; Disappear when a solid object is hit
-  lda ObjectPXH,x
-  ldy ObjectPYH,x
-  jsr GetLevelColumnPtr
+  jsr GetBlockUnderProjectile
   tay
   lda MetatileFlags,y
   bpl :+
@@ -755,9 +753,7 @@ ProjBurger:
     jmp ChangeToExplosion
   :
 
-  lda ObjectPXH,x
-  ldy ObjectPYH,x
-  jsr GetLevelColumnPtr
+  jsr GetBlockUnderProjectile
   tay
   lda MetatileFlags,y
   bmi @DoExplosion
@@ -778,6 +774,19 @@ ProjBurger:
   sta PlayerPXH
 :
   rts
+
+GetBlockUnderProjectile:
+  lda ObjectPYL,x
+  add #$40
+  lda ObjectPYH,x
+  adc #0
+  tay
+  lda ObjectPXL,x
+  add #$40
+  lda ObjectPXH,x
+  adc #0
+  jmp GetLevelColumnPtr
+
 ProjBall:
   jsr EnemyFall
   bcc :+

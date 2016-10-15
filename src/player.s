@@ -1467,8 +1467,8 @@ MakeDrawX:
   pha
   rts
 
-XOffsetL: .byt <($40), <(-$40)
-XOffsetH: .byt >($40), >(-$40)
+XOffsetL: .byt <($80), <(-$40)
+XOffsetH: .byt >($80), >(-$40)
 
 AbilityTable:
   .raddr AbilityNone
