@@ -113,6 +113,8 @@
   .byt BLOCK_RECTANGLE,        Metatiles::FG_GLASS_RED
   .byt BLOCK_RECTANGLE,        Metatiles::FG_GLASS_BLUE
   .byt BLOCK_RECTANGLE,        Metatiles::SOLID_ROCK
+  .byt BLOCK_RECTANGLE,        Metatiles::CEILING_BARRIER
+  .byt BLOCK_SINGLE,           Metatiles::CEILING_BARRIER
 .endproc
 
 .proc ObjectTypesList

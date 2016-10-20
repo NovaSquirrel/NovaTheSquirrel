@@ -762,9 +762,9 @@
 				}, {
 					"Id":	"SOLID_BLOCK",
 					"X":	178,
-					"Y":	4,
+					"Y":	2,
 					"W":	1,
-					"H":	7
+					"H":	9
 				}, {
 					"Id":	"SOLID_LEDGE",
 					"X":	87,
@@ -783,6 +783,30 @@
 					"Y":	8,
 					"W":	5,
 					"H":	1
+				}, {
+					"Id":	"CEILING_BARRIER",
+					"X":	177,
+					"Y":	0,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	178,
+					"Y":	0,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	178,
+					"Y":	0,
+					"W":	11,
+					"H":	2
+				}, {
+					"Id":	"CEILING_BARRIER",
+					"X":	68,
+					"Y":	0,
+					"W":	1,
+					"H":	2
 				}]
 		}, {
 			"Name":	"Sprites",

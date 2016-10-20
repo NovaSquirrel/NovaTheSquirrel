@@ -170,6 +170,7 @@ SpecialMiscLo:
   .byt <(TouchedForce-1)
   .byt <(TouchedForce-1)
   .byt <(TouchedForce-1)
+  .byt <(TouchedCeilingBarrier-1)
 
 SpecialMiscHi:
   .byt >(TouchedLadder-1)
@@ -188,6 +189,7 @@ SpecialMiscHi:
   .byt >(TouchedForce-1)
   .byt >(TouchedForce-1)
   .byt >(TouchedForce-1)
+  .byt >(TouchedCeilingBarrier-1)
 
 SpecialWallLo:
   .byt <(TouchedLock-1)
@@ -204,6 +206,14 @@ SpecialWallHi:
   .byt >(TouchedChipSocket-1)
   .byt >(TouchedPickupBlock-1)
   .byt >(TouchedPushableBlock-1)
+
+.proc TouchedCeilingBarrier
+  lda #0
+  sta PlayerVYH
+  lda #$40
+  sta PlayerVYL
+  rts
+.endproc
 
 .proc TouchedChipSocket
   rts

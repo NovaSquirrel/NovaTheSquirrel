@@ -754,6 +754,8 @@ ProjBurger:
   :
 
   jsr GetBlockUnderProjectile
+  cmp #Metatiles::CEILING_BARRIER
+  beq @DoExplosion
   tay
   lda MetatileFlags,y
   bmi @DoExplosion

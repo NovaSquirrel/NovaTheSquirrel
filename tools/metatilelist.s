@@ -31,6 +31,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_PAL_0 ;FORCE_RIGHT
   .byt M_PAL_0 ;FORCE_UP
   .byt M_PAL_0 ;FORCE_DOWN
+  .byt M_PAL_1 ;CEILING_BARRIER
   .byt M_PAL_2 ;COIN
   .byt M_PAL_2 ;BIG_HEART
   .byt M_PAL_2 ;HEART
@@ -211,6 +212,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_SPECIAL_MISC ;FORCE_RIGHT
   .byt M_SPECIAL_MISC ;FORCE_UP
   .byt M_SPECIAL_MISC ;FORCE_DOWN
+  .byt M_SPECIAL_MISC ;CEILING_BARRIER
   .byt M_COLLECTIBLE ;COIN
   .byt M_COLLECTIBLE ;BIG_HEART
   .byt M_COLLECTIBLE ;HEART
@@ -390,6 +392,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $a6 ;FORCE_RIGHT
   .byt $a0 ;FORCE_UP
   .byt $a1 ;FORCE_DOWN
+  .byt $31 ;CEILING_BARRIER
   .byt $14 ;COIN
   .byt $34 ;BIG_HEART
   .byt $38 ;HEART
@@ -568,6 +571,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $a7 ;FORCE_RIGHT
   .byt $a2 ;FORCE_UP
   .byt $a3 ;FORCE_DOWN
+  .byt $31 ;CEILING_BARRIER
   .byt $15 ;COIN
   .byt $35 ;BIG_HEART
   .byt $3f ;HEART
@@ -746,6 +750,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $a6 ;FORCE_RIGHT
   .byt $a0 ;FORCE_UP
   .byt $a1 ;FORCE_DOWN
+  .byt $31 ;CEILING_BARRIER
   .byt $16 ;COIN
   .byt $36 ;BIG_HEART
   .byt $3a ;HEART
@@ -924,6 +929,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $a7 ;FORCE_RIGHT
   .byt $a2 ;FORCE_UP
   .byt $a3 ;FORCE_DOWN
+  .byt $31 ;CEILING_BARRIER
   .byt $17 ;COIN
   .byt $37 ;BIG_HEART
   .byt $3f ;HEART

@@ -50,7 +50,8 @@ skyData:
   LObjN LO::WIDE_2,           1, 3, 1, LN2::FLOWER
   LObjN LO::R_COIN,           6, 4, 0, 6
   LObjN LO::WIDE_1,           0, 13, 6, LN1::SOLID_LEDGE
-  LObjN LO::R_GROUND,         2, 0, 3, 10
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObjN LO::R_GROUND,         1, 0, 3, 10
   LObjN LO::WIDE_1,           4, 6, 2, LN1::SPIKES
   LObjN LO::WIDE_1,           0, 7, 3, LN1::SOLID_LEDGE
   LObj  LO::S_BIGHEART,       3, 2
@@ -119,7 +120,10 @@ skyData:
   LObjN LO::R_COIN,           1, 6, 2, 0
   LObjN LO::R_GROUND,         4, 8, 3, 6
   LObjN LO::RECT_1,           4, 13, 1, LN1::GROUND, 21
-  LObjN LO::R_SOLID_BLOCK,    2, 4, 0, 6
+  LObj  LO::S_CEILING_BARRIER,1, 0
+  LObjN LO::R_ROCK,           1, 0, 0, 0
+  LObjN LO::R_ROCK,           0, 0, 10, 1
+  LObjN LO::R_SOLID_BLOCK,    0, 2, 0, 8
   LObjN LO::WIDE_1,           0, 11, 2, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           2, 9, 1, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           1, 12, 7, LN1::TALLGRASS

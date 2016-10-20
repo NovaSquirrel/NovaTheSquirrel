@@ -76,9 +76,11 @@ waterData:
   LObj  LO::S_BIG_BUSH, 0, 8
   LObjN LO::RECT_1,           3, 2, 1, LN1::WATER, 21
   LObj  LO::S_SPRING,         1, 8
-  LObjN LO::WIDE_1,           1, 13, 5, LN1::SPIKES
+  LObjN LO::WIDE_1,           1, 12, 0, LN1::SPIKES
+  LObj  LO::S_GROUND,         0, 13
   LObjN LO::R_GROUND,         0, 14, 5, 0
-  LObjN LO::R_GROUND,         6, 9, 10, 5
+  LObjN LO::WIDE_1,           1, 13, 4, LN1::SPIKES
+  LObjN LO::R_GROUND,         5, 9, 10, 5
   LObj  LO::S_BIG_BUSH, 1, 8
   LObj  LO::S_GROUND_CLIMB_L, 3, 8
   LObjN LO::WIDE_2,           1, 7, 1, LN2::FLOWER

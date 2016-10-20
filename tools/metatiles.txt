@@ -232,6 +232,14 @@ C .byt $a3
 C .byt $a1
 C .byt $a3
 
+R CEILING_BARRIER
+C .byt M_PAL_1
+C .byt M_SPECIAL_MISC
+C .byt $31
+C .byt $31
+C .byt $31
+C .byt $31
+
 ##### M_SPECIAL_MISC list ends here #####
 
 ##### M_COLLECTIBLE list starts here #####

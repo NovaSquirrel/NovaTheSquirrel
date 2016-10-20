@@ -614,6 +614,21 @@ TopWasSkipped:
   sta XForMiddle
   jsr GetLevelColumnPtr
   sta BlockMiddle
+
+  pha
+  ; also check for a ceiling barrier
+  ldy #0
+  lda (LevelBlockPtr),y
+  cmp #Metatiles::CEILING_BARRIER
+  bne :+
+  lda PlayerPYH
+  bpl :+
+  lda #0
+  sta PlayerVYH
+  lda #$40
+  sta PlayerVYL
+:
+  pla
   tay
 
   ; A is going to get overwritten now so take this opportunity to update PlayerLocationNow/Last
