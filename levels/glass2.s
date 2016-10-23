@@ -19,10 +19,9 @@ glass2:
 
 glass2Data:
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 24
-  LObj  LO::S_W_ARROW_RIGHT,  7, 9
-  LObj  LO::S_W_CRATE,        2, 5
-  LObj  LO::S_W_ARROW_UP,     0, 9
-  LObjN LO::R_GROUND,         2, 11, 4, 1
+  LObj  LO::S_W_ARROW_RIGHT,  6, 9
+  LObj  LO::S_W_ARROW_UP,     2, 9
+  LObjN LO::R_GROUND,         3, 11, 4, 1
   LObj  LO::S_PRIZE,          2, 7
   LObjN LO::R_FG_GLASS_BLUE,  1, 3, 0, 4
   LObjN LO::R_BG_GLASS_BLUE,  0, 8, 0, 2
@@ -55,7 +54,8 @@ glass2Data:
   LObjN LO::R_BG_GLASS_RED,   2, 3, 4, 0
   LObjN LO::R_BG_GLASS_BLUE,  0, 8, 0, 2
   LObjN LO::R_BG_GLASS_RED,   1, 2, 0, 2
-  LObj  LO::S_W_BOMB,         0, 5
+  LObj  LO::S_PRIZE,          0, 7
+  LWriteCol InventoryItem::HEALTH_RESTORE
   LObjN LO::R_GROUND,         0, 11, 4, 3
   LObjN LO::R_BG_GLASS_RED,   1, 4, 0, 1
   LObjN LO::R_BG_GLASS_RED,   1, 2, 0, 2
@@ -68,13 +68,19 @@ glass2Data:
   LObjN LO::R_BG_GLASS_GREEN, 0, 8, 2, 2
   LObjN LO::R_FG_GLASS_BLUE,  0, 11, 2, 0
   LObjN LO::R_FG_GLASS_BLUE,  3, 7, 0, 4
-  LObjN LO::R_FG_GLASS_BLUE,  1, 3, 1, 0
+  LObjN LO::R_FG_GLASS_BLUE,  1, 3, 4, 0
   LObjN LO::R_SOLID_ROCK,     0, 7, 7, 0
-  LObj  LO::S_PRIZE,          2, 3
-  LObjN LO::R_FG_GLASS_BLUE,  1, 3, 1, 0
-  LObjN LO::R_FG_GLASS_BLUE,  2, 3, 0, 2
-  LObj  LO::R_CUSTOM,         3, 7, Metatiles::WOOD_CRATE, (4<<4)|0
-  LObj  LO::R_CUSTOM,         2, 12, Metatiles::WOOD_CRATE, (4<<4)|0
+  LObjN LO::R_FG_GLASS_BLUE,  1, 0, 0, 2
+  LObjN LO::R_FG_GLASS_BLUE,  1, 0, 2, 0
+  LObjN LO::R_COIN,           0, 1, 1, 1
+  LObj  LO::S_COIN,           0, 2
+  LObj  LO::S_FG_GLASS_BLUE,  2, 1
+  LObj  LO::S_CUSTOM,         0, 2, Metatiles::LOCK_BLUE
+  LObjN LO::R_FG_GLASS_BLUE,  1, 3, 0, 2
+  LObjN LO::WIDE_1,           1, 3, 0, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           0, 5, 0, LN1::SOLID_LEDGE
+  LObj  LO::R_CUSTOM,         2, 7, Metatiles::WOOD_CRATE, (4<<4)|0
+  LObj  LO::R_CUSTOM,         2, 11, Metatiles::WOOD_CRATE, (4<<4)|0
   LObj  LO::R_CUSTOM,         4, 9, Metatiles::WOOD_CRATE, (4<<4)|0
   LObj  LO::R_CUSTOM,         6, 10, Metatiles::WOOD_CRATE, (4<<4)|0
   LObj  LO::S_W_CRATE,        3, 6
@@ -87,6 +93,18 @@ glass2Data:
   LObj  LO::S_W_CRATE,        3, 5
   LObj  LO::S_W_CRATE,        0, 8
   LObj  LO::S_W_CRATE,        2, 7
+  LObjN LO::R_SOLID_BLOCK,    2, 7, 3, 0
+  LObjN LO::R_SOLID_BLOCK,    1, 1, 0, 2
+  LObj  LO::S_W_ARROW_RIGHT,  0, 5
+  LObj  LO::S_SOLID_BLOCK,    1, 1
+  LObj  LO::S_CUSTOM,         0, 2, Metatiles::KEY_BLUE
+  LObj  LO::S_M_CRATE,        0, 3
+  LObjN LO::WIDE_1,           0, 5, 0, LN1::SOLID_LEDGE
+  LObjN LO::R_SOLID_BLOCK,    1, 1, 0, 2
+  LObj  LO::S_W_ARROW_LEFT,   1, 3
+  LObj  LO::S_W_ARROW_UP,     0, 9
+  LObj  LO::S_W_ARROW_DOWN,   3, 5
+  LObj  LO::S_W_ARROW_LEFT,   0, 9
   LFinished
 
 glass2Sprite:

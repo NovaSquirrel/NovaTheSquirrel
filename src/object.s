@@ -1559,3 +1559,11 @@ WithXYOffset:
 : ldy TempY
   rts
 .endproc
+
+.proc EnemyYLimit
+  lda ObjectPYH,x
+  bpl :+
+  lda #0
+  sta ObjectF1,x
+: rts
+.endproc

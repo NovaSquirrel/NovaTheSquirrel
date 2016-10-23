@@ -108,7 +108,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_PAL_1 ;PUSHABLE_BLOCK
   .byt M_PAL_2 ;CAMPFIRE_OUT
   .byt M_PAL_1 ;GRAVEL
-  .byt M_PAL_0 ;ICE
+  .byt M_PAL_1 ;ICE
   .byt M_PAL_0 ;PATH_MARKER
   .byt M_PAL_1 ;CLOUD_L
   .byt M_PAL_1 ;CLOUD_M
@@ -289,7 +289,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL ;PUSHABLE_BLOCK
   .byt M_EMPTY ;CAMPFIRE_OUT
   .byt M_EMPTY ;GRAVEL
-  .byt M_ICE ;ICE
+  .byt M_ICE|M_SOLID_ALL|M_SOLID_TOP ;ICE
   .byt M_EMPTY ;PATH_MARKER
   .byt M_EMPTY ;CLOUD_L
   .byt M_EMPTY ;CLOUD_M
@@ -469,7 +469,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $0c ;PUSHABLE_BLOCK
   .byt $3f ;CAMPFIRE_OUT
   .byt $3f ;GRAVEL
-  .byt $00 ;ICE
+  .byt $5c ;ICE
   .byt $3f ;PATH_MARKER
   .byt $c0 ;CLOUD_L
   .byt $c2 ;CLOUD_M
@@ -648,7 +648,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $29 ;PUSHABLE_BLOCK
   .byt $bc ;CAMPFIRE_OUT
   .byt $bf ;GRAVEL
-  .byt $00 ;ICE
+  .byt $5e ;ICE
   .byt $3f ;PATH_MARKER
   .byt $d0 ;CLOUD_L
   .byt $d1 ;CLOUD_M
@@ -827,7 +827,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $0e ;PUSHABLE_BLOCK
   .byt $3f ;CAMPFIRE_OUT
   .byt $3f ;GRAVEL
-  .byt $00 ;ICE
+  .byt $5d ;ICE
   .byt $3f ;PATH_MARKER
   .byt $c1 ;CLOUD_L
   .byt $c3 ;CLOUD_M
@@ -1006,7 +1006,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $2b ;PUSHABLE_BLOCK
   .byt $be ;CAMPFIRE_OUT
   .byt $bf ;GRAVEL
-  .byt $00 ;ICE
+  .byt $5f ;ICE
   .byt $3f ;PATH_MARKER
   .byt $d1 ;CLOUD_L
   .byt $d1 ;CLOUD_M

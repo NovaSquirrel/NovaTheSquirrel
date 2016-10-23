@@ -1,11 +1,11 @@
 ; to do: figure out how I want to select banks
 
 MasterLevelListL:
-  .byt <intro_a, <grassy_a, <funkunderground, <sky, <water, <grassy2_a, <underground_2, <glass2, <emptylevel
+  .byt <intro_a, <grassy_a, <funkunderground, <sky, <water, <grassy2_a, <underground_2, <glass_intro, <emptylevel
   .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden
 
 MasterLevelListH:
-  .byt >intro_a, >grassy_a, >funkunderground, >sky, >water, >grassy2_a, >underground_2, >glass2, >emptylevel
+  .byt >intro_a, >grassy_a, >funkunderground, >sky, >water, >grassy2_a, >underground_2, >glass_intro, >emptylevel
   .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden
 
 .enum LevelId
@@ -41,6 +41,7 @@ MasterLevelListH:
 .include "../levels/boss1.s"
 .include "../levels/glass.s"
 .include "../levels/glass2.s"
+.include "../levels/glass_intro.s"
 
 ;Level data:
 ;TTTTTTTT XXXXYYYY [SSSSSSSS]

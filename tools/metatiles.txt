@@ -858,12 +858,12 @@ C .byt $3f
 C .byt $bf
 
 R ICE
-C .byt M_PAL_0
-C .byt M_ICE
-C .byt $00
-C .byt $00
-C .byt $00
-C .byt $00
+C .byt M_PAL_1
+C .byt M_ICE|M_SOLID_ALL|M_SOLID_TOP
+C .byt $5c
+C .byt $5e
+C .byt $5d
+C .byt $5f
 
 R PATH_MARKER
 C .byt M_PAL_0

@@ -1546,6 +1546,7 @@ BodyAnim:
 .proc ObjectFlyingArrow
   jsr EnemyDespawnTimer
   jsr EnemyApplyVelocity
+  jsr EnemyYLimit
 
   jsr EnemyCheckOverlappingOnSolid
   bcc ArrowDidntHit

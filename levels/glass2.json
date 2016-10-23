@@ -301,7 +301,7 @@
 					"Id":	"FG_GLASS_BLUE",
 					"X":	48,
 					"Y":	3,
-					"W":	2,
+					"W":	5,
 					"H":	1
 				}, {
 					"Id":	"FG_GLASS_BLUE",
@@ -310,52 +310,16 @@
 					"W":	1,
 					"H":	3
 				}, {
-					"Id":	"PRIZE",
-					"X":	50,
-					"Y":	3,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"FG_GLASS_BLUE",
-					"X":	51,
-					"Y":	3,
-					"W":	2,
-					"H":	1
-				}, {
 					"Id":	"SMALL_ROCK",
 					"X":	48,
 					"Y":	7,
 					"W":	8,
 					"H":	1
 				}, {
-					"Id":	"WOOD_ARROW_RIGHT",
-					"X":	7,
-					"Y":	9,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"WOOD_ARROW_UP",
-					"X":	9,
-					"Y":	9,
-					"W":	1,
-					"H":	1
-				}, {
 					"Id":	"WOOD_CRATE",
 					"X":	56,
 					"Y":	7,
 					"W":	5,
-					"H":	1
-				}, {
-					"Id":	"WOOD_BOMB",
-					"X":	38,
-					"Y":	5,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"WOOD_CRATE",
-					"X":	9,
-					"Y":	5,
-					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"WOOD_CRATE",
@@ -366,7 +330,7 @@
 				}, {
 					"Id":	"WOOD_CRATE",
 					"X":	58,
-					"Y":	12,
+					"Y":	11,
 					"W":	5,
 					"H":	1
 				}, {
@@ -433,6 +397,145 @@
 					"Id":	"WOOD_CRATE",
 					"X":	78,
 					"Y":	10,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"WOOD_ARROW_RIGHT",
+					"X":	6,
+					"Y":	9,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"WOOD_ARROW_UP",
+					"X":	8,
+					"Y":	9,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_BLOCK",
+					"X":	86,
+					"Y":	7,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"KEY_BLUE",
+					"X":	88,
+					"Y":	2,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"WOOD_ARROW_RIGHT",
+					"X":	87,
+					"Y":	5,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"WOOD_ARROW_DOWN",
+					"X":	93,
+					"Y":	5,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"WOOD_ARROW_LEFT",
+					"X":	93,
+					"Y":	9,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"WOOD_ARROW_UP",
+					"X":	90,
+					"Y":	9,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"WOOD_ARROW_LEFT",
+					"X":	90,
+					"Y":	3,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"METAL_CRATE",
+					"X":	88,
+					"Y":	3,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_BLOCK",
+					"X":	87,
+					"Y":	1,
+					"W":	1,
+					"H":	3
+				}, {
+					"Id":	"SOLID_BLOCK",
+					"X":	89,
+					"Y":	1,
+					"W":	1,
+					"H":	3
+				}, {
+					"Id":	"SOLID_BLOCK",
+					"X":	88,
+					"Y":	1,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"LOCK_BLUE",
+					"X":	52,
+					"Y":	2,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	50,
+					"Y":	0,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	49,
+					"Y":	0,
+					"W":	1,
+					"H":	3
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	54,
+					"Y":	5,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	54,
+					"Y":	3,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	52,
+					"Y":	1,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"COIN",
+					"X":	50,
+					"Y":	2,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"COIN",
+					"X":	50,
+					"Y":	1,
+					"W":	2,
+					"H":	2
+				}, {
+					"Id":	"PRIZE",
+					"X":	38,
+					"Y":	7,
+					"W":	1,
+					"H":	1,
+					"Extra":	"HEALTH_RESTORE"
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	88,
+					"Y":	5,
 					"W":	1,
 					"H":	1
 				}]

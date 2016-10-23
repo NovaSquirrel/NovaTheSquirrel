@@ -100,10 +100,12 @@
 Lo = 0
 Hi = 1
 TheY = 2
+Block = 0
   lda ObjectVXH,x ; if not moving, we're not bouncing
   ora ObjectVXL,x
   bne :+          ; return, don't do anything
 _rts2:
+  clc
   rts
 :
 
@@ -118,16 +120,13 @@ _rts2:
 
 Right: ; right edge
   ; FIRST, make sure we're not passing through something above
-;  lda ObjectPXL,x
-;  add ObjectVXL,x
-;  lda ObjectPXH,x
-;  adc ObjectVXH,x
   lda ObjectPXH,x
   ldy ObjectPYH,x
   jsr GetLevelColumnPtr
+  sta Block
   tay
   lda MetatileFlags,y
-  bmi _rts2 ; solid
+  jmi SolidAbove
 
   ldy ObjectF2,x
   lda PlayerProjectileRightCornerTable,y
@@ -156,16 +155,17 @@ Left: ; start from left edge
   adc #0
   ldy ObjectPYH,x
   jsr GetLevelColumnPtr
+  sta Block
   tay
   lda MetatileFlags,y
-  bmi _rts ; solid
+  bmi SolidAbove ; solid but not bumping
 
   lda ObjectPXH,x
   ldy ObjectPYH,x
   jsr GetLevelColumnPtr
   tay
   lda MetatileFlags,y
-  bpl _rts ; not solid
+  bpl Nonsolid
 
   ldy TheY
   lda ObjectPXL,x
@@ -174,20 +174,30 @@ Left: ; start from left edge
   adc ObjectVXH,x
   jsr GetLevelColumnPtr
 GotIt:
+  sta Block
   tay
   lda MetatileFlags,y
-  bpl _rts ; not solid
+  bpl Nonsolid
 
   neg16x ObjectVXL, ObjectVXH
 
-  ldy ObjectF2,x
-  lda PlayerProjectileSizeTable,y
-  cmp #16
-  jne EnemyTurnAround
-
-_rts:
+;  ldy ObjectF2,x
+;  lda PlayerProjectileSizeTable,y
+;  cmp #16
+;  jne EnemyTurnAround
+  jsr EnemyTurnAround
+Solid:
+  sec
   rts
-
+Nonsolid:
+  clc
+  rts
+SolidAbove:
+  ; make sure TheY is correct for a collision above
+  lda ObjectPYH,x
+  sta TheY
+  sec
+  rts
 .endproc
 
 .proc ObjectRemoveTooLow
@@ -410,7 +420,7 @@ DoFireball:
 
 @Done:
   jsr EnemyApplyVelocity
-  rts
+  jmp EnemyYLimit
 
 ProjFireball:
   jsr DoFireball
@@ -431,7 +441,17 @@ NotFlame:
   and #3
   add #$70
   jsr DispObject8x8
-  jmp ObjectBounceHoriz
+  jsr ObjectBounceHoriz
+
+  ; Check if bouncing against ice, and melt it if so
+  bcc :+
+  ldy 2 ; TheY
+  lda 0 ; Block
+  cmp #Metatiles::ICE
+  bne :+
+  lda #Metatiles::EMPTY
+  jmp ChangeBlockFar
+: rts 
 
 DoFlame:
   jsr EnemyFall

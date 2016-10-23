@@ -70,7 +70,8 @@ waterData:
   LObj  LO::S_TROPICAL_FLOWER,0, 6
   LObjN LO::R_GROUND,         0, 9, 10, 5
   LObj  LO::S_BIG_BUSH, 2, 8
-  LObj  LO::S_TROPICAL_FLOWER,2, 6
+  LObj  LO::S_CEILING_BARRIER,2, 0
+  LObj  LO::S_TROPICAL_FLOWER,0, 6
   LObjN LO::R_GROUND,         1, 1, 3, 1
   LObjN LO::RECT_1,           1, 0, 1, LN1::GROUND, 24
   LObj  LO::S_BIG_BUSH, 0, 8
@@ -107,7 +108,8 @@ waterData:
   LObjN LO::WIDE_1,           1, 2, 4, LN1::FENCE
   LObjN LO::R_SAND,           0, 3, 4, 8
   LObjN LO::R_COIN,           6, 8, 0, 2
-  LObjN LO::R_GROUND,         3, 0, 6, 6
+  LObj  LO::S_CEILING_BARRIER,2, 0
+  LObjN LO::R_GROUND,         1, 0, 6, 6
   LObj  LO::S_FLOWER,         1, 11
   LObj  LO::S_FLOWER,         4, 11
   LObjN LO::R_SAND,           0, 12, 5, 2
@@ -126,7 +128,8 @@ waterData:
   LObjN LO::R_SAND,           3, 7, 8, 7
   LObj  LO::S_MOAI_LEFT,      1, 6
   LObjN LO::TALL_2,           2, 4, 2, LN2::TRUNK_L
-  LObjN LO::WIDE_1,           3, 6, 2, LN1::TALLGRASS
+  LObj  LO::S_CEILING_BARRIER,3, 0
+  LObjN LO::WIDE_1,           0, 6, 2, LN1::TALLGRASS
   LObjN LO::RECT_1,           1, 0, 1, LN1::GROUND, 19
   LObjN LO::R_WATER,          2, 7, 14, 7
   LObjN LO::R_GROUND,         0, 11, 3, 3
