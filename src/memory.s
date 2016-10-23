@@ -261,7 +261,6 @@
 LevelZeroWhenLoad_Start:
   PlayerHasBalloon:       .res 1
   DelayedMetaEditIndexHi: .res MaxDelayedMetaEdits  ; high address in the level array, or 0 if unused
-  IsNormalDoor:           .res 1 ; 1 if the level is loading due to a door
   IsScrollUpdate:         .res 1   ; nonzero = yes
   PlayerOnLadder:         .res 1  ; true if player is on a ladder
   NeedSFX:                .res 1
@@ -276,6 +275,7 @@ LevelZeroWhenLoad_Start:
   ; ScreenFlags stores flags for each screen in the level; so far there's just one flag:
   SCREEN_BOUNDARY = 1 ; boundary on left side of screen
 LevelZeroWhenLoad_End:
+  IsNormalDoor:           .res 1 ; 1 if the level is loading due to a door
 
   PuzzleMode:             .res 1
   

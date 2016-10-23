@@ -150,8 +150,11 @@ SelectForOptions: .byt "          Select: options",0
   sta PlayerAbility
   lda CheckpointY
   sta PlayerPYH
+
   inc IsNormalDoor ; skip setting X and Y
 
+  lda #$40
+  sta PlayerPXL
   lda CheckpointLevelNumber
   jmp StartLevel_FromCheckpoint
 .endproc

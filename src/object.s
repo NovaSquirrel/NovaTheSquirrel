@@ -175,6 +175,7 @@ Exit:
   .raddr ObjectFlyingArrow
   .raddr ObjectFallingBomb
   .raddr ObjectBoulder
+  .raddr ObjectCheckpoint
 .endproc
 
 ; other enemy attributes
@@ -1464,12 +1465,16 @@ DispObject8x8:
 .proc DispObject8x8_Attr
 DrawX = O_RAM::OBJ_DRAWX
 DrawY = O_RAM::OBJ_DRAWY
+Tile = 0
+Attributes = 1
+XOffset = 2
+YOffset = 3
 
-  sta 0
+  sta Tile
 
   lda #0
-  sta 2
-  sta 3
+  sta XOffset
+  sta YOffset
   sta O_RAM::ON_SCREEN
 WithXYOffset:
 
@@ -1501,9 +1506,9 @@ WithXYOffset:
   lda DrawY
   add 3
   sta OAM_YPOS,y
-  lda 1 ; defaults to OAM_COLOR_1
+  lda Attributes ; defaults to OAM_COLOR_1
   sta OAM_ATTR,y
-  lda 0
+  lda Tile
   sta OAM_TILE,y
   iny
   iny
@@ -1566,4 +1571,51 @@ WithXYOffset:
   lda #0
   sta ObjectF1,x
 : rts
+.endproc
+
+.proc ObjectCheckpoint
+  lda #0 ; Attributes
+  sta 1
+
+  ; Draw checkpoint spinning in a circle
+  lda retraces
+  and #31
+  tay
+  lda CosineTable,y
+  jsr AsrAsrAsr
+  add #4
+  sta 2 ; X offset
+  lda SineTable,y
+  jsr AsrAsrAsr
+  add #4
+  sta 3 ; Y offset
+  lda #$52 ; Tile
+  jsr DispObject8x8_XYOffset
+
+  ; Touch checkpoint
+  jsr SmallPlayerTouch
+  bcc NoTouch
+  ; Store the X and Y for the checkpoint
+  lda #0
+  sta ObjectF1,x
+  lda ObjectPXH,x
+  sta CheckpointX
+  lda ObjectPYH,x
+  sub #1
+  sta CheckpointY
+
+  ; Copy game state
+  ldy #GameStateLen-1
+: lda CurrentGameState,y
+  sta CheckpointGameState,y
+  dey
+  bpl :-
+NoTouch:
+  rts
+
+AsrAsrAsr:
+  asr
+  asr
+  asr
+  rts  
 .endproc

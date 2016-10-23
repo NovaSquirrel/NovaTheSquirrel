@@ -409,6 +409,9 @@ PutArrows:
   pla
   dec 0
   bne @ArrowRowLoop
+
+  lda #0
+  sta IsNormalDoor
   rts
 .endproc
 

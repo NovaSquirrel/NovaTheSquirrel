@@ -278,3 +278,8 @@ R BOULDER
 C .byt GraphicsUpload::SP_HANNAH
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::ESSENTIAL
+
+R CHECKPOINT
+C .byt 0
+C .byt ObjBehavior::AUTO_REMOVE
+C .byt ObjFlag::ESSENTIAL

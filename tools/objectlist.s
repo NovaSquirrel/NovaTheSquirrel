@@ -54,6 +54,7 @@
   .byt GraphicsUpload::SP_HANNAH ;FLYING_ARROW
   .byt GraphicsUpload::SP_HANNAH ;FALLING_BOMB
   .byt GraphicsUpload::SP_HANNAH ;BOULDER
+  .byt 0 ;CHECKPOINT
 .endproc
 
 .proc ObjBehaviors
@@ -112,6 +113,7 @@
   .byt 0 ;FLYING_ARROW
   .byt 0 ;FALLING_BOMB
   .byt ObjBehavior::AUTO_REMOVE ;BOULDER
+  .byt ObjBehavior::AUTO_REMOVE ;CHECKPOINT
 .endproc
 
 .proc ObjFlags
@@ -170,5 +172,6 @@
   .byt ObjFlag::ESSENTIAL ;FLYING_ARROW
   .byt ObjFlag::ESSENTIAL ;FALLING_BOMB
   .byt ObjFlag::ESSENTIAL ;BOULDER
+  .byt ObjFlag::ESSENTIAL ;CHECKPOINT
 .endproc
 
