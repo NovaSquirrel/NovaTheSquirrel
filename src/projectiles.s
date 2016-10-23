@@ -97,9 +97,9 @@
 
 .proc ObjectBounceHoriz
 ; todo: fix the part where it always seems to bounce when going right and using a small object
-Lo = 0
-Hi = 1
-TheY = 2
+Lo = 1
+Hi = 2
+TheY = 4
 Block = 0
   lda ObjectVXH,x ; if not moving, we're not bouncing
   ora ObjectVXL,x
@@ -389,7 +389,7 @@ BoomerangSpinA:
   .byt OAM_COLOR_1|OAM_YFLIP, OAM_COLOR_1|OAM_XFLIP|OAM_YFLIP, OAM_COLOR_1|OAM_XFLIP|OAM_YFLIP, OAM_COLOR_1|OAM_XFLIP
 DoFireball:
   jsr ObjectFallSmall
-  bcc :+
+  bcc @Done
   lda #<-$18
   sta ObjectVYL,x
   lda #255
@@ -419,8 +419,7 @@ DoFireball:
 :
 
 @Done:
-  jsr EnemyApplyVelocity
-  jmp EnemyYLimit
+  jmp EnemyApplyVelocity
 
 ProjFireball:
   jsr DoFireball
@@ -445,13 +444,14 @@ NotFlame:
 
   ; Check if bouncing against ice, and melt it if so
   bcc :+
-  ldy 2 ; TheY
+  ldy 4 ; TheY
   lda 0 ; Block
   cmp #Metatiles::ICE
   bne :+
   lda #Metatiles::EMPTY
   jmp ChangeBlockFar
-: rts 
+:
+  rts 
 
 DoFlame:
   jsr EnemyFall
