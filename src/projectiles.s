@@ -415,7 +415,7 @@ DoFireball:
   bne :+
   lda #Metatiles::LAVA_TOP
   jsr ChangeBlockFar
-  jmp @Done
+;  jmp @Done
 :
 
 @Done:
