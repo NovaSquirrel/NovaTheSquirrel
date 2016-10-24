@@ -624,6 +624,8 @@ TopWasSkipped:
   lda PlayerPYH
   bpl :+
   lda #0
+  sta PlayerPYH
+  sta PlayerPYL
   sta PlayerVYH
   lda #$40
   sta PlayerVYL
