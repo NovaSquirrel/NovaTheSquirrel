@@ -87,16 +87,11 @@
   sta PPUCTRL
 
   lda UploadTileAddress+1
-  jeq NoUploadTile
+  beq NoUploadTile
     sta PPUADDR
     lda UploadTileAddress+0
     sta PPUADDR
-    .repeat 64, I
-      lda UploadTileSpace+I
-      sta PPUDATA
-    .endrep
-    lda #0
-    sta UploadTileAddress+1
+    jsr UploadFourTiles
   NoUploadTile:
 
   .repeat 4, I ; change if the max number of tile changes per frame is changed

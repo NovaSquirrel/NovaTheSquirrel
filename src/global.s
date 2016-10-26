@@ -152,14 +152,15 @@ WritePPURepeated16:
 ; input: A (new ability)
 ; locals: TempVal, TempVal+1, TempVal+2
 .proc ChangePlayerAbility
-Pointer = TempVal+1
-Length = TempVal+0
+Pointer = TempVal+0
   sta PlayerAbility
-  jsr WaitVblank
-  lda #%11100001 ; dim
-  sta PPUMASK
+;  jsr WaitVblank
+;  lda #%11100001 ; dim
+;  sta PPUMASK
+  lda #SOUND_BANK
+  jsr _SetPRG
   lda #SFX::GET_ABILITY
-  sta NeedSFX
+  jsr pently_start_sound
 WithoutSFX:
 ; Because the graphics will be rewritten, erase any projectiles using the old graphics
   ldx #0
@@ -194,26 +195,20 @@ WithoutSFX:
   sta Pointer+1
 
 ; Write to ability icon in VRAM
+  ldy #0
+  jsr Copy64FromPointer
+  jsr WaitVblank
   lda #>$14c0
   sta PPUADDR
   lda #<$14c0
   sta PPUADDR
-  ldy #0
-: lda (Pointer),y
-  sta PPUDATA
-  iny
-  cpy #64
-  bne :-
+  jsr UploadTilesAndUpdateScroll
 
 ; Calculate pointer to ability tiles
   ldx PlayerAbility
   lda AbilityLengths,x
   beq NoExtraTiles
-  asl
-  asl
-  asl
-  asl
-  sta Length
+  ; don't store length since we're always copying 128 tiles
 
   lda #0
   sta Pointer+1
@@ -229,24 +224,40 @@ WithoutSFX:
   sta Pointer+1
 
 ; Write projectile tiles
+  ldy #0
+  jsr Copy64FromPointer
+  jsr WaitVblank
   lda #>$1700
   sta PPUADDR
   lda #<$1700
   sta PPUADDR
-  ldy #0
-: lda (Pointer),y
-  sta PPUDATA
-  iny
-  cpy Length
-  bne :-
+  jsr UploadTilesAndUpdateScroll
+
+  jsr Copy64FromPointer
+  jsr WaitVblank
+  lda #>$1700+64
+  sta PPUADDR
+  lda #<$1700+64
+  sta PPUADDR
+  jsr UploadTilesAndUpdateScroll
 NoExtraTiles:
 
-  jsr UpdateScrollRegister
-  jsr WaitVblank
-  lda #0
-  sta PPUMASK
 ; Restore the old bank
   jmp SetPRG_Restore
+
+Copy64FromPointer:
+  ldx #0
+: lda (Pointer),y
+  sta UploadTileSpace,x
+  iny
+  inx
+  cpx #64
+  bne :-
+  rts
+
+UploadTilesAndUpdateScroll:
+  jsr UploadFourTiles
+  jmp UpdateScrollRegister
 .endproc
 ChangePlayerAbilityWithoutSFX = ChangePlayerAbility::WithoutSFX
 
@@ -1090,7 +1101,6 @@ PSIX2:	jmp     (DPL)   ; return to byte following final NULL
   ; 21 AA    - just switch to level
   inc NeedLevelRerender
   inc JustTeleported
-  inc IsNormalDoor
   lda #0
   sta IntroShownAlready
   lda ColumnBytes,x    ; Read the flag to check for special handling
@@ -1104,6 +1114,7 @@ PSIX2:	jmp     (DPL)   ; return to byte following final NULL
     sta LevelNumber
     inc NeedLevelReload
     inc MakeCheckpoint
+    inc IsNormalDoor
 NoLevelChange:
   lda ColumnBytes+0,x    ; Read the Y position plus the flag
   and #15                ; (but only use the flag)
@@ -1446,3 +1457,13 @@ FlyingArrowVY:
   .byt 0, <($28), <(-$28), 0
 .endproc
 
+; Writes four tiles of information to the PPU
+.proc UploadFourTiles
+  .repeat 64, I
+    lda UploadTileSpace+I
+    sta PPUDATA
+  .endrep
+  lda #0
+  sta UploadTileAddress+1
+  rts
+.endproc
