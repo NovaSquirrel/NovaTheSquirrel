@@ -30,6 +30,7 @@
 
   lda #0
   sta UploadTileAddress+1
+  sta IsNormalDoor
 
   lda #MAINLOOP_BANK
   jsr SetPRG
