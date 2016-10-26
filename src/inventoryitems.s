@@ -101,9 +101,10 @@ AfterAmount:
 .proc DoSwitchAbility
   pha
   jsr RemoveOneItem
+  jsr WaitVblank
   pla
   sub #InventoryItem::ABILITY_BLASTER-1
-  jmp ChangePlayerAbility
+  jmp ChangePlayerAbilityScreenOff
 .endproc
 
 .proc PauseScreen
@@ -638,6 +639,7 @@ KB = KEY_B
   .byt KU, KD, KU, KD, KU, KD, KU, KD ; up/down
   .byt KB, KA, KL, KL, KB, KA, KL, KL ; BALL
   .byt KL, KD, KU, KR, KL, KD, KU, KR ; ddr pattern
+  .byt KD, KD, KD, KD, KU, KU, KU, KU ; down*4, up*4
   .byt KU, KU, KU, KU, KU, KU, KU, KU ; up
   .byt 0
 .endproc
@@ -662,22 +664,26 @@ Routines:
   .raddr Water ; up/down
   .raddr Firework ; BALL
   .raddr Bomb ; ddr pattern
+  .raddr Ice ; down, up
   .raddr Balloon ; up
 Boomerang:
   lda #AbilityType::BOOMERANG
-  jmp ChangePlayerAbility  
+  jmp ChangePlayerAbilityScreenOff  
 Fireball:
   lda #AbilityType::FIRE
-  jmp ChangePlayerAbility
+  jmp ChangePlayerAbilityScreenOff
 Water:
   lda #AbilityType::WATER
-  jmp ChangePlayerAbility
+  jmp ChangePlayerAbilityScreenOff
 Bomb:
   lda #AbilityType::BOMB
-  jmp ChangePlayerAbility
+  jmp ChangePlayerAbilityScreenOff
 Firework:
   lda #AbilityType::FIREWORK
-  jmp ChangePlayerAbility
+  jmp ChangePlayerAbilityScreenOff
+Ice:
+  lda #AbilityType::NICE
+  jmp ChangePlayerAbilityScreenOff
 Health:
   lda #4
   sta PlayerHealth
@@ -690,7 +696,7 @@ NextAbility:
   ldx #0
 : stx PlayerAbility
   txa
-  jmp ChangePlayerAbility
+  jmp ChangePlayerAbilityScreenOff
 Balloon:
   lda #128
   sta PlayerHasBalloon

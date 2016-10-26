@@ -148,6 +148,13 @@ WritePPURepeated16:
   rts
 .endproc
 
+
+ChangePlayerAbilityScreenOff:
+  pha
+  jsr WaitVblank
+  lda #0
+  sta PPUMASK
+  pla
 ; Changes the player ability and uploads the new graphics for it
 ; input: A (new ability)
 ; locals: TempVal, TempVal+1, TempVal+2
