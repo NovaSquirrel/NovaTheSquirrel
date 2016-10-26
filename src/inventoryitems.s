@@ -30,6 +30,17 @@ NameSpring: .byt "Spring",0
 NameNuclearPowerPants: .byt "Nuclear Power Pants",0
 NameAlwaysJumping: .byt "Always jumping",0
 NameBalloon: .byt "Balloon",0
+NameArrowLeft: .byt "Arrow (left)",0
+NameArrowDown: .byt "Arrow (down)",0
+NameArrowUp: .byt "Arrow (up)",0
+NameArrowRight: .byt "Arrow (right)",0
+NameArrowLeftMetal: .byt "Arrow (left metal)",0
+NameArrowDownMetal: .byt "Arrow (down metal)",0
+NameArrowUpMetal: .byt "Arrow (up metal)",0
+NameArrowRightMetal: .byt "Arrow (right metal)",0
+NameWoodBox: .byt "Wood spring box",0
+NameMetalBox: .byt "Metal box",0
+
 
 .proc RemoveOneItem
   lda InventoryAmount,x

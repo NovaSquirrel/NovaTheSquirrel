@@ -237,3 +237,83 @@ C .byt >NameHealthBig
 C .byt <(DoHealthRestoreBig-1)
 C .byt >(DoHealthRestoreBig-1)
 C ThinFontText "XL PIZZA"
+
+R ARROW_LEFT
+C .byt InventoryIcon::PLACEABLE
+C .byt <NameArrowLeft
+C .byt >NameArrowLeft
+C .byt <(DoNothing-1)
+C .byt >(DoNothing-1)
+C ThinFontText "ARROW L "
+
+R ARROW_DOWN
+C .byt InventoryIcon::PLACEABLE
+C .byt <NameArrowDown
+C .byt >NameArrowDown
+C .byt <(DoNothing-1)
+C .byt >(DoNothing-1)
+C ThinFontText "ARROW D "
+
+R ARROW_UP
+C .byt InventoryIcon::PLACEABLE
+C .byt <NameArrowUp
+C .byt >NameArrowUp
+C .byt <(DoNothing-1)
+C .byt >(DoNothing-1)
+C ThinFontText "ARROW U "
+
+R ARROW_RIGHT
+C .byt InventoryIcon::PLACEABLE
+C .byt <NameArrowRight
+C .byt >NameArrowRight
+C .byt <(DoNothing-1)
+C .byt >(DoNothing-1)
+C ThinFontText "ARROW R "
+
+R ARROW_LEFT_METAL
+C .byt InventoryIcon::PLACEABLE
+C .byt <NameArrowLeftMetal
+C .byt >NameArrowLeftMetal
+C .byt <(DoNothing-1)
+C .byt >(DoNothing-1)
+C ThinFontText "ARROW LM"
+
+R ARROW_DOWN_METAL
+C .byt InventoryIcon::PLACEABLE
+C .byt <NameArrowDownMetal
+C .byt >NameArrowDownMetal
+C .byt <(DoNothing-1)
+C .byt >(DoNothing-1)
+C ThinFontText "ARROW DM"
+
+R ARROW_UP_METAL
+C .byt InventoryIcon::PLACEABLE
+C .byt <NameArrowUpMetal
+C .byt >NameArrowUpMetal
+C .byt <(DoNothing-1)
+C .byt >(DoNothing-1)
+C ThinFontText "ARROW UM"
+
+R ARROW_RIGHT_METAL
+C .byt InventoryIcon::PLACEABLE
+C .byt <NameArrowRightMetal
+C .byt >NameArrowRightMetal
+C .byt <(DoNothing-1)
+C .byt >(DoNothing-1)
+C ThinFontText "ARROW RM"
+
+R WOOD_BOX
+C .byt InventoryIcon::PLACEABLE
+C .byt <NameWoodBox
+C .byt >NameWoodBox
+C .byt <(DoNothing-1)
+C .byt >(DoNothing-1)
+C ThinFontText "WOOD BOX"
+
+R METAL_BOX
+C .byt InventoryIcon::PLACEABLE
+C .byt <NameMetalBox
+C .byt >NameMetalBox
+C .byt <(DoNothing-1)
+C .byt >(DoNothing-1)
+C ThinFontText "METALBOX"

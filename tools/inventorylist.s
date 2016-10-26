@@ -28,6 +28,16 @@
   .byt InventoryIcon::BULLET ;BALLOON
   .byt InventoryIcon::HEART ;SMALL_HEALTH_RESTORE
   .byt InventoryIcon::HEART ;BIG_HEALTH_RESTORE
+  .byt InventoryIcon::PLACEABLE ;ARROW_LEFT
+  .byt InventoryIcon::PLACEABLE ;ARROW_DOWN
+  .byt InventoryIcon::PLACEABLE ;ARROW_UP
+  .byt InventoryIcon::PLACEABLE ;ARROW_RIGHT
+  .byt InventoryIcon::PLACEABLE ;ARROW_LEFT_METAL
+  .byt InventoryIcon::PLACEABLE ;ARROW_DOWN_METAL
+  .byt InventoryIcon::PLACEABLE ;ARROW_UP_METAL
+  .byt InventoryIcon::PLACEABLE ;ARROW_RIGHT_METAL
+  .byt InventoryIcon::PLACEABLE ;WOOD_BOX
+  .byt InventoryIcon::PLACEABLE ;METAL_BOX
 .endproc
 
 .proc InventoryINameL
@@ -60,6 +70,16 @@
   .byt <NameBalloon ;BALLOON
   .byt <NameHealthSmall ;SMALL_HEALTH_RESTORE
   .byt <NameHealthBig ;BIG_HEALTH_RESTORE
+  .byt <NameArrowLeft ;ARROW_LEFT
+  .byt <NameArrowDown ;ARROW_DOWN
+  .byt <NameArrowUp ;ARROW_UP
+  .byt <NameArrowRight ;ARROW_RIGHT
+  .byt <NameArrowLeftMetal ;ARROW_LEFT_METAL
+  .byt <NameArrowDownMetal ;ARROW_DOWN_METAL
+  .byt <NameArrowUpMetal ;ARROW_UP_METAL
+  .byt <NameArrowRightMetal ;ARROW_RIGHT_METAL
+  .byt <NameWoodBox ;WOOD_BOX
+  .byt <NameMetalBox ;METAL_BOX
 .endproc
 
 .proc InventoryINameH
@@ -92,6 +112,16 @@
   .byt >NameBalloon ;BALLOON
   .byt >NameHealthSmall ;SMALL_HEALTH_RESTORE
   .byt >NameHealthBig ;BIG_HEALTH_RESTORE
+  .byt >NameArrowLeft ;ARROW_LEFT
+  .byt >NameArrowDown ;ARROW_DOWN
+  .byt >NameArrowUp ;ARROW_UP
+  .byt >NameArrowRight ;ARROW_RIGHT
+  .byt >NameArrowLeftMetal ;ARROW_LEFT_METAL
+  .byt >NameArrowDownMetal ;ARROW_DOWN_METAL
+  .byt >NameArrowUpMetal ;ARROW_UP_METAL
+  .byt >NameArrowRightMetal ;ARROW_RIGHT_METAL
+  .byt >NameWoodBox ;WOOD_BOX
+  .byt >NameMetalBox ;METAL_BOX
 .endproc
 
 .proc InventoryICodeL
@@ -124,6 +154,16 @@
   .byt <(DoNothing-1) ;BALLOON
   .byt <(DoHealthRestoreSmall-1) ;SMALL_HEALTH_RESTORE
   .byt <(DoHealthRestoreBig-1) ;BIG_HEALTH_RESTORE
+  .byt <(DoNothing-1) ;ARROW_LEFT
+  .byt <(DoNothing-1) ;ARROW_DOWN
+  .byt <(DoNothing-1) ;ARROW_UP
+  .byt <(DoNothing-1) ;ARROW_RIGHT
+  .byt <(DoNothing-1) ;ARROW_LEFT_METAL
+  .byt <(DoNothing-1) ;ARROW_DOWN_METAL
+  .byt <(DoNothing-1) ;ARROW_UP_METAL
+  .byt <(DoNothing-1) ;ARROW_RIGHT_METAL
+  .byt <(DoNothing-1) ;WOOD_BOX
+  .byt <(DoNothing-1) ;METAL_BOX
 .endproc
 
 .proc InventoryICodeH
@@ -156,6 +196,16 @@
   .byt >(DoNothing-1) ;BALLOON
   .byt >(DoHealthRestoreSmall-1) ;SMALL_HEALTH_RESTORE
   .byt >(DoHealthRestoreBig-1) ;BIG_HEALTH_RESTORE
+  .byt >(DoNothing-1) ;ARROW_LEFT
+  .byt >(DoNothing-1) ;ARROW_DOWN
+  .byt >(DoNothing-1) ;ARROW_UP
+  .byt >(DoNothing-1) ;ARROW_RIGHT
+  .byt >(DoNothing-1) ;ARROW_LEFT_METAL
+  .byt >(DoNothing-1) ;ARROW_DOWN_METAL
+  .byt >(DoNothing-1) ;ARROW_UP_METAL
+  .byt >(DoNothing-1) ;ARROW_RIGHT_METAL
+  .byt >(DoNothing-1) ;WOOD_BOX
+  .byt >(DoNothing-1) ;METAL_BOX
 .endproc
 
 .proc InventoryShortName
@@ -188,5 +238,15 @@
   ThinFontText "BALLOON " ;BALLOON
   ThinFontText "PIZZA SL" ;SMALL_HEALTH_RESTORE
   ThinFontText "XL PIZZA" ;BIG_HEALTH_RESTORE
+  ThinFontText "ARROW L " ;ARROW_LEFT
+  ThinFontText "ARROW D " ;ARROW_DOWN
+  ThinFontText "ARROW U " ;ARROW_UP
+  ThinFontText "ARROW R " ;ARROW_RIGHT
+  ThinFontText "ARROW LM" ;ARROW_LEFT_METAL
+  ThinFontText "ARROW DM" ;ARROW_DOWN_METAL
+  ThinFontText "ARROW UM" ;ARROW_UP_METAL
+  ThinFontText "ARROW RM" ;ARROW_RIGHT_METAL
+  ThinFontText "WOOD BOX" ;WOOD_BOX
+  ThinFontText "METALBOX" ;METAL_BOX
 .endproc
 
