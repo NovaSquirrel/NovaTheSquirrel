@@ -401,6 +401,8 @@ DoFireball:
   bne :+
   lda #Metatiles::WATER_TOP
   jsr ChangeBlockFar
+  lda #SFX::ARROW_SHOOT
+  jsr PlaySound
   jmp @Done
 :
   lda (LevelBlockPtr),y
@@ -408,6 +410,8 @@ DoFireball:
   bne :+
   lda #Metatiles::EMPTY
   jsr ChangeBlockFar
+  lda #SFX::ARROW_SHOOT
+  jsr PlaySound
   jmp @Done
 :
   lda (LevelBlockPtr),y
@@ -415,6 +419,8 @@ DoFireball:
   bne :+
   lda #Metatiles::LAVA_TOP
   jsr ChangeBlockFar
+  lda #SFX::ARROW_SHOOT
+  jsr PlaySound
 ;  jmp @Done
 :
 
@@ -448,6 +454,8 @@ NotFlame:
   lda 0 ; Block
   cmp #Metatiles::ICE
   bne :+
+  lda #SFX::ARROW_SHOOT
+  jsr PlaySound
   lda #Metatiles::EMPTY
   jmp ChangeBlockFar
 :
@@ -647,7 +655,12 @@ ProjIceBlock:
   adc #0
   ldy ObjectPYH,x
   jsr GetLevelColumnPtr
-  cmp #Metatiles::WATER_TOP
+  cmp #Metatiles::CEILING_BARRIER
+  bne :+
+  lda #0
+  sta ObjectF1,x
+  rts
+: cmp #Metatiles::WATER_TOP
   bne @NotFreeze
     lda #Metatiles::WATER_FROZEN
     jsr ChangeBlockFar
