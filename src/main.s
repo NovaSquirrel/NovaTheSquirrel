@@ -14,13 +14,20 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;
+
+; Start the main loop off and initialize things
 .proc MainLoopInit
   lda #0
   sta PPUMASK
+  sta UploadTileAddress+1 ; Make sure tile uploading is off
+  sta IsNormalDoor        ; Make sure the door entering flag is off
 
+  ; This value is kept at $f0 for most routines, so make sure it's right
   lda #$f0
   sta EnemyRightEdge
 
+  ; Start the music.
+  ; Right now music is disabled until I get something non-annoying in there.
   lda #SOUND_BANK
   jsr _SetPRG
   jsr pently_init
@@ -28,20 +35,21 @@
 ;  jsr pently_start_music
   jsr pently_stop_music
 
-  lda #0
-  sta UploadTileAddress+1
-  sta IsNormalDoor
-
+  ; Render the part of the level the player starts in, if there isn't a dialog
+  ; that needs to be shown at the start of the level.
+  ; (this way the level isn't shown for a frame before the dialog starts)
   lda #MAINLOOP_BANK
   jsr SetPRG
   lda NeedDialog
   bne :+
   inc JustTeleported
-  jsr RenderLevelScreens
+  jsr RenderLevelScreens ; Render the screen the player's on
   jsr WaitVblank
-  lda #BG_ON
+  lda #BG_ON             ; Turn PPU display on
   sta PPUMASK
 : 
+
+  ; Make sure NMI is on
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
   jsr ClearOAM
@@ -49,14 +57,18 @@
 .endproc
 
 .proc VBlankUpdates
+  ; The VRAM is unusable outside of vertical blank because the PPU is constantly using it.
+  ; Nova the Squirrel writes to queues during gameplay when it wants VRAM changes, and waits for vertical blank
+  ; to actually perform the changes.
   jsr WaitVblank
   lda #2
   sta OAM_DMA
   bit PPUSTATUS
 
-  lda IsScrollUpdate ; update the side if needed, also use vertical writes for it since it's vertical
+  ; if IsScrollUpdate is set, update the side of the screen with the ThirtyUpdate buffer
+  lda IsScrollUpdate
   jeq NotScrollUpdate
-    lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
+    lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN ; write vertically
     sta PPUCTRL
     lda ThirtyUpdateAddr+0
     sta PPUADDR
@@ -66,27 +78,30 @@
       lda ThirtyUpdateTile+I
       sta PPUDATA
     .endrep
-  ; do attribute updates if needed
-  ; note: vertical writes are still on!
-  lda IsScrollUpdate
-  cmp #4
-  bne Not4
-    .repeat 4, I
-      lda AttributeWriteA1
-      sta PPUADDR
-      lda AttributeWriteA2+I
-      sta PPUADDR
-      lda AttributeWriteD+I
-      sta PPUDATA
-      lda AttributeWriteD+I+4
-      sta PPUDATA
-    .endrep
-  Not4:
+    ; Update attributes so the newly scrolled-in tiles have the right colors
+    ; Note: Vertical writes are still on! This cuts the number of times we need to write
+    ; to PPUADDR in half.
+    lda IsScrollUpdate
+    cmp #4
+    bne Not4
+      .repeat 4, I
+        lda AttributeWriteA1
+        sta PPUADDR
+        lda AttributeWriteA2+I
+        sta PPUADDR
+        lda AttributeWriteD+I
+        sta PPUDATA
+        lda AttributeWriteD+I+4
+        sta PPUDATA
+      .endrep
+    Not4:
   NotScrollUpdate:
 
+  ; Horizontal writes again
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
 
+  ; Upload four tiles worth of data (64 bytes) to a PPU address if needed
   lda UploadTileAddress+1
   beq NoUploadTile
     sta PPUADDR
@@ -95,6 +110,7 @@
     jsr UploadFourTiles
   NoUploadTile:
 
+  ; Queue for up to four single-byte changes
   .repeat 4, I ; change if the max number of tile changes per frame is changed
     lda TileUpdateA1+I
     beq :+
@@ -107,6 +123,8 @@
       sta TileUpdateA1+I
     :
   .endrep
+
+  ; Queue for up to three changes the size of a block
   .repeat 3, I
     lda BlockUpdateA1+I
     beq :+
@@ -131,11 +149,13 @@
     :
   .endrep
 
-  ; set the scroll
+  ; The PPU address register is the same as the scroll register, so
+  ; change the scroll value to be correct again
   jsr UpdateScrollRegister
 .endproc
 ; don't put anything else here
 .proc MainLoop
+  ; Turn PPU display on (only if the level doesn't need to be rerendered)
   lda NeedLevelRerender
   bne :+
 .ifdef CPU_METER
@@ -146,6 +166,8 @@
   sta PPUMASK
 .endif
 :
+  ; A flag gets set at the start of the main loop, and if it's still
+  ; set when NMI happens, a lag frame occured
   .ifdef NMI_MUSIC
     lda #1
     sta LagFrame
@@ -154,6 +176,9 @@
   jsr ReadJoy
   jsr ClearOAM
 
+  ; There's a timer that only goes up every 4 frames rather than 1
+  ; and delayed metatile edits use it so that they can fit a longer
+  ; delay into a byte.
   lda retraces
   and #3
   bne NotSlowTimer
@@ -188,6 +213,7 @@ DelayCheck:
     bpl DelayCheck
 NotSlowTimer:
 
+  ; Run the player, objects, and most other stuff
   lda #MAINLOOP_BANK
   jsr SetPRG
   jsr RunPlayer
@@ -203,14 +229,15 @@ NotSlowTimer:
 
   lda PlayerHealth
   bne NotDie
-  jsr pently_init
+  jsr pently_init ; Stop music and sound effects
   jsr ShowDie
 NotDie:
 
+  ; Update music+sfx, play sounds if needed
   jsr pently_update
   lda NeedSFX
   bpl :++
-    cmp #SFX::BOOM1
+    cmp #SFX::BOOM1 ; boom sound has a second sound effect that plays with it
     php
     and #63
     jsr pently_start_sound
@@ -234,6 +261,7 @@ NotDie:
     jsr PauseScreen
   NoPause:
 
+  ; Render the level if needed (like when you go in a door)
   lda #MAINLOOP_BANK
   jsr SetPRG
 
@@ -280,6 +308,7 @@ NotDie:
         sta NeedAbilityChange
   :
 
+  ; Reset the whole level if that's needed too
   lda NeedLevelReload
   beq :+
     jsr WaitVblank
@@ -317,7 +346,7 @@ NotDie:
   :
 .endif
 
-  ; Display the level number if it's a new level
+  ; Display the level number using a sprite if it's a new level
   lda DisplayLevelNumber
   beq NoDisplayLevelNumber
   and #31
@@ -356,6 +385,7 @@ NoDisplayLevelNumber:
     lda LevelNumber
     sta CheckpointLevelNumber
 
+    ; Copy the current game state into the checkpoint state
     ldy #GameStateLen-1
   : lda CurrentGameState,y
     sta CheckpointGameState,y

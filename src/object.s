@@ -460,9 +460,11 @@ EnemyAbilityTable:
   rts
 .endproc
 
+; Least significant bit in an object's primary state byte is direction
+; so changing from right to left and vice versa is just an exclusive or
 .proc EnemyTurnAround
-  lda ObjectF1,x
-  beq No
+  lda ObjectF1,x ; a 0 marks an empty slot
+  beq No         ; so keep a 0 as a 0
   eor #1
   sta ObjectF1,x
 No:

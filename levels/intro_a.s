@@ -72,7 +72,6 @@ intro_aData:
   LFinished
 
 intro_aSprite:
-  LSpr Enemy::CANNON_1,            0,   7,   4
   LSpr Enemy::OWL,                 1,  29,  10
   LSpr Enemy::FIRE_WALK,           1,  51,   7
   LSpr Enemy::OWL,                 0,  68,   3
