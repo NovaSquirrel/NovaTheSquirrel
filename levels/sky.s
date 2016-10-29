@@ -90,9 +90,13 @@ skyData:
   LObjN LO::WIDE_1,           2, 7, 2, LN1::SOLID_LEDGE
   LObj  LO::S_SOLID_BLOCK,    1, 7
   LObjN LO::TALL_2,           0, 8, 6, LN2::TRUNK
-  LObjN LO::R_GROUND,         3, 7, 4, 7
+  LSetX 120
+  LWriteCol Enemy::KING
+  LObjN LO::R_GROUND,         0, 7, 4, 7
   LObj  LO::S_FLOWER,         4, 6
-  LObjN LO::WIDE_1,           5, 6, 4, LN1::FENCE
+  LSetX 125
+  LWriteCol Enemy::KING
+  LObjN LO::WIDE_1,           4, 6, 4, LN1::FENCE
   LObjN LO::R_GROUND,         0, 7, 4, 7
   LObj  LO::S_GROUND_CLIMB_R, 5, 7
   LObjN LO::R_GROUND,         0, 8, 0, 1
@@ -122,7 +126,7 @@ skyData:
   LObjN LO::RECT_1,           4, 13, 1, LN1::GROUND, 21
   LObj  LO::S_CEILING_BARRIER,1, 0
   LObjN LO::R_ROCK,           1, 0, 0, 0
-  LObjN LO::R_ROCK,           0, 0, 10, 1
+  LObjN LO::R_ROCK,           0, 0, 2, 1
   LObjN LO::R_SOLID_BLOCK,    0, 2, 0, 8
   LObjN LO::WIDE_1,           0, 11, 2, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           2, 9, 1, LN1::SOLID_LEDGE
@@ -162,6 +166,7 @@ skySprite:
   LSpr Enemy::KING,                0,  95,   1
   LSpr Enemy::GOOMBA,              1, 103,   8
   LSpr Enemy::GOOMBA,              1, 116,   6
+  LSpr Enemy::CANNON_2,            0, 120,   1, 2
   LSpr Enemy::OWL,                 0, 130,   6
   LSpr Enemy::THWOMP,              0, 139,   7
   LSpr Enemy::GOOMBA,              1, 161,   7

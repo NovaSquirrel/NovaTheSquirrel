@@ -760,16 +760,15 @@ CannonFrame:
     sta 1
 
     ; Limit object amount
+    ; (A is still object type)
     jsr CountObjectAmount
     iny ; compare against the limit set in cannon's ObjectF3
     tya ; and if it's too high then don't shoot
     cmp ObjectF3,x
     bcs NoShoot
-    jsr huge_rand
-    and #7
-    bne NoShoot
       jsr FindFreeObjectY
       bcc NoShoot
+        sta $255
         jsr ObjectCopyPosXY
         jsr ObjectClearY
 
