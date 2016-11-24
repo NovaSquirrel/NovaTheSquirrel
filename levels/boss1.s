@@ -59,12 +59,4 @@ boss1Data:
 
 boss1Sprite:
   LSpr Enemy::BOSS_FIGHT,          0,   0,   0
-  LSpr Enemy::SCHEME_TEAM,         1,   2,   9
-  LSpr Enemy::SCHEME_TEAM,         0,   3,   3
-  LSpr Enemy::SCHEME_TEAM,         0,   9,   4
-  LSpr Enemy::SCHEME_TEAM,         1,  16,   3
-  LSpr Enemy::SCHEME_TEAM,         1,  18,   6
-  LSpr Enemy::SCHEME_TEAM,         1,  22,   8
-  LSpr Enemy::SCHEME_TEAM,         1,  27,   4
-  LSpr Enemy::SCHEME_TEAM,         1,  29,  12
   .byt 255 ; end

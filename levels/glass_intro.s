@@ -3,7 +3,7 @@ glass_intro:
   .byt 2
   .byt $fb
   .byt GraphicsUpload::SP_WALKER
-  .byt GraphicsUpload::SP_CANNON
+  .byt GraphicsUpload::SP_MINES
   .byt GraphicsUpload::SP_FIRE
   .byt GraphicsUpload::SP_HANNAH
   .addr glass_introData
@@ -131,7 +131,8 @@ glass_introData:
   LObj  LO::S_M_CRATE,        0, 9
   LObjN LO::R_GROUND,         0, 10, 3, 4
   LObjN LO::WIDE_1,           4, 8, 0, LN1::SOLID_LEDGE
-  LObjN LO::R_GROUND,         1, 8, 1, 6
+  LObj  LO::S_PRIZE,          1, 4
+  LObjN LO::R_GROUND,         0, 8, 1, 6
   LObjN LO::R_BG_GLASS_GREEN, 1, 3, 2, 2
   LObjN LO::WIDE_1,           2, 8, 0, LN1::SPIKES
   LObjN LO::R_GROUND,         0, 9, 10, 5
@@ -206,10 +207,17 @@ glass_introData:
   LObj  LO::S_GROUND,         2, 4
   LObjN LO::R_GROUND,         1, 4, 3, 10
   LObjN LO::R_COIN,           1, 3, 1, 0
-  LObjN LO::WIDE_1,           3, 5, 0, LN1::SOLID_LEDGE
-  LObj  LO::S_SPRING,         0, 8
-  LObjN LO::R_GROUND,         0, 9, 10, 5
-  LObj  LO::S_PRIZE,          2, 5
+  LObjN LO::R_FG_GLASS_BLUE,  3, 10, 10, 0
+  LObjN LO::R_BG_GLASS_BLUE,  1, 11, 0, 3
+  LObjN LO::R_BG_GLASS_BLUE,  4, 11, 0, 3
+  LObjN LO::R_BRICK,          1, 9, 3, 0
+  LObjN LO::R_BRICK,          1, 7, 2, 1
+  LObjN LO::R_BG_GLASS_BLUE,  2, 11, 0, 3
+  LObjN LO::R_FG_GLASS_BLUE,  5, 10, 10, 0
+  LObjN LO::R_BG_GLASS_BLUE,  1, 11, 0, 3
+  LObjN LO::R_BG_GLASS_BLUE,  4, 11, 0, 3
+  LObj  LO::S_EXIT_DOOR,      2, 8
+  LObjN LO::R_BG_GLASS_BLUE,  2, 11, 0, 3
   LFinished
 
 glass_introSprite:
@@ -217,11 +225,13 @@ glass_introSprite:
   LSpr Enemy::FIRE_WALK,           0,  92,  10, 1
   LSpr Enemy::CHECKPOINT,          0,  97,   8
   LSpr Enemy::GOOMBA,              0, 108,   7
+  LSpr Enemy::SNEAKER,             1, 112,   6
   LSpr Enemy::GOOMBA,              0, 117,   9
-  LSpr Enemy::BALL_GUY,            1, 124,   8
+  LSpr Enemy::SNEAKER,             1, 123,   9
   LSpr Enemy::ICE_1,               0, 164,  11
   LSpr Enemy::ICE_1,               1, 167,   5
   LSpr Enemy::CHECKPOINT,          0, 176,   1
   LSpr Enemy::OWL,                 0, 178,   7
   LSpr Enemy::OWL,                 1, 184,  10
+  LSpr Enemy::CHECKPOINT,          0, 207,   2
   .byt 255 ; end

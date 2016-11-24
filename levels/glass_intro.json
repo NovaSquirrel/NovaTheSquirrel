@@ -13,7 +13,7 @@
 	},
 	"Header":	{
 		"Music":	"NONE",
-		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_FIRE", "SP_HANNAH"],
+		"SpriteGFX":	["SP_WALKER", "SP_MINES", "SP_FIRE", "SP_HANNAH"],
 		"GFXUpload":	["PAL_BUMMER", "BG_COMMON", "BG_BUMMER", "BG_CHIP", "BG_HANNAH"],
 		"BGColor":	15
 	},
@@ -940,24 +940,6 @@
 					"W":	1,
 					"H":	2
 				}, {
-					"Id":	"GROUND",
-					"X":	213,
-					"Y":	9,
-					"W":	11,
-					"H":	6
-				}, {
-					"Id":	"SPRING",
-					"X":	213,
-					"Y":	8,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"SOLID_LEDGE",
-					"X":	213,
-					"Y":	5,
-					"W":	1,
-					"H":	1
-				}, {
 					"Id":	"LOCK_BLUE",
 					"X":	181,
 					"Y":	3,
@@ -1085,12 +1067,6 @@
 					"H":	1
 				}, {
 					"Id":	"PRIZE",
-					"X":	215,
-					"Y":	5,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"PRIZE",
 					"X":	160,
 					"Y":	3,
 					"W":	1,
@@ -1173,6 +1149,78 @@
 					"Y":	0,
 					"W":	1,
 					"H":	3
+				}, {
+					"Id":	"PRIZE",
+					"X":	131,
+					"Y":	4,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	213,
+					"Y":	10,
+					"W":	11,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	227,
+					"Y":	10,
+					"W":	11,
+					"H":	1
+				}, {
+					"Id":	"BG_GLASS_BLUE",
+					"X":	214,
+					"Y":	11,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"BG_GLASS_BLUE",
+					"X":	218,
+					"Y":	11,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"BG_GLASS_BLUE",
+					"X":	222,
+					"Y":	11,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"BG_GLASS_BLUE",
+					"X":	228,
+					"Y":	11,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"BG_GLASS_BLUE",
+					"X":	232,
+					"Y":	11,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"BG_GLASS_BLUE",
+					"X":	236,
+					"Y":	11,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"EXIT_DOOR",
+					"X":	234,
+					"Y":	8,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BRICKS",
+					"X":	219,
+					"Y":	9,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"BRICKS",
+					"X":	220,
+					"Y":	7,
+					"W":	3,
+					"H":	2
 				}]
 		}, {
 			"Name":	"Sprites",
@@ -1198,13 +1246,6 @@
 					"Y":	9,
 					"W":	1,
 					"H":	1
-				}, {
-					"Id":	"BALL_GUY",
-					"X":	124,
-					"Y":	8,
-					"W":	1,
-					"H":	1,
-					"XFlip":	true
 				}, {
 					"Id":	"GOOMBA",
 					"X":	108,
@@ -1249,6 +1290,26 @@
 					"Y":	1,
 					"W":	1,
 					"H":	1
+				}, {
+					"Id":	"CHECKPOINT",
+					"X":	207,
+					"Y":	2,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SNEAKER",
+					"X":	112,
+					"Y":	6,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"SNEAKER",
+					"X":	123,
+					"Y":	9,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
 				}]
 		}, {
 			"Name":	"Control",

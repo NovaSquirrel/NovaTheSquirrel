@@ -193,6 +193,8 @@ underground_2Sprite:
   LSpr Enemy::GEORGE,              1,  74,   9
   LSpr Enemy::OWL,                 1,  86,   5
   LSpr Enemy::FIRE_WALK,           0,  94,   7, 1
+  LSpr Enemy::CHECKPOINT,          0, 153,  11
+  LSpr Enemy::CHECKPOINT,          0, 162,   8
   LSpr Enemy::MOVING_PLATFORM_LINE, 0, 166,   8, 1
   LSpr Enemy::CANNON_1,            0, 172,   5
   LSpr Enemy::CANNON_1,            0, 172,   9
