@@ -17,6 +17,14 @@
 
 .proc ObjectGoomba
   jsr EnemyFall
+  lda ObjectF3,x
+  beq :+
+  php
+  jsr EnemyBounceRandomHeights
+  plp
+  bcc :+
+  jsr EnemyLookAtPlayer  
+:
   lda #$10
   jsr EnemyWalk
   jsr EnemyAutoBump
@@ -548,15 +556,99 @@ ThrowBottle:
 .endproc
 
 .proc ObjectIce1
-  rts
+  jsr EnemyFall
+  bcc NoWalk
+  lda ObjectF4,x
+  inc ObjectF4,x
+  and #$3f
+  cmp #$20
+  bcc :+
+  sub #$20
+  eor #255
+  add #$21
+: jsr EnemyWalk
+  jsr EnemyAutoBump
+NoWalk:
+
+  ; Walk cycle
+  lda retraces
+  lsr
+  lsr
+  and #3
+  tay
+  lda Frames,y
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+
+  jmp EnemyPlayerTouchHurt
+Frames:
+  .byt $0a, $0e, $0a, $12
 .endproc
 
 .proc ObjectIce2
+  jsr EnemyFall
+  bcc NoWall
+  lda ObjectF2,x
+  bne NoWall
+  lda retraces
+  and #7
+  bne NoWall
+    ldy ObjectPYH,x
+    dey
+    lda ObjectPXH,x
+    jsr GetLevelColumnPtr
+    beq NotObstructed
+    lda ObjectPXH,x ; store old X so we can restore it
+    sta 4
+    lda PlayerPXH
+    cmp ObjectPXH,x
+    beq NoWall
+    bcc GoLeft
+    bcs GoRight
+NotObstructed:
+    iny
+    jsr MakeIce
+    dec ObjectPYH,x
+NoWall:
+
+  lda #$16
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+
+  jmp EnemyPlayerTouchHurt
+
+GoLeft:
+  ldy ObjectPYH,x
+  iny
+  dec ObjectPXH,x
+  lda ObjectPXH,x
+  jmp MakeIceAndPtr
+GoRight:
+  ldy ObjectPYH,x
+  iny
+  inc ObjectPXH,x
+  lda ObjectPXH,x
+MakeIceAndPtr:
+  jsr GetLevelColumnPtr
+MakeIce:
+  cpy #14
+  bcs :+
+  cpy #4
+  bcc :+
+  lda (LevelBlockPtr),y
+  bne :+
+  lda #Metatiles::ICE
+  jsr ChangeBlockFar
+  lda #2
+  sta 0
+  lda #Metatiles::EMPTY
+  jmp DelayChangeBlockFar
+: lda 4
+  sta ObjectPXH,x
   rts
 .endproc
 
-.proc ObjectBallGuy
-  jsr EnemyFall
+.proc EnemyBounceRandomHeights
   bcc :+
     ; Bounce when reaching the ground, if not stunned
     lda ObjectF2,x
@@ -567,6 +659,12 @@ ThrowBottle:
       lda #255
       sta ObjectVYH,x
   :
+  rts
+.endproc
+
+.proc ObjectBallGuy
+  jsr EnemyFall
+  jsr EnemyBounceRandomHeights
 
   ; Bounce against ceilings
   lda ObjectPYL,x

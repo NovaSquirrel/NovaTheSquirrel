@@ -1148,6 +1148,13 @@ SkipGravity:
   ; Remove enemy if it falls too far off the bottom
   lda ObjectPYH,x
   bmi :+
+    cmp #250
+    bcc NotOffTop
+    lda #0
+    sta ObjectPYH,x
+    sta ObjectPYL,x
+    rts
+NotOffTop:
     cmp #15
     bcc :+
       lda #0

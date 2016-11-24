@@ -12,8 +12,8 @@
   .byt GraphicsUpload::SP_GEORGE ;BIG_GEORGE
   .byt GraphicsUpload::SP_GEORGE ;ALAN
   .byt 0 ;GLIDER
-  .byt 0 ;ICE_1
-  .byt 0 ;ICE_2
+  .byt GraphicsUpload::SP_MINES ;ICE_1
+  .byt GraphicsUpload::SP_MINES ;ICE_2
   .byt GraphicsUpload::SP_CANNON ;BALL_GUY
   .byt GraphicsUpload::SP_CANNON ;THWOMP
   .byt GraphicsUpload::SP_CANNON ;CANNON_1
