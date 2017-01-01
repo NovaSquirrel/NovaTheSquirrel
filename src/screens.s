@@ -489,8 +489,6 @@ OptionsPalette:
   sta StartedLevelNumber
 
   ; Calculate the level to have pre-selected
-  lda #0
-  sta StartedLevelNumber
   lda LevelAvailable,y
 : lsr
   beq :+

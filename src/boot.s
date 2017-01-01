@@ -153,9 +153,16 @@ InitSave:
   sta $7f00,x
   inx
   bne :-
-  ; Mark the first level as available
-  lda #1
+
+
+;  ; Mark the first level as available
+;  lda #1
+;  sta LevelAvailable
+  ; Mark the first 8 levels as available
+  ; for demo purposes
+  lda #127
   sta LevelAvailable
+
   ; Write tag to SRAM
   ldx #7
 : lda SaveTagString,x

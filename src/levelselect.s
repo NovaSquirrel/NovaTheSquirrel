@@ -176,6 +176,7 @@ Loop:
       beq :+
     .endif
     lda CurLevel
+    ora WorldTimes8
     jmp StartLevel
   :
   lda keynew
@@ -207,7 +208,10 @@ Loop:
     beq :+ ; Can't go past last world
     lda LevelAvailable+1,y
     beq :+ ; Can't go past last available world
-    inc CurWorld
+    lda StartedLevelNumber
+    add #8
+    and #%111000
+    sta StartedLevelNumber
     jmp ShowLevelSelect
   :
   lda keynew
@@ -215,7 +219,10 @@ Loop:
   beq :+
     lda CurWorld ; Can't go before first world
     beq :+
-    dec CurWorld
+    lda StartedLevelNumber
+    sub #8
+    and #%111000
+    sta StartedLevelNumber
     jmp ShowLevelSelect
   :
   lda keynew
