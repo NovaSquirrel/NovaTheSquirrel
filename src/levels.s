@@ -17,6 +17,7 @@ MasterLevelListH:
   Grassy2A
   Underground_2
   Boss1
+  GlassIntro
   EmptyLevel
   IntroB
   GrassyB

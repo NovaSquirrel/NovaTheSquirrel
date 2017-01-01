@@ -1,7 +1,7 @@
 boss1:
   .byt MusicTracks::NONE|0
   .byt 12
-  .byt $1b
+  .byt $2b
   .byt GraphicsUpload::SP_WALKER
   .byt GraphicsUpload::SP_SCHEME_TEAM
   .byt GraphicsUpload::SP_FIRE
@@ -16,10 +16,12 @@ boss1:
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_GRASSY
   .byt 255 ; end
-  .byt $40, $00 ; boundaries
+  .byt $60, $00 ; boundaries
 
 boss1Data:
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $01, LevelBackgroundId::CLOUDS
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $02, LevelBackgroundId::CLOUDS
+  LSetX 0
+  LWriteCol 11, 33
   LObjN LO::WIDE_1,           2, 10, 2, LN1::FALLTHROUGH_LEDGE
   LObj  LO::S_SOLID_BLOCK,    1, 4
   LObjN LO::WIDE_1,           0, 5, 2, LN1::FALLTHROUGH_LEDGE
@@ -55,6 +57,18 @@ boss1Data:
   LObjN LO::R_SOLID_BLOCK,    2, 4, 3, 0
   LObj  LO::S_BIGHEART,       2, 3
   LObj  LO::S_SOLID_BLOCK,    1, 3
+  LObjN LO::R_GROUND,         1, 13, 15, 1
+  LObjN LO::WIDE_2,           1, 12, 8, LN2::FLOWER
+  LObjN LO::R_BRICKWALL,      2, 11, 4, 1
+  LObj  LO::S_FLOWER,         1, 3
+  LObjN LO::WIDE_1,           0, 4, 2, LN1::SOLID_LEDGE
+  LObj  LO::S_PRIZE,          0, 8
+  LObj  LO::S_EXIT_DOOR,      1, 2
+  LObj  LO::S_FLOWER,         1, 3
+  LObj  LO::S_PRIZE,          0, 8
+  LObjN LO::WIDE_1,           4, 5, 2, LN1::SOLID_LEDGE
+  LObjN LO::R_BRICKWALL,      0, 10, 4, 2
+  LObj  LO::S_SPRING,         1, 9
   LFinished
 
 boss1Sprite:

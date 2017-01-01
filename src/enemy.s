@@ -1421,14 +1421,50 @@ InitBossRoutine:
   .raddr DABGInit
 
 DABGInit:
-  lda #20
+  lda #12
   sta LevelVariable
   rts
 DABGFight:
+  stx TempX
+
+  lda #6
+  sta 1 ; max
+  lda LevelVariable
+  beq WonTeleport
+  cmp #6
+  bcs :+
+  sta 1 ; max is the minimum of 6 or the number of enemies left
+:
+
+  lda retraces
+  and #31
+  bne NoAddST
   lda #Enemy::SCHEME_TEAM*2
   jsr CountObjectAmount
+  cpy 1
+  bcs NoAddST
+  lda #Enemy::SCHEME_TEAM*2
+  jsr FindFreeObjectForTypeX
+  bcc NoAddST
+  jsr ObjectClearX
+  lda PlayerPXH
+  sta ObjectPXH,x
+  lda #0
+  sta ObjectPYH,x
+NoAddST:
+  ldx TempX
   rts
-
+WonTeleport:
+  ldx TempX
+  inc ObjectTimer,x
+  lda ObjectTimer,x
+  cmp #30
+  bcc :+
+  lda #0
+  sta ObjectF1,x
+  lda ObjectPXH,x
+  jmp DoTeleport
+: rts
 .endproc
 
 .proc ObjectSchemeTeam
