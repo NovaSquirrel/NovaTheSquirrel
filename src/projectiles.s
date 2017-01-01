@@ -239,7 +239,7 @@ ObjectPlayerProjectileRoutines:
   .raddr ProjKickedIce
   .raddr ProjTornado
   .raddr ProjBurger
-  .raddr ProjBall
+  .raddr ProjMirror
 
 BreakBricks:
   ; Break any bricks the projectile touches
@@ -822,18 +822,25 @@ GetBlockUnderProjectile:
   adc #0
   jmp GetLevelColumnPtr
 
-ProjBall:
-  jsr EnemyFall
-  bcc :+
-  lda #<-$20
-  sta ObjectVYL,x
-  lda #255
-  sta ObjectVYH,x
-: jsr EnemyApplyVelocity
-  lda #OAM_COLOR_1 << 2
-  ldy #$70
-  jsr DispEnemyWideFlipped
-  jmp ObjectBounceHoriz
+ProjMirror:
+  jsr EnemyApplyVelocity
+
+  ; Draw tile 1
+  lda #OAM_COLOR_1
+  sta 1
+  lda #0
+  sta 2
+  lda #<-4
+  sta 3
+  lda #$70 ; tile
+  jsr DispObject8x8_XYOffset
+  ; Draw tile 2
+  lda #0 ; x
+  sta 2
+  lda #4 ; y
+  sta 3
+  lda #$71 ; tile
+  jmp DispObject8x8_XYOffset
 .endproc
 
 ; Enemy routine. Checks for player projectiles and reacts to them.

@@ -415,7 +415,6 @@ Copy:
 @End:
   rts
 EnemyAbilityTable:
-  .byt Enemy::BALL,             AbilityType::BALL
   .byt Enemy::GEORGE,           AbilityType::WATER
   .byt Enemy::BIG_GEORGE,       AbilityType::WATER
   .byt Enemy::GLIDER,           AbilityType::GLIDER
@@ -436,7 +435,6 @@ EnemyAbilityTable:
   .byt Enemy::BOMB_GUY,         AbilityType::BOMB
   .byt Enemy::RONALD,           AbilityType::BURGER
   .byt Enemy::SUN,              AbilityType::FIRE
-  .byt Enemy::BALL_GUY,         AbilityType::BALL
   .byt 0
 .endproc
 

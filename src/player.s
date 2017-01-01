@@ -1496,7 +1496,7 @@ AbilityTable:
   .raddr AbilityFirework
   .raddr AbilityNice
   .raddr AbilityBoomerang
-  .raddr AbilityBall
+  .raddr AbilityMirror
   .raddr AbilityWater
   .raddr AbilityFan
   .raddr AbilityBurger
@@ -1679,15 +1679,21 @@ AbilityBoomerang:
   sta ObjectVYH,x
 : rts
 
-AbilityBall:
-  lda #1
+AbilityMirror:
+  lda #3
   jsr LimitObjectAmount
-  lda #PlayerProjectileType::BALL
+  lda #PlayerProjectileType::MIRROR
   jsr MakeShotWide
   bcc @Exit
-  lda #80/4
+  lda #40/4
   sta ObjectTimer,x
-  lda #$30
+  jsr huge_rand
+  and #$0f
+  sub #$08
+  sta ObjectVYL,x
+  sex
+  sta ObjectVYH,x
+  lda #$18
   jsr SetXVelocity
 @Exit:
   rts
