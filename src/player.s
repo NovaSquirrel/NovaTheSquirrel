@@ -822,55 +822,88 @@ FC__RLR:
   jsr FC___LR
   jmp FC__R_R
 
+CheckLR:
+  lda PlayerPYL
+  add #<(24*16)
+  lda PlayerPYH
+  adc #>(24*16)
+  tay
+  lda #$80
+  add PlayerPXL
+  lda PlayerPXH
+  adc #0
+  jsr GetLevelColumnPtr
+  tax
+  lda MetatileFlags,x
+  rts
+
+CheckLL:
+  lda PlayerPYL
+  add #<(24*16)
+  lda PlayerPYH
+  adc #>(24*16)
+  tay
+  lda PlayerPXL
+  sub #1
+  lda PlayerPXH
+  sbc #0
+  jsr GetLevelColumnPtr
+  tax
+  lda MetatileFlags,x
+  rts
+
 FC__R__:
   jsr BumpBlocksAbove
-FC__R_R:
   lda #0
   sta PlayerVXL
   sta PlayerVXH
+  jsr CheckLR
+  bmi :+
+    lda #0
+    sta PlayerVYL
+    sta PlayerVYH
+  :
+  jsr CheckLL
+  bmi :+
+    lda #$8f
+    sta PlayerPXL
+  :
+  rts
+
+FC__R_R:
   lda #$8f
   sta PlayerPXL
-
-.ifdef AUTO_CLIMB
-  lda PlayerDir
-  bne NoClimb
-  lda #KEY_RIGHT
-  sta ForceControllerBits
-  lda BlockUR
-  cmp #Metatiles::GROUND_CLIMB_L
-  bne NoClimb
-DoClimb:
-    lda #<-1
-    sta PlayerVYH
-    lda #<-$40
-    sta PlayerVYL
-    lda #10
-    sta PlayerJumpCancelLock
-    lsr
-    sta PlayerWalkLock
-    lda #15
-    sta ForceControllerTime
-NoClimb:
-.endif
+  lda #0
+  sta PlayerVXL
+  sta PlayerVXH
   rts
 
 FC_L___:
   jsr BumpBlocksAbove
-FC_L_L_:
   lda #0
   sta PlayerVXL
   sta PlayerVXH
+  jsr CheckLL
+  bmi :+
+    lda #0
+    sta PlayerVYL
+    sta PlayerVYH
+  :
+  jsr CheckLR
+  bmi :+
+    lda #0
+    sta PlayerPXL
+    inc PlayerPXH
+  :
+  rts
+
+FC_L_L_:
+  lda #0
   sta PlayerPXL
   inc PlayerPXH
-.ifdef AUTO_CLIMB
-  lda PlayerDir
-  beq NoClimb
-  lda #KEY_LEFT
-  sta ForceControllerBits
-  lda BlockUL
-  cmp #Metatiles::GROUND_CLIMB_R
-  beq DoClimb
-.endif
+  lda #0
+  sta PlayerVXL
+  sta PlayerVXH
   rts
 
 FC_LR__:
@@ -884,6 +917,7 @@ FC_LR__:
   lda #SFX::BUMP
   jmp PlaySoundDebounce
 :
+  rts
 BumpBlocksAbove: ; handle bumping into stuff
   lda PlayerJumping
   rtseq
