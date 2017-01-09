@@ -74,12 +74,8 @@ grassy2_bData:
   LObjN LO::WIDE_1,           2, 13, 0, LN1::SOLID_LEDGE
   LObj  LO::S_SPRING,         1, 12
   LObjN LO::R_GROUND,         0, 13, 4, 1
-  LObj  LO::S_DOOR,           1, 11
-  LWriteCol 11, 117
-  LObjN LO::R_GROUND,         1, 11, 0, 1
-  LObj  LO::S_DOOR,           1, 11
-  LWriteCol 11, 115
-  LObjN LO::WIDE_2,           1, 5, 4, LN2::BUSH
+  LObjN LO::R_GROUND,         1, 11, 1, 1
+  LObjN LO::WIDE_2,           3, 5, 4, LN2::BUSH
   LObjN LO::R_GROUND,         0, 6, 2, 1
   LObjN LO::TALL_2,           1, 8, 6, LN2::TRUNK
   LObjN LO::R_GROUND,         2, 6, 1, 0
