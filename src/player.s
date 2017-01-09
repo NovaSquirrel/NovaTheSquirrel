@@ -857,6 +857,9 @@ FC__R__:
   lda #0
   sta PlayerVXL
   sta PlayerVXH
+
+  lda PlayerVYH
+  bpl :+
   jsr CheckLR
   bmi :+
     lda #0
@@ -883,6 +886,9 @@ FC_L___:
   lda #0
   sta PlayerVXL
   sta PlayerVXH
+
+  lda PlayerVYH
+  bpl :+
   jsr CheckLL
   bmi :+
     lda #0
