@@ -22,7 +22,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_PAL_1 ;DOOR_BOTTOM
   .byt M_PAL_0 ;SPRING_DOWN
   .byt M_PAL_0 ;TOGGLE_SWITCH
-  .byt M_PAL_2 ;TELEPORTER
+  .byt M_PAL_3 ;TELEPORTER
   .byt M_PAL_2 ;CLONE_SWITCH
   .byt M_PAL_1 ;GENERIC_SWITCH
   .byt M_PAL_2 ;CHERRY_BOMB
@@ -569,8 +569,8 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $91 ;CAMPFIRE
   .byt $a5 ;FORCE_LEFT
   .byt $a7 ;FORCE_RIGHT
-  .byt $a2 ;FORCE_UP
-  .byt $a3 ;FORCE_DOWN
+  .byt $a0 ;FORCE_UP
+  .byt $a1 ;FORCE_DOWN
   .byt $31 ;CEILING_BARRIER
   .byt $15 ;COIN
   .byt $35 ;BIG_HEART
@@ -748,8 +748,8 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $92 ;CAMPFIRE
   .byt $a4 ;FORCE_LEFT
   .byt $a6 ;FORCE_RIGHT
-  .byt $a0 ;FORCE_UP
-  .byt $a1 ;FORCE_DOWN
+  .byt $a2 ;FORCE_UP
+  .byt $a3 ;FORCE_DOWN
   .byt $31 ;CEILING_BARRIER
   .byt $16 ;COIN
   .byt $36 ;BIG_HEART

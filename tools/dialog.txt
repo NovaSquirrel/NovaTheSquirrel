@@ -277,15 +277,19 @@ Nova, with the help of a wish, went on to found the kingdom of Toasterland as a 
 <1 SIGN>In puzzle levels, water is deadly, unless you get blue boots (flippers) first. Red boots protect you from fire, green boots let you get past green forcefields, and gray boots let you walk on ice without sliding.
 `end
 
+:SignMeltIceAbout:
+`scene NOVA_AND_SIGN
+<1 SIGN>Try throwing a fireball at this ice. If you killed the fire enemy, walk away and come back.
+`end
+
 :LineFollowingAbout:
 `scene NOVA_AND_SIGN
 <1 SIGN>This is a line following platform. Wait for it to come around.
 `end
 
-
-:SignWrapAbout:
+:SignPuzzleAbout:
 `scene NOVA_AND_SIGN
-<1 SIGN>In puzzle levels, falling off the bottom of the screen wraps you to the top, instead of killing you.
+<1 SIGN>Look around before acting. The order you do things in puzzle-oriented stages matters.
 `end
 
 :SignPickupAbout:

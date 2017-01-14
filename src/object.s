@@ -1083,9 +1083,12 @@ NotFacingRight:
 
 ; check if the object bumped into a wall
   tay
+  cpy #Metatiles::GRAVEL
+  beq ForceSolid
   lda MetatileFlags,y
   and #M_SOLID_ALL
   beq :+
+ForceSolid:
     sty 0 ; 0 = block type we bumped into
     sec
     rts

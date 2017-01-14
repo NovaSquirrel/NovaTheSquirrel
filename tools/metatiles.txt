@@ -161,7 +161,7 @@ C .byt $3f
 C .byt $8b
 
 R TELEPORTER
-C .byt M_PAL_2
+C .byt M_PAL_3
 C .byt M_SPECIAL_MISC
 C .byt $3f
 C .byt $8c
@@ -220,16 +220,16 @@ R FORCE_UP
 C .byt M_PAL_0
 C .byt M_SPECIAL_MISC
 C .byt $a0
-C .byt $a2
 C .byt $a0
+C .byt $a2
 C .byt $a2
 
 R FORCE_DOWN
 C .byt M_PAL_0
 C .byt M_SPECIAL_MISC
 C .byt $a1
-C .byt $a3
 C .byt $a1
+C .byt $a3
 C .byt $a3
 
 R CEILING_BARRIER

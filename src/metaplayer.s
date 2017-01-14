@@ -166,10 +166,10 @@ SpecialMiscLo:
   .byt <(TouchedGenericSwitch-1)
   .byt <(TouchedCherryBomb-1)
   .byt <(TouchedCampfire-1)
-  .byt <(TouchedForce-1)
-  .byt <(TouchedForce-1)
-  .byt <(TouchedForce-1)
-  .byt <(TouchedForce-1)
+  .byt <(TouchedForceL-1)
+  .byt <(TouchedForceR-1)
+  .byt <(TouchedForceU-1)
+  .byt <(TouchedForceD-1)
   .byt <(TouchedCeilingBarrier-1)
 
 SpecialMiscHi:
@@ -185,10 +185,10 @@ SpecialMiscHi:
   .byt >(TouchedGenericSwitch-1)
   .byt >(TouchedCherryBomb-1)
   .byt >(TouchedCampfire-1)
-  .byt >(TouchedForce-1)
-  .byt >(TouchedForce-1)
-  .byt >(TouchedForce-1)
-  .byt >(TouchedForce-1)
+  .byt >(TouchedForceL-1)
+  .byt >(TouchedForceR-1)
+  .byt >(TouchedForceU-1)
+  .byt >(TouchedForceD-1)
   .byt >(TouchedCeilingBarrier-1)
 
 SpecialWallLo:
@@ -400,7 +400,14 @@ ExitDoor:
 .endproc
 
 .proc TouchedTeleporter
-  rts
+  lda TeleportCooldownTimer
+  beq :+
+    rts
+  :
+  lda #60
+  sta TeleportCooldownTimer
+  jsr GetBlockX        ; Get the block's X position
+  jmp DoTeleport
 .endproc
 
 .proc TouchedCloneSwitch
@@ -411,26 +418,96 @@ ExitDoor:
   rts
 .endproc
 
-.proc TouchedForce
+.proc TouchedForceU
+  lda #<(-$40)
+  sta PlayerVYL
+  lda #>(-$40)
+  sta PlayerVYH
+  lda #0
+  sta PlayerVXL
+  sta PlayerVXH
+Align:
+  jsr GetBlockX
+  sta PlayerPXH
+  lda #$40
+  sta PlayerPXL
   rts
 .endproc
+
+.proc TouchedForceL
+  lda #<(-$40)
+  sta PlayerVXL
+  lda #>(-$40)
+  sta PlayerVXH
+  lda #0
+  sta PlayerVYL
+  sta PlayerVYH
+
+Align:
+  ldy TempY
+  dey
+  sty PlayerPYH
+  lda #0
+  sta PlayerPYL
+  rts
+.endproc
+
+.proc TouchedForceR
+  lda #<($40)
+  sta PlayerVXL
+  lda #>($40)
+  sta PlayerVXH
+  lda #0
+  sta PlayerVYL
+  sta PlayerVYH
+
+  jmp TouchedForceL::Align
+.endproc
+
+.proc TouchedForceD
+  lda #<($40)
+  sta PlayerVYL
+  lda #>($40)
+  sta PlayerVYH
+  lda #0
+  sta PlayerVXL
+  sta PlayerVXH
+
+  jmp TouchedForceU::Align
+.endproc
+
 
 .proc TouchedChip
   lda #0
   jsr ChangeBlock
+  lda #SFX::COIN
+  jsr PlaySound
+  ; increment chip count 
   rts
 .endproc
 
 .proc TouchedCherryBomb
+;SaveY = 10
+;  sty SaveY
+;  lda #0
+;  jsr ChangeBlock
+;  lda #SFX::BOOM1
+;  jsr PlaySound
+;  jsr HurtPlayer
+  lda #0
+  sta PlayerHealth
   rts
 .endproc
 
 .proc TouchedCampfire
-  rts
+  jmp HurtPlayer
 .endproc
 
 .proc TouchedBoots
-  rts
+  lda #0
+  jsr ChangeBlock
+  lda #SFX::ITEM_GET
+  jmp PlaySound  
 .endproc
 
 .proc TouchedWoodArrow
@@ -525,7 +602,7 @@ Offset:
   sta TempVal
   ; Is this a collectible??
   sub #M_FIRST_COLLECTIBLE
-  cmp #M_LAST_COLLECTIBLE+1-M_FIRST_COLLECTIBLE
+  cmp #M_LAST_COLLECTIBLE+2-M_FIRST_COLLECTIBLE
   bcs :+
   jsr Call
 : ldy TempY

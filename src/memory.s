@@ -204,6 +204,7 @@
   InventoryCursorYSwap: .res 1
   PlayerRidingSomething: .res 1 ; if 1, player is treated to be standing on a solid and can jump
   DisplayLevelNumber: .res 1    ; a timer for showing the current level editor on the screen
+  TeleportCooldownTimer: .res 1
 
   PRGBank:         .res 1  ; current program bank
   CoinShowTimer:   .res 1  ; timer for how long to show the current coin value

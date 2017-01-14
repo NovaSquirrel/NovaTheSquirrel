@@ -241,8 +241,7 @@ ObjectPlayerProjectileRoutines:
   .raddr ProjBurger
   .raddr ProjMirror
 
-BreakBricks:
-  ; Break any bricks the projectile touches
+GetPointerForMiddle:
   lda ObjectPYL,x
   add #$40
   lda ObjectPYH,x
@@ -252,7 +251,23 @@ BreakBricks:
   add #$40
   lda ObjectPXH,x
   adc #0
-  jsr GetLevelColumnPtr
+  jmp GetLevelColumnPtr
+
+GetPointerForMiddleWide:
+  lda ObjectPYL,x
+  add #$80
+  lda ObjectPYH,x
+  adc #0
+  tay
+  lda ObjectPXL,x
+  add #$80
+  lda ObjectPXH,x
+  adc #0
+  jmp GetLevelColumnPtr
+
+BreakBricks:
+  ; Break any bricks the projectile touches
+  jsr GetPointerForMiddle
   sty 0
   tay
   lda MetatileFlags,y
@@ -485,6 +500,16 @@ ProjWaterBottle:
   jsr EnemyGravity
   jsr EnemyApplyVelocity
 
+  jsr GetPointerForMiddle
+  cmp #Metatiles::CAMPFIRE
+  bne :+
+    lda #SFX::ARROW_SHOOT
+    jsr PlaySound
+    lda #0
+    sta ObjectF1,x
+    jsr ChangeBlockFar
+  :
+
   ; Draw the water bottle
   lda retraces
   lsr
@@ -559,9 +584,14 @@ ProjBomb:
   sta ObjectVXL,x
 : jsr EnemyApplyVelocity
 
+  jsr GetPointerForMiddleWide
+  cmp #Metatiles::CAMPFIRE
+  beq DoExplode
+
   lda ObjectTimer,x
   cmp #1
   bne NotBombExplode
+DoExplode:
   lda #$40
   jsr ObjectOffsetXY
   lda #10
@@ -650,7 +680,7 @@ ProjIceBlock:
   jsr EnemyAutoBump
 
   lda ObjectPXL,x
-  add #$f0
+  add #$80
   lda ObjectPXH,x
   adc #0
   ldy ObjectPYH,x
@@ -660,6 +690,14 @@ ProjIceBlock:
   lda #0
   sta ObjectF1,x
   rts
+: cmp #Metatiles::CAMPFIRE
+  bne :+
+    lda #SFX::ARROW_SHOOT
+    jsr PlaySound
+    lda #0
+    sta ObjectF1,x
+    jsr ChangeBlockFar
+    jmp @NotFreeze
 : cmp #Metatiles::WATER_TOP
   bne @NotFreeze
     lda #Metatiles::WATER_FROZEN
@@ -759,6 +797,16 @@ ProjTornado:
 
   ; Disappear when a solid object is hit
   jsr GetBlockUnderProjectile
+  cmp #Metatiles::CAMPFIRE
+  bne :+
+    lda #0
+    jsr ChangeBlockFar
+    lda #20
+    sta 0
+    lda #Metatiles::CAMPFIRE
+    jsr DelayChangeBlockFar
+    jmp :++
+  :
   tay
   lda MetatileFlags,y
   bpl :+
