@@ -192,7 +192,6 @@
   ; bigger temp space!!
   ScratchPage = $700
 
-
   LevelVariable:     .res 1 ; cleared to zero on level start, free for whatever
 
   IntroShownAlready: .res 1
@@ -204,7 +203,7 @@
   InventoryCursorYSwap: .res 1
   PlayerRidingSomething: .res 1 ; if 1, player is treated to be standing on a solid and can jump
   DisplayLevelNumber: .res 1    ; a timer for showing the current level editor on the screen
-  TeleportCooldownTimer: .res 1
+  SwitchCooldownTimer: .res 1
 
   PRGBank:         .res 1  ; current program bank
   CoinShowTimer:   .res 1  ; timer for how long to show the current coin value
@@ -268,10 +267,12 @@ LevelZeroWhenLoad_Start:
   PlayerInvincible:       .res 1     ; player invincibility timer, for when getting hurt or otherwise
 
   ; LevelLinkUp/Down are offsets for what screen to move to if you go off the top or bottom
-  LevelLinkUp:        .res 16
-  LevelLinkDown:      .res 16
-  ScreenFlags:        .res 16
-  ScreenFlagsDummy:   .res 1
+  LevelLinkUp:            .res 16
+  LevelLinkDown:          .res 16
+  ScreenFlags:            .res 16
+  ScreenFlagsDummy:       .res 1
+  FallingBlockPointer:    .res 2
+  FallingBlockY:          .res 1
 
   ; ScreenFlags stores flags for each screen in the level; so far there's just one flag:
   SCREEN_BOUNDARY = 1 ; boundary on left side of screen

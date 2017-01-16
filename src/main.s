@@ -216,6 +216,34 @@ NotSlowTimer:
   ; Run the player, objects, and most other stuff
   lda #MAINLOOP_BANK
   jsr SetPRG
+
+  lda FallingBlockPointer+1
+  beq NoFallingBlock
+    ; Load the position
+    ldy FallingBlockY
+    lda FallingBlockPointer+0
+    sta LevelBlockPtr+0
+    lda FallingBlockPointer+1
+    sta LevelBlockPtr+1
+    lda (LevelBlockPtr),y
+    bne NoMoreFallingBlock
+
+    ; Erase this block and add another one below
+    dey
+    lda (LevelBlockPtr),y
+    pha
+    lda #0
+    jsr ChangeBlock
+    iny
+    pla
+    jsr ChangeBlock
+    inc FallingBlockY
+    jmp NoFallingBlock
+  NoMoreFallingBlock:
+  lda #0
+  sta FallingBlockPointer+1
+NoFallingBlock:
+
   jsr RunPlayer
   jsr AdjustCamera
   jsr DisplayPlayer
@@ -269,9 +297,10 @@ NotDie:
   beq :+
     lda #MAINLOOP_BANK
     jsr SetPRG
-    lsr NeedLevelRerender
     jsr WaitVblank
     jsr RenderLevelScreens
+    lda #0
+    sta NeedLevelRerender
     jsr WaitVblank
   :
 

@@ -1474,3 +1474,39 @@ FlyingArrowVY:
   sta UploadTileAddress+1
   rts
 .endproc
+
+.proc HitToggleSwitch
+  jsr WaitVblank
+  lda #0
+  sta PPUMASK
+; Swap the level tiles
+  lda #<$6000
+  sta 0
+  lda #>$6000
+  sta 1
+  ldy #0
+Convert:
+  lda (0),y
+  cmp #Metatiles::TOGGLE_BLOCK_ON   ; on -> off
+  bne :+
+    lda #Metatiles::TOGGLE_BLOCK_OFF
+    sta (0),y
+    bne :++
+: cmp #Metatiles::TOGGLE_BLOCK_OFF  ; off -> on
+  bne :+
+    lda #Metatiles::TOGGLE_BLOCK_ON
+    sta (0),y
+: iny
+  bne Convert
+  inc 1
+  lda 1
+  cmp #$70
+  bne Convert
+
+  lda PlayerPXH
+  ldy PlayerPYH
+  jsr GetLevelColumnPtr
+  lda #1
+  sta NeedLevelRerender
+  rts
+.endproc

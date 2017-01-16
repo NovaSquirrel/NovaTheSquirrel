@@ -268,6 +268,7 @@ GetPointerForMiddleWide:
 BreakBricks:
   ; Break any bricks the projectile touches
   jsr GetPointerForMiddle
+  sta TempVal
   sty 0
   tay
   lda MetatileFlags,y
@@ -353,6 +354,14 @@ DoGlider:
 
 ProjLifeGlider:
   jsr BreakBricks
+  lda TempVal
+  cmp #Metatiles::TOGGLE_SWITCH
+  bne :+
+    lda #0
+    sta ObjectF1,x
+    jsr HitToggleSwitch
+  :
+
   jsr ObjectRemoveTooLow
   jsr DoGlider
   lda 0

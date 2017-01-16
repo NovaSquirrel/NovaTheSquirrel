@@ -1,7 +1,7 @@
 # this file defines the metatiles used in this game
 I M_FIRST_SPECIAL_MISC = Metatiles::LADDER
 I M_FIRST_COLLECTIBLE = Metatiles::COIN
-I M_LAST_COLLECTIBLE = Metatiles::INVENTORY_ITEM
+I M_LAST_COLLECTIBLE = Metatiles::CHIP
 I M_FIRST_SPECIAL_WALL = Metatiles::LOCK_RED
 I M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
 E Metatiles
@@ -16,7 +16,7 @@ L MetatileUR
 L MetatileLR
 
 R EMPTY
-C .byt M_PAL_0
+C .byt M_PAL_1
 C .byt M_EMPTY
 C .byt $3f
 C .byt $3f

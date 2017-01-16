@@ -222,6 +222,97 @@ SpecialWallHi:
   rts
 .endproc
 .proc TouchedPushableBlock
+OldLevelBlockPtr = 10
+OldYIndex = 12
+  lda FallingBlockPointer+1
+  beq :+
+    rts
+  :
+
+  ; save the old pointer
+  lda LevelBlockPtr+0
+  sta OldLevelBlockPtr+0
+  lda LevelBlockPtr+1
+  sta OldLevelBlockPtr+1
+  sty OldYIndex
+
+  jsr GetBlockX
+  sta 0
+  lda PlayerPXH
+  cmp 0
+  bcc Right
+Left:
+  lda LevelBlockPtr
+  sub #16
+  sta LevelBlockPtr
+  subcarry LevelBlockPtr+1
+  
+  jsr PreMove
+
+  lda #Metatiles::PUSHABLE_BLOCK
+  jsr ChangeBlockFar
+  jmp Erase
+Right:
+  lda LevelBlockPtr
+  add #16
+  sta LevelBlockPtr
+  addcarry LevelBlockPtr+1
+
+  jsr PreMove
+
+  lda #Metatiles::PUSHABLE_BLOCK
+  jsr ChangeBlockFar
+  jmp Erase
+
+Erase:     ; erase old position
+  ldy OldYIndex
+  lda OldLevelBlockPtr+0
+  sta LevelBlockPtr+0
+  lda OldLevelBlockPtr+1
+  sta LevelBlockPtr+1
+  lda #0
+  jmp ChangeBlockFar
+
+EraseBoth: ; hit a cherry bomb
+  lda #SFX::BOOM1
+  jsr PlaySound
+  lda #0
+  jsr ChangeBlockFar
+  jmp Erase
+
+PreMove:   ; check if the block should move up or anything
+  ; can't move if the block has another pushable block on top
+  dey
+  lda (OldLevelBlockPtr),y
+  cmp #Metatiles::PUSHABLE_BLOCK
+  beq Abort
+  iny
+
+  lda (LevelBlockPtr),y ; only overwrite blank blocks
+  beq MoveIsOkay
+  cmp #Metatiles::CHERRY_BOMB
+  beq EraseBoth
+; okay it's solid, but is the one above solid?
+    dey
+    lda (LevelBlockPtr),y ; nope, move over there
+    beq MoveIsOkay
+Abort:
+    pla
+    pla
+    rts
+MoveIsOkay:
+  ; check if moving onto air
+  iny
+  lda (LevelBlockPtr),y
+  bne :+
+    ; if moving into air, start falling
+    lda LevelBlockPtr+0
+    sta FallingBlockPointer+0
+    lda LevelBlockPtr+1
+    sta FallingBlockPointer+1
+    sty FallingBlockY
+  :
+  dey
   rts
 .endproc
 
@@ -396,16 +487,23 @@ ExitDoor:
 .endproc
 
 .proc TouchedToggleSwitch
-  rts
-.endproc
-
-.proc TouchedTeleporter
-  lda TeleportCooldownTimer
+  lda SwitchCooldownTimer
   beq :+
     rts
   :
   lda #60
-  sta TeleportCooldownTimer
+  sta SwitchCooldownTimer
+
+  jmp HitToggleSwitch
+.endproc
+
+.proc TouchedTeleporter
+  lda SwitchCooldownTimer
+  beq :+
+    rts
+  :
+  lda #60
+  sta SwitchCooldownTimer
   jsr GetBlockX        ; Get the block's X position
   jmp DoTeleport
 .endproc
@@ -602,7 +700,7 @@ Offset:
   sta TempVal
   ; Is this a collectible??
   sub #M_FIRST_COLLECTIBLE
-  cmp #M_LAST_COLLECTIBLE+2-M_FIRST_COLLECTIBLE
+  cmp #M_LAST_COLLECTIBLE+1-M_FIRST_COLLECTIBLE
   bcs :+
   jsr Call
 : ldy TempY

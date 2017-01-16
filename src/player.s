@@ -335,7 +335,7 @@ NotOffTopBottom:
   countdown PlayerJumpCancelLock
   countdown PlayerWalkLock
   countdown PlayerInvincible
-  countdown TeleportCooldownTimer
+  countdown SwitchCooldownTimer
 
   lda PlayerLeftRightLock
   beq :+
