@@ -764,11 +764,17 @@
 					"W":	2,
 					"H":	1
 				}, {
-					"Id":	"SOLID_BLOCK",
+					"Id":	"CEILING_BARRIER",
 					"X":	14,
-					"Y":	1,
+					"Y":	0,
 					"W":	1,
-					"H":	3
+					"H":	7
+				}, {
+					"Id":	"SOLID_BLOCK",
+					"X":	15,
+					"Y":	0,
+					"W":	1,
+					"H":	5
 				}]
 		}, {
 			"Name":	"Sprites",

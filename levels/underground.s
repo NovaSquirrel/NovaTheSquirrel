@@ -26,8 +26,9 @@ undergroundData:
   LObj  LO::S_PRIZE,          1, 3
   LObjN LO::R_AIR,            1, 4, 2, 1
   LObjN LO::WIDE_1,           1, 7, 0, LN1::SOLID_LEDGE
-  LObjN LO::R_SOLID_BLOCK,    5, 1, 0, 2
-  LObjN LO::R_BRICK,          1, 4, 15, 1
+  LObjN LO::R_CEILING_BARRIER,5, 0, 0, 6
+  LObjN LO::R_SOLID_BLOCK,    1, 0, 0, 4
+  LObjN LO::R_BRICK,          0, 4, 15, 1
   LObj  LO::S_BIGHEART,       1, 3
   LObjN LO::R_AIR,            1, 4, 2, 0
   LObj  LO::S_PRIZE,          1, 2

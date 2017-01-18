@@ -398,6 +398,11 @@ SignMeltIceAbout:
 ; <1 SIGN>Try throwing a fireball at this ice. If you killed the fire enemy, walk away and come back.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "T", "r", $fe, $e0, "r", "o", "w", $b1, " ", $be, "f", "i", "r", "e", "b", $ad, " ", $c6, " ", $99, SCR::NEWLINE, "i", "c", "e", $f6, "I", "f", " ", $a6, " ", "k", $dc, "l", $d6, $a2, " ", "f", "i", "r", "e", SCR::NEWLINE, $e6, "e", $cb, $f5, "w", "a", "l", "k", " ", "a", $b7, " ", $a4, $96, SCR::NEWLINE, "b", "a", $f3, "."
 .byt SCR::END_SCRIPT
+SignPushableAbout:
+.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
+; <1 SIGN>This block ahead can be pushed forward, and will climb other blocks if pushed onto them.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f8, $b8, "b", "l", "o", $f3, " ", "a", $c3, $f7, " ", $b0, " ", "b", "e", SCR::NEWLINE, "p", "u", $aa, $ff, $a5, "w", "a", "r", "d", $f5, $a4, $9e, " ", "c", "l", "i", "m", "b", SCR::NEWLINE, "o", $a2, $ea, "b", "l", "o", $f3, $fb, $ce, " ", "p", "u", $aa, $ff, $c2, $bc, SCR::NEWLINE, $92, "."
+.byt SCR::END_SCRIPT
 LineFollowingAbout:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
 ; <1 SIGN>This is a line following platform. Wait for it to come around.

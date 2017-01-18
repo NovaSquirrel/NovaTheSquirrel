@@ -282,6 +282,11 @@ Nova, with the help of a wish, went on to found the kingdom of Toasterland as a 
 <1 SIGN>Try throwing a fireball at this ice. If you killed the fire enemy, walk away and come back.
 `end
 
+:SignPushableAbout:
+`scene NOVA_AND_SIGN
+<1 SIGN>This block ahead can be pushed forward, and will climb other blocks if pushed onto them.
+`end
+
 :LineFollowingAbout:
 `scene NOVA_AND_SIGN
 <1 SIGN>This is a line following platform. Wait for it to come around.
