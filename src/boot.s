@@ -56,11 +56,6 @@ NMI:
 
   ; Restore locals
   ldx #7
-.ifdef NMI_MUSIC
-.ifdef NeedNMIInterrupted
-  stx NMIInterrupted
-.endif
-.endif
 : pla
   sta 0,x
   dex
@@ -75,7 +70,13 @@ NMI:
   tay
   pla
   tax
+
+.ifdef NeedNMIInterrupted
+  lda #1
+  sta NMIInterrupted
+.endif
 NoNMIMusic:
+
   ; Restore accumulator
   pla
 .endif
@@ -267,7 +268,7 @@ SetPRG_Restore:
 .proc SetPRG
   sta PRGBank
 Temporary:
-  lsr NMIInterrupted
+  lsr NMIInterrupted ; clear NMIInterrupted
   .ifdef NMI_MUSIC
     sta RealPRGBank
   .endif

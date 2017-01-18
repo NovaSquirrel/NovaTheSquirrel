@@ -238,7 +238,9 @@ NotSlowTimer:
     pla
     jsr ChangeBlock
     inc FallingBlockY
-    jmp NoFallingBlock
+    lda FallingBlockY
+    cmp #15
+    bne NoFallingBlock
   NoMoreFallingBlock:
   lda #0
   sta FallingBlockPointer+1
