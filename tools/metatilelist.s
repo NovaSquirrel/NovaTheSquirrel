@@ -90,10 +90,6 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_PAL_1 ;ROCK_BOT_L
   .byt M_PAL_1 ;ROCK_BOT_M
   .byt M_PAL_1 ;ROCK_BOT_R
-  .byt M_PAL_1 ;SKY_DITHER_1
-  .byt M_PAL_1 ;SKY_DITHER_2
-  .byt M_PAL_1 ;SKY_DITHER_3
-  .byt M_PAL_1 ;SKY_DITHER_4
   .byt M_PAL_1 ;DOOR_TOP
   .byt M_PAL_1 ;EXIT_DOOR_TOP
   .byt M_PAL_2 ;DOWN_SPRING_PRESSED
@@ -271,10 +267,6 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_SOLID_ALL|M_SOLID_TOP ;ROCK_BOT_L
   .byt M_SOLID_ALL|M_SOLID_TOP ;ROCK_BOT_M
   .byt M_SOLID_ALL|M_SOLID_TOP ;ROCK_BOT_R
-  .byt M_EMPTY ;SKY_DITHER_1
-  .byt M_EMPTY ;SKY_DITHER_2
-  .byt M_EMPTY ;SKY_DITHER_3
-  .byt M_EMPTY ;SKY_DITHER_4
   .byt M_EMPTY|M_POST_PROCESS ;DOOR_TOP
   .byt M_EMPTY|M_POST_PROCESS ;EXIT_DOOR_TOP
   .byt M_EMPTY ;DOWN_SPRING_PRESSED
@@ -451,10 +443,6 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $64 ;ROCK_BOT_L
   .byt $65 ;ROCK_BOT_M
   .byt $65 ;ROCK_BOT_R
-  .byt $3a ;SKY_DITHER_1
-  .byt $3a ;SKY_DITHER_2
-  .byt $3a ;SKY_DITHER_3
-  .byt $3b ;SKY_DITHER_4
   .byt $20 ;DOOR_TOP
   .byt $22 ;EXIT_DOOR_TOP
   .byt $2e ;DOWN_SPRING_PRESSED
@@ -630,10 +618,6 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $74 ;ROCK_BOT_L
   .byt $75 ;ROCK_BOT_M
   .byt $75 ;ROCK_BOT_R
-  .byt $3f ;SKY_DITHER_1
-  .byt $3a ;SKY_DITHER_2
-  .byt $3b ;SKY_DITHER_3
-  .byt $3b ;SKY_DITHER_4
   .byt $3c ;DOOR_TOP
   .byt $3c ;EXIT_DOOR_TOP
   .byt $3f ;DOWN_SPRING_PRESSED
@@ -809,10 +793,6 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $65 ;ROCK_BOT_L
   .byt $65 ;ROCK_BOT_M
   .byt $66 ;ROCK_BOT_R
-  .byt $3f ;SKY_DITHER_1
-  .byt $3a ;SKY_DITHER_2
-  .byt $3b ;SKY_DITHER_3
-  .byt $3b ;SKY_DITHER_4
   .byt $21 ;DOOR_TOP
   .byt $23 ;EXIT_DOOR_TOP
   .byt $2f ;DOWN_SPRING_PRESSED
@@ -988,10 +968,6 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $75 ;ROCK_BOT_L
   .byt $75 ;ROCK_BOT_M
   .byt $76 ;ROCK_BOT_R
-  .byt $3a ;SKY_DITHER_1
-  .byt $3a ;SKY_DITHER_2
-  .byt $3a ;SKY_DITHER_3
-  .byt $3b ;SKY_DITHER_4
   .byt $3c ;DOOR_TOP
   .byt $3c ;EXIT_DOOR_TOP
   .byt $3f ;DOWN_SPRING_PRESSED

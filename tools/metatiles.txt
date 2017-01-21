@@ -709,38 +709,6 @@ C .byt $75
 C .byt $66
 C .byt $76
 
-R SKY_DITHER_1
-C .byt M_PAL_1
-C .byt M_EMPTY
-C .byt $3a
-C .byt $3f
-C .byt $3f
-C .byt $3a
-
-R SKY_DITHER_2
-C .byt M_PAL_1
-C .byt M_EMPTY
-C .byt $3a
-C .byt $3a
-C .byt $3a
-C .byt $3a
-
-R SKY_DITHER_3
-C .byt M_PAL_1
-C .byt M_EMPTY
-C .byt $3a
-C .byt $3b
-C .byt $3b
-C .byt $3a
-
-R SKY_DITHER_4
-C .byt M_PAL_1
-C .byt M_EMPTY
-C .byt $3b
-C .byt $3b
-C .byt $3b
-C .byt $3b
-
 R DOOR_TOP
 C .byt M_PAL_1
 C .byt M_EMPTY|M_POST_PROCESS

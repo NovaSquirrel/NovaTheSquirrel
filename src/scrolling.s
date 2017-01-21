@@ -260,7 +260,7 @@ LoopAttr:
   ora Temp
   sta Temp
 
-  ; top right corner of attribute byte
+  ; bottom right corner of attribute byte
   lda (LevelPointer2),y
   tax
   lda MetatilePalettes,x

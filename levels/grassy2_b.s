@@ -134,7 +134,7 @@ grassy2_bSprite:
   LSpr Enemy::GOOMBA,              1,  14,  10
   LSpr Enemy::MOVING_PLATFORM_HORIZ, 0,  20,  11, 5
   LSpr Enemy::MOVING_PLATFORM_HORIZ, 0,  27,   5, 5
-  LSpr Enemy::MOVING_PLATFORM_HORIZ, 0,  46,   8, 7
+  LSpr Enemy::MOVING_PLATFORM_HORIZ, 0,  45,   8, 9
   LSpr Enemy::SNEAKER,             1,  58,   7
   LSpr Enemy::MOVING_PLATFORM_LINE, 0,  60,   7
   LSpr Enemy::KING,                0,  72,   2

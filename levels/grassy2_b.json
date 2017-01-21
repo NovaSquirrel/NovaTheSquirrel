@@ -682,11 +682,11 @@
 					"Extra":	"5"
 				}, {
 					"Id":	"MOVING_PLATFORM_HORIZ",
-					"X":	46,
+					"X":	45,
 					"Y":	8,
 					"W":	1,
 					"H":	1,
-					"Extra":	"7"
+					"Extra":	"9"
 				}, {
 					"Id":	"MOVING_PLATFORM_LINE",
 					"X":	60,
