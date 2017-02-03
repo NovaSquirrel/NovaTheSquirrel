@@ -82,7 +82,8 @@ undergroundData:
   LObjN LO::R_BRICK,          4, 8, 12, 0
   LObjN LO::R_COIN,           3, 10, 4, 0
   LObjN LO::R_GROUND,         2, 12, 15, 2
-  LObjN LO::R_BRICK,          5, 4, 10, 0
+  LObj  LO::S_CEILING_BARRIER,5, 0
+  LObjN LO::R_BRICK,          0, 4, 10, 0
   LObjN LO::WIDE_2,           0, 11, 2, LN2::BUSH
   LObj  LO::S_SPRING,         1, 7
   LObjN LO::TALL_1,           2, 8, 3, LN1::LADDER
@@ -96,7 +97,8 @@ undergroundData:
   LObjN LO::R_BRICK,          1, 1, 3, 0
   LObj  LO::S_PRIZE,          2, 1
   LObjN LO::WIDE_1,           0, 10, 4, LN1::SOLID_LEDGE
-  LObjN LO::R_GROUND,         4, 0, 2, 9
+  LObjN LO::R_CEILING_BARRIER,3, 0, 0, 1
+  LObjN LO::R_GROUND,         1, 0, 2, 9
   LObjN LO::WIDE_1,           3, 8, 11, LN1::SOLID_LEDGE
   LObj  LO::S_SPRING,         0, 11
   LObj  LO::S_SPRING,         3, 7

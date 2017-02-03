@@ -463,6 +463,11 @@ LiaCameoAlreadyBombs:
 ItiCameo:
 .byt SCR::SCENE, SCENES::NOVA_AND_ITI
 .byt SCR::END_SCRIPT
+EmptyRoom:
+.byt SCR::SCENE, SCENES::NOVA_ALONE
+; >0 NOVA<There will probably be something really cool here later on.
+.byt SCR::THINK, SCR::SPEAKER_0|CHAR::NOVA, $f8, $ed, $e7, $9e, " ", "p", "r", "o", "b", "a", "b", $d2, "b", "e", SCR::NEWLINE, $9c, $e0, $b1, " ", "r", $ec, "l", $d2, "c", $e4, "l", " ", $a9, "e", SCR::NEWLINE, "l", $c6, $ed, " ", $c2, "."
+.byt SCR::END_SCRIPT
 NekoEdCameo:
 .byt SCR::SCENE, SCENES::NOVA_AND_NEKOED
 ; <1 NEKOED>I wanted to be in this game, so here I am! I should probably give you something cool.

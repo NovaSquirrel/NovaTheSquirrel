@@ -11,7 +11,6 @@
   .byt GraphicsUpload::SP_KING ;GEORGE
   .byt GraphicsUpload::SP_GEORGE ;BIG_GEORGE
   .byt GraphicsUpload::SP_GEORGE ;ALAN
-  .byt 0 ;GLIDER
   .byt GraphicsUpload::SP_MINES ;ICE_1
   .byt GraphicsUpload::SP_MINES ;ICE_2
   .byt GraphicsUpload::SP_CANNON ;BALL_GUY
@@ -45,7 +44,7 @@
   .byt GraphicsUpload::SP_RONALD ;FRIES
   .byt GraphicsUpload::SP_RONALD ;FRY
   .byt GraphicsUpload::SP_SUN ;SUN
-  .byt GraphicsUpload::SP_SUN ;SUNKEY
+  .byt GraphicsUpload::SP_SUN ;SUN_KEY
   .byt 0 ;MOVING_PLATFORM_HORIZ
   .byt 0 ;MOVING_PLATFORM_LINE
   .byt GraphicsUpload::SP_FIRE ;FIREBAR
@@ -55,6 +54,8 @@
   .byt GraphicsUpload::SP_HANNAH ;FALLING_BOMB
   .byt GraphicsUpload::SP_HANNAH ;BOULDER
   .byt 0 ;CHECKPOINT
+  .byt GraphicsUpload::SP_LIFE ;BIG_GLIDER
+  .byt GraphicsUpload::SP_LIFE ;BIG_LWSS
 .endproc
 
 .proc ObjBehaviors
@@ -70,7 +71,6 @@
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;GEORGE
   .byt ObjBehavior::AUTO_REMOVE ;BIG_GEORGE
   .byt ObjBehavior::AUTO_REMOVE ;ALAN
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;GLIDER
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;ICE_1
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;ICE_2
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BALL_GUY
@@ -104,7 +104,7 @@
   .byt ObjBehavior::AUTO_REMOVE ;FRIES
   .byt ObjBehavior::AUTO_REMOVE ;FRY
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET | ObjBehavior::WAIT_UNTIL_NEAR ;SUN
-  .byt 0 ;SUNKEY
+  .byt 0 ;SUN_KEY
   .byt 0 ;MOVING_PLATFORM_HORIZ
   .byt 0 ;MOVING_PLATFORM_LINE
   .byt ObjBehavior::AUTO_REMOVE ;FIREBAR
@@ -114,6 +114,8 @@
   .byt 0 ;FALLING_BOMB
   .byt ObjBehavior::AUTO_REMOVE ;BOULDER
   .byt ObjBehavior::AUTO_REMOVE ;CHECKPOINT
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BIG_GLIDER
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BIG_LWSS
 .endproc
 
 .proc ObjFlags
@@ -129,7 +131,6 @@
   .byt ObjFlag::PRIMARY ;GEORGE
   .byt ObjFlag::ESSENTIAL ;BIG_GEORGE
   .byt ObjFlag::PRIMARY ;ALAN
-  .byt ObjFlag::PRIMARY ;GLIDER
   .byt ObjFlag::PRIMARY ;ICE_1
   .byt ObjFlag::PRIMARY ;ICE_2
   .byt ObjFlag::PRIMARY ;BALL_GUY
@@ -163,7 +164,7 @@
   .byt ObjFlag::SECONDARY ;FRIES
   .byt ObjFlag::SECONDARY ;FRY
   .byt ObjFlag::ESSENTIAL ;SUN
-  .byt ObjFlag::ESSENTIAL ;SUNKEY
+  .byt ObjFlag::ESSENTIAL ;SUN_KEY
   .byt ObjFlag::ESSENTIAL ;MOVING_PLATFORM_HORIZ
   .byt ObjFlag::ESSENTIAL ;MOVING_PLATFORM_LINE
   .byt ObjFlag::PRIMARY ;FIREBAR
@@ -173,5 +174,7 @@
   .byt ObjFlag::ESSENTIAL ;FALLING_BOMB
   .byt ObjFlag::ESSENTIAL ;BOULDER
   .byt ObjFlag::ESSENTIAL ;CHECKPOINT
+  .byt ObjFlag::PRIMARY ;BIG_GLIDER
+  .byt ObjFlag::PRIMARY ;BIG_LWSS
 .endproc
 

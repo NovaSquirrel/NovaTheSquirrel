@@ -5,7 +5,7 @@ intro_a:
   .byt GraphicsUpload::SP_WALKER
   .byt GraphicsUpload::SP_CANNON
   .byt GraphicsUpload::SP_FIRE
-  .byt GraphicsUpload::SP_KING
+  .byt GraphicsUpload::SP_LIFE
   .addr intro_aData
   .addr intro_aSprite
   .byt $31 ; background
@@ -21,7 +21,9 @@ intro_aData:
   .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <Intro, >Intro
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $04, LevelBackgroundId::CLOUDS
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 79
-  LObj  LO::S_COIN,           6, 11
+  LSetX 5
+  LWriteCol Enemy::BIG_GLIDER
+  LObj  LO::S_COIN,           1, 11
   LObj  LO::S_COIN,           2, 10
   LObj  LO::S_GROUND_CLIMB_L, 0, 12
   LObj  LO::S_GROUND_CLIMB_L, 1, 11
@@ -72,6 +74,9 @@ intro_aData:
   LFinished
 
 intro_aSprite:
+  LSpr Enemy::CANNON_2,            0,   5,   2, 4
+  LSpr Enemy::BIG_LWSS,            0,   9,   6
+  LSpr Enemy::BIG_LWSS,            0,  12,   7, 1
   LSpr Enemy::OWL,                 1,  29,  10
   LSpr Enemy::FIRE_WALK,           1,  51,   7
   LSpr Enemy::OWL,                 0,  68,   3

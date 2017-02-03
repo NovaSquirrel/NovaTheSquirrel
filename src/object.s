@@ -132,7 +132,6 @@ Exit:
   .raddr ObjectGeorge
   .raddr ObjectBigGeorge
   .raddr ObjectAlan
-  .raddr ObjectGlider
   .raddr ObjectIce1
   .raddr ObjectIce2
   .raddr ObjectBallGuy
@@ -176,6 +175,8 @@ Exit:
   .raddr ObjectFallingBomb
   .raddr ObjectBoulder
   .raddr ObjectCheckpoint
+  .raddr ObjectBigGlider
+  .raddr ObjectBigLWSS
 .endproc
 
 ; other enemy attributes
@@ -417,7 +418,6 @@ Copy:
 EnemyAbilityTable:
   .byt Enemy::GEORGE,           AbilityType::WATER
   .byt Enemy::BIG_GEORGE,       AbilityType::WATER
-  .byt Enemy::GLIDER,           AbilityType::GLIDER
   .byt Enemy::ICE_1,            AbilityType::NICE
   .byt Enemy::ICE_2,            AbilityType::NICE
   .byt Enemy::BURGER,           AbilityType::BURGER
@@ -435,6 +435,8 @@ EnemyAbilityTable:
   .byt Enemy::BOMB_GUY,         AbilityType::BOMB
   .byt Enemy::RONALD,           AbilityType::BURGER
   .byt Enemy::SUN,              AbilityType::FIRE
+  .byt Enemy::BIG_GLIDER,       AbilityType::GLIDER
+  .byt Enemy::BIG_LWSS,         AbilityType::GLIDER
   .byt 0
 .endproc
 
@@ -780,6 +782,7 @@ NotOnGrid:
     lda #2
     sta PlayerRidingSomething
     lda #0
+    sta PlayerNeedsGround
     sta PlayerVYL
     sta PlayerVYH
     sta ObjectF3,x
@@ -1551,7 +1554,6 @@ WithXYOffset:
 ; input: X (object to copy)
 ; output: Y (new object), carry (success)
 .proc CloneObjectX
-  sty TempY
   jsr FindFreeObjectY
   bcc :+
   jsr ObjectCopyPosXY
@@ -1571,8 +1573,8 @@ WithXYOffset:
   sta ObjectVYL,y
   lda ObjectVYH,x
   sta ObjectVYH,y
-: ldy TempY
-  rts
+  sec
+: rts
 .endproc
 
 .proc EnemyYLimit

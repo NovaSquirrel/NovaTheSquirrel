@@ -70,7 +70,7 @@ waterData:
   LObj  LO::S_TROPICAL_FLOWER,0, 6
   LObjN LO::R_GROUND,         0, 9, 10, 5
   LObj  LO::S_BIG_BUSH, 2, 8
-  LObj  LO::S_CEILING_BARRIER,2, 0
+  LObjN LO::R_CEILING_BARRIER,2, 0, 0, 1
   LObj  LO::S_TROPICAL_FLOWER,0, 6
   LObjN LO::R_GROUND,         1, 1, 3, 1
   LObjN LO::RECT_1,           1, 0, 1, LN1::GROUND, 24

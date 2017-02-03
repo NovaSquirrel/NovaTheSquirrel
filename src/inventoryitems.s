@@ -641,6 +641,7 @@ KB = KEY_B
   .byt KL, KD, KU, KR, KL, KD, KU, KR ; ddr pattern
   .byt KD, KD, KD, KD, KU, KU, KU, KU ; down*4, up*4
   .byt KU, KU, KU, KU, KU, KU, KU, KU ; up
+  .byt KB, KB, KB, KB, KB, KB, KB, KB ; burger
   .byt 0
 .endproc
 
@@ -666,6 +667,7 @@ Routines:
   .raddr Bomb ; ddr pattern
   .raddr Ice ; down, up
   .raddr Balloon ; up
+  .raddr Burger ; b repeatedly
 Boomerang:
   lda #AbilityType::BOOMERANG
   jmp ChangePlayerAbilityScreenOff  
@@ -683,6 +685,9 @@ Firework:
   jmp ChangePlayerAbilityScreenOff
 Ice:
   lda #AbilityType::NICE
+  jmp ChangePlayerAbilityScreenOff
+Burger:
+  lda #AbilityType::BURGER
   jmp ChangePlayerAbilityScreenOff
 Health:
   lda #4

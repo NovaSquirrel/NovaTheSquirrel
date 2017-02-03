@@ -57,6 +57,9 @@ PalEnemy1:  .byt $61
 PalEnemy2:  .byt $61
             .byt $06, $16, $36
             .byt $02, $22, $32
+PalEnemy3:  .byt $61
+            .byt $05, $15, $35
+            .byt $0b, $2b, $3b
 PalLevelSel: .byt $07
              .byt $30, $30, $30
              .byt $15, $25, $35

@@ -551,10 +551,6 @@ ThrowBottle:
   rts
 .endproc
 
-.proc ObjectGlider
-  rts
-.endproc
-
 .proc ObjectIce1
   jsr EnemyFall
   bcc NoWalk
@@ -905,8 +901,8 @@ CannonFrame:
   asl
   ora #$10
   ldy #OAM_COLOR_3
-  jsr DispEnemyWide
-  jmp GoombaSmoosh
+  jmp DispEnemyWide
+;  jmp GoombaSmoosh
 .endproc
 
 .proc ObjectFireWalk
@@ -1257,8 +1253,7 @@ InAir:
   lda #$0c
   add ObjectF3,x
   ldy #OAM_COLOR_3
-  jsr DispEnemyWide
-  rts
+  jmp DispEnemyWide
 LaunchFry:
   jsr FindFreeObjectY
   bcc :+
@@ -1677,38 +1672,42 @@ BodyAnim:
 .endproc
 
 .proc ObjectFlyingArrow
-  jsr EnemyDespawnTimer
-  jsr EnemyApplyVelocity
-  jsr EnemyYLimit
+  jsr EnemyDespawnTimer   ; Have a timeout so the arrow disappears on its own
+  jsr EnemyApplyVelocity  ; Fly forward
+  jsr EnemyYLimit         ; Disappear if it goes off the top or bottom
 
+  ; Check if it's touching a block
   jsr EnemyCheckOverlappingOnSolid
   bcc ArrowDidntHit
-  ldy #11
+  ; Is this a block we care about?
+  ldy #13
 : lda ReactWithTypes,y
   cmp 0
   beq ArrowHit
   dey
   bpl :-
 ArrowDidntHit:
+  ; Arrow didn't hit any blocks it cares about, so draw it instead
 
   ; Face left if going left
+  ; Adjust the horizontal direction of the object to match
   lda ObjectF1,x
-  and #<~1  
+  and #<~1        ; Clear horizontal direction flag
   sta ObjectF1,x
   lda ObjectVXL,x
   bpl :+
-  inc ObjectF1,x
-:
+    inc ObjectF1,x  ; Set it if needed
+  :
 
 ; Draw the arrow
   lda ObjectVYL,x ; No vertical movement? Display a horizontal arrow
   beq Horizontal
   lda ObjectVYH,x ; Check if moving up or moving down
   bmi Up          ; Negative = moving up
-  lda #4
+  lda #4          ; Vertical arrow sprite
   bne Skip
 Horizontal:
-  lda #0
+  lda #0          ; Horizontal arrow sprite
 Skip:
   ldy #OAM_COLOR_3
   jmp DispEnemyWide
@@ -1718,9 +1717,21 @@ Up:
   jmp DispEnemyWideFlipped
 
 ArrowHit:
+  cpy #12
+  bcs ForkArrow
   cpy #8
   bcs WasNotArrow
 
+  jsr SnapXY
+
+  ; Get the arrow direction
+  tya
+  and #3
+  tay
+  jsr ArrowChangeDirection
+  jmp EraseBlock
+
+SnapXY:
   ; Snap to right X and Y
   lda ObjectPXL,x
   add #$80
@@ -1732,19 +1743,33 @@ ArrowHit:
   lda ObjectPYH,x
   adc #0
   sta ObjectPYH,x
+  rts
 
-  tya
-  and #3
-  tay
-  jsr ArrowChangeDirection
-  jmp WasArrow
-WasNotArrow:
+ForkArrow:
+  sty TempY ; Block type out of the table
+  stx TempX
+  jsr CloneObjectX
+  bcc :+
+    tya
+    tax
+    jsr SnapXY
+    lda TempY
+    and #3
+    tay
+    iny
+    jsr ArrowChangeDirection
+  :
+
+  ldx TempX
+  jmp EraseBlock
+
+WasNotArrow: ; Hit a block that didn't result in a new arrow coming out
   lda #SFX::SMASH
   jsr PlaySound
 
   lda #0
   sta ObjectF1,x
-WasArrow:
+EraseBlock: ; Hit a block that did result in an arrow coming out
   lda #0
   ldy 1
   jmp ChangeBlockFar
@@ -1756,6 +1781,7 @@ ReactWithTypes:
   .byt Metatiles::WOOD_ARROW_UP,     Metatiles::WOOD_ARROW_RIGHT
   .byt Metatiles::METAL_BOMB,        Metatiles::METAL_CRATE
   .byt Metatiles::WOOD_BOMB,         Metatiles::WOOD_CRATE
+  .byt Metatiles::FORK_ARROW_DOWN,     Metatiles::FORK_ARROW_UP
 .endproc
 
 .proc ObjectFallingBomb
@@ -1782,3 +1808,203 @@ ReactWithTypes:
   jmp DispEnemyWide
 .endproc
 
+.proc ObjectBigGlider
+  lda ObjectF2,x
+  bne NoMove
+
+  ; Increase the counter
+  inc ObjectF4,x
+
+  ; Store the horizontal flag in a counter
+  lda ObjectF1,x
+  and #1
+  sta 1
+
+; -----------------------------
+  lda ObjectF4,x
+  lsr
+  bcs NoMove
+  lda ObjectF4,x
+  lsr
+  and #3
+  sta 0
+  tay
+
+  lda GliderPushX,y ; get X push value from table
+  ldy 1             ; and flip it horizontally if the sprite is to be flipped horizontally
+  beq :+
+    neg
+: sta 2
+  sex
+  sta 3
+  ldy 0
+  
+  lda ObjectPXL,x   ; add X push to the X position
+  add 2
+  sta ObjectPXL,x
+  lda ObjectPXH,x
+  adc 3
+  sta ObjectPXH,x
+
+; DO Y
+
+  lda GliderPushY,y ; get Y push value from table
+  ldy ObjectF3,x    ; and flip it vertically if the sprite is to be flipped vertically
+  beq :+
+    neg
+: sta 2
+  sex
+  sta 3
+  ldy 0
+
+  lda ObjectPYL,x
+  add 2
+  sta ObjectPYL,x
+  lda ObjectPYH,x
+  adc 3
+  sta ObjectPYH,x
+
+NoMove:
+; -----------------------------
+  ; Wrap diagonally off the top and bottom of the screen
+
+  lda ObjectPYH,x
+  cmp #255
+  bne :+
+  lda #14
+  jsr VerticalWrap
+:
+
+  lda ObjectPYH,x
+  cmp #15
+  bne :+
+  lda #0
+  jsr VerticalWrap
+:
+
+  ; Decide whether to flip or not, based on stunned state and if it's going up or down.
+  ; Preserve the real stunned state.
+  lda ObjectF2,x
+  pha
+  beq NotStunned
+Stunned:
+  lda ObjectF3,x
+  lsr
+  bcc :+
+  lda #ENEMY_STATE_NORMAL
+  sta ObjectF2,x
+: jmp Draw
+
+NotStunned:
+  lda ObjectF3,x
+  lsr
+  bcc :+
+  lda #ENEMY_STATE_STUNNED
+  sta ObjectF2,x
+:
+
+Draw:
+; Draw the glider
+  lda ObjectF4,x
+  and #%110
+  asl
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouchHurt
+
+  pla
+  sta ObjectF2,x
+  rts
+
+VerticalWrap:
+  pha
+  lda ObjectF1,x
+  lsr
+  jcs @Left
+  lda ObjectPXH,x
+  sub #$0f
+  sta ObjectPXH,x
+  pla
+  sta ObjectPYH,x
+  rts
+@Left:
+  lda ObjectPXH,x
+  add #$0f
+  sta ObjectPXH,x
+  pla
+  sta ObjectPYH,x
+  rts
+
+GliderPushX:
+  .byt $00, $00, $00, $50
+GliderPushY:
+  .byt $00, $50, $00, $00
+.endproc
+
+.proc ObjectBigLWSS
+  lda ObjectF2,x
+  bne NoMove
+
+  ; Increase the counter
+  inc ObjectF4,x
+
+  lda ObjectF4,x
+  and #3
+  cmp #2
+  bne Skip
+
+  lda ObjectF3,x
+  bne Up
+Down:
+  lda ObjectPYL,x
+  add #$30
+  sta ObjectPYL,x
+  addcarryx ObjectPYH
+  jmp Skip
+Up:
+  lda ObjectPYL,x
+  sub #$30
+  sta ObjectPYL,x
+  subcarryx ObjectPYH  
+Skip:
+  lda ObjectF4,x
+  and #3
+  cmp #0
+  bne :+
+  jsr EnemyTurnAround
+:
+NoMove:
+
+  ; Wrap vertically
+  lda ObjectPYH,x
+  cmp #15
+  bne :+
+  lda #0
+  sta ObjectPYH,x
+: cmp #255
+  bne :+
+  lda #14
+  sta ObjectPYH,x
+:
+
+  ; --------- Draw ---------
+  lda ObjectF2,x
+  pha
+  lda ObjectF3,x ; make upward facing spaceships go up
+  beq :+
+  lda ObjectF2,x
+  eor #ENEMY_STATE_STUNNED
+  sta ObjectF2,x
+:
+  ; Do the drawing now
+  lda ObjectF4,x
+  asl
+  and #4
+  add #$18
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouchHurt
+  pla
+  sta ObjectF2,x
+  rts
+.endproc

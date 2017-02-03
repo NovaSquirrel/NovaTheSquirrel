@@ -44,7 +44,8 @@ GraphicsList:
   .byt GRAPHICS_BANK1|IS_PALETTE, <AltGrassy2,   >AltGrassy2
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPSchemeTeam, >SPSchemeTeam
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPHannah,     >SPHannah
-
+  .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPLife,       >SPLife
+  .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy3,    >PalEnemy3
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)
 DoGraphicUpload:

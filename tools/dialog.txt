@@ -346,6 +346,11 @@ Nova, with the help of a wish, went on to found the kingdom of Toasterland as a 
 `scene NOVA_AND_ITI
 `end
 
+:EmptyRoom:
+`scene NOVA_ALONE
+>0 NOVA<There will probably be something really cool here later on.
+`end
+
 :NekoEdCameo:
 `scene NOVA_AND_NEKOED
 <1 NEKOED>I wanted to be in this game, so here I am! I should probably give you something cool.

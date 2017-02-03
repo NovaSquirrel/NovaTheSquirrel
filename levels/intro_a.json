@@ -16,7 +16,7 @@
 	},
 	"Header":	{
 		"Music":	"NONE",
-		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_FIRE", "SP_KING"],
+		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_FIRE", "SP_LIFE"],
 		"GFXUpload":	["PAL_GRASSY", "PAL_ENEMY1", "BG_COMMON", "BG_GRASSY", "BG_GRASSYBG"],
 		"BGColor":	49
 	},
@@ -308,6 +308,26 @@
 					"Y":	3,
 					"W":	1,
 					"H":	1
+				}, {
+					"Id":	"CANNON_2",
+					"X":	5,
+					"Y":	2,
+					"W":	1,
+					"H":	1,
+					"Extra":	"4"
+				}, {
+					"Id":	"BIG_LWSS",
+					"X":	9,
+					"Y":	6,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BIG_LWSS",
+					"X":	12,
+					"Y":	7,
+					"W":	1,
+					"H":	1,
+					"Extra":	"1"
 				}]
 		}, {
 			"Name":	"Control",
@@ -332,6 +352,13 @@
 					"W":	1,
 					"H":	1,
 					"Extra":	"CLOUDS"
+				}, {
+					"Id":	"COLUMN_DATA",
+					"X":	5,
+					"Y":	3,
+					"W":	1,
+					"H":	1,
+					"Extra":	"Enemy::BIG_GLIDER"
 				}]
 		}]
 }

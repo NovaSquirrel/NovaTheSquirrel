@@ -14,13 +14,16 @@ glass_intro:
   .byt GraphicsUpload::BG_BUMMER
   .byt GraphicsUpload::BG_CHIP
   .byt GraphicsUpload::BG_HANNAH
+  .byt GraphicsUpload::PAL_ENEMY3
   .byt 255 ; end
   .byt $00, $00 ; boundaries
 
 glass_introData:
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 17
   LObjN LO::R_BG_GLASS_GREEN, 2, 5, 10, 0
-  LObj  LO::S_BG_GLASS_GREEN, 7, 2
+  LObj  LO::S_SIGNPOST,       5, 12
+  LWriteCol <SignBummerAbout, >SignBummerAbout
+  LObj  LO::S_BG_GLASS_GREEN, 2, 2
   LObj  LO::S_BG_GLASS_GREEN, 0, 8
   LObj  LO::S_BG_GLASS_GREEN, 1, 3
   LObj  LO::S_BG_GLASS_GREEN, 0, 7
@@ -103,15 +106,18 @@ glass_introData:
   LObj  LO::S_PRIZE,          1, 5
   LObjN LO::R_FG_GLASS_RED,   3, 2, 13, 1
   LObj  LO::R_CUSTOM,         0, 4, Metatiles::ICE, (0<<4)|3
-  LObjN LO::R_SOLID_BLOCK,    1, 8, 1, 0
+  LObjN LO::R_COIN,           1, 1, 5, 0
+  LObjN LO::R_SOLID_BLOCK,    0, 8, 1, 0
   LObjN LO::R_SOLID_BLOCK,    1, 6, 0, 1
   LObjN LO::R_BG_GLASS_GREEN, 1, 11, 2, 2
   LObj  LO::R_CUSTOM,         1, 8, Metatiles::ICE, (6<<4)|0
-  LObjN LO::R_COIN,           1, 1, 5, 0
-  LObj  LO::S_COIN,           1, 5
-  LObj  LO::S_W_ARROW_DOWN,   2, 7
+  LObj  LO::S_COIN,           2, 5
+  LObjN LO::R_AIR,            1, 2, 3, 0
+  LObj  LO::S_W_ARROW_DOWN,   1, 7
   LObj  LO::S_W_ARROW_RIGHT,  0, 11
-  LObj  LO::S_CUSTOM,         2, 9, Metatiles::ICE
+  LObj  LO::S_DOOR,           1, 1
+  LWriteCol $20, <EmptyRoom, >EmptyRoom
+  LObj  LO::S_CUSTOM,         1, 9, Metatiles::ICE
   LObj  LO::R_CUSTOM,         0, 10, Metatiles::ICE, (10<<4)|0
   LObj  LO::S_COIN,           1, 7
   LObjN LO::R_FG_GLASS_RED,   1, 4, 1, 0
@@ -144,11 +150,12 @@ glass_introData:
   LObj  LO::R_CUSTOM,         2, 9, Metatiles::WOOD_CRATE, (4<<4)|0
   LObjN LO::R_COIN,           1, 6, 2, 0
   LObjN LO::R_GROUND,         5, 9, 3, 5
-  LObjN LO::R_BG_GLASS_BLUE,  1, 4, 0, 4
+  LObj  LO::S_BIGHEART,       1, 2
+  LObjN LO::R_BG_GLASS_BLUE,  0, 4, 0, 4
   LObj  LO::S_SPRING,         2, 8
-  LObjN LO::R_GROUND,         1, 12, 3, 2
   LObj  LO::S_SPRING,         1, 11
-  LObjN LO::WIDE_1,           1, 6, 4, LN1::SOLID_LEDGE
+  LObjN LO::R_GROUND,         0, 12, 3, 2
+  LObjN LO::WIDE_1,           2, 6, 4, LN1::SOLID_LEDGE
   LObj  LO::S_PRIZE,          2, 3
   LObjN LO::R_BRICK,          1, 3, 2, 0
   LObjN LO::R_GROUND,         1, 12, 4, 2

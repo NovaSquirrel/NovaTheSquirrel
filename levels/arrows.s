@@ -4,7 +4,7 @@ arrows:
   .byt $f4
   .byt GraphicsUpload::SP_WALKER
   .byt GraphicsUpload::SP_CANNON
-  .byt GraphicsUpload::SP_FIRE
+  .byt GraphicsUpload::SP_LIFE
   .byt GraphicsUpload::SP_HANNAH
   .addr arrowsData
   .addr arrowsSprite
@@ -14,6 +14,7 @@ arrows:
   .byt GraphicsUpload::BG_BUMMER
   .byt GraphicsUpload::BG_CHIP
   .byt GraphicsUpload::BG_HANNAH
+  .byt GraphicsUpload::PAL_ENEMY3
   .byt 255 ; end
   .byt $00, $00 ; boundaries
 
@@ -143,13 +144,16 @@ arrowsData:
   LObj  LO::S_SOLID_BLOCK,    1, 2
   LObj  LO::S_PRIZE,          2, 2
   LObj  LO::S_PRIZE,          2, 2
-  LObj  LO::S_M_ARROW_RIGHT,  1, 3
+  LObj  LO::S_W_ARROW_RIGHT,  1, 3
   LObjN LO::R_FG_GLASS_BLUE,  0, 5, 3, 0
-  LObj  LO::S_M_ARROW_UP,     0, 7
+  LObj  LO::S_W_ARROW_UP,     0, 7
   LObjN LO::WIDE_1,           1, 11, 0, LN1::SOLID_LEDGE
-  LObjN LO::R_FG_GLASS_BLUE,  3, 4, 11, 1
-  LObj  LO::S_M_ARROW_DOWN,   1, 3
-  LObj  LO::S_M_CRATE,        0, 11
+  LObj  LO::S_W_ARROW_RIGHT,  2, 2
+  LObj  LO::S_CUSTOM,         0, 3, Metatiles::FORK_ARROW_UP
+  LObj  LO::S_W_ARROW_DOWN,   1, 2
+  LObjN LO::R_FG_GLASS_BLUE,  0, 4, 11, 1
+  LObj  LO::R_CUSTOM,         0, 11, Metatiles::METAL_CRATE, (1<<4)|0
+  LObj  LO::S_W_ARROW_DOWN,   1, 3
   LObjN LO::R_COIN,           2, 3, 3, 0
   LObjN LO::WIDE_1,           1, 8, 0, LN1::SOLID_LEDGE
   LObjN LO::R_GROUND,         1, 8, 1, 4
@@ -207,22 +211,44 @@ arrowsData:
   LObj  LO::S_CUSTOM,         2, 6, Metatiles::TOGGLE_BLOCK_OFF
   LObj  LO::R_CUSTOM,         0, 10, Metatiles::TOGGLE_BLOCK_ON, (3<<4)|1
   LObj  LO::S_CUSTOM,         3, 7, Metatiles::TOGGLE_BLOCK_OFF
-  LObjN LO::R_FG_GLASS_BLUE,  3, 2, 4, 0
+  LObjN LO::R_FG_GLASS_BLUE,  3, 2, 7, 0
   LObj  LO::R_CUSTOM,         0, 3, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|5
   LObjN LO::WIDE_1,           0, 9, 4, LN1::SOLID_LEDGE
-  LSetX 244
-  LObjN LO::R_FG_GLASS_BLUE,  0, 0, 11, 4
-  LObjN LO::R_FG_GLASS_BLUE,  0, 10, 11, 4
-  LObj  LO::S_EXIT_DOOR,      5, 8
+  LObjN LO::R_GROUND,         5, 9, 4, 5
+  LObjN LO::R_FG_GLASS_BLUE,  2, 3, 0, 4
+  LObj  LO::S_M_ARROW_RIGHT,  0, 4
+  LObj  LO::S_W_ARROW_UP,     0, 8
+  LObjN LO::WIDE_1,           3, 9, 4, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           7, 8, 1, LN1::SOLID_LEDGE
+  LObj  LO::S_M_ARROW_DOWN,   2, 4
+  LObj  LO::S_M_ARROW_RIGHT,  0, 8
+  LObj  LO::R_CUSTOM,         1, 8, Metatiles::FORK_ARROW_DOWN, (4<<4)|0
+  LObj  LO::R_CUSTOM,         0, 9, Metatiles::METAL_CRATE, (4<<4)|0
+  LObjN LO::WIDE_1,           6, 7, 1, LN1::SOLID_LEDGE
+  LObj  LO::R_CUSTOM,         3, 7, Metatiles::METAL_CRATE, (3<<4)|0
+  LObj  LO::R_CUSTOM,         0, 8, Metatiles::FORK_ARROW_UP, (3<<4)|0
+  LObjN LO::WIDE_1,           6, 7, 1, LN1::SOLID_LEDGE
+  LObjN LO::R_FG_GLASS_BLUE,  1, 0, 11, 4
+  LObjN LO::R_SOLID_BLOCK,    1, 7, 0, 2
+  LObjN LO::R_FG_GLASS_BLUE,  0, 10, 10, 4
+  LObj  LO::S_EXIT_DOOR,      4, 8
   LFinished
 
 arrowsSprite:
   LSpr Enemy::CHECKPOINT,          0,  34,   9
+  LSpr Enemy::OWL,                 0,  39,   9
   LSpr Enemy::CHECKPOINT,          0,  52,   4
   LSpr Enemy::CHECKPOINT,          0,  79,  11
+  LSpr Enemy::OWL,                 0,  84,  10
+  LSpr Enemy::BIG_GLIDER,          0, 107,   1
+  LSpr Enemy::BIG_GLIDER,          1, 123,   2
   LSpr Enemy::CHECKPOINT,          0, 126,   2
   LSpr Enemy::SNEAKER,             0, 137,   2
   LSpr Enemy::SNEAKER,             0, 139,   2
   LSpr Enemy::SNEAKER,             0, 141,   2
+  LSpr Enemy::BIG_LWSS,            0, 162,   1
+  LSpr Enemy::GOOMBA,              1, 172,   3
   LSpr Enemy::CHECKPOINT,          0, 183,  12
+  LSpr Enemy::BIG_LWSS,            0, 185,  12, 1
+  LSpr Enemy::CHECKPOINT,          0, 212,   8
   .byt 255 ; end

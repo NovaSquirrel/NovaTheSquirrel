@@ -1292,6 +1292,22 @@ C .byt $d5
 C .byt $d6
 C .byt $d7
 
+R FORK_ARROW_DOWN
+C .byt M_PAL_0
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $c4
+C .byt $c5
+C .byt $c6
+C .byt $c7
+
+R FORK_ARROW_UP
+C .byt M_PAL_0
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $c8
+C .byt $c9
+C .byt $ca
+C .byt $cb
+
 # suburbs background stuff
 R SQUIRREL_BUSH
 C .byt M_PAL_0
