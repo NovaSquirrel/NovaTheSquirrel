@@ -120,7 +120,7 @@ C .byt ObjFlag::PRIMARY
 
 R ROCKET_LAUNCHER
 C .byt GraphicsUpload::SP_EXPLODE
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
+C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::PRIMARY
 
 R FIREWORK_SHOOTER

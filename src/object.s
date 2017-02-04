@@ -425,8 +425,8 @@ EnemyAbilityTable:
   .byt Enemy::FIRE_WALK,        AbilityType::FIRE
   .byt Enemy::FIRE_JUMP,        AbilityType::FIRE
   .byt Enemy::FLAMES,           AbilityType::FIRE
-  .byt Enemy::ROCKET,           AbilityType::FIREWORK
-  .byt Enemy::ROCKET_LAUNCHER,  AbilityType::FIREWORK
+  .byt Enemy::ROCKET,           AbilityType::BOMB
+  .byt Enemy::ROCKET_LAUNCHER,  AbilityType::BOMB
   .byt Enemy::FIREWORK_SHOOTER, AbilityType::FIREWORK
   .byt Enemy::TORNADO,          AbilityType::FAN
   .byt Enemy::ELECTRIC_FAN,     AbilityType::FAN

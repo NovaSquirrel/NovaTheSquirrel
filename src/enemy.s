@@ -1072,15 +1072,149 @@ ObjectFireTrig:
 .endproc
 
 .proc ObjectMine
-  rts
 .endproc
 
 .proc ObjectRocket
+TargetAngle = 0
+AbsDifference = 1
+  ldy ObjectF3,x
+  lda #1
+  jsr SpeedAngle2OffsetHalf
+  lda 0
+  sta ObjectVXL,x
+  lda 1
+  sta ObjectVXH,x
+  lda 2
+  sta ObjectVYL,x
+  lda 3
+  sta ObjectVYH,x
+
+  lda ObjectF2,x
+  bne :+
+  jsr EnemyApplyVelocity
+:
+
+  ; Display the correct frame
+  lda ObjectF3,x
+  and #%11100
+  asl
+  add #<FrameRight
+  sta 0
+  lda #>FrameRight
+  adc #0
+  sta 1
+  lda #0
+  jsr DispEnemyWideNonsequentialFlipped
+
+  inc ObjectF4,x
+  lda ObjectF4,x
+  cmp #255
+  beq DoExplode
+  cmp #120
+  bcs Exit
+
+; Angle the rocket to aim at the player
+  lda retraces
+  and #3
+  bne Exit
+
+  jsr AimAtPlayer
+  sty TargetAngle
+
+  lda ObjectF3,x
+  sub TargetAngle
+  abs
+  sta AbsDifference
+
+  cmp #16
+  bcs :+
+  lda ObjectF3,x
+  cmp TargetAngle
+  bcc :+
+  dec ObjectF3,x
+  jmp Exit
+:
+
+  lda AbsDifference
+  cmp #16
+  bcc :+
+  lda ObjectF3,x
+  cmp TargetAngle
+  bcs :+
+  dec ObjectF3,x
+  jmp Exit
+:
+
+  inc ObjectF3,x
+Exit:
+  lda ObjectF3,x
+  and #31
+  sta ObjectF3,x
+
+; Explode if needed
+  jsr EnemyPlayerTouch
+  bcs DoExplode
+
+  jsr EnemyCheckOverlappingOnSolid
+  bcc :+
+DoExplode:
+    lda #7
+    jmp EnemyExplode
+  :
+
   rts
+FrameRight:
+  .byt $06, $06, $07, $07
+  .byt OAM_COLOR_2,                     OAM_COLOR_2|OAM_YFLIP,           OAM_COLOR_2,                     OAM_COLOR_2|OAM_YFLIP
+FrameDownRight:
+  .byt $03, $02, $05, $04
+  .byt OAM_COLOR_2|OAM_YFLIP,           OAM_COLOR_2|OAM_YFLIP,           OAM_COLOR_2|OAM_YFLIP,           OAM_COLOR_2|OAM_YFLIP
+FrameDown:
+  .byt $01, $00, $01, $00
+  .byt OAM_COLOR_2|OAM_YFLIP,           OAM_COLOR_2|OAM_YFLIP,           OAM_COLOR_2|OAM_XFLIP|OAM_YFLIP, OAM_COLOR_2|OAM_XFLIP|OAM_YFLIP
+FrameDownLeft:
+  .byt $05, $04, $03, $02
+  .byt OAM_COLOR_2|OAM_YFLIP|OAM_XFLIP, OAM_COLOR_2|OAM_YFLIP|OAM_XFLIP, OAM_COLOR_2|OAM_YFLIP|OAM_XFLIP, OAM_COLOR_2|OAM_YFLIP|OAM_XFLIP
+FrameLeft:
+  .byt $07, $07, $06, $06
+  .byt OAM_COLOR_2|OAM_XFLIP,           OAM_COLOR_2|OAM_YFLIP|OAM_XFLIP, OAM_COLOR_2|OAM_XFLIP,           OAM_COLOR_2|OAM_YFLIP|OAM_XFLIP
+FrameUpLeft:
+  .byt $04, $05, $02, $03
+  .byt OAM_COLOR_2|OAM_XFLIP,          OAM_COLOR_2|OAM_XFLIP,            OAM_COLOR_2|OAM_XFLIP,           OAM_COLOR_2|OAM_XFLIP
+FrameUp:
+  .byt $00, $01, $00, $01
+  .byt OAM_COLOR_2,                    OAM_COLOR_2,                      OAM_COLOR_2|OAM_XFLIP,           OAM_COLOR_2|OAM_XFLIP
+FrameUpRight:
+  .byt $02, $03, $04, $05
+  .byt OAM_COLOR_2,                    OAM_COLOR_2,                      OAM_COLOR_2,                     OAM_COLOR_2
 .endproc
 
 .proc ObjectRocketLauncher
-  rts
+  jsr ObjectCannonCommon1
+  bcc NoShoot
+    lda #Enemy::ROCKET*2  ; limit the number of rckets
+    jsr CountObjectAmount
+    cpy #3
+    bcs NoShoot
+      jsr FindFreeObjectY
+      bcc NoShoot
+        sta $255
+        jsr ObjectCopyPosXY
+        jsr ObjectClearY
+
+        lda #Enemy::ROCKET*2
+        sta ObjectF1,y
+        lda #24
+        sta ObjectF3,y
+NoShoot:
+
+  lda #<Frame
+  ldy #>Frame
+  jsr DispEnemyWideNonsequential
+
+  jmp ObjectCannonCommon2
+Frame:
+  .byt $18, $19, $18, $19, OAM_COLOR_2, OAM_COLOR_2, OAM_COLOR_2|OAM_XFLIP, OAM_COLOR_2|OAM_XFLIP  
 .endproc
 
 .proc ObjectFireworkShooter
