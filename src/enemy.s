@@ -1108,7 +1108,56 @@ ObjectFireTrig:
 .endproc
 
 .proc ObjectBombGuy
+  jsr EnemyFall
+
+  lda ObjectF2,x
+  bne WasStunned
+  lda PlayerPXH
+  sub ObjectPXH,x
+  abs
+  cmp #3
+  bcc TooClose
+NotClose:
+  lda #$10
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+WasStunned:
+  lda #0
+  sta ObjectF4,x
+  jmp WasNotClose
+TooClose:
+  jsr EnemyLookAtPlayer
+  inc ObjectF4,x
+  lda ObjectF4,x
+  cmp #45 ; explode if sitting still for too long
+  bne :+
+  lda #18
+  jsr EnemyExplode
+:
+WasNotClose:
+
+  lda retraces
+  lsr
+  and #4
+  add #$10
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouchHurt
   rts
+.endproc
+
+.proc EnemyExplode
+  sta ObjectTimer,x
+  lda #$40
+  jsr ObjectOffsetXY
+  jsr EnemyPosToVel
+
+  lda #SFX::BOOM1
+  sta NeedSFX
+
+  lda #Enemy::EXPLOSION*2
+  sta ObjectF1,x
+  jmp CloneObjectX
 .endproc
 
 .proc ObjectRonald

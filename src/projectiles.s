@@ -1045,3 +1045,9 @@ NoGravity:
   jsr EnemyApplyVelocity
   rts
 .endproc
+
+.proc ObjectExplosion
+  jsr EnemyDespawnTimer
+  jsr ObjectPlayerProjectile::ProjExplosion
+  jmp SmallEnemyPlayerTouchHurt
+.endproc

@@ -56,6 +56,7 @@
   .byt 0 ;CHECKPOINT
   .byt GraphicsUpload::SP_LIFE ;BIG_GLIDER
   .byt GraphicsUpload::SP_LIFE ;BIG_LWSS
+  .byt 0 ;EXPLOSION
 .endproc
 
 .proc ObjBehaviors
@@ -116,6 +117,7 @@
   .byt ObjBehavior::AUTO_REMOVE ;CHECKPOINT
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BIG_GLIDER
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BIG_LWSS
+  .byt 0 ;EXPLOSION
 .endproc
 
 .proc ObjFlags
@@ -176,5 +178,6 @@
   .byt ObjFlag::ESSENTIAL ;CHECKPOINT
   .byt ObjFlag::PRIMARY ;BIG_GLIDER
   .byt ObjFlag::PRIMARY ;BIG_LWSS
+  .byt ObjFlag::SECONDARY ;EXPLOSION
 .endproc
 

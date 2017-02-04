@@ -288,3 +288,8 @@ R BIG_LWSS
 C .byt GraphicsUpload::SP_LIFE
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+
+R EXPLOSION
+C .byt 0
+C .byt 0
+C .byt ObjFlag::SECONDARY

@@ -56,5 +56,6 @@
   CHECKPOINT
   BIG_GLIDER
   BIG_LWSS
+  EXPLOSION
 .endenum
 

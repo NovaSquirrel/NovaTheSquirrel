@@ -177,6 +177,7 @@ Exit:
   .raddr ObjectCheckpoint
   .raddr ObjectBigGlider
   .raddr ObjectBigLWSS
+  .raddr ObjectExplosion
 .endproc
 
 ; other enemy attributes
