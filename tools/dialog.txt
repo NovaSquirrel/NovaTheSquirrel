@@ -1,7 +1,10 @@
 :Intro:
 `scene NOVA_AND_KEE
-<0 NOVA_WOW>Wow, where are we? This doesn't look like the same forest...
-<1 KEE>Not sure. Not sure why you're suddenly a lot taller either, and... green?
+[]A fox and a squirrel used to play together in a forest, having become quite the unlikely pair of friends.
+[]However, one day the squirrel got taken to a lab, which the fox attempted to rescue her from.
+[]The fox accidentally damaged the lab equipment, and after a big flash of light the two of them ended up in another world.
+<0 NOVA_WOW>Hey Kee? What just happened? Where are we?
+<1 KEE>Not sure, Nova. You look pretty different now though.
 <0 NOVA_WOW>Am I? You're different too. Hey, there's a sign over there, maybe it'll have useful information.
 `scene NOVA_KEE_SIGN
 <0 NOVA>Okay, let's see...
@@ -85,8 +88,8 @@
 `scene TWO_BAD_GUYS
 <0 S_TEAM>Ouch. We're going to have to do something about that squirrel, because she could take our entire operation down if she found out. We need to tell the boss.
 `transition
-`scene BAD_GUYS_AND_LEADER
 <0 S_TEAM>Hey Bill???
+`scene BAD_GUYS_AND_LEADER
 <2 BILL>What? Why do you guys look beat-up?
 <0 S_TEAM>There's this weird green squirrel that might be an issue for us. She was able to kick our butts, and she seems stronger than the Blaster Guys were and she doesn't even have a gun. She went on towards Bummer Club afterwards, not sure what she's doing.
 <2 BILL>Well, she won't be a problem for much longer. We'll just send the Smiloids after her when they're done.
@@ -108,36 +111,54 @@
 <1 KIERAN>Heyyy squirrel.
 <0 NOVA_YAY>Oh hi!
 <1 KIERAN>You probably want some answers. This is a virtual world named Caffie, and I'm Kieran, its leader. And now I'm going to be needing your help.
-<0 NOVA>Oh yeah, I heard I would be needed around here!
-<1 KIERAN>Anyway, those robot guys you fought? They're members of the Scheme Team, a big group of bad guys that seems intent on taking over the world or destroying it or whatever. I don't even know. We arrested them after they tried last time and now they're back at it. Will you help?
-<0 NOVA>Yeah, of course!
+<0 NOVA>My help? Why me in particular?
+<1 KIERAN>You know those robot guys you fought? They're members of the Scheme Team, and that evil group seems to want to take over the world or destroy it. I'm not sure, I just they have bad intentions. We arrested them, but they broke out. They're really determined not to lose again, so they're prepared for anything anyone in Caffie could have thrown at them.
+<0 NOVA>Yeah? Oh, I get it. I'm not from here, so I actually have a good chance.
+<1 KIERAN>That's the logic here. Will you help? I can try and get you home once we're no longer threatened.
+<0 NOVA>Of course!
 <1 KIERAN>Great. This place has its own forum, and we're keeping track of the situation on there. You should go look.
-<0 NOVA>Alright. I'll go register.
+<0 NOVA>Alright. I'll go register and read up on the details.
 <1 KIERAN>In the meantime you should focus on getting ready for facing off against the Scheme Team while we still have time. This place, Bummer Club, is a big puzzle challenge and there's a prize waiting at the end which should help give you the advantage.
-<0 NOVA>Oh, okay.
+`end
+
+:MeetLia:
+`scene NOVA_AND_LIA
+<0 NOVA_WOW>Another squirrel!
+<1 LIA>Heys. Oh, I think I recognize you. You were the squirrel that played with that fox, right?
+<0 NOVA>Yeah, I am. Are you from that forest too? What even happened back there?
+<1 LIA>Yea, I just remember a flash of light, and here I was. I wanna go home...
+<0 NOVA>Oh! I could take you with me, since I'm trying to get out of here too.
+<1 LIA>You dun have to do that for me.
+<0 NOVA_YAY>I want to though, and besides I could use the company. I'll help you find your way home.
+<1 LIA>Okies!
+<0 NOVA>I'm Nova, by the way.
+<1 LIA>And I'm Lia~
 `end
 
 :SmiloidAtBummerClub:
 `scene NOVA_AND_SMILOID
 <2 S_TEAM>Hey squirrel! Your adventure stops here!
 <1 SMILOID>Have a nice day!!!! Prepare to die!
-<0 NOVA_MAD>Uh, no! I'm still going to win.
+<0 NOVA_MAD>Lia, run!
+[LIA]Aaa, way ahead of you there, Nova.
+<2 S_TEAM>Don't worry, we're only interested in taking out *you*.
 `end
 
 :AfterSmiloidAtBummerClub:
 `scene NOVA_AND_SMILOID
-<2 S_TEAM>Oh is that so? Then we'll just have to build a bigger and stronger model!!
+<2 S_TEAM>Oh is that so? Then we'll just have to build a bigger and stronger model!! Then you're toast!
 `end
 
 :NovaAndEclipse:
 `scene NOVA_AND_ECLIPSE
 <0 NOVA>Another squirrel!
-<1 ECLIPSE>Oh wow. Hi, Nova! 
+<1 LIA>Squirrel party~
+<2 ECLIPSE>Oh wow. Hi, Nova! 
 <0 NOVA>You know me?
-<1 ECLIPSE>Yeah, I'm your long-lost sister, Eclipse. Anyway, the prize for completing Bummer Club is pretty rad. I'm awarding you some cool pants.
+<2 ECLIPSE>Yeah, I'm your long-lost sister, Eclipse. Anyway, the prize for completing Bummer Club is pretty rad. I'm awarding you some cool pants.
 <0 NOVA_STRAIGHT>...What? 
-<1 ECLIPSE>Specifically, Nuclear Power Pants. This pair will power up any explosions you make. I'm not making this up.
-<0 NOVA>Alright, bigger explosions sound like they'll help. Thank you, Eclipse.
+<2 ECLIPSE>Specifically, Nuclear Power Pants. They'll come in handy later on, and make you more powerful. I'm not making this up.
+<0 NOVA>Alright, thank you, Eclipse.
 `end
 
 :JustGotPants:
@@ -158,7 +179,7 @@
 <0 NOVA>Heyyy I assume you're MolSno? I need some of your fa-a-ancy cola so I can save the world.
 <1 MOLSNO>Yeah, no. This cola is all mine, all 65535 cans of it I have here. I absolutely need every single one for myself. Totally.
 <0 NOVA_AW>What? Kieran told me that it was really important. Please?
-<1 MOLSNO>No. Fight me!
+<1 MOLSNO>No. Fight me! I'll throw all these empty cans at you.
 <0 NOVA_SILLY>Haha, okay.
 `end
 `
@@ -229,10 +250,10 @@
 >0 NOVA_AW<Here it is, the final battle. I've got to give it my best shot.
 []Nova drinks the F-a-ancy cola and equips the Nuclear Power Pants in preparation for the battle, then nervously walks through the door...
 `transition
-`scene NOVA_AND_BILL
 <1 BILL>So, you managed to get all the way here? Looks like I'm going to have to take you down myself!
+`scene NOVA_AND_BILL
 <0 NOVA_MAD>Not a chance, giant floating head guy!
-<1 BILL>What did you just call me?? Time to die, squirrel!
+<1 BILL>What did you just call me?? You're toast, squirrel!
 `end
 
 `scene NOVA_ALONE
@@ -243,11 +264,13 @@
 []Kieran also shows up.
 `scene NOVA_SHERWIN_KIERAN
 <2 KIERAN>Wow Nova, Caffie will be eternally grateful.
-<0 NOVA_YAY>Haha yeah. I'm the hero!~
-<2 KIERAN>You're very popular with Caffie residents. One of them, Jafguar said he'd grant you one free wish...
+<0 NOVA_YAY>It feels really good to get to be the hero.
+<2 KIERAN>So, are you ready to go home?
+<0 NOVA>I'm actually unsure, I've got friends here and all...
+<2 KIERAN>You're very popular with Caffie residents. Actually, one of them said he'd grant you a free wish... I think his name was Jafguar?
 <0 NOVA_AW>Not interested in any of his "butt wishes".
-<2 KIERAN>Uh, no? Regular ones! Like, maybe you want to be a princess or something.
-<0 NOVA_WOW>Oh my goodness, I totally might.
+<2 KIERAN>Uh, what? Regular ones! What's something you'd really really like?
+<0 NOVA>Hmm, I think I know...
 `transition
 `scene NOTHING
 []-Epilogue-
@@ -325,21 +348,6 @@ Nova, with the help of a wish, went on to found the kingdom of Toasterland as a 
 :AboutSpinnerEnemy:
 `scene NOVA_AND_SIGN
 <1 SIGN>The spinner enemy homes in on your position. If you don't have a weapon to kill it with, run away. It will stop chasing you once it's off-screen.
-`end
-
-:LiaCameo:
-`scene NOVA_AND_LIA
-`ifitem ABILITY_BOMB
-`goto LiaCameoAlreadyBombs
-`asm 
-: lda InventoryItem::ABILITY_BOMB
-: jsr InventoryGiveIfDontHave
-: brk
-<1 LIA>Hey Nova, I'm Lia. To help you on your adventure, I'm giving you my infinite supply of bombs. Have fun!
-<0 NOVA>Wow, thanks Lia!
-`end
-:LiaCameoAlreadyBombs:
-<1 LIA>Nooooova stop hanging around here and go save the world!
 `end
 
 :ItiCameo:

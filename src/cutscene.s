@@ -84,7 +84,7 @@ DictionaryWordFound:
   adc #0
   sta ScratchPage+128,x
   inx
-  cpx #129
+  cpx #128
   bcc MoreDictionary
 ; --------------------------------------------------
 
@@ -131,15 +131,13 @@ SkipTheScript:
   jsr WaitVblank
 
   pla ; restore old bank
+  jsr SetPRG
 
   ; This prevents Start from immediately launching into the inventory
   lda #0
   sta keydown
   sta keynew
   sta keylast
-
-  lda PRGBank
-  jsr _SetPRG
   rts
 .endproc
 
