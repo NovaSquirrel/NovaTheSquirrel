@@ -354,7 +354,7 @@ EndPage:
 EndScript:
   lda ScriptPageEnded
   bne :+
-  jmp DoEndPage
+  jsr DoEndPage ; must be a JSR, not a JMP
 : rts
 
 DoEndPage:
@@ -365,6 +365,7 @@ DoEndPage:
   jsr ScriptRenderOn
 : jsr WaitVblank
   jsr ReadJoy
+
   lda CutsceneNoSkip
   bne @NoSkip
   lda keynew
