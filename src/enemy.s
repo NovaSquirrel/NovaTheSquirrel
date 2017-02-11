@@ -299,6 +299,7 @@ DrawY = O_RAM::OBJ_DRAWY
   lda ObjectF2,x
   bne :+
   jsr EnemyApplyVelocity
+  inc ObjectF4,x
 :
 
   lda retraces
@@ -312,6 +313,35 @@ OtherFrame:
   ldy #>SpinnerFrame2
 NotOtherFrame:
   jsr DispEnemyWideNonsequential
+
+  lda ObjectF3,x
+  and #1
+  beq :+
+    lda ObjectF4,x
+    lsr
+    and #31
+    tay
+    lda SineTable,y
+    sta ObjectVYL,x
+    sex
+    sta ObjectVYH,x
+  :
+
+  lda ObjectF3,x
+  and #2
+  beq :+
+    lda ObjectF4,x
+    lsr
+    and #31
+    tay
+    lda CosineTable,y
+    sta ObjectVXL,x
+    sex
+    sta ObjectVXH,x
+  :
+
+  lda ObjectF3,x ; only default version aims at player
+  bne DontAimAtPlayer
 
   ; Aim at player sometimes
   lda O_RAM::ON_SCREEN
@@ -552,6 +582,8 @@ ThrowBottle:
 .endproc
 
 .proc ObjectIce1
+  lda ObjectF3,x
+  bne BouncyEnemy
   jsr EnemyFall
   bcc NoWalk
   lda ObjectF4,x
@@ -566,6 +598,7 @@ ThrowBottle:
   jsr EnemyAutoBump
 NoWalk:
 
+Draw:
   ; Walk cycle
   lda retraces
   lsr
@@ -579,9 +612,37 @@ NoWalk:
   jmp EnemyPlayerTouchHurt
 Frames:
   .byt $0a, $0e, $0a, $12
+
+BouncyEnemy:
+  lda ObjectF2,x
+  bne :+
+  jsr EnemyFall
+  bcc :+
+  lda #<(-$40)
+  sta ObjectVYL,x
+  lda #>(-$40)
+  sta ObjectVYH,x
+  lda #10
+  sta ObjectTimer,x
+  lda #ENEMY_STATE_PAUSE
+  sta ObjectF2,x
+:
+  lda #$10
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+  jmp Draw
 .endproc
 
 .proc ObjectIce2
+  lda ObjectF3,x
+  beq DoNormal
+
+  lda #$10
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+  jmp DoNothing
+DoNormal:
+
   jsr EnemyFall
   bcc NoWall
   lda ObjectF2,x
@@ -606,6 +667,7 @@ NotObstructed:
     jsr MakeIce
     dec ObjectPYH,x
 NoWall:
+DoNothing:
 
   lda #$16
   ldy #OAM_COLOR_3
@@ -1521,7 +1583,50 @@ LaunchFry:
 .endproc
 
 .proc ObjectSun
-  rts
+  lda ObjectF2,x
+  bne SkipMovement
+  jsr LakituMovement
+
+  ; Increase the counter
+  inc ObjectF3,x
+  lda #0
+  sta 1
+  lda ObjectF3,x
+  ; Go a bit slowly
+  lsr
+  lsr
+  lsr
+  and #31
+  tay
+  ; Sinewave shaped vertical movement
+  lda CosineTable,y
+  asr
+  sta ObjectVYL,x
+  sex
+  sta ObjectVYH,x
+
+  ; Stop it from getting too high vertically
+  lda ObjectPYH,x
+  cmp #2
+  bcs SkipMovement
+  lda #2
+  sta ObjectPYH,x
+  lda #0
+  sta ObjectPYL,x
+SkipMovement:
+
+  lda retraces
+  lsr
+  lsr
+  and #3
+  tay
+  lda Frames,y
+  tay
+  lda #OAM_COLOR_3 << 2
+  jsr DispEnemyWideFlipped
+  jmp EnemyPlayerTouchHurt
+Frames:
+.byt 0, 4, 8, 4
 .endproc
 
 .proc ObjectSunKey
