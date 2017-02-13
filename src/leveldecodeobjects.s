@@ -115,6 +115,8 @@
   .byt BLOCK_RECTANGLE,        Metatiles::SOLID_ROCK
   .byt BLOCK_RECTANGLE,        Metatiles::CEILING_BARRIER
   .byt BLOCK_SINGLE,           Metatiles::CEILING_BARRIER
+  .byt BLOCK_SINGLE,           Metatiles::STORY_DIALOG_TRIGGER
+  .byt BLOCK_SINGLE,           Metatiles::GLIDER_BLOCK
 .endproc
 
 .proc ObjectTypesList

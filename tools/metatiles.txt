@@ -240,6 +240,14 @@ C .byt $31
 C .byt $31
 C .byt $31
 
+R STORY_DIALOG_TRIGGER
+C .byt M_PAL_1
+C .byt M_SPECIAL_MISC|M_POST_PROCESS
+C .byt $3f
+C .byt $3f
+C .byt $3f
+C .byt $3f
+
 ##### M_SPECIAL_MISC list ends here #####
 
 ##### M_COLLECTIBLE list starts here #####
@@ -1420,3 +1428,11 @@ C .byt $52
 C .byt $62
 C .byt $53
 C .byt $63
+
+R GLIDER_BLOCK
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $3e
+C .byt $3e
+C .byt $3e
+C .byt $3e

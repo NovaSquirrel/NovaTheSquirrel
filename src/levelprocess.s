@@ -136,6 +136,7 @@ ListOfProcessTiles:
   .byt Metatiles::K_STATUE_TOP
   .byt Metatiles::BRICKWALL_MIDDLE
   .byt Metatiles::WHITEFENCE_MIDDLE
+  .byt Metatiles::STORY_DIALOG_TRIGGER
 ListOfProcessAddrLo:
   .byt <(ProcessGround-1)
   .byt <(ProcessRock-1)
@@ -160,6 +161,7 @@ ListOfProcessAddrLo:
   .byt <(ProcessStatue-1)
   .byt <(ProcessBrickwall-1)
   .byt <(ProcessWhitefence-1)
+  .byt <(ProcessTrigger-1)
 ListOfProcessAddrHi:
   .byt >(ProcessGround-1)
   .byt >(ProcessRock-1)
@@ -184,7 +186,7 @@ ListOfProcessAddrHi:
   .byt >(ProcessStatue-1)
   .byt >(ProcessBrickwall-1)
   .byt >(ProcessWhitefence-1)
-
+  .byt >(ProcessTrigger-1)
 ProcessStatue:
   iny
   lda #Metatiles::K_STATUE_BOTTOM
@@ -220,11 +222,27 @@ ProcessWhitefence:
 @OK:
   rts
 
+ProcessTrigger:
+: iny
+  tya
+  and #15
+  cmp #15
+  beq @Exit
+  lda (Pointer),y
+  bne :- ; skip solid blocks
+  lda #Metatiles::STORY_DIALOG_TRIGGER
+  sta (Pointer),y
+  bne :-
+@Exit:
+  rts
+
 ContinueDown:
   sta Temp1
 : iny
-  cpy #15
-  bcc @Exit
+  tya
+  and #15
+  cmp #15
+  bcs @Exit
   lda (Pointer),y
   bne @Exit
   lda Temp1

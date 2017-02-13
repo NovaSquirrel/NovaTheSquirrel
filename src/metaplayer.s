@@ -171,7 +171,7 @@ SpecialMiscLo:
   .byt <(TouchedForceU-1)
   .byt <(TouchedForceD-1)
   .byt <(TouchedCeilingBarrier-1)
-
+  .byt <(TouchedStoryTrigger-1)
 SpecialMiscHi:
   .byt >(TouchedLadder-1)
   .byt >(TouchedLadder-1)
@@ -190,6 +190,7 @@ SpecialMiscHi:
   .byt >(TouchedForceU-1)
   .byt >(TouchedForceD-1)
   .byt >(TouchedCeilingBarrier-1)
+  .byt >(TouchedStoryTrigger-1)
 
 SpecialWallLo:
   .byt <(TouchedLock-1)
@@ -428,6 +429,29 @@ XForMiddle = TempSpace+5
   sta ScriptPtr+1
   inc NeedDialog
 Nope:
+  rts
+.endproc
+
+.proc TouchedStoryTrigger
+  lda #0
+  tay
+Loop:
+  lda (LevelBlockPtr),y
+  cmp #Metatiles::STORY_DIALOG_TRIGGER
+  bne :+
+  lda #Metatiles::EMPTY
+  sta (LevelBlockPtr),y
+: iny
+  cpy #15
+  bne Loop
+
+  jsr GetBlockX
+  tax
+  lda ColumnBytes+0,x
+  sta ScriptPtr+0
+  lda ColumnBytes+1,x
+  sta ScriptPtr+1
+  inc NeedDialog
   rts
 .endproc
 

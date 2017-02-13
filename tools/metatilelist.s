@@ -32,6 +32,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_PAL_0 ;FORCE_UP
   .byt M_PAL_0 ;FORCE_DOWN
   .byt M_PAL_1 ;CEILING_BARRIER
+  .byt M_PAL_1 ;STORY_DIALOG_TRIGGER
   .byt M_PAL_2 ;COIN
   .byt M_PAL_2 ;BIG_HEART
   .byt M_PAL_2 ;HEART
@@ -178,6 +179,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_PAL_3 ;BG_GLASS_BLUE
   .byt M_PAL_2 ;FG_GLASS_RED
   .byt M_PAL_3 ;FG_GLASS_BLUE
+  .byt M_PAL_1 ;GLIDER_BLOCK
 .endproc
 
 .pushseg
@@ -211,6 +213,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_SPECIAL_MISC ;FORCE_UP
   .byt M_SPECIAL_MISC ;FORCE_DOWN
   .byt M_SPECIAL_MISC ;CEILING_BARRIER
+  .byt M_SPECIAL_MISC|M_POST_PROCESS ;STORY_DIALOG_TRIGGER
   .byt M_COLLECTIBLE ;COIN
   .byt M_COLLECTIBLE ;BIG_HEART
   .byt M_COLLECTIBLE ;HEART
@@ -357,6 +360,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_EMPTY ;BG_GLASS_BLUE
   .byt M_SOLID_ALL|M_SOLID_TOP ;FG_GLASS_RED
   .byt M_SOLID_ALL|M_SOLID_TOP ;FG_GLASS_BLUE
+  .byt M_SOLID_ALL|M_SOLID_TOP ;GLIDER_BLOCK
 .endproc
 
 .popseg
@@ -389,6 +393,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $a0 ;FORCE_UP
   .byt $a1 ;FORCE_DOWN
   .byt $31 ;CEILING_BARRIER
+  .byt $3f ;STORY_DIALOG_TRIGGER
   .byt $14 ;COIN
   .byt $34 ;BIG_HEART
   .byt $38 ;HEART
@@ -535,6 +540,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $6c ;BG_GLASS_BLUE
   .byt $52 ;FG_GLASS_RED
   .byt $52 ;FG_GLASS_BLUE
+  .byt $3e ;GLIDER_BLOCK
 .endproc
 
 .proc MetatileLL
@@ -566,6 +572,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $a0 ;FORCE_UP
   .byt $a1 ;FORCE_DOWN
   .byt $31 ;CEILING_BARRIER
+  .byt $3f ;STORY_DIALOG_TRIGGER
   .byt $15 ;COIN
   .byt $35 ;BIG_HEART
   .byt $3f ;HEART
@@ -712,6 +719,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $6e ;BG_GLASS_BLUE
   .byt $62 ;FG_GLASS_RED
   .byt $62 ;FG_GLASS_BLUE
+  .byt $3e ;GLIDER_BLOCK
 .endproc
 
 .proc MetatileUR
@@ -743,6 +751,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $a2 ;FORCE_UP
   .byt $a3 ;FORCE_DOWN
   .byt $31 ;CEILING_BARRIER
+  .byt $3f ;STORY_DIALOG_TRIGGER
   .byt $16 ;COIN
   .byt $36 ;BIG_HEART
   .byt $3a ;HEART
@@ -889,6 +898,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $6d ;BG_GLASS_BLUE
   .byt $53 ;FG_GLASS_RED
   .byt $53 ;FG_GLASS_BLUE
+  .byt $3e ;GLIDER_BLOCK
 .endproc
 
 .proc MetatileLR
@@ -920,6 +930,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $a2 ;FORCE_UP
   .byt $a3 ;FORCE_DOWN
   .byt $31 ;CEILING_BARRIER
+  .byt $3f ;STORY_DIALOG_TRIGGER
   .byt $17 ;COIN
   .byt $37 ;BIG_HEART
   .byt $3f ;HEART
@@ -1066,5 +1077,6 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $6f ;BG_GLASS_BLUE
   .byt $63 ;FG_GLASS_RED
   .byt $63 ;FG_GLASS_BLUE
+  .byt $3e ;GLIDER_BLOCK
 .endproc
 

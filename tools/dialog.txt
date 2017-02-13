@@ -132,31 +132,32 @@
 <0 NOVA_YAY>I want to though, and besides I could use the company. I'll help you find your way home.
 <1 LIA>Okies!
 <0 NOVA>I'm Nova, by the way.
-<1 LIA>And I'm Lia~
+<1 LIA>And I'm Lia!~
 `end
 
 :SmiloidAtBummerClub:
 `scene NOVA_AND_SMILOID
 <2 S_TEAM>Hey squirrel! Your adventure stops here!
 <1 SMILOID>Have a nice day!!!! Prepare to die!
-<0 NOVA_MAD>Lia, run!
-[LIA]Aaa, way ahead of you there, Nova.
+<0 NOVA_WOW>Lia, run!
+[LIA]Aaa, way ahead of you there, Nova!
 <2 S_TEAM>Don't worry, we're only interested in taking out *you*.
 `end
 
 :AfterSmiloidAtBummerClub:
 `scene NOVA_AND_SMILOID
 <2 S_TEAM>Oh is that so? Then we'll just have to build a bigger and stronger model!! Then you're toast!
+<0 NOVA_SILLY>Yeah, we'll see about that.
 `end
 
 :NovaAndEclipse:
 `scene NOVA_AND_ECLIPSE
 <0 NOVA>Another squirrel!
-<1 LIA>Squirrel party~
+<1 LIA>Squirrel party!~
 <2 ECLIPSE>Oh wow. Hi, Nova! 
 <0 NOVA>You know me?
 <2 ECLIPSE>Yeah, I'm your long-lost sister, Eclipse. Anyway, the prize for completing Bummer Club is pretty rad. I'm awarding you some cool pants.
-<0 NOVA_STRAIGHT>...What? 
+<0 NOVA_STRAIGHT>...What?
 <2 ECLIPSE>Specifically, Nuclear Power Pants. They'll come in handy later on, and make you more powerful. I'm not making this up.
 <0 NOVA>Alright, thank you, Eclipse.
 `end
@@ -182,38 +183,36 @@
 <1 MOLSNO>No. Fight me! I'll throw all these empty cans at you.
 <0 NOVA_SILLY>Haha, okay.
 `end
-`
+
 :MolSnoAfterFight:
 `scene NOVA_AND_MOLSNO
 <1 MOLSNO>Okay, sure, I guess you can have some cola.
 <0 NOVA>Thank you. Don't be so unreasonable next time!
 `end
 
-:NovaAndRaoul:
-`scene NOVA_AND_RAOUL
-<1 RAOUL>Hey, it's me, Raoul, I can get you to the Scheme Team's headquarters with this teleporter I made.
-<0 NOVA>Okay, k00l, that sounds way faster than walking all the way there!
-`scene BAD_GUYS_AND_LEADER
-`transition
-[]A little while earlier
-<0 S_TEAM>Sooo some fox was going to give Nova a teleporter to get into our base. Obviously this isn't OK.
-<1 S_TEAM>We already took care of it though. We sabotaged it so it's actually going to teleport her to the World of Insanity.
-<2 BILL>Haha yeah hopefully she won't survive there.
-`transition
-`scene NOVA_AND_RAOUL
-<1 RAOUL>Alright, you ready? I'll go send you on your way then.
-<0 NOVA>Okay, send me to the Scheme Team's headquarters.
-`transition
+:NovaLiaLWSS:
+`scene NOVA_AND_LIA
+<0 NOVA>Oh hey, it's Lia again!
+<1 LIA>Heya Nova! Remember those weird pixelly things back in Bummer Club?
+<0 NOVA>The gliders and lightweight spaceships?
+<1 LIA>Yeahs! Watch this, I've been experimenting with the gliders...
+[]Lia sets down three glider guns, setting them to fire into the same spot in exactly the right way... and a rideable lightweight spaceship appears.
+<1 LIA>Dere, you can ride this into the bad guys' headquarters.
+<0 NOVA>Uhh, are you sure it's safe?
+<1 LIA>Should be!
+[]Nova hops onto the spaceship and it takes off! It flies a pretty long distance, but eventually gets hit by a stray glider... causing the ship to disintegrate and causing the squirrel to fall into a rather strange place.
 `scene NOVA_ALONE
->0 NOVA_MAD<Okayyyy this is NOT the right place, dumb fox. Let's see if I can get out of here.
-
-:WrongPlace:
-`scene FORUMS
+>0 NOVA_STRAIGHT<Aaaaa, okay this isn't the headquarters. Ugh, I'll go post on the forums, and see if I can find out where I am.
 []-halp I've been taken-
-[NOVA_MAD]Yeah I've been sent to the wrong place!!
+`scene FORUMS
+[NOVA_MAD]The ship I was taking into the Scheme Team's headquarters broke. Now I'm stranded in some weird place.
 [SHERWIN]WHAT? Well, hopefully you can get to Atomic Videoclip Zone soon! The Scheme Team are doing some really strange things.
 [SHERWIN]They have one of those spinner things that make animal noises, but I think it's some sort of secret doomsday device. OR maybe they're just trying to throw us off. That sounds likely too.
-[NOVA]I'll try. Hopefully I find someone who can help.
+[KIERAN]Are you hurt from the fall, Nova?
+[NOVA]Nah, but now I need to find a way out. The landscape here is really strange.
+[KIERAN]Uh oh, that's probably the World of Insanity. Yeahhh, you'll want to get out of there as soon as you can.
+[LIA]Ohhh, sorry Nova! I didn't actually fully test it first, I was so eager to help...
+[NOVA]It's okay, and hopefully I find someone who can give me a ride.
 `end
 
 :SmiloidAtWOI:
@@ -236,12 +235,12 @@
 <1 REMY>Ya, d'ya need ta' get somewhere?
 <0 NOVA>Yes actually. Do you think you could get me to Atomic Videoclip Zone?
 <1 REMY>Sure. Nothin' betta ta' do.
-`transition
-`scene NOVA_ALONE
+[]The two of them get into Remy's spaceship, which is much more stable than a LWSS, and fly to Atomic Videoclip Zone safely. Remy slips off to do whatever.
 <0 NOVA>Okay, now this is the right place. Alright, Remy, wanna go with me to go save the world?
+`scene NOVA_ALONE
 <0 NOVA_AW>... Remy?
-`scene NOVA_REMY_JAFGUAR
 <1 REMY>Oh, my bad, I juss met dis genie guy, an' he promised ta' grant "butt wishes" an' I dunno what he means, buuuut dat sounds more fun, so seeya!
+`scene NOVA_REMY_JAFGUAR
 <2 JAFGUAR>Yeah Remy let's go!!
 <0 NOVA>Remy! Fine, I'll go by myself.
 `end
@@ -274,7 +273,7 @@
 `transition
 `scene NOTHING
 []-Epilogue-
-Nova, with the help of a wish, went on to found the kingdom of Toasterland as a nation of cute animals like herself. Sherwin made a second home there, and a lot of cuties just decided to move there.
+Nova, with the help of a wish, went on to found the kingdom of Toasterland as a nation of cute animals like herself, ruling as its princess. She decided her friends needed a place to live that didn't have monsters running around everywhere. Sherwin made a second home there, and a lot of cuties decided to move there.
 `end
 
 `#---MISC STUFF---
