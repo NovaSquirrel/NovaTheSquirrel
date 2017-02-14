@@ -84,9 +84,9 @@
 <0 NOVA_MAD>Oh, is that how it's going to be? Fine, I'll fight you, but you're going to lose~
 `end
 
-`#(boss battle I guess?)
+:FirstSchemeTeamEncounterAfter:
 `scene TWO_BAD_GUYS
-<0 S_TEAM>Ouch. We're going to have to do something about that squirrel, because she could take our entire operation down if she found out. We need to tell the boss.
+<0 S_TEAM>Ouch. We're going to have to do something about that squirrel, because she could take our entire operation down if she wanted. We need to tell the boss.
 `transition
 <0 S_TEAM>Hey Bill???
 `scene BAD_GUYS_AND_LEADER
@@ -101,10 +101,10 @@
 [SHERWIN]So, I guess one benefit to being stuck here with the bad guys is I get to leak out information on whatever they're doing. They can't read this forum, right?
 [KIERAN]They're IP banned. Anyone else can read it though.
 [SHERWIN]Anyway, I heard there was a fight with some weird green squirrel? She totally kicked some Scheme Team members' butts. I'll keep reporting on this.
-[KIERAN]Oh good! Oh! Do you know exactly WHERE you are? It would really help to know where their base is.
+[KIERAN]Oh good! Oh! Do you know exactly where you are? It would really help to know where their base is.
 [SHERWIN]I think this place is named Atomic Videoclip Zone?? And Nova said she was going to Bummer Club.
 [KIERAN]Well then, I'll be waiting for her there.
-[SHERWIN]Btw guys I'm not weak and I could totally break out of here. I'm just staying so I can give you guys info. That, and they would probably catch me again and I would be worse off.
+[SHERWIN]Btw guys I'm not weak and I could totally break out of here. I'm just staying so I can give you info. That's totally it.
 [KIERAN]Understood.
 `transition
 `scene NOVA_AND_KIERAN
@@ -112,7 +112,7 @@
 <0 NOVA_YAY>Oh hi!
 <1 KIERAN>You probably want some answers. This is a virtual world named Caffie, and I'm Kieran, its leader. And now I'm going to be needing your help.
 <0 NOVA>My help? Why me in particular?
-<1 KIERAN>You know those robot guys you fought? They're members of the Scheme Team, and that evil group seems to want to take over the world or destroy it. I'm not sure, I just they have bad intentions. We arrested them, but they broke out. They're really determined not to lose again, so they're prepared for anything anyone in Caffie could have thrown at them.
+<1 KIERAN>You know those robot guys you fought? They're members of the Scheme Team, and that evil group seems to want to take over the world or destroy it. I'm not sure, I just know they have bad intentions. We arrested them, but they broke out. They're really determined not to lose again, so they're prepared for anything anyone in Caffie could have thrown at them.
 <0 NOVA>Yeah? Oh, I get it. I'm not from here, so I actually have a good chance.
 <1 KIERAN>That's the logic here. Will you help? I can try and get you home once we're no longer threatened.
 <0 NOVA>Of course!

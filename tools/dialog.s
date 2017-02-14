@@ -122,10 +122,10 @@ FirstSchemeTeamEncounter:
 ; <0 NOVA_MAD>Oh, is that how it's going to be? Fine, I'll fight you, but you're going to lose~
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA_MAD, "O", "h", $f5, $b8, $9a, $b5, " ", "i", "t", $e9, $cf, $b1, " ", $bc, SCR::NEWLINE, "b", "e", "?", " ", "F", $d8, "e", $f5, $d5, " ", "f", "i", $db, $d3, $a6, $f5, $a7, SCR::NEWLINE, $a6, "'", "r", $e7, $cf, $b1, " ", $bb, "l", "o", $e5, "~"
 .byt SCR::END_SCRIPT
-
+FirstSchemeTeamEncounterAfter:
 .byt SCR::SCENE, SCENES::TWO_BAD_GUYS
-; <0 S_TEAM>Ouch. We're going to have to do something about that squirrel, because she could take our entire operation down if she found out. We need to tell the boss.
-.byt SCR::SAY, SCR::SPEAKER_0|CHAR::S_TEAM, "O", "u", $e2, $f6, "W", "e", "'", "r", $e7, $cf, $b1, " ", $bb, $9b, $bc, SCR::NEWLINE, $c5, " ", $9c, $e0, $b1, " ", $8a, $e0, $c6, SCR::NEWLINE, $80, $f5, "b", "e", "c", "a", "u", $e5, " ", $aa, " ", "c", $a0, SCR::NEWLINE, $90, " ", $b6, " ", $e6, "t", "i", "r", $e7, "o", "p", $ed, $c6, "i", $c2, SCR::NEWLINE, $c5, "w", "n", " ", $ce, " ", $aa, " ", "f", $f4, $f0, " ", $ae, $f6, "W", "e", SCR::NEWLINE, $f9, $d6, $bb, $eb, "l", "l", " ", $a2, " ", "b", "o", $f1, "."
+; <0 S_TEAM>Ouch. We're going to have to do something about that squirrel, because she could take our entire operation down if she wanted. We need to tell the boss.
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::S_TEAM, "O", "u", $e2, $f6, "W", "e", "'", "r", $e7, $cf, $b1, " ", $bb, $9b, $bc, SCR::NEWLINE, $c5, " ", $9c, $e0, $b1, " ", $8a, $e0, $c6, SCR::NEWLINE, $80, $f5, "b", "e", "c", "a", "u", $e5, " ", $aa, " ", "c", $a0, SCR::NEWLINE, $90, " ", $b6, " ", $e6, "t", "i", "r", $e7, "o", "p", $ed, $c6, "i", $c2, SCR::NEWLINE, $c5, "w", "n", " ", $ce, " ", $aa, " ", "w", $ca, $eb, "d", $f6, "W", $e7, $f9, "e", "d", SCR::NEWLINE, $bb, $eb, "l", "l", " ", $a2, " ", "b", "o", $f1, "."
 .byt SCR::TRANSITION
 ; <0 S_TEAM>Hey Bill???
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::S_TEAM, "H", "e", $fe, "B", $dc, "l", "?", "?", "?"
@@ -278,7 +278,6 @@ MolSnoMeet:
 ; <0 NOVA_SILLY>Haha, okay.
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA_SILLY, "H", "a", "h", "a", $f5, "o", "k", "a", "y", "."
 .byt SCR::END_SCRIPT
-
 MolSnoAfterFight:
 .byt SCR::SCENE, SCENES::NOVA_AND_MOLSNO
 ; <1 MOLSNO>Okay, sure, I guess you can have some cola.
@@ -307,10 +306,8 @@ NovaLiaLWSS:
 ; []Nova hops onto the spaceship and it takes off! It flies a pretty long distance, but eventually gets hit by a stray glider... causing the ship to disintegrate and causing the squirrel to fall into a rather strange place.
 .byt SCR::NARRATE, CHAR::NONE, $a1, " ", "h", "o", "p", $fb, $c2, $bb, $a2, SCR::NEWLINE, $dd, "a", "c", "e", $df, "i", "p", " ", $a4, $c1, $90, $fb, "o", "f", "f", $fd, "I", "t", SCR::NEWLINE, "f", "l", $e3, $fb, $be, "p", "r", "e", "t", "t", $fe, "l", $c2, "g", " ", "d", $b9, "t", $ca, "c", "e", ",", SCR::NEWLINE, $a7, " ", $9f, "t", "u", $ad, $fe, $af, $fb, "h", $c1, "b", $fe, "a", SCR::NEWLINE, $de, "r", "a", $fe, "g", "l", "i", "d", $ed, ".", ".", $f6, "c", "a", "u", "s", $b1, " ", $a2, SCR::NEWLINE, $df, "i", "p", " ", $bb, "d", $b9, $d8, $eb, "g", "r", $c6, $e7, $ca, "d", SCR::NEWLINE, "c", "a", "u", "s", $b1, " ", $a2, " ", $80, " ", $bb, "f", $ad, SCR::NEWLINE, $d8, $bb, $be, "r", $c6, $a9, " ", $de, "r", $ca, "g", $e7, "p", "l", "a", "c", "e", "."
 .byt SCR::SCENE, SCENES::NOVA_ALONE
-; >0 NOVA_STRAIGHT<Aaaaa, okay this isn't the headquarters.
-.byt SCR::THINK, SCR::SPEAKER_0|CHAR::NOVA_STRAIGHT, "A", "a", "a", "a", "a", $f5, "o", "k", "a", $fe, $99, " ", $b9, "n", $e8, $a2, SCR::NEWLINE, $c3, $f7, "q", "u", "a", $ee, $ed, "s", "."
-; >0 NOVA_AW<Ugh, I'll go post on the forums, and see if I can find out where I am.
-.byt SCR::THINK, SCR::SPEAKER_0|CHAR::NOVA_AW, "U", $db, $f5, $d5, " ", $cf, " ", "p", "o", $de, " ", $c2, " ", $a2, SCR::NEWLINE, $a5, "u", "m", "s", $f5, $a4, $b3, " ", $ce, " ", $c0, $b0, " ", "f", $d8, "d", SCR::NEWLINE, $ae, " ", $da, $ed, $e7, $c0, "a", "m", "."
+; >0 NOVA_STRAIGHT<Aaaaa, okay this isn't the headquarters. Ugh, I'll go post on the forums, and see if I can find out where I am.
+.byt SCR::THINK, SCR::SPEAKER_0|CHAR::NOVA_STRAIGHT, "A", "a", "a", "a", "a", $f5, "o", "k", "a", $fe, $99, " ", $b9, "n", $e8, $a2, SCR::NEWLINE, $c3, $f7, "q", "u", "a", $ee, $ed, "s", $f6, "U", $db, $f5, $d5, " ", $cf, SCR::NEWLINE, "p", "o", $de, " ", $c2, " ", $a2, " ", $a5, "u", "m", "s", $f5, $a4, $b3, SCR::NEWLINE, $ce, " ", $c0, $b0, " ", "f", $d8, $ff, $ae, " ", $da, $ed, $e7, $c0, "a", "m", "."
 ; []-halp I've been taken-
 .byt SCR::NARRATE, CHAR::NONE, $86
 .byt SCR::SCENE, SCENES::FORUMS
@@ -328,8 +325,8 @@ NovaLiaLWSS:
 .byt SCR::NARRATE, CHAR::KIERAN, "U", "h", " ", "o", "h", $f5, $e0, $c6, $e9, "p", "r", "o", "b", "a", "b", $d2, $a2, SCR::NEWLINE, "W", $c9, $ef, " ", $bd, "I", "n", "s", $ca, "i", "t", "y", $f6, "Y", $ec, "h", "h", "h", ",", SCR::NEWLINE, $a6, "'", "l", "l", " ", "w", $ca, $d3, $bb, $af, " ", $ae, " ", "o", "f", SCR::NEWLINE, $88, " ", $c4, " ", $cc, $c2, " ", $c4, " ", $a6, " ", $b0, "."
 ; [LIA]Ohhh, sorry Nova! I didn't actually fully test it first, I was so eager to help...
 .byt SCR::NARRATE, CHAR::LIA, "O", "h", "h", "h", $f5, $cc, $d9, $fe, $a1, $fd, $c0, "d", "i", "d", "n", "'", "t", SCR::NEWLINE, "a", $c7, "u", $ad, $fe, "f", "u", "l", $d2, $eb, $de, " ", $c1, "f", "i", "r", $de, $f5, "I", SCR::NEWLINE, "w", $c4, " ", $cc, " ", $ec, "g", $ed, " ", $bb, $c3, "l", "p", ".", ".", "."
-; [NOVA]It's okay, and hopefully I find someone who can help.
-.byt SCR::NARRATE, CHAR::NOVA, "I", "t", $e9, "o", "k", "a", "y", $f5, $a4, "h", "o", "p", "e", "f", "u", "l", $d2, $c0, "f", $d8, "d", SCR::NEWLINE, $9c, $ac, " ", $da, "o", " ", $b0, " ", $c3, "l", "p", "."
+; [NOVA]It's okay, and hopefully I find someone who can give me a ride.
+.byt SCR::NARRATE, CHAR::NOVA, "I", "t", $e9, "o", "k", "a", "y", $f5, $a4, "h", "o", "p", "e", "f", "u", "l", $d2, $c0, "f", $d8, "d", SCR::NEWLINE, $9c, $ac, " ", $da, "o", " ", $b0, " ", "g", "i", "v", $e7, $d0, " ", "a", SCR::NEWLINE, $fc, "d", "e", "."
 .byt SCR::END_SCRIPT
 SmiloidAtWOI:
 .byt SCR::SCENE, SCENES::NOVA_AND_SMILOID
@@ -359,15 +356,16 @@ MeetRemy:
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "Y", "e", $fb, "a", $c7, "u", $ad, "y", $f6, "D", "o", " ", $a6, " ", $82, SCR::NEWLINE, $a6, " ", "c", $a0, " ", $af, " ", $d0, " ", $bb, "A", $bc, "m", "i", "c", SCR::NEWLINE, "V", "i", "d", "e", "o", "c", "l", "i", "p", " ", "Z", $ac, "?"
 ; <1 REMY>Sure. Nothin' betta ta' do.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::REMY, "S", "u", "r", "e", $f6, "N", "o", $e0, $d8, "'", " ", "b", "e", "t", "t", $be, "t", "a", "'", " ", $c5, "."
-.byt SCR::TRANSITION
-.byt SCR::SCENE, SCENES::NOVA_ALONE
+; []The two of them get into Remy's spaceship, which is much more stable than a LWSS, and fly to Atomic Videoclip Zone safely. Remy slips off to do whatever.
+.byt SCR::NARRATE, CHAR::NONE, $f8, $e7, "t", "w", "o", " ", $bd, $92, " ", $af, " ", $d8, $bc, SCR::NEWLINE, "R", "e", $cb, $e9, $dd, "a", "c", "e", $df, "i", "p", $f5, $da, "i", $e2, " ", $b9, SCR::NEWLINE, "m", "u", $e2, " ", "m", $c9, $e7, $de, "a", "b", "l", $e7, $93, " ", "a", SCR::NEWLINE, "L", "W", "S", "S", $f5, $a4, "f", $d2, $bb, "A", $bc, "m", "i", "c", SCR::NEWLINE, "V", "i", "d", "e", "o", "c", "l", "i", "p", " ", "Z", $ac, " ", "s", "a", "f", "e", "l", "y", $f6, "R", "e", $cb, SCR::NEWLINE, "s", "l", "i", "p", $fb, "o", "f", "f", " ", $bb, $c5, " ", $8b, "e", "v", $ed, "."
 ; <0 NOVA>Okay, now this is the right place. Alright, Remy, wanna go with me to go save the world?
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "O", "k", "a", "y", $f5, $b4, " ", $99, " ", $b8, $a2, " ", $fc, $db, "t", SCR::NEWLINE, "p", "l", "a", "c", "e", $f6, "A", "l", $fc, $db, "t", $f5, "R", "e", $cb, $f5, "w", $ca, "n", "a", SCR::NEWLINE, $cf, " ", $9d, " ", $d0, " ", $bb, $cf, " ", "s", "a", "v", $e7, $a2, SCR::NEWLINE, "w", $c9, $ef, "?"
+.byt SCR::SCENE, SCENES::NOVA_ALONE
 ; <0 NOVA_AW>... Remy?
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA_AW, ".", ".", $f6, "R", "e", $cb, "?"
-.byt SCR::SCENE, SCENES::NOVA_REMY_JAFGUAR
 ; <1 REMY>Oh, my bad, I juss met dis genie guy, an' he promised ta' grant "butt wishes" an' I dunno what he means, buuuut dat sounds more fun, so seeya!
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::REMY, "O", "h", $f5, $cb, " ", "b", $f7, $f5, $c0, "j", "u", $f1, " ", $d0, $d3, "d", $b9, SCR::NEWLINE, "g", $e6, $e3, " ", "g", "u", "y", $f5, $ca, "'", " ", $c3, " ", "p", "r", "o", "m", $b9, $d6, "t", "a", "'", SCR::NEWLINE, "g", "r", $ca, $d3, '"', $a7, $d3, "w", $b9, $c3, "s", '"', " ", $ca, "'", " ", "I", SCR::NEWLINE, "d", $f2, $d1, " ", $8b, " ", $c3, " ", $d0, $ca, "s", $f5, "b", "u", "u", "u", "u", "t", SCR::NEWLINE, "d", $c6, " ", $cc, $f2, "d", $fb, "m", $c9, $e7, "f", $f2, $f5, $cc, SCR::NEWLINE, $b3, "y", "a", "!"
+.byt SCR::SCENE, SCENES::NOVA_REMY_JAFGUAR
 ; <2 JAFGUAR>Yeah Remy let's go!!
 .byt SCR::SAY, SCR::SPEAKER_2|CHAR::JAFGUAR, "Y", $ec, "h", " ", "R", "e", $cb, " ", $a8, $e9, $cf, "!", "!"
 ; <0 NOVA>Remy! Fine, I'll go by myself.
@@ -418,8 +416,8 @@ MeetRemy:
 .byt SCR::SCENE, SCENES::NOTHING
 ; []-Epilogue-
 .byt SCR::NARRATE, CHAR::NONE, "-", "E", "p", $dc, "o", "g", "u", "e", "-"
-; Nova, with the help of a wish, went on to found the kingdom of Toasterland as a nation of cute animals like herself. Sherwin made a second home there, and a lot of cuties just decided to move there.
-.byt SCR::NEWLINE, $a1, $f5, $9d, " ", $a2, " ", $c3, "l", "p", " ", $bd, $be, "w", $b9, "h", ",", SCR::NEWLINE, $c8, $e1, " ", $c2, " ", $bb, "f", $f4, $f0, " ", $a2, " ", "k", $b1, $c5, "m", SCR::NEWLINE, $bd, "T", "o", $c4, $eb, "r", "l", $a4, $c4, " ", $be, "n", $c6, "i", $c2, " ", "o", "f", SCR::NEWLINE, "c", "u", $eb, " ", $ca, "i", "m", "a", "l", $fb, $8d, " ", $a9, $e5, "l", "f", ".", SCR::NEWLINE, "S", $a9, "w", $bf, "m", $f7, $e7, $be, $e5, "c", $c2, $ff, "h", "o", $d0, SCR::NEWLINE, $88, $f5, $a4, $be, "l", "o", $d3, $bd, "c", "u", "t", $e3, $fb, "j", "u", $de, SCR::NEWLINE, "d", "e", "c", "i", "d", $d6, $bb, "m", "o", "v", $e7, $88, "."
+; Nova, with the help of a wish, went on to found the kingdom of Toasterland as a nation of cute animals like herself, ruling as its princess. She decided her friends needed a place to live that didn't have monsters running around everywhere. Sherwin made a second home there, and a lot of cuties decided to move there.
+.byt SCR::NEWLINE, $a1, $f5, $9d, " ", $a2, " ", $c3, "l", "p", " ", $bd, $be, "w", $b9, "h", ",", SCR::NEWLINE, $c8, $e1, " ", $c2, " ", $bb, "f", $f4, $f0, " ", $a2, " ", "k", $b1, $c5, "m", SCR::NEWLINE, $bd, "T", "o", $c4, $eb, "r", "l", $a4, $c4, " ", $be, "n", $c6, "i", $c2, " ", "o", "f", SCR::NEWLINE, "c", "u", $eb, " ", $ca, "i", "m", "a", "l", $fb, $8d, " ", $a9, $e5, "l", "f", ",", SCR::NEWLINE, "r", "u", "l", $b1, " ", $c4, " ", "i", "t", $fb, "p", $fc, "n", "c", "e", $f1, $f6, "S", $c3, SCR::NEWLINE, "d", "e", "c", "i", "d", $d6, $a9, " ", "f", $fc, $e6, "d", $fb, $f9, "e", "d", $d6, "a", SCR::NEWLINE, "p", "l", "a", "c", $e7, $bb, "l", "i", "v", $e7, $9a, "d", "i", "d", "n", $e8, "h", "a", "v", "e", SCR::NEWLINE, "m", $c2, $de, $ed, $fb, "r", $f2, "n", $b1, " ", "a", "r", $f4, $f0, SCR::NEWLINE, "e", "v", $ed, "y", $da, $ed, "e", $f6, "S", $a9, "w", $bf, "m", $f7, $e7, "a", SCR::NEWLINE, $e5, "c", $c2, $ff, "h", "o", $d0, " ", $88, $f5, $a4, $be, "l", "o", "t", SCR::NEWLINE, $bd, "c", "u", "t", $e3, $fb, "d", "e", "c", "i", "d", $d6, $bb, "m", "o", "v", "e", SCR::NEWLINE, $88, "."
 .byt SCR::END_SCRIPT
 
 WaterAbout:

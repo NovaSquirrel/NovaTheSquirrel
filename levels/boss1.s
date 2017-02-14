@@ -19,6 +19,7 @@ boss1:
   .byt $60, $00 ; boundaries
 
 boss1Data:
+  .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <FirstSchemeTeamEncounter, >FirstSchemeTeamEncounter
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $02, LevelBackgroundId::CLOUDS
   LSetX 0
   LWriteCol 11, 33
@@ -58,15 +59,18 @@ boss1Data:
   LObj  LO::S_BIGHEART,       2, 3
   LObj  LO::S_SOLID_BLOCK,    1, 3
   LObjN LO::R_GROUND,         1, 13, 15, 1
-  LObjN LO::WIDE_2,           1, 12, 8, LN2::FLOWER
-  LObjN LO::R_BRICKWALL,      2, 11, 4, 1
+  LObj  LO::S_STORY_TRIGGER,         1, 4
+  LWriteCol <FirstSchemeTeamEncounterAfter, >FirstSchemeTeamEncounterAfter
+  LObj  LO::S_FLOWER,         1, 12
+  LObjN LO::R_BRICKWALL,      1, 11, 4, 1
   LObj  LO::S_FLOWER,         1, 3
   LObjN LO::WIDE_1,           0, 4, 2, LN1::SOLID_LEDGE
   LObj  LO::S_PRIZE,          0, 8
   LObj  LO::S_EXIT_DOOR,      1, 2
   LObj  LO::S_FLOWER,         1, 3
   LObj  LO::S_PRIZE,          0, 8
-  LObjN LO::WIDE_1,           4, 5, 2, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_2,           2, 12, 1, LN2::FLOWER
+  LObjN LO::WIDE_1,           2, 5, 2, LN1::SOLID_LEDGE
   LObjN LO::R_BRICKWALL,      0, 10, 4, 2
   LObj  LO::S_SPRING,         1, 9
   LFinished
