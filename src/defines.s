@@ -47,6 +47,7 @@
   MAPPER_ACTION53 = 1
   iNES_Header Banks, 28
 .endmacro
+REAL_COLLISION_TEST = 1 ; use real coordinates instead of screen coordinates
 NMI_MUSIC = 1
 LEVEL_INTROS = 1
 ;CPU_METER = 1

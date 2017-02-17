@@ -229,6 +229,8 @@ Exit:
 .proc EnemyGetShotTest
 ProjectileIndex = TempVal+2
 ProjectileType  = 0
+.ifndef REAL_COLLISION_TEST
+; COLLISION USING SCREEN COORDINATES
   ; Set collision size
   lda #16
   sta TouchWidthA
@@ -275,17 +277,12 @@ Loop:
   RealXPosToScreenPosByY ObjectPXL, ObjectPXH, TouchLeftB
   RealYPosToScreenPosByY ObjectPYL, ObjectPYH, TouchTopB
 
-  ; ChkTouchGeneric wants the center of each object, so add width and height divided by 2
   lda ObjectF2,y
   tay
   sta ProjectileType
   lda PlayerProjectileSizeTable,y
   sta TouchWidthB
   sta TouchHeightB
-  lda TouchLeftB
-  sta TouchLeftB
-  lda TouchTopB
-  sta TouchTopB
   jsr ChkTouchGeneric
   bcc Nope
   sec
@@ -297,6 +294,63 @@ Nope:
   jpl Loop
   clc
   rts
+.else
+; COLLISION USING WORLD COORDINATEs
+  ; Set collision size
+  ldy #0
+  sty TouchWidthA
+  sty TouchHeightA
+  iny
+  sty TouchWidthA2
+  sty TouchHeightA2
+CustomSize:
+
+  ldy #ObjectLen-1
+Loop:
+  sty ProjectileIndex
+
+  ; Only check for player projectiles
+  lda ObjectF1,y
+  lsr
+  cmp #Enemy::PLAYER_PROJECTILE
+  jne Nope
+
+  ; Skip if too far away horizontally
+  lda ObjectPXH,x
+  sub ObjectPXH,y
+  abs
+  cmp #2
+  bcs Nope
+
+  ; Skip if too far away vertically
+  lda ObjectPYH,x
+  sub ObjectPYH,y
+  abs
+  cmp #3
+  bcs Nope
+
+  lda ObjectF2,y
+  tay
+  sta ProjectileType
+  lda PlayerProjectileSizeTableLo,y
+  sta TouchWidthB
+  sta TouchHeightB
+  lda PlayerProjectileSizeTableHi,y
+  sta TouchWidthB2
+  sta TouchHeightB2
+  ldy ProjectileIndex
+  jsr ChkTouchObjects
+  bcc Nope
+  sec
+  rts
+Nope: 
+  ldy ProjectileIndex
+  ; Try the next one
+  dey
+  jpl Loop
+  clc
+  rts
+.endif
 .endproc
 EnemyGetShotTestCustomSize = EnemyGetShotTest::CustomSize
 

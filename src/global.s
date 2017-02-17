@@ -328,7 +328,7 @@ ChangePlayerAbilityWithoutSFX = ChangePlayerAbility::WithoutSFX
   sta TouchTemp2   ; carry now set
 
   lda TouchTopA
-  sbc TouchTopB   ; Note will subtract n-1
+  sbc TouchTopB  ; Note will subtract n-1
   sbc TouchTemp  ;#SIZE2-1
   adc TouchTemp2 ;#SIZE1+SIZE2-1 ; Carry set if overlap
   bcc No
@@ -339,6 +339,94 @@ No:
   clc
   rts
 .endproc
+
+.ifdef REAL_COLLISION_TEST
+; Does a collision check on two objects
+; input: x (object 1), y (object 2), TouchWidthA/B, TouchHeightA/B (widths/height measured subpixels)
+; output: carry (objects are overlapping)
+.proc ChkTouchObjects
+TempPos = TouchTemp    ; \ freely usable because only the other collision routine uses these
+TempLength = TouchTopA ; /
+; rect1.x < rect2.x + rect2.width
+; fail if: rect1.x >= rect2.x + rect2.width
+  lda ObjectPXL,y
+  add TouchWidthB
+  sta TempPos+0
+  lda ObjectPXH,y
+  adc TouchWidthB2
+  sta TempPos+1
+
+  lda ObjectPXH,x
+  cmp TempPos+1
+  bcc :+
+  bne No
+  lda ObjectPXL,x
+  cmp TempPos+0
+  bcs No
+:
+
+; rect1.x + rect1.width > rect2.x
+; fail if: rect2.x >= rect1.x + rect1.width
+  lda ObjectPXL,x
+  add TouchWidthA
+  sta TempPos+0
+  lda ObjectPXH,x
+  adc TouchWidthA2
+  sta TempPos+1
+
+  lda ObjectPXH,y
+  cmp TempPos+1
+  bcc :+
+  bne No
+  lda ObjectPXL,y
+  cmp TempPos+0
+  bcs No
+:
+
+; rect1.y < rect2.y + rect2.height
+; fail if: rect1.y >= rect2.y + rect2.height
+  lda ObjectPYL,y
+  add TouchHeightB
+  sta TempPos+0
+  lda ObjectPYH,y
+  adc TouchHeightB2
+  sta TempPos+1
+
+  lda ObjectPYH,x
+  cmp TempPos+1
+  bcc :+
+  bne No
+  lda ObjectPYL,x
+  cmp TempPos+0
+  bcs No
+:
+
+; rect1.height + rect1.y > rect2.y
+; fail if: rect2.y >= rect1.height + rect1.y
+  lda ObjectPYL,x
+  add TouchHeightA
+  sta TempPos+0
+  lda ObjectPYH,x
+  adc TouchHeightA2
+  sta TempPos+1
+
+  lda ObjectPYH,y
+  cmp TempPos+1
+  bcc :+
+  bne No
+  lda ObjectPYL,y
+  cmp TempPos+0
+  bcs No
+:
+
+Yes:
+  sec
+  rts
+No:
+  clc
+  rts
+.endproc
+.endif
 
 ; read the controller and update keydown
 .proc ReadJoy

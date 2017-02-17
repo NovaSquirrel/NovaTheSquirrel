@@ -148,6 +148,12 @@
   TouchWidthB:     .res 1
   TouchHeightA:    .res 1
   TouchHeightB:    .res 1
+.ifdef REAL_COLLISION_TEST ; high bytes
+  TouchWidthA2:    .res 1
+  TouchWidthB2:    .res 1
+  TouchHeightA2:   .res 1
+  TouchHeightB2:   .res 1
+.endif
 
   ; Pointer for cutscenes.
   ; Not reusable because many things set the pointer and trigger a cutscene later.

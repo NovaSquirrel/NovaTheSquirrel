@@ -47,7 +47,8 @@
   .byt PlayerProjectileAction::BUMP
 .endproc
 
-; Used for setting widths and heights for collisions
+; Used for setting widths and heights for sprite/projectile collisions
+.ifndef REAL_COLLISION_TEST
 .proc PlayerProjectileSizeTable
   .byt 8
   .byt 8
@@ -66,6 +67,44 @@
   .byt 16
   .byt 16
 .endproc
+.else
+.proc PlayerProjectileSizeTableLo
+  .byt <(8*16)
+  .byt <(8*16)
+  .byt <(8*16)
+  .byt <(8*16)
+  .byt <(8*16)
+  .byt <(8*16)
+  .byt <(8*16)
+  .byt <(8*16)
+  .byt <(8*16)
+  .byt <(16*16)
+  .byt <(8*16)
+  .byt <(16*16)
+  .byt <(16*16)
+  .byt <(16*16)
+  .byt <(16*16)
+  .byt <(16*16)
+.endproc
+.proc PlayerProjectileSizeTableHi
+  .byt >(8*16)
+  .byt >(8*16)
+  .byt >(8*16)
+  .byt >(8*16)
+  .byt >(8*16)
+  .byt >(8*16)
+  .byt >(8*16)
+  .byt >(8*16)
+  .byt >(8*16)
+  .byt >(16*16)
+  .byt >(8*16)
+  .byt >(16*16)
+  .byt >(16*16)
+  .byt >(16*16)
+  .byt >(16*16)
+  .byt >(16*16)
+.endproc
+.endif
 
 ; Used by ObjectBounceHoriz. If these values are added to ObjectPXL
 ; the new coordinate will be the top right corner.
@@ -181,10 +220,6 @@ GotIt:
 
   neg16x ObjectVXL, ObjectVXH
 
-;  ldy ObjectF2,x
-;  lda PlayerProjectileSizeTable,y
-;  cmp #16
-;  jne EnemyTurnAround
   jsr EnemyTurnAround
 Solid:
   sec
@@ -898,54 +933,6 @@ ProjMirror:
   sta 3
   lda #$71 ; tile
   jmp DispObject8x8_XYOffset
-.endproc
-
-; Enemy routine. Checks for player projectiles and reacts to them.
-.proc EnemyTouchPlayerProjectiles
-Action = 0
-Object = 1
-Width  = TouchWidthA
-Height = TouchHeightA
-  lda O_RAM::ON_SCREEN ; skip if off screen
-  bne :+
-  rts
-:
-  lda #16
-  sta TouchWidthB
-  sta TouchHeightB
-  lda O_RAM::OBJ_DRAWX
-  sta TouchLeftB
-  lda O_RAM::OBJ_DRAWY
-  sta TouchTopB
-
-  stx Object
-  ldy #0
-Loop:
-  lda ObjectF1,y
-  lsr
-  cmp #Enemy::PLAYER_PROJECTILE
-  bne Skip
-  tax
-  lda PlayerProjectileSizeTable,x
-  sta Width
-  sta Height
-  lda PlayerProjectileActionTable,x
-  sta Action
-  ldx Object
-  asl      ; we don't care about shifting but we do care about the zero flag
-  beq Skip ; and if we're supposed to do nothing in response to the projectile, OK
-           ; though there's only one projectile so far that doesn't have an action associated, so I dunno
-  lda ObjectPXH,y
-  sub ObjectPXH,x
-  abs
-  cmp #3
-  bcs Skip ; too far away
-
-Skip:
-  iny 
-  cpy #ObjectLen
-  bne Loop
-  rts
 .endproc
 
 .proc ObjectBlasterShot

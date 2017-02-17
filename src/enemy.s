@@ -87,6 +87,11 @@ NoTouch:
 .proc GenericPoof
 DrawX = O_RAM::OBJ_DRAWX
 DrawY = O_RAM::OBJ_DRAWY
+.ifdef REAL_COLLISION_TEST
+  jsr DispEnemyWideCalculatePositions
+  bcc NoDraw
+.endif
+
   lda ObjectTimer,x
   asl
   sta 0
@@ -125,7 +130,7 @@ DrawY = O_RAM::OBJ_DRAWY
   tya
   add #4*4
   sta OamPtr
-
+NoDraw:
   inc ObjectTimer,x
   lda ObjectTimer,x
   cmp #6
@@ -157,12 +162,18 @@ DrawY = O_RAM::OBJ_DRAWY
     sta ObjectF1,x
   :
 
+.ifdef REAL_COLLISION_TEST
+  jsr DispEnemyWideCalculatePositions
+  bcc NoDraw
+.endif
 ; Display
   lda #$60
   sta O_RAM::TILEBASE
   lda #<Metasprite
   ldy #>Metasprite
   jmp DispEnemyMetasprite
+NoDraw:
+  rts
 
 Metasprite:
   MetaspriteHeader 4, 1, 0
@@ -182,6 +193,10 @@ Metasprite:
 .proc ObjectFlyawayBalloon
 DrawX = O_RAM::OBJ_DRAWX
 DrawY = O_RAM::OBJ_DRAWY
+.ifdef REAL_COLLISION_TEST
+  jsr DispEnemyWideCalculatePositions
+  bcc NoDraw
+.endif
   ldy OamPtr
   lda DrawY
   sta OAM_YPOS+(4*0),y
@@ -217,6 +232,7 @@ DrawY = O_RAM::OBJ_DRAWY
   tya
   add #8
   sta OamPtr
+NoDraw:
 
   ; Apply velocity
   lda ObjectPYL,x
@@ -226,7 +242,7 @@ DrawY = O_RAM::OBJ_DRAWY
   adc ObjectVYH,x
   sta ObjectPYH,x
 
-  ; Add velocity
+  ; Increase velocity
   lda ObjectVYL,x
   sub #$02
   sta ObjectVYL,x
@@ -245,7 +261,9 @@ DrawY = O_RAM::OBJ_DRAWY
 .proc ObjectPoof ; also for particle effects
 DrawX = O_RAM::OBJ_DRAWX
 DrawY = O_RAM::OBJ_DRAWY
+.ifndef REAL_COLLISION_TEST
   RealXPosToScreenPosByX ObjectPXL, ObjectPXH, DrawX
+.endif
   RealYPosToScreenPosByX ObjectPYL, ObjectPYH, DrawY
   lda ObjectF2,x
   cmp #PoofSubtype::BRICKS
@@ -1877,6 +1895,11 @@ DrawSchemeTeam:
 XGunOffset = 1
 Attribute = 2
   jsr DispEnemyWideCalculatePositions
+.ifdef REAL_COLLISION_TEST
+  bcs :+
+  rts
+:
+.endif
   ldy OamPtr
 
   lda O_RAM::OBJ_DRAWY

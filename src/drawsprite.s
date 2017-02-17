@@ -64,10 +64,17 @@
   bcs ParentExit
   RealYPosToScreenPosByX ObjectPYL, ObjectPYH, O_RAM::OBJ_DRAWY
   inc O_RAM::ON_SCREEN
+.ifdef REAL_COLLISION_TEST
+  sec
+.endif
   rts
 ParentExit:
+.ifdef REAL_COLLISION_TEST
+  clc
+.else
   pla
   pla
+.endif
   rts
 .endproc
 
@@ -105,6 +112,11 @@ DispEnemyWide:
   sta Flags
 
   jsr DispEnemyWideCalculatePositions
+.ifdef REAL_COLLISION_TEST
+  bcs :+
+  rts
+:
+.endif
 
 .if 0
   lda Flags
@@ -204,7 +216,11 @@ NoHFlip:
 AfterStorePointer:
 
   jsr DispEnemyWideCalculatePositions
-
+.ifdef REAL_COLLISION_TEST
+  bcs :+
+  rts
+:
+.endif
   lda #0
   sta Attribute
   stx TempX     ; save X
