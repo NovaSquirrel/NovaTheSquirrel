@@ -1848,10 +1848,13 @@ ShootPlayerMaybe:
 NoShoot:
 
 EnemyInteraction:
-  lda #8
+  lda #$80
   sta TouchWidthA
-  asl
+  lda #0
+  sta TouchWidthA2
   sta TouchHeightA
+  lda #$01
+  sta TouchHeightA2
   jsr EnemyGetShotTestCustomSize
   bcc TouchPlayer
   lda ObjectF2,x

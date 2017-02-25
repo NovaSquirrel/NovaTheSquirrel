@@ -1216,7 +1216,19 @@ NoLevelChange:
   sta PlayerPYH
   lda ColumnBytes+1,x    ; Read the X position
   sta PlayerPXH
+  lda #0
+  sta PlayerPXL
   ldx TempX
+
+  lda PlayerPXH
+  ldy PlayerPYH
+  jsr GetLevelColumnPtr
+  cmp #Metatiles::STORY_DIALOG_TRIGGER
+  bne :+
+  lda #0
+  sta NeedLevelRerender
+:
+
   rts
 NewLevel:
   lda ColumnBytes+1,x

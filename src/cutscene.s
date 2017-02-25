@@ -329,9 +329,10 @@ Transition:
   sta PPUADDR
   lda FadeColors,y
   sta PPUDATA
-  lda #0
-  sta PPUSCROLL
-  sta PPUSCROLL
+  lda #$3f
+  sta PPUADDR
+  lda #$00
+  sta PPUADDR
   ldx #4
 : jsr WaitVblank
   dex
