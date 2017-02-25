@@ -41,6 +41,8 @@ Temp2 = 10
   lda #>$5ff0
   sta LeftPointer+1
 
+; This look uses a single pointer without modificiation to access
+; all of a screen's tiles, because 8 bits of indexing are big enough for that.
 ScreenLoop:
   ldy #0
 
@@ -57,7 +59,7 @@ ScreenLoop:
 
 RowLoopStart:
   lda #15
-  sta RowCount
+  sta RowCount ; for skipping the bottom-most row
 RowLoop:
   lda (Pointer),y
   tax
@@ -73,7 +75,7 @@ RowLoop:
     beq :+
     inx
     bne :-
-  : jsr Launch
+  : jsr Launch ; Y is the index into the screen
 
     pla
     tay
@@ -82,7 +84,7 @@ NoPostProcess:
   dec RowCount
   bne RowLoop
 
-  iny ; next column
+  iny ; skip the bottom-most row of the level
   bne RowLoopStart ; unless we're at the rightmost column again
 
 ; next screen, update pointers
