@@ -301,6 +301,9 @@ PlayerIsntOnLadder:
 
   lda PlayerPYH ; don't kill if on the top side of the screen
   bmi :+
+  lda #0
+  sta PlayerHealth
+.if 0
   lda PuzzleMode
   bne :+
   ; In action mode, die
@@ -313,6 +316,7 @@ PlayerIsntOnLadder:
   and #$0f
   sta PlayerPYH
 @ActionMode:
+.endif
 
   jmp NotOffTopBottom
 LevelLinkNonzero:

@@ -33,7 +33,9 @@ DemoCutscene:
 
 .proc StartCutscene
   lda PRGBank ; we'll return to the original bank when we're done
-  pha
+  sta CutsceneOldBank
+  tsx
+  stx CutsceneOldSP
 
   lda #SOUND_BANK
   jsr SetPRG
@@ -130,7 +132,7 @@ SkipTheScript:
   jsr UpdateScrollRegister
   jsr WaitVblank
 
-  pla ; restore old bank
+  lda CutsceneOldBank
   jsr SetPRG
 
   ; This prevents Start from immediately launching into the inventory
@@ -373,10 +375,8 @@ DoEndPage:
   and #KEY_START
   beq @NoSkip
   ; If Start is pressed and the dialog is skippable, end the script
-  pla
-  pla
-  pla
-  pla
+  ldx CutsceneOldSP
+  txs
   jmp StartCutscene::SkipTheScript
 @NoSkip:
   lda keynew

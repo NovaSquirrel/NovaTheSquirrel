@@ -212,6 +212,9 @@
   DisplayLevelNumber: .res 1    ; a timer for showing the current level editor on the screen
   SwitchCooldownTimer: .res 1
 
+  CutsceneOldBank: .res 1
+  CutsceneOldSP:   .res 1
+
   PRGBank:         .res 1  ; current program bank
   CoinShowTimer:   .res 1  ; timer for how long to show the current coin value
 
