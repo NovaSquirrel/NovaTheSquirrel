@@ -85,8 +85,10 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
   lda PuzzleMode
   beq :+
     lda PuzzleModeAbilityBackup
+    sta PlayerAbility
     ora #128
     sta NeedAbilityChange
+    inc NeedAbilityChangeNoSound
     lda #0
     sta PuzzleMode
     jsr CopyFromSavedInventory
@@ -600,20 +602,31 @@ SpecialConfigEnablePuzzle:
   sta PuzzleModeAbilityBackup
 
   ; Write the current ability
-  lda (LevelDecodePointer),y
+  lda (LevelDecodePointer),y ; keep the ability if the level decides to do so
+  cmp #AbilityType::LAST
+  beq :+
   ora #128
   sta NeedAbilityChange
-  jsr IncreasePointerBy1
+  inc NeedAbilityChangeNoSound
+: jsr IncreasePointerBy1
 
   ; Write a new inventory specifically for this level
   ldx #0
 @Loop:
+  ; if most significant bit clear, it's an item
+  ; if most significant bit set, it's an item amount
   lda (LevelDecodePointer),y
   beq IncreasePointerBy1
+  bpl @NormalInventoryItem
+  and #127
+  sta InventoryAmount-1,x ; -1, because x is the next free item slot, not the item we just added
+  bpl @WasInventoryAmount ; unconditional since we just cleared the high bit
+@NormalInventoryItem:
   sta InventoryType,x
   lda #0
   sta InventoryAmount,x
   inx
+@WasInventoryAmount:
   jsr IncreasePointerBy1
   jmp @Loop
 

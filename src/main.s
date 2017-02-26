@@ -309,10 +309,18 @@ NotDie:
   ; Change ability if needed
   lda NeedAbilityChange
   bpl :+
+    ldy #0
+    sty NeedAbilityChange
+    ldy NeedAbilityChangeNoSound
+    bne @NoSound
     and #127
     jsr ChangePlayerAbility
+    jmp :+
+@NoSound:
+    and #127
+    jsr ChangePlayerAbilityWithoutSFX
     lda #0
-    sta NeedAbilityChange
+    sta NeedAbilityChangeNoSound
   :
 
   ; Let player reset their ability

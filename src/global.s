@@ -160,15 +160,14 @@ ChangePlayerAbilityScreenOff:
 ; locals: TempVal, TempVal+1, TempVal+2
 .proc ChangePlayerAbility
 Pointer = TempVal+0
-  sta PlayerAbility
-;  jsr WaitVblank
-;  lda #%11100001 ; dim
-;  sta PPUMASK
+  pha
   lda #SOUND_BANK
   jsr _SetPRG
   lda #SFX::GET_ABILITY
   jsr pently_start_sound
+  pla
 WithoutSFX:
+  sta PlayerAbility
 ; Because the graphics will be rewritten, erase any projectiles using the old graphics
   ldx #0
   stx PlayerAbilityVar
