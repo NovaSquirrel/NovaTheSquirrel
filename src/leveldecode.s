@@ -82,6 +82,16 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
   jsr SetPRG
   jsr pently_init
 
+  lda PuzzleMode
+  beq :+
+    lda PuzzleModeAbilityBackup
+    ora #128
+    sta NeedAbilityChange
+    lda #0
+    sta PuzzleMode
+    jsr CopyFromSavedInventory
+  :
+
   ; Using Y for these loops because X needs to be preserved for a bit later
   lda #0
   ldy #LevelZeroWhenLoad_End-LevelZeroWhenLoad_Start-1
@@ -586,9 +596,13 @@ SpecialConfigEnablePuzzle:
   dex
   bpl :-
 
+  lda PlayerAbility
+  sta PuzzleModeAbilityBackup
+
   ; Write the current ability
   lda (LevelDecodePointer),y
-  sta PlayerAbility
+  ora #128
+  sta NeedAbilityChange
   jsr IncreasePointerBy1
 
   ; Write a new inventory specifically for this level
@@ -597,7 +611,7 @@ SpecialConfigEnablePuzzle:
   lda (LevelDecodePointer),y
   beq IncreasePointerBy1
   sta InventoryType,x
-  lda #1
+  lda #0
   sta InventoryAmount,x
   inx
   jsr IncreasePointerBy1

@@ -463,6 +463,8 @@ Loop:
     lda (LevelBlockPtr),y
     cmp #Metatiles::EXIT_DOOR_TOP
     beq ExitDoor
+    jsr CopyToSavedInventory
+
     jsr GetBlockX        ; Get the block's X position
     jsr DoTeleport
 NoPressUp:
@@ -484,10 +486,7 @@ ExitDoor:
   ora LevelAvailable,y
   sta LevelAvailable,y
 
-  lda Coins+0
-  sta SavedCoins+0
-  lda Coins+1
-  sta SavedCoins+1
+  jsr CopyToSavedInventory
 
   lda StartedLevelNumber
   jmp StartLevel

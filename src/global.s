@@ -947,12 +947,33 @@ SkipAddr:
 .endproc
 
 .proc CopyFromSavedInventory
+  txa
+  pha
   ; Copy inventory
   ldx #InventoryLen*2-1
 : lda InventorySaved,x
   sta InventoryType,x
   dex
   bpl :-
+  pla
+  tax
+  rts
+.endproc
+
+.proc CopyToSavedInventory
+  lda PuzzleMode
+  bne Exit
+  ; Copy inventory
+  ldx #InventoryLen*2-1
+: lda InventoryType,x
+  sta InventorySaved,x
+  dex
+  bpl :-
+Exit:
+  lda Coins+0
+  sta SavedCoins+0
+  lda Coins+1
+  sta SavedCoins+1
   rts
 .endproc
 
