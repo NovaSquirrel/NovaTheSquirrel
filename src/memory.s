@@ -200,7 +200,6 @@
 
   LevelVariable:     .res 1 ; cleared to zero on level start, free for whatever
 
-  IntroShownAlready: .res 1
   NeedAbilityChange: .res 1
   NeedAbilityChangeNoSound: .res 1
   NeedLevelRerender: .res 1
@@ -214,6 +213,10 @@
 
   CutsceneOldBank: .res 1
   CutsceneOldSP:   .res 1
+  IntroShownAlready: .res 1
+
+; when an intro cutscene happens, this is set to the level number
+; and if it's the same level as the previous one, it's skipped
 
   PRGBank:         .res 1  ; current program bank
   CoinShowTimer:   .res 1  ; timer for how long to show the current coin value

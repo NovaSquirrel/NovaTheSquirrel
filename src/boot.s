@@ -155,7 +155,6 @@ InitSave:
   inx
   bne :-
 
-
 ;  ; Mark the first level as available
 ;  lda #1
 ;  sta LevelAvailable
@@ -176,6 +175,9 @@ NoInitSave:
   bpl :-
 
   jsr ShowTitle
+
+  lda #255
+  sta IntroShownAlready
 
 ;  .ifdef DEBUG
   .if 1

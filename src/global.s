@@ -1216,8 +1216,6 @@ PSIX2:	jmp     (DPL)   ; return to byte following final NULL
   ; 21 AA    - just switch to level
   inc NeedLevelRerender
   inc JustTeleported
-  lda #0
-  sta IntroShownAlready
   lda ColumnBytes,x    ; Read the flag to check for special handling
   cmp #$21
   beq NewLevel

@@ -145,7 +145,9 @@ WorldTimes8 = 15
   sta NovaDirection
   sta IsSpinning
   sta LevelSelectInventory
+  lda #255
   sta IntroShownAlready
+
   lda StartedLevelNumber
   and #%111000
   sta WorldTimes8
