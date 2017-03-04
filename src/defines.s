@@ -99,6 +99,8 @@ LEVEL_INTROS = 1
   SP_HANNAH
   SP_LIFE
   PAL_ENEMY3
+  BG_MINES
+  PAL_ENEMY4
 .endenum
 
 .enum SFX
@@ -547,6 +549,7 @@ LSpecialCmd = $f7
 .enum LevelBackgroundId
   CLOUDS
   CLOUDS_EVERYWHERE
+  FROZEN_CAVE
 .endenum
 
 .macro ThinFontText String

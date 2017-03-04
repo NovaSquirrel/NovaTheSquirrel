@@ -33,6 +33,11 @@ PalGrassy:  .byt $03
             .byt $2d, $3d, $30
             .byt $17, $27, $37
             .byt $06, $16, $26 ;.byt $02, $12, $22
+PalFrozen:  .byt $03
+            .byt $21, $31, $30
+            .byt $0c, $1c, $10
+            .byt $17, $27, $38
+            .byt $06, $16, $27
 AltGrassy1: .byt $00
             .byt $1b, $2b, $37
 AltGrassy2: .byt $00
@@ -42,11 +47,6 @@ PalBummer:  .byt $03
             .byt $2d, $10, $30
             .byt $06, $16, $27
             .byt $02, $22, $32
-PalFrozen:  .byt $03
-            .byt $21, $31, $30
-            .byt $0c, $1c, $10
-            .byt $17, $27, $38
-            .byt $06, $16, $27
 PalTitle:   .byt $02
             .byt $0f, $2a, $12
             .byt $0f, $2a, $26
@@ -60,6 +60,10 @@ PalEnemy2:  .byt $61
 PalEnemy3:  .byt $61
             .byt $05, $15, $35
             .byt $0b, $2b, $3b
+PalEnemy4:  .byt $61
+            .byt $04, $14, $24
+            .byt $11, $21, $31
+
 PalLevelSel: .byt $07
              .byt $30, $30, $30
              .byt $15, $25, $35

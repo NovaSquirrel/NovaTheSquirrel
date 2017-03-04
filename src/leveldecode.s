@@ -562,6 +562,29 @@ SpecialConfigMakeBackgrounds:
 BackgroundRoutines:
   .raddr BGClouds
   .raddr BGCloudsEverywhere
+  .raddr MakeFrozenBackground
+
+MakeFrozenBackground:
+  lda #Metatiles::FROZEN_BACKGROUND
+  sta BackgroundMetatile
+
+  lda #0
+  tay
+  sta 0
+  lda #$60
+  sta 1
+fill_loop:
+  lda (0),y
+  bne :+
+  lda #Metatiles::FROZEN_BACKGROUND
+  sta (0),y
+: iny
+  bne fill_loop
+  inc 1
+  lda 1
+  cmp #$6f
+  bne fill_loop
+  rts
 
 SpecialConfigStartDialog:
 ; Only re-show the dialog for a level that was already cleared

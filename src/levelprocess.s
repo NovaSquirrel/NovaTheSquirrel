@@ -139,6 +139,7 @@ ListOfProcessTiles:
   .byt Metatiles::BRICKWALL_MIDDLE
   .byt Metatiles::WHITEFENCE_MIDDLE
   .byt Metatiles::STORY_DIALOG_TRIGGER
+  .byt Metatiles::LAVA_MAIN
 ListOfProcessAddrLo:
   .byt <(ProcessGround-1)
   .byt <(ProcessRock-1)
@@ -164,6 +165,7 @@ ListOfProcessAddrLo:
   .byt <(ProcessBrickwall-1)
   .byt <(ProcessWhitefence-1)
   .byt <(ProcessTrigger-1)
+  .byt <(ProcessLava-1)
 ListOfProcessAddrHi:
   .byt >(ProcessGround-1)
   .byt >(ProcessRock-1)
@@ -189,6 +191,7 @@ ListOfProcessAddrHi:
   .byt >(ProcessBrickwall-1)
   .byt >(ProcessWhitefence-1)
   .byt >(ProcessTrigger-1)
+  .byt >(ProcessLava-1)
 ProcessStatue:
   iny
   lda #Metatiles::K_STATUE_BOTTOM
@@ -582,6 +585,30 @@ ProcessWater:
   lda #Metatiles::WATER_BELOW_SOMETHING
   sta (Pointer),y
 TopIsWater:
+  rts
+
+ProcessLava:
+  dey
+  lda (Pointer),y
+  cmp #Metatiles::LAVA_MAIN
+  beq TopIsLava
+  cmp #Metatiles::LAVA_TOP
+  beq TopIsLava
+  cmp #Metatiles::LAVA_BELOW_SOMETHING
+  beq TopIsLava
+; not water, check if it's solid or not
+  tax
+  lda MetatileFlags,x
+  iny
+  and #M_SOLID_ALL
+  bne :+
+    lda #Metatiles::LAVA_TOP
+    sta (Pointer),y
+    rts
+  :
+  lda #Metatiles::LAVA_BELOW_SOMETHING
+  sta (Pointer),y
+TopIsLava:
   rts
 
 ProcessSolidLedge:

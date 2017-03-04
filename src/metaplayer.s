@@ -105,7 +105,7 @@ NoSlotFree:
 .endproc
 
 .proc BrokeBricks
-  lda #Metatiles::EMPTY
+  lda BackgroundMetatile
   jsr ChangeBlock
 
   lda #PoofSubtype::BRICKS
@@ -323,7 +323,7 @@ MoveIsOkay:
   jsr InventoryHasItem
   bcc NoItem
   jsr InventoryTakeItem
-  lda #0
+  lda BackgroundMetatile
   jsr ChangeBlock
   lda #SFX::UNLOCK
   jsr PlaySound
@@ -335,7 +335,7 @@ NoItem:
   lda PlayerHealth
   cmp #4
   bcs :+
-  lda #0
+  lda BackgroundMetatile
   jsr ChangeBlock
   lda #SFX::COIN
   jsr PlaySound
@@ -348,7 +348,7 @@ NoItem:
   lda PlayerHealth
   cmp #4
   bcs :+
-  lda #0
+  lda BackgroundMetatile
   jsr ChangeBlock
   lda #SFX::COIN
   jsr PlaySound
@@ -357,7 +357,7 @@ NoItem:
 .endproc
 
 .proc TouchedCoin
-  lda #0
+  lda BackgroundMetatile
   jsr ChangeBlock
   lda #SFX::COIN
   jsr PlaySound
@@ -365,7 +365,7 @@ NoItem:
 .endproc
 
 .proc TouchedInventoryItem
-  lda #0
+  lda BackgroundMetatile
   jsr ChangeBlock
   jsr GetBlockX
   tay
@@ -498,7 +498,7 @@ ExitDoor:
 
 .proc TouchedKey
   pha
-  lda #0
+  lda BackgroundMetatile
   jsr ChangeBlock
   pla
   sub #Metatiles::KEY_RED
@@ -599,7 +599,7 @@ Align:
 
 
 .proc TouchedChip
-  lda #0
+  lda BackgroundMetatile
   jsr ChangeBlock
   lda #SFX::COIN
   jsr PlaySound
@@ -625,7 +625,7 @@ Align:
 .endproc
 
 .proc TouchedBoots
-  lda #0
+  lda BackgroundMetatile
   jsr ChangeBlock
   lda #SFX::ITEM_GET
   jmp PlaySound  
@@ -640,7 +640,7 @@ Offset = 11
 
   pha
   ; X and Y are preserved
-  lda #0
+  lda BackgroundMetatile
   jsr ChangeBlock
   pla
 
@@ -662,7 +662,7 @@ Exit:
 .endproc
 
 .proc TouchedWoodBomb
-  lda #0
+  lda BackgroundMetatile
   jsr ChangeBlock
   rts
 .endproc
@@ -670,7 +670,7 @@ Exit:
 .proc TouchedWoodCrate
   lda #4
   sta 0
-  lda #Metatiles::EMPTY
+  lda BackgroundMetatile
   jsr DelayChangeBlock
   lda #Metatiles::SPRING
   jsr ChangeBlock

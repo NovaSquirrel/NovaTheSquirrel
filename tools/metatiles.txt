@@ -1436,3 +1436,164 @@ C .byt $3e
 C .byt $3e
 C .byt $3e
 C .byt $3e
+
+############# minecart tracks ###############
+R MINE_TRACK
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $3f
+C .byt $e1
+C .byt $3f
+C .byt $e1
+
+R MINE_TRACK_BREAKS
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $3f
+C .byt $e8
+C .byt $3f
+C .byt $e8
+
+R MINE_TRACK_UP
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $3f
+C .byt $f2
+C .byt $3f
+C .byt $f4
+
+R MINE_TRACK_UP_LEFT
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $3f
+C .byt $f3
+C .byt $3f
+C .byt $f5
+
+R MINE_TRACK_UP_RIGHT
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $3f
+C .byt $f7
+C .byt $3f
+C .byt $f9
+
+R MINE_TRACK_STOP
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $3f
+C .byt $ee
+C .byt $3f
+C .byt $f0
+
+R MINE_TRACK_BUMP
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $3f
+C .byt $ef
+C .byt $3f
+C .byt $f1
+
+R MINE_TRACK_SPECIAL
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $3f
+C .byt $f6
+C .byt $3f
+C .byt $f8
+
+R MINE_TRACK_SUPPORTS
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $fa
+C .byt $fb
+C .byt $fa
+C .byt $fb
+
+R MINE_TRACK_SUPPORTS_ONLY
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $fa
+C .byt $fa
+C .byt $fa
+C .byt $fa
+
+R MINE_TRACK_STEEP_LEFT_BOTTOM
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $ea
+C .byt $eb
+C .byt $eb
+C .byt $3f
+
+R MINE_TRACK_STEEP_LEFT_TOP
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $3f
+C .byt $3f
+C .byt $3f
+C .byt $ea
+
+R MINE_TRACK_STEEP_RIGHT_BOTTOM
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $ed
+C .byt $3f
+C .byt $ec
+C .byt $ed
+
+R MINE_TRACK_GRADUAL_LEFT_L
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $e2
+C .byt $e3
+C .byt $e4
+C .byt $e5
+
+R MINE_TRACK_GRADUAL_LEFT_R
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $e3
+C .byt $3f
+C .byt $e5
+C .byt $3f
+
+R MINE_TRACK_GRADUAL_LEFT_U
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $3f
+C .byt $3f
+C .byt $3f
+C .byt $e4
+
+R MINE_TRACK_GRADUAL_RIGHT_L
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $e7
+C .byt $3f
+C .byt $e9
+C .byt $3f
+
+R MINE_TRACK_GRADUAL_RIGHT_R
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $e6
+C .byt $e7
+C .byt $3f
+C .byt $e9
+
+R MINE_TRACK_GRADUAL_RIGHT_U
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $3f
+C .byt $e6
+C .byt $3f
+C .byt $3f
+
+R FROZEN_BACKGROUND
+C .byt M_PAL_1
+C .byt M_EMPTY
+C .byt $78
+C .byt $7a
+C .byt $79
+C .byt $7b
