@@ -1446,7 +1446,7 @@ C .byt $e1
 C .byt $3f
 C .byt $e1
 
-R MINE_TRACK_BREAKS
+R MINE_TRACK_BRAKES
 C .byt M_PAL_3
 C .byt M_EMPTY
 C .byt $3f
@@ -1504,7 +1504,7 @@ C .byt $f8
 
 R MINE_TRACK_SUPPORTS
 C .byt M_PAL_3
-C .byt M_EMPTY
+C .byt M_EMPTY|M_POST_PROCESS
 C .byt $fa
 C .byt $fb
 C .byt $fa
@@ -1518,9 +1518,9 @@ C .byt $fa
 C .byt $fa
 C .byt $fa
 
-R MINE_TRACK_STEEP_LEFT_BOTTOM
+R MINE_TRACK_STEEP_LEFT_BOT
 C .byt M_PAL_3
-C .byt M_EMPTY
+C .byt M_EMPTY|M_POST_PROCESS
 C .byt $ea
 C .byt $eb
 C .byt $eb
@@ -1534,17 +1534,25 @@ C .byt $3f
 C .byt $3f
 C .byt $ea
 
-R MINE_TRACK_STEEP_RIGHT_BOTTOM
+R MINE_TRACK_STEEP_RIGHT_BOT
 C .byt M_PAL_3
-C .byt M_EMPTY
+C .byt M_EMPTY|M_POST_PROCESS
 C .byt $ed
 C .byt $3f
 C .byt $ec
 C .byt $ed
 
-R MINE_TRACK_GRADUAL_LEFT_L
+R MINE_TRACK_STEEP_RIGHT_TOP
 C .byt M_PAL_3
 C .byt M_EMPTY
+C .byt $3f
+C .byt $ec
+C .byt $3f
+C .byt $3f
+
+R MINE_TRACK_GRADUAL_LEFT_L
+C .byt M_PAL_3
+C .byt M_EMPTY|M_POST_PROCESS
 C .byt $e2
 C .byt $e3
 C .byt $e4
@@ -1576,7 +1584,7 @@ C .byt $3f
 
 R MINE_TRACK_GRADUAL_RIGHT_R
 C .byt M_PAL_3
-C .byt M_EMPTY
+C .byt M_EMPTY|M_POST_PROCESS
 C .byt $e6
 C .byt $e7
 C .byt $3f

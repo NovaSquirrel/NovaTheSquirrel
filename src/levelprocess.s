@@ -140,6 +140,11 @@ ListOfProcessTiles:
   .byt Metatiles::WHITEFENCE_MIDDLE
   .byt Metatiles::STORY_DIALOG_TRIGGER
   .byt Metatiles::LAVA_MAIN
+  .byt Metatiles::MINE_TRACK_SUPPORTS
+  .byt Metatiles::MINE_TRACK_STEEP_LEFT_BOT
+  .byt Metatiles::MINE_TRACK_STEEP_RIGHT_BOT
+  .byt Metatiles::MINE_TRACK_GRADUAL_LEFT_L
+  .byt Metatiles::MINE_TRACK_GRADUAL_RIGHT_R
 ListOfProcessAddrLo:
   .byt <(ProcessGround-1)
   .byt <(ProcessRock-1)
@@ -166,6 +171,11 @@ ListOfProcessAddrLo:
   .byt <(ProcessWhitefence-1)
   .byt <(ProcessTrigger-1)
   .byt <(ProcessLava-1)
+  .byt <(ProcessTrackSupports-1)
+  .byt <(ProcessTrackSteepL-1)
+  .byt <(ProcessTrackSteepR-1)
+  .byt <(ProcessTrackGradualL-1)
+  .byt <(ProcessTrackGradualR-1)
 ListOfProcessAddrHi:
   .byt >(ProcessGround-1)
   .byt >(ProcessRock-1)
@@ -192,6 +202,47 @@ ListOfProcessAddrHi:
   .byt >(ProcessWhitefence-1)
   .byt >(ProcessTrigger-1)
   .byt >(ProcessLava-1)
+  .byt >(ProcessTrackSupports-1)
+  .byt >(ProcessTrackSteepL-1)
+  .byt >(ProcessTrackSteepR-1)
+  .byt >(ProcessTrackGradualL-1)
+  .byt >(ProcessTrackGradualR-1)
+
+ProcessTrackSupports:
+: dey
+  lda (Pointer),y
+  cmp BackgroundMetatile
+  bne @Exit
+  lda #Metatiles::MINE_TRACK_SUPPORTS_ONLY
+  sta (Pointer),y  
+  bne :-
+@Exit:
+  rts
+ProcessTrackSteepL:
+  dey
+  lda #Metatiles::MINE_TRACK_STEEP_LEFT_TOP
+  sta (Pointer),y
+  rts
+ProcessTrackSteepR:
+  dey
+  lda #Metatiles::MINE_TRACK_STEEP_RIGHT_TOP
+  sta (Pointer),y
+  rts
+ProcessTrackGradualL:
+  lda #Metatiles::MINE_TRACK_GRADUAL_LEFT_R
+  sta (RightPointer),y
+  dey
+  lda #Metatiles::MINE_TRACK_GRADUAL_LEFT_U
+  sta (RightPointer),y
+  rts
+ProcessTrackGradualR:
+  lda #Metatiles::MINE_TRACK_GRADUAL_RIGHT_L
+  sta (LeftPointer),y
+  dey
+  lda #Metatiles::MINE_TRACK_GRADUAL_RIGHT_U
+  sta (LeftPointer),y
+  rts
+
 ProcessStatue:
   iny
   lda #Metatiles::K_STATUE_BOTTOM

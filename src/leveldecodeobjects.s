@@ -117,6 +117,19 @@
   .byt BLOCK_SINGLE,           Metatiles::CEILING_BARRIER
   .byt BLOCK_SINGLE,           Metatiles::STORY_DIALOG_TRIGGER
   .byt BLOCK_SINGLE,           Metatiles::GLIDER_BLOCK
+  .byt BLOCK_SINGLE,           Metatiles::MINE_TRACK
+  .byt BLOCK_SINGLE,           Metatiles::MINE_TRACK_UP
+  .byt BLOCK_SINGLE,           Metatiles::MINE_TRACK_UP_LEFT
+  .byt BLOCK_SINGLE,           Metatiles::MINE_TRACK_UP_RIGHT
+  .byt BLOCK_SINGLE,           Metatiles::MINE_TRACK_BUMP
+  .byt BLOCK_SINGLE,           Metatiles::MINE_TRACK_SPECIAL
+  .byt BLOCK_SINGLE,           Metatiles::MINE_TRACK_STOP
+  .byt BLOCK_SINGLE,           Metatiles::MINE_TRACK_SUPPORTS
+  .byt BLOCK_SINGLE,           Metatiles::MINE_TRACK_STEEP_LEFT_BOT
+  .byt BLOCK_SINGLE,           Metatiles::MINE_TRACK_STEEP_RIGHT_BOT
+  .byt BLOCK_SINGLE,           Metatiles::MINE_TRACK_GRADUAL_LEFT_L
+  .byt BLOCK_SINGLE,           Metatiles::MINE_TRACK_GRADUAL_RIGHT_R
+  .byt BLOCK_RECTANGLE,        Metatiles::MINE_TRACK_SUPPORTS_ONLY
 .endproc
 
 .proc ObjectTypesList
@@ -159,8 +172,8 @@
   .byt Metatiles::FG_GLASS_RED
   .byt Metatiles::FG_GLASS_BLUE
   .byt Metatiles::SOLID_ROCK
-  .byt Metatiles::EMPTY
-  .byt Metatiles::EMPTY
+  .byt Metatiles::MINE_TRACK
+  .byt Metatiles::MINE_TRACK_BRAKES
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY
