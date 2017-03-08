@@ -29,7 +29,7 @@ None:     .byt 0
 Nova:     .byt "Nova",0
 Kee:      .byt "Kee",0
 Sherwin:  .byt "Sherwin",0
-Kieran:   .byt "Kieran",0
+Korey:    .byt "Korey",0
 Remy:     .byt "Remy D.",0
 Eclipse:  .byt "Eclipse",0
 MolSno:   .byt "MolSno",0
@@ -48,10 +48,10 @@ Bill:     .byt "Bill",0
   .byt CharacterNameData::None - CharacterNameData,    $00, $00, $00
   .byt CharacterNameData::None - CharacterNameData,    $17, $27, $37 ; sign
   .byt CharacterNameData::Nova - CharacterNameData,    $12, $2a, $30
-  .byt CharacterNameData::Kee - CharacterNameData,     $17, $27, $38
+  .byt CharacterNameData::Kee - CharacterNameData,     $07, $00, $27
   .byt CharacterNameData::Sherwin - CharacterNameData, $17, $27, $37
   .byt CharacterNameData::None - CharacterNameData,    $0f, $27, $2c ; forum
-  .byt CharacterNameData::Kieran - CharacterNameData,  $12, $21, $31
+  .byt CharacterNameData::Korey - CharacterNameData,  $12, $21, $31
   .byt CharacterNameData::Remy - CharacterNameData,    $0f, $2a, $30
   .byt CharacterNameData::Eclipse - CharacterNameData, $15, $25, $38
   .byt CharacterNameData::MolSno - CharacterNameData,  $0f, $16, $30
@@ -98,10 +98,10 @@ Bill:     .byt "Bill",0
   .byt CHAR::NOVA|(1<<5), CHAR::NEKOED|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), 0, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::S_TEAM|(0<<5), CHAR::S_TEAM|(3<<5)|FLIP, 0
-  .byt CHAR::NOVA|(1<<5), CHAR::KIERAN|(2<<5)|FLIP, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::KOREY|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::BILL|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::SHERWIN|(2<<5)|FLIP, 0, 0
-  .byt CHAR::NOVA|(1<<5), CHAR::SHERWIN|(2<<5)|FLIP, CHAR::KIERAN|(3<<5)|FLIP, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::SHERWIN|(2<<5)|FLIP, CHAR::KOREY|(3<<5)|FLIP, 0
   .byt CHAR::NOVA|(1<<5), CHAR::LIA|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::ITI|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::SMILOID|(2<<5)|FLIP, CHAR::S_TEAM|(3<<5)|FLIP, 0
@@ -126,10 +126,10 @@ Bill:     .byt "Bill",0
   NOVA_AND_NEKOED
   NOVA_ALONE
   NOVA_AND_BAD_GUYS
-  NOVA_AND_KIERAN
+  NOVA_AND_KOREY
   NOVA_AND_BILL
   NOVA_AND_SHERWIN
-  NOVA_SHERWIN_KIERAN
+  NOVA_SHERWIN_KOREY
   NOVA_AND_LIA
   NOVA_AND_ITI
   NOVA_AND_SMILOID
