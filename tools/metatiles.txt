@@ -1440,7 +1440,7 @@ C .byt $3e
 ############# minecart tracks ###############
 R MINE_TRACK
 C .byt M_PAL_3
-C .byt M_EMPTY
+C .byt M_MINETRACK
 C .byt $3f
 C .byt $e1
 C .byt $3f
@@ -1448,7 +1448,7 @@ C .byt $e1
 
 R MINE_TRACK_BRAKES
 C .byt M_PAL_3
-C .byt M_EMPTY
+C .byt M_MINETRACK
 C .byt $3f
 C .byt $e8
 C .byt $3f
@@ -1456,7 +1456,7 @@ C .byt $e8
 
 R MINE_TRACK_UP
 C .byt M_PAL_3
-C .byt M_EMPTY
+C .byt M_MINETRACK
 C .byt $3f
 C .byt $f2
 C .byt $3f
@@ -1464,7 +1464,7 @@ C .byt $f4
 
 R MINE_TRACK_UP_LEFT
 C .byt M_PAL_3
-C .byt M_EMPTY
+C .byt M_MINETRACK
 C .byt $3f
 C .byt $f3
 C .byt $3f
@@ -1472,7 +1472,7 @@ C .byt $f5
 
 R MINE_TRACK_UP_RIGHT
 C .byt M_PAL_3
-C .byt M_EMPTY
+C .byt M_MINETRACK
 C .byt $3f
 C .byt $f7
 C .byt $3f
@@ -1480,7 +1480,7 @@ C .byt $f9
 
 R MINE_TRACK_STOP
 C .byt M_PAL_3
-C .byt M_EMPTY
+C .byt M_MINETRACK
 C .byt $3f
 C .byt $ee
 C .byt $3f
@@ -1488,7 +1488,7 @@ C .byt $f0
 
 R MINE_TRACK_BUMP
 C .byt M_PAL_3
-C .byt M_EMPTY
+C .byt M_MINETRACK
 C .byt $3f
 C .byt $ef
 C .byt $3f
@@ -1496,7 +1496,7 @@ C .byt $f1
 
 R MINE_TRACK_SPECIAL
 C .byt M_PAL_3
-C .byt M_EMPTY
+C .byt M_MINETRACK
 C .byt $3f
 C .byt $f6
 C .byt $3f
@@ -1504,7 +1504,7 @@ C .byt $f8
 
 R MINE_TRACK_SUPPORTS
 C .byt M_PAL_3
-C .byt M_EMPTY|M_POST_PROCESS
+C .byt M_MINETRACK|M_POST_PROCESS
 C .byt $fa
 C .byt $fb
 C .byt $fa

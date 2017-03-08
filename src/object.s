@@ -178,6 +178,7 @@ Exit:
   .raddr ObjectBigGlider
   .raddr ObjectBigLWSS
   .raddr ObjectExplosion
+  .raddr ObjectMinecart
 .endproc
 
 ; other enemy attributes

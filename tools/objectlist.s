@@ -57,6 +57,10 @@
   .byt GraphicsUpload::SP_LIFE ;BIG_GLIDER
   .byt GraphicsUpload::SP_LIFE ;BIG_LWSS
   .byt 0 ;EXPLOSION
+  .byt GraphicsUpload::SP_MINES ;MINECART
+  .byt 0 ;BOOMERANG_GUY
+  .byt 0 ;GRABBY_HAND
+  .byt GraphicsUpload::SP_MINES ;FALLING_SPIKE
 .endproc
 
 .proc ObjBehaviors
@@ -118,6 +122,10 @@
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BIG_GLIDER
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BIG_LWSS
   .byt 0 ;EXPLOSION
+  .byt ObjBehavior::AUTO_REMOVE ;MINECART
+  .byt 0 ;BOOMERANG_GUY
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;GRABBY_HAND
+  .byt ObjBehavior::AUTO_REMOVE ;FALLING_SPIKE
 .endproc
 
 .proc ObjFlags
@@ -179,5 +187,9 @@
   .byt ObjFlag::PRIMARY ;BIG_GLIDER
   .byt ObjFlag::PRIMARY ;BIG_LWSS
   .byt ObjFlag::SECONDARY ;EXPLOSION
+  .byt ObjFlag::ESSENTIAL ;MINECART
+  .byt ObjFlag::PRIMARY ;BOOMERANG_GUY
+  .byt ObjFlag::PRIMARY ;GRABBY_HAND
+  .byt ObjFlag::PRIMARY ;FALLING_SPIKE
 .endproc
 

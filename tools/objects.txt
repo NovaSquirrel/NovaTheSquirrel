@@ -294,6 +294,11 @@ C .byt 0
 C .byt 0
 C .byt ObjFlag::SECONDARY
 
+R MINECART
+C .byt GraphicsUpload::SP_MINES
+C .byt ObjBehavior::AUTO_REMOVE
+C .byt ObjFlag::ESSENTIAL
+
 R BOOMERANG_GUY
 C .byt 0
 C .byt 0

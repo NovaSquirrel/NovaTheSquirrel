@@ -33,6 +33,7 @@ M_ICE             ; slip on if you're in puzzle mode. also thaws to fire
 M_BRICKS          ; breakable bricks
 M_LAVA            ;
 M_COLLECTIBLE     ; coins
+M_MINETRACK       ; regular horizontal track
 ; must not have more than 32 entries
 .endenum
 

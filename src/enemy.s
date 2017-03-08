@@ -2322,3 +2322,176 @@ NoMove:
   sta ObjectF2,x
   rts
 .endproc
+
+.proc ObjectMinecart
+Temp = 0
+MiddleBlock = 1
+Direction = 2
+MiddleXPos = 3
+MiddleYPos = 4
+  jsr EnemyFall
+
+  lda ObjectF1,x
+  and #1
+  sta Direction
+
+  lda #$10
+  jsr EnemyWalk
+
+  jsr CheckTrack
+  bne NotOnTrack
+    lda #<-$40
+    sta ObjectPYL,x
+    jsr CheckTrack
+    bne :+
+      dec ObjectPYH,x
+    :
+    lda #0
+    sta ObjectVYL,x
+    sta ObjectVYH,x
+    jmp Done
+NotOnTrack:
+  jsr CheckWheelsBlock
+
+  ; Is it a slope? If so, use the table
+  lda MiddleBlock
+  cmp #Metatiles::MINE_TRACK_STEEP_LEFT_BOT
+  bcc NotSlope
+  cmp #Metatiles::MINE_TRACK_GRADUAL_RIGHT_U + 1
+  bcs NotSlope
+  jsr CalculateHeight
+  cmp #$f0
+  bne :+
+    inc ObjectPYH,x
+    ldy MiddleYPos
+    iny
+    lda (LevelBlockPtr),y
+    jsr CalculateHeight
+  :
+  cmp #$00
+  bne :+
+    dec ObjectPYH,x
+    ldy MiddleYPos
+    dey
+    lda (LevelBlockPtr),y
+    jsr CalculateHeight
+  :
+  sta ObjectPYL,x
+
+  lda #0
+  sta ObjectVYL,x
+  sta ObjectVYH,x
+NotSlope:
+
+Done:
+  lda #$00
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  rts
+
+; Calculate the height for the current X position and the block type
+CalculateHeight:
+  ; calculate the index into the table
+  sub #Metatiles::MINE_TRACK_STEEP_LEFT_BOT
+  ; * 8 since each entry is 8 bytes
+  asl
+  asl
+  asl
+  sta Temp
+  lda MiddleXPos
+  ; shift down to get the actual pixels
+  lsr
+  lsr
+  lsr
+  lsr
+  ; shift off one of the actual pixels so it's just 8
+  lsr
+  ora Temp
+  tay
+  sta $5555
+
+  lda MiddleXPos
+  and #$10
+  bne OddPosition
+EvenPosition:
+  lda HeightTable,y
+  and #$f0
+  jmp WasEvenPosition
+OddPosition:
+  lda HeightTable,y
+  asl
+  asl
+  asl
+  asl
+WasEvenPosition:
+  rts
+
+; Looks at what block is under the middle of the minecart and checks if it's track
+CheckTrack:
+  lda ObjectPYL,x
+  add #$30
+  lda ObjectPYH,x
+  adc #0
+  sta MiddleYPos
+  tay
+
+  lda ObjectPXL,x
+  add #$80
+  sta MiddleXPos
+  lda ObjectPXH,x
+  adc #0
+  jsr GetLevelColumnPtr
+  sta MiddleBlock
+  pha
+  cmp #Metatiles::MINE_TRACK_BUMP
+  bne :+
+     jsr EnemyTurnAround
+  :
+  pla
+  tay
+  lda MetatileFlags,y
+  and #M_BEHAVIOR
+  cmp #M_MINETRACK
+  rts
+
+CheckWheelsBlock:
+  lda ObjectPYL,x
+  add #$f0
+  lda ObjectPYH,x
+  adc #0
+  sta MiddleYPos
+  tay
+
+  lda ObjectPXL,x
+  add #$80
+  sta MiddleXPos
+  lda ObjectPXH,x
+  adc #0
+  jsr GetLevelColumnPtr
+  sta MiddleBlock
+  tay
+  rts
+
+
+HeightTable:
+; MINE_TRACK_STEEP_LEFT_BOT
+  .byt $ba, $98, $76, $54, $32, $10, $00, $00
+; MINE_TRACK_STEEP_LEFT_TOP
+  .byt $ff, $ff, $ff, $ff, $ff, $ff, $fe, $dc
+; MINE_TRACK_STEEP_RIGHT_BOT
+  .byt $00, $00, $12, $34, $56, $78, $9a, $bc
+; MINE_TRACK_STEEP_RIGHT_TOP
+  .byt $cd, $ef, $ff, $ff, $ff, $ff, $ff, $ff
+; MINE_TRACK_GRADUAL_LEFT_L
+  .byt $cb, $ba, $a9, $98, $87, $76, $65, $54
+; MINE_TRACK_GRADUAL_LEFT_R
+  .byt $43, $32, $21, $10, $00, $00, $00, $00
+; MINE_TRACK_GRADUAL_LEFT_U
+  .byt $ff, $ff, $ff, $ff, $fe ,$ed, $dc, $cb
+; MINE_TRACK_GRADUAL_RIGHT_L
+  .byt $00, $00, $00, $00, $01, $12, $23, $34
+; MINE_TRACK_GRADUAL_RIGHT_R
+  .byt $45, $56, $67, $78, $89, $9a, $ab, $bc
+; MINE_TRACK_GRADUAL_RIGHT_U
+  .byt $bc, $cd, $de, $ef, $ff, $ff, $ff, $ff
+.endproc
