@@ -60,7 +60,7 @@ Bill:     .byt "Bill",0
   .byt CharacterNameData::Ike - CharacterNameData,     $17, $26, $30
   .byt CharacterNameData::Raoul - CharacterNameData,   $0f, $10, $30
   .byt CharacterNameData::Jafguar - CharacterNameData, $17, $27, $38
-  .byt CharacterNameData::Lia - CharacterNameData,     $00, $10, $30
+  .byt CharacterNameData::Lia - CharacterNameData,     $00, $10, $28
   .byt CharacterNameData::Iti - CharacterNameData,     $0f, $21, $30
   .byt CharacterNameData::NekoEd - CharacterNameData,  $0f, $27, $30
   .byt CharacterNameData::NekoEd - CharacterNameData,  $31, $17, $16
