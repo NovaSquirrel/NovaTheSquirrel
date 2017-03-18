@@ -2342,9 +2342,19 @@ OldXPosHi = TempVal+2
   and #1
   sta Direction
 
-  lda #$10
+  ; If the object is initializing, set the speed
+  lda ObjectF2,x
+  cmp #ENEMY_STATE_INIT
+  bne :+
+    lda #$10
+    sta ObjectF4,x
+  :
+
+  lda ObjectF4,x
   jsr EnemyWalk
 
+  lda ObjectVYH,x
+  bmi Done
   jsr CheckTrack
   bne NotOnTrack
     lda #<-$40
@@ -2405,16 +2415,19 @@ Done:
     bcs :+
       lda #2
       sta PlayerRidingSomething
+
       lda ObjectPYL,x
-      sub #$80
+      sub #$80-$20
       sta PlayerPYL
       lda ObjectPYH,x
       sbc #1
       sta PlayerPYH
-      lda #0
+      lda ObjectVYL,x
       sta PlayerVYL
+      lda ObjectVYH,x
       sta PlayerVYH
 
+      ; move the player in the same amount horizontally as the sprite did
       lda ObjectPXL,x
       sub OldXPosLo
       sta OldXPosLo
@@ -2428,7 +2441,6 @@ Done:
       lda PlayerPXH
       adc OldXPosHi
       sta PlayerPXH
-
       rts
 :
 
@@ -2478,13 +2490,13 @@ WasEvenPosition:
 
 ; Looks at what block is under the middle of the minecart and checks if it's track
 CheckTrack:
+  ; Look up what block is in the middle of the sprite, offset by the wheel height
   lda ObjectPYL,x
   add #$30
   lda ObjectPYH,x
   adc #0
   sta MiddleYPos
   tay
-
   lda ObjectPXL,x
   add #$80
   sta MiddleXPos
@@ -2492,18 +2504,28 @@ CheckTrack:
   adc #0
   jsr GetLevelColumnPtr
   sta MiddleBlock
-  pha
-  cmp #Metatiles::MINE_TRACK_BUMP
-  bne :+
-     jsr EnemyTurnAround
-  :
-  pla
+
+  ; Check if it's a special track type that needs special attention, and use a jump table
+  cmp #Metatiles::MINE_TRACK_BRAKES
+  bcc NotSpecialTrack
+  cmp #Metatiles::MINE_TRACK_SPECIAL+1
+  bcs NotSpecialTrack
+  sub #Metatiles::MINE_TRACK_BRAKES
   tay
+  lda SpecialTrackHi,y
+  pha
+  lda SpecialTrackLo,y
+  pha
+  rts
+NotSpecialTrack:
+SpecialTrackReturn:
+  ldy MiddleBlock
   lda MetatileFlags,y
   and #M_BEHAVIOR
   cmp #M_MINETRACK
   rts
 
+; Look up what block is underneath the wheels
 CheckWheelsBlock:
   lda ObjectPYL,x
   add #$f0
@@ -2522,7 +2544,54 @@ CheckWheelsBlock:
   tay
   rts
 
+; Lookup table for various special track types
+SpecialTrackLo:
+  .lobytes SpecialTrackBrakes-1, SpecialTrackUp-1, SpecialTrackUpLeft-1, SpecialTrackUpRight-1, SpecialTrackStop-1, SpecialTrackBump-1, SpecialTrackSpecial-1
+SpecialTrackHi:
+  .hibytes SpecialTrackBrakes-1, SpecialTrackUp-1, SpecialTrackUpLeft-1, SpecialTrackUpRight-1, SpecialTrackStop-1, SpecialTrackBump-1, SpecialTrackSpecial-1
 
+SpecialTrackBrakes:
+  lda ObjectPXL,x
+  add #$80
+  lda ObjectPXH,x
+  adc #0
+  tay
+  lda ColumnBytes,y
+  sta ObjectF4,x
+  jmp SpecialTrackReturn
+SpecialTrackUp:
+  lda ObjectVYH,x
+  bmi :+
+  lda #<(-$50)
+  sta ObjectVYL,x
+  lda #>(-$50)
+  sta ObjectVYH,x
+  pla
+  pla
+  jmp Done
+: jmp SpecialTrackReturn
+
+SpecialTrackUpLeft:
+  lda ObjectF1,x
+  lsr
+  bcs SpecialTrackUp
+  jmp SpecialTrackReturn
+SpecialTrackUpRight:
+  lda ObjectF1,x
+  lsr
+  bcc SpecialTrackUp
+  jmp SpecialTrackReturn
+SpecialTrackStop:
+  jmp SpecialTrackReturn
+SpecialTrackBump:
+  jsr EnemyTurnAround
+  jmp SpecialTrackReturn
+SpecialTrackSpecial:
+  ; nothing special yet
+  jmp SpecialTrackReturn
+
+; Height table for how high each column of each slope tile is
+; Each column is one nybble, so each metatile takes 8 bytes
 HeightTable:
 ; MINE_TRACK_STEEP_LEFT_BOT
   .byt $ba, $98, $76, $54, $32, $10, $00, $00
