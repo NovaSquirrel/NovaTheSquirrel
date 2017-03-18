@@ -2329,7 +2329,14 @@ MiddleBlock = 1
 Direction = 2
 MiddleXPos = 3
 MiddleYPos = 4
+OldXPosLo = TempVal+1
+OldXPosHi = TempVal+2
   jsr EnemyFall
+
+  lda ObjectPXL,x
+  sta OldXPosLo
+  lda ObjectPXH,x
+  sta OldXPosHi
 
   lda ObjectF1,x
   and #1
@@ -2387,12 +2394,56 @@ Done:
   lda #$00
   ldy #OAM_COLOR_2
   jsr DispEnemyWide
+
+
+  ; Let the player ride on it
+  jsr CollideRide16
+  bcc :+
+    lda PlayerDrawY
+    add #8
+    cmp O_RAM::OBJ_DRAWY
+    bcs :+
+      lda #2
+      sta PlayerRidingSomething
+      lda ObjectPYL,x
+      sub #$80
+      sta PlayerPYL
+      lda ObjectPYH,x
+      sbc #1
+      sta PlayerPYH
+      lda #0
+      sta PlayerVYL
+      sta PlayerVYH
+
+      lda ObjectPXL,x
+      sub OldXPosLo
+      sta OldXPosLo
+      lda ObjectPXH,x
+      sbc OldXPosHi
+      sta OldXPosHi
+
+      lda PlayerPXL
+      add OldXPosLo
+      sta PlayerPXL
+      lda PlayerPXH
+      adc OldXPosHi
+      sta PlayerPXH
+
+      rts
+:
+
   rts
 
 ; Calculate the height for the current X position and the block type
 CalculateHeight:
   ; calculate the index into the table
   sub #Metatiles::MINE_TRACK_STEEP_LEFT_BOT
+  cmp #10
+  bcc :+
+    ; if it's not even a slope tile at all, keep using the same height
+    lda ObjectPYL,x
+    rts
+  :
   ; * 8 since each entry is 8 bytes
   asl
   asl
@@ -2408,7 +2459,6 @@ CalculateHeight:
   lsr
   ora Temp
   tay
-  sta $5555
 
   lda MiddleXPos
   and #$10
