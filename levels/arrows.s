@@ -20,9 +20,12 @@ arrows:
 
 arrowsData:
   LObjN LO::R_GROUND,         0, 6, 7, 8
-  LObjN LO::TALL_1,           8, 6, 5, LN1::LADDER
+  LObjN LO::R_BG_GLASS_GRAY,  2, 1, 8, 0
+  LObjN LO::R_BG_GLASS_GRAY,  0, 2, 0, 3
+  LObjN LO::TALL_1,           6, 6, 5, LN1::LADDER
   LObjN LO::R_GROUND,         0, 12, 10, 2
-  LObjN LO::WIDE_1,           3, 6, 4, LN1::SOLID_LEDGE
+  LObjN LO::R_BG_GLASS_GRAY,  2, 2, 0, 9
+  LObjN LO::WIDE_1,           1, 6, 4, LN1::SOLID_LEDGE
   LObj  LO::S_PRIZE,          2, 3
   LObjN LO::R_FG_GLASS_BLUE,  3, 6, 2, 4
   LObj  LO::S_W_ARROW_DOWN,   1, 5
@@ -34,7 +37,8 @@ arrowsData:
   LObj  LO::R_CUSTOM,         0, 12, Metatiles::WOOD_CRATE, (3<<4)|0
   LObjN LO::R_COIN,           1, 8, 1, 2
   LObjN LO::R_FG_GLASS_BLUE,  2, 1, 9, 2
-  LObj  LO::R_CUSTOM,         3, 12, Metatiles::WOOD_CRATE, (3<<4)|0
+  LObjN LO::R_BG_GLASS_RED,   1, 5, 5, 1
+  LObj  LO::R_CUSTOM,         2, 12, Metatiles::WOOD_CRATE, (3<<4)|0
   LObjN LO::R_COIN,           1, 8, 1, 2
   LObj  LO::R_CUSTOM,         3, 10, Metatiles::WOOD_CRATE, (2<<4)|0
   LObjN LO::R_FG_GLASS_BLUE,  3, 1, 2, 4
@@ -218,16 +222,21 @@ arrowsData:
   LObjN LO::R_FG_GLASS_BLUE,  2, 3, 0, 4
   LObj  LO::S_M_ARROW_RIGHT,  0, 4
   LObj  LO::S_W_ARROW_UP,     0, 8
-  LObjN LO::WIDE_1,           3, 9, 4, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_1,           7, 8, 1, LN1::SOLID_LEDGE
+  LObjN LO::R_BG_GLASS_RED,   3, 1, 4, 4
+  LObjN LO::WIDE_1,           0, 9, 4, LN1::SOLID_LEDGE
+  LObjN LO::R_BG_GLASS_RED,   6, 10, 4, 4
+  LObjN LO::WIDE_1,           1, 8, 1, LN1::SOLID_LEDGE
   LObj  LO::S_M_ARROW_DOWN,   2, 4
   LObj  LO::S_M_ARROW_RIGHT,  0, 8
   LObj  LO::R_CUSTOM,         1, 8, Metatiles::FORK_ARROW_DOWN, (4<<4)|0
   LObj  LO::R_CUSTOM,         0, 9, Metatiles::METAL_CRATE, (4<<4)|0
-  LObjN LO::WIDE_1,           6, 7, 1, LN1::SOLID_LEDGE
-  LObj  LO::R_CUSTOM,         3, 7, Metatiles::METAL_CRATE, (3<<4)|0
+  LObjN LO::R_BG_GLASS_RED,   2, 3, 2, 2
+  LObjN LO::WIDE_1,           4, 7, 1, LN1::SOLID_LEDGE
+  LObjN LO::R_BG_GLASS_RED,   2, 10, 2, 2
+  LObj  LO::R_CUSTOM,         1, 7, Metatiles::METAL_CRATE, (3<<4)|0
   LObj  LO::R_CUSTOM,         0, 8, Metatiles::FORK_ARROW_UP, (3<<4)|0
-  LObjN LO::WIDE_1,           6, 7, 1, LN1::SOLID_LEDGE
+  LObjN LO::R_BG_GLASS_RED,   4, 6, 1, 1
+  LObjN LO::WIDE_1,           2, 7, 1, LN1::SOLID_LEDGE
   LObjN LO::R_FG_GLASS_BLUE,  1, 0, 11, 4
   LObjN LO::R_SOLID_BLOCK,    1, 7, 0, 2
   LObjN LO::R_FG_GLASS_BLUE,  0, 10, 10, 4

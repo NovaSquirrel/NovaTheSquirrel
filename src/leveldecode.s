@@ -582,7 +582,7 @@ fill_loop:
   bne fill_loop
   inc 1
   lda 1
-  cmp #$6f
+  cmp #$70
   bne fill_loop
   rts
 

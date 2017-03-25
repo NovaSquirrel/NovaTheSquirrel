@@ -13,7 +13,7 @@
 	},
 	"Header":	{
 		"Music":	"NONE",
-		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_FIRE", "SP_MINES"],
+		"SpriteGFX":	["SP_KING", "SP_CANNON", "SP_FIRE", "SP_MINES"],
 		"GFXUpload":	["PAL_FROZEN", "BG_COMMON", "BG_FROZEN_FG", "BG_FROZEN_BG", "PAL_ENEMY4", "BG_MINES"],
 		"BGColor":	15
 	},
@@ -23,337 +23,1001 @@
 			"Tileset":	"novafg",
 			"Data":	[{
 					"Id":	"ROCK_GROUND",
-					"X":	32,
+					"X":	0,
 					"Y":	12,
-					"W":	12,
+					"W":	19,
 					"H":	3
 				}, {
 					"Id":	"ROCK_GROUND",
-					"X":	44,
+					"X":	19,
 					"Y":	11,
 					"W":	3,
 					"H":	4
 				}, {
 					"Id":	"ROCK_GROUND",
-					"X":	45,
+					"X":	20,
 					"Y":	10,
 					"W":	2,
 					"H":	1
 				}, {
 					"Id":	"LAVA_MAIN",
-					"X":	47,
+					"X":	22,
 					"Y":	10,
 					"W":	4,
 					"H":	5
 				}, {
 					"Id":	"ROCK_GROUND",
-					"X":	51,
+					"X":	26,
 					"Y":	11,
-					"W":	3,
+					"W":	4,
 					"H":	4
 				}, {
 					"Id":	"ROCK_GROUND",
-					"X":	51,
+					"X":	26,
 					"Y":	10,
 					"W":	2,
 					"H":	1
 				}, {
 					"Id":	"ROCK_GROUND",
-					"X":	54,
+					"X":	36,
 					"Y":	12,
-					"W":	20,
+					"W":	13,
 					"H":	3
 				}, {
 					"Id":	"ROCK_GROUND",
-					"X":	32,
+					"X":	7,
 					"Y":	0,
 					"W":	42,
 					"H":	3
 				}, {
 					"Id":	"ROCK_GROUND",
-					"X":	40,
+					"X":	15,
 					"Y":	3,
 					"W":	23,
 					"H":	2
 				}, {
 					"Id":	"ROCK_GROUND",
-					"X":	33,
+					"X":	13,
 					"Y":	3,
-					"W":	7,
+					"W":	2,
 					"H":	1
 				}, {
 					"Id":	"SOLID_LEDGE",
-					"X":	47,
+					"X":	22,
 					"Y":	8,
 					"W":	4,
 					"H":	1
 				}, {
 					"Id":	"COIN",
-					"X":	46,
+					"X":	21,
 					"Y":	7,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"COIN",
-					"X":	48,
-					"Y":	5,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"COIN",
-					"X":	50,
+					"X":	23,
 					"Y":	6,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"COIN",
-					"X":	52,
-					"Y":	6,
-					"W":	1,
+					"W":	5,
 					"H":	1
 				}, {
 					"Id":	"BRICKS",
-					"X":	40,
+					"X":	15,
 					"Y":	9,
 					"W":	2,
 					"H":	1
 				}, {
 					"Id":	"GROUND",
-					"X":	55,
+					"X":	30,
 					"Y":	8,
 					"W":	4,
-					"H":	4
+					"H":	7
 				}, {
 					"Id":	"GROUND",
-					"X":	59,
+					"X":	36,
 					"Y":	10,
-					"W":	4,
+					"W":	2,
 					"H":	2
 				}, {
 					"Id":	"GROUND",
-					"X":	63,
+					"X":	38,
 					"Y":	9,
 					"W":	4,
 					"H":	3
 				}, {
 					"Id":	"PRIZE",
-					"X":	39,
+					"X":	14,
 					"Y":	9,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"BG_FENCE",
-					"X":	42,
+					"X":	17,
 					"Y":	11,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"BG_FENCE",
-					"X":	40,
+					"X":	15,
 					"Y":	11,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"BG_FENCE",
-					"X":	38,
+					"X":	13,
 					"Y":	11,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"BG_TALL_GRASS",
-					"X":	36,
+					"X":	11,
 					"Y":	11,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"BG_FLOWER_1",
-					"X":	44,
+					"X":	19,
 					"Y":	10,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"BG_FLOWER_1",
-					"X":	43,
+					"X":	18,
 					"Y":	11,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"ROCK_GROUND",
-					"X":	0,
-					"Y":	12,
-					"W":	31,
-					"H":	3
+					"X":	1,
+					"Y":	0,
+					"W":	6,
+					"H":	2
 				}, {
-					"Id":	"MINE_TRACK",
-					"X":	6,
-					"Y":	11,
+					"Id":	"COIN",
+					"X":	7,
+					"Y":	8,
 					"W":	4,
 					"H":	1
 				}, {
-					"Id":	"MINE_TRACK_STEEP_LEFT_BOT",
-					"X":	10,
+					"Id":	"GROUND",
+					"X":	0,
+					"Y":	7,
+					"W":	5,
+					"H":	5
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	64,
+					"Y":	12,
+					"W":	11,
+					"H":	3
+				}, {
+					"Id":	"LAVA_MAIN",
+					"X":	49,
+					"Y":	12,
+					"W":	15,
+					"H":	3
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	47,
 					"Y":	11,
-					"W":	1,
+					"W":	2,
 					"H":	1
 				}, {
-					"Id":	"MINE_TRACK_STEEP_LEFT_BOT",
-					"X":	11,
+					"Id":	"ROCK_GROUND",
+					"X":	64,
+					"Y":	11,
+					"W":	2,
+					"H":	1
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	48,
 					"Y":	10,
 					"W":	1,
 					"H":	1
 				}, {
-					"Id":	"MINE_TRACK_STEEP_LEFT_BOT",
-					"X":	12,
+					"Id":	"ROCK_GROUND",
+					"X":	64,
+					"Y":	10,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	49,
+					"Y":	0,
+					"W":	21,
+					"H":	2
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	70,
+					"Y":	0,
+					"W":	17,
+					"H":	4
+				}, {
+					"Id":	"SPRING",
+					"X":	48,
 					"Y":	9,
 					"W":	1,
 					"H":	1
 				}, {
-					"Id":	"MINE_TRACK_STEEP_LEFT_BOT",
-					"X":	13,
+					"Id":	"SPRING",
+					"X":	64,
+					"Y":	9,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	63,
+					"Y":	2,
+					"W":	7,
+					"H":	1
+				}, {
+					"Id":	"PATH_LINE",
+					"X":	51,
+					"Y":	5,
+					"W":	1,
+					"H":	5
+				}, {
+					"Id":	"PATH_LINE",
+					"X":	52,
+					"Y":	9,
+					"W":	7,
+					"H":	1
+				}, {
+					"Id":	"PATH_LINE",
+					"X":	54,
+					"Y":	6,
+					"W":	7,
+					"H":	1
+				}, {
+					"Id":	"FALLTHROUGH_LEDGE",
+					"X":	62,
+					"Y":	7,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"SIGNPOST",
+					"X":	68,
+					"Y":	11,
+					"W":	1,
+					"H":	1,
+					"Extra":	"AboutIceJump"
+				}, {
+					"Id":	"PRIZE",
+					"X":	66,
+					"Y":	9,
+					"W":	1,
+					"H":	1,
+					"Extra":	"ABILITY_NICE"
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	83,
+					"Y":	12,
+					"W":	12,
+					"H":	3
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	78,
+					"Y":	8,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	88,
+					"Y":	8,
+					"W":	6,
+					"H":	4
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	87,
+					"Y":	0,
+					"W":	21,
+					"H":	2
+				}, {
+					"Id":	"BG_TALL_GRASS",
+					"X":	69,
+					"Y":	11,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"BG_FENCE",
+					"X":	76,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"GROUND",
+					"X":	75,
+					"Y":	8,
+					"W":	3,
+					"H":	7
+				}, {
+					"Id":	"MINE_TRACK",
+					"X":	93,
+					"Y":	7,
+					"W":	12,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_STOP",
+					"X":	92,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_STEEP_RIGHT_BOT",
+					"X":	105,
 					"Y":	8,
 					"W":	1,
 					"H":	1
 				}, {
-					"Id":	"MINE_TRACK",
-					"X":	14,
-					"Y":	7,
-					"W":	5,
-					"H":	1
-				}, {
-					"Id":	"MINE_TRACK_BUMP",
-					"X":	19,
-					"Y":	7,
+					"Id":	"MINE_TRACK_STEEP_RIGHT_BOT",
+					"X":	106,
+					"Y":	9,
 					"W":	1,
 					"H":	1
 				}, {
-					"Id":	"MINE_TRACK_UP_LEFT",
-					"X":	16,
-					"Y":	7,
+					"Id":	"MINE_TRACK_STEEP_RIGHT_BOT",
+					"X":	107,
+					"Y":	10,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"MINE_TRACK",
-					"X":	12,
-					"Y":	5,
-					"W":	5,
+					"X":	108,
+					"Y":	10,
+					"W":	12,
 					"H":	1
 				}, {
-					"Id":	"MINE_TRACK_GRADUAL_RIGHT_R",
-					"X":	11,
+					"Id":	"MINE_TRACK_STOP",
+					"X":	120,
+					"Y":	10,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	118,
+					"Y":	11,
+					"W":	6,
+					"H":	4
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	124,
+					"Y":	6,
+					"W":	6,
+					"H":	9
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	122,
+					"Y":	9,
+					"W":	2,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	121,
+					"Y":	6,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_STOP",
+					"X":	126,
 					"Y":	5,
 					"W":	1,
 					"H":	1
 				}, {
-					"Id":	"MINE_TRACK_GRADUAL_RIGHT_R",
-					"X":	9,
+					"Id":	"MINE_TRACK",
+					"X":	127,
+					"Y":	5,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_UP_RIGHT",
+					"X":	131,
+					"Y":	5,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK",
+					"X":	138,
+					"Y":	11,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_UP_RIGHT",
+					"X":	142,
+					"Y":	11,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_UP_RIGHT",
+					"X":	146,
+					"Y":	9,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_UP_RIGHT",
+					"X":	150,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_BRAKES",
+					"X":	129,
+					"Y":	5,
+					"W":	1,
+					"H":	1,
+					"Extra":	"$20"
+				}, {
+					"Id":	"MINE_TRACK_BRAKES",
+					"X":	96,
+					"Y":	7,
+					"W":	1,
+					"H":	1,
+					"Extra":	"$20"
+				}, {
+					"Id":	"MINE_TRACK_BRAKES",
+					"X":	117,
+					"Y":	10,
+					"W":	1,
+					"H":	1,
+					"Extra":	"$20"
+				}, {
+					"Id":	"MINE_TRACK",
+					"X":	145,
+					"Y":	9,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK",
+					"X":	149,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK",
+					"X":	152,
+					"Y":	5,
+					"W":	6,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_BRAKES",
+					"X":	154,
+					"Y":	5,
+					"W":	1,
+					"H":	1,
+					"Extra":	"$10"
+				}, {
+					"Id":	"MINE_TRACK",
+					"X":	155,
+					"Y":	3,
+					"W":	16,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_BRAKES",
+					"X":	158,
+					"Y":	3,
+					"W":	1,
+					"H":	1,
+					"Extra":	"$20"
+				}, {
+					"Id":	"GROUND",
+					"X":	162,
+					"Y":	4,
+					"W":	4,
+					"H":	11
+				}, {
+					"Id":	"MINE_TRACK_SUPPORTS_ONLY",
+					"X":	152,
+					"Y":	6,
+					"W":	1,
+					"H":	9
+				}, {
+					"Id":	"MINE_TRACK_SUPPORTS_ONLY",
+					"X":	157,
+					"Y":	6,
+					"W":	1,
+					"H":	9
+				}, {
+					"Id":	"MINE_TRACK_SUPPORTS",
+					"X":	155,
+					"Y":	5,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_SUPPORTS_ONLY",
+					"X":	131,
+					"Y":	6,
+					"W":	1,
+					"H":	9
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	139,
+					"Y":	0,
+					"W":	4,
+					"H":	7
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	143,
+					"Y":	0,
+					"W":	5,
+					"H":	4
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	148,
+					"Y":	0,
+					"W":	5,
+					"H":	2
+				}, {
+					"Id":	"MINE_TRACK_STEEP_RIGHT_BOT",
+					"X":	171,
 					"Y":	4,
 					"W":	1,
 					"H":	1
 				}, {
-					"Id":	"MINE_TRACK_GRADUAL_RIGHT_R",
-					"X":	7,
-					"Y":	3,
+					"Id":	"MINE_TRACK_STEEP_RIGHT_BOT",
+					"X":	172,
+					"Y":	5,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_STEEP_RIGHT_BOT",
+					"X":	173,
+					"Y":	6,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_STEEP_RIGHT_BOT",
+					"X":	174,
+					"Y":	7,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"MINE_TRACK",
-					"X":	4,
-					"Y":	2,
+					"X":	175,
+					"Y":	7,
+					"W":	16,
+					"H":	1
+				}, {
+					"Id":	"GROUND",
+					"X":	179,
+					"Y":	8,
+					"W":	4,
+					"H":	7
+				}, {
+					"Id":	"MINE_TRACK_BRAKES",
+					"X":	168,
+					"Y":	3,
+					"W":	1,
+					"H":	1,
+					"Extra":	"$30"
+				}, {
+					"Id":	"MINE_TRACK_BRAKES",
+					"X":	183,
+					"Y":	7,
+					"W":	1,
+					"H":	1,
+					"Extra":	"$40"
+				}, {
+					"Id":	"MINE_TRACK_UP_RIGHT",
+					"X":	191,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_SUPPORTS_ONLY",
+					"X":	191,
+					"Y":	8,
+					"W":	1,
+					"H":	5
+				}, {
+					"Id":	"MINE_TRACK_SUPPORTS_ONLY",
+					"X":	198,
+					"Y":	8,
+					"W":	1,
+					"H":	5
+				}, {
+					"Id":	"MINE_TRACK",
+					"X":	198,
+					"Y":	7,
+					"W":	13,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_STOP",
+					"X":	211,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"GROUND",
+					"X":	208,
+					"Y":	8,
+					"W":	5,
+					"H":	7
+				}, {
+					"Id":	"GROUND",
+					"X":	213,
+					"Y":	6,
+					"W":	6,
+					"H":	9
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	219,
+					"Y":	6,
+					"W":	8,
+					"H":	1
+				}, {
+					"Id":	"LAVA_MAIN",
+					"X":	183,
+					"Y":	13,
+					"W":	16,
+					"H":	2
+				}, {
+					"Id":	"LAVA_MAIN",
+					"X":	199,
+					"Y":	13,
+					"W":	9,
+					"H":	2
+				}, {
+					"Id":	"MINE_TRACK_SUPPORTS_ONLY",
+					"X":	111,
+					"Y":	11,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"MINE_TRACK_SUPPORTS_ONLY",
+					"X":	102,
+					"Y":	8,
+					"W":	1,
+					"H":	7
+				}, {
+					"Id":	"COIN",
+					"X":	78,
+					"Y":	7,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"COIN",
+					"X":	121,
+					"Y":	5,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	227,
+					"Y":	6,
+					"W":	5,
+					"H":	9
+				}, {
+					"Id":	"LAVA_MAIN",
+					"X":	78,
+					"Y":	12,
+					"W":	5,
+					"H":	3
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	80,
+					"Y":	10,
+					"W":	2,
+					"H":	1
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	243,
+					"Y":	11,
+					"W":	13,
+					"H":	4
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	233,
+					"Y":	9,
+					"W":	8,
+					"H":	1
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	179,
+					"Y":	0,
+					"W":	9,
+					"H":	2
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	188,
+					"Y":	0,
+					"W":	24,
+					"H":	3
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	212,
+					"Y":	0,
+					"W":	44,
+					"H":	2
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	222,
+					"Y":	9,
 					"W":	3,
 					"H":	1
 				}, {
-					"Id":	"MINE_TRACK_BUMP",
-					"X":	3,
+					"Id":	"SOLID_LEDGE",
+					"X":	112,
+					"Y":	3,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"BG_FENCE",
+					"X":	89,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BG_FENCE",
+					"X":	215,
+					"Y":	5,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BG_FLOWER_1",
+					"X":	228,
+					"Y":	5,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BG_FLOWER_1",
+					"X":	228,
+					"Y":	5,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"BG_FLOWER_1",
+					"X":	244,
+					"Y":	10,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"ROCK_GROUND",
+					"X":	237,
 					"Y":	2,
+					"W":	19,
+					"H":	4
+				}, {
+					"Id":	"FALLTHROUGH_LEDGE",
+					"X":	232,
+					"Y":	6,
+					"W":	6,
+					"H":	1
+				}, {
+					"Id":	"SMALL_ROCK",
+					"X":	217,
+					"Y":	5,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"WATER",
+					"X":	219,
+					"Y":	12,
+					"W":	8,
+					"H":	3
+				}, {
+					"Id":	"WATER",
+					"X":	232,
+					"Y":	13,
+					"W":	11,
+					"H":	2
+				}, {
+					"Id":	"MINE_TRACK_BUMP",
+					"X":	137,
+					"Y":	6,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_BRAKES",
+					"X":	137,
+					"Y":	11,
+					"W":	1,
+					"H":	1,
+					"Extra":	"$20"
+				}, {
+					"Id":	"BIG_HEART",
+					"X":	122,
+					"Y":	10,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK",
+					"X":	136,
+					"Y":	6,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"EXIT_DOOR",
+					"X":	251,
+					"Y":	9,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"MINE_TRACK_SUPPORTS",
-					"X":	5,
+					"X":	136,
 					"Y":	11,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"MINE_TRACK_SUPPORTS_ONLY",
+					"X":	136,
+					"Y":	12,
+					"W":	1,
+					"H":	3
+				}, {
+					"Id":	"MINE_TRACK_SUPPORTS_ONLY",
+					"X":	142,
+					"Y":	12,
+					"W":	1,
+					"H":	3
+				}, {
+					"Id":	"MINE_TRACK",
+					"X":	5,
+					"Y":	6,
+					"W":	11,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_GRADUAL_RIGHT_R",
+					"X":	17,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_GRADUAL_RIGHT_R",
 					"X":	19,
 					"Y":	8,
 					"W":	1,
-					"H":	4
-				}, {
-					"Id":	"MINE_TRACK_BUMP",
-					"X":	4,
-					"Y":	11,
-					"W":	1,
 					"H":	1
 				}, {
-					"Id":	"MINE_TRACK_GRADUAL_LEFT_L",
-					"X":	17,
-					"Y":	5,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"MINE_TRACK_GRADUAL_LEFT_L",
-					"X":	19,
-					"Y":	4,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"MINE_TRACK_GRADUAL_LEFT_L",
+					"Id":	"MINE_TRACK_GRADUAL_RIGHT_R",
 					"X":	21,
-					"Y":	3,
+					"Y":	9,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_STEEP_LEFT_BOT",
+					"X":	42,
+					"Y":	8,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"MINE_TRACK",
-					"X":	22,
+					"X":	43,
+					"Y":	7,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_STEEP_RIGHT_BOT",
+					"X":	46,
+					"Y":	8,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_STEEP_RIGHT_BOT",
+					"X":	47,
+					"Y":	9,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"COIN",
+					"X":	112,
 					"Y":	2,
-					"W":	5,
-					"H":	1
-				}, {
-					"Id":	"MINE_TRACK_STEEP_RIGHT_BOT",
-					"X":	27,
-					"Y":	3,
 					"W":	1,
 					"H":	1
 				}, {
-					"Id":	"MINE_TRACK_STEEP_RIGHT_BOT",
-					"X":	28,
-					"Y":	4,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"MINE_TRACK",
-					"X":	29,
-					"Y":	4,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"MINE_TRACK_BUMP",
-					"X":	30,
-					"Y":	4,
-					"W":	1,
-					"H":	1
+					"Id":	"COIN",
+					"X":	112,
+					"Y":	1,
+					"W":	4,
+					"H":	2
 				}]
 		}, {
 			"Name":	"Sprites",
 			"Type":	"Sprite",
 			"Tileset":	"novasp",
 			"Data":	[{
-					"Id":	"GOOMBA",
-					"X":	28,
+					"Id":	"ICE_1",
+					"X":	15,
+					"Y":	8,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"MOVING_PLATFORM_LINE",
+					"X":	51,
+					"Y":	8,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MOVING_PLATFORM_LINE",
+					"X":	54,
+					"Y":	6,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"CHECKPOINT",
+					"X":	65,
+					"Y":	6,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINECART",
+					"X":	93,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINECART",
+					"X":	128,
+					"Y":	5,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINECART",
+					"X":	156,
+					"Y":	3,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"GEORGE",
+					"X":	24,
+					"Y":	7,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"GEORGE",
+					"X":	236,
+					"Y":	8,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"GEORGE",
+					"X":	223,
+					"Y":	8,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"GEORGE",
+					"X":	85,
 					"Y":	11,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
 				}, {
 					"Id":	"MINECART",
-					"X":	5,
-					"Y":	9,
+					"X":	136,
+					"Y":	11,
 					"W":	1,
 					"H":	1
 				}, {
-					"Id":	"MINECART",
-					"X":	14,
+					"Id":	"ICE_1",
+					"X":	40,
+					"Y":	8,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"ICE_1",
+					"X":	31,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"CHECKPOINT",
+					"X":	115,
+					"Y":	2,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"ICE_1",
+					"X":	217,
+					"Y":	4,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"GEORGE",
+					"X":	125,
 					"Y":	5,
 					"W":	1,
 					"H":	1,
@@ -365,8 +1029,8 @@
 			"Tileset":	"novact",
 			"Data":	[{
 					"Id":	"PLAYER_START_R",
-					"X":	2,
-					"Y":	11,
+					"X":	1,
+					"Y":	6,
 					"W":	1,
 					"H":	1
 				}, {

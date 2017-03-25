@@ -981,7 +981,8 @@ CannonFrame:
   asl
   ora #$10
   ldy #OAM_COLOR_3
-  jmp DispEnemyWide
+  jsr DispEnemyWide
+  jmp EnemyPlayerTouchHurt
 ;  jmp GoombaSmoosh
 .endproc
 
@@ -2343,12 +2344,12 @@ OldXPosHi = TempVal+2
   sta Direction
 
   ; If the object is initializing, set the speed
-  lda ObjectF2,x
-  cmp #ENEMY_STATE_INIT
-  bne :+
-    lda #$10
-    sta ObjectF4,x
-  :
+;  lda ObjectF2,x
+;  cmp #ENEMY_STATE_INIT
+;  bne :+
+;    lda #$10
+;    sta ObjectF4,x
+;  :
 
   lda ObjectF4,x
   jsr EnemyWalk
@@ -2441,7 +2442,12 @@ Done:
       lda PlayerPXH
       adc OldXPosHi
       sta PlayerPXH
-      rts
+
+      ; start the cart if it isn't started already
+      lda ObjectF4,x
+      bne :+
+      lda #$10
+      sta ObjectF4,x
 :
 
   rts
@@ -2582,7 +2588,14 @@ SpecialTrackUpRight:
   bcc SpecialTrackUp
   jmp SpecialTrackReturn
 SpecialTrackStop:
+  lda #0
+  sta ObjectF4,x
+  jsr EnemyTurnAround
+  lda #$f0
+  jsr EnemyWalk
   jmp SpecialTrackReturn
+
+
 SpecialTrackBump:
   jsr EnemyTurnAround
   jmp SpecialTrackReturn

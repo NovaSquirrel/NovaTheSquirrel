@@ -167,6 +167,7 @@ undergroundSprite:
   LSpr Enemy::OWL,                 0,  96,   3
   LSpr Enemy::SNEAKER,             1, 106,   3
   LSpr Enemy::OWL,                 1, 108,   7
+  LSpr Enemy::CHECKPOINT,          0, 111,   3
   LSpr Enemy::CANNON_1,            0, 117,   2
   LSpr Enemy::THWOMP,              0, 134,   2
   LSpr Enemy::THWOMP,              0, 135,   2

@@ -184,7 +184,7 @@
 
 :MolSnoMeet:
 `scene NOVA_AND_MOLSNO
-<0 NOVA>Heyyy I assume you're MolSno? I need some of your fa-a-ancy cola so I can save the world.
+<0 NOVA>Heyyy I assume you're MolSno? I need some of your fa-a-ancy cola so I can save the world. Surely you can spare some cans?
 <1 MOLSNO>Yeah, no. This cola is all mine, all 65535 cans of it I have here. I absolutely need every single one for myself. Totally.
 <0 NOVA_AW>What? Korey told me that it was really important. Please?
 <1 MOLSNO>No. Fight me! I'll throw all these empty cans at you.
@@ -373,4 +373,9 @@ Nova, with the help of a wish, went on to found the kingdom of Toasterland as a 
 :NekoEdCameo:
 `scene NOVA_AND_NEKOED
 <1 NEKOED>I wanted to be in this game, so here I am! I should probably give you something cool.
+`end
+
+:AboutIceJump:
+`scene NOVA_AND_SIGN
+<1 SIGN>With the ice enemy's ability, use Down+B to start sliding on ice, and hold Down for as long as you want to slide. You can abuse it to get another jump in mid-air.
 `end

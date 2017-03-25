@@ -276,8 +276,8 @@ ColaSigns:
 .byt SCR::END_SCRIPT
 MolSnoMeet:
 .byt SCR::SCENE, SCENES::NOVA_AND_MOLSNO
-; <0 NOVA>Heyyy I assume you're MolSno? I need some of your fa-a-ancy cola so I can save the world.
-.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "H", "e", "y", "y", $fe, $c0, $c4, "s", "u", $d0, " ", $a6, "'", "r", "e", SCR::NEWLINE, "M", "o", "l", "S", $d1, "?", " ", $c0, $f9, $d6, $9c, " ", $bd, $91, SCR::NEWLINE, "f", "a", "-", "a", "-", $ca, "c", $fe, "c", "o", "l", $be, $cc, " ", $c0, $b0, " ", "s", "a", "v", "e", SCR::NEWLINE, $a2, " ", "w", $c9, $ef, "."
+; <0 NOVA>Heyyy I assume you're MolSno? I need some of your fa-a-ancy cola so I can save the world. Surely you can spare some cans?
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "H", "e", "y", "y", $fe, $c0, $c4, "s", "u", $d0, " ", $a6, "'", "r", "e", SCR::NEWLINE, "M", "o", "l", "S", $d1, "?", " ", $c0, $f9, $d6, $9c, " ", $bd, $91, SCR::NEWLINE, "f", "a", "-", "a", "-", $ca, "c", $fe, "c", "o", "l", $be, $cc, " ", $c0, $b0, " ", "s", "a", "v", "e", SCR::NEWLINE, $a2, " ", "w", $c9, $ef, $f6, "S", "u", "r", "e", $d2, $a6, " ", $b0, SCR::NEWLINE, $dd, "a", "r", $e7, $9c, " ", $b0, "s", "?"
 ; <1 MOLSNO>Yeah, no. This cola is all mine, all 65535 cans of it I have here. I absolutely need every single one for myself. Totally.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::MOLSNO, "Y", $ec, "h", $f5, $d1, $f6, $f8, $b8, "c", "o", "l", $be, $b8, $ad, " ", "m", $d8, "e", ",", SCR::NEWLINE, $ad, " ", "6", "5", "5", "3", "5", " ", $b0, $fb, $bd, $c1, $c0, "h", "a", "v", "e", SCR::NEWLINE, $a9, "e", $f6, $c0, "a", "b", $cc, "l", "u", $eb, $d2, $f9, $d6, "e", "v", $ed, "y", SCR::NEWLINE, "s", $b1, "l", $e7, $ac, " ", $a5, " ", $cb, $e5, "l", "f", ".", SCR::NEWLINE, "T", "o", "t", $ad, "y", "."
 ; <0 NOVA_AW>What? Korey told me that it was really important. Please?
@@ -516,6 +516,11 @@ NekoEdCameo:
 .byt SCR::SCENE, SCENES::NOVA_AND_NEKOED
 ; <1 NEKOED>I wanted to be in this game, so here I am! I should probably give you something cool.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::NEKOED, $c0, "w", $ca, $eb, $ff, $bb, $ba, $bf, $99, " ", "g", "a", $d0, ",", SCR::NEWLINE, $cc, " ", $a9, $e7, $c0, "a", "m", $fd, $c0, $df, $a0, SCR::NEWLINE, "p", "r", "o", "b", "a", "b", $d2, "g", "i", "v", $e7, $a6, " ", $9c, $e0, $b1, SCR::NEWLINE, "c", $e4, "l", "."
+.byt SCR::END_SCRIPT
+AboutIceJump:
+.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
+; <1 SIGN>With the ice enemy's ability, use Down+B to start sliding on ice, and hold Down for as long as you want to slide. You can abuse it to get another jump in mid-air.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "W", "i", $e0, " ", $a2, " ", "i", "c", $e7, $e6, "e", $cb, $e9, "a", "b", $dc, "i", "t", "y", ",", SCR::NEWLINE, "u", $e5, " ", "D", "o", "w", "n", "+", "B", " ", $bb, $de, "a", $ee, " ", "s", "l", "i", "d", $b1, SCR::NEWLINE, $c2, " ", "i", "c", "e", $f5, $a4, "h", "o", $ef, " ", "D", "o", "w", "n", " ", $a5, " ", $c4, SCR::NEWLINE, "l", $c2, "g", " ", $c4, " ", $a6, " ", "w", $ca, $d3, $bb, "s", "l", "i", "d", "e", ".", SCR::NEWLINE, "Y", $f4, " ", $b0, " ", "a", "b", "u", $e5, " ", $c1, $bb, $af, SCR::NEWLINE, $ca, "o", $a2, $ea, "j", "u", "m", "p", " ", $bf, "m", "i", "d", "-", "a", "i", "r", "."
 .byt SCR::END_SCRIPT
 
 CutsceneDictionary:
