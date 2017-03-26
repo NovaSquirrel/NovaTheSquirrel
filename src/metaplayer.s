@@ -31,6 +31,7 @@ OpenPrize: ; insert effects here
     lda PlayerAbility
     beq JustACoin ; if no ability, then it's just a coin
     add #InventoryItem::ABILITY_BLASTER-1
+    sta ColumnBytes,x
   :
 
   ; Open a prize

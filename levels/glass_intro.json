@@ -1250,6 +1250,13 @@
 					"W":	1,
 					"H":	1,
 					"Extra":	"*EmptyRoom"
+				}, {
+					"Id":	"PRIZE",
+					"X":	70,
+					"Y":	4,
+					"W":	1,
+					"H":	1,
+					"Extra":	"ABILITY_BACKUP"
 				}]
 		}, {
 			"Name":	"Sprites",

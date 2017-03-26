@@ -82,7 +82,9 @@ glass_introData:
   LObj  LO::S_M_CRATE,        0, 11
   LObjN LO::R_FG_GLASS_BLUE,  2, 2, 0, 5
   LObjN LO::WIDE_1,           1, 7, 8, LN1::FALLTHROUGH_LEDGE
-  LObjN LO::R_COIN,           1, 10, 2, 0
+  LObj  LO::S_PRIZE,          1, 4
+  LWriteCol InventoryItem::ABILITY_BACKUP
+  LObjN LO::R_COIN,           0, 10, 2, 0
   LObjN LO::WIDE_1,           0, 11, 2, LN1::SOLID_LEDGE
   LObjN LO::R_BG_GLASS_GRAY,  1, 2, 3, 0
   LObjN LO::R_BG_GLASS_GRAY,  1, 3, 3, 0
