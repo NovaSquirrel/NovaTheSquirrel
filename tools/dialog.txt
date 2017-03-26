@@ -379,3 +379,8 @@ Nova, with the help of a wish, went on to found the kingdom of Toasterland as a 
 `scene NOVA_AND_SIGN
 <1 SIGN>With the ice enemy's ability, use Down+B to start sliding on ice, and hold Down for as long as you want to slide. You can abuse it to get another jump in mid-air.
 `end
+
+:AboutWaterFreeze:
+`scene NOVA_AND_SIGN
+<1 SIGN>Ice can freeze water (or lava!) into a solid platform, that fire can thaw out.
+`end

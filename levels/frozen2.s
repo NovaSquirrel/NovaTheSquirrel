@@ -16,7 +16,7 @@ frozen2:
   .byt GraphicsUpload::PAL_ENEMY4
   .byt GraphicsUpload::BG_MINES
   .byt 255 ; end
-  .byt $00, $00 ; boundaries
+  .byt $00, $02 ; boundaries
 
 frozen2Data:
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::FROZEN_CAVE
@@ -105,7 +105,9 @@ frozen2Data:
   LObjN LO::WIDE_1,           2, 10, 2, LN1::SOLID_LEDGE
   LObj  LO::S_PRIZE,          3, 4
   LObjN LO::R_ROCK,           0, 8, 6, 6
-  LObj  LO::S_PRIZE,          1, 4
+  LObj  LO::S_DOOR,           1, 2
+  LWriteCol 8, 243
+  LObj  LO::S_PRIZE,          0, 4
   LObjN LO::R_BRICK,          1, 4, 3, 0
   LObj  LO::S_BIGHEART,       0, 7
   LObj  LO::S_SPRING,         2, 3
@@ -120,12 +122,19 @@ frozen2Data:
   LObj  LO::S_PRIZE,          1, 5
   LObjN LO::R_SOLID_BLOCK,    1, 5, 0, 4
   LObjN LO::R_SOLID_BLOCK,    1, 5, 4, 0
-  LObj  LO::R_CUSTOM,         3, 12, Metatiles::LAVA_MAIN, (4<<4)|2
+  LObj  LO::S_PRIZE,          3, 9
+  LWriteCol InventoryItem::BIG_HEALTH_RESTORE
+  LObj  LO::R_CUSTOM,         0, 12, Metatiles::LAVA_MAIN, (4<<4)|2
   LObjN LO::R_SOLID_BLOCK,    1, 6, 0, 1
-  LObjN LO::R_SOLID_BLOCK,    1, 7, 4, 0
-  LObjN LO::WIDE_1,           3, 3, 3, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           1, 7, 1, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           0, 8, 1, LN1::SOLID_LEDGE
+  LObj  LO::S_BIGHEART,       0, 9
+  LObjN LO::WIDE_1,           0, 10, 1, LN1::SOLID_LEDGE
+  LObjN LO::R_SOLID_BLOCK,    2, 7, 3, 0
+  LObjN LO::WIDE_1,           1, 3, 3, LN1::SOLID_LEDGE
   LObjN LO::R_ROCK,           0, 8, 6, 6
-  LObj  LO::R_CUSTOM,         7, 12, Metatiles::LAVA_MAIN, (7<<4)|2
+  LObjN LO::WIDE_1,           3, 7, 2, LN1::TALLGRASS
+  LObj  LO::R_CUSTOM,         4, 12, Metatiles::LAVA_MAIN, (7<<4)|2
   LObjN LO::WIDE_1,           2, 8, 3, LN1::SOLID_LEDGE
   LObjN LO::WIDE_3,           2, 3, 10, LN3::MINE_TRACKS
   LObj  LO::S_PRIZE,          0, 4
@@ -141,17 +150,58 @@ frozen2Data:
   LObj  LO::S_MTRACK_SSR,      1, 7
   LObjN LO::R_GROUND,         1, 8, 6, 6
   LObj  LO::S_HEART,          2, 7
-  LObjN LO::R_COIN,           3, 3, 2, 0
+  LObj  LO::S_FLOWER,         1, 7
+  LObjN LO::R_COIN,           2, 3, 2, 0
   LObjN LO::WIDE_1,           0, 4, 10, LN1::SOLID_LEDGE
   LObjN LO::TALL_1,           1, 4, 3, LN1::LADDER
   LObj  LO::R_CUSTOM,         1, 12, Metatiles::LAVA_MAIN, (8<<4)|2
   LObjN LO::WIDE_1,           3, 3, 1, LN1::SPIKES
   LObjN LO::R_GROUND,         6, 4, 4, 10
   LObjN LO::TALL_1,           5, 4, 5, LN1::LADDER
-  LObjN LO::R_ROCK,           0, 10, 13, 4
-  LObjN LO::R_COIN,           1, 9, 2, 0
+  LObjN LO::RECT_3,           0, 10, 4, LN3::ROCK, 18
+  LObj  LO::S_PRIZE,          1, 7
+  LWriteCol InventoryItem::ABILITY_BACKUP
+  LObjN LO::R_COIN,           0, 9, 2, 0
   LObjN LO::R_ROCK,           2, 0, 1, 4
-  LObjN LO::R_ROCK,           2, 0, 8, 6
+  LObjN LO::R_ROCK,           2, 0, 4, 6
+  LObj  LO::S_BIGHEART,       0, 9
+  LObj  LO::R_CUSTOM,         2, 10, Metatiles::LAVA_MAIN, (1<<4)|4
+  LObjN LO::R_ROCK,           3, 4, 3, 2
+  LObj  LO::S_SIGNPOST,       1, 9
+  LWriteCol <AboutWaterFreeze, >AboutWaterFreeze
+  LObj  LO::S_CUSTOM,         1, 3, Metatiles::PUSHABLE_BLOCK
+  LObjN LO::WIDE_1,           2, 4, 1, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           0, 7, 5, LN1::SOLID_LEDGE
+  LObj  LO::S_CUSTOM,         2, 6, Metatiles::PUSHABLE_BLOCK
+  LObj  LO::S_CUSTOM,         2, 3, Metatiles::PUSHABLE_BLOCK
+  LObjN LO::WIDE_1,           0, 4, 2, LN1::SOLID_LEDGE
+  LObjN LO::R_ROCK,           1, 13, 2, 1
+  LObjN LO::R_ROCK,           2, 0, 1, 6
+  LObjN LO::R_ROCK,           1, 10, 2, 4
+  LObj  LO::S_MTRACK_UPRIGHT,  1, 9
+  LObjN LO::R_GROUND,         2, 9, 8, 5
+  LObjN LO::WIDE_1,           2, 8, 0, LN1::FENCE
+  LObj  LO::S_MTRACK_UPRIGHT,  5, 8
+  LObjN LO::R_GROUND,         2, 8, 3, 6
+  LObjN LO::WIDE_1,           1, 7, 2, LN1::TALLGRASS
+  LObjN LO::R_WATER,          3, 8, 15, 6
+  LXPlus16
+  LObjN LO::WIDE_1,           0, 7, 2, LN1::TALLGRASS
+  LObjN LO::R_ROCK,           0, 8, 7, 6
+  LObjN LO::WIDE_3,           7, 7, 11, LN3::MINE_TRACKS
+  LObjN LO::WIDE_1,           11, 8, 3, LN1::SOLID_LEDGE
+  LObj  LO::S_EXIT_DOOR,      2, 6
+  LObjN LO::R_SOLID_BLOCK,    4, 0, 0, 14
+  LObjN LO::R_SOLID_BLOCK,    1, 0, 13, 4
+  LObj  LO::S_BIGHEART,       0, 8
+  LObjN LO::R_SOLID_BLOCK,    0, 10, 13, 4
+  LObj  LO::S_DOOR,           2, 8
+  LWriteCol 2, 88
+  LObjN LO::R_COIN,           2, 7, 6, 2
+  LObjN LO::R_AIR,            6, 5, 2, 1
+  LObj  LO::S_PRIZE,          1, 7
+  LWriteCol InventoryItem::HEALTH_RESTORE
+  LObjN LO::R_SOLID_BLOCK,    3, 0, 0, 14
   LFinished
 
 frozen2Sprite:
@@ -174,6 +224,11 @@ frozen2Sprite:
   LSpr Enemy::GEORGE,              1, 126,   7
   LSpr Enemy::GEORGE,              0, 134,   7
   LSpr Enemy::ROCKET_LAUNCHER,     0, 155,  13
+  LSpr Enemy::ICE_1,               1, 156,   3, 1
   LSpr Enemy::CANNON_1,            1, 164,   2
   LSpr Enemy::CANNON_1,            1, 166,   6
+  LSpr Enemy::CHECKPOINT,          0, 172,   9
+  LSpr Enemy::MINECART,            0, 175,   9
+  LSpr Enemy::ICE_1,               1, 179,   9, 1
+  LSpr Enemy::ICE_1,               1, 183,  12, 1
   .byt 255 ; end

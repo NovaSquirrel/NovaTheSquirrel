@@ -317,3 +317,11 @@ C .byt >NameMetalBox
 C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
 C ThinFontText "METALBOX"
+
+R ABILITY_BACKUP
+C .byt InventoryIcon::NOTHING
+C .byt <NameEmpty
+C .byt >NameEmpty
+C .byt <(DoNothing-1)
+C .byt >(DoNothing-1)
+C ThinFontText "ABILITY "

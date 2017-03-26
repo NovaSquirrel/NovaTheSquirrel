@@ -522,6 +522,11 @@ AboutIceJump:
 ; <1 SIGN>With the ice enemy's ability, use Down+B to start sliding on ice, and hold Down for as long as you want to slide. You can abuse it to get another jump in mid-air.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "W", "i", $e0, " ", $a2, " ", "i", "c", $e7, $e6, "e", $cb, $e9, "a", "b", $dc, "i", "t", "y", ",", SCR::NEWLINE, "u", $e5, " ", "D", "o", "w", "n", "+", "B", " ", $bb, $de, "a", $ee, " ", "s", "l", "i", "d", $b1, SCR::NEWLINE, $c2, " ", "i", "c", "e", $f5, $a4, "h", "o", $ef, " ", "D", "o", "w", "n", " ", $a5, " ", $c4, SCR::NEWLINE, "l", $c2, "g", " ", $c4, " ", $a6, " ", "w", $ca, $d3, $bb, "s", "l", "i", "d", "e", ".", SCR::NEWLINE, "Y", $f4, " ", $b0, " ", "a", "b", "u", $e5, " ", $c1, $bb, $af, SCR::NEWLINE, $ca, "o", $a2, $ea, "j", "u", "m", "p", " ", $bf, "m", "i", "d", "-", "a", "i", "r", "."
 .byt SCR::END_SCRIPT
+AboutWaterFreeze:
+.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
+; <1 SIGN>Ice can freeze water (or lava!) into a solid platform, that fire can thaw out.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "I", "c", $e7, $b0, " ", "f", "r", $d7, "z", $e7, "w", $c6, $ed, " ", "(", $c9, SCR::NEWLINE, "l", "a", "v", "a", "!", ")", " ", $d8, $bb, $be, $cc, "l", "i", $ff, "p", "l", $c6, $a5, "m", ",", SCR::NEWLINE, $9a, "f", "i", "r", $e7, $b0, " ", $e0, "a", "w", " ", $ae, "."
+.byt SCR::END_SCRIPT
 
 CutsceneDictionary:
 .byt "squirre", 'l'|128

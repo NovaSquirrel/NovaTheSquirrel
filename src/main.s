@@ -226,13 +226,14 @@ NotSlowTimer:
     lda FallingBlockPointer+1
     sta LevelBlockPtr+1
     lda (LevelBlockPtr),y
+    cmp BackgroundMetatile
     bne NoMoreFallingBlock
 
     ; Erase this block and add another one below
     dey
     lda (LevelBlockPtr),y
     pha
-    lda #0
+    lda BackgroundMetatile
     jsr ChangeBlock
     iny
     pla

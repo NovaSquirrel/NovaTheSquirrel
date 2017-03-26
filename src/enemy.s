@@ -1370,6 +1370,10 @@ WasNotClose:
   lda #SFX::BOOM1
   sta NeedSFX
 
+  lda #0
+  sta ObjectF3,x
+  sta ObjectF4,x
+
   lda #Enemy::EXPLOSION*2
   sta ObjectF1,x
   jmp CloneObjectX

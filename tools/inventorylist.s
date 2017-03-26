@@ -38,6 +38,7 @@
   .byt InventoryIcon::PLACEABLE ;ARROW_RIGHT_METAL
   .byt InventoryIcon::PLACEABLE ;WOOD_BOX
   .byt InventoryIcon::PLACEABLE ;METAL_BOX
+  .byt InventoryIcon::NOTHING ;ABILITY_BACKUP
 .endproc
 
 .proc InventoryINameL
@@ -80,6 +81,7 @@
   .byt <NameArrowRightMetal ;ARROW_RIGHT_METAL
   .byt <NameWoodBox ;WOOD_BOX
   .byt <NameMetalBox ;METAL_BOX
+  .byt <NameEmpty ;ABILITY_BACKUP
 .endproc
 
 .proc InventoryINameH
@@ -122,6 +124,7 @@
   .byt >NameArrowRightMetal ;ARROW_RIGHT_METAL
   .byt >NameWoodBox ;WOOD_BOX
   .byt >NameMetalBox ;METAL_BOX
+  .byt >NameEmpty ;ABILITY_BACKUP
 .endproc
 
 .proc InventoryICodeL
@@ -164,6 +167,7 @@
   .byt <(DoNothing-1) ;ARROW_RIGHT_METAL
   .byt <(DoNothing-1) ;WOOD_BOX
   .byt <(DoNothing-1) ;METAL_BOX
+  .byt <(DoNothing-1) ;ABILITY_BACKUP
 .endproc
 
 .proc InventoryICodeH
@@ -206,6 +210,7 @@
   .byt >(DoNothing-1) ;ARROW_RIGHT_METAL
   .byt >(DoNothing-1) ;WOOD_BOX
   .byt >(DoNothing-1) ;METAL_BOX
+  .byt >(DoNothing-1) ;ABILITY_BACKUP
 .endproc
 
 .proc InventoryShortName
@@ -248,5 +253,6 @@
   ThinFontText "ARROW RM" ;ARROW_RIGHT_METAL
   ThinFontText "WOOD BOX" ;WOOD_BOX
   ThinFontText "METALBOX" ;METAL_BOX
+  ThinFontText "ABILITY " ;ABILITY_BACKUP
 .endproc
 

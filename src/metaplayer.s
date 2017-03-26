@@ -24,6 +24,15 @@ OpenPrize: ; insert effects here
   tax
   lda ColumnBytes,x
   beq JustACoin
+
+  ; If it's an ability backup block, it contains 
+  cmp #InventoryItem::ABILITY_BACKUP
+  bne :+
+    lda PlayerAbility
+    beq JustACoin ; if no ability, then it's just a coin
+    add #InventoryItem::ABILITY_BLASTER-1
+  :
+
   ; Open a prize
   ldx TempX
   pha ; item number
@@ -31,7 +40,7 @@ OpenPrize: ; insert effects here
   lda #Metatiles::INVENTORY_ITEM
   jsr ChangeBlock
   iny
-  pla ; item number  
+  pla ; item number
   jmp MakeFloatingTextAtBlock
 
 JustACoin:
@@ -271,13 +280,13 @@ Erase:     ; erase old position
   sta LevelBlockPtr+0
   lda OldLevelBlockPtr+1
   sta LevelBlockPtr+1
-  lda #0
+  lda BackgroundMetatile
   jmp ChangeBlockFar
 
 EraseBoth: ; hit a cherry bomb
   lda #SFX::BOOM1
   jsr PlaySound
-  lda #0
+  lda BackgroundMetatile
   jsr ChangeBlockFar
   jmp Erase
 
@@ -290,12 +299,14 @@ PreMove:   ; check if the block should move up or anything
   iny
 
   lda (LevelBlockPtr),y ; only overwrite blank blocks
+  cmp BackgroundMetatile
   beq MoveIsOkay
   cmp #Metatiles::CHERRY_BOMB
   beq EraseBoth
 ; okay it's solid, but is the one above solid?
     dey
     lda (LevelBlockPtr),y ; nope, move over there
+    cmp BackgroundMetatile
     beq MoveIsOkay
 Abort:
     pla
@@ -305,6 +316,7 @@ MoveIsOkay:
   ; check if moving onto air
   iny
   lda (LevelBlockPtr),y
+  cmp BackgroundMetatile
   bne :+
     ; if moving into air, start falling
     lda LevelBlockPtr+0

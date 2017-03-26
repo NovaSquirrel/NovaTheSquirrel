@@ -764,6 +764,28 @@ ProjIceBlock:
     lda #0
     sta ObjectF1,x
 @NotFreeze:
+cmp #Metatiles::LAVA_TOP
+  bne @NotFreezeLava
+    lda #Metatiles::LAVA_FROZEN
+    jsr ChangeBlockFar
+
+    ; Change block to the right
+    lda LevelBlockPtr
+    add #$10
+    sta LevelBlockPtr
+    addcarry LevelBlockPtr+1
+    jsr FreezeLavaCommon
+
+    ; Change block to the left
+    lda LevelBlockPtr
+    sub #$20
+    sta LevelBlockPtr
+    subcarry LevelBlockPtr+1
+    jsr FreezeLavaCommon
+
+    lda #0
+    sta ObjectF1,x
+@NotFreezeLava:
 
   lda ObjectF3,x
   beq :+
@@ -827,6 +849,16 @@ FreezeWaterCommon:
     lda #0
     sta 0
     lda #Metatiles::WATER_FROZEN
+    jsr DelayChangeBlockFar
+: rts
+
+FreezeLavaCommon:
+  lda (LevelBlockPtr),y
+  cmp #Metatiles::LAVA_TOP
+  bne :+
+    lda #0
+    sta 0
+    lda #Metatiles::LAVA_FROZEN
     jsr DelayChangeBlockFar
 : rts
 
