@@ -168,6 +168,13 @@ Color1 = 10
 Color2 = 11
 Color3 = 12
 Cursor = 13
+LastOptionNum = 14
+LastOptionConst = 4
+
+  lda #LastOptionConst
+  sub OptionsViaInventory
+  sta LastOptionNum
+
 ; Initialize PPU stuff
   jsr WaitVblank
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
@@ -246,9 +253,18 @@ Cursor = 13
   jsr PutStringImmediate
   .byt "-Options:-",0
 
+  lda OptionsViaInventory
+  bne :+
   PositionXY 0, 3, 10
   jsr PutStringImmediate
   .byt "Start game",0
+:
+  lda OptionsViaInventory
+  beq :+
+  PositionXY 0, 3, 10
+  jsr PutStringImmediate
+  .byt "Resume game",0
+:
   PositionXY 0, 3, 12
   jsr PutStringImmediate
   .byt "Acceleration",0
@@ -276,7 +292,7 @@ Cursor = 13
   sta Color3
 
   ; Print current values for the options
-  ldy #4
+  ldy LastOptionNum
 : tya
   tax
   jsr PrintChoiceValue
@@ -286,8 +302,6 @@ Cursor = 13
   ; This will make the colors change on the first loop iteration
   lda #255
   sta retraces
-
-LastOptionNum = 4
 
 Loop:
   jsr WaitVblank
@@ -352,8 +366,14 @@ NoOptionChange:
   ; If Cursor is at the top or at the bottom, A does stuff
   ; otherwise it doesn't
   lda Cursor ; 0 = Start game
-  jeq JumpToLevelSelect
-  cmp #LastOptionNum ; 4 = Delete save
+  bne :+
+  lda OptionsViaInventory
+  beq ReturnFromInventory
+  rts
+ReturnFromInventory:
+  jmp JumpToLevelSelect
+:
+  cmp #LastOptionConst ; 4 = Delete save
   bne NoA
   lda DeleteSavePlaceholder
   jne ShowDeleteSaveScreen
@@ -372,7 +392,7 @@ NoA:
   and #KEY_DOWN
   beq :+
     lda Cursor
-    cmp #LastOptionNum
+    cmp LastOptionNum
     beq :+
     inc Cursor
   :

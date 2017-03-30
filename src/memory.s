@@ -340,6 +340,7 @@ GameStateLen = 1+2+10+10+2 ; update if more stuff is added
 
   CurWorld:         .res 1 ; current world for level select
   LevelSelectInventory: .res 1 ; flag, set to 1 if accessing the inventory via the level select
+  OptionsViaInventory: .res 1 ; if 1, accessing options via inventory screen
 
   ; the sprite list from the ROM has to be copied here so we can access it in gameplay banks
   SpriteListRAM:      .res 256

@@ -283,7 +283,7 @@ NotDie:
   countdown SoundDebounce
 
   ; Still need sound bank since the pause screen mutes the sound
-  lda keydown
+  lda keynew
   and #KEY_START
   beq NoPause
 .ifdef NMI_MUSIC

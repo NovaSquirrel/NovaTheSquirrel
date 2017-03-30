@@ -71,7 +71,9 @@ frozenData:
   LObjN LO::R_ROCK,           0, 12, 10, 2
   LObj  LO::S_PRIZE,          2, 9
   LWriteCol InventoryItem::ABILITY_NICE
-  LObj  LO::S_SIGNPOST,       2, 11
+  LObj  LO::S_PRIZE,          1, 9
+  LWriteCol InventoryItem::ABILITY_BACKUP
+  LObj  LO::S_SIGNPOST,       1, 11
   LWriteCol <AboutIceJump, >AboutIceJump
   LObjN LO::WIDE_1,           1, 11, 3, LN1::TALLGRASS
   LObjN LO::RECT_3,           1, 0, 3, LN3::ROCK, 16

@@ -112,6 +112,10 @@ Counter = 0
 IconList = TempSpace ; can use this since the level will be redrawn anyway
 IconListOffset = IconList+3 ; 3 is where the actual item icons start
 SwapList = ScratchPage ; to help with avoiding screen blanking when swapping two items
+PauseScreenPage = ScratchPage + 20 ; 0 for inventory, 1 for more options
+TossMode = ScratchPage + 21
+LastMenuOption = ScratchPage + 22
+ExtraOptionsCount = 3 ; constant
 
   lda #VWF_BANK
   jsr _SetPRG
@@ -121,6 +125,12 @@ SwapList = ScratchPage ; to help with avoiding screen blanking when swapping two
   bne :+
   inc pently_music_playing
 :
+
+  lda #0
+  sta PauseScreenPage
+  sta TossMode
+  lda #InventoryLen
+  sta LastMenuOption
 
 DrawAgain:
   ; Clear icon list
@@ -172,6 +182,8 @@ DrawAgain:
   cpx #4
   bne :- 
 
+  lda PauseScreenPage
+  bne NoDrawInventoryList
   ldy #0
 : ldx InventoryType,y
   lda InventoryIIcon,x
@@ -190,7 +202,7 @@ DrawAgain:
   pla
   jsr vwfPuts
   lda TouchTemp
-  add #5
+  add #5 ; +5 rows in CHR RAM
   ldy #0
   jsr copyLineImg
 
@@ -198,6 +210,32 @@ DrawAgain:
   iny
   cpy #InventoryLen
   bne :-
+NoDrawInventoryList:
+
+  lda PauseScreenPage
+  beq NoDrawExtraOptionsList
+  ldy #0
+: sty TouchTemp
+  lda MoreItemsListNameH,y
+  pha
+  lda MoreItemsListNameL,y
+  pha
+  jsr clearLineImg
+  ldx #0 ; draw at X = 0
+  pla ; \
+  tay ; | string pointer
+  pla ; /
+  jsr vwfPuts
+  lda TouchTemp
+  add #5 ; +5 rows in CHR RAM
+  ldy #0
+  jsr copyLineImg ; in:  AAYY = destination address in VRAM
+  ; Reload the counter
+  ldy TouchTemp
+  iny
+  cpy #ExtraOptionsCount
+  bne :-
+NoDrawExtraOptionsList:
 
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
@@ -245,7 +283,7 @@ DoNametable:
   cmp #14
   bne :-
 
-; Write an item name
+; Write "-PAUSED-" if paused, or another string if on the level select
   lda LevelSelectInventory
   bne :+
   ldy #<PausedString
@@ -261,10 +299,45 @@ DoNametable:
   jsr vwfPutsAtRow
 :
 
+; Put the "more options" choice
+  lda PauseScreenPage
+  bne :+
+  ldy #<OtherOptionsString2
+  lda #>OtherOptionsString2
+  ldx #15
+  jsr vwfPutsAtRow
   ldy #<InventoryString
   lda #>InventoryString
   ldx #4
   jsr vwfPutsAtRow
+:
+
+  lda TossMode
+  bne WasTossMode
+  lda PauseScreenPage
+  beq :+
+  ldy #<InventoryString2
+  lda #>InventoryString2
+  ldx #15
+  jsr vwfPutsAtRow
+  ldy #<OtherOptionsString
+  lda #>OtherOptionsString
+  ldx #4
+  jsr vwfPutsAtRow
+:
+WasTossMode:
+
+  lda TossMode
+  beq :+
+  ldy #<TossModeString2
+  lda #>TossModeString2
+  ldx #15
+  jsr vwfPutsAtRow
+  ldy #<TossModeString
+  lda #>TossModeString
+  ldx #4
+  jsr vwfPutsAtRow
+:
 
 ; copyLineImg uses vertical writing mode, so switch it back
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
@@ -286,7 +359,8 @@ DoNametable:
   ; Start+Select = exit level
   lda keynew
   and #KEY_SELECT
-  beq @NotSelect
+  beq NotSelect2
+GoBackToLevelSelect:
   lda LevelSelectInventory
   bne :+
   pla
@@ -297,7 +371,7 @@ DoNametable:
   sta PlayerAbility
 :
   jmp ShowLevelSelect
-@NotSelect:
+NotSelect2:
   lda keydown
   and #KEY_START
   bne :--
@@ -311,16 +385,65 @@ Loop:
   sta OAM_DMA
   jsr ReadJoy
 
-  lda LevelSelectInventory
+  ; Allow switching pages
+  lda InventoryCursorY
+  cmp #InventoryLen
   bne :+
-  lda keydown
+  lda keynew
   and #KEY_A
-  jne DoInventoryCode
+  beq :+  
+    lda PauseScreenPage
+    eor #1
+    sta PauseScreenPage
+    jmp DrawAgain
+:
+
+  lda LevelSelectInventory ; don't allow using items on the level select
+  bne :+
+  lda PauseScreenPage
+  bne :+
+  lda TossMode
+  bne TossOutItem
+  lda keynew
+  and #KEY_A
+  beq :+
+  jmp DoInventoryCode
+TossOutItem:
+  lda keynew
+  and #KEY_A
+  beq :+
+  ldx InventoryCursorY
+  lda #0
+  sta InventoryType,x
+  sta InventoryAmount,x
+  jmp DrawAgain
+:
+
+  ; Use extra menu options
+  lda PauseScreenPage
+  beq :+
+  lda keynew
+  and #KEY_A
+  beq :+
+  ldy InventoryCursorY
+  cpy #ExtraOptionsCount
+  bcs :+
+  lda MoreItemsListCodeH,y
+  pha
+  lda MoreItemsListCodeL,y
+  pha
+
+  lda #0
+  sta InventoryCursorY
+  rts
 :
 
   lda keynew
   and #KEY_SELECT
   beq NotSelect
+    lda InventoryCursorY ; \ if it's on the "other options" item, don't allow swapping with it
+    cmp #InventoryLen    ; /
+    beq NotSelect
     lda InventoryCursorYSwap
     bmi @SetSwap
     ldx InventoryCursorYSwap
@@ -352,16 +475,16 @@ Loop:
   beq :+
     dec InventoryCursorY
     bpl :+
-    lda #InventoryLen-1
+    lda LastMenuOption
     sta InventoryCursorY
   :
 
   lda keynew
   and #KEY_DOWN
   beq :+
+    ldy InventoryCursorY
     inc InventoryCursorY
-    lda InventoryCursorY
-    cmp #InventoryLen
+    cpy LastMenuOption
     bne :+
     lda #0
     sta InventoryCursorY
@@ -501,6 +624,7 @@ DoInventoryCode:
   jsr CallInventoryCode
 :
 
+CleanupAfterInventory:
   lda LevelSelectInventory
   jne ShowLevelSelect
 
@@ -572,8 +696,12 @@ UpdateOneLineAddrH:
 .endrep
 
 UpdateItemQuantity:
-; Write item quantities as sprites
   jsr ClearOAM
+  lda PauseScreenPage
+  beq :+
+  rts
+:
+; Write item quantities as sprites
   ldy #4*8
   ldx #0   ; slot 0
 ItemQuantityLoop:
@@ -627,6 +755,57 @@ ItemQuantityLoop:
 
 InventoryPalette:
   .byt $30, $0f, $00, $2a
+
+InventoryString:
+  .byt " - Inventory - ",0
+InventoryString2:
+  .byt "(Inventory)",0
+OtherOptionsString:
+  .byt " - Other options - ",0
+OtherOptionsString2:
+  .byt "(More options)",0
+TossModeString:
+  .byt " - Toss out items - ",0
+TossModeString2:
+  .byt " ",0
+
+; More options list
+MoreItemsListNameL:
+.byt <ExitLevelString
+.byt <TossItemsString
+.byt <GameOptionsString
+MoreItemsListNameH:
+.byt >ExitLevelString
+.byt >TossItemsString
+.byt >GameOptionsString
+MoreItemsListCodeL:
+.byt <(ExitLevelCode-1)
+.byt <(TossItemsCode-1)
+.byt <(GameOptionsCode-1)
+MoreItemsListCodeH:
+.byt >(ExitLevelCode-1)
+.byt >(TossItemsCode-1)
+.byt >(GameOptionsCode-1)
+
+ExitLevelString:
+.byt "Exit level",0
+TossItemsString:
+.byt "Toss items",0
+GameOptionsString:
+.byt "Game options",0
+
+ExitLevelCode:
+  jmp PauseScreen::GoBackToLevelSelect
+TossItemsCode:
+  inc TossMode
+  lsr PauseScreenPage
+  dec LastMenuOption
+  jmp DrawAgain
+GameOptionsCode:
+  inc OptionsViaInventory
+  jsr ShowOptions
+  dec OptionsViaInventory
+  jmp CleanupAfterInventory
 .endproc
 
 .proc CheatCodeKeys
@@ -717,5 +896,3 @@ PausedString:
   .byt "P A U S E D",0
 LevelSelectString:
   .byt "Nova the Squirrel",0
-InventoryString:
-  .byt " - Inventory - ",0

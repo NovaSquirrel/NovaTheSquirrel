@@ -375,6 +375,7 @@ DoEndPage:
   and #KEY_START
   beq @NoSkip
   ; If Start is pressed and the dialog is skippable, end the script
+  jsr ReadJoy ; reset keynew
   ldx CutsceneOldSP
   txs
   jmp StartCutscene::SkipTheScript

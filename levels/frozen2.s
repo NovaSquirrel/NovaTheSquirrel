@@ -107,11 +107,11 @@ frozen2Data:
   LObjN LO::R_ROCK,           0, 8, 6, 6
   LObj  LO::S_DOOR,           1, 2
   LWriteCol 8, 243
-  LObj  LO::S_PRIZE,          0, 4
-  LObjN LO::R_BRICK,          1, 4, 3, 0
-  LObj  LO::S_BIGHEART,       0, 7
+  LObjN LO::R_BRICK,          0, 4, 3, 0
+  LObj  LO::S_BIGHEART,       1, 7
   LObj  LO::S_SPRING,         2, 3
-  LObjN LO::WIDE_1,           3, 8, 6, LN1::SOLID_LEDGE
+  LObj  LO::S_PRIZE,          1, 4
+  LObjN LO::WIDE_1,           2, 8, 6, LN1::SOLID_LEDGE
   LObj  LO::R_CUSTOM,         0, 12, Metatiles::LAVA_MAIN, (15<<4)|2
   LObjN LO::WIDE_1,           4, 2, 2, LN1::SOLID_LEDGE
   LObj  LO::S_SPRING,         1, 1
