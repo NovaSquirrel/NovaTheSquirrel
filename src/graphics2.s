@@ -5,3 +5,4 @@ SPHannah:   ChrFile "../chr/sphannah.pb53",   512,  $1800
 SPSchemeTeam: ChrFile "../chr/spscheme1.pb53",  512,  $1800
 SPLife:     ChrFile "../chr/splife.pb53",     512,  $1800
 BGMines:    ChrFile "../chr/bgmines.pb53",     512,  $0e00
+BGShopIcons: ChrFile "../chr/shopicons.pb53",  768,  $0b00

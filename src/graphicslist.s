@@ -49,6 +49,7 @@ GraphicsList:
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGMines,      >BGMines
   .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy4,    >PalEnemy4
   .byt GRAPHICS_BANK1|IS_PALETTE, <PalFrozen,    >PalFrozen
+  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGShopIcons,  >BGShopIcons
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)
 DoGraphicUpload:

@@ -69,6 +69,7 @@ WorldTimes8 = 15
   lda #>Instructions3
   ldy #<Instructions3
   jsr vwfPutsAtRow
+
   ; Write last row with the world number
   lda #>Instructions4
   ldy #<Instructions4
@@ -104,12 +105,13 @@ WorldTimes8 = 15
   ldy #$50
   ldx #9
   jsr WriteIncreasing
+  ; Start: Items and shop
   lda #$23
   sta PPUADDR
-  lda #$2c
+  lda #$2b
   sta PPUADDR
   ldy #$60
-  ldx #9
+  ldx #10
   jsr WriteIncreasing
   lda #$21
   sta PPUADDR
@@ -191,8 +193,9 @@ Loop:
     ora CurLevel
     sta StartedLevelNumber
     jsr UploadNovaAndCommon
-    inc LevelSelectInventory
-    jmp PauseScreen
+;    inc LevelSelectInventory
+;    jmp PauseScreen
+    jmp ShowShop
   :
   lda keynew
   and #KEY_LEFT
@@ -432,7 +435,7 @@ Instructions1:
 Instructions2:
   .byt "  A: Start level",0
 Instructions3:
-  .byt "Start: Inventory",0
+  .byt " Start: Items/Shop",0
 Instructions4:
   .byt "   ( World 1 )",0
 .endproc

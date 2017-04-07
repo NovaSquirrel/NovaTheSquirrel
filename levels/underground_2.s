@@ -43,6 +43,7 @@ underground_2Data:
   LObjN LO::TALL_2,           3, 4, 4, LN2::PATH_LINE
   LObjN LO::WIDE_2,           2, 5, 2, LN2::STRIPED_LOG_HORIZ
   LObj  LO::S_PRIZE,          1, 2
+  LWriteCol InventoryItem::HEALTH_RESTORE
   LObjN LO::WIDE_2,           0, 11, 1, LN2::STONE_BRIDGE
   LObj  LO::S_HEART,          1, 4
   LObjN LO::WIDE_2,           1, 9, 3, LN2::WOOD_PLATFORM_TOP
@@ -67,6 +68,7 @@ underground_2Data:
   LObjN LO::WIDE_1,           0, 6, 8, LN1::SOLID_LEDGE
   LObjN LO::R_SOLID_BLOCK,    1, 10, 2, 0
   LObj  LO::S_PRIZE,          1, 10
+  LWriteCol InventoryItem::ABILITY_FIRE
   LObjN LO::R_SOLID_BLOCK,    2, 6, 0, 3
   LObj  LO::S_HEART,          0, 10
   LObjN LO::WIDE_1,           0, 11, 1, LN1::FALLTHROUGH_LEDGE
@@ -119,6 +121,7 @@ underground_2Data:
   LObjN LO::R_ROCK,           0, 10, 13, 4
   LObjN LO::R_ROCK,           1, 0, 3, 2
   LObj  LO::S_PRIZE,          0, 6
+  LWriteCol InventoryItem::ABILITY_WATER
   LObjN LO::R_SOLID_BLOCK,    2, 9, 1, 0
   LObjN LO::R_GROUND,         2, 0, 15, 2
   LObjN LO::R_SOLID_BLOCK,    0, 8, 0, 1

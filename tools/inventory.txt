@@ -166,13 +166,13 @@ C .byt <(DoSwitchAbility-1)
 C .byt >(DoSwitchAbility-1)
 C ThinFontText "BOOMRANG"
 
-R ABILITY_BALL
+R ABILITY_MIRROR
 C .byt InventoryIcon::ABILITY
-C .byt <NameBall
-C .byt >NameBall
+C .byt <NameMirror
+C .byt >NameMirror
 C .byt <(DoSwitchAbility-1)
 C .byt >(DoSwitchAbility-1)
-C ThinFontText "BALL    "
+C ThinFontText "MIRROR  "
 
 R ABILITY_WATER
 C .byt InventoryIcon::ABILITY
@@ -325,3 +325,11 @@ C .byt >NameEmpty
 C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
 C ThinFontText "ABILITY "
+
+R AUTO_BALLOON
+C .byt InventoryIcon::BULLET
+C .byt <NameAutoBalloon
+C .byt >NameAutoBalloon
+C .byt <(DoNothing-1)
+C .byt >(DoNothing-1)
+C ThinFontText "ABALLOON"

@@ -160,8 +160,10 @@ InitSave:
 ;  sta LevelAvailable
   ; Mark the first 8 levels as available
   ; for demo purposes
-  lda #127
+  lda #255
   sta LevelAvailable
+  lda #15
+  sta LevelAvailable+1
 
   ; Write tag to SRAM
   ldx #7
@@ -190,10 +192,6 @@ NoInitSave:
   sta InventorySaved+2
   lda #InventoryItem::ABILITY_BOOMERANG
   sta InventorySaved+3
-  lda #InventoryItem::BLOCK
-  sta InventorySaved+4
-  lda #InventoryItem::ICE_SKATES
-  sta InventorySaved+5
   .endif
 
 ; Turn on NMI and make sprites use $1xxx in CHR RAM

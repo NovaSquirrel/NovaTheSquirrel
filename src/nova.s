@@ -36,6 +36,7 @@ SOUND_BANK = $e
 VWF_BANK = $e
 INVENTORY_BANK = $e
 THINFONT_BANK = $d
+OPTIONS_BANK = $e
 
 .segment "PRG6" ;
 .segment "PRG7" ;
@@ -69,6 +70,9 @@ THINFONT_BANK = $d
 .include "inventoryitems.s"
 .include "cutscenedata.s"
 .include "levelselect.s"
+.include "shop.s"
+.include "options.s"
+
 .segment "PRG7" ; dialog
 .include "../tools/dialog.s"
 .segment "PRGf" ; important stuff

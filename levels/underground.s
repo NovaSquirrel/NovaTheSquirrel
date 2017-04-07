@@ -148,7 +148,9 @@ undergroundData:
   LObjN LO::R_COIN,           2, 8, 3, 1
   LObj  LO::S_SPRING,         1, 12
   LObj  LO::S_PRIZE,          3, 10
+  LWriteCol InventoryItem::HEALTH_RESTORE
   LObj  LO::S_PRIZE,          2, 10
+  LWriteCol InventoryItem::HEALTH_RESTORE
   LObjN LO::R_GROUND,         2, 8, 1, 4
   LFinished
 

@@ -19,7 +19,7 @@
   .byt InventoryIcon::ABILITY ;ABILITY_FIREWORK
   .byt InventoryIcon::ABILITY ;ABILITY_NICE
   .byt InventoryIcon::ABILITY ;ABILITY_BOOMERANG
-  .byt InventoryIcon::ABILITY ;ABILITY_BALL
+  .byt InventoryIcon::ABILITY ;ABILITY_MIRROR
   .byt InventoryIcon::ABILITY ;ABILITY_WATER
   .byt InventoryIcon::ABILITY ;ABILITY_FAN
   .byt InventoryIcon::ABILITY ;ABILITY_BURGER
@@ -39,6 +39,7 @@
   .byt InventoryIcon::PLACEABLE ;WOOD_BOX
   .byt InventoryIcon::PLACEABLE ;METAL_BOX
   .byt InventoryIcon::NOTHING ;ABILITY_BACKUP
+  .byt InventoryIcon::BULLET ;AUTO_BALLOON
 .endproc
 
 .proc InventoryINameL
@@ -62,7 +63,7 @@
   .byt <NameFirework ;ABILITY_FIREWORK
   .byt <NameNice ;ABILITY_NICE
   .byt <NameBoomerang ;ABILITY_BOOMERANG
-  .byt <NameBall ;ABILITY_BALL
+  .byt <NameMirror ;ABILITY_MIRROR
   .byt <NameWater ;ABILITY_WATER
   .byt <NameFan ;ABILITY_FAN
   .byt <NameBurger ;ABILITY_BURGER
@@ -82,6 +83,7 @@
   .byt <NameWoodBox ;WOOD_BOX
   .byt <NameMetalBox ;METAL_BOX
   .byt <NameEmpty ;ABILITY_BACKUP
+  .byt <NameAutoBalloon ;AUTO_BALLOON
 .endproc
 
 .proc InventoryINameH
@@ -105,7 +107,7 @@
   .byt >NameFirework ;ABILITY_FIREWORK
   .byt >NameNice ;ABILITY_NICE
   .byt >NameBoomerang ;ABILITY_BOOMERANG
-  .byt >NameBall ;ABILITY_BALL
+  .byt >NameMirror ;ABILITY_MIRROR
   .byt >NameWater ;ABILITY_WATER
   .byt >NameFan ;ABILITY_FAN
   .byt >NameBurger ;ABILITY_BURGER
@@ -125,6 +127,7 @@
   .byt >NameWoodBox ;WOOD_BOX
   .byt >NameMetalBox ;METAL_BOX
   .byt >NameEmpty ;ABILITY_BACKUP
+  .byt >NameAutoBalloon ;AUTO_BALLOON
 .endproc
 
 .proc InventoryICodeL
@@ -148,7 +151,7 @@
   .byt <(DoSwitchAbility-1) ;ABILITY_FIREWORK
   .byt <(DoSwitchAbility-1) ;ABILITY_NICE
   .byt <(DoSwitchAbility-1) ;ABILITY_BOOMERANG
-  .byt <(DoSwitchAbility-1) ;ABILITY_BALL
+  .byt <(DoSwitchAbility-1) ;ABILITY_MIRROR
   .byt <(DoSwitchAbility-1) ;ABILITY_WATER
   .byt <(DoSwitchAbility-1) ;ABILITY_FAN
   .byt <(DoSwitchAbility-1) ;ABILITY_BURGER
@@ -168,6 +171,7 @@
   .byt <(DoNothing-1) ;WOOD_BOX
   .byt <(DoNothing-1) ;METAL_BOX
   .byt <(DoNothing-1) ;ABILITY_BACKUP
+  .byt <(DoNothing-1) ;AUTO_BALLOON
 .endproc
 
 .proc InventoryICodeH
@@ -191,7 +195,7 @@
   .byt >(DoSwitchAbility-1) ;ABILITY_FIREWORK
   .byt >(DoSwitchAbility-1) ;ABILITY_NICE
   .byt >(DoSwitchAbility-1) ;ABILITY_BOOMERANG
-  .byt >(DoSwitchAbility-1) ;ABILITY_BALL
+  .byt >(DoSwitchAbility-1) ;ABILITY_MIRROR
   .byt >(DoSwitchAbility-1) ;ABILITY_WATER
   .byt >(DoSwitchAbility-1) ;ABILITY_FAN
   .byt >(DoSwitchAbility-1) ;ABILITY_BURGER
@@ -211,6 +215,7 @@
   .byt >(DoNothing-1) ;WOOD_BOX
   .byt >(DoNothing-1) ;METAL_BOX
   .byt >(DoNothing-1) ;ABILITY_BACKUP
+  .byt >(DoNothing-1) ;AUTO_BALLOON
 .endproc
 
 .proc InventoryShortName
@@ -234,7 +239,7 @@
   ThinFontText "FIREWORK" ;ABILITY_FIREWORK
   ThinFontText "NICECUBE" ;ABILITY_NICE
   ThinFontText "BOOMRANG" ;ABILITY_BOOMERANG
-  ThinFontText "BALL    " ;ABILITY_BALL
+  ThinFontText "MIRROR  " ;ABILITY_MIRROR
   ThinFontText "WATER   " ;ABILITY_WATER
   ThinFontText "TORNADO " ;ABILITY_FAN
   ThinFontText "BURGERS " ;ABILITY_BURGER
@@ -254,5 +259,6 @@
   ThinFontText "WOOD BOX" ;WOOD_BOX
   ThinFontText "METALBOX" ;METAL_BOX
   ThinFontText "ABILITY " ;ABILITY_BACKUP
+  ThinFontText "ABALLOON" ;AUTO_BALLOON
 .endproc
 

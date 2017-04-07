@@ -1152,7 +1152,7 @@ WriteIncreasing16:
 : ldy InventoryType,x
   beq Empty
   inx
-  cpy #InventoryLen
+  cpx #InventoryLen
   bne :-
   clc ; No free slots
   rts
@@ -1627,4 +1627,41 @@ Convert:
   lda #1
   sta NeedLevelRerender
   rts
+.endproc
+
+.proc LoadShopItemIcons
+; Ability graphics are in the graphics bank
+  lda #GRAPHICS_BANK1
+  jsr _SetPRG
+; Calculate pointer to the ability icon
+  lda #$08
+  sta PPUADDR
+  lda #$00
+  sta PPUADDR
+
+  lda #<AbilityIcons
+  sta 0
+  lda #>AbilityIcons
+  sta 1
+
+; Copy 1 kilobyte to the PPU
+  ldx #4
+  ldy #0
+: lda (0),y
+  sta PPUDATA
+  iny
+  bne :-
+  inc 1
+  dex
+  bne :-
+; Decompress shop icons
+  lda #GRAPHICS_BANK2
+  jsr _SetPRG
+  lda #<BGShopIcons
+  ldy #>BGShopIcons
+  jsr DecompressCHR
+
+; Restore options bank
+  lda #OPTIONS_BANK
+  jmp _SetPRG
 .endproc

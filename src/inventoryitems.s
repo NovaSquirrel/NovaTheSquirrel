@@ -13,7 +13,7 @@ NameFire: .byt "Fireballs",0
 NameFirework: .byt "Fireworks",0
 NameNice: .byt "Ice blocks",0
 NameBoomerang: .byt "Boomerang",0
-NameBall: .byt "Bouncy ball",0
+NameMirror: .byt "Mirror",0
 NameWater: .byt "Water bottle",0
 NameFan: .byt "Tornadoes",0
 NameBurger: .byt "Dinner Blaster",0
@@ -30,6 +30,7 @@ NameSpring: .byt "Spring",0
 NameNuclearPowerPants: .byt "Nuclear Power Pants",0
 NameAlwaysJumping: .byt "Always jumping",0
 NameBalloon: .byt "Balloon",0
+NameAutoBalloon: .byt "Auto Balloon",0
 NameArrowLeft: .byt "Arrow (left)",0
 NameArrowDown: .byt "Arrow (down)",0
 NameArrowUp: .byt "Arrow (up)",0
