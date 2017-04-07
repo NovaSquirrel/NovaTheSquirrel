@@ -227,6 +227,41 @@ ClearMiddleMenu:
   rts
 
 UpdateInventoryAmounts:
+  jsr WaitVblank
+  PositionXY 0, 6, 26
+  ldx #0
+: ldy InventorySaved+InventoryLen,x
+  beq InventoryZero
+  cpy #9
+  bcc InventoryUnderTen
+; ones and tens
+  iny
+  lda BCD99,y
+  jsr PutHex
+UpdateInventoryAmountsBack:
+  inx
+  cpx #10
+  bne :-
+
+  lda #0
+  sta PPUSCROLL 
+  sta PPUSCROLL 
+  rts
+
+InventoryZero:
+  lda #10
+  sta PPUDATA
+  sta PPUDATA
+  jmp UpdateInventoryAmountsBack
+InventoryUnderTen:
+  lda #10
+  sta PPUDATA
+  tya
+  add #'1'
+  sta PPUDATA
+  jmp UpdateInventoryAmountsBack
+
+.if 0
   jsr ClearOAM
   ldx #0
   ldy #32
@@ -274,6 +309,7 @@ UpdateInventoryAmounts:
   cpx #10
   bne @Loop
   rts
+.endif
 
 CursorSpin:
   lda retraces
@@ -689,6 +725,7 @@ Empty: ; Empty slot, put in item
 .endproc
 
 .proc PutHex
+    stx TempX
 	pha
 	pha
 	lsr a
@@ -704,6 +741,7 @@ Empty: ; Empty slot, put in item
 	lda hexdigits,x
 	sta PPUDATA
 	pla
+    ldx TempX
 	rts
 hexdigits:	.byt "0123456789ABCDEF"
 .endproc
