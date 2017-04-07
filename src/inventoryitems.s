@@ -96,6 +96,52 @@ AfterAmount:
 .endproc
 
 .proc DoPlaceRope
+  lda PlayerPXL
+  add #$8
+  lda PlayerPXH
+  adc #0
+  jsr GetLevelColumnPtr
+
+  lda #0
+  sta 0
+
+  ldy PlayerPYH
+  ; Don't place it down if the player's head is in a block
+  lda (LevelBlockPtr),y
+  cmp BackgroundMetatile
+  beq :+
+  rts
+:
+
+  ; Extend to the ground
+: lda (LevelBlockPtr),y
+  cmp BackgroundMetatile
+  bne :+
+  iny
+  bne :-
+: dey
+
+  ; Place ladder
+: lda (LevelBlockPtr),y
+  cmp BackgroundMetatile
+  bne :+
+  lda #Metatiles::ROPE
+  sta (LevelBlockPtr),y
+  inc 0
+  dey
+  bne :-
+:
+
+  iny
+  lda (LevelBlockPtr),y
+  cmp #Metatiles::ROPE
+  bne :+
+  lda BackgroundMetatile
+  sta (LevelBlockPtr),y
+:
+
+  lda 0 ; only use up rope if it was actually placed
+  jne RemoveOneItem
   rts
 .endproc
 
@@ -357,10 +403,11 @@ WasTossMode:
   sta PPUSCROLL
 ; Wait for Start unpress
 : jsr ReadJoy
-  ; Start+Select = exit level
-  lda keynew
-  and #KEY_SELECT
-  beq NotSelect2
+  ; Start+Select = exit level (disabled)
+;  lda keynew
+;  and #KEY_SELECT
+;  beq NotSelect2
+  jmp NotSelect2
 GoBackToLevelSelect:
   lda LevelSelectInventory
   bne :+

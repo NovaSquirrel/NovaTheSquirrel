@@ -120,6 +120,14 @@ C .byt $10
 C .byt $11
 C .byt $11
 
+R ROPE
+C .byt M_PAL_2
+C .byt M_SPECIAL_MISC
+C .byt $32
+C .byt $32
+C .byt $33
+C .byt $33
+
 R SPRING
 C .byt M_PAL_2
 C .byt M_EMPTY|M_SPECIAL_MISC

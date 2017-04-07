@@ -182,7 +182,7 @@ NoInitSave:
   sta IntroShownAlready
 
 ;  .ifdef DEBUG
-  .if 1
+  .if 0
 ; Sample testing inventory
   lda #InventoryItem::HEALTH_RESTORE
   sta InventorySaved+0

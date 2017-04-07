@@ -166,6 +166,7 @@ CollectibleHi:
 SpecialMiscLo:
   .byt <(TouchedLadder-1)
   .byt <(TouchedLadder-1)
+  .byt <(TouchedLadder-1)
   .byt <(TouchedSpring-1)
   .byt <(TouchedSignpost-1)
   .byt <(TouchedDoorBottom-1)
@@ -183,6 +184,7 @@ SpecialMiscLo:
   .byt <(TouchedCeilingBarrier-1)
   .byt <(TouchedStoryTrigger-1)
 SpecialMiscHi:
+  .byt >(TouchedLadder-1)
   .byt >(TouchedLadder-1)
   .byt >(TouchedLadder-1)
   .byt >(TouchedSpring-1)

@@ -730,15 +730,21 @@ SkipTheTop:
   beq :+
   cmp #Metatiles::LADDER_TOP
   beq :+
+  cmp #Metatiles::ROPE
+  beq :+
   lda BlockLL
   cmp #Metatiles::LADDER
   beq :+
   cmp #Metatiles::LADDER_TOP
   beq :+
+  cmp #Metatiles::ROPE
+  beq :+
   lda BlockLR
   cmp #Metatiles::LADDER
   beq :+
   cmp #Metatiles::LADDER_TOP
+  beq :+
+  cmp #Metatiles::ROPE
   beq :+
   lsr PlayerOnLadder
 :

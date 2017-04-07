@@ -639,15 +639,15 @@ Blank:
   .byt InventoryItem::ABILITY_BLASTER,      $84, (100 .mod 100), (100 / 100)
   .byt InventoryItem::ABILITY_GLIDER,       $88, (100 .mod 100), (100 / 100)
   .byt InventoryItem::LAMP_OIL,             $B0, (20 .mod 100),  (20 / 100)
-  .byt InventoryItem::ROPE,                 $B0, (30 .mod 100),  (30 / 100)
+  .byt InventoryItem::ROPE,                 $B0, (60 .mod 100),  (60 / 100)
   .byt InventoryItem::ABILITY_BOMB,         $8C, (100 .mod 100), (100 / 100)
   .byt InventoryItem::ABILITY_FIRE,         $90, (100 .mod 100), (100 / 100)
   .byt InventoryItem::ABILITY_FIREWORK,     $94, (100 .mod 100), (100 / 100)
-  .byt InventoryItem::ABILITY_NICE,         $98, (120 .mod 100), (120 / 100)
+  .byt InventoryItem::ABILITY_NICE,         $98, (110 .mod 100), (110 / 100)
   .byt InventoryItem::ABILITY_BOOMERANG,    $9C, (100 .mod 100), (100 / 100)
   .byt InventoryItem::ABILITY_WATER,        $A4, (100 .mod 100), (100 / 100)
   .byt InventoryItem::ABILITY_FAN,          $A8, (70 .mod 100),  (70 / 100)
-  .byt InventoryItem::ABILITY_BURGER,       $AC, (130 .mod 100), (130 / 100)
+  .byt InventoryItem::ABILITY_BURGER,       $AC, (110 .mod 100), (110 / 100)
   .byt 0, $1C, 0, 0
   .byt 0, $1C, 0, 0
   .byt 0, $1C, 0, 0

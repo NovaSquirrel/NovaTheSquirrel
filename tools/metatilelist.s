@@ -17,6 +17,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_PAL_1 ;SPIKES
   .byt M_PAL_2 ;LADDER
   .byt M_PAL_2 ;LADDER_TOP
+  .byt M_PAL_2 ;ROPE
   .byt M_PAL_2 ;SPRING
   .byt M_PAL_2 ;SIGNPOST
   .byt M_PAL_1 ;DOOR_BOTTOM
@@ -219,6 +220,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_GROUND ;SPIKES
   .byt M_SPECIAL_MISC|M_POST_PROCESS ;LADDER
   .byt M_SOLID_TOP|M_SPECIAL_MISC ;LADDER_TOP
+  .byt M_SPECIAL_MISC ;ROPE
   .byt M_EMPTY|M_SPECIAL_MISC ;SPRING
   .byt M_EMPTY|M_SPECIAL_MISC ;SIGNPOST
   .byt M_SPECIAL_MISC ;DOOR_BOTTOM
@@ -420,6 +422,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $12 ;SPIKES
   .byt $10 ;LADDER
   .byt $10 ;LADDER_TOP
+  .byt $32 ;ROPE
   .byt $3f ;SPRING
   .byt $1c ;SIGNPOST
   .byt $3c ;DOOR_BOTTOM
@@ -620,6 +623,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $13 ;SPIKES
   .byt $10 ;LADDER
   .byt $10 ;LADDER_TOP
+  .byt $32 ;ROPE
   .byt $18 ;SPRING
   .byt $1d ;SIGNPOST
   .byt $3c ;DOOR_BOTTOM
@@ -820,6 +824,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $12 ;SPIKES
   .byt $11 ;LADDER
   .byt $11 ;LADDER_TOP
+  .byt $33 ;ROPE
   .byt $3f ;SPRING
   .byt $1e ;SIGNPOST
   .byt $3c ;DOOR_BOTTOM
@@ -1020,6 +1025,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $13 ;SPIKES
   .byt $11 ;LADDER
   .byt $11 ;LADDER_TOP
+  .byt $33 ;ROPE
   .byt $19 ;SPRING
   .byt $1f ;SIGNPOST
   .byt $3c ;DOOR_BOTTOM
