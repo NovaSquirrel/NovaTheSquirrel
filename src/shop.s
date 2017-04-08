@@ -14,6 +14,9 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;
+
+; FREE_ITEMS = 1
+
 .proc ShowShop
 Cursor = 13
 CursorY = 14
@@ -33,12 +36,7 @@ NeedUpdateItemInfo = 15
   PositionXY 0, 11, 6
   jsr PutStringImmediate
   .byt "Money: ",0
-  ldy SavedCoins+1
-  lda BCD99,y
-  jsr PutHex
-  ldy SavedCoins+0
-  lda BCD99,y
-  jsr PutHex
+  jsr PrintCurrentMoney
 
   ; Menu items
   PositionXY 0, 14, 8
@@ -345,11 +343,35 @@ BuyLoop:
   ; Buy items
   lda keynew
   and #KEY_A
-  beq NoBuyItem
+  jeq NoBuyItem
     jsr GetBuyItem
     stx 5
     lda ItemShopTable,x
     beq NoBuyItem
+
+    lda keydown
+    and #KEY_SELECT
+    bne SkipCost
+    ; Calculate the new amount of funds, and find out if we even have enough
+    lda SavedCoins
+    sub ItemShopTable+2,x
+    sec
+    bpl :+
+      add #100
+      clc
+    :
+    sta 0
+    ; Carry
+    lda SavedCoins+1
+    sbc ItemShopTable+3,x
+    jmi NotEnoughFunds
+    ; Write the new amount
+    sta SavedCoins+1
+    lda 0
+    sta SavedCoins
+SkipCost:
+
+    lda ItemShopTable,x
     jsr InventoryGiveSavedItem
     stx 0 ; item slot number
     bcc NoBuyItem
@@ -377,6 +399,7 @@ BuyLoop:
     sta PPUDATA
     add #2
     sta PPUDATA
+    jsr PrintCurrentMoney
     lda #0
     sta PPUSCROLL
     sta PPUSCROLL
@@ -423,6 +446,20 @@ NoBuyItem:
 
   jmp BuyLoop
 
+NotEnoughFunds:
+  jsr WaitVblank
+  PositionXY 0, 7, 10
+  jsr PutStringImmediate
+  .byt "Come back when you're",0
+  PositionXY 0, 7, 11
+  jsr PutStringImmediate
+  .byt "a little richer!",0
+
+  lda #0
+  sta PPUSCROLL
+  sta PPUSCROLL
+  jmp BuyLoop
+
 GetBuyItem:
   lda #0
   sub CursorY
@@ -442,7 +479,7 @@ UpdateItemInfo:
   jsr WaitVblank
   PositionXY 0, 7, 10
   lda #' '
-  ldx #20
+  ldx #21
   jsr WritePPURepeated
 
   plp ; skip cost if carry clear
@@ -459,6 +496,10 @@ UpdateItemInfo:
   tay
   lda BCD99,y
   jsr PutHex
+  ; Erase the insufficient funds message
+  lda #' '
+  ldx #12
+  jsr WritePPURepeated
 :
   lda #0
   sta PPUSCROLL
@@ -546,7 +587,7 @@ TossLoop:
   :
 
   lda keynew
-  and #KEY_A
+  and #KEY_A ; toss an item
   beq :+
     ldx Cursor
     lda #0
@@ -633,6 +674,15 @@ DrawShopRowBot:
   lda #8
   sta PPUDATA
   rts
+
+PrintCurrentMoney:
+  PositionXY 0, 18, 6
+  ldy SavedCoins+1
+  lda BCD99,y
+  jsr PutHex
+  ldy SavedCoins+0
+  lda BCD99,y
+  jmp PutHex
 .endproc
 
 .proc ItemShopTableLookup
@@ -667,23 +717,23 @@ Blank:
 .endproc
 
 .proc ItemShopTable
-  .byt InventoryItem::SMALL_HEALTH_RESTORE, $B4, (7 .mod 100),   (7 / 100)
-  .byt InventoryItem::HEALTH_RESTORE,       $B8, (30 .mod 100),  (30 / 100)
-  .byt InventoryItem::BIG_HEALTH_RESTORE,   $BC, (100 .mod 100), (100 / 100)
-  .byt InventoryItem::BALLOON,              $C4, (80 .mod 100),  (80 / 100)
-  .byt InventoryItem::AUTO_BALLOON,         $C8, (100 .mod 100), (100 / 100)
-  .byt InventoryItem::ABILITY_BLASTER,      $84, (100 .mod 100), (100 / 100)
+  .byt InventoryItem::SMALL_HEALTH_RESTORE, $B4, (5  .mod 100),   (5 / 100)
+  .byt InventoryItem::HEALTH_RESTORE,       $B8, (20 .mod 100),  (20 / 100)
+  .byt InventoryItem::BIG_HEALTH_RESTORE,   $BC, (60 .mod 100),  (60 / 100)
+  .byt InventoryItem::BALLOON,              $C4, (60 .mod 100),  (60 / 100)
+  .byt InventoryItem::AUTO_BALLOON,         $C8, (80 .mod 100),  (80 / 100)
+  .byt InventoryItem::ABILITY_BLASTER,      $84, (45 .mod 100),  (45 / 100)
   .byt InventoryItem::ABILITY_GLIDER,       $88, (80 .mod 100),  (80 / 100)
   .byt InventoryItem::LAMP_OIL,             $B0, (20 .mod 100),  (20 / 100)
-  .byt InventoryItem::ROPE,                 $B0, (60 .mod 100),  (60 / 100)
-  .byt InventoryItem::ABILITY_BOMB,         $8C, (80 .mod 100),  (80 / 100)
-  .byt InventoryItem::ABILITY_FIRE,         $90, (80 .mod 100),  (80 / 100)
-  .byt InventoryItem::ABILITY_FIREWORK,     $94, (80 .mod 100),  (80 / 100)
-  .byt InventoryItem::ABILITY_NICE,         $98, (80 .mod 100),  (80 / 100)
-  .byt InventoryItem::ABILITY_BOOMERANG,    $9C, (80 .mod 100),  (80 / 100)
-  .byt InventoryItem::ABILITY_WATER,        $A4, (80 .mod 100),  (80 / 100)
-  .byt InventoryItem::ABILITY_FAN,          $A8, (70 .mod 100),  (70 / 100)
-  .byt InventoryItem::ABILITY_BURGER,       $AC, (80 .mod 100),  (80 / 100)
+  .byt InventoryItem::ROPE,                 $B0, (50 .mod 100),  (50 / 100)
+  .byt InventoryItem::ABILITY_BOMB,         $8C, (40 .mod 100),  (40 / 100)
+  .byt InventoryItem::ABILITY_FIRE,         $90, (40 .mod 100),  (40 / 100)
+  .byt InventoryItem::ABILITY_FIREWORK,     $94, (40 .mod 100),  (40 / 100)
+  .byt InventoryItem::ABILITY_NICE,         $98, (40 .mod 100),  (40 / 100)
+  .byt InventoryItem::ABILITY_BOOMERANG,    $9C, (40 .mod 100),  (40 / 100)
+  .byt InventoryItem::ABILITY_WATER,        $A4, (40 .mod 100),  (40 / 100)
+  .byt InventoryItem::ABILITY_FAN,          $A8, (30 .mod 100),  (30 / 100)
+  .byt InventoryItem::ABILITY_BURGER,       $AC, (40 .mod 100),  (40 / 100)
   .byt 0, $1C, 0, 0
   .byt 0, $1C, 0, 0
   .byt 0, $1C, 0, 0
