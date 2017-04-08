@@ -138,7 +138,8 @@ frozenData:
   LObjN LO::R_MTRACK_SUPPORTSONLY,  2, 6, 0, 8
   LObjN LO::WIDE_3,           1, 3, 0, LN3::MINE_TRACKS_BRAKES
   LWriteCol $20
-  LObjN LO::R_GROUND,         4, 4, 3, 10
+  LObjN LO::R_COIN,           4, 2, 3, 0
+  LObjN LO::R_GROUND,         0, 4, 3, 10
   LObjN LO::WIDE_3,           6, 3, 0, LN3::MINE_TRACKS_BRAKES
   LWriteCol $30
   LObj  LO::S_MTRACK_SSR,      3, 4
@@ -147,6 +148,7 @@ frozenData:
   LObj  LO::S_MTRACK_SSR,      1, 7
   LObjN LO::WIDE_3,           1, 7, 15, LN3::MINE_TRACKS
   LObjN LO::R_ROCK,           4, 0, 8, 1
+  LObjN LO::R_COIN,           0, 6, 3, 0
   LObjN LO::R_GROUND,         0, 8, 3, 6
   LObjN LO::WIDE_3,           4, 7, 0, LN3::MINE_TRACKS_BRAKES
   LWriteCol $40
@@ -172,6 +174,7 @@ frozenData:
   LObjN LO::WIDE_1,           4, 6, 5, LN1::FALLTHROUGH_LEDGE
   LObjN LO::R_WATER,          0, 13, 10, 1
   LObjN LO::WIDE_1,           1, 9, 7, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           0, 10, 4, 2
   LObjN LO::RECT_3,           4, 2, 3, LN3::ROCK, 18
   LObjN LO::R_ROCK,           6, 11, 12, 3
   LObjN LO::WIDE_2,           1, 10, 2, LN2::FLOWER

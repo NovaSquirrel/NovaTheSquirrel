@@ -66,6 +66,7 @@ skyData:
   LObjN LO::R_GROUND,         4, 9, 7, 5
   LObjN LO::WIDE_1,           2, 4, 3, LN1::SPIKES
   LObjN LO::WIDE_1,           0, 5, 3, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           0, 7, 3, 1
   LObj  LO::S_COIN,           5, 6
   LObjN LO::R_COIN,           2, 5, 1, 0
   LObj  LO::S_COIN,           3, 6
@@ -76,7 +77,8 @@ skyData:
   LObj  LO::S_GROUND,         1, 8
   LObj  LO::S_GROUND_CLIMB_R, 1, 8
   LObjN LO::WIDE_2,           1, 8, 1, LN2::BUSH
-  LObjN LO::WIDE_1,           5, 9, 2, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           5, 8, 3, 0
+  LObjN LO::WIDE_1,           0, 9, 2, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           2, 12, 0, LN1::SPIKES
   LObjN LO::WIDE_1,           0, 13, 2, LN1::SOLID_LEDGE
   LObj  LO::S_PRIZE,          1, 9
@@ -156,7 +158,8 @@ skyData:
   LObjN LO::TALL_2,           3, 9, 2, LN2::TRUNK_L
   LObjN LO::TALL_2,           3, 9, 2, LN2::TRUNK_L
   LObjN LO::TALL_2,           3, 9, 2, LN2::TRUNK_L
-  LObj  LO::S_EXIT_DOOR,      6, 10
+  LObjN LO::R_COIN,           2, 11, 2, 0
+  LObj  LO::S_EXIT_DOOR,      4, 10
   LFinished
 
 skySprite:

@@ -46,7 +46,8 @@ gardenData:
   LObjN LO::WIDE_1,           1, 6, 3, LN1::SOLID_LEDGE
   LObj  LO::S_HEART,          1, 5
   LObjN LO::TALL_2,           0, 9, 2, LN2::TRUNK_L
-  LObjN LO::TALL_2,           2, 9, 2, LN2::TRUNK_L
+  LObjN LO::R_COIN,           1, 4, 1, 1
+  LObjN LO::TALL_2,           1, 9, 2, LN2::TRUNK_L
   LObjN LO::WIDE_2,           3, 9, 2, LN2::FLOWER
   LObjN LO::R_GROUND,         0, 10, 4, 4
   LObj  LO::S_FLOWER,         7, 9
@@ -73,12 +74,14 @@ gardenData:
   LObjN LO::WIDE_1,           4, 6, 7, LN1::SOLID_LEDGE
   LObjN LO::WIDE_2,           0, 10, 4, LN2::FLOWER
   LObjN LO::RECT_1,           0, 11, 3, LN1::GROUND, 18
-  LObj  LO::S_STATUE,         1, 9
+  LObjN LO::R_COIN,           1, 7, 2, 0
+  LObj  LO::S_STATUE,         0, 9
   LObj  LO::S_STATUE,         2, 9
   LObjN LO::TALL_1,           3, 6, 4, LN1::LADDER
   LObjN LO::WIDE_3,           2, 10, 2, LN3::WHITEFENCE
   LObjN LO::R_BRICKWALL,      4, 9, 5, 1
-  LObj  LO::S_PRIZE,          2, 6
+  LObjN LO::R_COIN,           1, 8, 3, 0
+  LObj  LO::S_PRIZE,          1, 6
   LObjN LO::R_GROUND,         5, 9, 4, 5
   LObjN LO::WIDE_2,           2, 8, 2, LN2::BUSH
   LObjN LO::WIDE_2,           5, 8, 2, LN2::BUSH

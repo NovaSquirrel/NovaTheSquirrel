@@ -63,7 +63,8 @@ arrowsData:
   LObj  LO::S_CEILING_BARRIER,1, 0
   LObjN LO::R_FG_GLASS_BLUE,  1, 0, 0, 3
   LObj  LO::S_M_CRATE,        0, 4
-  LObjN LO::RECT_1,           5, 12, 2, LN1::GROUND, 25
+  LObjN LO::R_COIN,           5, 5, 0, 4
+  LObjN LO::RECT_1,           0, 12, 2, LN1::GROUND, 25
   LObj  LO::S_CEILING_BARRIER,1, 0
   LObjN LO::R_FG_GLASS_BLUE,  1, 0, 0, 8
   LObjN LO::R_FG_GLASS_BLUE,  0, 9, 15, 0
@@ -116,7 +117,8 @@ arrowsData:
   LObjN LO::R_FG_GLASS_BLUE,  3, 8, 0, 6
   LObj  LO::S_PRIZE,          3, 3
   LObjN LO::WIDE_1,           0, 3, 3, LN1::SOLID_LEDGE
-  LObjN LO::R_ROCK,           4, 3, 3, 3
+  LObjN LO::R_COIN,           4, 2, 3, 0
+  LObjN LO::R_ROCK,           0, 3, 3, 3
   LObjN LO::R_GROUND,         0, 7, 3, 7
   LObjN LO::R_FG_GLASS_BLUE,  6, 7, 15, 0
   LObj  LO::R_CUSTOM,         2, 4, Metatiles::PUSHABLE_BLOCK, (0<<4)|2
@@ -147,6 +149,7 @@ arrowsData:
   LObjN LO::R_FG_GLASS_BLUE,  0, 6, 7, 0
   LObj  LO::S_SOLID_BLOCK,    1, 2
   LObj  LO::S_PRIZE,          2, 2
+  LObjN LO::R_COIN,           0, 10, 3, 0
   LObj  LO::S_PRIZE,          2, 2
   LObj  LO::S_W_ARROW_RIGHT,  1, 3
   LObjN LO::R_FG_GLASS_BLUE,  0, 5, 3, 0
@@ -181,7 +184,8 @@ arrowsData:
   LObj  LO::S_BG_GLASS_RED,   1, 2
   LObjN LO::R_FG_GLASS_BLUE,  0, 4, 0, 2
   LObjN LO::R_BG_GLASS_BLUE,  0, 7, 0, 3
-  LObjN LO::WIDE_1,           1, 4, 3, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           1, 1, 3, 1
+  LObjN LO::WIDE_1,           0, 4, 3, LN1::SOLID_LEDGE
   LObj  LO::S_CUSTOM,         1, 3, Metatiles::PUSHABLE_BLOCK
   LObjN LO::R_BG_GLASS_GREEN, 0, 7, 2, 0
   LObjN LO::R_BG_GLASS_GREEN, 1, 6, 0, 2

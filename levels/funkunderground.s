@@ -25,12 +25,14 @@ funkundergroundData:
   LObjN LO::WIDE_1,           4, 12, 4, LN1::FENCE
   LObjN LO::R_GROUND,         0, 13, 9, 1
   LObjN LO::R_GROUND,         2, 1, 2, 9
-  LObjN LO::R_GROUND,         3, 9, 0, 1
+  LObjN LO::R_COIN,           3, 8, 2, 0
+  LObjN LO::R_GROUND,         0, 9, 0, 1
   LObjN LO::R_BRICK,          1, 9, 0, 1
   LObj  LO::S_SPRING,         0, 12
   LObjN LO::R_SOLID_BLOCK,    1, 9, 0, 3
   LObj  LO::S_SPRING,         1, 12
-  LObjN LO::WIDE_1,           1, 9, 2, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           1, 8, 2, 0
+  LObjN LO::WIDE_1,           0, 9, 2, LN1::SOLID_LEDGE
   LObjN LO::R_GROUND,         2, 13, 9, 1
   LObjN LO::WIDE_1,           1, 12, 4, LN1::TALLGRASS
   LObjN LO::R_BRICK,          1, 1, 2, 0
@@ -72,6 +74,8 @@ funkundergroundData:
   LObjN LO::R_GROUND,         0, 13, 4, 1
   LObjN LO::R_BRICK,          1, 7, 2, 0
   LObj  LO::S_BRICKPRIZE,     0, 7
+  LWriteCol InventoryItem::HEALTH_RESTORE
+  LObjN LO::R_COIN,           0, 8, 1, 1
   LObjN LO::R_BRICK,          2, 2, 0, 1
   LObjN LO::R_SOLID_BLOCK,    0, 10, 0, 1
   LObjN LO::R_BRICK,          6, 1, 7, 0
@@ -86,14 +90,17 @@ funkundergroundData:
   LObjN LO::R_COIN,           1, 5, 5, 0
   LObjN LO::R_GRAYBRICKS,     0, 7, 6, 1
   LObj  LO::S_BRICKPRIZE,     3, 2
+  LWriteCol InventoryItem::ABILITY_FIRE
   LObjN LO::RECT_1,           4, 1, 0, LN1::BRICKS, 23
-  LObjN LO::R_SOLID_BLOCK,    3, 10, 1, 2
+  LObjN LO::R_COIN,           3, 8, 1, 0
+  LObjN LO::R_SOLID_BLOCK,    0, 10, 1, 2
   LObjN LO::R_BRICK,          6, 2, 2, 3
   LObjN LO::R_BRICK,          0, 6, 8, 3
   LObjN LO::TALL_2,           1, 2, 4, LN2::GRAY_BRICKS
   LObjN LO::R_GRAYBRICKS,     0, 7, 6, 1
   LObjN LO::WIDE_2,           0, 13, 3, LN2::STONE_BRIDGE
-  LObjN LO::R_GROUND,         5, 13, 12, 1
+  LObjN LO::R_COIN,           2, 3, 2, 1
+  LObjN LO::R_GROUND,         3, 13, 12, 1
   LObjN LO::WIDE_1,           3, 8, 4, LN1::FENCE
   LObjN LO::R_SOLID_BLOCK,    0, 9, 5, 0
   LObjN LO::R_COIN,           1, 7, 3, 0

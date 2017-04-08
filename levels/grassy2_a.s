@@ -111,7 +111,8 @@ grassy2_aData:
   LObjN LO::R_SOLID_BLOCK,    0, 5, 5, 0
   LObjN LO::TALL_2,           0, 6, 3, LN2::TRUNK
   LObj  LO::S_SPRING,         1, 4
-  LObjN LO::WIDE_2,           1, 9, 4, LN2::FLOWER
+  LObjN LO::R_COIN,           1, 4, 3, 0
+  LObjN LO::WIDE_2,           0, 9, 4, LN2::FLOWER
   LObjN LO::TALL_2,           3, 6, 3, LN2::TRUNK
   LObj  LO::S_COIN,           2, 4
   LObjN LO::WIDE_1,           0, 5, 1, LN1::SOLID_LEDGE
@@ -160,10 +161,12 @@ grassy2_aData:
   LObjN LO::TALL_1,           4, 9, 3, LN1::LADDER
   LObjN LO::WIDE_2,           3, 6, 3, LN2::WOOD_PLATFORM_TOP
   LObjN LO::R_WOOD_PLATFORM,  0, 7, 3, 1
-  LObjN LO::WIDE_2,           4, 4, 3, LN2::WOOD_PLATFORM_TOP
+  LObjN LO::R_COIN,           1, 4, 1, 1
+  LObjN LO::WIDE_2,           3, 4, 3, LN2::WOOD_PLATFORM_TOP
   LObjN LO::R_WOOD_PLATFORM,  0, 5, 3, 2
   LObjN LO::R_GROUND,         0, 8, 3, 4
-  LObjN LO::WIDE_1,           6, 3, 3, LN1::TALLGRASS
+  LObjN LO::R_COIN,           1, 2, 1, 1
+  LObjN LO::WIDE_1,           5, 3, 3, LN1::TALLGRASS
   LObjN LO::R_SAND,           0, 4, 3, 10
   LObj  LO::S_SPRING,         5, 7
   LObjN LO::WIDE_2,           0, 8, 3, LN2::WOOD_PLATFORM_TOP

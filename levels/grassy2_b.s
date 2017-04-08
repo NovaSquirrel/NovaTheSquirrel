@@ -93,10 +93,13 @@ grassy2_bData:
   LObjN LO::R_GROUND,         0, 10, 4, 4
   LObj  LO::S_BIGHEART,       1, 9
   LObjN LO::R_COIN,           1, 8, 2, 1
-  LObjN LO::WIDE_1,           2, 6, 1, LN1::SOLID_LEDGE
-  LObjN LO::R_GROUND,         1, 8, 0, 6
-  LObjN LO::R_GROUND,         1, 6, 5, 8
-  LObjN LO::TALL_2,           7, 6, 5, LN2::PATH_LINE
+  LObj  LO::S_PRIZE,          2, 6
+  LWriteCol InventoryItem::ABILITY_BLASTER
+  LObjN LO::WIDE_1,           1, 6, 1, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           0, 7, 1, 1
+  LObjN LO::R_GROUND,         0, 9, 1, 5
+  LObjN LO::R_GROUND,         2, 6, 4, 8
+  LObjN LO::TALL_2,           6, 6, 5, LN2::PATH_LINE
   LObjN LO::TALL_2,           5, 6, 5, LN2::PATH_LINE
   LObjN LO::TALL_2,           5, 6, 5, LN2::PATH_LINE
   LObjN LO::R_GROUND,         3, 0, 5, 7
@@ -116,13 +119,16 @@ grassy2_bData:
   LObj  LO::S_SPRING,         2, 10
   LObjN LO::R_GROUND,         0, 11, 5, 3
   LObj  LO::S_PRIZE,          3, 8
+  LWriteCol InventoryItem::BIG_HEALTH_RESTORE
   LObjN LO::R_GROUND,         15, 1, 0, 4
   LObjN LO::R_COIN,           1, 3, 1, 1
   LObjN LO::R_GROUND,         0, 5, 6, 0
-  LObj  LO::S_DOOR,           3, 3
+  LObj  LO::S_PRIZE,          1, 2
+  LWriteCol InventoryItem::HEALTH_RESTORE
+  LObj  LO::S_DOOR,           2, 3
   LWriteCol 11, 107
-  LObj  LO::S_HEART,          2, 4
-  LObj  LO::S_SOLID_BLOCK,    0, 11
+  LObjN LO::R_COIN,           1, 1, 2, 3
+  LObj  LO::S_SOLID_BLOCK,    1, 11
   LObjN LO::R_SOLID_BLOCK,    1, 8, 0, 1
   LObjN LO::R_SOLID_BLOCK,    0, 12, 2, 0
   LObjN LO::R_GROUND,         1, 1, 0, 4

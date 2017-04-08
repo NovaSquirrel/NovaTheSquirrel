@@ -97,6 +97,7 @@ undergroundData:
   LObjN LO::R_BRICK,          1, 1, 3, 0
   LObj  LO::S_PRIZE,          2, 1
   LObjN LO::WIDE_1,           0, 10, 4, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           0, 11, 4, 0
   LObjN LO::R_CEILING_BARRIER,3, 0, 0, 1
   LObjN LO::R_GROUND,         1, 0, 2, 9
   LObjN LO::WIDE_1,           3, 8, 11, LN1::SOLID_LEDGE
@@ -122,7 +123,8 @@ undergroundData:
   LObjN LO::R_GROUND,         1, 0, 13, 1
   LObjN LO::R_BRICK,          1, 2, 10, 1
   LObjN LO::WIDE_1,           0, 7, 9, LN1::SOLID_LEDGE
-  LObjN LO::R_GROUND,         10, 10, 5, 4
+  LObjN LO::R_COIN,           1, 6, 5, 0
+  LObjN LO::R_GROUND,         9, 10, 5, 4
   LObjN LO::R_GROUND,         2, 2, 0, 3
   LObjN LO::WIDE_1,           1, 6, 1, LN1::SOLID_LEDGE
   LObj  LO::S_SPRING,         0, 9
@@ -131,9 +133,11 @@ undergroundData:
   LObjN LO::R_GROUND,         2, 2, 2, 12
   LObjN LO::R_GROUND,         3, 10, 13, 4
   LObj  LO::S_EXIT_DOOR,      1, 8
-  LObjN LO::R_COIN,           6, 5, 2, 0
+  LObjN LO::R_COIN,           5, 6, 0, 2
+  LObjN LO::R_COIN,           1, 5, 2, 0
   LObjN LO::R_GROUND,         0, 6, 2, 3
-  LObj  LO::S_SPRING,         3, 9
+  LObjN LO::R_COIN,           3, 6, 0, 2
+  LObj  LO::S_SPRING,         0, 9
   LObj  LO::S_SPRING,         4, 12
   LObjN LO::R_GROUND,         0, 13, 14, 1
   LObjN LO::WIDE_1,           4, 12, 0, LN1::SPIKES

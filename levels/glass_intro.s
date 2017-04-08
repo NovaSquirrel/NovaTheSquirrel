@@ -58,14 +58,16 @@ glass_introData:
   LObj  LO::S_PRIZE,          2, 5
   LObjN LO::R_BG_GLASS_RED,   2, 3, 0, 4
   LObjN LO::R_BG_GLASS_RED,   0, 9, 0, 5
-  LObjN LO::R_BG_GLASS_RED,   5, 3, 1, 2
+  LObjN LO::R_COIN,           1, 7, 2, 0
+  LObjN LO::R_BG_GLASS_RED,   4, 3, 1, 2
   LObjN LO::R_SOLID_ROCK,     1, 9, 1, 0
   LObjN LO::R_BG_GLASS_BLUE,  1, 3, 1, 2
   LObjN LO::R_FG_GLASS_BLUE,  3, 2, 11, 2
   LObjN LO::R_BG_GLASS_BLUE,  0, 5, 0, 6
   LObjN LO::R_FG_GLASS_BLUE,  0, 12, 11, 2
   LObj  LO::S_SPRING,         1, 11
-  LObjN LO::R_BRICK,          2, 8, 4, 0
+  LObjN LO::R_COIN,           2, 7, 2, 0
+  LObjN LO::R_BRICK,          0, 8, 4, 0
   LObjN LO::R_AIR,            1, 4, 2, 0
   LObj  LO::S_PRIZE,          1, 5
   LObjN LO::R_BRICK,          2, 5, 0, 2
@@ -204,9 +206,12 @@ glass_introData:
   LObjN LO::R_SOLID_BLOCK,    3, 11, 0, 3
   LObjN LO::R_BG_GLASS_GREEN, 3, 8, 2, 2
   LObj  LO::R_CUSTOM,         0, 11, Metatiles::WOOD_CRATE, (2<<4)|0
-  LObj  LO::R_CUSTOM,         3, 9, Metatiles::WOOD_CRATE, (2<<4)|0
-  LObj  LO::R_CUSTOM,         3, 7, Metatiles::WOOD_CRATE, (2<<4)|0
-  LObj  LO::R_CUSTOM,         3, 5, Metatiles::WOOD_CRATE, (2<<4)|0
+  LObjN LO::R_COIN,           3, 8, 2, 0
+  LObj  LO::R_CUSTOM,         0, 9, Metatiles::WOOD_CRATE, (2<<4)|0
+  LObjN LO::R_COIN,           3, 6, 2, 0
+  LObj  LO::R_CUSTOM,         0, 7, Metatiles::WOOD_CRATE, (2<<4)|0
+  LObjN LO::R_COIN,           3, 4, 2, 0
+  LObj  LO::R_CUSTOM,         0, 5, Metatiles::WOOD_CRATE, (2<<4)|0
   LObjN LO::R_BG_GLASS_GREEN, 0, 6, 2, 2
   LObjN LO::R_GROUND,         4, 5, 6, 9
   LObjN LO::WIDE_1,           1, 3, 1, LN1::SOLID_LEDGE
@@ -224,7 +229,8 @@ glass_introData:
   LObjN LO::R_BG_GLASS_BLUE,  4, 11, 0, 3
   LObjN LO::R_BRICK,          1, 9, 3, 0
   LObjN LO::R_BRICK,          1, 7, 2, 1
-  LObjN LO::R_BG_GLASS_BLUE,  2, 11, 0, 3
+  LObjN LO::R_COIN,           1, 6, 1, 0
+  LObjN LO::R_BG_GLASS_BLUE,  1, 11, 0, 3
   LObjN LO::R_FG_GLASS_BLUE,  5, 10, 10, 0
   LObjN LO::R_BG_GLASS_BLUE,  1, 11, 0, 3
   LObjN LO::R_BG_GLASS_BLUE,  4, 11, 0, 3
