@@ -8,7 +8,7 @@
 <0 NOVA_WOW>Am I? You're different too. Hey, there's a sign over there, maybe it'll have useful information.
 `scene NOVA_KEE_SIGN
 <0 NOVA>Okay, let's see...
-<2 SIGN>Welcome to the tutorial! You have ended up in Latte, a video game world. These signs will explain how to play.
+<2 SIGN>Welcome to the tutorial! You have ended up in Latte, a video game world. These signs will explain how to play. (Press Up to read them)
 `end
 
 :Tutorial1:

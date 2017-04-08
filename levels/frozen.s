@@ -70,10 +70,8 @@ frozenData:
   LObjN LO::R_ROCK,           0, 11, 1, 0
   LObjN LO::R_ROCK,           0, 12, 10, 2
   LObj  LO::S_PRIZE,          2, 9
-  LWriteCol InventoryItem::ABILITY_NICE
-  LObj  LO::S_PRIZE,          1, 9
   LWriteCol InventoryItem::ABILITY_BACKUP
-  LObj  LO::S_SIGNPOST,       1, 11
+  LObj  LO::S_SIGNPOST,       2, 11
   LWriteCol <AboutIceJump, >AboutIceJump
   LObjN LO::WIDE_1,           1, 11, 3, LN1::TALLGRASS
   LObjN LO::RECT_3,           1, 0, 3, LN3::ROCK, 16
@@ -188,6 +186,7 @@ frozenSprite:
   LSpr Enemy::MOVING_PLATFORM_LINE, 0,  51,   8
   LSpr Enemy::MOVING_PLATFORM_LINE, 0,  54,   6
   LSpr Enemy::CHECKPOINT,          0,  65,   6
+  LSpr Enemy::ICE_1,               0,  68,  11
   LSpr Enemy::GEORGE,              1,  85,  11
   LSpr Enemy::MINECART,            0,  93,   7
   LSpr Enemy::CHECKPOINT,          0, 115,   2

@@ -15,8 +15,8 @@ Intro:
 .byt SCR::SCENE, SCENES::NOVA_KEE_SIGN
 ; <0 NOVA>Okay, let's see...
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "O", "k", "a", "y", $f5, $a8, $e9, $b3, ".", ".", "."
-; <2 SIGN>Welcome to the tutorial! You have ended up in Latte, a video game world. These signs will explain how to play.
-.byt SCR::SAY, SCR::SPEAKER_2|CHAR::SIGN, "W", "e", "l", $96, " ", $bb, $a2, " ", "t", "u", $bc, $fc, "a", "l", $fd, "Y", $f4, SCR::NEWLINE, $9b, $e6, "d", $d6, $cd, " ", $bf, $84, $f5, "a", SCR::NEWLINE, "v", "i", "d", "e", "o", " ", "g", "a", $d0, " ", "w", $c9, $ef, $f6, $f8, "e", $e5, SCR::NEWLINE, "s", "i", "g", "n", $fb, $9e, " ", "e", "x", "p", "l", "a", $bf, $b5, " ", $bb, "p", "l", "a", "y", "."
+; <2 SIGN>Welcome to the tutorial! You have ended up in Latte, a video game world. These signs will explain how to play. (Press Up to read them)
+.byt SCR::SAY, SCR::SPEAKER_2|CHAR::SIGN, "W", "e", "l", $96, " ", $bb, $a2, " ", "t", "u", $bc, $fc, "a", "l", $fd, "Y", $f4, SCR::NEWLINE, $9b, $e6, "d", $d6, $cd, " ", $bf, $84, $f5, "a", SCR::NEWLINE, "v", "i", "d", "e", "o", " ", "g", "a", $d0, " ", "w", $c9, $ef, $f6, $f8, "e", $e5, SCR::NEWLINE, "s", "i", "g", "n", $fb, $9e, " ", "e", "x", "p", "l", "a", $bf, $b5, " ", $bb, "p", "l", "a", "y", ".", SCR::NEWLINE, "(", "P", "r", "e", $f1, " ", "U", "p", " ", $bb, "r", $ec, $ff, $92, ")"
 .byt SCR::END_SCRIPT
 Tutorial1:
 .byt SCR::SCENE, SCENES::NOVA_SIGN_KEE

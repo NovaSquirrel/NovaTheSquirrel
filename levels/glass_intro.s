@@ -107,7 +107,9 @@ glass_introData:
   LObjN LO::R_GROUND,         0, 8, 5, 6
   LObj  LO::S_COIN,           1, 7
   LObj  LO::S_PRIZE,          1, 5
-  LObjN LO::R_FG_GLASS_RED,   3, 2, 13, 1
+  LObj  LO::S_SIGNPOST,       1, 7
+  LWriteCol <SignMeltIceAbout, >SignMeltIceAbout
+  LObjN LO::R_FG_GLASS_RED,   2, 2, 13, 1
   LObj  LO::R_CUSTOM,         0, 4, Metatiles::ICE, (0<<4)|3
   LObjN LO::R_COIN,           1, 1, 5, 0
   LObjN LO::R_SOLID_BLOCK,    0, 8, 1, 0

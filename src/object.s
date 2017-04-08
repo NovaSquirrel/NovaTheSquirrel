@@ -1685,5 +1685,6 @@ AsrAsrAsr:
   asr
   asr
   asr
+  asr
   rts  
 .endproc

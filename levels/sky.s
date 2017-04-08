@@ -80,6 +80,7 @@ skyData:
   LObjN LO::WIDE_1,           2, 12, 0, LN1::SPIKES
   LObjN LO::WIDE_1,           0, 13, 2, LN1::SOLID_LEDGE
   LObj  LO::S_PRIZE,          1, 9
+  LWriteCol InventoryItem::ABILITY_FIRE
   LObjN LO::TALL_2,           0, 10, 4, LN2::TRUNK
   LObj  LO::S_SOLID_BLOCK,    0, 13
   LObjN LO::WIDE_1,           1, 8, 2, LN1::SOLID_LEDGE
@@ -113,7 +114,9 @@ skyData:
   LObjN LO::R_GROUND,         0, 11, 9, 3
   LObj  LO::S_GROUND_CLIMB_L, 3, 10
   LObjN LO::R_GROUND,         1, 10, 5, 0
-  LObj  LO::S_GROUND_CLIMB_L, 4, 9
+  LObj  LO::S_PRIZE,          1, 7
+  LWriteCol InventoryItem::HEALTH_RESTORE
+  LObj  LO::S_GROUND_CLIMB_L, 3, 9
   LObj  LO::S_GROUND,         1, 9
   LObjN LO::R_GROUND,         1, 9, 6, 5
   LObjN LO::R_GROUND,         1, 8, 5, 0
