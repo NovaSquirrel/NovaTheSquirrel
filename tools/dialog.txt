@@ -13,7 +13,7 @@
 
 :Tutorial1:
 `scene NOVA_SIGN_KEE
-<1 SIGN>First, the controls: A to jump, like most games. However, B can either be a tail attack or run, based on if you're walking or not. Don't step on the spikes.
+<1 SIGN>Hold B to run, or press B to attack. From the pause menu you can choose to run with a double-tap instead, allowing you to attack while moving.
 `end
 
 :Tutorial2:

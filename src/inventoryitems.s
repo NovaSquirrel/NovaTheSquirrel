@@ -202,6 +202,18 @@ DrawAgain:
 
 ; Clear the screen and the background part of the CHR
   jsr WaitVblank
+; Change palette
+  lda #$3f
+  sta PPUADDR
+  lda #$00
+  sta PPUADDR
+  tax
+: lda InventoryPalette,x
+  sta PPUDATA
+  inx
+  cpx #4
+  bne :- 
+
   lda #0
   sta PPUMASK
   jsr ClearBG4kb
@@ -217,17 +229,6 @@ DrawAgain:
 
   lda #GraphicsUpload::INVENTORY_CHR
   jsr DoGraphicUpload
-; Change palette
-  lda #$3f
-  sta PPUADDR
-  lda #$00
-  sta PPUADDR
-  tax
-: lda InventoryPalette,x
-  sta PPUDATA
-  inx
-  cpx #4
-  bne :- 
 
   lda PauseScreenPage
   bne NoDrawInventoryList

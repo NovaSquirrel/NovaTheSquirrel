@@ -20,8 +20,8 @@ Intro:
 .byt SCR::END_SCRIPT
 Tutorial1:
 .byt SCR::SCENE, SCENES::NOVA_SIGN_KEE
-; <1 SIGN>First, the controls: A to jump, like most games. However, B can either be a tail attack or run, based on if you're walking or not. Don't step on the spikes.
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "F", "i", "r", $de, $f5, $a2, " ", "c", $c2, $fa, "o", "l", "s", ":", " ", "A", " ", $bb, "j", "u", "m", "p", ",", SCR::NEWLINE, $8d, " ", "m", "o", $de, " ", "g", "a", $d0, "s", $f6, "H", "o", $c8, "v", $ed, $f5, "B", SCR::NEWLINE, $b0, " ", "e", "i", $a2, $ea, $ba, $be, "t", "a", $dc, " ", $c6, "t", "a", $f3, " ", $c9, SCR::NEWLINE, "r", $f2, $f5, "b", $c4, $d6, $c2, " ", $ce, " ", $a6, "'", "r", "e", SCR::NEWLINE, "w", "a", "l", "k", $b1, " ", $c9, " ", $a3, $f6, "D", $c2, $e8, $de, "e", "p", " ", $c2, SCR::NEWLINE, $a2, " ", $dd, "i", "k", "e", "s", "."
+; <1 SIGN>Hold B to run, or press B to attack. From the pause menu you can choose to run with a double-tap instead, allowing you to attack while moving.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "H", "o", $ef, " ", "B", " ", $bb, "r", $f2, $f5, $c9, " ", "p", "r", "e", $f1, " ", "B", " ", $bc, SCR::NEWLINE, $c6, "t", "a", $f3, $f6, "F", "r", "o", "m", " ", $a2, " ", "p", "a", "u", $e5, " ", $d0, "n", "u", SCR::NEWLINE, $a6, " ", $b0, " ", $e2, $e4, $e5, " ", $bb, "r", $f2, " ", $9d, " ", "a", SCR::NEWLINE, $c5, "u", "b", "l", "e", "-", "t", "a", "p", " ", $d8, $de, $ec, "d", $f5, $ad, "o", "w", $b1, SCR::NEWLINE, $a6, " ", $bb, $c6, "t", "a", $f3, " ", $da, $dc, $e7, "m", "o", "v", $b1, "."
 .byt SCR::END_SCRIPT
 Tutorial2:
 .byt SCR::SCENE, SCENES::NOVA_SIGN_KEE

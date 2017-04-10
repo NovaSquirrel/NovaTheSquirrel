@@ -723,7 +723,7 @@ Blank:
   .byt InventoryItem::BALLOON,              $C4, (60 .mod 100),  (60 / 100)
   .byt InventoryItem::AUTO_BALLOON,         $C8, (80 .mod 100),  (80 / 100)
   .byt InventoryItem::ABILITY_BLASTER,      $84, (45 .mod 100),  (45 / 100)
-  .byt InventoryItem::ABILITY_GLIDER,       $88, (80 .mod 100),  (80 / 100)
+  .byt InventoryItem::ABILITY_GLIDER,       $88, (30 .mod 100),  (30 / 100)
   .byt InventoryItem::LAMP_OIL,             $B0, (20 .mod 100),  (20 / 100)
   .byt InventoryItem::ROPE,                 $B0, (50 .mod 100),  (50 / 100)
   .byt InventoryItem::ABILITY_BOMB,         $8C, (40 .mod 100),  (40 / 100)

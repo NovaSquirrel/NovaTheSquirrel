@@ -136,10 +136,11 @@ SkipTheScript:
   jsr SetPRG
 
   ; This prevents Start from immediately launching into the inventory
+  lda #255
+  sta keylast
   lda #0
   sta keydown
   sta keynew
-  sta keylast
   rts
 .endproc
 
@@ -375,7 +376,6 @@ DoEndPage:
   and #KEY_START
   beq @NoSkip
   ; If Start is pressed and the dialog is skippable, end the script
-  jsr ReadJoy ; reset keynew
   ldx CutsceneOldSP
   txs
   jmp StartCutscene::SkipTheScript
@@ -916,6 +916,8 @@ IfNotItem:
 ; Command, check if choice is the specified one
 IfChoice:
   tax
+  jsr InitIf
+  txa
   cmp ScriptChoice
   bne IfFalse
   jmp IncreaseBy1
@@ -970,6 +972,7 @@ GetFlag:
 .segment "PRGe"
 .proc CutsceneInit
 ; initialize palette
+  jsr WaitVblank
   lda #$3f
   sta PPUADDR
   lda #$00
