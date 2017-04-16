@@ -1692,3 +1692,42 @@ Convert:
   ldx TempX
   rts
 .endproc
+
+.proc InitPaletteWrites
+; clear the palette buffer
+  lda LevelBackgroundColor
+  ldx #(4*8)-1
+: sta Attributes,x
+  dex
+  bpl :-
+
+  lda #$12
+  sta Attributes+(4*4)+1
+  lda #$2a
+  sta Attributes+(4*4)+2
+  lda #$30
+  sta Attributes+(4*4)+3
+
+  lda #$2d
+  sta Attributes+(4*5)+1
+  lda #$3d
+  sta Attributes+(4*5)+2
+  lda #$30
+  sta Attributes+(4*5)+3
+  rts
+.endproc
+
+.proc FlushPaletteWrites
+; upload the palette all in one go
+  jsr WaitVblank
+  lda #$3f
+  sta PPUADDR
+  ldx #$00
+  stx PPUADDR
+: lda Attributes,x
+  sta PPUDATA
+  inx
+  cpx #4*8
+  bne :-
+  rts
+.endproc

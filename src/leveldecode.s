@@ -436,6 +436,8 @@ DoLevelUploadListAndSprites:
   jsr UploadSpriteSlots
 .proc DoLevelUploadList
   jsr WaitVblank
+  jsr InitPaletteWrites
+
 ; background and palettes
   ldy #0
 : tya
@@ -445,7 +447,9 @@ DoLevelUploadListAndSprites:
   jsr DoGraphicUpload
   iny
   bne :-
-: rts
+:
+
+  jmp FlushPaletteWrites
 .endproc
 
 .proc UploadSpriteSlots

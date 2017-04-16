@@ -2,8 +2,9 @@
 ; |    ++++- bank, 0-15
 ; +--------- 1 if this is a palette
 
-IS_GRAPHIC = %00000000 ; compressed graphics
-IS_PALETTE = %10000000 ; palette colors
+IS_GRAPHIC =        %00000000 ; compressed graphics
+IS_PALETTE =        %10000000 ; palette colors
+IS_DIRECT_PALETTE = %01000000
 ;banks available: GRAPHICS_BANK1, GRAPHICS_BANK2, GRAPHICS_BANK3
 
 GraphicsList:
@@ -23,7 +24,7 @@ GraphicsList:
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGChip,       >BGChip
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <TitleCHR,     >TitleCHR
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <TitleNAM,     >TitleNAM
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalTitle,     >PalTitle
+  .byt GRAPHICS_BANK1|IS_DIRECT_PALETTE, <PalTitle,     >PalTitle
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <InventoryCHR, >InventoryCHR
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPSun,        >SPSun
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <NPCCHR,       >NPCCHR
@@ -33,7 +34,7 @@ GraphicsList:
   .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy2,    >PalEnemy2
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGBummer,     >BGBummer
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <LevelSelCHR,  >LevelSelCHR
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalLevelSel,  >PalLevelSel
+  .byt GRAPHICS_BANK1|IS_DIRECT_PALETTE, <PalLevelSel,  >PalLevelSel
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPRonald,     >SPRonald
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPMines,      >SPMines
   .byt GRAPHICS_BANK1|IS_GRAPHIC, <CHRFont,      >CHRFont
@@ -84,7 +85,10 @@ Pointer = 2
 
   ; if the most significant bit is set, it's a palette, not graphics
   lda Temp
-  bpl NotPalette
+  cmp #%01000000
+  bcc NotPalette
+    cmp #%10000000
+    bcs BufferedPalette
     ; set the PPU address
     ; the first byte of the palette data specifies the palette start and palette length
     ldy #0
@@ -123,6 +127,31 @@ NotCompressedGraphics:
   jsr SetPRG_Restore
   pullaxy
   rts
+
+BufferedPalette:
+  ; set the PPU address
+  ; the first byte of the palette data specifies the palette start and palette length
+  ldy #0
+  lda (Pointer),y
+  pha
+  lsr
+  lsr
+  and #%011100
+  tax ; address to write to
+  pla
+  and #15     ; get just the length, from the bottom half
+  sta Temp
+  ; write the palette colors in
+: inx
+  .repeat 3
+    iny
+    lda (Pointer),y
+    sta Attributes,x
+    inx
+  .endrep
+  dec Temp
+  bpl :-
+  jmp NotCompressedGraphics
 .endproc
 
 ; Decompresses a graphics file
