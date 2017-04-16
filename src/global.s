@@ -1665,3 +1665,20 @@ Convert:
   lda #OPTIONS_BANK
   jmp _SetPRG
 .endproc
+
+.proc FarInventoryCode
+  stx TempX
+  pha
+  lda #INVENTORY_BANK
+  jsr _SetPRG
+  pla
+
+  tay
+  ldx #255
+  jsr CallInventoryCodeDirect
+
+  lda #MAINLOOP_BANK
+  jsr _SetPRG
+  ldx TempX
+  rts
+.endproc

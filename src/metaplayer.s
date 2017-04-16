@@ -22,10 +22,23 @@ OpenPrize: ; insert effects here
   stx TempX
   jsr GetBlockX
   tax
+
+  lda #Metatiles::INVENTORY_ITEM
+  sta TempVal
+
   lda ColumnBytes,x
   beq JustACoin
 
   ; If it's an ability backup block, it contains 
+  cmp #128
+  bcc :+
+    pha
+    lda #Metatiles::INVENTORY_ITEM_AUTO
+    sta TempVal
+    pla
+    and #127 ; take off the top bit
+    sta ColumnBytes,x ; change the column byte
+  :
   cmp #InventoryItem::ABILITY_BACKUP
   bne :+
     lda PlayerAbility
@@ -38,7 +51,7 @@ OpenPrize: ; insert effects here
   ldx TempX
   pha ; item number
   dey
-  lda #Metatiles::INVENTORY_ITEM
+  lda TempVal
   jsr ChangeBlock
   iny
   pla ; item number
@@ -142,6 +155,7 @@ CollectibleLo:
   .byt <(TouchedWoodBomb-1)
   .byt <(TouchedWoodCrate-1)
   .byt <(TouchedInventoryItem-1)
+  .byt <(TouchedInventoryItemAuto-1)
   .byt <(TouchedChip-1)
 CollectibleHi:
   .byt >(TouchedCoin-1)
@@ -161,6 +175,7 @@ CollectibleHi:
   .byt >(TouchedWoodBomb-1)
   .byt >(TouchedWoodCrate-1)
   .byt >(TouchedInventoryItem-1)
+  .byt >(TouchedInventoryItemAuto-1)
   .byt >(TouchedChip-1)
 
 SpecialMiscLo:
@@ -389,6 +404,15 @@ NoItem:
 
   lda #SFX::ITEM_GET
   jmp PlaySound
+.endproc
+
+.proc TouchedInventoryItemAuto
+  lda BackgroundMetatile
+  jsr ChangeBlock
+  jsr GetBlockX
+  tay
+  lda ColumnBytes,y
+  jmp FarInventoryCode
 .endproc
 
 .proc TouchedLadder

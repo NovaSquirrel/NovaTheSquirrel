@@ -390,10 +390,18 @@ C .byt $d7
 R INVENTORY_ITEM
 C .byt M_PAL_0
 C .byt M_COLLECTIBLE
-C .byt $24
+C .byt $14
 C .byt $25
 C .byt $26
 C .byt $27
+
+R INVENTORY_ITEM_AUTO
+C .byt M_PAL_0
+C .byt M_COLLECTIBLE
+C .byt $14
+C .byt $2D
+C .byt $26
+C .byt $2F
 
 R CHIP
 C .byt M_PAL_1
@@ -1613,3 +1621,11 @@ C .byt $78
 C .byt $7a
 C .byt $79
 C .byt $7b
+
+R ENEMY_BARRIER
+C .byt M_PAL_1
+C .byt M_EMPTY
+C .byt $3f
+C .byt $3f
+C .byt $3f
+C .byt $3f

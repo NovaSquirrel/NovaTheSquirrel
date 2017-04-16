@@ -44,6 +44,9 @@ NameMetalBox: .byt "Metal box",0
 
 
 .proc RemoveOneItem
+  cpx #255       ; for triggering the item effect without using an actual item
+  bne Unlimited
+
   lda InventoryAmount,x
   beq EmptyNow
   cmp #INVENTORY_UNLIMITED
@@ -151,7 +154,7 @@ AfterAmount:
   jsr WaitVblank
   pla
   sub #InventoryItem::ABILITY_BLASTER-1
-  jmp ChangePlayerAbilityScreenOff
+  jmp ChangePlayerAbility
 .endproc
 
 .proc PauseScreen
@@ -692,6 +695,7 @@ CleanupAfterInventory:
 CallInventoryCode:
   ldx InventoryCursorY
   ldy InventoryType,x
+CallInventoryCode2:
   lda InventoryICodeH,y
   pha
   lda InventoryICodeL,y
@@ -857,6 +861,8 @@ GameOptionsCode:
   jmp CleanupAfterInventory
 .endproc
 
+CallInventoryCodeDirect = PauseScreen::CallInventoryCode2
+
 .proc CheatCodeKeys
 KL = KEY_LEFT
 KR = KEY_RIGHT
@@ -875,6 +881,7 @@ KB = KEY_B
   .byt KD, KD, KD, KD, KU, KU, KU, KU ; down*4, up*4
   .byt KU, KU, KU, KU, KU, KU, KU, KU ; up
   .byt KB, KB, KB, KB, KB, KB, KB, KB ; burger
+  .byt KD, KA, KD, KU, KU, KU, KU, KU ; rich
   .byt 0
 .endproc
 
@@ -901,27 +908,33 @@ Routines:
   .raddr Ice ; down, up
   .raddr Balloon ; up
   .raddr Burger ; b repeatedly
+  .raddr Rich
+Rich:
+  lda #99
+  sta Coins+0
+  sta Coins+1
+  rts
 Boomerang:
   lda #AbilityType::BOOMERANG
-  jmp ChangePlayerAbilityScreenOff  
+  jmp ChangePlayerAbility  
 Fireball:
   lda #AbilityType::FIRE
-  jmp ChangePlayerAbilityScreenOff
+  jmp ChangePlayerAbility
 Water:
   lda #AbilityType::WATER
-  jmp ChangePlayerAbilityScreenOff
+  jmp ChangePlayerAbility
 Bomb:
   lda #AbilityType::BOMB
-  jmp ChangePlayerAbilityScreenOff
+  jmp ChangePlayerAbility
 Firework:
   lda #AbilityType::FIREWORK
-  jmp ChangePlayerAbilityScreenOff
+  jmp ChangePlayerAbility
 Ice:
   lda #AbilityType::NICE
-  jmp ChangePlayerAbilityScreenOff
+  jmp ChangePlayerAbility
 Burger:
   lda #AbilityType::BURGER
-  jmp ChangePlayerAbilityScreenOff
+  jmp ChangePlayerAbility
 Health:
   lda #4
   sta PlayerHealth
@@ -934,7 +947,7 @@ NextAbility:
   ldx #0
 : stx PlayerAbility
   txa
-  jmp ChangePlayerAbilityScreenOff
+  jmp ChangePlayerAbility
 Balloon:
   lda #128
   sta PlayerHasBalloon

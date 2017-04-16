@@ -637,10 +637,49 @@ TooBig:
   rts
 .endproc
 
+.if 0
+.proc LakituMovementAlt
+  lda ObjectF4,x
+  lsr
+  and #31
+  tay
+  lda CosineTable,y
+  sta ObjectVXL,x
+  sex
+  sta ObjectVXH,x
+
+  lda ObjectF4,x
+  and #31
+  tay
+  lda SineTable,y
+  sta ObjectVYL,x
+  sex
+  sta ObjectVYH,x
+
+  inc ObjectF4,x  
+  jmp EnemyLookAtPlayer
+.endproc
+.endif
+
 ; Causes the enemy to move back and forth horizontally,
 ; seeking the player
 .proc LakituMovement
   jsr EnemyApplyVelocity
+
+;  lda ObjectF3,x
+;  bne LakituMovementAlt
+
+  lda ObjectPXL,x
+  add #$80
+  lda ObjectPXH,x
+  adc #0
+  ldy ObjectPYH,x
+  jsr GetLevelColumnPtr
+  cmp #Metatiles::ENEMY_BARRIER
+  bne :+
+    neg16x ObjectVXL, ObjectVXH
+    rts
+  :
 
   ; Stop if stunned
   lda ObjectF2,x
@@ -673,6 +712,7 @@ TooBig:
   sta ObjectVXH,x
   jsr EnemySpeedLimit
 :
+
   rts
 SpeedL:
   .byt <$04, <-$04
