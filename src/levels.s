@@ -1,11 +1,15 @@
 ; to do: figure out how I want to select banks
 
 MasterLevelListL:
-  .byt <intro_a, <grassy_a, <funkunderground, <sky, <water, <grassy2_a, <underground_2, <boss1, <glass_intro, <arrows, <frozen, <frozen2, <emptylevel
+  .byt <intro_a, <grassy_a, <funkunderground, <sky, <water, <grassy2_a, <underground_2, <boss1
+  .byt <glass_intro, <arrows, <woodcrates, <frozen, <frozen2, <emptylevel
+; sub-levels
   .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden
 
 MasterLevelListH:
-  .byt >intro_a, >grassy_a, >funkunderground, >sky, >water, >grassy2_a, >underground_2, >boss1, >glass_intro, >arrows, >frozen, >frozen2, >emptylevel
+  .byt >intro_a, >grassy_a, >funkunderground, >sky, >water, >grassy2_a, >underground_2, >boss1
+  .byt >glass_intro, >arrows, >woodcrates, >frozen, >frozen2, >emptylevel
+; sub-levels
   .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden
 
 .enum LevelId
@@ -19,6 +23,7 @@ MasterLevelListH:
   Boss1
   GlassIntro
   Arrows
+  WoodCrates
   Frozen
   Frozen2
   EmptyLevel
@@ -43,10 +48,9 @@ MasterLevelListH:
 .include "../levels/underground_2.s"
 .include "../levels/garden.s"
 .include "../levels/boss1.s"
-.include "../levels/glass.s"
-.include "../levels/glass2.s"
 .include "../levels/glass_intro.s"
 .include "../levels/arrows.s"
+.include "../levels/woodcrates.s"
 .include "../levels/puzzle2.s"
 .include "../levels/frozen.s"
 .include "../levels/frozen2.s"

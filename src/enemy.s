@@ -1611,10 +1611,10 @@ LaunchFry:
   jsr LakituMovement
 
   ; Increase the counter
-  inc ObjectF3,x
+  inc ObjectF4,x
   lda #0
   sta 1
-  lda ObjectF3,x
+  lda ObjectF4,x
   ; Go a bit slowly
   lsr
   lsr

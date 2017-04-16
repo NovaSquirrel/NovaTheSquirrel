@@ -1829,21 +1829,28 @@ AbilityBurger:
 
 RideOnProjectile:
   inc PlayerNeedsGround
-  lda PlayerPXH
-  sta ObjectPXH,x
-  lda PlayerPXL
-  sta ObjectPXL,x
-  dec PlayerPYH
-  lda PlayerDir
-  bne :+
-  lda ObjectPXL,x
-  add #$a0
-  sta PlayerPXL
-  lda ObjectPXH,x
-  adc #0
-  sta PlayerPXH
-: rts
 
+  ldy PlayerDir
+  lda PlayerPXL
+  sub :+,y
+  sta ObjectPXL,x
+
+  lda PlayerPXH
+  sbc #0
+  sta ObjectPXH,x
+
+  lda ObjectPYL,x
+  sub #$80
+  sta PlayerPYL
+  lda ObjectPYH,x
+  sbc #$01
+  sta PlayerPYH
+
+  lda #0
+  sta PlayerVYL
+  sta PlayerVYH
+  rts
+: .byt $70, $10
 
 SetXVelocity:
   sta ObjectVXL,x
