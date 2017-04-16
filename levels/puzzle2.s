@@ -19,7 +19,6 @@ puzzle2:
   .byt $c0, $00 ; boundaries
 
 puzzle2Data:
-  .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <MeetLia, >MeetLia
   .byt LSpecialCmd, LevelSpecialConfig::PUZZLE_MODE, AbilityType::NONE, $00
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 38
   LObj  LO::S_DOOR,           7, 1

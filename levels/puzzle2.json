@@ -12,7 +12,6 @@
 		"FormatVersion":	1
 	},
 	"Config":	{
-		"StartDialog":	"MeetLia",
 		"PuzzleMode":	"AbilityType::NONE"
 	},
 	"Header":	{

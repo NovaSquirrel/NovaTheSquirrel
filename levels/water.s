@@ -35,8 +35,8 @@ waterData:
   LObjN LO::WIDE_2,           1, 4, 9, LN2::STRIPED_LOG_HORIZ
   LObjN LO::R_WATER,          0, 10, 9, 3
   LObjN LO::R_SAND,           0, 14, 9, 0
-  LObjN LO::R_COIN,           3, 2, 3, 0
-  LObj  LO::S_WOOD_PLATFORM_TOP, 7, 4
+  LObjN LO::R_COIN,           1, 2, 4, 1
+  LObj  LO::S_WOOD_PLATFORM_TOP, 9, 4
   LObjN LO::R_WOOD_PLATFORM,  0, 5, 0, 4
   LObj  LO::S_SOLID_BLOCK,    0, 10
   LObjN LO::R_SAND,           0, 11, 11, 3
@@ -100,14 +100,15 @@ waterData:
   LObjN LO::RECT_2,           4, 12, 2, LN2::SAND, 16
   LObjN LO::WIDE_2,           1, 5, 1, LN2::WOOD_PLATFORM_TOP
   LObjN LO::R_WOOD_PLATFORM,  0, 6, 1, 5
-  LObjN LO::WIDE_1,           1, 3, 2, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           1, 2, 2, 0
+  LObjN LO::WIDE_1,           0, 3, 2, LN1::SOLID_LEDGE
   LObjN LO::WIDE_2,           0, 9, 1, LN2::WOOD_PLATFORM_TOP
   LObj  LO::S_SPRING,         1, 8
   LObjN LO::R_WOOD_PLATFORM,  0, 10, 0, 1
   LObj  LO::S_HEART,          2, 11
   LObjN LO::WIDE_1,           1, 2, 4, LN1::FENCE
   LObjN LO::R_SAND,           0, 3, 4, 8
-  LObjN LO::R_COIN,           6, 8, 0, 2
+  LObjN LO::R_COIN,           6, 3, 0, 7
   LObj  LO::S_CEILING_BARRIER,2, 0
   LObjN LO::R_GROUND,         1, 0, 6, 6
   LObj  LO::S_FLOWER,         1, 11
@@ -151,7 +152,8 @@ waterData:
   LObjN LO::RECT_1,           2, 13, 1, LN1::GROUND, 41
   LObjN LO::WIDE_2,           2, 10, 4, LN2::WOOD_PLATFORM_TOP
   LObjN LO::R_WOOD_PLATFORM,  0, 11, 4, 1
-  LObj  LO::S_COIN,           4, 8
+  LObjN LO::R_COIN,           1, 9, 2, 0
+  LObj  LO::S_COIN,           3, 8
   LObjN LO::RECT_2,           0, 13, 1, LN2::SAND, 16
   LObj  LO::S_COIN,           2, 7
   LObjN LO::R_SAND,           1, 10, 7, 4
@@ -168,7 +170,8 @@ waterData:
   LObj  LO::S_WOOD_PLATFORM_TOP, 0, 11
   LObj  LO::S_WOOD_PLATFORM,  0, 12
   LObj  LO::S_SPRING,         2, 12
-  LObjN LO::WIDE_2,           2, 9, 2, LN2::WOOD_PLATFORM_TOP
+  LObjN LO::R_COIN,           2, 4, 2, 0
+  LObjN LO::WIDE_2,           0, 9, 2, LN2::WOOD_PLATFORM_TOP
   LObjN LO::R_WOOD_PLATFORM,  0, 10, 2, 2
   LObj  LO::S_WOOD_PLATFORM_TOP, 1, 6
   LObjN LO::R_WOOD_PLATFORM,  0, 7, 0, 1

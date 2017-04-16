@@ -184,7 +184,7 @@ arrowsData:
   LObj  LO::S_BG_GLASS_RED,   1, 2
   LObjN LO::R_FG_GLASS_BLUE,  0, 4, 0, 2
   LObjN LO::R_BG_GLASS_BLUE,  0, 7, 0, 3
-  LObjN LO::R_COIN,           1, 1, 3, 1
+  LObjN LO::R_COIN,           1, 1, 2, 1
   LObjN LO::WIDE_1,           0, 4, 3, LN1::SOLID_LEDGE
   LObj  LO::S_CUSTOM,         1, 3, Metatiles::PUSHABLE_BLOCK
   LObjN LO::R_BG_GLASS_GREEN, 0, 7, 2, 0
