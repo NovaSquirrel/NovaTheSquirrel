@@ -84,6 +84,7 @@ OPTIONS_BANK = $e
 .include "main.s"
 .include "math.s"
 .include "global.s"
+.include "trampoline.s"
 .include "cutscene.s"
 .include "screens.s"
 

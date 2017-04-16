@@ -1,5 +1,5 @@
 ; Princess Engine
-; Copyright (C) 2014-2016 NovaSquirrel
+; Copyright (C) 2014-2017 NovaSquirrel
 ;
 ; This program is free software: you can redistribute it and/or
 ; modify it under the terms of the GNU General Public License as
@@ -148,14 +148,8 @@ WritePPURepeated16:
   rts
 .endproc
 
-
-ChangePlayerAbilityScreenOff:
-  pha
-  jsr WaitVblank
-  lda #0
-  sta PPUMASK
-  pla
-; Changes the player ability and uploads the new graphics for it
+; Changes the player ability and uploads the new graphics for its projectiles
+; as well as the ability icon.
 ; input: A (new ability)
 ; locals: TempVal, TempVal+1, TempVal+2
 .proc ChangePlayerAbility
@@ -168,7 +162,7 @@ Pointer = TempVal+0
   pla
 WithoutSFX:
   sta PlayerAbility
-; Because the graphics will be rewritten, erase any projectiles using the old graphics
+; Because the graphics will be rewritten, erase all player projectiles.
   ldx #0
   stx PlayerAbilityVar
 
@@ -251,6 +245,7 @@ NoExtraTiles:
 ; Restore the old bank
   jmp SetPRG_Restore
 
+; Copy 64 bytes (4 tiles) into the UploadTileSpace
 Copy64FromPointer:
   ldx #0
 : lda (Pointer),y
@@ -261,6 +256,7 @@ Copy64FromPointer:
   bne :-
   rts
 
+; Do one round of the updates
 UploadTilesAndUpdateScroll:
   jsr UploadFourTiles
   jmp UpdateScrollRegister
@@ -340,7 +336,7 @@ No:
 .endproc
 
 .ifdef REAL_COLLISION_TEST
-; Does a collision check on two objects
+; Does a collision check on two objects, based on their real positions and not just screen positions
 ; input: x (object 1), y (object 2), TouchWidthA/B, TouchHeightA/B (widths/height measured subpixels)
 ; output: carry (objects are overlapping)
 .proc ChkTouchObjects
@@ -431,16 +427,19 @@ No:
 .proc ReadJoy
   lda keydown
   sta keylast
+  ; The controller port must be written with a 1 then a 0 to reset the controller.
   lda #1
   sta keydown
   sta JOY1
   lda #0
   sta JOY1
   : lda JOY1
-    and #$03
-    cmp #1
+    and #$03 ; Shift in a bit if either of the two bottom bits
+    cmp #1   ; are 1. The Famicom can use either bit.
     rol keydown
     bcc :-
+
+  ; keys in keynew are 1 iff they're pressed and weren't pressed last frame
   lda keylast
   eor #255
   and keydown
@@ -881,68 +880,6 @@ SkipAddr:
   iny
   bne :- ; treated like an unconditional branch
 : rts
-.endproc
-
-; Plays a sound, handles bank switching
-; input: A (sound number)
-.proc PlaySoundAuto
-  pha
-  lda #SOUND_BANK
-  jsr _SetPRG
-  pla
-  jsr pently_start_sound
-  jmp SetPRG_Restore
-.endproc
-
-; Plays music, handles bank switching
-; input: A (music number)
-.proc PlayMusicAuto
-  pha
-  lda #SOUND_BANK
-  jsr _SetPRG
-  pla
-  jsr pently_start_music
-  jmp SetPRG_Restore
-.endproc
-
-.proc DoCollectibleFar
-  pha
-  lda #MAINLOOP_BANK
-  jsr _SetPRG
-  pla
-  inc CollectedByProjectile
-  jsr DoCollectible
-  dec CollectedByProjectile
-  lda #OBJECT_BANK
-  jmp _SetPRG
-.endproc
-
-.proc DoBreakBricksFar
-  pha
-  lda #MAINLOOP_BANK
-  jsr _SetPRG
-  pla
-  jsr DoBreakBricks
-  lda #OBJECT_BANK
-  jmp _SetPRG
-.endproc
-
-.proc ChangeBlockFar
-  pha
-  lda #MAINLOOP_BANK
-  jsr _SetPRG
-  pla
-  jsr ChangeBlock
-  jmp SetPRG_Restore
-.endproc
-
-.proc DelayChangeBlockFar
-  pha
-  lda #MAINLOOP_BANK
-  jsr _SetPRG
-  pla
-  jsr DelayChangeBlock
-  jmp SetPRG_Restore
 .endproc
 
 .proc CopyFromSavedInventory
@@ -1639,60 +1576,6 @@ Convert:
   rts
 .endproc
 
-.proc LoadShopItemIcons
-; Ability graphics are in the graphics bank
-  lda #GRAPHICS_BANK1
-  jsr _SetPRG
-; Calculate pointer to the ability icon
-  lda #$08
-  sta PPUADDR
-  lda #$00
-  sta PPUADDR
-
-  lda #<AbilityIcons
-  sta 0
-  lda #>AbilityIcons
-  sta 1
-
-; Copy 1 kilobyte to the PPU
-  ldx #4
-  ldy #0
-: lda (0),y
-  sta PPUDATA
-  iny
-  bne :-
-  inc 1
-  dex
-  bne :-
-; Decompress shop icons
-  lda #GRAPHICS_BANK2
-  jsr _SetPRG
-  lda #<BGShopIcons
-  ldy #>BGShopIcons
-  jsr DecompressCHR
-
-; Restore options bank
-  lda #OPTIONS_BANK
-  jmp _SetPRG
-.endproc
-
-.proc FarInventoryCode
-  stx TempX
-  pha
-  lda #INVENTORY_BANK
-  jsr _SetPRG
-  pla
-
-  tay
-  ldx #255
-  jsr CallInventoryCodeDirect
-
-  lda #MAINLOOP_BANK
-  jsr _SetPRG
-  ldx TempX
-  rts
-.endproc
-
 .proc InitPaletteWrites
 ; clear the palette buffer
   lda LevelBackgroundColor
@@ -1701,6 +1584,7 @@ Convert:
   dex
   bpl :-
 
+  ; Write Nova's palette and the default palette to the buffer
   lda #$12
   sta Attributes+(4*4)+1
   lda #$2a
