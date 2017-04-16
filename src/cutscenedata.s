@@ -106,6 +106,8 @@ Bill:     .byt "Bill",0
   .byt CHAR::NOVA|(1<<5), CHAR::ITI|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::SMILOID|(2<<5)|FLIP, CHAR::S_TEAM|(3<<5)|FLIP, 0
   .byt CHAR::NOVA|(1<<5), CHAR::IKE|(2<<5)|FLIP, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::S_TEAM|(0<<5), CHAR::S_TEAM|(2<<5)|FLIP, CHAR::IKE|(3<<5)|FLIP
+  .byt CHAR::NOVA|(2<<5), CHAR::LIA|(1<<5), CHAR::SIGN|(3<<5)|FLIP, 0
 .endproc
 
 .enum SCENES
@@ -135,6 +137,8 @@ Bill:     .byt "Bill",0
   NOVA_AND_ITI
   NOVA_AND_SMILOID
   NOVA_AND_IKE
+  NOVA_AND_BAD_GUYS_AND_IKE
+  NOVA_LIA_SIGN
 .endenum
 
 FaceData:
