@@ -130,6 +130,7 @@
   .byt BLOCK_SINGLE,           Metatiles::MINE_TRACK_GRADUAL_LEFT_L
   .byt BLOCK_SINGLE,           Metatiles::MINE_TRACK_GRADUAL_RIGHT_R
   .byt BLOCK_RECTANGLE,        Metatiles::MINE_TRACK_SUPPORTS_ONLY
+  .byt BLOCK_RECTANGLE,        Metatiles::ENEMY_BARRIER
 .endproc
 
 .proc ObjectTypesList
