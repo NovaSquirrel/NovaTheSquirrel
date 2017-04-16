@@ -1326,6 +1326,16 @@ Exit:
 ; Adds another coin to the counter, deals with BCD stuff and
 ; sets a timer to display the counter.
 .proc AddCoin
+  ; don't add any coins if you're at 9999
+  lda Coins+1
+  cmp #99
+  bne :+
+  lda Coins+0
+  cmp #99
+  bne :+
+    rts
+  :
+
   lda #60
   sta CoinShowTimer
   inc Coins

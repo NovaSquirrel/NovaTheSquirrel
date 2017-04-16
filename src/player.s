@@ -1428,6 +1428,8 @@ NoExtraTile:
     dec CoinShowTimer
     lda PlayerDrawY ; PlayerDrawY is offset to the center, so change the offset
     sub #12
+    cmp #220        ; don't display if too far off the screen
+    bcs NoCoinShow
     sta OAM_YPOS+(4*0),x
     sta OAM_YPOS+(4*1),x
     sta OAM_YPOS+(4*2),x

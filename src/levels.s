@@ -2,13 +2,15 @@
 
 MasterLevelListL:
   .byt <intro_a, <grassy_a, <funkunderground, <sky, <water, <grassy2_a, <underground_2, <boss1
-  .byt <glass_intro, <arrows, <woodcrates, <frozen, <frozen2, <emptylevel
+  .byt <glass_intro, <arrows, <burgers
+  .byt <frozen, <frozen2, <emptylevel
 ; sub-levels
   .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden
 
 MasterLevelListH:
   .byt >intro_a, >grassy_a, >funkunderground, >sky, >water, >grassy2_a, >underground_2, >boss1
-  .byt >glass_intro, >arrows, >woodcrates, >frozen, >frozen2, >emptylevel
+  .byt >glass_intro, >arrows, >burgers
+  .byt >frozen, >frozen2, >emptylevel
 ; sub-levels
   .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden
 
@@ -23,7 +25,7 @@ MasterLevelListH:
   Boss1
   GlassIntro
   Arrows
-  WoodCrates
+  Burgers
   Frozen
   Frozen2
   EmptyLevel
@@ -50,7 +52,7 @@ MasterLevelListH:
 .include "../levels/boss1.s"
 .include "../levels/glass_intro.s"
 .include "../levels/arrows.s"
-.include "../levels/woodcrates.s"
+.include "../levels/burgers.s"
 .include "../levels/puzzle2.s"
 .include "../levels/frozen.s"
 .include "../levels/frozen2.s"

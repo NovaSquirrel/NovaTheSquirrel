@@ -45,7 +45,7 @@ NameMetalBox: .byt "Metal box",0
 
 .proc RemoveOneItem
   cpx #255       ; for triggering the item effect without using an actual item
-  bne Unlimited
+  beq Unlimited
 
   lda InventoryAmount,x
   beq EmptyNow
@@ -693,6 +693,9 @@ CleanupAfterInventory:
   jmp UpdateScrollRegister
 
 CallInventoryCode:
+  jsr WaitVblank
+  lda #0
+  sta PPUMASK
   ldx InventoryCursorY
   ldy InventoryType,x
 CallInventoryCode2:
