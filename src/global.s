@@ -1238,7 +1238,7 @@ DoDialogInstead:
   jsr RenderThinString
 
   jsr FindFreeObjectY
-  bcc NoSlotFree
+  bcc Exit ; no slots free
   lda #Enemy::POOF*2
   sta ObjectF1,y
   lda #PoofSubtype::FLOAT_TEXT
@@ -1253,9 +1253,6 @@ DoDialogInstead:
   lda #0
   sta ObjectPYL,y
   sta ObjectTimer,y
-  beq Exit ; unconditional branch
-NoSlotFree:
-  pla
 Exit:
   jmp SetPRG_Restore
 .endproc
