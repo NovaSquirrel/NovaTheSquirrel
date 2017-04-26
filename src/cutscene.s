@@ -517,6 +517,8 @@ ShowScene:
   sta OAM_ATTR+(4*4),x
   sta OAM_ATTR+(4*5),x
   lda CutsceneCharacter,y
+  cmp #CHAR::BILL
+  beq @BillCustom
   asl
   sta 2
   asl
@@ -554,6 +556,7 @@ ShowScene:
   sta OAM_ATTR+(4*4),x
   sta OAM_ATTR+(4*5),x
 @NoFlip:
+@BackFromBillCustom:
 
 @SkipMe:
   iny
@@ -561,6 +564,43 @@ ShowScene:
   jne @SetUp
 
   jmp IncreaseBy1
+
+@BillCustom:
+  lda #$78
+  sta OAM_TILE+(4*0),x
+  lda #$79
+  sta OAM_TILE+(4*1),x
+  lda #$7b
+  sta OAM_TILE+(4*2),x
+  lda #$7c
+  sta OAM_TILE+(4*3),x
+  lda #$7e
+  sta OAM_TILE+(4*4),x
+  lda #$7f
+  sta OAM_TILE+(4*5),x
+  lda #$7a
+  sta OAM_TILE+(4*6),x
+  lda #$7d
+  sta OAM_TILE+(4*7),x
+  lda #$04
+  sta OAM_TILE+(4*8),x
+  ; Set up the X position and Y positions and attribute
+  lda OAM_ATTR+(4*0),x
+  sta OAM_ATTR+(4*6),x
+  sta OAM_ATTR+(4*7),x
+  sta OAM_ATTR+(4*8),x
+  lda OAM_XPOS+(4*0),x
+  add #16
+  sta OAM_XPOS+(4*6),x
+  sta OAM_XPOS+(4*7),x
+  sta OAM_XPOS+(4*8),x
+  lda #21*8-1
+  sta OAM_YPOS+(4*6),x
+  lda #22*8-1
+  sta OAM_YPOS+(4*7),x
+  lda #23*8-1
+  sta OAM_YPOS+(4*8),x
+  jmp @BackFromBillCustom
 
 SpriteXPositions:
   .byt 8*8+4, 12*8+4, 16*8+4, 20*8+4

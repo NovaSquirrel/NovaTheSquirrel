@@ -99,7 +99,7 @@ Bill:     .byt "Bill",0
   .byt CHAR::NOVA|(1<<5), 0, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::S_TEAM|(0<<5), CHAR::S_TEAM|(3<<5)|FLIP, 0
   .byt CHAR::NOVA|(1<<5), CHAR::KOREY|(2<<5)|FLIP, 0, 0
-  .byt CHAR::NOVA|(1<<5), CHAR::BILL|(2<<5)|FLIP, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::BILL|(2<<5), 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::SHERWIN|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::SHERWIN|(2<<5)|FLIP, CHAR::KOREY|(3<<5)|FLIP, 0
   .byt CHAR::NOVA|(1<<5), CHAR::LIA|(2<<5)|FLIP, 0, 0
