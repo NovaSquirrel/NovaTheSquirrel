@@ -1,8 +1,7 @@
 Nova the Squirrel
 ============
 
-[Nova the Squirrel](http://wiki.novasquirrel.com/Nova%20the%20Squirrel) is an NES game that stars [Nova Storm](http://wiki.novasquirrel.com/Nova%20Storm), a green squirrel, who winds up in a new and unfamiliar world with strange new abilities, and she must use her new abilities to save the world. This game is supposed to give her a backstory, and portrays all the events leading up to her becoming a princess and founding [Toasterland](http://wiki.novasquirrel.co
-m/Toasterland).
+[Nova the Squirrel](http://wiki.novasquirrel.com/Nova%20the%20Squirrel) is an NES game that stars [Nova Storm](http://wiki.novasquirrel.com/Nova%20Storm), a green squirrel, who winds up in a new and unfamiliar world with strange new abilities, and she must use her new abilities to save the world. This game is supposed to give her a backstory, and portrays all the events leading up to her becoming a princess and founding [Toasterland](http://wiki.novasquirrel.com/Toasterland).
 
 ![Animated screenshot](http://i.imgur.com/2uPJwsW.gif) ![Animated screenshot](http://i.imgur.com/1pRolBf.gif)
 
