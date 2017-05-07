@@ -90,11 +90,20 @@ AfterAmount:
 : rts
 .endproc
 
-.proc DoPlaceBlock
-  jmp RemoveOneItem
-.endproc
+.proc DoPlaceableItem
+  lda InventoryType,x
+  sub #InventoryItem::BLOCK
+  ora #128
+  sta PlaceBlockInLevel
 
-.proc DoPlaceSpring
+  lda PlayerPXL
+  add #$80
+  lda PlayerPXH
+  adc #0
+  sub ScrollX+1
+  sta PlaceBlockX
+  lda PlayerPYH
+  sta PlaceBlockY
   jmp RemoveOneItem
 .endproc
 

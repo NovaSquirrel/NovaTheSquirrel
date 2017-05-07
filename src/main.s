@@ -247,6 +247,8 @@ NotSlowTimer:
   sta FallingBlockPointer+1
 NoFallingBlock:
 
+  lda PlaceBlockInLevel
+  bne PlaceBlockMode
   jsr RunPlayer
   jsr AdjustCamera
   jsr DisplayPlayer
@@ -263,6 +265,14 @@ NoFallingBlock:
   jsr pently_init ; Stop music and sound effects
   jsr ShowDie
 NotDie:
+  ; If the enemies and objects are skipped, the sound bank wasn't set
+  ; so it needs to be set for pently_update
+  jmp DidntSkipPlayerAndEnemies
+PlaceBlockMode:
+  jsr RunPlaceBlockMode
+  lda #SOUND_BANK
+  jsr SetPRG
+DidntSkipPlayerAndEnemies:
 
   ; Update music+sfx, play sounds if needed
   jsr pently_update
@@ -387,6 +397,8 @@ NotDie:
 .endif
 
   ; Display the level number using a sprite if it's a new level
+  lda PlaceBlockInLevel
+  bne NoDisplayLevelNumber
   lda DisplayLevelNumber
   beq NoDisplayLevelNumber
   and #31
@@ -442,4 +454,129 @@ NoDisplayLevelNumber:
     sta LagFrame
   .endif
   jmp VBlankUpdates
+.endproc
+
+.proc RunPlaceBlockMode
+Offset = 2
+Type   = 3
+; Figure out the offset
+  lda ScrollX
+  lsr
+  lsr
+  lsr
+  lsr
+  sta Offset
+
+; Move the block
+  lda keynew
+  and #KEY_LEFT
+  beq :+
+    lda PlaceBlockX
+    cmp #1
+    beq :+
+    dec PlaceBlockX
+  :
+  lda keynew
+  and #KEY_DOWN
+  beq :+
+    lda PlaceBlockY
+    cmp #13
+    beq :+
+    inc PlaceBlockY
+  :
+  lda keynew
+  and #KEY_UP
+  beq :+
+    lda PlaceBlockY
+    beq :+
+    dec PlaceBlockY
+  :
+  lda keynew
+  and #KEY_RIGHT
+  beq :+
+    lda PlaceBlockX
+    cmp #15
+    beq :+
+    inc PlaceBlockX
+  :
+
+; Display the block
+  ldy OamPtr
+  lda PlaceBlockInLevel
+  and #15
+  sta Type
+  tax
+  lda PlaceableTiles0,x
+  sta OAM_TILE+(4*0),y
+  lda PlaceableTiles1,x
+  sta OAM_TILE+(4*1),y
+  lda PlaceableTiles2,x
+  sta OAM_TILE+(4*2),y
+  lda PlaceableTiles3,x
+  sta OAM_TILE+(4*3),y
+
+  lda #OAM_COLOR_1
+  sta OAM_ATTR+(4*0),y
+  sta OAM_ATTR+(4*1),y
+  sta OAM_ATTR+(4*2),y
+  sta OAM_ATTR+(4*3),y
+  lda PlaceBlockX
+  asl
+  asl
+  asl
+  asl
+  sub Offset
+  sta OAM_XPOS+(4*0),y
+  sta OAM_XPOS+(4*1),y
+  add #8
+  sta OAM_XPOS+(4*2),y
+  sta OAM_XPOS+(4*3),y
+
+  lda PlaceBlockY
+  asl
+  asl
+  asl
+  asl
+  sub #1
+  sta OAM_YPOS+(4*0),y
+  sta OAM_YPOS+(4*2),y
+  add #8
+  sta OAM_YPOS+(4*1),y
+  sta OAM_YPOS+(4*3),y
+
+  tya
+  add #4*4
+  sty OamPtr
+
+; Place down the block
+  lda keynew
+  and #KEY_A
+  beq :+
+  ldy PlaceBlockY
+  lda ScrollX+1
+  add PlaceBlockX
+  jsr GetLevelColumnPtr
+  cmp BackgroundMetatile ; don't overwrite blocks
+  bne :+
+  ldx Type
+  lda PlaceableMetatiles,x
+  jsr ChangeBlock
+  lda #0
+  sta PlaceBlockInLevel
+  jmp ClearOAM
+: rts
+; block, spring, arrow left/down/up/right, arrow metal left/down/up/right, wood box, metal box
+PlaceableTiles0:
+  .byt $0c, $3f, $00, $00
+PlaceableTiles1:
+  .byt $0d, $18, $00, $00
+PlaceableTiles2:
+  .byt $0e, $3f, $00, $00
+PlaceableTiles3:
+  .byt $0f, $19, $00, $00
+PlaceableMetatiles:
+  .byt Metatiles::SOLID_BLOCK, Metatiles::SPRING
+  .byt Metatiles::WOOD_ARROW_LEFT, Metatiles::WOOD_ARROW_DOWN, Metatiles::WOOD_ARROW_UP, Metatiles::WOOD_ARROW_RIGHT
+  .byt Metatiles::METAL_ARROW_LEFT, Metatiles::METAL_ARROW_DOWN, Metatiles::METAL_ARROW_UP, Metatiles::METAL_ARROW_RIGHT
+  .byt Metatiles::WOOD_CRATE, Metatiles::METAL_CRATE
 .endproc

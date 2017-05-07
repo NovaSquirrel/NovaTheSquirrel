@@ -347,6 +347,9 @@ GameStateLen = 1+2+10+10+2 ; update if more stuff is added
   ; For speeding up enemy spawning
   FirstSpriteOnScreen:     .res 16
 
+  PlaceBlockInLevel: .res 1 ; if nonzero, place a block in the level instead of running the engine
+  PlaceBlockX:       .res 1
+  PlaceBlockY:       .res 1
 .segment "SAVE"
 SaveStart:
   SaveTag:            .res 8

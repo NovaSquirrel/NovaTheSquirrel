@@ -8,8 +8,6 @@
   .byt InventoryIcon::SHIELD ;FIRE_BOOTS
   .byt InventoryIcon::SHIELD ;ICE_SKATES
   .byt InventoryIcon::SHIELD ;SUCTION_BOOTS
-  .byt InventoryIcon::PLACEABLE ;BLOCK
-  .byt InventoryIcon::PLACEABLE ;SPRING
   .byt InventoryIcon::PANTS ;NUCLEAR_PANTS
   .byt InventoryIcon::EFFECT ;ALWAYS_JUMPING
   .byt InventoryIcon::ABILITY ;ABILITY_BLASTER
@@ -28,6 +26,8 @@
   .byt InventoryIcon::BULLET ;BALLOON
   .byt InventoryIcon::HEART ;SMALL_HEALTH_RESTORE
   .byt InventoryIcon::HEART ;BIG_HEALTH_RESTORE
+  .byt InventoryIcon::PLACEABLE ;BLOCK
+  .byt InventoryIcon::PLACEABLE ;SPRING
   .byt InventoryIcon::PLACEABLE ;ARROW_LEFT
   .byt InventoryIcon::PLACEABLE ;ARROW_DOWN
   .byt InventoryIcon::PLACEABLE ;ARROW_UP
@@ -52,8 +52,6 @@
   .byt <NameFireBoots ;FIRE_BOOTS
   .byt <NameIceSkates ;ICE_SKATES
   .byt <NameSuctionBoots ;SUCTION_BOOTS
-  .byt <NameBlock ;BLOCK
-  .byt <NameSpring ;SPRING
   .byt <NameNuclearPowerPants ;NUCLEAR_PANTS
   .byt <NameAlwaysJumping ;ALWAYS_JUMPING
   .byt <NameBlaster ;ABILITY_BLASTER
@@ -72,6 +70,8 @@
   .byt <NameBalloon ;BALLOON
   .byt <NameHealthSmall ;SMALL_HEALTH_RESTORE
   .byt <NameHealthBig ;BIG_HEALTH_RESTORE
+  .byt <NameBlock ;BLOCK
+  .byt <NameSpring ;SPRING
   .byt <NameArrowLeft ;ARROW_LEFT
   .byt <NameArrowDown ;ARROW_DOWN
   .byt <NameArrowUp ;ARROW_UP
@@ -96,8 +96,6 @@
   .byt >NameFireBoots ;FIRE_BOOTS
   .byt >NameIceSkates ;ICE_SKATES
   .byt >NameSuctionBoots ;SUCTION_BOOTS
-  .byt >NameBlock ;BLOCK
-  .byt >NameSpring ;SPRING
   .byt >NameNuclearPowerPants ;NUCLEAR_PANTS
   .byt >NameAlwaysJumping ;ALWAYS_JUMPING
   .byt >NameBlaster ;ABILITY_BLASTER
@@ -116,6 +114,8 @@
   .byt >NameBalloon ;BALLOON
   .byt >NameHealthSmall ;SMALL_HEALTH_RESTORE
   .byt >NameHealthBig ;BIG_HEALTH_RESTORE
+  .byt >NameBlock ;BLOCK
+  .byt >NameSpring ;SPRING
   .byt >NameArrowLeft ;ARROW_LEFT
   .byt >NameArrowDown ;ARROW_DOWN
   .byt >NameArrowUp ;ARROW_UP
@@ -140,8 +140,6 @@
   .byt <(DoNothing-1) ;FIRE_BOOTS
   .byt <(DoNothing-1) ;ICE_SKATES
   .byt <(DoNothing-1) ;SUCTION_BOOTS
-  .byt <(DoPlaceBlock-1) ;BLOCK
-  .byt <(DoPlaceSpring-1) ;SPRING
   .byt <(DoNothing-1) ;NUCLEAR_PANTS
   .byt <(DoNothing-1) ;ALWAYS_JUMPING
   .byt <(DoSwitchAbility-1) ;ABILITY_BLASTER
@@ -160,16 +158,18 @@
   .byt <(DoNothing-1) ;BALLOON
   .byt <(DoHealthRestoreSmall-1) ;SMALL_HEALTH_RESTORE
   .byt <(DoHealthRestoreBig-1) ;BIG_HEALTH_RESTORE
-  .byt <(DoNothing-1) ;ARROW_LEFT
-  .byt <(DoNothing-1) ;ARROW_DOWN
-  .byt <(DoNothing-1) ;ARROW_UP
-  .byt <(DoNothing-1) ;ARROW_RIGHT
-  .byt <(DoNothing-1) ;ARROW_LEFT_METAL
-  .byt <(DoNothing-1) ;ARROW_DOWN_METAL
-  .byt <(DoNothing-1) ;ARROW_UP_METAL
-  .byt <(DoNothing-1) ;ARROW_RIGHT_METAL
-  .byt <(DoNothing-1) ;WOOD_BOX
-  .byt <(DoNothing-1) ;METAL_BOX
+  .byt <(DoPlaceableItem-1) ;BLOCK
+  .byt <(DoPlaceableItem-1) ;SPRING
+  .byt <(DoPlaceableItem-1) ;ARROW_LEFT
+  .byt <(DoPlaceableItem-1) ;ARROW_DOWN
+  .byt <(DoPlaceableItem-1) ;ARROW_UP
+  .byt <(DoPlaceableItem-1) ;ARROW_RIGHT
+  .byt <(DoPlaceableItem-1) ;ARROW_LEFT_METAL
+  .byt <(DoPlaceableItem-1) ;ARROW_DOWN_METAL
+  .byt <(DoPlaceableItem-1) ;ARROW_UP_METAL
+  .byt <(DoPlaceableItem-1) ;ARROW_RIGHT_METAL
+  .byt <(DoPlaceableItem-1) ;WOOD_BOX
+  .byt <(DoPlaceableItem-1) ;METAL_BOX
   .byt <(DoNothing-1) ;ABILITY_BACKUP
   .byt <(DoNothing-1) ;AUTO_BALLOON
 .endproc
@@ -184,8 +184,6 @@
   .byt >(DoNothing-1) ;FIRE_BOOTS
   .byt >(DoNothing-1) ;ICE_SKATES
   .byt >(DoNothing-1) ;SUCTION_BOOTS
-  .byt >(DoPlaceBlock-1) ;BLOCK
-  .byt >(DoPlaceSpring-1) ;SPRING
   .byt >(DoNothing-1) ;NUCLEAR_PANTS
   .byt >(DoNothing-1) ;ALWAYS_JUMPING
   .byt >(DoSwitchAbility-1) ;ABILITY_BLASTER
@@ -204,16 +202,18 @@
   .byt >(DoNothing-1) ;BALLOON
   .byt >(DoHealthRestoreSmall-1) ;SMALL_HEALTH_RESTORE
   .byt >(DoHealthRestoreBig-1) ;BIG_HEALTH_RESTORE
-  .byt >(DoNothing-1) ;ARROW_LEFT
-  .byt >(DoNothing-1) ;ARROW_DOWN
-  .byt >(DoNothing-1) ;ARROW_UP
-  .byt >(DoNothing-1) ;ARROW_RIGHT
-  .byt >(DoNothing-1) ;ARROW_LEFT_METAL
-  .byt >(DoNothing-1) ;ARROW_DOWN_METAL
-  .byt >(DoNothing-1) ;ARROW_UP_METAL
-  .byt >(DoNothing-1) ;ARROW_RIGHT_METAL
-  .byt >(DoNothing-1) ;WOOD_BOX
-  .byt >(DoNothing-1) ;METAL_BOX
+  .byt >(DoPlaceableItem-1) ;BLOCK
+  .byt >(DoPlaceableItem-1) ;SPRING
+  .byt >(DoPlaceableItem-1) ;ARROW_LEFT
+  .byt >(DoPlaceableItem-1) ;ARROW_DOWN
+  .byt >(DoPlaceableItem-1) ;ARROW_UP
+  .byt >(DoPlaceableItem-1) ;ARROW_RIGHT
+  .byt >(DoPlaceableItem-1) ;ARROW_LEFT_METAL
+  .byt >(DoPlaceableItem-1) ;ARROW_DOWN_METAL
+  .byt >(DoPlaceableItem-1) ;ARROW_UP_METAL
+  .byt >(DoPlaceableItem-1) ;ARROW_RIGHT_METAL
+  .byt >(DoPlaceableItem-1) ;WOOD_BOX
+  .byt >(DoPlaceableItem-1) ;METAL_BOX
   .byt >(DoNothing-1) ;ABILITY_BACKUP
   .byt >(DoNothing-1) ;AUTO_BALLOON
 .endproc
@@ -228,8 +228,6 @@
   ThinFontText "FIREBOOT" ;FIRE_BOOTS
   ThinFontText "ICESKATE" ;ICE_SKATES
   ThinFontText "SUCKBOOT" ;SUCTION_BOOTS
-  ThinFontText "BLOCK   " ;BLOCK
-  ThinFontText "SPRING  " ;SPRING
   ThinFontText "NUCLEAR " ;NUCLEAR_PANTS
   ThinFontText "JUMPING " ;ALWAYS_JUMPING
   ThinFontText "BLASTER " ;ABILITY_BLASTER
@@ -248,6 +246,8 @@
   ThinFontText "BALLOON " ;BALLOON
   ThinFontText "PIZZA SL" ;SMALL_HEALTH_RESTORE
   ThinFontText "XL PIZZA" ;BIG_HEALTH_RESTORE
+  ThinFontText "BLOCK   " ;BLOCK
+  ThinFontText "SPRING  " ;SPRING
   ThinFontText "ARROW L " ;ARROW_LEFT
   ThinFontText "ARROW D " ;ARROW_DOWN
   ThinFontText "ARROW U " ;ARROW_UP
