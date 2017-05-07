@@ -115,8 +115,10 @@ falldownData:
   LObjN LO::R_FG_GLASS_RED,   1, 6, 4, 1
   LObjN LO::R_COIN,           0, 9, 3, 0
   LObjN LO::R_SOLID_BLOCK,    1, 5, 3, 0
-  LObjN LO::WIDE_1,           0, 10, 1, LN1::PRIZE
-  LObj  LO::S_DOOR,           3, 11
+  LObj  LO::S_PRIZE,          0, 10
+  LWriteCol InventoryItem::HEALTH_RESTORE
+  LObj  LO::S_PRIZE,          1, 10
+  LObj  LO::S_DOOR,           2, 11
   LWriteCol 8, 67
   LObjN LO::R_FG_GLASS_BLUE,  1, 0, 1, 14
   LObjN LO::R_ROCK,           2, 0, 1, 14
