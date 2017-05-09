@@ -334,6 +334,24 @@ LevelLinkNonzero:
   sta PlayerPYL
   lda LevelLinkStartYH,y
   sta PlayerPYH
+
+  ; Clear out the delayed metatile change list
+  ldx #MaxDelayedMetaEdits-1
+ClearDelayed:
+  lda DelayedMetaEditIndexHi,x
+  beq @NotPresent
+    lda DelayedMetaEditIndexHi,x
+    sta LevelBlockPtr+1
+    lda DelayedMetaEditIndexLo,x
+    sta LevelBlockPtr+0
+    lda DelayedMetaEditType,x
+    ldy #0
+    sta (LevelBlockPtr),y
+    tya ; A = 0
+    sta DelayedMetaEditIndexHi,x ; Don't need to clear the rest
+@NotPresent:
+  dex
+  bpl ClearDelayed
 NotOffTopBottom:
 
   countdown PlayerJumpCancelLock

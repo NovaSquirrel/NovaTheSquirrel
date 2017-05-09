@@ -750,6 +750,9 @@ Blank:
   cpy TempVal+2
   bne :+
   ; Item found
+  lda InventorySaved+InventoryLen,x ; check if 99
+  cmp #98
+  beq Fail ; can't get more than 99
   inc InventorySaved+InventoryLen,x ; amount
   rts
 : ; Item not found, keep looking
@@ -763,6 +766,7 @@ Blank:
   inx
   cpx #InventoryLen
   bne :-
+Fail:
   clc ; No free slots
   rts
 

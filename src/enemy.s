@@ -817,7 +817,7 @@ MakeIce:
       sta ObjectVYL,x
   :
 
-  lda #$a8
+  lda #$08
   ldy #OAM_COLOR_2
   jsr DispEnemyWide
   jmp EnemyPlayerTouchHurt

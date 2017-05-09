@@ -471,6 +471,32 @@ Type   = 3
   lsr
   sta Offset
 
+  lda keydown
+  beq NoAutorepeat
+  cmp keylast
+  bne NoAutorepeat
+  inc PlaceBlockAutorepeat
+  lda PlaceBlockAutorepeat
+  cmp #12
+  bcc SkipNoAutorepeat
+
+  lda retraces
+  and #3
+  bne :+
+  lda keydown
+  and #KEY_LEFT|KEY_RIGHT|KEY_UP|KEY_DOWN
+  ora keynew
+  sta keynew
+:
+
+  ; Keep it from going up to 255 and resetting
+  dec PlaceBlockAutorepeat
+  bne SkipNoAutorepeat
+NoAutorepeat:
+  lda #0
+  sta PlaceBlockAutorepeat
+SkipNoAutorepeat:
+
 ; Move the block
   lda keynew
   and #KEY_LEFT
