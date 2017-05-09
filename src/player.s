@@ -1525,7 +1525,14 @@ MakeDrawX:
   bne :+
   ldy 0           ; Reload Y position
   jsr DoBreakBricks
+  jmp WasBricks
+: ; not bricks? try for item block
+  cmp #M_SPECIAL_CEILING
+  bne :+
+  ldy 0           ; Reload Y position
+  jsr OpenPrize
 :
+WasBricks:
 
   ; Launch the routine for the ability
   lda PlayerAbility
