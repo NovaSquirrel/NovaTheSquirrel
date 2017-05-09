@@ -277,6 +277,7 @@ ChangePlayerAbilityWithoutSFX = ChangePlayerAbility::WithoutSFX
   lda #0
   sta PPUSCROLL
   lda PlaceBlockInLevel ; if in block placing mode, sprites use background tiles
+  and #%01000000
   bne BGSprites
   lda 0
   and #1 ; bit 0 is most significant bit of scroll

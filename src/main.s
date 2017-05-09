@@ -459,6 +459,10 @@ NoDisplayLevelNumber:
 .proc RunPlaceBlockMode
 Offset = 2
 Type   = 3
+; Make sure rendering is ong
+  lda #OBJ_ON | BG_ON
+  sta PPUMASK
+
 ; Figure out the offset
   lda ScrollX
   lsr
@@ -503,6 +507,8 @@ Type   = 3
 ; Display the block
   ldy OamPtr
   lda PlaceBlockInLevel
+  ora #64 ; Delay switching the sprite graphics until the OAM is actually set
+  sta PlaceBlockInLevel
   and #15
   sta Type
   tax

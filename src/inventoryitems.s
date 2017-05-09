@@ -91,7 +91,7 @@ AfterAmount:
 .endproc
 
 .proc DoPlaceableItem
-  lda InventoryType,x
+  tya
   sub #InventoryItem::BLOCK
   ora #128
   sta PlaceBlockInLevel
@@ -104,6 +104,7 @@ AfterAmount:
   sta PlaceBlockX
   lda PlayerPYH
   sta PlaceBlockY
+
   jmp RemoveOneItem
 .endproc
 
