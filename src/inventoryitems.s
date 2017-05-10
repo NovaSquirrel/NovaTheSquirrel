@@ -176,7 +176,7 @@ SwapList = ScratchPage ; to help with avoiding screen blanking when swapping two
 PauseScreenPage = ScratchPage + 20 ; 0 for inventory, 1 for more options
 TossMode = ScratchPage + 21
 LastMenuOption = ScratchPage + 22
-ExtraOptionsCount = 3 ; constant
+ExtraOptionsCount = 4 ; constant
 
   lda #VWF_BANK
   jsr _SetPRG
@@ -841,18 +841,22 @@ MoreItemsListNameL:
 .byt <ExitLevelString
 .byt <TossItemsString
 .byt <GameOptionsString
+.byt <ResetCheckpointString
 MoreItemsListNameH:
 .byt >ExitLevelString
 .byt >TossItemsString
 .byt >GameOptionsString
+.byt >ResetCheckpointString
 MoreItemsListCodeL:
 .byt <(ExitLevelCode-1)
 .byt <(TossItemsCode-1)
 .byt <(GameOptionsCode-1)
+.byt <(ResetCheckpointCode-1)
 MoreItemsListCodeH:
 .byt >(ExitLevelCode-1)
 .byt >(TossItemsCode-1)
 .byt >(GameOptionsCode-1)
+.byt >(ResetCheckpointCode-1)
 
 ExitLevelString:
 .byt "Exit level",0
@@ -860,6 +864,8 @@ TossItemsString:
 .byt "Toss items",0
 GameOptionsString:
 .byt "Game options",0
+ResetCheckpointString:
+.byt "Reset to checkpoint",0
 
 ExitLevelCode:
   jmp PauseScreen::GoBackToLevelSelect
@@ -872,6 +878,10 @@ GameOptionsCode:
   inc OptionsViaInventory
   jsr ShowOptions
   dec OptionsViaInventory
+  jmp CleanupAfterInventory
+ResetCheckpointCode:
+  lda #0
+  sta PlayerHealth
   jmp CleanupAfterInventory
 .endproc
 
