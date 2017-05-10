@@ -293,6 +293,8 @@ DidntSkipPlayerAndEnemies:
   countdown SoundDebounce
 
   ; Still need sound bank since the pause screen mutes the sound
+  lda PlaceBlockInLevel
+  bne NoPause
   lda keynew
   and #KEY_START
   beq NoPause
@@ -547,7 +549,7 @@ SkipNoAutorepeat:
   lda PlaceableTiles3,x
   sta OAM_TILE+(4*3),y
 
-  lda #OAM_COLOR_1
+  lda #OAM_COLOR_0
   sta OAM_ATTR+(4*0),y
   sta OAM_ATTR+(4*1),y
   sta OAM_ATTR+(4*2),y
@@ -580,23 +582,55 @@ SkipNoAutorepeat:
   add #4*4
   sty OamPtr
 
+; Cancel the block if possible
+  lda keynew
+  and #KEY_B
+  beq :+
+    ; Can only cancel if you're actually using an inventory item
+    lda PlaceBlockItemIndex
+    cmp #255
+    beq :+
+      lda #0
+      sta PlaceBlockInLevel
+      jmp ClearOAM
+  :
+
 ; Place down the block
   lda keynew
   and #KEY_A
   beq :+
-  ldy PlaceBlockY
-  lda ScrollX+1
-  add PlaceBlockX
-  jsr GetLevelColumnPtr
-  cmp BackgroundMetatile ; don't overwrite blocks
-  bne :+
-  ldx Type
-  lda PlaceableMetatiles,x
-  jsr ChangeBlock
+    ldy PlaceBlockY
+    lda ScrollX+1
+    add PlaceBlockX
+    jsr GetLevelColumnPtr
+    cmp BackgroundMetatile ; Don't overwrite blocks
+    bne :+
+      ldx Type
+      lda PlaceableMetatiles,x
+      jsr ChangeBlock
+      lda #SFX::PLACE_BLOCK
+      jsr PlaySound
+
+      ; Stop if it's not an actual inventory item
+      ldx PlaceBlockItemIndex
+      cpx #255
+      beq End
+
+      ; Subtract one item from the item count, and erase the item and stop if it's the last one
+      lda InventoryAmount,x
+      beq LastOne
+      dec InventoryAmount,x
+  :
+  rts
+
+LastOne:
+  lda #0
+  sta InventoryType,x
+End:
   lda #0
   sta PlaceBlockInLevel
   jmp ClearOAM
-: rts
+
 ; block, spring, arrow left/down/up/right, arrow metal left/down/up/right, wood box, metal box
 PlaceableTiles0:
   .byt $0c, $3f, $00, $00

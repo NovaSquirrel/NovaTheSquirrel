@@ -244,8 +244,23 @@ SpecialWallHi:
 .endproc
 
 .proc TouchedChipSocket
+  sty TempY
+  jsr GetBlockX
+  tay
+  lda ChipCount
+  cmp ColumnBytes,y
+  bcs Delete
   rts
+Delete:
+  lda #0
+  sta ChipCount
+  lda #SFX::UNLOCK
+  jsr PlaySound
+  lda BackgroundMetatile
+  ldy TempY
+  jmp ChangeBlockFar
 .endproc
+
 .proc TouchedPickupBlock
   rts
 .endproc
@@ -642,7 +657,7 @@ Align:
   jsr ChangeBlock
   lda #SFX::COIN
   jsr PlaySound
-  ; increment chip count 
+  inc ChipCount
   rts
 .endproc
 

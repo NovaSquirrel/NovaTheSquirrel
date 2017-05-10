@@ -52,6 +52,8 @@ pently_sfx_table:
   .byte $1c,$05
   .addr arrowshoot_snd
   .byte $3c,$05
+  .addr placeblock_snd
+  .byte $20,$03
 
 ; alternating duty/volume and pitch bytes
 itemget_snd:
@@ -60,6 +62,8 @@ unlock_snd:
   .byte $0f,$0b,$08,$0b,$00,$00,$0f,$0d,$08,$0d
 arrowshoot_snd:
   .byte $0f,$02,$0b,$01,$09,$00,$06,$00,$03,$00
+placeblock_snd:
+  .byte $4f,$00,$00,$00,$4f,$0c
 
 tailattack_snd:
   .dbyt $0f00,$0f02,$0f04,$0c06,$0908,$0609,$030a

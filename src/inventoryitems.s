@@ -105,7 +105,8 @@ AfterAmount:
   lda PlayerPYH
   sta PlaceBlockY
 
-  jmp RemoveOneItem
+  stx PlaceBlockItemIndex
+  rts
 .endproc
 
 .proc DoPlaceRope

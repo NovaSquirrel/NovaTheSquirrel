@@ -129,6 +129,7 @@ LEVEL_INTROS = 1
   ITEM_GET
   UNLOCK
   ARROW_SHOOT
+  PLACE_BLOCK
 .endenum
 
 .enum InventoryIcon
