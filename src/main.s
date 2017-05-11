@@ -35,6 +35,8 @@
 ;  jsr pently_start_music
   jsr pently_stop_music
 
+  inc JustTeleported ; Cause enemies to appear
+
   ; Render the part of the level the player starts in, if there isn't a dialog
   ; that needs to be shown at the start of the level.
   ; (this way the level isn't shown for a frame before the dialog starts)
@@ -42,12 +44,11 @@
   jsr SetPRG
   lda NeedDialog
   bne :+
-  inc JustTeleported
   jsr RenderLevelScreens ; Render the screen the player's on
   jsr WaitVblank
   lda #BG_ON             ; Turn PPU display on
   sta PPUMASK
-: 
+:
 
   ; Make sure NMI is on
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
@@ -381,22 +382,6 @@ DidntSkipPlayerAndEnemies:
 .endif
     jsr StartCutscene ; this routine clears NeedDialog
   :
-
-.if 0
-  ; Debugging feature
-  lda keydown
-  and #KEY_SELECT
-  beq :+
-  lda keylast
-  and #KEY_SELECT
-  bne :+
-    lda #<Intro
-    sta ScriptPtr+0
-    lda #>Intro
-    sta ScriptPtr+1
-    inc NeedDialog
-  :
-.endif
 
   ; Display the level number using a sprite if it's a new level
   lda PlaceBlockInLevel
