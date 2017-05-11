@@ -541,9 +541,19 @@ ExitDoor:
   sta LevelAvailable,y
 
   jsr CopyToSavedInventory
+  jsr SaveEventFlags
 
   lda StartedLevelNumber
   jmp StartLevel
+.endproc
+
+.proc SaveEventFlags
+  ldy #31
+: lda ScriptFlags,y
+  sta ScriptFlagsSaved
+  dey
+  bpl :-
+  rts
 .endproc
 
 .proc TouchedSpringDown

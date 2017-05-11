@@ -952,8 +952,7 @@ Exit:
 
   jsr CopyFromSavedInventory
   lda #0
-  sta ScriptFlags+0 ; clear first 16 flags
-  sta ScriptFlags+1
+  sta ScriptFlags+0 ; clear first 8 flags
   sta PuzzleMode
   pla
 FromCheckpoint:
@@ -1619,5 +1618,15 @@ Convert:
   inx
   cpx #4*8
   bne :-
+  rts
+.endproc
+
+; Checks if a given script flag is on or not
+; inputs: A (flag number)
+; outputs: Z flag (NOT of flag status)
+; locals: TempVal+1 (because of IndexToBitmap)
+.proc CheckScriptFlag
+  jsr IndexToBitmap
+  and ScriptFlags,y
   rts
 .endproc

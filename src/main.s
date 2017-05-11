@@ -18,7 +18,6 @@
 ; Start the main loop off and initialize things
 .proc MainLoopInit
   lda #0
-  sta PPUMASK
   sta UploadTileAddress+1 ; Make sure tile uploading is off
   sta IsNormalDoor        ; Make sure the door entering flag is off
 
