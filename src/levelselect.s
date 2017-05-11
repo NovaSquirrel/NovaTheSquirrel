@@ -65,10 +65,14 @@ WorldTimes8 = 15
   lda #>Instructions2
   ldy #<Instructions2
   jsr vwfPutsAtRow
+
+  lda LevelCleared
+  bpl :+
   ldx #6
   lda #>Instructions3
   ldy #<Instructions3
   jsr vwfPutsAtRow
+:
 
   ; Write last row with the world number
   lda #>Instructions4
@@ -106,6 +110,7 @@ WorldTimes8 = 15
   ldx #9
   jsr WriteIncreasing
   ; Start: Items and shop
+  ; (doesn't matter if shop isn't enabled, the text won't be rendered so it'll be blank anyway)
   lda #$23
   sta PPUADDR
   lda #$2b
@@ -186,6 +191,8 @@ Loop:
   lda keynew
   and #KEY_START
   beq :+
+    lda LevelCleared
+    bpl :+
     jsr WaitVblank
     lda #0
     sta PPUMASK

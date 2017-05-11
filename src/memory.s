@@ -356,7 +356,7 @@ GameStateLen = 1+2+10+10+2 ; update if more stuff is added
 .segment "SAVE"
 SaveStart:
   SaveTag:            .res 8
-SavedGameState_Start:
+SavedGameState_Start: ; apparently this isn't actually used in one chunk?
   SavedAbility:       .res 1
   SavedCoins:         .res 2
   InventorySaved:     .res InventoryLen*2
