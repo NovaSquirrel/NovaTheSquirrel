@@ -1,0 +1,114 @@
+{
+	"Meta":	{
+		"Name":	"example level",
+		"Comment":	"",
+		"Width":	128,
+		"Height":	30,
+		"TileWidth":	16,
+		"TileHeight":	16,
+		"GridWidth":	16,
+		"GridHeight":	15,
+		"ExportFormat":	"PrincessNES",
+		"FormatVersion":	1
+	},
+	"Header":	{
+		"Music":	"NONE",
+		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_LIFE", "SP_HANNAH"],
+		"GFXUpload":	["PAL_BUMMER", "BG_COMMON", "BG_BUMMER", "BG_CHIP", "BG_HANNAH", "PAL_ENEMY3"],
+		"BGColor":	15
+	},
+	"Layers":	[{
+			"Name":	"Foreground",
+			"Type":	"Rectangle",
+			"Tileset":	"novafg",
+			"Data":	[{
+					"Id":	"SOLID_LEDGE",
+					"X":	22,
+					"Y":	10,
+					"W":	5,
+					"H":	1
+				}, {
+					"Id":	"TOGGLE_BLOCK_ON",
+					"X":	20,
+					"Y":	11,
+					"W":	8,
+					"H":	1
+				}, {
+					"Id":	"TOGGLE_BLOCK_ON",
+					"X":	20,
+					"Y":	7,
+					"W":	8,
+					"H":	1
+				}, {
+					"Id":	"TOGGLE_BLOCK_ON",
+					"X":	20,
+					"Y":	8,
+					"W":	1,
+					"H":	3
+				}, {
+					"Id":	"TOGGLE_BLOCK_ON",
+					"X":	27,
+					"Y":	8,
+					"W":	1,
+					"H":	3
+				}, {
+					"Id":	"TOGGLE_SWITCH",
+					"X":	25,
+					"Y":	9,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SPRING",
+					"X":	30,
+					"Y":	10,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SMALL_ROCK",
+					"X":	29,
+					"Y":	11,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	29,
+					"Y":	7,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	25,
+					"Y":	5,
+					"W":	3,
+					"H":	1
+				}]
+		}, {
+			"Name":	"Sprites",
+			"Type":	"Sprite",
+			"Tileset":	"novasp",
+			"Data":	[]
+		}, {
+			"Name":	"Control",
+			"Type":	"Control",
+			"Tileset":	"novact",
+			"Data":	[{
+					"Id":	"PLAYER_START_R",
+					"X":	23,
+					"Y":	9,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SCROLL_LOCK",
+					"X":	127,
+					"Y":	0,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SCROLL_LOCK",
+					"X":	127,
+					"Y":	15,
+					"W":	1,
+					"H":	1
+				}]
+		}]
+}

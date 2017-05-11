@@ -115,8 +115,8 @@ arrowsData:
   LObjN LO::R_FG_GLASS_BLUE,  4, 7, 8, 0
   LObj  LO::S_CUSTOM,         1, 6, Metatiles::PUSHABLE_BLOCK
   LObjN LO::R_FG_GLASS_BLUE,  3, 8, 0, 6
-  LObj  LO::S_PRIZE,          3, 3
-  LObjN LO::WIDE_1,           0, 3, 3, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           3, 3, 3, LN1::SOLID_LEDGE
+  LObj  LO::S_PRIZE,          0, 3
   LObjN LO::R_COIN,           4, 2, 3, 0
   LObjN LO::R_ROCK,           0, 3, 3, 3
   LObjN LO::R_GROUND,         0, 7, 3, 7
@@ -141,16 +141,16 @@ arrowsData:
   LObjN LO::R_SOLID_BLOCK,    0, 3, 7, 0
   LObjN LO::R_COIN,           1, 5, 1, 0
   LObjN LO::R_SOLID_BLOCK,    1, 8, 0, 6
-  LObjN LO::R_GROUND,         1, 11, 9, 3
-  LObj  LO::S_BIGHEART,       1, 10
-  LObjN LO::R_SOLID_BLOCK,    1, 4, 0, 2
+  LObjN LO::R_SOLID_BLOCK,    3, 4, 0, 2
   LObj  LO::S_W_ARROW_RIGHT,  0, 7
   LObjN LO::R_SOLID_BLOCK,    1, 4, 2, 1
   LObjN LO::R_FG_GLASS_BLUE,  0, 6, 7, 0
+  LObjN LO::R_GROUND,         0, 11, 6, 3
   LObj  LO::S_SOLID_BLOCK,    1, 2
   LObj  LO::S_PRIZE,          2, 2
   LObjN LO::R_COIN,           0, 10, 3, 0
   LObj  LO::S_PRIZE,          2, 2
+  LWriteCol InventoryItem::HEALTH_RESTORE
   LObj  LO::S_W_ARROW_RIGHT,  1, 3
   LObjN LO::R_FG_GLASS_BLUE,  0, 5, 3, 0
   LObj  LO::S_W_ARROW_UP,     0, 7

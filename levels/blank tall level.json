@@ -1,0 +1,60 @@
+{
+	"Meta":	{
+		"Name":	"example level",
+		"Comment":	"",
+		"Width":	128,
+		"Height":	30,
+		"TileWidth":	16,
+		"TileHeight":	16,
+		"GridWidth":	16,
+		"GridHeight":	15,
+		"ExportFormat":	"PrincessNES",
+		"FormatVersion":	1
+	},
+	"Header":	{
+		"Music":	"NONE",
+		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_LIFE", "SP_HANNAH"],
+		"GFXUpload":	["PAL_BUMMER", "BG_COMMON", "BG_BUMMER", "BG_CHIP", "BG_HANNAH", "PAL_ENEMY3"],
+		"BGColor":	15
+	},
+	"Layers":	[{
+			"Name":	"Foreground",
+			"Type":	"Rectangle",
+			"Tileset":	"novafg",
+			"Data":	[{
+					"Id":	"GROUND",
+					"X":	0,
+					"Y":	28,
+					"W":	16,
+					"H":	3
+				}]
+		}, {
+			"Name":	"Sprites",
+			"Type":	"Sprite",
+			"Tileset":	"novasp",
+			"Data":	[]
+		}, {
+			"Name":	"Control",
+			"Type":	"Control",
+			"Tileset":	"novact",
+			"Data":	[{
+					"Id":	"PLAYER_START_R",
+					"X":	5,
+					"Y":	27,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SCROLL_LOCK",
+					"X":	127,
+					"Y":	0,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SCROLL_LOCK",
+					"X":	127,
+					"Y":	15,
+					"W":	1,
+					"H":	1
+				}]
+		}]
+}

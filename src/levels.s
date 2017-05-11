@@ -2,14 +2,14 @@
 
 MasterLevelListL:
   .byt <intro_a, <grassy_a, <funkunderground, <sky, <water, <grassy2_a, <underground_2, <boss1
-  .byt <glass_intro, <arrows, <burgers, <glasscave, <falldown
+  .byt <glass_intro, <arrows, <burgers, <glasscave, <chiptall, <falldown
   .byt <frozen, <frozen2, <emptylevel
 ; sub-levels
   .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden
 
 MasterLevelListH:
   .byt >intro_a, >grassy_a, >funkunderground, >sky, >water, >grassy2_a, >underground_2, >boss1
-  .byt >glass_intro, >arrows, >burgers, >glasscave, >falldown
+  .byt >glass_intro, >arrows, >burgers, >glasscave, >chiptall, >falldown
   .byt >frozen, >frozen2, >emptylevel
 ; sub-levels
   .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden
@@ -27,6 +27,7 @@ MasterLevelListH:
   Arrows
   Burgers
   GlassCave
+  ChipTall
   Tall
   Frozen
   Frozen2
@@ -60,6 +61,7 @@ MasterLevelListH:
 .include "../levels/frozen2.s"
 .include "../levels/falldown.s"
 .include "../levels/glasscave.s"
+.include "../levels/chiptall.s"
 
 ;Level data:
 ;TTTTTTTT XXXXYYYY [SSSSSSSS]

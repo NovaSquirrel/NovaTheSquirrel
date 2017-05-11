@@ -162,7 +162,7 @@ InitSave:
   ; for demo purposes
   lda #255
   sta LevelAvailable
-  lda #15
+  lda #31
   sta LevelAvailable+1
 
   ; Write tag to SRAM
