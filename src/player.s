@@ -125,10 +125,13 @@ FourCorners = 6
 SkipTop = TempSpace+3
 ;BlockMiddle = TempSpace+4 - moved to its own variable
 XForMiddle  = TempSpace+5
+OldPlayerSwimming = TempSpace+6
 BottomCMP = 7
 SkipFourCorners = 8
 MaxSpeedLeft = 9
 MaxSpeedRight = 10
+  lda PlayerSwimming
+  sta OldPlayerSwimming
   lda #0
   sta PlayerOnGround
   sta SkipTop
@@ -221,16 +224,48 @@ NotWalkSpeed:
 @NoLetGo:
 @NoBalloon:
 
+; Water physics
   ldy BlockMiddle
   lda MetatileFlags,y
   and #M_BEHAVIOR
   cmp #M_WATER
-  bne :+
+  bne NotWater
     lda #0
     sta PlayerWasRunning
     inc PlayerSwimming
-    bne HandleLadderClimbing
-  :
+
+    lda #0
+    sta PlayerVYL
+    sta PlayerVYH
+
+    lda keydown ; A goes up fast
+    and #KEY_A
+    beq :+
+      lda #<(-$40)
+      sta PlayerVYL
+      lda #>(-$40)
+      sta PlayerVYH
+    :
+    lda keydown ; up goes up
+    and #KEY_UP
+    beq :+
+      lda #<(-$20)
+      sta PlayerVYL
+      lda #>(-$20)
+      sta PlayerVYH
+    :
+    lda keydown ; down goes down
+    and #KEY_DOWN
+    beq :+
+      lda #<($20)
+      sta PlayerVYL
+      lda #>($20)
+      sta PlayerVYH
+    :
+    jsr OfferJump
+
+    jmp PlayerIsntOnLadder
+  NotWater:
 
   lda PlayerOnLadder       ; skip gravity if on a ladder
   bne HandleLadderClimbing
@@ -278,6 +313,7 @@ PlayerIsntOnLadder:
   lda PlayerPYH
   adc PlayerVYH
   sta PlayerPYH
+SkipApplyGravity:
 
   ; Handle the player going off the top and bottom of the screen
   ; (A is still PlayerPYH)
@@ -1245,6 +1281,7 @@ CustomFrameBase:
   sty PlayerTiles+5
 EndAnimationFrame:
 
+  ; Animate swimming
   lda PlayerSwimming
   beq :+
     lda retraces
