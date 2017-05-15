@@ -136,7 +136,16 @@ SelectForOptions: .byt "          Select: options",0
   ; Play the sample
   lda #VOICE_BANK
   jsr SetPRG
+
+  lda StartedLevelNumber
+  and #%111000
+  cmp #%001000
+  beq BummerInstead
   jsr quadpcm_play_die
+  jmp :+
+BummerInstead:
+  jsr quadpcm_play_bummer
+:
 
   ; Restore checkpoint
   ldy #GameStateLen-1

@@ -121,8 +121,8 @@
   CutsceneNoSkip     = CutsceneCurFace+1
   CutsceneIsBlank    = CutsceneNoSkip+1
 
-  LevelNumber:           .res 1 ; Current level number
-  StartedLevelNumber:    .res 1 ; Level number that was picked from the level select
+  LevelNumber:           .res 1 ; Current level number (actual map number from the game)
+  StartedLevelNumber:    .res 1 ; Level number that was picked from the level select (level select number)
   NeedLevelReload:       .res 1 ; If set, decode LevelNumber again
 
   BlockMiddle: .res 1 ; what block the middle of the player is overlapping
