@@ -336,7 +336,7 @@ Transition:
   sta PPUADDR
   lda #$00
   sta PPUADDR
-  ldx #4
+  ldx #2
 : jsr WaitVblank
   dex
   bne :-

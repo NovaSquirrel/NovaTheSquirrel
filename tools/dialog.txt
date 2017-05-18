@@ -1,14 +1,10 @@
 :Intro:
 `scene NOVA_AND_KEE
-[]A fox and a squirrel used to play together in a forest, having become quite the unlikely pair of friends.
-[]However, one day the squirrel got taken to a lab, which the fox attempted to rescue her from.
-[]The fox accidentally damaged the lab equipment, and after a big flash of light the two of them ended up in another world.
-<0 NOVA_WOW>Hey Kee? What just happened? Where are we?
-<1 KEE>Not sure, Nova. You look pretty different now though.
-<0 NOVA_WOW>Am I? You're different too. Hey, there's a sign over there, maybe it'll have useful information.
-`scene NOVA_KEE_SIGN
-<0 NOVA>Okay, let's see...
-<2 SIGN>Welcome to the tutorial! You have ended up in Latte, a video game world. These signs will explain how to play. (Press Up to read them)
+[]After some mishaps involving a teleporter and rays from a strange new device, a fox and squirrel end up transformed and in the strange world of Latte.
+<0 NOVA>Hey Kee? What just happened? Where are we?
+<1 KEE>No idea, Nova. You look pretty different now though.
+<0 NOVA>... I have a lot of questions. Come on, let's look around.
+[](Press up to read the signs or go in doors. Skip dialog with Start.)
 `end
 
 :Tutorial1:
@@ -20,6 +16,7 @@
 `scene NOVA_SIGN_KEE
 <1 SIGN>Some enemies can have their abilities copied. Try stunning this enemy with B and then press Up+B while facing it to copy its ability.
 <1 SIGN>Hold Select to get rid of the ability you have. If an enemy throws projectiles, it is usually copyable.
+<0 NOVA_YAY>Oooo, I should see if copying this enemy will let me shoot fireballs!
 `end
 
 :Tutorial3:
@@ -38,9 +35,8 @@
 :Tutorial5:
 `scene NOVA_SIGN_KEE
 <1 SIGN>Many abilities have altered behavior if you hold Up or Down while you press B. Try holding up while shooting a fireball and see if you can hit this enemy.
-<1 SIGN>That should be everything you need to get started. Keep heading forward until you get to Bummer Club. Good Luck!
-<0 NOVA>Okay then! Still dunno what I'm doing here.
-<2 KEE>*I'm* going to go back and explore some more. I think I saw a hut back there. You should go on through this door though.
+<0 NOVA>Still no idea what we're doing here, but I guess I'll find out if I press on? Eventually?
+<2 KEE>Alright, while you're doing that I'm going to try and figure things out on my own.
 `end
 
 :Nice_Announcement:
@@ -54,8 +50,7 @@
 []Meanwhile, it seems like the Scheme Team has escaped after all...
 `scene TWO_BAD_GUYS
 <0 S_TEAM>So you actually saw one of the Blaster Guys around here? We'd better capture him so that he can't interfere with the plans...
-<1 S_TEAM>Yeah, let's go do that. Also let's pretend to be cops.
-<0 S_TEAM>GOOD idea. Hey, I think he's over there checking his mail!!
+<1 S_TEAM>GOOD idea. Hey, I think he's over there checking his mail!!
 <0 SHERWIN>Oh it's a fine day. *checks mail* 
 `scene SHERWIN_ALONE
 <0 SHERWIN>Whoa, could you two maybe knock?
@@ -75,72 +70,59 @@
 [KOREY]Gosh dangit, guess I was too late. It's over, we're doomed.
 `end
 
-
 :FirstSchemeTeamEncounter:
 `scene NOVA_AND_BAD_GUYS_AND_IKE
-<0 NOVA>Oh hey, do you know how to get to Bummer Club from here?
-<1 S_TEAM>Oh look, target practice!!
-<0 NOVA_AW>W-wait! That's not nice!
-<1 S_TEAM>We're the Scheme Team, we're not supposed to be nice, and you're going down!!
-<0 NOVA_MAD>Oh, is that how it's going to be? Fine, I'll fight you, but you're going to lose~
-<3 IKE>Alsoooo rescue me, right? Right?
+<0 NOVA>Oh, finally some other people! Could you tell me where I am?
+<1 S_TEAM>No, but you'd make great target practice before we take off with this cat here.
+<3 IKE>Actually, you're going to leave this cat right here. I need to get back to my shop!
+<0 NOVA_MAD>Oh you want a fight? I'll give you a fight...
 `end
 
 :FirstSchemeTeamEncounterAfter:
 `scene TWO_BAD_GUYS
-<0 S_TEAM>Ouch. We're going to have to do something about that squirrel, because she could take our entire operation down if she wanted. We need to tell the boss.
-`transition
+[]The Scheme Team members flee.
+<0 S_TEAM>Ouch. That squirrel isn't as weak as she seemed. We need to tell the boss so we can take care of this.
 <0 S_TEAM>Hey Bill???
 `scene BAD_GUYS_AND_LEADER
 <2 BILL>What? Why do you guys look beat-up?
-<0 S_TEAM>There's this weird green squirrel that might be an issue for us. She was able to kick our butts, and she seems stronger than the Blaster Guys were and she doesn't even have a gun. She went on towards Bummer Club afterwards, not sure what she's doing.
-<2 BILL>Well, she won't be a problem for much longer. We'll just send the Smiloids after her when they're done.
-<0 NOVA>There, now you're free.
+<0 S_TEAM>There's this weird green squirrel that totally kicked our butts, without even having a gun. Is that going to pose a threat to the plans?
+<2 BILL>No, probably not. We'll just send the Smiloids after her if it becomes a problem.
+<0 NOVA>There. Are you okay?
 `scene NOVA_AND_IKE
-<1 IKE>Thank you. My name's Ike, and I run the item shop. The Scheme Team was trying to kidnap me so I couldn't sell items to any heroes.
-<0 NOVA>Oh? How do I get to your shop?
+<1 IKE>I'm fine, thank you. My name's Ike, and I run the item shop. The Scheme Team was trying to kidnap me so I couldn't sell items to any heroes.
+<0 NOVA>The Scheme Team? Are there more of those guys?
+<1 IKE>Yeah, tons. They recently broke out of prison and everyone's in a panic.
+<0 NOVA>I'll see what I can do to help. By the way, how do I get to your shop?
 <1 IKE>Just press Start on the level select screen. You can exit a level and go to it via the pause menu.
+<1 IKE>By the way, since you asked, this world is named Latte. Good luck, dude.
 `end
 
 :AfterFirstBattle:
 `scene FORUMS
 []-halp I've been taken-
-[SHERWIN]So, I guess one benefit to being stuck here with the bad guys is I get to leak out information on whatever they're doing. They can't read this forum, right?
-[KOREY]They're IP banned. Anyone else can read it though.
-[SHERWIN]Anyway, I heard there was a fight with some weird green squirrel? She totally kicked some Scheme Team members' butts. I'll keep reporting on this.
-[KOREY]Oh good! Oh! Do you know exactly where you are? It would really help to know where their base is.
-[SHERWIN]I think this place is named Atomic Videoclip Zone?? And Nova said she was going to Bummer Club.
-[KOREY]Well then, I'll be waiting for her there.
-[SHERWIN]Btw guys I'm not weak and I could totally break out of here. I'm just staying so I can give you info. That's totally it.
-[KOREY]Understood.
-`transition
+[SHERWIN]Let's make the best of my situation. I'm stuck here, so how about I leak out information on what the Scheme Team is doing?
+[KOREY]That could help. Are you saying you've got something to share?
+[SHERWIN]Yes! I heard there was a fight with some weird green squirrel? She totally kicked some Scheme Team members' butts.
+[KOREY]Oh good! Do you know where she is? Or where -you- are?
+[SHERWIN]I got taken to Atomic Videoclip Zone so I'll asume that's their base. The squirrel seemed to be heading to Bummer Club.
+[KOREY]I'll meet up with her there.
+[]Korey rushes to the scene, introduces himself and explains Latte's situation to Nova. They chat a bit.
 `scene NOVA_AND_KOREY
-<1 KOREY>Heyyy squirrel.
-<0 NOVA_YAY>Oh hi!
-<1 KOREY>You probably want some answers. This is a virtual world named Latte, and I'm Korey, its leader. And now I'm going to be needing your help.
-<0 NOVA>My help? Why me in particular?
-<1 KOREY>You know those robot guys you fought? They're members of the Scheme Team, and that evil group seems to want to take over the world or destroy it. I'm not sure, I just know they have bad intentions. We arrested them, but they broke out. They're really determined not to lose again, so they're prepared for anything anyone in Latte could have thrown at them.
-<0 NOVA>Yeah? Oh, I get it. I'm not from here, so I actually have a good chance.
-<1 KOREY>That's the logic here. Will you help? I can try and get you home once we're no longer threatened.
-<0 NOVA>Of course!
-<1 KOREY>Great. This place has its own forum, and we're keeping track of the situation on there. You should go look.
-<0 NOVA>Alright. I'll go register and read up on the details.
-<1 KOREY>In the meantime you should focus on getting ready for facing off against the Scheme Team while we still have time. This place, Bummer Club, is a big puzzle challenge and there's a prize waiting at the end which should help give you the advantage.
+<1 KOREY>... and this is the Scheme Team's second try at taking over, but this time they're prepared for anything any Latte residents can throw at them.
+<0 NOVA>Point being that I have a chance because I'm not from here?
+<1 KOREY>Exactly. I know it's dangerous, but are you willing to help us? I don't know how you and Kee got here, but once this is over I'll try and get you two home.
+<0 NOVA>I'll have to try. I was able to save Ike, maybe I can save the rest of you.
+<1 KOREY>Great. Latte has its own forum, and we've been keeping track of the situation on it. You should look at it.
+<0 NOVA>Alright. What should I do next?
+<1 KOREY>You should go through this clubhouse up ahead. It's named Bummer Club, and it's got a prize locked up at the very end.
 `end
 
 :MeetLia:
 `scene NOVA_AND_LIA
-<0 NOVA_WOW>Another squirrel!
-<1 LIA>Heys. Oh, I think I recognize you. You were the squirrel that played with that fox, right?
-<0 NOVA>Yeah! My name's Nova. Wanna join me as I go through the clubhouse?
-<1 LIA>Okies! I'm Lia~
-`end
-
-:Lia2:
-`scene NOVA_AND_LIA
-<0 NOVA>So how did you end up out here anyway?
-<1 LIA>Dunno! I was hanging around that weird building, and got sent here.
-<0 NOVA>Oh, like me then.
+<0 NOVA_WOW>Oh it's Lia! I haven't seen you in forever.
+<1 LIA>Das me! I was teleported here while looking for yous.
+<0 NOVA>Maybe you can help me out on these puzzles.
+<1 LIA>Okies! I'd be happy to!
 `end
 
 :SmiloidAtBummerClub:
@@ -160,11 +142,11 @@
 
 :NovaAndEclipse:
 `scene NOVA_AND_ECLIPSE
-<0 NOVA>Another squirrel!
-<1 LIA>Squirrel party!~
-<2 ECLIPSE>Oh wow. Hi, Nova! 
-<0 NOVA>You know me?
-<2 ECLIPSE>Yeah, I'm your long-lost sister, Eclipse. Anyway, the prize for completing Bummer Club is pretty rad. I'm awarding you some cool pants.
+<0 NOVA>Wow, Eclipse is here too? Is this where everyone went to?
+<1 LIA>Apparently?
+<2 ECLIPSE>Oh wow. Hi, sis!
+<0 NOVA>Hiii! So, what do I get for completing Bummer Club?
+<2 ECLIPSE>Oh, it's pretty rad! I'm awarding you some cool pants.
 <0 NOVA_STRAIGHT>...What?
 <2 ECLIPSE>Specifically, Nuclear Power Pants. They'll come in handy later on, and make you more powerful. I'm not making this up.
 <0 NOVA>Alright, thank you, Eclipse.
@@ -180,7 +162,7 @@
 [NOVA]What's so fancy about it?
 [KOREY]No, it's fa-a-ancy. Completely different. Anyway, in Frozen Volcano, there's this dude named MolSno. He has a real problem so he bought every single can of fa-a-ancy cola there is and you'll just have to get some from him.
 [NOVA]Sure, I guess I'll try that. But why cola?
-[KOREY]I'll let you in on a little secret - the name Latteverse comes from the latte caffeinated drink, and in this world caffeine is a really powerful thing, especially in the hands of a squirrel.
+[KOREY]I'll let you in on a little secret - the name Latte comes from the latte caffeinated drink, and in this world caffeine is a really powerful thing, especially in the hands of a squirrel.
 `end
 
 :ColaSigns:
@@ -192,17 +174,16 @@
 
 :MolSnoMeet:
 `scene NOVA_AND_MOLSNO
-<0 NOVA>Heyyy I assume you're MolSno? I need some of your fa-a-ancy cola so I can save the world. Surely you can spare some cans?
-<1 MOLSNO>Yeah, no. This cola is all mine, all 65535 cans of it I have here. I absolutely need every single one for myself. Totally.
-<0 NOVA_AW>What? Korey told me that it was really important. Please?
-<1 MOLSNO>No. Fight me! I'll throw all these empty cans at you.
-<0 NOVA_SILLY>Haha, okay.
+<0 NOVA>Hey I assume you're MolSno? I need some of your fa-a-ancy cola so I can save the world. Surely you can spare some cans?
+<1 MOLSNO>No way, I'm safe in this volcano. This cola is all mine, every last can.
+<0 NOVA_AW>MolSno, do we really have to do this? I don't want to fight you.
+<1 MOLSNO>You know what? You can have my cans... the empty ones!
 `end
 
 :MolSnoAfterFight:
 `scene NOVA_AND_MOLSNO
 <1 MOLSNO>Okay, sure, I guess you can have some cola.
-<0 NOVA>Thank you. Don't be so unreasonable next time!
+<0 NOVA>Thank you.
 `end
 
 :NovaLiaLWSS:
@@ -215,26 +196,27 @@
 <1 LIA>Dere, you can ride this into the bad guys' headquarters.
 <0 NOVA>Uhh, are you sure it's safe?
 <1 LIA>Should be!
-[]Nova hops onto the spaceship and it takes off! It flies a pretty long distance, but eventually gets hit by a stray glider... causing the ship to disintegrate and causing the squirrel to fall into a rather strange place.
+[]Nova hops onto the spaceship and it takes off! It flies a pretty long distance, seemingly without any problems...
+[]... but eventually gets hit by a stray glider, causing the ship to disintegrate and causing the squirrel to fall into a rather strange place.
 `scene NOVA_ALONE
->0 NOVA_STRAIGHT<Aaaaa, okay this isn't the headquarters. Ugh, I'll go post on the forums, and see if I can find out where I am.
+>0 NOVA_STRAIGHT<Aaaaa, okay, I had no idea it was that fragile! I'll go see what the forums think I should do.
 []-halp I've been taken-
 `scene FORUMS
-[NOVA_MAD]The ship I was taking into the Scheme Team's headquarters broke. Now I'm stranded in some weird place.
-[SHERWIN]WHAT? Well, hopefully you can get to Atomic Videoclip Zone soon! The Scheme Team are doing some really strange things.
+[NOVA]The ship I was taking into the Scheme Team's headquarters broke. Now I'm stranded in some weird place.
+[KOREY]Broke? Nova, remember when I said they were prepared for anything that Latte could throw at them? I meant it.
+[NOVA]So they were already expecting that and sent out that glider? Figures.
+[SHERWIN]Well, hopefully you can get to Atomic Videoclip Zone soon! The Scheme Team are doing some really strange things.
 [SHERWIN]They have one of those spinner things that make animal noises, but I think it's some sort of secret doomsday device. OR maybe they're just trying to throw us off. That sounds likely too.
 [KOREY]Are you hurt from the fall, Nova?
 [NOVA]Nah, but now I need to find a way out. The landscape here is really strange.
 [KOREY]Uh oh, that's probably the World of Insanity. Yeahhh, you'll want to get out of there as soon as you can.
-[LIA]Ohhh, sorry Nova! I didn't actually fully test it first, I was so eager to help...
-[NOVA]It's okay, and hopefully I find someone who can give me a ride.
 `end
 
 :SmiloidAtWOI:
 `scene NOVA_AND_SMILOID
 <2 S_TEAM>We made the Smiloids better and stronger and now we're pretty sure we'll win.
 <1 SMILOID>Have a nice day! Or maybe a bad one hahaha.
-<0 NOVA>Nope, you're not going to stop this squirrelll
+<0 NOVA>Nope! I'm still going to win.
 `end
 
 :AfterSmiloidAtWOI:
@@ -277,18 +259,16 @@
 <1 SHERWIN>Thank you for rescuing me! I always believed in you, Nova.
 []Korey also shows up.
 `scene NOVA_SHERWIN_KOREY
-<2 KOREY>Wow Nova, Latte will be eternally grateful.
-<0 NOVA_YAY>It feels really good to get to be the hero.
-<2 KOREY>So, are you ready to go home?
-<0 NOVA>I'm actually unsure, I've got friends here and all...
-<2 KOREY>You're very popular with Latte residents. Actually, one of them said he'd grant you a free wish... I think his name was Jafguar?
-<0 NOVA_AW>Not interested in any of his "butt wishes".
-<2 KOREY>Uh, what? Regular ones! What's something you'd really really like?
-<0 NOVA>Hmm, I think I know...
+<2 KOREY>Latte will be eternally grateful. Are you ready to go home?
+<0 NOVA>Actually, I'm not. I want to keep having adventures, and all of my friends are here with me.
+<2 KOREY>I figured you'd say that. Well in that case I have something to show you~
 `transition
 `scene NOTHING
-[]-Epilogue-
-Nova, with the help of a wish, went on to found the kingdom of Toasterland as a nation of cute animals like herself, ruling as its princess. She decided her friends needed a place to live that didn't have monsters running around everywhere. Sherwin made a second home there, and a lot of cuties decided to move there.
+[]Korey takes Nova to a room with a small space ship in the middle
+[KOREY]Nova, this is the MV Explorer. It can take you to other worlds.
+[NOVA_WOW]Wow, was this what you were going to use to take me home?
+[KOREY]Yeah, but I'm giving it to you. There are a bunch of worlds in need of help.
+[NOVA]Well thank you Korey! I'll get right on it!
 `end
 
 `#---MISC STUFF---
@@ -298,15 +278,9 @@ Nova, with the help of a wish, went on to found the kingdom of Toasterland as a 
 <1 SIGN>You can swim in the water. Use Up/Down to change your height.
 `end
 
-
 :SignBummerAbout:
 `scene NOVA_AND_SIGN
-<1 SIGN>Welcome to Bummer Club! This place is a giant puzzle clubhouse and if you're clever enough to reach the end there is a fabulous prize waiting for you! These puzzle levels may assign you a specific ability to use or certain items to use, and many of them require using items or abilities on the environment.
-`end
-
-:SignChipAbout:
-`scene NOVA_AND_SIGN
-<1 SIGN>If you see computer chips in a level that means that you need to collect all or most of them to finish the level.
+<1 SIGN>Welcome to Bummer Club! These levels up ahead are all about puzzles.
 `end
 
 :SignBootsAbout:
@@ -316,7 +290,7 @@ Nova, with the help of a wish, went on to found the kingdom of Toasterland as a 
 
 :SignMeltIceAbout:
 `scene NOVA_AND_SIGN
-<1 SIGN>Try throwing a fireball at this ice. If you killed the fire enemy, walk away and come back.
+<1 SIGN>Try throwing a fireball at this ice. If you killed the fire enemy, walk away and come back so it will respawn.
 `end
 
 :SignPushableAbout:
@@ -347,11 +321,6 @@ Nova, with the help of a wish, went on to found the kingdom of Toasterland as a 
 :SignPrize:
 `scene NOVA_AND_SIGN
 <1 SIGN>Congratulations for completing the puzzle challenge! Your prize awaits in the next room.
-`end
-
-:NoFlippers:
-`scene NOTHING
-[]Ooooops! Nova can't swim without flippers!!!
 `end
 
 :AboutBombs:
@@ -397,4 +366,16 @@ Nova, with the help of a wish, went on to found the kingdom of Toasterland as a 
 `scene NOVA_LIA_SIGN
 <2 SIGN>If an item bag has an exclamation point on it, the effect triggers automatically.
 <2 SIGN>Also, try pressing Down+B with the burger ability to ride on a burger. It only works once until you have to touch the ground again.
+`end
+
+:AboutPlaceable:
+`scene NOVA_LIA_SIGN
+<2 SIGN>In these item boxes are items that allow you to place a block in the world. Use them to get across.
+<1 LIA>You can't scroll the screen while playing the block, so be careful.
+`end
+
+:AboutChipTall:
+`scene NOVA_LIA_SIGN
+<2 SIGN>Beware the angry sunmask! Also collect all the chips so you can unlock the socket in the end.
+<1 LIA>Looks like we haves... 99 blocks and 99 springs? A lil excessive.
 `end
