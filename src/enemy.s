@@ -331,7 +331,7 @@ OtherFrame:
   ldy #>SpinnerFrame2
 NotOtherFrame:
   jsr DispEnemyWideNonsequential
-
+Behavior:
   lda ObjectF3,x
   and #1
   beq :+
@@ -1303,15 +1303,258 @@ Frame:
 .endproc
 
 .proc ObjectTornado
+  lda #$20
+  jsr EnemyWalk
+  bcs Destroy   ; disappear if bumping into a wall
+
+  lda retraces
+  lsr
+  and #4
+  add #$18
+  ldy #OAM_COLOR_1
+  jsr DispEnemyWide
+
+  jsr EnemyPlayerTouch
+  bcc :+
+    lda ObjectPXL,x
+    add #$40
+    sta PlayerPXL
+    lda ObjectPXH,x
+    adc #0
+    sta PlayerPXH
+    lda ObjectPYL,x
+    sta PlayerPYL
+    lda ObjectPYH,x
+    sta PlayerPYH
+    lda #0
+    sta PlayerVYL
+    sta PlayerVYH
+  :
+
+  rts
+Destroy:
+  lda #0
+  sta ObjectF1,x
   rts
 .endproc
 
 .proc ObjectElectricFan
+  lda retraces
+  lsr
+  and #4
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+
+  lda ObjectF2,x
+  bne NoShoot
+  lda retraces
+  and #63
+  cmp #10
+  bne NoShoot
+      jsr FindFreeObjectY
+      bcc NoShoot
+        jsr ObjectClearY
+        lda ObjectPXL,x
+        add #$80
+        sta ObjectVXL,y
+        lda ObjectPXH,x
+        add #$0
+        sta ObjectVXH,y
+        lda ObjectPYL,x
+        add #$80
+        sta ObjectVYL,y
+        lda ObjectPYH,x
+        add #$0
+        sta ObjectVYH,y
+
+        lda ObjectF1,x
+        and #1
+        ora #Enemy::TORNADO*2
+        sta ObjectF1,y
+NoShoot:
   rts
 .endproc
 
 .proc ObjectCloud
+Distance = 1
+  jsr EnemyApplyVelocity
+
+  lda ObjectF2,x
+  jne NoShootNoMove
+
+  jsr EnemyLookAtPlayer
+
+  lda PlayerPXH
+  sub ObjectPXH,x
+  abs
+  sta Distance
+  cmp #2
+  bcs ChargeIn
+
+  lda retraces
+  and #31
+  cmp #0
+  bne NoShootNoMove
+      jsr FindFreeObjectY
+      bcc NoShootNoMove
+        jsr ObjectClearY
+        jsr ObjectCopyPosXY
+        jsr EnemyPosToVelY
+
+        lda #24
+        sta ObjectF4,y
+
+        lda ObjectF1,x
+        and #1
+        ora #Enemy::CLOUD_SWORD*2
+        sta ObjectF1,y
+
+        lda #30
+        sta ObjectTimer,x
+        lda #ENEMY_STATE_PAUSE
+        sta ObjectF2,x
+        bne NoShootNoMove ; unconditional branch
+ChargeIn:
+  lda #$10
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+  jsr EnemyHover
+NoShootNoMove:
+
+  lda retraces
+  lsr
+  and #4
+  add #$08
+  ldy #OAM_COLOR_1
+  jsr DispEnemyWide
   rts
+.endproc
+
+.proc ObjectCloudSword
+  inc ObjectF3,x ; animation counter
+
+  ; Move clockwise or counter-clockwise
+  lda retraces
+  lsr
+  bcc :+
+    lda ObjectF1,x
+    and #1
+    tay
+    lda ObjectF4,x
+    add Direction,y
+    sta ObjectF4,x
+  :
+
+  ; Get the sine/cosine stuff
+  lda ObjectF4,x
+  and #31
+  tay
+  lda #4
+  jsr SpeedAngle2Offset
+
+  ; Delete the sword if it goes too far
+  lda ObjectF4,x
+  and #31
+  cmp #14
+  beq Destroy
+  cmp #2
+  bne :+
+Destroy:
+    lda #0
+    sta ObjectF1,x
+    rts
+  :
+
+  ; Put at the right offset
+  lda 0
+  add ObjectVXL,x
+  sta ObjectPXL,x
+  lda ObjectVXH,x
+  adc 1
+  sta ObjectPXH,x
+
+  lda 2
+  add ObjectVYL,x
+  sta ObjectPYL,x
+  lda ObjectVYH,x
+  adc 3
+  sta ObjectPYH,x
+
+  ; Draw the right animation frame
+  lda ObjectF3,x
+  cmp #12
+  bcs Horizontal
+  cmp #8
+  bcs Diagonal
+  bcc Vertical
+
+Diagonal:
+  lda #$12
+  ldy #OAM_COLOR_1
+  jsr DispEnemyWide
+  jmp EnemyPlayerTouchHurt
+Vertical:
+  lda #OAM_COLOR_1
+  sta 1
+  lda #4 ; x
+  sta 2
+  lda #8 ; y
+  sta 3
+  lda #$11
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_XYOffset
+  ldy 4
+  lda #4
+  sta 2
+  lda #0
+  sta 3
+  lda #$10
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_XYOffset
+  jmp SmallEnemyPlayerTouchHurt
+Horizontal:
+  lda ObjectF1,x
+  lsr
+  bcs HorizontalLeft
+  lda #OAM_COLOR_1
+  sta 1
+  lda #0 ; x
+  sta 2
+  lda #4 ; y
+  sta 3
+  lda #$16
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_XYOffset
+  ldy 4
+  lda #8
+  sta 2
+  lda #4
+  sta 3
+  lda #$17
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_XYOffset
+  jmp SmallEnemyPlayerTouchHurt
+HorizontalLeft:
+  lda #OAM_COLOR_1|OAM_XFLIP
+  sta 1
+  lda #8 ; x
+  sta 2
+  lda #4 ; y
+  sta 3
+  lda #$16
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_XYOffset
+  ldy 4
+  lda #0
+  sta 2
+  lda #4
+  sta 3
+  lda #$17
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_XYOffset
+  jmp SmallEnemyPlayerTouchHurt
+
+Direction: .byt 1, <-1
 .endproc
 
 .proc ObjectBouncer
@@ -2100,7 +2343,7 @@ ReactWithTypes:
   .byt Metatiles::WOOD_ARROW_UP,     Metatiles::WOOD_ARROW_RIGHT
   .byt Metatiles::METAL_BOMB,        Metatiles::METAL_CRATE
   .byt Metatiles::WOOD_BOMB,         Metatiles::WOOD_CRATE
-  .byt Metatiles::FORK_ARROW_DOWN,     Metatiles::FORK_ARROW_UP
+  .byt Metatiles::FORK_ARROW_DOWN,   Metatiles::FORK_ARROW_UP
 .endproc
 
 .proc ObjectFallingBomb

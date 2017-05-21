@@ -102,6 +102,7 @@ LEVEL_INTROS = 1
   BG_MINES
   PAL_ENEMY4
   BG_SHOPICONS
+  SP_WIND
 .endenum
 
 .enum SFX
@@ -583,3 +584,6 @@ LSpecialCmd = $f7
     .endscope
   .endrep
 .endmacro
+
+.enum EventFlags
+.endenum

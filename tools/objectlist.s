@@ -24,9 +24,9 @@
   .byt GraphicsUpload::SP_EXPLODE ;ROCKET
   .byt GraphicsUpload::SP_EXPLODE ;ROCKET_LAUNCHER
   .byt GraphicsUpload::SP_EXPLODE ;FIREWORK_SHOOTER
-  .byt 0 ;TORNADO
-  .byt 0 ;ELECTRIC_FAN
-  .byt 0 ;CLOUD
+  .byt GraphicsUpload::SP_WIND ;TORNADO
+  .byt GraphicsUpload::SP_WIND ;ELECTRIC_FAN
+  .byt GraphicsUpload::SP_WIND ;CLOUD
   .byt 0 ;BOUNCER
   .byt 0 ;GREMLIN
   .byt GraphicsUpload::SP_EXPLODE ;BOMB_GUY
@@ -61,6 +61,7 @@
   .byt 0 ;BOOMERANG_GUY
   .byt 0 ;GRABBY_HAND
   .byt GraphicsUpload::SP_MINES ;FALLING_SPIKE
+  .byt GraphicsUpload::SP_WIND ;CLOUD_SWORD
 .endproc
 
 .proc ObjBehaviors
@@ -89,7 +90,7 @@
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;ROCKET
   .byt ObjBehavior::AUTO_REMOVE ;ROCKET_LAUNCHER
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;FIREWORK_SHOOTER
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;TORNADO
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::AUTO_RESET ;TORNADO
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;ELECTRIC_FAN
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;CLOUD
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BOUNCER
@@ -126,6 +127,7 @@
   .byt 0 ;BOOMERANG_GUY
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;GRABBY_HAND
   .byt ObjBehavior::AUTO_REMOVE ;FALLING_SPIKE
+  .byt ObjBehavior::AUTO_REMOVE ;CLOUD_SWORD
 .endproc
 
 .proc ObjFlags
@@ -191,5 +193,6 @@
   .byt ObjFlag::PRIMARY ;BOOMERANG_GUY
   .byt ObjFlag::PRIMARY ;GRABBY_HAND
   .byt ObjFlag::PRIMARY ;FALLING_SPIKE
+  .byt ObjFlag::SECONDARY ;CLOUD_SWORD
 .endproc
 

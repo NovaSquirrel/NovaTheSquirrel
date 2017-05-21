@@ -179,6 +179,10 @@ Exit:
   .raddr ObjectBigLWSS
   .raddr ObjectExplosion
   .raddr ObjectMinecart
+  .raddr ObjectNone ; boomerang guy
+  .raddr ObjectNone ; grabby hand
+  .raddr ObjectNone ; falling spike
+  .raddr ObjectCloudSword
 .endproc
 
 ; other enemy attributes
