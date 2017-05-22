@@ -68,13 +68,58 @@ chiptallData:
   LObjN LO::WIDE_1,           3, 7, 1, LN1::SOLID_LEDGE
   LObjN LO::R_SOLID_ROCK,     2, 0, 1, 5
   LObj  LO::S_CUSTOM,         0, 6, Metatiles::CHIP_SOCKET
-  LObjN LO::R_SOLID_ROCK,     0, 7, 1, 7
   LSetX 63
   LWriteCol 28
+  LObjN LO::R_SOLID_ROCK,     0, 7, 1, 7
   LObj  LO::R_CUSTOM,         2, 2, Metatiles::FORCE_RIGHT, (0<<4)|4
   LObjN LO::WIDE_1,           0, 7, 3, LN1::SOLID_LEDGE
-  LSetX 126
-  LObjN LO::R_SOLID_ROCK,     0, 0, 1, 14
+  LObj  LO::S_CUSTOM,         0, 9, Metatiles::TOGGLE_SWITCH
+  LObjN LO::WIDE_1,           0, 10, 2, LN1::FALLTHROUGH_LEDGE
+  LObjN LO::R_GROUND,         0, 13, 7, 1
+  LObj  LO::S_SIGNPOST,       5, 12
+  LWriteCol <AboutSunKey, >AboutSunKey
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObj  LO::R_CUSTOM,         1, 0, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|12
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObjN LO::WIDE_1,           0, 13, 15, LN1::SPIKES
+  LObjN LO::RECT_1,           0, 14, 0, LN1::GROUND, 39
+  LObj  LO::R_CUSTOM,         4, 6, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|4
+  LObjN LO::WIDE_1,           1, 6, 2, LN1::SOLID_LEDGE
+  LObj  LO::R_CUSTOM,         0, 10, Metatiles::TOGGLE_BLOCK_ON, (4<<4)|0
+  LObj  LO::S_CUSTOM,         1, 5, Metatiles::TOGGLE_SWITCH
+  LObj  LO::R_CUSTOM,         3, 4, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|5
+  LObj  LO::R_CUSTOM,         1, 4, Metatiles::TOGGLE_BLOCK_ON, (4<<4)|0
+  LObj  LO::R_CUSTOM,         1, 11, Metatiles::TOGGLE_BLOCK_OFF, (3<<4)|0
+  LObj  LO::R_CUSTOM,         1, 7, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|3
+  LObj  LO::R_CUSTOM,         2, 5, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|5
+  LObj  LO::R_CUSTOM,         1, 4, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|4
+  LObjN LO::WIDE_1,           1, 13, 15, LN1::SPIKES
+  LObj  LO::R_CUSTOM,         1, 5, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|4
+  LObj  LO::R_CUSTOM,         0, 10, Metatiles::TOGGLE_BLOCK_OFF, (5<<4)|0
+  LObj  LO::R_CUSTOM,         2, 3, Metatiles::TOGGLE_BLOCK_ON, (3<<4)|0
+  LObjN LO::WIDE_1,           0, 7, 2, LN1::SOLID_LEDGE
+  LObj  LO::S_CUSTOM,         1, 6, Metatiles::TOGGLE_SWITCH
+  LObj  LO::S_BIGHEART,       0, 8
+  LObj  LO::R_CUSTOM,         3, 3, Metatiles::TOGGLE_BLOCK_OFF, (4<<4)|0
+  LObj  LO::R_CUSTOM,         0, 6, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|4
+  LObj  LO::R_CUSTOM,         4, 4, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|3
+  LObj  LO::R_CUSTOM,         0, 8, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|2
+  LObj  LO::R_CUSTOM,         1, 10, Metatiles::TOGGLE_BLOCK_OFF, (3<<4)|0
+  LObj  LO::R_CUSTOM,         3, 3, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|6
+  LObjN LO::WIDE_1,           1, 10, 2, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           0, 13, 2, LN1::SPIKES
+  LObj  LO::S_CUSTOM,         1, 9, Metatiles::TOGGLE_SWITCH
+  LObjN LO::R_GROUND,         2, 13, 4, 0
+  LObjN LO::R_CEILING_BARRIER,3, 0, 0, 1
+  LObjN LO::R_SOLID_ROCK,     1, 0, 0, 11
+  LObj  LO::S_CUSTOM,         0, 12, Metatiles::LOCK_RED
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObjN LO::WIDE_1,           0, 13, 2, LN1::SOLID_LEDGE
+  LObj  LO::S_COIN,           3, 11
+  LObj  LO::S_COIN,           2, 10
+  LObj  LO::S_COIN,           3, 11
+  LObj  LO::S_COIN,           2, 14
+  LObjN LO::R_SOLID_ROCK,     3, 0, 1, 14
   LObjN LO::R_SOLID_ROCK,     2, 0, 1, 12
   LObjN LO::R_GROUND,         0, 13, 15, 1
   LObj  LO::S_BG_GLASS_GRAY,  7, 4
@@ -127,8 +172,16 @@ chiptallData:
   LObj  LO::S_CUSTOM,         1, 3, Metatiles::CHIP
   LObjN LO::WIDE_1,           2, 5, 0, LN1::SOLID_LEDGE
   LObjN LO::R_SOLID_ROCK,     2, 0, 1, 14
-  LSetX 254
-  LObjN LO::R_SOLID_ROCK,     0, 0, 1, 14
+  LObjN LO::RECT_1,           2, 0, 14, LN1::GROUND, 30
+  LXPlus16
+  LObjN LO::R_GROUND,         15, 0, 15, 1
+  LObjN LO::WIDE_1,           0, 12, 15, LN1::SPIKES
+  LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 29
+  LObjN LO::R_COIN,           1, 4, 3, 6
+  LXPlus16
+  LObj  LO::S_EXIT_DOOR,      5, 11
+  LObjN LO::R_COIN,           5, 2, 0, 8
+  LObjN LO::R_SOLID_ROCK,     3, 0, 1, 14
   LFinished
 
 chiptallSprite:
@@ -138,7 +191,9 @@ chiptallSprite:
   LSpr Enemy::FIRE_JUMP,           0,  44,  11, 1
   LSpr Enemy::THWOMP,              0,  55,   4
   LSpr Enemy::FIRE_JUMP,           0,  61,   6, 1
+  LSpr Enemy::SUN_KEY,             0,  67,  12
   LSpr Enemy::CHECKPOINT,          0,  68,   6
+  LSpr Enemy::CHECKPOINT,          0, 114,  12
   LSpr Enemy::SUN,                 0, 131,   1
   LSpr Enemy::CANNON_1,            1, 142,   7
   LSpr Enemy::OWL,                 0, 152,   7

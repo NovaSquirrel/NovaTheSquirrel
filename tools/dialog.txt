@@ -379,3 +379,9 @@
 <2 SIGN>Beware the angry sunmask! Also collect all the chips so you can unlock the socket in the end.
 <1 LIA>Looks like we haves... 99 blocks and 99 springs? A lil excessive.
 `end
+
+:AboutSunKey:
+`scene NOVA_LIA_SIGN
+<2 SIGN>This key can fit into any color of lock. While touching it, press Up to pick it up or Down to set it down.
+<1 LIA>There's something sinister about this key, I'd be careful with it.
+`end

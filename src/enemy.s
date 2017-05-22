@@ -1945,17 +1945,22 @@ IsCarried:
       jsr FindFreeObjectY
       bcc :+
         jsr ObjectClearY
-          lda ObjectPXL,x
-          sta ObjectPXL,y
-          lda ObjectPXH,x
-          sta ObjectPXH,y
+        lda ObjectPXL,x
+        sta ObjectPXL,y
+        lda ObjectPXH,x
+        sub #2
+        sta ObjectPXH,y
 
-          lda #0
-          sta ObjectPYL,y
-          sta ObjectPYH,y
+        lda #2
+        sta ObjectPYL,y
+        sta ObjectPYH,y
 
-          lda #Enemy::SUN*2
-          sta ObjectF1,y
+        lda #Enemy::SUN*2
+        sta ObjectF1,y
+        lda #ENEMY_STATE_STUNNED ; start out stunned
+        sta ObjectF2,y
+        lda #45
+        sta ObjectTimer,y
   :
   rts
 

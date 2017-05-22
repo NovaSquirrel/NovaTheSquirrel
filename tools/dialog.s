@@ -517,6 +517,13 @@ AboutChipTall:
 ; <1 LIA>Looks like we haves... 99 blocks and 99 springs? A lil excessive.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::LIA, "L", $e4, "k", $fb, $8d, " ", $c8, " ", "h", "a", "v", "e", "s", ".", ".", $f6, "9", "9", SCR::NEWLINE, "b", "l", "o", $f3, $fb, $a4, "9", "9", " ", $dd, $fc, "n", "g", "s", "?", " ", "A", " ", "l", $dc, SCR::NEWLINE, "e", "x", "c", "e", $f1, "i", "v", "e", "."
 .byt SCR::END_SCRIPT
+AboutSunKey:
+.byt SCR::SCENE, SCENES::NOVA_LIA_SIGN
+; <2 SIGN>This key can fit into any color of lock. While touching it, press Up to pick it up or Down to set it down.
+.byt SCR::SAY, SCR::SPEAKER_2|CHAR::SIGN, $f8, $b8, "k", "e", $fe, $b0, " ", "f", $c1, $d8, $bb, $ab, SCR::NEWLINE, "c", "o", "l", $c9, " ", $bd, "l", "o", $f3, $f6, "W", "h", $dc, $e7, $bc, "u", $e2, $b1, SCR::NEWLINE, "i", "t", $f5, "p", "r", "e", $f1, " ", "U", "p", " ", $bb, "p", "i", $f3, " ", $c1, $cd, " ", $c9, SCR::NEWLINE, "D", "o", "w", "n", " ", $bb, $e5, $d3, $c1, $c5, "w", "n", "."
+; <1 LIA>There's something sinister about this key, I'd be careful with it.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::LIA, $f8, $ed, "e", $e9, $9c, $e0, $b1, " ", "s", $d8, $b9, $eb, "r", SCR::NEWLINE, $8a, $99, " ", "k", "e", "y", $f5, "I", "'", $ff, $ba, "c", "a", "r", "e", "f", "u", "l", SCR::NEWLINE, $9d, " ", "i", "t", "."
+.byt SCR::END_SCRIPT
 
 CutsceneDictionary:
 .byt "squirre", 'l'|128

@@ -62,9 +62,7 @@ glasscaveData:
   LObjN LO::WIDE_1,           0, 10, 6, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           2, 14, 15, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           1, 8, 6, LN1::SOLID_LEDGE
-  LSetX 75
-  LWriteCol Enemy::RONALD_BURGER
-  LObjN LO::WIDE_1,           0, 12, 4, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           2, 12, 4, LN1::SOLID_LEDGE
   LObjN LO::R_ENEMY_BARRIER      ,  4, 1, 0, 3
   LObjN LO::R_GROUND,         1, 0, 5, 9
   LObj  LO::S_SOLID_BLOCK,    0, 10
@@ -187,7 +185,6 @@ glasscaveSprite:
   LSpr Enemy::CANNON_2,            0,  64,   1, 3
   LSpr Enemy::CHECKPOINT,          0,  65,   5
   LSpr Enemy::RONALD_BURGER,       0,  73,   2
-  LSpr Enemy::CANNON_2,            0,  75,   1, 2
   LSpr Enemy::FIRE_WALK,           1,  90,   9, 1
   LSpr Enemy::CHECKPOINT,          0,  93,   4
   LSpr Enemy::FIRE_WALK,           0, 113,   6, 1
