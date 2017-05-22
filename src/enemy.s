@@ -1896,6 +1896,71 @@ Frames:
 .endproc
 
 .proc ObjectSunKey
+  lda #$14
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouch
+  ; Pick up if touching and pressing Up
+  bcc :+
+    lda keydown
+    and #KEY_UP
+    beq :+
+      lda #1
+      sta ObjectF4,x
+      sta CarryingSunKey
+  :
+
+  lda ObjectF4,x
+  beq NotCarried
+
+IsCarried:
+  ; Put down if requested
+  lda keydown
+  and #KEY_DOWN
+  beq :+
+    lda #0
+    sta ObjectF4,x
+    sta CarryingSunKey
+  :
+  ; Position above the player's head
+  lda PlayerPXL
+  sub #$40
+  sta ObjectPXL,x
+  lda PlayerPXH
+  sbc #0
+  sta ObjectPXH,x
+  lda PlayerPYL
+  sta ObjectPYL,x
+  lda PlayerPYH
+  sub #1
+  sta ObjectPYH,x
+
+  lda retraces
+  bne :+
+    ; how many suns exist?
+    lda #Enemy::SUN*2
+    jsr CountObjectAmount
+    cpy #0
+    bne :+ ; there's a sun already
+      jsr FindFreeObjectY
+      bcc :+
+        jsr ObjectClearY
+          lda ObjectPXL,x
+          sta ObjectPXL,y
+          lda ObjectPXH,x
+          sta ObjectPXH,y
+
+          lda #0
+          sta ObjectPYL,y
+          sta ObjectPYH,y
+
+          lda #Enemy::SUN*2
+          sta ObjectF1,y
+  :
+  rts
+
+NotCarried:
+  jsr EnemyFall  
   rts
 .endproc
 
@@ -1938,7 +2003,7 @@ Frames:
   sta ObjectPYH,x
 
   lda #$1c
-  ora O_RAM::TILEBASE
+;  ora O_RAM::TILEBASE
   ldy #OAM_COLOR_3
   jsr DispEnemyWide
   jmp EnemyPlayerTouchHurt

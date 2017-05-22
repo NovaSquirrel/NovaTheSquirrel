@@ -534,7 +534,7 @@ No:
 ; Counts the amount of a certain object that currently exists
 ; inputs: A (object type * 2)
 ; outputs: Y (count)
-; locals: 0
+; locals: 0, TempX
 .proc CountObjectAmount
   stx TempX
   sta 0  ; 0 = object num

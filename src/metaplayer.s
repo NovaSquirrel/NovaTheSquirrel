@@ -363,17 +363,44 @@ MoveIsOkay:
 .endproc
 
 .proc TouchedLock
+  pha
+  lda CarryingSunKey
+  bne HasSunKey
+  pla
   sub #Metatiles::LOCK_RED
   add #InventoryItem::RED_KEY
   jsr InventoryHasItem
   bcc NoItem
   jsr InventoryTakeItem
+UnlockNow:
   lda BackgroundMetatile
   jsr ChangeBlock
   lda #SFX::UNLOCK
   jsr PlaySound
 NoItem:
   rts
+
+; If they have the sun key, destroy it and unlock the door
+HasSunKey:
+  pla ; fix the stack
+  lsr CarryingSunKey ; no longer holding the key
+  sty TempY
+
+  ; Erase the key being held
+  ldy #ObjectLen-1
+: lda ObjectF1,y
+  and #<~1
+  cmp #Enemy::SUN_KEY*2
+  bne :+ ; skip if not sun key
+  lda ObjectF4,y
+  beq :+ ; skip if not being held
+  lda #0
+  sta ObjectF1,y
+: dey
+  bpl :--
+
+  ldy TempY  
+  jmp UnlockNow
 .endproc
 
 .proc TouchedBigHeart
@@ -733,17 +760,13 @@ Exit:
 
 .proc TouchedWoodCrate
   lda #4
-  sta 0
+  sta 0 ; delay time
   lda BackgroundMetatile
   jsr DelayChangeBlock
   lda #Metatiles::SPRING
   jsr ChangeBlock
 
   ; Snap player to the block
-  ; todo: maybe block left/right shortly after stepping on it?
-  lda keydown
-;  and #KEY_LEFT|KEY_RIGHT
-;  bne :+
   cpy PlayerPYH ; make sure the player is actually above the block
   bcc :+
   lda CollectedByProjectile
