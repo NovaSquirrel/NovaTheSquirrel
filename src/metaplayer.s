@@ -630,7 +630,17 @@ ExitDoor:
   rts
 .endproc
 
+.proc TouchedForceCheckBoots
+  lda #InventoryItem::SUCTION_BOOTS
+  jsr InventoryHasItem
+  bcc :+
+  pla
+  pla
+: rts
+.endproc
+
 .proc TouchedForceU
+  jsr TouchedForceCheckBoots
   lda #<(-$40)
   sta PlayerVYL
   lda #>(-$40)
@@ -647,6 +657,7 @@ Align:
 .endproc
 
 .proc TouchedForceL
+  jsr TouchedForceCheckBoots
   lda #<(-$40)
   sta PlayerVXL
   lda #>(-$40)
@@ -665,6 +676,7 @@ Align:
 .endproc
 
 .proc TouchedForceR
+  jsr TouchedForceCheckBoots
   lda #<($40)
   sta PlayerVXL
   lda #>($40)
@@ -677,6 +689,7 @@ Align:
 .endproc
 
 .proc TouchedForceD
+  jsr TouchedForceCheckBoots
   lda #<($40)
   sta PlayerVYL
   lda #>($40)
@@ -712,14 +725,24 @@ Align:
 .endproc
 
 .proc TouchedCampfire
-  jmp HurtPlayer
+  lda #InventoryItem::FIRE_BOOTS
+  jsr InventoryHasItem
+  bcc :+
+  rts
+: jmp HurtPlayer
 .endproc
 
 .proc TouchedBoots
+  pha
   lda BackgroundMetatile
   jsr ChangeBlock
+  pla
+  sub #Metatiles::RED_BOOTS
+  add #InventoryItem::FIRE_BOOTS
+  jsr InventoryGiveItem
+
   lda #SFX::ITEM_GET
-  jmp PlaySound  
+  jmp PlaySound
 .endproc
 
 .proc TouchedWoodArrow

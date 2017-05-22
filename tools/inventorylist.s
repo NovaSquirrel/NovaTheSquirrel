@@ -4,10 +4,10 @@
   .byt InventoryIcon::KEY ;RED_KEY
   .byt InventoryIcon::KEY ;GREEN_KEY
   .byt InventoryIcon::KEY ;BLUE_KEY
-  .byt InventoryIcon::SHIELD ;FLIPPERS
   .byt InventoryIcon::SHIELD ;FIRE_BOOTS
-  .byt InventoryIcon::SHIELD ;ICE_SKATES
   .byt InventoryIcon::SHIELD ;SUCTION_BOOTS
+  .byt InventoryIcon::SHIELD ;ICE_SKATES
+  .byt InventoryIcon::SHIELD ;FLIPPERS
   .byt InventoryIcon::PANTS ;NUCLEAR_PANTS
   .byt InventoryIcon::EFFECT ;ALWAYS_JUMPING
   .byt InventoryIcon::ABILITY ;ABILITY_BLASTER
@@ -48,10 +48,10 @@
   .byt <NameRedKey ;RED_KEY
   .byt <NameGreenKey ;GREEN_KEY
   .byt <NameBlueKey ;BLUE_KEY
-  .byt <NameFlippers ;FLIPPERS
   .byt <NameFireBoots ;FIRE_BOOTS
-  .byt <NameIceSkates ;ICE_SKATES
   .byt <NameSuctionBoots ;SUCTION_BOOTS
+  .byt <NameIceSkates ;ICE_SKATES
+  .byt <NameFlippers ;FLIPPERS
   .byt <NameNuclearPowerPants ;NUCLEAR_PANTS
   .byt <NameAlwaysJumping ;ALWAYS_JUMPING
   .byt <NameBlaster ;ABILITY_BLASTER
@@ -92,10 +92,10 @@
   .byt >NameRedKey ;RED_KEY
   .byt >NameGreenKey ;GREEN_KEY
   .byt >NameBlueKey ;BLUE_KEY
-  .byt >NameFlippers ;FLIPPERS
   .byt >NameFireBoots ;FIRE_BOOTS
-  .byt >NameIceSkates ;ICE_SKATES
   .byt >NameSuctionBoots ;SUCTION_BOOTS
+  .byt >NameIceSkates ;ICE_SKATES
+  .byt >NameFlippers ;FLIPPERS
   .byt >NameNuclearPowerPants ;NUCLEAR_PANTS
   .byt >NameAlwaysJumping ;ALWAYS_JUMPING
   .byt >NameBlaster ;ABILITY_BLASTER
@@ -136,10 +136,10 @@
   .byt <(DoNothing-1) ;RED_KEY
   .byt <(DoNothing-1) ;GREEN_KEY
   .byt <(DoNothing-1) ;BLUE_KEY
-  .byt <(DoNothing-1) ;FLIPPERS
   .byt <(DoNothing-1) ;FIRE_BOOTS
-  .byt <(DoNothing-1) ;ICE_SKATES
   .byt <(DoNothing-1) ;SUCTION_BOOTS
+  .byt <(DoNothing-1) ;ICE_SKATES
+  .byt <(DoNothing-1) ;FLIPPERS
   .byt <(DoNothing-1) ;NUCLEAR_PANTS
   .byt <(DoNothing-1) ;ALWAYS_JUMPING
   .byt <(DoSwitchAbility-1) ;ABILITY_BLASTER
@@ -180,10 +180,10 @@
   .byt >(DoNothing-1) ;RED_KEY
   .byt >(DoNothing-1) ;GREEN_KEY
   .byt >(DoNothing-1) ;BLUE_KEY
-  .byt >(DoNothing-1) ;FLIPPERS
   .byt >(DoNothing-1) ;FIRE_BOOTS
-  .byt >(DoNothing-1) ;ICE_SKATES
   .byt >(DoNothing-1) ;SUCTION_BOOTS
+  .byt >(DoNothing-1) ;ICE_SKATES
+  .byt >(DoNothing-1) ;FLIPPERS
   .byt >(DoNothing-1) ;NUCLEAR_PANTS
   .byt >(DoNothing-1) ;ALWAYS_JUMPING
   .byt >(DoSwitchAbility-1) ;ABILITY_BLASTER
@@ -224,10 +224,10 @@
   ThinFontText "RED KEY " ;RED_KEY
   ThinFontText "GREENKEY" ;GREEN_KEY
   ThinFontText "BLUE KEY" ;BLUE_KEY
-  ThinFontText "FLIPPERS" ;FLIPPERS
   ThinFontText "FIREBOOT" ;FIRE_BOOTS
-  ThinFontText "ICESKATE" ;ICE_SKATES
   ThinFontText "SUCKBOOT" ;SUCTION_BOOTS
+  ThinFontText "ICESKATE" ;ICE_SKATES
+  ThinFontText "FLIPPERS" ;FLIPPERS
   ThinFontText "NUCLEAR " ;NUCLEAR_PANTS
   ThinFontText "JUMPING " ;ALWAYS_JUMPING
   ThinFontText "BLASTER " ;ABILITY_BLASTER

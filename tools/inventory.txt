@@ -46,14 +46,6 @@ C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
 C ThinFontText "BLUE KEY"
 
-R FLIPPERS
-C .byt InventoryIcon::SHIELD
-C .byt <NameFlippers
-C .byt >NameFlippers
-C .byt <(DoNothing-1)
-C .byt >(DoNothing-1)
-C ThinFontText "FLIPPERS"
-
 R FIRE_BOOTS
 C .byt InventoryIcon::SHIELD
 C .byt <NameFireBoots
@@ -61,6 +53,14 @@ C .byt >NameFireBoots
 C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
 C ThinFontText "FIREBOOT"
+
+R SUCTION_BOOTS
+C .byt InventoryIcon::SHIELD
+C .byt <NameSuctionBoots
+C .byt >NameSuctionBoots
+C .byt <(DoNothing-1)
+C .byt >(DoNothing-1)
+C ThinFontText "SUCKBOOT"
 
 R ICE_SKATES
 C .byt InventoryIcon::SHIELD
@@ -70,13 +70,13 @@ C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
 C ThinFontText "ICESKATE"
 
-R SUCTION_BOOTS
+R FLIPPERS
 C .byt InventoryIcon::SHIELD
-C .byt <NameSuctionBoots
-C .byt >NameSuctionBoots
+C .byt <NameFlippers
+C .byt >NameFlippers
 C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
-C ThinFontText "SUCKBOOT"
+C ThinFontText "FLIPPERS"
 
 R NUCLEAR_PANTS
 C .byt InventoryIcon::PANTS
