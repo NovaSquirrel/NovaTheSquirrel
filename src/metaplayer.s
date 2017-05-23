@@ -567,11 +567,42 @@ ExitDoor:
   ora LevelAvailable,y
   sta LevelAvailable,y
 
+  ; Copy some state back to the savefile
+  jsr ConfiscateItems
   jsr CopyToSavedInventory
   jsr SaveEventFlags
 
   lda StartedLevelNumber
   jmp StartLevel
+.endproc
+
+.proc ConfiscateItems
+; Remove items that the player shouldn't exit the level with
+  ldx #InventoryLen
+Loop:
+  ; Loop through the bad items, looking for a match
+  ldy #0
+: lda BadItems,y ; read from bad items list
+  beq ItemIsGood ; end of the list? item must be good then
+  iny
+  cmp InventoryType,x
+  bne :-
+  lda #0
+  sta InventoryType,x
+  sta InventoryAmount,x
+ItemIsGood:
+  dex
+  bpl Loop
+  rts
+BadItems:
+  .byt InventoryItem::RED_KEY, InventoryItem::GREEN_KEY, InventoryItem::BLUE_KEY
+  .byt InventoryItem::FIRE_BOOTS, InventoryItem::SUCTION_BOOTS, InventoryItem::ICE_SKATES, InventoryItem::FLIPPERS
+  .byt InventoryItem::ALWAYS_JUMPING
+  .byt InventoryItem::BLOCK, InventoryItem::SPRING
+  .byt InventoryItem::ARROW_LEFT, InventoryItem::ARROW_DOWN, InventoryItem::ARROW_RIGHT, InventoryItem::ARROW_UP
+  .byt InventoryItem::ARROW_LEFT_METAL, InventoryItem::ARROW_DOWN_METAL, InventoryItem::ARROW_RIGHT_METAL, InventoryItem::ARROW_UP_METAL
+  .byt InventoryItem::WOOD_BOX, InventoryItem::METAL_BOX
+  .byt 0
 .endproc
 
 .proc SaveEventFlags
