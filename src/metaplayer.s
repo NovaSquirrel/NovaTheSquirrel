@@ -544,7 +544,6 @@ Loop:
     lda (LevelBlockPtr),y
     cmp #Metatiles::EXIT_DOOR_TOP
     beq ExitDoor
-    jsr CopyToSavedInventory
 
     jsr GetBlockX        ; Get the block's X position
     jsr DoTeleport

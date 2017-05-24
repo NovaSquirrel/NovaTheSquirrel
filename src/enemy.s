@@ -498,7 +498,33 @@ MetaspriteL:
 .endproc
 
 .proc ObjectBall
-  rts
+  jsr EnemyFall
+  bcc :+
+    lda ObjectF2,x
+    bne :+
+      lda #<(-$68)
+      sta ObjectVYL,x
+      lda #>(-$68)
+      sta ObjectVYH,x
+  :
+
+  lda #$10
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+
+  ldy #0
+  lda #OAM_COLOR_2 << 2
+  jsr DispEnemyWideFlipped
+
+  inc ObjectF4,x
+  lda ObjectF4,x
+  bne :+
+    lda #0
+    sta ObjectF1,x
+    rts
+  :
+
+  jmp EnemyPlayerTouchHurt
 .endproc
 
 .proc ObjectPotion
@@ -1153,6 +1179,16 @@ ObjectFireTrig:
 .endproc
 
 .proc ObjectMine
+  ldy #$1c
+  lda #OAM_COLOR_2 << 2
+  jsr DispEnemyWideFlipped
+
+  jsr EnemyPlayerTouch
+  bcc :+
+    lda #7
+    jmp EnemyExplode
+  :
+  rts
 .endproc
 
 .proc ObjectRocket
@@ -2430,6 +2466,39 @@ ReactWithTypes:
   lda #8
   ldy #OAM_COLOR_2
   jmp DispEnemyWide
+.endproc
+
+.proc ObjectFallingSpike
+  lda PlayerPXH
+  sub ObjectPXH,x
+  abs
+  cmp ObjectF3,x
+  bcs :+
+  lda #1
+  sta ObjectF4,x ; turn on falling flag
+:
+
+  lda ObjectF4,x
+  beq :+
+  jsr EnemyGravity
+:
+
+  lda #OAM_COLOR_1
+  sta 1
+  lda #4
+  sta 2 ; X offset
+  lda #0
+  sta 3 ; Y offset
+  lda #$08
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_XYOffset
+  ; Draw tile 2
+  lda #8
+  sta 3 ; Y offset
+  lda #$09
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_XYOffset
+  jmp SmallEnemyPlayerTouchHurt
 .endproc
 
 .proc ObjectBoulder

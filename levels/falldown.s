@@ -66,18 +66,18 @@ falldownData:
   LObjN LO::R_FG_GLASS_RED,   1, 5, 1, 6
   LObjN LO::R_SOLID_ROCK,     2, 0, 1, 14
   LObj  LO::S_SOLID_ROCK,     2, 0
-  LObj  LO::R_CUSTOM,         0, 4, Metatiles::SPRING, (7<<4)|0
+  LObjN LO::R_SOLID_BLOCK,    0, 4, 2, 0
   LObjN LO::WIDE_1,           0, 5, 7, LN1::SOLID_LEDGE
   LObj  LO::S_SOLID_BLOCK,    0, 10
   LObj  LO::S_CUSTOM,         0, 11, Metatiles::LOCK_RED
-  LObj  LO::S_SOLID_BLOCK,    1, 4
-  LObjN LO::R_SOLID_ROCK,     0, 12, 7, 0
+  LObjN LO::R_SOLID_ROCK,     1, 12, 7, 0
   LObjN LO::R_SOLID_ROCK,     1, 0, 9, 0
   LObj  LO::S_SPRING,         0, 9
   LObj  LO::S_CUSTOM,         0, 10, Metatiles::FORCE_UP
   LObj  LO::S_SPRING,         0, 11
   LObjN LO::WIDE_1,           0, 14, 0, LN1::SOLID_LEDGE
-  LObj  LO::S_SPRING,         1, 8
+  LObj  LO::R_CUSTOM,         1, 4, Metatiles::SPRING, (4<<4)|0
+  LObj  LO::S_SPRING,         0, 8
   LObj  LO::S_SOLID_BLOCK,    0, 9
   LObj  LO::R_CUSTOM,         0, 11, Metatiles::FORCE_LEFT, (8<<4)|0
   LObjN LO::TALL_1,           0, 13, 1, LN1::LADDER
@@ -121,7 +121,7 @@ falldownData:
   LObj  LO::S_DOOR,           2, 11
   LWriteCol 8, 67
   LObjN LO::R_FG_GLASS_BLUE,  1, 0, 1, 14
-  LObjN LO::R_ROCK,           2, 0, 1, 14
+  LObjN LO::R_FG_GLASS_RED,   2, 0, 1, 14
   LObjN LO::R_SOLID_BLOCK,    2, 3, 6, 0
   LObjN LO::R_SOLID_BLOCK,    0, 10, 6, 0
   LObjN LO::TALL_1,           1, 0, 2, LN1::LADDER
@@ -134,8 +134,12 @@ falldownData:
   LObjN LO::R_SOLID_BLOCK,    2, 0, 0, 1
   LObj  LO::S_CUSTOM,         0, 2, Metatiles::LOCK_RED
   LObjN LO::R_SOLID_BLOCK,    0, 4, 0, 5
-  LObjN LO::R_ROCK,           6, 0, 1, 14
-  LObjN LO::R_ROCK,           2, 0, 1, 14
+  LObjN LO::WIDE_1,           1, 6, 2, LN1::SOLID_LEDGE
+  LObj  LO::S_SPRING,         1, 5
+  LObjN LO::WIDE_1,           1, 11, 2, LN1::SOLID_LEDGE
+  LObj  LO::S_SPRING,         1, 10
+  LObjN LO::R_FG_GLASS_RED,   2, 0, 1, 14
+  LObjN LO::R_FG_GLASS_BLUE,  2, 0, 1, 14
   LObjN LO::R_SOLID_BLOCK,    9, 2, 0, 8
   LObjN LO::R_SOLID_BLOCK,    1, 2, 3, 0
   LObj  LO::S_CUSTOM,         0, 3, Metatiles::GREEN_BOOTS
@@ -146,11 +150,11 @@ falldownData:
   LObjN LO::R_SOLID_BLOCK,    0, 6, 0, 1
   LObj  LO::S_DOOR,           0, 8
   LWriteCol 2, 51
-  LObjN LO::R_ROCK,           2, 0, 1, 14
+  LObjN LO::R_FG_GLASS_BLUE,  2, 0, 1, 14
   LFinished
 
 falldownSprite:
+  LSpr Enemy::GOOMBA,              1,   9,   6
   LSpr Enemy::GOOMBA,              1,  11,   6
-  LSpr Enemy::GOOMBA,              1,  13,   6
   LSpr Enemy::GOOMBA,              1,  17,   7
   .byt 255 ; end

@@ -181,7 +181,7 @@ Exit:
   .raddr ObjectMinecart
   .raddr ObjectNone ; boomerang guy
   .raddr ObjectNone ; grabby hand
-  .raddr ObjectNone ; falling spike
+  .raddr ObjectFallingSpike ; falling spike
   .raddr ObjectCloudSword
 .endproc
 

@@ -204,16 +204,16 @@ glass_introData:
   LObj  LO::S_SOLID_ROCK,     1, 3
   LObj  LO::S_CUSTOM,         0, 10, Metatiles::KEY_RED
   LObjN LO::R_SOLID_BLOCK,    3, 11, 0, 3
-  LObjN LO::R_BG_GLASS_GREEN, 3, 8, 2, 2
-  LObj  LO::R_CUSTOM,         0, 11, Metatiles::WOOD_CRATE, (2<<4)|0
-  LObjN LO::R_COIN,           3, 8, 2, 0
-  LObj  LO::R_CUSTOM,         0, 9, Metatiles::WOOD_CRATE, (2<<4)|0
-  LObjN LO::R_COIN,           3, 6, 2, 0
-  LObj  LO::R_CUSTOM,         0, 7, Metatiles::WOOD_CRATE, (2<<4)|0
-  LObjN LO::R_COIN,           3, 4, 2, 0
-  LObj  LO::R_CUSTOM,         0, 5, Metatiles::WOOD_CRATE, (2<<4)|0
+  LObj  LO::R_CUSTOM,         1, 11, Metatiles::WOOD_CRATE, (3<<4)|0
+  LObjN LO::R_BG_GLASS_GREEN, 1, 8, 2, 2
+  LObj  LO::R_CUSTOM,         3, 9, Metatiles::WOOD_CRATE, (3<<4)|0
+  LObjN LO::R_COIN,           1, 8, 2, 0
+  LObj  LO::R_CUSTOM,         3, 7, Metatiles::WOOD_CRATE, (3<<4)|0
+  LObjN LO::R_COIN,           1, 6, 2, 0
+  LObj  LO::R_CUSTOM,         3, 5, Metatiles::WOOD_CRATE, (3<<4)|0
   LObjN LO::R_BG_GLASS_GREEN, 0, 6, 2, 2
-  LObjN LO::R_GROUND,         4, 5, 6, 9
+  LObjN LO::R_COIN,           1, 4, 2, 0
+  LObjN LO::R_GROUND,         3, 5, 6, 9
   LObjN LO::WIDE_1,           1, 3, 1, LN1::SOLID_LEDGE
   LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
   LObj  LO::S_GROUND,         1, 1

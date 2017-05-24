@@ -1504,6 +1504,18 @@ Found:
   rts
 .endproc
 
+.proc EnemyPosToVelY
+  lda ObjectPXL,x
+  sta ObjectVXL,y
+  lda ObjectPXH,x
+  sta ObjectVXH,y
+  lda ObjectPYL,x
+  sta ObjectVYL,y
+  lda ObjectPYH,x
+  sta ObjectVYH,y
+  rts
+.endproc
+
 ; --------------- end of object related stuff ----------------
 
 ; Turns a flying arrow to face a new direction
