@@ -1629,3 +1629,11 @@ C .byt $3f
 C .byt $3f
 C .byt $3f
 C .byt $3f
+
+R BOULDER_SOLID
+C .byt M_PAL_1
+C .byt M_SOLID_ALL|M_SOLID_TOP
+C .byt $3f
+C .byt $3f
+C .byt $3f
+C .byt $3f

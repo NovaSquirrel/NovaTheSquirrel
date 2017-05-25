@@ -2438,7 +2438,7 @@ WasNotArrow: ; Hit a block that didn't result in a new arrow coming out
   lda #0
   sta ObjectF1,x
 EraseBlock: ; Hit a block that did result in an arrow coming out
-  lda #0
+  lda BackgroundMetatile
   ldy 1
   jmp ChangeBlockFar
 
@@ -2502,11 +2502,73 @@ ReactWithTypes:
 .endproc
 
 .proc ObjectBoulder
-  jsr EnemyFall
+  ldy ObjectPYH,x ; Preload this for the init and fall test
+
+  lda ObjectF2,x
+  cmp #ENEMY_STATE_INIT
+  bne :+
+    ; Place a BOULDER_SOLID at the current position
+    lda ObjectPXH,x
+    ; Y is already the Y position high byte
+    jsr GetLevelColumnPtr
+    lda #Metatiles::BOULDER_SOLID
+    sta (LevelBlockPtr),y
+  :
+
+  ; Keep falling
+  lda ObjectF4,x
+  bne KeepFalling
+
+  ; Y is already the Y position high byte
+  iny
+  lda ObjectPXH,x
+  jsr GetLevelColumnPtr
+  cmp BackgroundMetatile
+  beq StartFalling
+
+Draw:
+  ; Update the level sprite list
+  ldy ObjectIndexInLevel,x
+  lda ObjectPYH,x
+  sta SpriteListRAM+1,y
 
   lda #12
   ldy #OAM_COLOR_2
-  jmp DispEnemyWide
+  jsr DispEnemyWide
+
+  ; Die if touching a falling boulder
+  lda ObjectF4,x
+  beq :+
+    jsr EnemyPlayerTouch
+    bcc :+
+     lda #0
+     sta PlayerHealth
+  :
+  rts
+
+StartFalling:
+  lda #$4
+  sta ObjectF4,x
+  lda #Metatiles::BOULDER_SOLID
+  jsr ChangeBlockFar
+
+KeepFalling:
+  lda ObjectPYL,x
+  add #$40
+  sta ObjectPYL,x
+  addcarryx ObjectPYH
+
+  dec ObjectF4,x
+  beq Finish
+  jmp Draw
+Finish:
+  ldy ObjectPYH,x
+  dey
+  lda ObjectPXH,x
+  jsr GetLevelColumnPtr
+  lda BackgroundMetatile
+  jsr ChangeBlockFar
+  jmp Draw
 .endproc
 
 .proc ObjectBigGlider
