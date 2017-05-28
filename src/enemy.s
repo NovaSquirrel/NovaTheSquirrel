@@ -1375,6 +1375,7 @@ Destroy:
 .endproc
 
 .proc ObjectElectricFan
+  jsr EnemyFall
   lda retraces
   lsr
   and #4
@@ -1390,6 +1391,7 @@ Destroy:
       jsr FindFreeObjectY
       bcc NoShoot
         jsr ObjectClearY
+.if 0
         lda ObjectPXL,x
         add #$80
         sta ObjectVXL,y
@@ -1402,6 +1404,14 @@ Destroy:
         lda ObjectPYH,x
         add #$0
         sta ObjectVYH,y
+.endif
+        lda ObjectPXH,x
+        sta ObjectPXH,y
+        lda ObjectPYH,x
+        sta ObjectPYH,y
+        lda #0
+        sta ObjectPXL,y
+        sta ObjectPYL,y
 
         lda ObjectF1,x
         and #1

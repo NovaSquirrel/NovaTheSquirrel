@@ -13,7 +13,7 @@
 	},
 	"Header":	{
 		"Music":	"NONE",
-		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_FIRE", "SP_KING"],
+		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_EXPLODE", "SP_WIND"],
 		"GFXUpload":	["PAL_BUMMER", "BG_COMMON", "BG_BUMMER", "BG_CHIP", "BG_HANNAH", "PAL_ENEMY3"],
 		"BGColor":	15
 	},
@@ -139,14 +139,8 @@
 				}, {
 					"Id":	"COIN",
 					"X":	3,
-					"Y":	19,
+					"Y":	20,
 					"W":	3,
-					"H":	2
-				}, {
-					"Id":	"COIN",
-					"X":	11,
-					"Y":	9,
-					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"SPRING",
@@ -252,9 +246,9 @@
 					"H":	1
 				}, {
 					"Id":	"SOLID_BLOCK",
-					"X":	5,
+					"X":	6,
 					"Y":	47,
-					"W":	5,
+					"W":	4,
 					"H":	1
 				}, {
 					"Id":	"KEY_GREEN",
@@ -263,11 +257,17 @@
 					"W":	1,
 					"H":	1
 				}, {
+					"Id":	"FALLTHROUGH_LEDGE",
+					"X":	3,
+					"Y":	67,
+					"W":	3,
+					"H":	1
+				}, {
 					"Id":	"LADDER",
 					"X":	5,
 					"Y":	45,
 					"W":	1,
-					"H":	2
+					"H":	4
 				}, {
 					"Id":	"LADDER",
 					"X":	5,
@@ -297,12 +297,6 @@
 					"X":	10,
 					"Y":	50,
 					"W":	4,
-					"H":	1
-				}, {
-					"Id":	"SPRING",
-					"X":	2,
-					"Y":	53,
-					"W":	2,
 					"H":	1
 				}, {
 					"Id":	"SPRING",
@@ -350,16 +344,10 @@
 					"Extra":	"B-A"
 				}, {
 					"Id":	"LADDER",
-					"X":	6,
+					"X":	4,
 					"Y":	67,
 					"W":	1,
 					"H":	3
-				}, {
-					"Id":	"SOLID_LEDGE",
-					"X":	3,
-					"Y":	67,
-					"W":	3,
-					"H":	1
 				}, {
 					"Id":	"DOOR",
 					"X":	3,
@@ -369,7 +357,7 @@
 					"Extra":	"C-D"
 				}, {
 					"Id":	"DOOR",
-					"X":	12,
+					"X":	13,
 					"Y":	83,
 					"W":	1,
 					"H":	1,
@@ -378,12 +366,6 @@
 					"Id":	"BRICKS",
 					"X":	12,
 					"Y":	80,
-					"W":	2,
-					"H":	1
-				}, {
-					"Id":	"BRICKS",
-					"X":	10,
-					"Y":	82,
 					"W":	2,
 					"H":	1
 				}, {
@@ -402,25 +384,25 @@
 					"Id":	"SOLID_BLOCK",
 					"X":	2,
 					"Y":	70,
-					"W":	7,
+					"W":	6,
 					"H":	1
 				}, {
 					"Id":	"SOLID_BLOCK",
 					"X":	2,
 					"Y":	63,
-					"W":	7,
+					"W":	6,
 					"H":	1
 				}, {
 					"Id":	"SOLID_BLOCK",
-					"X":	8,
+					"X":	7,
 					"Y":	64,
 					"W":	1,
 					"H":	6
 				}, {
 					"Id":	"SOLID_BLOCK",
-					"X":	9,
+					"X":	8,
 					"Y":	77,
-					"W":	1,
+					"W":	2,
 					"H":	9
 				}, {
 					"Id":	"SOLID_BLOCK",
@@ -435,12 +417,6 @@
 					"W":	4,
 					"H":	1
 				}, {
-					"Id":	"COIN",
-					"X":	3,
-					"Y":	66,
-					"W":	3,
-					"H":	1
-				}, {
 					"Id":	"KEY_RED",
 					"X":	4,
 					"Y":	65,
@@ -448,7 +424,7 @@
 					"H":	1
 				}, {
 					"Id":	"LOCK_RED",
-					"X":	8,
+					"X":	7,
 					"Y":	62,
 					"W":	1,
 					"H":	1
@@ -456,11 +432,11 @@
 					"Id":	"SOLID_BLOCK",
 					"X":	7,
 					"Y":	45,
-					"W":	5,
+					"W":	7,
 					"H":	1
 				}, {
 					"Id":	"SOLID_BLOCK",
-					"X":	8,
+					"X":	7,
 					"Y":	60,
 					"W":	1,
 					"H":	2
@@ -470,18 +446,6 @@
 					"Y":	58,
 					"W":	1,
 					"H":	2
-				}, {
-					"Id":	"SOLID_LEDGE",
-					"X":	2,
-					"Y":	54,
-					"W":	2,
-					"H":	1
-				}, {
-					"Id":	"COIN",
-					"X":	9,
-					"Y":	54,
-					"W":	4,
-					"H":	1
 				}, {
 					"Id":	"TOGGLE_BLOCK_ON",
 					"X":	3,
@@ -622,9 +586,9 @@
 					"H":	1
 				}, {
 					"Id":	"SOLID_BLOCK",
-					"X":	5,
+					"X":	6,
 					"Y":	48,
-					"W":	2,
+					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"SOLID_LEDGE",
@@ -670,28 +634,1032 @@
 					"W":	2,
 					"H":	15
 				}, {
-					"Id":	"SPRING",
+					"Id":	"SOLID_BLOCK",
+					"X":	8,
+					"Y":	60,
+					"W":	6,
+					"H":	1
+				}, {
+					"Id":	"COIN",
+					"X":	12,
+					"Y":	47,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"PRIZE",
+					"X":	6,
+					"Y":	67,
+					"W":	1,
+					"H":	1,
+					"Extra":	"SPRING | 128"
+				}, {
+					"Id":	"PRIZE",
+					"X":	2,
+					"Y":	67,
+					"W":	1,
+					"H":	1,
+					"Extra":	"SPRING | 128"
+				}, {
+					"Id":	"SOLID_BLOCK",
+					"X":	9,
+					"Y":	61,
+					"W":	1,
+					"H":	7
+				}, {
+					"Id":	"SOLID_BLOCK",
+					"X":	8,
+					"Y":	69,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"SOLID_BLOCK",
+					"X":	12,
+					"Y":	63,
+					"W":	1,
+					"H":	7
+				}, {
+					"Id":	"LADDER",
+					"X":	8,
+					"Y":	63,
+					"W":	1,
+					"H":	6
+				}, {
+					"Id":	"SPIKES",
+					"X":	8,
+					"Y":	74,
+					"W":	6,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	8,
+					"Y":	75,
+					"W":	6,
+					"H":	2
+				}, {
+					"Id":	"PATH_LINE",
 					"X":	10,
-					"Y":	65,
+					"Y":	72,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"PATH_LINE",
+					"X":	4,
+					"Y":	73,
+					"W":	6,
+					"H":	1
+				}, {
+					"Id":	"PATH_LINE",
+					"X":	11,
+					"Y":	72,
+					"W":	2,
+					"H":	1
+				}, {
+					"Id":	"PATH_LINE",
+					"X":	12,
+					"Y":	70,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	2,
+					"Y":	78,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	5,
+					"Y":	82,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	7,
+					"Y":	87,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	2,
+					"Y":	89,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SPRING",
+					"X":	2,
+					"Y":	88,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"SPRING",
+					"X":	4,
+					"Y":	83,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	4,
+					"Y":	84,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"FALLTHROUGH_LEDGE",
+					"X":	13,
+					"Y":	69,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"COIN",
+					"X":	13,
+					"Y":	64,
+					"W":	1,
+					"H":	3
+				}, {
+					"Id":	"SMALL_ROCK",
+					"X":	0,
+					"Y":	90,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"SMALL_ROCK",
+					"X":	14,
+					"Y":	90,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	6,
+					"Y":	15,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"FORCE_LEFT",
+					"X":	11,
+					"Y":	81,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"COIN",
+					"X":	4,
+					"Y":	72,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"COIN",
+					"X":	3,
+					"Y":	73,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"COIN",
+					"X":	2,
+					"Y":	74,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	5,
+					"Y":	92,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	9,
+					"Y":	94,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"LADDER",
+					"X":	5,
+					"Y":	88,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"LADDER",
+					"X":	5,
+					"Y":	90,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"SOLID_BLOCK",
+					"X":	8,
+					"Y":	94,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_BLOCK",
 					"X":	12,
-					"Y":	70,
+					"Y":	90,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"BIG_HEART",
+					"X":	10,
+					"Y":	57,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_RED",
+					"X":	0,
+					"Y":	105,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"FG_GLASS_RED",
+					"X":	14,
+					"Y":	105,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"TOGGLE_SWITCH",
+					"X":	11,
+					"Y":	93,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"COIN",
+					"X":	13,
+					"Y":	33,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"COIN",
+					"X":	2,
+					"Y":	38,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"BG_GLASS_RED",
+					"X":	3,
+					"Y":	79,
+					"W":	1,
+					"H":	7
+				}, {
+					"Id":	"BG_GLASS_RED",
+					"X":	4,
+					"Y":	85,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"BG_GLASS_RED",
+					"X":	4,
+					"Y":	79,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"BG_GLASS_RED",
+					"X":	7,
+					"Y":	52,
+					"W":	1,
+					"H":	5
+				}, {
+					"Id":	"BG_GLASS_GREEN",
+					"X":	12,
+					"Y":	0,
+					"W":	1,
+					"H":	6
+				}, {
+					"Id":	"BG_GLASS_GREEN",
+					"X":	11,
+					"Y":	4,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BG_GLASS_GREEN",
+					"X":	13,
+					"Y":	4,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BG_GLASS_GREEN",
+					"X":	14,
+					"Y":	3,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BG_GLASS_GREEN",
+					"X":	10,
+					"Y":	3,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"TOGGLE_BLOCK_OFF",
+					"X":	2,
+					"Y":	94,
+					"W":	6,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	4,
+					"Y":	96,
+					"W":	8,
+					"H":	1
+				}, {
+					"Id":	"SOLID_BLOCK",
+					"X":	11,
+					"Y":	94,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"SPRING",
+					"X":	5,
+					"Y":	100,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"TOGGLE_SWITCH",
+					"X":	9,
+					"Y":	95,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"TOGGLE_BLOCK_OFF",
+					"X":	4,
+					"Y":	97,
+					"W":	6,
+					"H":	1
+				}, {
+					"Id":	"LADDER",
+					"X":	3,
+					"Y":	96,
+					"W":	1,
+					"H":	5
+				}, {
+					"Id":	"BG_GLASS_BLUE",
+					"X":	2,
+					"Y":	102,
+					"W":	9,
+					"H":	3
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	2,
+					"Y":	101,
+					"W":	9,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	11,
+					"Y":	101,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	11,
+					"Y":	105,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"BG_GLASS_BLUE",
+					"X":	2,
+					"Y":	105,
+					"W":	9,
+					"H":	2
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	2,
+					"Y":	107,
+					"W":	10,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	8,
+					"Y":	112,
+					"W":	6,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	8,
+					"Y":	117,
+					"W":	6,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	8,
+					"Y":	113,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"BG_GLASS_BLUE",
+					"X":	9,
+					"Y":	113,
+					"W":	5,
+					"H":	4
+				}, {
+					"Id":	"LADDER",
+					"X":	12,
+					"Y":	101,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"LADDER",
+					"X":	12,
+					"Y":	105,
+					"W":	1,
+					"H":	7
+				}, {
+					"Id":	"GROUND",
+					"X":	0,
+					"Y":	237,
+					"W":	16,
+					"H":	3
+				}, {
+					"Id":	"BIG_HEART",
+					"X":	12,
+					"Y":	100,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"EXIT_DOOR",
+					"X":	4,
+					"Y":	109,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BG_GLASS_RED",
+					"X":	1,
+					"Y":	231,
+					"W":	1,
+					"H":	6
+				}, {
+					"Id":	"BG_GLASS_RED",
+					"X":	10,
+					"Y":	231,
+					"W":	1,
+					"H":	6
+				}, {
+					"Id":	"BG_GLASS_RED",
+					"X":	2,
+					"Y":	231,
+					"W":	8,
+					"H":	1
+				}, {
+					"Id":	"BG_GLASS_BLUE",
+					"X":	5,
+					"Y":	229,
+					"W":	1,
+					"H":	8
+				}, {
+					"Id":	"BG_GLASS_BLUE",
+					"X":	12,
+					"Y":	229,
+					"W":	1,
+					"H":	8
+				}, {
+					"Id":	"BG_GLASS_BLUE",
+					"X":	6,
+					"Y":	229,
+					"W":	6,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	2,
+					"Y":	112,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	6,
+					"Y":	116,
+					"W":	2,
+					"H":	1
+				}, {
+					"Id":	"LADDER",
+					"X":	4,
+					"Y":	120,
+					"W":	1,
+					"H":	5
+				}, {
+					"Id":	"DOOR",
+					"X":	10,
+					"Y":	110,
+					"W":	1,
+					"H":	1,
+					"Extra":	"G-H"
+				}, {
+					"Id":	"DOOR",
+					"X":	7,
+					"Y":	235,
+					"W":	1,
+					"H":	1,
+					"Extra":	"H-G"
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	2,
+					"Y":	111,
+					"W":	6,
+					"H":	1
+				}, {
+					"Id":	"LADDER",
+					"X":	4,
+					"Y":	111,
+					"W":	1,
+					"H":	9
+				}, {
+					"Id":	"SMALL_ROCK",
+					"X":	8,
+					"Y":	108,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	14,
+					"Y":	120,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"FG_GLASS_RED",
+					"X":	0,
+					"Y":	120,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	0,
+					"Y":	135,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"FG_GLASS_RED",
+					"X":	14,
+					"Y":	135,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"FG_GLASS_RED",
+					"X":	0,
+					"Y":	150,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	14,
+					"Y":	150,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	0,
+					"Y":	165,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"FG_GLASS_RED",
+					"X":	14,
+					"Y":	165,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"FG_GLASS_RED",
+					"X":	0,
+					"Y":	180,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	14,
+					"Y":	180,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	0,
+					"Y":	195,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	14,
+					"Y":	210,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"FG_GLASS_RED",
+					"X":	14,
+					"Y":	195,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"FG_GLASS_RED",
+					"X":	0,
+					"Y":	210,
+					"W":	2,
+					"H":	15
+				}, {
+					"Id":	"SOLID_BLOCK",
+					"X":	0,
+					"Y":	225,
+					"W":	2,
+					"H":	1
+				}, {
+					"Id":	"SOLID_BLOCK",
+					"X":	14,
+					"Y":	225,
+					"W":	2,
+					"H":	1
+				}, {
+					"Id":	"PATH_LINE",
+					"X":	11,
+					"Y":	230,
+					"W":	1,
+					"H":	6
+				}, {
+					"Id":	"SPRING",
+					"X":	9,
+					"Y":	227,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	8,
+					"Y":	228,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	8,
+					"Y":	223,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SPRING",
+					"X":	9,
+					"Y":	222,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"PATH_LINE",
+					"X":	3,
+					"Y":	219,
+					"W":	10,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	3,
+					"Y":	217,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	12,
+					"Y":	216,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	6,
+					"Y":	234,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	3,
+					"Y":	215,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	5,
+					"Y":	213,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	5,
+					"Y":	208,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"LADDER",
+					"X":	8,
+					"Y":	208,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"LADDER",
+					"X":	8,
+					"Y":	210,
+					"W":	1,
+					"H":	3
+				}, {
+					"Id":	"SOLID_BLOCK",
+					"X":	0,
+					"Y":	226,
+					"W":	1,
+					"H":	11
+				}, {
+					"Id":	"SOLID_BLOCK",
+					"X":	15,
+					"Y":	226,
+					"W":	1,
+					"H":	11
+				}, {
+					"Id":	"PRIZE",
+					"X":	3,
+					"Y":	234,
+					"W":	1,
+					"H":	1,
+					"Extra":	"ABILITY_WATER"
+				}, {
+					"Id":	"PATH_LINE",
+					"X":	3,
+					"Y":	205,
+					"W":	10,
+					"H":	1
+				}, {
+					"Id":	"SPRING",
+					"X":	5,
+					"Y":	207,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	10,
+					"Y":	203,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SPRING",
+					"X":	11,
+					"Y":	202,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	8,
+					"Y":	198,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	3,
+					"Y":	201,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	11,
+					"Y":	192,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"LADDER",
+					"X":	9,
+					"Y":	195,
+					"W":	1,
+					"H":	3
+				}, {
+					"Id":	"LADDER",
+					"X":	9,
+					"Y":	192,
+					"W":	1,
+					"H":	3
+				}, {
+					"Id":	"LADDER",
+					"X":	2,
+					"Y":	188,
+					"W":	1,
+					"H":	5
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	3,
+					"Y":	188,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	2,
+					"Y":	193,
+					"W":	2,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_RED",
+					"X":	6,
+					"Y":	185,
+					"W":	3,
+					"H":	4
+				}, {
+					"Id":	"COIN",
+					"X":	3,
+					"Y":	214,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"COIN",
+					"X":	9,
+					"Y":	225,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	10,
+					"Y":	184,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	9,
+					"Y":	182,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SPRING",
+					"X":	10,
+					"Y":	181,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"SOLID_LEDGE",
 					"X":	9,
-					"Y":	66,
+					"Y":	178,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	7,
+					"Y":	176,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	5,
+					"Y":	174,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	3,
+					"Y":	171,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	5,
+					"Y":	169,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	8,
+					"Y":	167,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SPRING",
+					"X":	9,
+					"Y":	166,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	8,
+					"Y":	163,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	8,
+					"Y":	163,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	10,
+					"Y":	160,
 					"W":	3,
 					"H":	1
 				}, {
 					"Id":	"SOLID_LEDGE",
 					"X":	11,
-					"Y":	71,
+					"Y":	157,
 					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	9,
+					"Y":	155,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	7,
+					"Y":	153,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SPRING",
+					"X":	8,
+					"Y":	152,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BIG_HEART",
+					"X":	9,
+					"Y":	162,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	7,
+					"Y":	148,
+					"W":	7,
+					"H":	1
+				}, {
+					"Id":	"PRIZE",
+					"X":	13,
+					"Y":	145,
+					"W":	1,
+					"H":	1,
+					"Extra":	"SPRING | 128"
+				}, {
+					"Id":	"PRIZE",
+					"X":	11,
+					"Y":	145,
+					"W":	1,
+					"H":	1,
+					"Extra":	"SPRING | 128"
+				}, {
+					"Id":	"PRIZE",
+					"X":	9,
+					"Y":	145,
+					"W":	1,
+					"H":	1,
+					"Extra":	"SPRING | 128"
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	5,
+					"Y":	133,
+					"W":	7,
+					"H":	1
+				}, {
+					"Id":	"LADDER",
+					"X":	9,
+					"Y":	127,
+					"W":	1,
+					"H":	6
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	5,
+					"Y":	127,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	4,
+					"Y":	125,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	5,
+					"Y":	130,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	12,
+					"Y":	127,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	9,
+					"Y":	122,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"TOGGLE_BLOCK_OFF",
+					"X":	2,
+					"Y":	168,
+					"W":	9,
+					"H":	1
+				}, {
+					"Id":	"TOGGLE_BLOCK_OFF",
+					"X":	10,
+					"Y":	169,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"TOGGLE_SWITCH",
+					"X":	4,
+					"Y":	176,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	3,
+					"Y":	177,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	2,
+					"Y":	165,
+					"W":	6,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_RED",
+					"X":	2,
+					"Y":	164,
+					"W":	6,
 					"H":	1
 				}]
 		}, {
@@ -700,13 +1668,6 @@
 			"Tileset":	"novasp",
 			"Data":	[{
 					"Id":	"GOOMBA",
-					"X":	17,
-					"Y":	7,
-					"W":	1,
-					"H":	1,
-					"XFlip":	true
-				}, {
-					"Id":	"GOOMBA",
 					"X":	11,
 					"Y":	6,
 					"W":	1,
@@ -716,6 +1677,178 @@
 					"Id":	"GOOMBA",
 					"X":	9,
 					"Y":	6,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"OWL",
+					"X":	7,
+					"Y":	34,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MOVING_PLATFORM_LINE",
+					"X":	4,
+					"Y":	73,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"ROCKET_LAUNCHER",
+					"X":	7,
+					"Y":	81,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"CHECKPOINT",
+					"X":	13,
+					"Y":	68,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"CANNON_1",
+					"X":	2,
+					"Y":	53,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"CANNON_1",
+					"X":	3,
+					"Y":	50,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"THWOMP",
+					"X":	8,
+					"Y":	53,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"CHECKPOINT",
+					"X":	7,
+					"Y":	91,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"CANNON_1",
+					"X":	13,
+					"Y":	92,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"CANNON_1",
+					"X":	12,
+					"Y":	98,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"ELECTRIC_FAN",
+					"X":	2,
+					"Y":	111,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"ELECTRIC_FAN",
+					"X":	7,
+					"Y":	115,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"CHECKPOINT",
+					"X":	4,
+					"Y":	236,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MOVING_PLATFORM_LINE",
+					"X":	11,
+					"Y":	230,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MOVING_PLATFORM_LINE",
+					"X":	3,
+					"Y":	219,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"ELECTRIC_FAN",
+					"X":	12,
+					"Y":	215,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"ELECTRIC_FAN",
+					"X":	6,
+					"Y":	233,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"OWL",
+					"X":	6,
+					"Y":	212,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"MOVING_PLATFORM_LINE",
+					"X":	12,
+					"Y":	205,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"ELECTRIC_FAN",
+					"X":	3,
+					"Y":	200,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"ELECTRIC_FAN",
+					"X":	12,
+					"Y":	191,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"ROCKET_LAUNCHER",
+					"X":	12,
+					"Y":	172,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"ROCKET_LAUNCHER",
+					"X":	3,
+					"Y":	157,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"ROCKET_LAUNCHER",
+					"X":	3,
+					"Y":	140,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"ELECTRIC_FAN",
+					"X":	5,
+					"Y":	129,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"ELECTRIC_FAN",
+					"X":	9,
+					"Y":	121,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"ELECTRIC_FAN",
+					"X":	12,
+					"Y":	126,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
@@ -725,18 +1858,6 @@
 			"Type":	"Control",
 			"Tileset":	"novact",
 			"Data":	[{
-					"Id":	"PLAYER_START_R",
-					"X":	2,
-					"Y":	3,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"SCROLL_LOCK",
-					"X":	15,
-					"Y":	0,
-					"W":	1,
-					"H":	1
-				}, {
 					"Id":	"SCROLL_LOCK",
 					"X":	15,
 					"Y":	15,
@@ -772,6 +1893,73 @@
 					"Y":	90,
 					"W":	1,
 					"H":	1
+				}, {
+					"Id":	"SCROLL_LOCK",
+					"X":	15,
+					"Y":	0,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SCROLL_LOCK",
+					"X":	15,
+					"Y":	105,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SCROLL_LOCK",
+					"X":	15,
+					"Y":	120,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SCROLL_LOCK",
+					"X":	15,
+					"Y":	135,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SCROLL_LOCK",
+					"X":	15,
+					"Y":	225,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SCROLL_LOCK",
+					"X":	15,
+					"Y":	210,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SCROLL_LOCK",
+					"X":	15,
+					"Y":	195,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SCROLL_LOCK",
+					"X":	15,
+					"Y":	180,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SCROLL_LOCK",
+					"X":	15,
+					"Y":	165,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SCROLL_LOCK",
+					"X":	15,
+					"Y":	150,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"PLAYER_START_L",
+					"X":	2,
+					"Y":	3,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
 				}]
 		}]
 }

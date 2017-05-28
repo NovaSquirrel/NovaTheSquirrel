@@ -732,7 +732,7 @@ Blank:
   .byt InventoryItem::ABILITY_NICE,         $98, (40 .mod 100),  (40 / 100)
   .byt InventoryItem::ABILITY_BOOMERANG,    $9C, (40 .mod 100),  (40 / 100)
   .byt InventoryItem::ABILITY_WATER,        $A4, (40 .mod 100),  (40 / 100)
-  .byt InventoryItem::ABILITY_FAN,          $A8, (30 .mod 100),  (30 / 100)
+  .byt InventoryItem::ABILITY_FAN,          $A8, (30 .mod 100),  (40 / 100)
   .byt InventoryItem::ABILITY_BURGER,       $AC, (40 .mod 100),  (40 / 100)
   .byt 0, $1C, 0, 0
   .byt 0, $1C, 0, 0
@@ -754,6 +754,7 @@ Blank:
   cmp #98
   beq Fail ; can't get more than 99
   inc InventorySaved+InventoryLen,x ; amount
+  sec
   rts
 : ; Item not found, keep looking
   dex

@@ -1864,7 +1864,7 @@ AbilityFan:
     sta ObjectF4,x
   :
 
-  lda #100/4
+  lda #30/4
   sta ObjectTimer,x
   lda #$2c
   jsr SetXVelocity

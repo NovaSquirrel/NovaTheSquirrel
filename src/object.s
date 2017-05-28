@@ -448,12 +448,23 @@ BlowAway:
   sta ObjectPYL,x
   lda ObjectPYH,y
   sta ObjectPYH,x
+
+  lda ObjectF1,x
+  and #<~1
+  ora PlayerDir
+  sta ObjectF1,x
+  lda #ENEMY_STATE_STUNNED
+  sta ObjectF2,x
+  lda #90
+  sta ObjectTimer,x
+.if 0
   ; Destroy if too far off top
   cmp #255
   bne :+
   lda #0
   sta ObjectF1,x
 :
+.endif
   rts
 Copy:
   ; maybe change it so they have to be stunned?
