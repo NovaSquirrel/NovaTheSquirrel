@@ -459,9 +459,9 @@ SignPrize:
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "C", $c2, "g", "r", $c6, "u", "l", $c6, "i", $c2, $fb, $a5, SCR::NEWLINE, "c", "o", "m", "p", $a8, $b1, " ", $a2, " ", "p", "u", "z", "z", "l", "e", SCR::NEWLINE, $e2, $ad, $e6, "g", "e", $fd, "Y", $b6, " ", "p", $fc, "z", $e7, "a", "w", "a", "i", "t", "s", SCR::NEWLINE, $bf, $a2, " ", $f9, "x", $d3, "r", $e4, "m", "."
 .byt SCR::END_SCRIPT
 AboutBombs:
-.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
-; <1 SIGN>You can copy these bomb enemies, but be quick. Up+B throws and Down+B drops bombs, and B alone will put one in midair. Try standing on it.
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "Y", $f4, " ", $b0, " ", "c", "o", "p", $fe, $89, "b", "o", "m", "b", SCR::NEWLINE, $e6, "e", "m", $e3, "s", $f5, $a7, " ", $ba, "q", "u", "i", $f3, $f6, "U", "p", "+", "B", SCR::NEWLINE, $e0, "r", "o", "w", $fb, $a4, "D", "o", "w", "n", "+", "B", " ", "d", "r", "o", "p", "s", SCR::NEWLINE, "b", "o", "m", "b", "s", $f5, $a4, "B", " ", "a", "l", $ac, " ", $9e, " ", "p", "u", "t", SCR::NEWLINE, $ac, " ", $bf, "m", "i", "d", "a", "i", "r", $f6, "T", "r", $fe, $de, $ca, "d", $b1, " ", $c2, SCR::NEWLINE, "i", "t", "."
+.byt SCR::SCENE, SCENES::NOVA_LIA_SIGN
+; <2 SIGN>You can copy these bomb enemies, but be quick. Up+B throws and Down+B drops bombs, and B alone will put one in midair. Try standing on a placed bomb.
+.byt SCR::SAY, SCR::SPEAKER_2|CHAR::SIGN, "Y", $f4, " ", $b0, " ", "c", "o", "p", $fe, $89, "b", "o", "m", "b", SCR::NEWLINE, $e6, "e", "m", $e3, "s", $f5, $a7, " ", $ba, "q", "u", "i", $f3, $f6, "U", "p", "+", "B", SCR::NEWLINE, $e0, "r", "o", "w", $fb, $a4, "D", "o", "w", "n", "+", "B", " ", "d", "r", "o", "p", "s", SCR::NEWLINE, "b", "o", "m", "b", "s", $f5, $a4, "B", " ", "a", "l", $ac, " ", $9e, " ", "p", "u", "t", SCR::NEWLINE, $ac, " ", $bf, "m", "i", "d", "a", "i", "r", $f6, "T", "r", $fe, $de, $ca, "d", $b1, " ", $c2, SCR::NEWLINE, $be, "p", "l", "a", "c", $d6, "b", "o", "m", "b", "."
 .byt SCR::END_SCRIPT
 AboutMinecarts:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
@@ -493,8 +493,8 @@ AboutIceJump:
 .byt SCR::END_SCRIPT
 AboutWaterFreeze:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
-; <1 SIGN>Ice can freeze water (or lava!) into a solid platform, that fire can thaw out.
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "I", "c", $e7, $b0, " ", "f", "r", $d7, "z", $e7, "w", $c6, $ed, " ", "(", $c9, SCR::NEWLINE, "l", "a", "v", "a", "!", ")", " ", $d8, $bb, $be, $cc, "l", "i", $ff, "p", "l", $c6, $a5, "m", ",", SCR::NEWLINE, $9a, "f", "i", "r", $e7, $b0, " ", $e0, "a", "w", " ", $ae, "."
+; <1 SIGN>Ice can freeze water (or lava!) into a solid platform, that fire can thaw out. You WILL need the ice ability up ahead.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "I", "c", $e7, $b0, " ", "f", "r", $d7, "z", $e7, "w", $c6, $ed, " ", "(", $c9, SCR::NEWLINE, "l", "a", "v", "a", "!", ")", " ", $d8, $bb, $be, $cc, "l", "i", $ff, "p", "l", $c6, $a5, "m", ",", SCR::NEWLINE, $9a, "f", "i", "r", $e7, $b0, " ", $e0, "a", "w", " ", $ae, $f6, "Y", $f4, SCR::NEWLINE, "W", "I", "L", "L", " ", $f9, $d6, $a2, " ", "i", "c", $e7, "a", "b", $dc, "i", "t", $fe, $cd, SCR::NEWLINE, "a", $c3, $f7, "."
 .byt SCR::END_SCRIPT
 AboutAutoItem:
 .byt SCR::SCENE, SCENES::NOVA_LIA_SIGN

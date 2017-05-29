@@ -133,6 +133,7 @@ glasscaveData:
   LObjN LO::R_BG_GLASS_GRAY,  3, 4, 0, 2
   LObjN LO::R_GROUND,         1, 10, 6, 4
   LObjN LO::WIDE_1,           6, 7, 2, LN1::SOLID_LEDGE
+  LObj  LO::S_CUSTOM,         0, 9, Metatiles::TOGGLE_SWITCH
   LObj  LO::S_BG_GLASS_GRAY,  5, 5
   LObj  LO::R_CUSTOM,         1, 7, Metatiles::TOGGLE_BLOCK_ON, (3<<4)|7
   LObj  LO::S_BG_GLASS_GRAY,  1, 3
@@ -171,7 +172,11 @@ glasscaveData:
   LObj  LO::S_CUSTOM,         0, 3, Metatiles::LOCK_GREEN
   LObj  LO::S_SOLID_BLOCK,    0, 4
   LObjN LO::R_GROUND,         1, 4, 4, 10
-  LObj  LO::S_EXIT_DOOR,      3, 2
+  LObj  LO::S_DOOR,           3, 2
+  LWriteCol $21, LevelId::PuzzleBomb
+  LObjN LO::R_GROUND,         14, 4, 3, 10
+  LObj  LO::S_PRIZE,          2, 2
+  LWriteCol InventoryItem::ABILITY_BURGER
   LFinished
 
 glasscaveSprite:

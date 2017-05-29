@@ -58,8 +58,7 @@ chiptallData:
   LObj  LO::S_CUSTOM,         0, 8, Metatiles::CHIP
   LObjN LO::R_SOLID_ROCK,     1, 2, 1, 4
   LObjN LO::WIDE_1,           2, 12, 0, LN1::SOLID_LEDGE
-  LObj  LO::S_CUSTOM,         3, 13, Metatiles::CHIP
-  LObj  LO::S_CUSTOM,         2, 3, Metatiles::CHIP
+  LObj  LO::S_CUSTOM,         5, 3, Metatiles::CHIP
   LObjN LO::TALL_1,           2, 3, 6, LN1::LADDER
   LObj  LO::S_SOLID_ROCK,     4, 2
   LObj  LO::S_SOLID_ROCK,     0, 11
@@ -69,7 +68,7 @@ chiptallData:
   LObjN LO::R_SOLID_ROCK,     2, 0, 1, 5
   LObj  LO::S_CUSTOM,         0, 6, Metatiles::CHIP_SOCKET
   LSetX 63
-  LWriteCol 28
+  LWriteCol 27
   LObjN LO::R_SOLID_ROCK,     0, 7, 1, 7
   LObj  LO::R_CUSTOM,         2, 2, Metatiles::FORCE_RIGHT, (0<<4)|4
   LObjN LO::WIDE_1,           0, 7, 3, LN1::SOLID_LEDGE
@@ -88,7 +87,8 @@ chiptallData:
   LObj  LO::R_CUSTOM,         0, 10, Metatiles::TOGGLE_BLOCK_ON, (4<<4)|0
   LObj  LO::S_CUSTOM,         1, 5, Metatiles::TOGGLE_SWITCH
   LObj  LO::R_CUSTOM,         3, 4, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|5
-  LObj  LO::R_CUSTOM,         1, 4, Metatiles::TOGGLE_BLOCK_ON, (4<<4)|0
+  LObj  LO::R_CUSTOM,         1, 0, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|3
+  LObj  LO::R_CUSTOM,         0, 4, Metatiles::TOGGLE_BLOCK_ON, (4<<4)|0
   LObj  LO::R_CUSTOM,         1, 11, Metatiles::TOGGLE_BLOCK_OFF, (3<<4)|0
   LObj  LO::R_CUSTOM,         1, 7, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|3
   LObj  LO::R_CUSTOM,         2, 5, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|5

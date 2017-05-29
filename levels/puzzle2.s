@@ -19,7 +19,6 @@ puzzle2:
   .byt $c0, $00 ; boundaries
 
 puzzle2Data:
-  .byt LSpecialCmd, LevelSpecialConfig::PUZZLE_MODE, AbilityType::NONE, $00
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 38
   LObj  LO::S_DOOR,           7, 1
   LWriteCol 11, 34
@@ -68,7 +67,9 @@ puzzle2Data:
   LObjN LO::R_BG_GLASS_RED,   1, 2, 7, 0
   LObjN LO::R_BG_GLASS_BLUE,  4, 5, 0, 6
   LObjN LO::R_GROUND,         0, 12, 12, 2
-  LObjN LO::R_BG_GLASS_RED,   4, 2, 0, 9
+  LObj  LO::S_PRIZE,          2, 9
+  LWriteCol InventoryItem::ABILITY_BACKUP
+  LObjN LO::R_BG_GLASS_RED,   2, 2, 0, 9
   LObj  LO::S_BRICK,          1, 11
   LObjN LO::R_COIN,           4, 2, 1, 1
   LObjN LO::WIDE_1,           0, 4, 1, LN1::SOLID_LEDGE
@@ -84,7 +85,7 @@ puzzle2Data:
   LObj  LO::S_BIGHEART,       0, 9
   LObjN LO::R_GROUND,         2, 9, 12, 5
   LObj  LO::S_PRIZE,          3, 6
-  LWriteCol InventoryItem::ABILITY_WATER
+  LWriteCol InventoryItem::ABILITY_BOMB | 128
   LObj  LO::S_SIGNPOST,       1, 8
   LWriteCol <AboutBombs, >AboutBombs
   LObjN LO::R_SOLID_ROCK,     2, 1, 0, 1
@@ -115,9 +116,7 @@ puzzle2Data:
   LObj  LO::S_SPRING,         0, 9
   LObjN LO::R_BG_GLASS_BLUE,  2, 1, 2, 2
   LObjN LO::R_GROUND,         1, 9, 12, 5
-  LObj  LO::S_PRIZE,          1, 6
-  LWriteCol InventoryItem::ABILITY_NICE
-  LObj  LO::S_COIN,           1, 4
+  LObj  LO::S_COIN,           2, 4
   LObjN LO::WIDE_1,           0, 5, 2, LN1::SOLID_LEDGE
   LObj  LO::S_CUSTOM,         1, 4, Metatiles::TOGGLE_SWITCH
   LObjN LO::R_CEILING_BARRIER,1, 0, 0, 2
@@ -125,10 +124,11 @@ puzzle2Data:
   LObjN LO::R_BG_GLASS_GRAY,  3, 2, 5, 0
   LObj  LO::S_SOLID_BLOCK,    1, 7
   LObj  LO::S_CUSTOM,         0, 8, Metatiles::FORCE_LEFT
-  LObjN LO::R_SOLID_BLOCK,    1, 7, 1, 0
+  LObjN LO::R_SOLID_BLOCK,    1, 7, 2, 0
   LObj  LO::S_CUSTOM,         0, 8, Metatiles::KEY_BLUE
-  LObj  LO::S_CUSTOM,         1, 8, Metatiles::LOCK_GREEN
+  LObj  LO::S_HEART,          1, 8
   LObjN LO::R_BG_GLASS_GRAY,  1, 5, 8, 0
+  LObj  LO::S_CUSTOM,         0, 8, Metatiles::LOCK_GREEN
   LObjN LO::WIDE_1,           1, 9, 4, LN1::SOLID_LEDGE
   LObjN LO::R_COIN,           1, 6, 5, 0
   LObjN LO::R_FG_GLASS_RED,   2, 3, 1, 0
@@ -143,14 +143,57 @@ puzzle2Data:
   LObj  LO::S_CUSTOM,         0, 5, Metatiles::LOCK_BLUE
   LObjN LO::R_GROUND,         0, 6, 5, 8
   LObj  LO::S_BIGHEART,       3, 5
-  LObjN LO::WIDE_1,           3, 6, 3, LN1::SOLID_LEDGE
-  LObjN LO::R_GROUND,         0, 13, 8, 1
-  LObjN LO::WIDE_1,           1, 10, 3, LN1::SOLID_LEDGE
-  LObj  LO::S_SPRING,         2, 12
-  LObjN LO::WIDE_1,           2, 8, 3, LN1::SOLID_LEDGE
-  LObj  LO::S_W_ARROW_UP,     0, 10
-  LObjN LO::R_COIN,           1, 10, 2, 2
-  LObjN LO::R_GROUND,         3, 8, 8, 6
+  LObjN LO::WIDE_1,           3, 6, 2, LN1::FALLTHROUGH_LEDGE
+  LObjN LO::R_GROUND,         0, 13, 13, 1
+  LObjN LO::WIDE_1,           2, 9, 2, LN1::FALLTHROUGH_LEDGE
+  LObj  LO::S_SPRING,         0, 12
+  LObj  LO::S_M_ARROW_RIGHT,  1, 7
+  LObj  LO::S_M_ARROW_UP,     0, 10
+  LObj  LO::S_M_ARROW_RIGHT,  3, 7
+  LObj  LO::S_W_ARROW_LEFT,   0, 10
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObjN LO::R_FG_GLASS_BLUE,  1, 0, 0, 7
+  LObj  LO::S_M_CRATE,        1, 7
+  LObjN LO::R_FG_GLASS_BLUE,  1, 8, 3, 4
+  LObjN LO::WIDE_1,           3, 4, 3, LN1::SOLID_LEDGE
+  LObj  LO::S_SPRING,         0, 7
+  LObjN LO::WIDE_1,           1, 8, 3, LN1::SOLID_LEDGE
+  LObjN LO::R_BG_GLASS_GRAY,  1, 2, 8, 0
+  LObjN LO::R_BG_GLASS_GRAY,  0, 5, 8, 0
+  LObj  LO::S_SPRING,         1, 3
+  LObjN LO::R_FG_GLASS_BLUE,  2, 8, 3, 4
+  LObjN LO::R_GROUND,         0, 13, 3, 1
+  LObj  LO::S_SPRING,         4, 3
+  LObjN LO::WIDE_1,           0, 4, 5, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           0, 8, 3, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           2, 2, 2, 0
+  LObj  LO::S_SPRING,         2, 7
+  LObjN LO::R_FG_GLASS_BLUE,  0, 8, 3, 4
+  LObjN LO::R_GROUND,         0, 13, 10, 1
+  LObj  LO::S_W_ARROW_RIGHT,  1, 1
+  LObj  LO::S_M_ARROW_DOWN,   3, 1
+  LObj  LO::S_M_CRATE,        0, 7
+  LObjN LO::R_FG_GLASS_BLUE,  1, 0, 0, 7
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObjN LO::WIDE_1,           0, 5, 2, LN1::SOLID_LEDGE
+  LObj  LO::S_PRIZE,          1, 2
+  LWriteCol InventoryItem::ABILITY_BOMB
+  LObj  LO::S_BIGHEART,       0, 4
+  LObjN LO::R_BG_GLASS_GRAY,  2, 8, 2, 2
+  LObj  LO::S_SPRING,         1, 12
+  LObjN LO::R_BG_GLASS_GRAY,  3, 2, 2, 2
+  LObjN LO::WIDE_1,           1, 9, 1, LN1::SOLID_LEDGE
+  LObjN LO::R_GROUND,         2, 8, 6, 6
+  LObjN LO::R_FG_GLASS_BLUE,  1, 6, 1, 1
+  LObjN LO::R_FG_GLASS_BLUE,  2, 4, 3, 3
+  LObjN LO::TALL_1,           4, 4, 8, LN1::LADDER
+  LObjN LO::R_GROUND,         0, 13, 5, 1
+  LObj  LO::S_EXIT_DOOR,      4, 11
+  LObjN LO::R_GROUND,         7, 3, 3, 11
+  LObjN LO::R_GROUND,         4, 12, 5, 2
+  LObj  LO::S_PRIZE,          1, 9
+  LWriteCol InventoryItem::BIG_HEALTH_RESTORE
+  LObj  LO::S_EXIT_DOOR,      3, 10
   LFinished
 
 puzzle2Sprite:
@@ -165,4 +208,15 @@ puzzle2Sprite:
   LSpr Enemy::CHECKPOINT,          0,  97,   8
   LSpr Enemy::ROCKET_LAUNCHER,     0, 108,  12
   LSpr Enemy::ROCKET_LAUNCHER,     0, 113,  11
+  LSpr Enemy::BOULDER,             0, 132,   4
+  LSpr Enemy::BOULDER,             0, 132,   5
+  LSpr Enemy::BOULDER,             0, 132,   6
+  LSpr Enemy::BOMB_GUY,            0, 138,   3
+  LSpr Enemy::BOMB_GUY,            1, 143,   7
+  LSpr Enemy::BOMB_GUY,            1, 146,   3
+  LSpr Enemy::GOOMBA,              0, 149,   3
+  LSpr Enemy::BOULDER,             0, 153,   4
+  LSpr Enemy::BOULDER,             0, 153,   5
+  LSpr Enemy::BOULDER,             0, 153,   6
+  LSpr Enemy::ROCKET_LAUNCHER,     1, 163,  12
   .byt 255 ; end

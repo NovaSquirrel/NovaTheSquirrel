@@ -815,9 +815,13 @@ cmp #Metatiles::LAVA_TOP
   sta 1
 
   ; let the player keep the block going
+  lda keydown+1
+  and #KEY_SNES_A
+  bne @KeepIceGoing
   lda keydown
   and #KEY_DOWN
   beq :+
+@KeepIceGoing:
   inc ObjectF3,x
 :
 

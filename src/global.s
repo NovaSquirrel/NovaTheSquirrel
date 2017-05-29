@@ -1126,6 +1126,7 @@ WriteIncreasing16:
   bne :+
   ; Item found
   inc InventoryAmount,x
+  sec
   rts
 : ; Item not found, keep looking
   dex

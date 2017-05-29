@@ -324,8 +324,8 @@
 `end
 
 :AboutBombs:
-`scene NOVA_AND_SIGN
-<1 SIGN>You can copy these bomb enemies, but be quick. Up+B throws and Down+B drops bombs, and B alone will put one in midair. Try standing on it.
+`scene NOVA_LIA_SIGN
+<2 SIGN>You can copy these bomb enemies, but be quick. Up+B throws and Down+B drops bombs, and B alone will put one in midair. Try standing on a placed bomb.
 `end
 
 :AboutMinecarts:
@@ -359,7 +359,7 @@
 
 :AboutWaterFreeze:
 `scene NOVA_AND_SIGN
-<1 SIGN>Ice can freeze water (or lava!) into a solid platform, that fire can thaw out.
+<1 SIGN>Ice can freeze water (or lava!) into a solid platform, that fire can thaw out. You WILL need the ice ability up ahead.
 `end
 
 :AboutAutoItem:

@@ -11,9 +11,6 @@
 		"ExportFormat":	"PrincessNES",
 		"FormatVersion":	1
 	},
-	"Config":	{
-		"PuzzleMode":	"AbilityType::NONE"
-	},
 	"Header":	{
 		"Music":	"NONE",
 		"SpriteGFX":	["SP_WALKER", "SP_EXPLODE", "SP_FIRE", "SP_HANNAH"],
@@ -533,7 +530,7 @@
 					"H":	1
 				}, {
 					"Id":	"LOCK_GREEN",
-					"X":	101,
+					"X":	102,
 					"Y":	8,
 					"W":	1,
 					"H":	1
@@ -547,7 +544,7 @@
 					"Id":	"SOLID_BLOCK",
 					"X":	100,
 					"Y":	7,
-					"W":	2,
+					"W":	3,
 					"H":	1
 				}, {
 					"Id":	"KEY_BLUE",
@@ -633,56 +630,19 @@
 					"Y":	6,
 					"W":	1,
 					"H":	1,
-					"Extra":	"ABILITY_WATER"
+					"Extra":	"ABILITY_BOMB | 128"
 				}, {
 					"Id":	"GROUND",
 					"X":	123,
 					"Y":	13,
-					"W":	9,
+					"W":	14,
 					"H":	2
 				}, {
-					"Id":	"GROUND",
-					"X":	132,
-					"Y":	8,
-					"W":	9,
-					"H":	7
-				}, {
-					"Id":	"SOLID_LEDGE",
-					"X":	128,
-					"Y":	8,
-					"W":	4,
-					"H":	1
-				}, {
-					"Id":	"SOLID_LEDGE",
-					"X":	124,
-					"Y":	10,
-					"W":	4,
-					"H":	1
-				}, {
-					"Id":	"SOLID_LEDGE",
-					"X":	123,
-					"Y":	6,
-					"W":	4,
-					"H":	1
-				}, {
 					"Id":	"SPRING",
-					"X":	126,
+					"X":	125,
 					"Y":	12,
 					"W":	1,
 					"H":	1
-				}, {
-					"Id":	"COIN",
-					"X":	129,
-					"Y":	10,
-					"W":	3,
-					"H":	3
-				}, {
-					"Id":	"PRIZE",
-					"X":	91,
-					"Y":	6,
-					"W":	1,
-					"H":	1,
-					"Extra":	"ABILITY_NICE"
 				}, {
 					"Id":	"SOLID_BLOCK",
 					"X":	32,
@@ -720,12 +680,6 @@
 					"W":	1,
 					"H":	1
 				}, {
-					"Id":	"WOOD_ARROW_UP",
-					"X":	128,
-					"Y":	10,
-					"W":	1,
-					"H":	1
-				}, {
 					"Id":	"SMALL_ROCK",
 					"X":	74,
 					"Y":	3,
@@ -753,6 +707,303 @@
 					"Id":	"SPRING",
 					"X":	73,
 					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"FALLTHROUGH_LEDGE",
+					"X":	123,
+					"Y":	6,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"FALLTHROUGH_LEDGE",
+					"X":	125,
+					"Y":	9,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"WOOD_ARROW_LEFT",
+					"X":	129,
+					"Y":	10,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"METAL_ARROW_UP",
+					"X":	126,
+					"Y":	10,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"METAL_ARROW_RIGHT",
+					"X":	126,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"METAL_CRATE",
+					"X":	132,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	131,
+					"Y":	0,
+					"W":	1,
+					"H":	8
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	133,
+					"Y":	8,
+					"W":	4,
+					"H":	5
+				}, {
+					"Id":	"METAL_ARROW_RIGHT",
+					"X":	129,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	141,
+					"Y":	8,
+					"W":	4,
+					"H":	5
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	137,
+					"Y":	8,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"GROUND",
+					"X":	141,
+					"Y":	13,
+					"W":	4,
+					"H":	2
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	149,
+					"Y":	8,
+					"W":	4,
+					"H":	5
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	145,
+					"Y":	8,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"GROUND",
+					"X":	149,
+					"Y":	13,
+					"W":	11,
+					"H":	2
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	154,
+					"Y":	0,
+					"W":	1,
+					"H":	8
+				}, {
+					"Id":	"METAL_CRATE",
+					"X":	153,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"CEILING_BARRIER",
+					"X":	130,
+					"Y":	0,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"CEILING_BARRIER",
+					"X":	155,
+					"Y":	0,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"SPRING",
+					"X":	136,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	136,
+					"Y":	4,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"SPRING",
+					"X":	139,
+					"Y":	3,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	145,
+					"Y":	4,
+					"W":	6,
+					"H":	1
+				}, {
+					"Id":	"SPRING",
+					"X":	145,
+					"Y":	3,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SPRING",
+					"X":	149,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"COIN",
+					"X":	147,
+					"Y":	2,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"WOOD_ARROW_RIGHT",
+					"X":	150,
+					"Y":	1,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"METAL_ARROW_DOWN",
+					"X":	153,
+					"Y":	1,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"GROUND",
+					"X":	165,
+					"Y":	8,
+					"W":	7,
+					"H":	7
+				}, {
+					"Id":	"SPRING",
+					"X":	159,
+					"Y":	12,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	163,
+					"Y":	9,
+					"W":	2,
+					"H":	1
+				}, {
+					"Id":	"SOLID_LEDGE",
+					"X":	155,
+					"Y":	5,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"PRIZE",
+					"X":	156,
+					"Y":	2,
+					"W":	1,
+					"H":	1,
+					"Extra":	"ABILITY_BOMB"
+				}, {
+					"Id":	"BIG_HEART",
+					"X":	156,
+					"Y":	4,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	168,
+					"Y":	4,
+					"W":	4,
+					"H":	4
+				}, {
+					"Id":	"FG_GLASS_BLUE",
+					"X":	166,
+					"Y":	6,
+					"W":	2,
+					"H":	2
+				}, {
+					"Id":	"BG_GLASS_GRAY",
+					"X":	138,
+					"Y":	5,
+					"W":	9,
+					"H":	1
+				}, {
+					"Id":	"BG_GLASS_GRAY",
+					"X":	138,
+					"Y":	2,
+					"W":	9,
+					"H":	1
+				}, {
+					"Id":	"BG_GLASS_GRAY",
+					"X":	158,
+					"Y":	8,
+					"W":	3,
+					"H":	3
+				}, {
+					"Id":	"BG_GLASS_GRAY",
+					"X":	162,
+					"Y":	2,
+					"W":	3,
+					"H":	3
+				}, {
+					"Id":	"EXIT_DOOR",
+					"X":	176,
+					"Y":	11,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"GROUND",
+					"X":	172,
+					"Y":	13,
+					"W":	6,
+					"H":	2
+				}, {
+					"Id":	"LADDER",
+					"X":	172,
+					"Y":	4,
+					"W":	1,
+					"H":	9
+				}, {
+					"Id":	"PRIZE",
+					"X":	44,
+					"Y":	9,
+					"W":	1,
+					"H":	1,
+					"Extra":	"ABILITY_BACKUP"
+				}, {
+					"Id":	"GROUND",
+					"X":	183,
+					"Y":	3,
+					"W":	4,
+					"H":	12
+				}, {
+					"Id":	"GROUND",
+					"X":	187,
+					"Y":	12,
+					"W":	6,
+					"H":	3
+				}, {
+					"Id":	"PRIZE",
+					"X":	188,
+					"Y":	9,
+					"W":	1,
+					"H":	1,
+					"Extra":	"BIG_HEALTH_RESTORE"
+				}, {
+					"Id":	"EXIT_DOOR",
+					"X":	191,
+					"Y":	10,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"HEART",
+					"X":	101,
+					"Y":	8,
 					"W":	1,
 					"H":	1
 				}]
@@ -830,6 +1081,75 @@
 					"Y":	11,
 					"W":	1,
 					"H":	1
+				}, {
+					"Id":	"BOULDER",
+					"X":	132,
+					"Y":	6,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BOULDER",
+					"X":	132,
+					"Y":	5,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BOULDER",
+					"X":	132,
+					"Y":	4,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BOMB_GUY",
+					"X":	143,
+					"Y":	7,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"BOULDER",
+					"X":	153,
+					"Y":	6,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BOULDER",
+					"X":	153,
+					"Y":	5,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BOULDER",
+					"X":	153,
+					"Y":	4,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BOMB_GUY",
+					"X":	146,
+					"Y":	3,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
+				}, {
+					"Id":	"BOMB_GUY",
+					"X":	138,
+					"Y":	3,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"GOOMBA",
+					"X":	149,
+					"Y":	3,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"ROCKET_LAUNCHER",
+					"X":	163,
+					"Y":	12,
+					"W":	1,
+					"H":	1,
+					"XFlip":	true
 				}]
 		}, {
 			"Name":	"Control",

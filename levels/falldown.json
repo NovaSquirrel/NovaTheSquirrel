@@ -1357,7 +1357,7 @@
 					"Y":	234,
 					"W":	1,
 					"H":	1,
-					"Extra":	"ABILITY_WATER"
+					"Extra":	"ABILITY_WATER | 128"
 				}, {
 					"Id":	"PATH_LINE",
 					"X":	3,

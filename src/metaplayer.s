@@ -618,16 +618,19 @@ BadItems:
 .endproc
 
 .proc TouchedKey
-  pha
-  lda BackgroundMetatile
-  jsr ChangeBlock
-  pla
+  sty TempY
   sub #Metatiles::KEY_RED
   add #InventoryItem::RED_KEY
   jsr InventoryGiveItem
+  bcc Failed ; can't pick up the key if you have a full inventory
+  ldy TempY
+  lda BackgroundMetatile
+  jsr ChangeBlock
 
   lda #SFX::ITEM_GET
   jmp PlaySound  
+Failed:
+  rts
 .endproc
 
 .proc TouchedToggleSwitch
@@ -763,16 +766,19 @@ Align:
 .endproc
 
 .proc TouchedBoots
-  pha
-  lda BackgroundMetatile
-  jsr ChangeBlock
-  pla
+  sty TempY
   sub #Metatiles::RED_BOOTS
   add #InventoryItem::FIRE_BOOTS
   jsr InventoryGiveItem
+  bcc Failed ; can't pick up the key if you have a full inventory
+  ldy TempY
+  lda BackgroundMetatile
+  jsr ChangeBlock
 
   lda #SFX::ITEM_GET
-  jmp PlaySound
+  jmp PlaySound  
+Failed:
+  rts
 .endproc
 
 .proc TouchedWoodArrow

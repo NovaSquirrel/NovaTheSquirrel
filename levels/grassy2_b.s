@@ -71,7 +71,8 @@ grassy2_bData:
   LObj  LO::S_BIG_BUSH, 1, 8
   LObjN LO::TALL_2,           2, 9, 4, LN2::PATH_LINE
   LObjN LO::R_COIN,           1, 5, 2, 0
-  LObjN LO::WIDE_1,           2, 13, 0, LN1::SOLID_LEDGE
+  LObjN LO::R_ENEMY_BARRIER      ,  1, 1, 0, 3
+  LObjN LO::WIDE_1,           1, 13, 0, LN1::SOLID_LEDGE
   LObj  LO::S_SPRING,         1, 12
   LObjN LO::R_GROUND,         0, 13, 4, 1
   LObjN LO::R_GROUND,         1, 11, 1, 1

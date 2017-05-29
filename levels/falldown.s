@@ -305,7 +305,7 @@ falldownData:
   LObjN LO::R_BG_GLASS_RED,   1, 6, 0, 5
   LObjN LO::R_BG_GLASS_RED,   1, 6, 7, 0
   LObj  LO::S_PRIZE,          1, 9
-  LWriteCol InventoryItem::ABILITY_WATER
+  LWriteCol InventoryItem::ABILITY_WATER | 128
   LObjN LO::R_BG_GLASS_BLUE,  2, 4, 0, 7
   LObjN LO::R_BG_GLASS_BLUE,  1, 4, 5, 0
   LObjN LO::WIDE_1,           0, 9, 0, LN1::SOLID_LEDGE

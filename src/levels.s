@@ -5,14 +5,14 @@ MasterLevelListL:
   .byt <glass_intro, <arrows, <burgers, <glasscave, <chiptall, <falldown
   .byt <frozen, <frozen2, <emptylevel
 ; sub-levels
-  .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden
+  .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden, <puzzle2
 
 MasterLevelListH:
   .byt >intro_a, >grassy_a, >funkunderground, >sky, >water, >grassy2_a, >underground_2, >boss1
   .byt >glass_intro, >arrows, >burgers, >glasscave, >chiptall, >falldown
   .byt >frozen, >frozen2, >emptylevel
 ; sub-levels
-  .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden
+  .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden, >puzzle2
 
 .enum LevelId
   IntroA
@@ -37,6 +37,7 @@ MasterLevelListH:
   Grassy2B
   Underground2
   Garden
+  PuzzleBomb
 .endenum
 
 .include "../levels/intro_a.s"
