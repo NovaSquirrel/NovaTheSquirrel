@@ -432,27 +432,66 @@ No:
 .endproc
 .endif
 
-; read the controller and update keydown
+; Read the controller and update keydown
 .proc ReadJoy
   lda keydown
   sta keylast
-  ; The controller port must be written with a 1 then a 0 to reset the controller.
+
+  ; Reset the controller by writing a 1 and then a 0
   lda #1
   sta keydown
   sta JOY1
   lda #0
   sta JOY1
-  : lda JOY1
-    and #$03 ; Shift in a bit if either of the two bottom bits
-    cmp #1   ; are 1. The Famicom can use either bit.
-    rol keydown
-    bcc :-
 
-  ; keys in keynew are 1 iff they're pressed and weren't pressed last frame
+  ; Loop for the first controller byte
+: lda JOY1
+  and #$03 ; Shift in a bit if either of the two bottom bits
+  cmp #1   ; are 1. The Famicom can use either bit.
+  rol keydown
+  bcc :-
+
+  ; Don't read a second byte if it's NES
+  lda SNESController
+  beq Finish
+
+SNES:
+  lda keydown+1
+  sta keylast+1
+
+  lda #1
+  sta keydown+1
+  ; Loop for the second controller byte
+: lda JOY1
+  and #$03 ; Shift in a bit if either of the two bottom bits
+  cmp #1   ; are 1. The Famicom can use either bit.
+  rol keydown+1
+  bcc :-
+
+  lda keylast+1
+  eor #255
+  and keydown+1
+  sta keynew+1
+
+Finish:
+  ; keynew lists keys that are pressed but weren't pressed last frame
   lda keylast
   eor #255
   and keydown
   sta keynew
+  rts
+.endproc
+
+; Only read 8 bits from the controller
+.proc ReadJoy8bits
+  lda #1
+  sta 0
+: lda JOY1
+  and #$03 ; Shift in a bit if either of the two bottom bits
+  cmp #1   ; are 1. The Famicom can use either bit.
+  rol 0
+  bcc :-
+  lda 0
   rts
 .endproc
 

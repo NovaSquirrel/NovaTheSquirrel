@@ -79,6 +79,26 @@ DontHaveExtraRAM:
   sta PPUSCROLL
   sta PPUSCROLL
 
+; Check the console the controller belongs to
+  lda #1
+  sta JOY1
+  lda #0
+  sta JOY1
+  sta SNESController
+  jsr ReadJoy8bits
+  sta 2 ; first 8 bits
+  jsr ReadJoy8bits
+  sta 1 ; middle 8 bits
+  jsr ReadJoy8bits
+  cmp #$FF ; should be all 1s if official NES or SNES controller
+  bne ThirdPartyController
+  lda 1    ; should be all 1s if NES, but all 0s if SNES with no keys pressed
+  bne NESController
+  inc SNESController
+NESController:
+ThirdPartyController:
+
+; Onto the actual display loop
 DisplayLoop:
   jsr WaitVblank
   jsr ReadJoy
@@ -96,6 +116,8 @@ DisplayLoop:
   and #KEY_START
   bne Exit
   jmp DisplayLoop
+
+; wait for Start to get unpressed
 Exit:
   jsr WaitVblank
   jsr ReadJoy

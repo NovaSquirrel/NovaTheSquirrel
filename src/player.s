@@ -427,9 +427,19 @@ NoTail:
   and #KEY_B|KEY_LEFT|KEY_RIGHT
   bne :+
 OkayIfLeftRight:
+
+  lda keynew+1
+  and #KEY_SNES_X | KEY_SNES_A
+  bne PressedAOrX
   lda keynew
   and #KEY_B
   beq :+
+PressedAOrX:
+    lda keydown
+    sta AttackKeyDownSnapshot
+    lda keydown+1
+    sta AttackKeyDownSnapshot+1
+
     lda PlayerPYH
     cmp #15
     bcs :+
@@ -1562,6 +1572,8 @@ MakeDrawX:
 .endproc
 
 .proc DoTailAttack
+PressedUp = 7
+PressedDown = 8
   ; Break bricks first
   lda PlayerPYH
   tay
@@ -1589,6 +1601,23 @@ MakeDrawX:
 :
 WasBricks:
 
+  lda AttackKeyDownSnapshot
+  and #KEY_UP
+  sta PressedUp
+  lda AttackKeyDownSnapshot+1
+  and #KEY_SNES_X
+  ora PressedUp
+  sta PressedUp
+
+  lda AttackKeyDownSnapshot
+  and #KEY_DOWN
+  sta PressedDown
+  lda AttackKeyDownSnapshot+1
+  and #KEY_SNES_A
+  ora PressedDown
+  sta PressedDown
+
+  ; Okay, actually do the attack now
   ; Launch the routine for the ability
   lda PlayerAbility
   asl
@@ -1638,8 +1667,7 @@ LimitObjectAmount:
 
 AbilityNone:
   ldy #PlayerProjectileType::STUN_STAR
-  lda keydown
-  and #KEY_UP
+  lda PressedUp
   beq :+
   ldy #PlayerProjectileType::COPY_ORB
 : tya
@@ -1667,8 +1695,7 @@ AbilityGlider:
   lda #PlayerProjectileType::LIFE_GLIDER
   jsr MakeShot
   bcc @Exit
-  lda keydown
-  and #KEY_UP
+  lda PressedUp
   sta ObjectF3,x
   lda #140/4
   sta ObjectTimer,x
@@ -1682,13 +1709,15 @@ AbilityBomb:
   bcc @Exit
   lda #200/4
   sta ObjectTimer,x
-  lda keydown
-  and #KEY_UP|KEY_DOWN
+  lda PressedUp
+  ora PressedDown
   beq :+
     lsr ObjectTimer,x
+    lda #1
+    sta ObjectF3,x
   :
-  sta ObjectF3,x
-  and #KEY_UP
+
+  lda PressedUp
   beq :+
     lda #$20
     jsr SetXVelocity
@@ -1707,15 +1736,13 @@ AbilityFire:
   bcc @Exit
   lda #80/4
   sta ObjectTimer,x
-  lda keydown
-  and #KEY_UP
+  lda PressedUp
   beq :+
     lda #<-$40
     sta ObjectVYL,x
     lda #255
     sta ObjectVYH,x
-: lda keydown
-  and #KEY_DOWN
+: lda PressedDown
   bne :+
     lda #$20
     jsr SetXVelocity
@@ -1744,8 +1771,7 @@ AbilityNice:
   lda #$30
   sta ObjectF3,x
 
-  lda keydown
-  and #KEY_UP
+  lda PressedUp
   beq :+
   lda #$10
   sta ObjectF3,x
@@ -1755,8 +1781,7 @@ AbilityNice:
   sta ObjectVYH,x
 :
 
-  lda keydown           ; down+B: ice ride
-  and #KEY_DOWN
+  lda PressedDown           ; down+B: ice ride
   beq :+
   jsr RideOnProjectile
 :
@@ -1771,22 +1796,21 @@ AbilityBoomerang:
   lda #56/4
   sta ObjectTimer,x
 
-  lda keydown
-  and #KEY_UP|KEY_DOWN
+  lda PressedUp
+  ora PressedDown
   bne @NoXVelocity
   lda #$30
   jsr SetXVelocity
 @Exit:
   rts
 @NoXVelocity:
-  tay
-  cpy #KEY_DOWN
+  lda PressedDown
   beq :+
   lda #<(-$30)
   sta ObjectVYL,x
   lda #>(-$30)
   sta ObjectVYH,x
-: cpy #KEY_UP
+: lda PressedUp
   beq :+
   lda #<($30)
   sta ObjectVYL,x
@@ -1819,14 +1843,16 @@ AbilityWater:
   lda #48/4
   sta ObjectTimer,x
 
-  ; Vary the speeds based on the directions pressed
-  lda keydown
-  lsr
-  lsr
-  and #3
+  lda #0
   sta 0
+  lda PressedUp
+  cmp #1
+  rol 0
+  lda PressedDown
+  cmp #1
+  rol 0
+  ldy 0
 
-  tay
   lda WaterHSpeeds,y  
   jsr SetXVelocity
 
@@ -1851,14 +1877,12 @@ AbilityFan:
   ; Up/down control acceleration
   lda #1
   sta ObjectF4,x
-  lda keydown
-  and #KEY_UP
+  lda PressedUp
   beq :+
     lda #3
     sta ObjectF4,x
   :
-  lda keydown
-  and #KEY_DOWN
+  lda PressedDown
   beq :+
     lda #0
     sta ObjectF4,x
@@ -1879,8 +1903,7 @@ AbilityBurger:
   lda #40/4
   sta ObjectTimer,x
 
-  lda keydown           ; down+B: burger ride
-  and #KEY_DOWN
+  lda PressedDown           ; down+B: burger ride
   beq :+
   lda PlayerNeedsGround ; only allow one burger ride before touching the ground
   bne :+

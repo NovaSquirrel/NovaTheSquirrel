@@ -23,9 +23,9 @@
 .segment "ZEROPAGE"
   retraces:	        .res 1 ; incremented every frame
   slowtimer:        .res 1 ; incremented every 4 frames
-  keydown:	        .res 1 ; currently pressed buttons
-  keylast: 	        .res 1 ; buttons that were pressed last frame
-  keynew:           .res 1 ; buttons that were not pressed last frame but are now
+  keydown:	        .res 2 ; currently pressed buttons
+  keylast: 	        .res 2 ; buttons that were pressed last frame
+  keynew:           .res 2 ; buttons that were not pressed last frame but are now
 
   random1:          .res 2 ; \ two separate random states
   random2:          .res 2 ; / combined to get a 2147385345 period randomizer
@@ -353,7 +353,10 @@ GameStateLen = 1+2+10+10+2 ; update if more stuff is added
   PlaceBlockY:          .res 1
   PlaceBlockAutorepeat: .res 1 ; Autorepeat timer
   PlaceBlockItemIndex:  .res 1
-  ChipCount: .res 1
+  ChipCount:            .res 1
+  SNESController:       .res 1 ; 1 if SNES controller, 0 if NES
+  AttackKeyDownSnapshot: .res 2
+
 .segment "SAVE"
 SaveStart:
   SaveTag:            .res 8
