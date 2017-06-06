@@ -579,19 +579,7 @@ ThrowBottle:
         lda #0
         sta ObjectF2,y
 
-        lda ObjectPXL,x
-        add #$40
-        sta ObjectPXL,y
-        lda ObjectPXH,x
-        adc #0
-        sta ObjectPXH,y
-
-        lda ObjectPYL,x
-        add #$40
-        sta ObjectPYL,y
-        lda ObjectPYH,x
-        adc #0
-        sta ObjectPYH,y
+        jsr ObjectCopyPosXYOffset
 
         ; Crappy trajectory calculation
         sty TempY
@@ -852,7 +840,7 @@ MakeIce:
 ; Hover the cannon and control logic relating to when to shoot
 .proc ObjectCannonCommon1
   jsr EnemyHover
-
+NoHover:
   ; initialize the timer if object is initializing
   lda ObjectF2,x
   cmp #ENEMY_STATE_INIT
@@ -888,6 +876,7 @@ HSpeedL:
 HSpeedH:
   .byt >$38, >-$38
 .endproc
+ObjectCannonCommon1NoHover = ObjectCannonCommon1::NoHover
 
 ; Display an indicator when the cannon is about to fire
 .proc ObjectCannonCommon2
@@ -968,7 +957,6 @@ CannonFrame:
     bcs NoShoot
       jsr FindFreeObjectY
       bcc NoShoot
-        sta $255
         jsr ObjectCopyPosXY
         jsr ObjectClearY
 
@@ -1309,13 +1297,12 @@ FrameUpRight:
 .proc ObjectRocketLauncher
   jsr ObjectCannonCommon1
   bcc NoShoot
-    lda #Enemy::ROCKET*2  ; limit the number of rckets
+    lda #Enemy::ROCKET*2  ; limit the number of rockets
     jsr CountObjectAmount
     cpy #3
     bcs NoShoot
       jsr FindFreeObjectY
       bcc NoShoot
-        sta $255
         jsr ObjectCopyPosXY
         jsr ObjectClearY
 
@@ -1335,7 +1322,98 @@ Frame:
 .endproc
 
 .proc ObjectFireworkShooter
-  rts
+  lda #0
+  sta ObjectF2,x
+
+  jsr ObjectCannonCommon1NoHover
+  bcc NoShoot
+    ldy ObjectF4,x
+    lda LaunchAnglesL,y
+    sta 2
+    lda LaunchAnglesH,y
+    sta 3
+    lda #Enemy::FIREWORK_SHOT*2
+    jsr CountObjectAmount
+    cpy #3
+    bcs NoShoot
+      jsr FindFreeObjectY
+      bcc NoShoot
+        jsr ObjectCopyPosXYOffset
+        jsr ObjectClearY
+
+        lda #Enemy::FIREWORK_SHOT*2
+        sta ObjectF1,y
+        lda 2
+        sta ObjectVXL,y
+        lda 3
+        sta ObjectVXH,y
+        lda #35
+        sta ObjectTimer,y
+
+        lda ObjectF3,x
+        bne LiftedShot
+        lda #<(-$70)
+        sta ObjectVYL,y
+        lda #>(-$70)
+        sta ObjectVYH,y
+NoShoot:
+
+  lda ObjectF3,x
+  bne DrawSideways
+
+  ; Look to the side or up depending on the distance to the player
+  jsr EnemyLookAtPlayer
+  lda PlayerPXH
+  sub ObjectPXH,x
+  abs
+  cmp #3
+  bcc DrawStraight
+
+; Draw tilted to the side
+  lda #$0a
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+SideFinish:
+  lda ObjectF1,x
+  and #1
+  sta ObjectF4,x ; direction
+  jmp ObjectCannonCommon2
+
+DrawStraight:
+  lda #<Frame
+  ldy #>Frame
+  jsr DispEnemyWideNonsequential
+
+  lda #2
+  sta ObjectF4,x ; direction
+  jmp ObjectCannonCommon2
+
+LiftedShot:
+  lda ObjectVXL,y
+  asl
+  sta ObjectVXL,y
+  lda ObjectVXH,y
+  rol
+  sta ObjectVXH,y
+  lda #<(-$40)
+  sta ObjectVYL,y
+  lda #>(-$40)
+  sta ObjectVYH,y
+DrawSideways:
+  lda #<FrameSideways
+  ldy #>FrameSideways
+  jsr DispEnemyWideNonsequential
+  jmp SideFinish 
+
+Frame:
+  .byt $08, $09, $08, $09, OAM_COLOR_2, OAM_COLOR_2, OAM_COLOR_2|OAM_XFLIP, OAM_COLOR_2|OAM_XFLIP
+FrameSideways:
+  .byt $0e, $0e, $0f, $0f, OAM_COLOR_2, OAM_COLOR_2|OAM_YFLIP, OAM_COLOR_2, OAM_COLOR_2|OAM_YFLIP
+
+LaunchAnglesL:
+  .byt <$18, <-$18, $00
+LaunchAnglesH:
+  .byt >$18, >-$18, $00
 .endproc
 
 .proc ObjectTornado
@@ -1391,20 +1469,6 @@ Destroy:
       jsr FindFreeObjectY
       bcc NoShoot
         jsr ObjectClearY
-.if 0
-        lda ObjectPXL,x
-        add #$80
-        sta ObjectVXL,y
-        lda ObjectPXH,x
-        add #$0
-        sta ObjectVXH,y
-        lda ObjectPYL,x
-        add #$80
-        sta ObjectVYL,y
-        lda ObjectPYH,x
-        add #$0
-        sta ObjectVYH,y
-.endif
         lda ObjectPXH,x
         sta ObjectPXH,y
         lda ObjectPYH,x
@@ -2463,7 +2527,6 @@ ReactWithTypes:
 .endproc
 
 .proc ObjectFallingBomb
-  jsr EnemyApplyVelocity
   jsr EnemyGravity
 
   jsr EnemyCheckOverlappingOnSolid

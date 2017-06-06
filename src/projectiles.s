@@ -1074,3 +1074,28 @@ NoGravity:
   jsr ObjectPlayerProjectile::ProjExplosion
   jmp SmallEnemyPlayerTouchHurt
 .endproc
+
+.proc ObjectFireworkShot
+  dec ObjectTimer,x
+  beq DoExplode
+  jsr EnemyGravity
+  jsr EnemyApplyXVelocity
+  jsr huge_rand
+  and #OAM_XFLIP | OAM_YFLIP
+  ora #OAM_COLOR_3
+  sta 1
+  lda retraces
+  lsr
+  and #3
+  ora #$1c
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_Attr
+
+; Explode if needed
+  jsr EnemyPlayerTouch
+  bcs DoExplode
+  rts
+DoExplode:
+    lda #7
+    jmp EnemyExplode
+.endproc

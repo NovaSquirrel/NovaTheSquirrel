@@ -300,8 +300,8 @@ LoopAttr:
 AttributeAddrsLo:
   .byt $c0, $c8, $d0, $d8
 
-CameraTargetByFacing: ; 3/8 and 5/8
-  .byt 8, 8 ;6, 10
+;CameraTargetByFacing: ; 3/8 and 5/8
+;  .byt 8, 8 ;6, 10
 .endproc
 
 .proc ScrollBuffer3

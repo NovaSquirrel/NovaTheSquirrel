@@ -125,7 +125,7 @@ C .byt ObjFlag::PRIMARY
 
 R FIREWORK_SHOOTER
 C .byt GraphicsUpload::SP_EXPLODE
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
 C .byt ObjFlag::PRIMARY
 
 R TORNADO
@@ -315,5 +315,10 @@ C .byt ObjFlag::PRIMARY
 
 R CLOUD_SWORD
 C .byt GraphicsUpload::SP_WIND
+C .byt ObjBehavior::AUTO_REMOVE
+C .byt ObjFlag::SECONDARY
+
+R FIREWORK_SHOT
+C .byt GraphicsUpload::SP_EXPLODE
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::SECONDARY

@@ -183,6 +183,7 @@ Exit:
   .raddr ObjectNone ; grabby hand
   .raddr ObjectFallingSpike ; falling spike
   .raddr ObjectCloudSword
+  .raddr ObjectFireworkShot
 .endproc
 
 ; other enemy attributes
@@ -528,6 +529,26 @@ EnemyAbilityTable:
 
   lda ObjectPYL,x
   sta ObjectPYL,y
+  rts
+.endproc
+
+.proc ObjectCopyPosXYOffset
+  lda #0
+  sta ObjectF2,y
+
+  lda ObjectPXL,x
+  add #$40
+  sta ObjectPXL,y
+  lda ObjectPXH,x
+  adc #0
+  sta ObjectPXH,y
+
+  lda ObjectPYL,x
+  add #$40
+  sta ObjectPYL,y
+  lda ObjectPYH,x
+  adc #0
+  sta ObjectPYH,y
   rts
 .endproc
 
@@ -1029,6 +1050,16 @@ YOnly:
   lda ObjectPYH,x
   adc ObjectVYH,x
   sta ObjectPYH,x
+  rts
+.endproc
+
+.proc EnemyApplyXVelocity
+  lda ObjectPXL,x
+  add ObjectVXL,x
+  sta ObjectPXL,x
+  lda ObjectPXH,x
+  adc ObjectVXH,x
+  sta ObjectPXH,x
   rts
 .endproc
 
