@@ -146,7 +146,7 @@ NoScreenChangeLeft:
   lda ScreenFlags+1,y
   lsr
   bcc NoScreenChangeRight
-  lda #0
+  lda #$0f
   sta ScrollX+0
 NoScreenChangeRight:
 
