@@ -233,7 +233,9 @@ falldownData:
   LObjN LO::WIDE_1,           3, 7, 0, LN1::SOLID_LEDGE
   LObjN LO::R_FG_GLASS_BLUE,  2, 0, 1, 14
   LObjN LO::R_FG_GLASS_BLUE,  2, 0, 1, 14
-  LObjN LO::WIDE_1,           7, 13, 6, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           2, 13, 2, LN1::SOLID_LEDGE
+  LObj  LO::S_BIGHEART,       1, 12
+  LObjN LO::WIDE_1,           4, 13, 6, LN1::SOLID_LEDGE
   LObj  LO::S_PRIZE,          2, 10
   LWriteCol InventoryItem::SPRING | 128
   LObj  LO::S_PRIZE,          2, 10
@@ -243,12 +245,12 @@ falldownData:
   LObjN LO::R_FG_GLASS_RED,   1, 0, 1, 14
   LObjN LO::R_FG_GLASS_RED,   2, 0, 1, 14
   LObjN LO::R_FG_GLASS_RED,   2, 14, 5, 0
-  LObjN LO::WIDE_1,           5, 3, 2, LN1::SOLID_LEDGE
+  LObj  LO::S_BIGHEART,       3, 13
+  LObjN LO::WIDE_1,           2, 3, 2, LN1::SOLID_LEDGE
   LObj  LO::S_SPRING,         1, 2
   LObjN LO::WIDE_1,           0, 13, 2, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           0, 13, 2, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           1, 5, 2, LN1::SOLID_LEDGE
-  LObj  LO::S_BIGHEART,       0, 12
   LObjN LO::WIDE_1,           1, 10, 2, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           1, 7, 2, LN1::SOLID_LEDGE
   LObjN LO::R_FG_GLASS_BLUE,  3, 0, 1, 14

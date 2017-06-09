@@ -524,6 +524,11 @@ AboutSunKey:
 ; <1 LIA>There's something sinister about this key, I'd be careful with it.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::LIA, $f8, $ed, "e", $e9, $9c, $e0, $b1, " ", "s", $d8, $b9, $eb, "r", SCR::NEWLINE, $8a, $99, " ", "k", "e", "y", $f5, "I", "'", $ff, $ba, "c", "a", "r", "e", "f", "u", "l", SCR::NEWLINE, $9d, " ", "i", "t", "."
 .byt SCR::END_SCRIPT
+HintUpArrow:
+.byt SCR::SCENE, SCENES::NOVA_LIA_SIGN
+; <2 SIGN>You should have some up arrow blocks in your inventory. Use them wisely.
+.byt SCR::SAY, SCR::SPEAKER_2|CHAR::SIGN, "Y", $f4, " ", $df, $a0, " ", $9b, $9c, " ", $cd, SCR::NEWLINE, "a", $d9, "o", "w", " ", "b", "l", "o", $f3, $fb, $bf, $91, SCR::NEWLINE, $d8, "v", $e6, $bc, "r", "y", $f6, "U", $e5, " ", $92, " ", "w", $b9, "e", "l", "y", "."
+.byt SCR::END_SCRIPT
 
 CutsceneDictionary:
 .byt "squirre", 'l'|128

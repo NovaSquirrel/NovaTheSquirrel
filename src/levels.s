@@ -2,17 +2,26 @@
 
 MasterLevelListL:
   .byt <intro_a, <grassy_a, <funkunderground, <sky, <water, <grassy2_a, <underground_2, <boss1
-  .byt <glass_intro, <arrows, <burgers, <glasscave, <chiptall, <falldown
+  .byt <glass_intro, <arrows, <burgers, <glasscave, <chiptall, <falldown, <glass_finale
   .byt <frozen, <frozen2, <emptylevel
 ; sub-levels
   .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden, <puzzle2
 
 MasterLevelListH:
   .byt >intro_a, >grassy_a, >funkunderground, >sky, >water, >grassy2_a, >underground_2, >boss1
-  .byt >glass_intro, >arrows, >burgers, >glasscave, >chiptall, >falldown
+  .byt >glass_intro, >arrows, >burgers, >glasscave, >chiptall, >falldown, >glass_finale
   .byt >frozen, >frozen2, >emptylevel
 ; sub-levels
   .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden, >puzzle2
+
+.proc LevelBanks
+B1 = LEVELS_BANK1
+PUZ = 128 ; puzzle
+  .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B1
+  .byt B1,     B1,     B1|PUZ, B1,     B1|PUZ, B1,     B1|PUZ, B1
+  .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B1
+
+.endproc
 
 .enum LevelId
   IntroA
@@ -63,6 +72,7 @@ MasterLevelListH:
 .include "../levels/falldown.s"
 .include "../levels/glasscave.s"
 .include "../levels/chiptall.s"
+.include "../levels/glass_finale.s"
 
 ;Level data:
 ;TTTTTTTT XXXXYYYY [SSSSSSSS]

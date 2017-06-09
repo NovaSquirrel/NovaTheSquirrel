@@ -385,3 +385,8 @@
 <2 SIGN>This key can fit into any color of lock. While touching it, press Up to pick it up or Down to set it down.
 <1 LIA>There's something sinister about this key, I'd be careful with it.
 `end
+
+:HintUpArrow:
+`scene NOVA_LIA_SIGN
+<2 SIGN>You should have some up arrow blocks in your inventory. Use them wisely.
+`end

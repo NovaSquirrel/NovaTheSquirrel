@@ -1572,8 +1572,9 @@ MakeDrawX:
 .endproc
 
 .proc DoTailAttack
-PressedUp = 7
-PressedDown = 8
+; Make sure nothing overwrites PressedUp or PressedDown or else it will crash the game
+PressedUp = 10
+PressedDown = 11
   ; Break bricks first
   lda PlayerPYH
   tay
