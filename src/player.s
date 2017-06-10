@@ -615,22 +615,24 @@ NotWalk:
 Stopped:
 IsMoving:
 
-; fix walk speed if we just came out of a run
+; if the player is moving too fast for the walk or run, decelerate
+   ldy PlayerVXH ; test if the X speed is negative by checking sign of high byte
+   bpl :+        ; 
+     neg16 PlayerVXL, PlayerVXH ; take absolute value
+   :
    lda PlayerVXL
-   bit PlayerVXH
-   bpl :+
-     neg
-   :
    cmp MaxSpeedRight
-   beq NoFixWalkSpeed
+   beq NoFixWalkSpeed ; if at or less than the max speed, don't fix
    bcc NoFixWalkSpeed
-   sub NovaDecelSpeed
-   bit PlayerVXH
-   bpl :+
-     neg
-   :
-   sta PlayerVXL
+   sub NovaDecelSpeed ; \
+   sta PlayerVXL      ;  decrease by deceleration speed and carry over to the high byte
+   subcarry PlayerVXH ; /
 NoFixWalkSpeed:
+   cpy #128 ; Y still holds old X velocity high byte. check if it was negative before
+   bcc :+
+     neg16 PlayerVXL, PlayerVXH ; fix the X velocity back to being negative
+   :
+; walk speed now fixed if needed
 
   ; apply speed without caring if it's gonna push us into a wall or not
   lda PlayerPXL
