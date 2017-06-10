@@ -24,6 +24,7 @@ PUZ = 128 ; puzzle
 .endproc
 
 .enum LevelId
+; world 1
   IntroA
   GrassyA
   FunkUnderground
@@ -32,15 +33,21 @@ PUZ = 128 ; puzzle
   Grassy2A
   Underground_2
   Boss1
+; world 2
   GlassIntro
   Arrows
   Burgers
   GlassCave
   ChipTall
   Tall
+  GlassFinale
+  ; boss2 goes here
+; world 3
   Frozen
   Frozen2
   EmptyLevel
+
+; sublevels
   IntroB
   GrassyB
   Grassy2B

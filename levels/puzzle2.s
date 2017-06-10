@@ -218,5 +218,6 @@ puzzle2Sprite:
   LSpr Enemy::BOULDER,             0, 153,   4
   LSpr Enemy::BOULDER,             0, 153,   5
   LSpr Enemy::BOULDER,             0, 153,   6
+  LSpr Enemy::CHECKPOINT,          0, 153,   9
   LSpr Enemy::ROCKET_LAUNCHER,     1, 163,  12
   .byt 255 ; end

@@ -19,7 +19,7 @@ glass_finale:
   .byt $00, $00 ; boundaries
 
 glass_finaleData:
-  .byt LSpecialCmd, LevelSpecialConfig::PUZZLE_MODE, AbilityType::NONE, InventoryItem::ARROW_UP, 128|15, InventoryItem::HEALTH_RESTORE, 128|9, $00
+  .byt LSpecialCmd, LevelSpecialConfig::PUZZLE_MODE, AbilityType::NONE, InventoryItem::ARROW_UP, 128|15, InventoryItem::HEALTH_RESTORE, 128|4, $00
   LObjN LO::R_GROUND,         0, 13, 10, 1
   LObj  LO::S_SIGNPOST,       3, 12
   LWriteCol <HintUpArrow, >HintUpArrow
@@ -183,7 +183,7 @@ glass_finaleData:
   LObjN LO::R_GROUND,         0, 11, 12, 3
   LObjN LO::R_CEILING_BARRIER,1, 0, 0, 2
   LObj  LO::S_PRIZE,          3, 4
-  LWriteCol InventoryItem::ABILITY_FIREWORK | 128
+  LWriteCol InventoryItem::ABILITY_GLIDER | 128
   LObjN LO::WIDE_1,           0, 7, 1, LN1::SOLID_LEDGE
   LObj  LO::S_SPRING,         1, 10
   LObjN LO::R_BG_GLASS_GRAY,  1, 1, 1, 1
@@ -196,10 +196,16 @@ glass_finaleData:
   LObjN LO::R_FG_GLASS_RED,   0, 4, 11, 0
   LObjN LO::R_BG_GLASS_RED,   1, 5, 0, 1
   LObjN LO::R_GROUND,         0, 7, 1, 7
-  LObjN LO::WIDE_1,           2, 7, 2, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           2, 7, 2, LN1::FALLTHROUGH_LEDGE
+  LObjN LO::R_COIN,           0, 8, 2, 2
+  LObj  LO::R_CUSTOM,         0, 11, Metatiles::SPRING, (2<<4)|0
+  LObjN LO::WIDE_1,           0, 12, 2, LN1::SOLID_LEDGE
   LObjN LO::R_BG_GLASS_RED,   3, 5, 0, 1
   LObjN LO::R_GROUND,         0, 7, 1, 7
-  LObjN LO::WIDE_1,           2, 7, 2, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           2, 7, 2, LN1::FALLTHROUGH_LEDGE
+  LObjN LO::R_COIN,           0, 8, 2, 2
+  LObj  LO::R_CUSTOM,         0, 11, Metatiles::SPRING, (2<<4)|0
+  LObjN LO::WIDE_1,           0, 12, 2, LN1::SOLID_LEDGE
   LObjN LO::R_FG_GLASS_RED,   3, 2, 0, 1
   LObjN LO::R_BG_GLASS_RED,   0, 5, 0, 1
   LObjN LO::R_GROUND,         0, 7, 4, 7
