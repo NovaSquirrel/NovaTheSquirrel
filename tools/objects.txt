@@ -179,8 +179,8 @@ C .byt 0
 C .byt ObjFlag::SECONDARY
 
 R BOOMERANG
-C .byt 0
-C .byt 0
+C .byt GraphicsUpload::SP_BOOMERANG
+C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::SECONDARY
 
 R FIREBALL
@@ -299,12 +299,12 @@ C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::ESSENTIAL
 
 R BOOMERANG_GUY
-C .byt 0
-C .byt 0
+C .byt GraphicsUpload::SP_BOOMERANG
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
 
 R GRABBY_HAND
-C .byt 0
+C .byt GraphicsUpload::SP_BOOMERANG
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
 

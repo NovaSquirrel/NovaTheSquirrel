@@ -1807,13 +1807,13 @@ AbilityBoomerang:
 @Exit:
   rts
 @NoXVelocity:
-  lda PressedDown
+  lda PressedUp
   beq :+
   lda #<(-$30)
   sta ObjectVYL,x
   lda #>(-$30)
   sta ObjectVYH,x
-: lda PressedUp
+: lda PressedDown
   beq :+
   lda #<($30)
   sta ObjectVYL,x

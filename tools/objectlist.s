@@ -34,7 +34,7 @@
   .byt 0 ;PLAYER_PROJECTILE
   .byt GraphicsUpload::SP_SCHEME_TEAM ;BLASTER_SHOT
   .byt 0 ;SMALL_GLIDER
-  .byt 0 ;BOOMERANG
+  .byt GraphicsUpload::SP_BOOMERANG ;BOOMERANG
   .byt GraphicsUpload::SP_FIRE ;FIREBALL
   .byt GraphicsUpload::SP_FIRE ;FLAMES
   .byt GraphicsUpload::SP_KING ;WATER_BOTTLE
@@ -58,8 +58,8 @@
   .byt GraphicsUpload::SP_LIFE ;BIG_LWSS
   .byt 0 ;EXPLOSION
   .byt GraphicsUpload::SP_MINES ;MINECART
-  .byt 0 ;BOOMERANG_GUY
-  .byt 0 ;GRABBY_HAND
+  .byt GraphicsUpload::SP_BOOMERANG ;BOOMERANG_GUY
+  .byt GraphicsUpload::SP_BOOMERANG ;GRABBY_HAND
   .byt GraphicsUpload::SP_MINES ;FALLING_SPIKE
   .byt GraphicsUpload::SP_WIND ;CLOUD_SWORD
   .byt GraphicsUpload::SP_EXPLODE ;FIREWORK_SHOT
@@ -101,7 +101,7 @@
   .byt 0 ;PLAYER_PROJECTILE
   .byt 0 ;BLASTER_SHOT
   .byt 0 ;SMALL_GLIDER
-  .byt 0 ;BOOMERANG
+  .byt ObjBehavior::AUTO_REMOVE ;BOOMERANG
   .byt 0 ;FIREBALL
   .byt 0 ;FLAMES
   .byt 0 ;WATER_BOTTLE
@@ -125,7 +125,7 @@
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BIG_LWSS
   .byt 0 ;EXPLOSION
   .byt ObjBehavior::AUTO_REMOVE ;MINECART
-  .byt 0 ;BOOMERANG_GUY
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BOOMERANG_GUY
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;GRABBY_HAND
   .byt ObjBehavior::AUTO_REMOVE ;FALLING_SPIKE
   .byt ObjBehavior::AUTO_REMOVE ;CLOUD_SWORD

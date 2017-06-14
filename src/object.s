@@ -179,8 +179,8 @@ Exit:
   .raddr ObjectBigLWSS
   .raddr ObjectExplosion
   .raddr ObjectMinecart
-  .raddr ObjectNone ; boomerang guy
-  .raddr ObjectNone ; grabby hand
+  .raddr ObjectBoomerangGuy
+  .raddr ObjectGrabbyHand
   .raddr ObjectFallingSpike ; falling spike
   .raddr ObjectCloudSword
   .raddr ObjectFireworkShot
@@ -499,7 +499,6 @@ EnemyAbilityTable:
   .byt Enemy::ROCKET,           AbilityType::BOMB
   .byt Enemy::ROCKET_LAUNCHER,  AbilityType::BOMB
   .byt Enemy::FIREWORK_SHOOTER, AbilityType::FIREWORK
-  .byt Enemy::TORNADO,          AbilityType::FAN
   .byt Enemy::ELECTRIC_FAN,     AbilityType::FAN
   .byt Enemy::CLOUD,            AbilityType::FAN
   .byt Enemy::BOUNCER,          AbilityType::BLASTER
@@ -509,6 +508,8 @@ EnemyAbilityTable:
   .byt Enemy::SUN,              AbilityType::FIRE
   .byt Enemy::BIG_GLIDER,       AbilityType::GLIDER
   .byt Enemy::BIG_LWSS,         AbilityType::GLIDER
+  .byt Enemy::BOOMERANG_GUY,    AbilityType::BOOMERANG
+  .byt Enemy::GRABBY_HAND,      AbilityType::BOOMERANG
   .byt 0
 .endproc
 

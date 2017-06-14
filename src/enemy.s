@@ -2382,7 +2382,7 @@ Attribute = 2
   beq :+
     ; turn into the card thing if stunned
     lda O_RAM::TILEBASE
-    ora #4
+    ora #$1a
     sta OAM_TILE+(4*0),y
     ora #1
     sta OAM_TILE+(4*1),y
@@ -3147,4 +3147,165 @@ HeightTable:
   .byt $45, $56, $67, $78, $89, $9a, $ab, $bc
 ; MINE_TRACK_GRADUAL_RIGHT_U
   .byt $bc, $cd, $de, $ef, $ff, $ff, $ff, $ff
+.endproc
+
+.proc ObjectBoomerangGuy
+TheMask = 0
+TheTimer = 1
+TheTurnaround = 2
+  jsr EnemyFall
+
+  lda retraces
+  lsr
+  lsr
+  and #7
+  tay
+  lda Frames,y
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+
+  jsr EnemyPlayerTouchHurt
+
+  ldy ObjectF3,x
+  lda RetracesMasks,y
+  sta TheMask
+  lda TimerList,y
+  sta TheTimer
+  lda TurnaroundList,y
+  sta TheTurnaround
+
+  lda ObjectF2,x
+  bne :+
+    lda retraces
+    and TheMask
+    bne :+
+ThrowBoomerang:
+      jsr FindFreeObjectY
+      bcc :+
+        lda #Enemy::BOOMERANG*2
+        sta ObjectF1,y
+        lda #0
+        sta ObjectF2,y
+        lda TheTimer
+        sta ObjectTimer,y
+        lda TheTurnaround
+        sta ObjectF4,y
+
+        jsr ObjectCopyPosXYOffset
+
+        ; Crappy trajectory calculation
+        sty TempY
+        jsr AimAtPlayer
+        lda #1
+        jsr SpeedAngle2Offset
+        ldy TempY
+        lda 0
+        sta ObjectVXL,y
+        lda 1
+        sta ObjectVXH,y
+        lda 2
+        sta ObjectVYL,y
+        lda 3
+        sta ObjectVYH,y
+  :
+
+  rts
+RetracesMasks:
+  .byt 63,   127,  31
+TimerList:
+  .byt 30/4, 60/4, 15/4
+TurnaroundList:
+  .byt 15,   30,   15/2
+Frames:
+  .byt 0, 0, 0, 4, 8, 8, 8, 4
+.endproc
+
+.proc ObjectGrabbyHand
+  ; Prepare yourself for some lame code
+  lda ObjectF2,x
+  cmp #ENEMY_STATE_INIT
+  bne :+
+    jsr EnemyPosToVel
+  :
+
+  ; Copy velocity to position so we can aim from there
+  lda ObjectVXL,x
+  sta ObjectPXL,x
+  lda ObjectVYL,x
+  sta ObjectPYL,x
+  lda ObjectVXH,x
+  sta ObjectPXH,x
+  lda ObjectVYH,x
+  sta ObjectPYH,x
+
+  ; Draw a star in the middle
+  lda #OAM_COLOR_1
+  sta 1
+  lda #4 ; x
+  sta 2
+  lda #4 ; y
+  sta 3
+  lda #$51
+  jsr DispObject8x8_XYOffset
+
+  ; Retarget when at the star
+  lda ObjectF4,x
+  bne NoRetarget
+  lda O_RAM::ON_SCREEN
+  beq NoRetarget
+
+  jsr AimAtPlayer
+  sta ObjectF3,x 
+
+  ; Pause a bit before throwing
+  lda #45
+  sta ObjectTimer,x
+  lda #ENEMY_STATE_PAUSE
+  sta ObjectF2,x
+  inc ObjectF4,x
+NoRetarget:
+  lda ObjectF2,x
+  bne :+
+  inc ObjectF4,x ; increase counter
+  lda ObjectF4,x ; restrict its range
+  and #63
+  sta ObjectF4,x
+:
+
+  lda ObjectF4,x
+  and #31
+  tay
+  lda SineTable,y
+  abs
+  lsr
+  lsr
+  ldy ObjectF3,x ; get angle
+  jsr SpeedAngle2Offset
+
+  ; Apply an offset away from the center
+  lda 0
+  add ObjectVXL,x
+  sta ObjectPXL,x
+  lda ObjectVXH,x
+  adc 1
+  sta ObjectPXH,x
+
+  lda 2
+  add ObjectVYL,x
+  sta ObjectPYL,x
+  lda ObjectVYH,x
+  adc 3
+  sta ObjectPYH,x
+
+  jsr EnemyLookAtPlayer
+
+  lda retraces
+  lsr
+  lsr
+  and #4
+  add #$0c
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+
+  jmp EnemyPlayerTouchHurt
 .endproc

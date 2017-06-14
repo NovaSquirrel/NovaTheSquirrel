@@ -989,7 +989,30 @@ ProjMirror:
 
 .proc ObjectBoomerang
   jsr EnemyDespawnTimer
+
+  jsr EnemyApplyVelocity
+
+  lda retraces
+  lsr
+  lsr
+  and #7
+  tay
+  lda BoomerangSpinA,y
+  sta 1
+  lda BoomerangSpinT,y
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_Attr
+
+  dec ObjectF4,x
+  bne NoFlip
+  neg16x ObjectVXL, ObjectVXH
+  neg16x ObjectVYL, ObjectVYH
+NoFlip:
   jmp SmallEnemyPlayerTouchHurt
+BoomerangSpinT: .byt $1d, $1e, $1f, $1e, $1d, $1e, $1f, $1e
+BoomerangSpinA:
+  .byt OAM_COLOR_3, OAM_COLOR_3, OAM_COLOR_3, OAM_COLOR_3|OAM_YFLIP
+  .byt OAM_COLOR_3|OAM_YFLIP, OAM_COLOR_3|OAM_XFLIP|OAM_YFLIP, OAM_COLOR_3|OAM_XFLIP|OAM_YFLIP, OAM_COLOR_3|OAM_XFLIP
 .endproc
 
 .proc ObjectFireball
