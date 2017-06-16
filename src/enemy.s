@@ -2847,94 +2847,88 @@ NoMove:
 
 .proc ObjectMinecart
 Temp = 0
-MiddleBlock = 1
-Direction = 2
-MiddleXPos = 3
-MiddleYPos = 4
-OldXPosLo = TempVal+1
-OldXPosHi = TempVal+2
-  jsr EnemyFall
+MiddleBlock          = 1 ; \
+MiddleXPos           = 3 ; | for holding onto results so they don't have to be calculated again
+MiddleYPos           = 4 ; /
+OldXPosLo    = TempVal+1 ; \ for detecting how far the cart has moved
+OldXPosHi    = TempVal+2 ; /
+ShiftPlayerX = TempVal+3 ; position adjust when speed changes happen
+; ObjectF4 is the current speed (magnitude, not signed velocity)
+  jsr EnemyFall ; clobbers 0
 
+  ; save the old X position
   lda ObjectPXL,x
   sta OldXPosLo
   lda ObjectPXH,x
   sta OldXPosHi
 
-  lda ObjectF1,x
-  and #1
-  sta Direction
+  lda ObjectF4,x  ; move forward at the cart's current speed
+  jsr EnemyWalk   ; clobbers 0, 1, 2
 
-  ; If the object is initializing, set the speed
-;  lda ObjectF2,x
-;  cmp #ENEMY_STATE_INIT
-;  bne :+
-;    lda #$10
-;    sta ObjectF4,x
-;  :
+  lda #0          ; no shifting initially
+  sta ShiftPlayerX
 
-  lda ObjectF4,x
-  jsr EnemyWalk
-
-  lda ObjectVYH,x
-  bmi Done
-  jsr CheckTrack
-  bne NotOnTrack
-    lda #<-$40
+  lda ObjectVYH,x ; don't interact with track if moving upwards
+  bmi Done        ; skip everything
+  jsr CheckTrack  ; if the minecart is on track, lift the cart up a bit to rest on top of it
+  bne NotOnTrack  ; (CheckTrack also applies special track effects like speed changes)
+    lda #<-$40    ; put the minecart on the track
     sta ObjectPYL,x
-    jsr CheckTrack
+    jsr CheckTrack ; if moving the cart moves it off the track, fix that
     bne :+
       dec ObjectPYH,x
     :
     lda #0
     sta ObjectVYL,x
     sta ObjectVYH,x
-    jmp Done
+    beq Done ; unconditional branch
 NotOnTrack:
-  jsr CheckWheelsBlock
+  jsr CheckWheelsBlock ; look up what block is underneath the wheel
 
   ; Is it a slope? If so, use the table
   lda MiddleBlock
-  cmp #Metatiles::MINE_TRACK_STEEP_LEFT_BOT
-  bcc NotSlope
-  cmp #Metatiles::MINE_TRACK_GRADUAL_RIGHT_U + 1
+  cmp #Metatiles::MINE_TRACK_STEEP_LEFT_BOT      ; \
+  bcc NotSlope                                   ; | sloped tiles are in a range
+  cmp #Metatiles::MINE_TRACK_GRADUAL_RIGHT_U + 1 ; / reject if outside this range
   bcs NotSlope
   jsr CalculateHeight
-  cmp #$f0
+  cmp #$f0 ; $f0 means the entire column is empty, so check the one underneath
   bne :+
     inc ObjectPYH,x
     ldy MiddleYPos
     iny
     lda (LevelBlockPtr),y
-    jsr CalculateHeight
+    jsr CalculateHeight ; recalculate for the new position
   :
-  cmp #$00
+  cmp #$00 ; $00 means the entire column is filled, so check the one above
   bne :+
     dec ObjectPYH,x
     ldy MiddleYPos
     dey
     lda (LevelBlockPtr),y
-    jsr CalculateHeight
+    jsr CalculateHeight ; recalculate for the new position
   :
   sta ObjectPYL,x
 
+  ; no vertical movement
   lda #0
   sta ObjectVYL,x
   sta ObjectVYH,x
 NotSlope:
 
+; Done with any sort of interaction with the track
 Done:
   lda #$00
   ldy #OAM_COLOR_2
   jsr DispEnemyWide
 
-
   ; Let the player ride on it
   jsr CollideRide16
-  bcc :+
+  bcc NoRide
     lda PlayerDrawY
     add #8
     cmp O_RAM::OBJ_DRAWY
-    bcs :+
+    bcs NoRide
       lda #2
       sta PlayerRidingSomething
 
@@ -2964,12 +2958,35 @@ Done:
       adc OldXPosHi
       sta PlayerPXH
 
+      ; apply ShiftPlayerX
+      lda ShiftPlayerX
+      beq NoShiftPlayerX
+        lda ObjectF1,x ; negate direction if facing right
+        lsr
+        bcs :+
+          lda ShiftPlayerX
+          neg
+          sta ShiftPlayerX
+        :
+        lda ShiftPlayerX ; sign extend the shift value
+        sex
+        sta Temp
+
+        ; subtract the offset
+        lda PlayerPXL
+        sub ShiftPlayerX
+        sta PlayerPXL
+        lda PlayerPXH
+        sbc Temp
+        sta PlayerPXH
+      NoShiftPlayerX:
+
       ; start the cart if it isn't started already
       lda ObjectF4,x
-      bne :+
+      bne NoRide
       lda #$10
       sta ObjectF4,x
-:
+NoRide:
 
   rts
 
@@ -3078,6 +3095,9 @@ SpecialTrackHi:
   .hibytes SpecialTrackBrakes-1, SpecialTrackUp-1, SpecialTrackUpLeft-1, SpecialTrackUpRight-1, SpecialTrackStop-1, SpecialTrackBump-1, SpecialTrackSpecial-1
 
 SpecialTrackBrakes:
+  lda ObjectF4,x
+  sta Temp
+
   lda ObjectPXL,x
   add #$80
   lda ObjectPXH,x
@@ -3085,6 +3105,10 @@ SpecialTrackBrakes:
   tay
   lda ColumnBytes,y
   sta ObjectF4,x
+
+  sub Temp
+  sta ShiftPlayerX ; offset the player to account for the changing speed
+
   jmp SpecialTrackReturn
 SpecialTrackUp:
   lda ObjectVYH,x
