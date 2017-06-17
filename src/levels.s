@@ -2,15 +2,15 @@
 
 MasterLevelListL:
   .byt <intro_a, <grassy_a, <funkunderground, <sky, <water, <grassy2_a, <underground_2, <boss1
-  .byt <glass_intro, <arrows, <burgers, <glasscave, <chiptall, <falldown, <glass_finale
-  .byt <frozen, <frozen2, <emptylevel
+  .byt <glass_intro, <arrows, <burgers, <glasscave, <chiptall, <falldown, <glass_finale, <boss2
+  .byt <frozen, <frozen2, <frozen3, <emptylevel
 ; sub-levels
   .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden, <puzzle2
 
 MasterLevelListH:
   .byt >intro_a, >grassy_a, >funkunderground, >sky, >water, >grassy2_a, >underground_2, >boss1
-  .byt >glass_intro, >arrows, >burgers, >glasscave, >chiptall, >falldown, >glass_finale
-  .byt >frozen, >frozen2, >emptylevel
+  .byt >glass_intro, >arrows, >burgers, >glasscave, >chiptall, >falldown, >glass_finale, >boss2
+  .byt >frozen, >frozen2, >frozen3, >emptylevel
 ; sub-levels
   .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden, >puzzle2
 
@@ -41,10 +41,12 @@ PUZ = 128 ; puzzle
   ChipTall
   Tall
   GlassFinale
-  ; boss2 goes here
+  Boss2
+
 ; world 3
   Frozen
   Frozen2
+  Frozen3
   EmptyLevel
 
 ; sublevels
@@ -76,10 +78,12 @@ PUZ = 128 ; puzzle
 .include "../levels/puzzle2.s"
 .include "../levels/frozen.s"
 .include "../levels/frozen2.s"
+.include "../levels/frozen3.s"
 .include "../levels/falldown.s"
 .include "../levels/glasscave.s"
 .include "../levels/chiptall.s"
 .include "../levels/glass_finale.s"
+.include "../levels/boss2.s"
 
 ;Level data:
 ;TTTTTTTT XXXXYYYY [SSSSSSSS]

@@ -2556,6 +2556,15 @@ ReactWithTypes:
   jsr EnemyGravity
 :
 
+  ; remove if it falls too far
+  lda ObjectPYH,x
+  cmp #15
+  bcc :+
+    lda #0
+    sta ObjectF1,x
+    rts
+  :
+
   lda #OAM_COLOR_1
   sta 1
   lda #4

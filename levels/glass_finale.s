@@ -51,7 +51,7 @@ glass_finaleData:
   LObjN LO::R_CEILING_BARRIER,1, 0, 0, 2
   LObj  LO::S_PRIZE,          0, 7
   LWriteCol InventoryItem::SPRING | 128
-  LObj  LO::S_SOLID_BLOCK,    1, 2
+  LObjN LO::R_SOLID_BLOCK,    1, 0, 0, 2
   LObjN LO::R_FG_GLASS_RED,   0, 3, 2, 0
   LObjN LO::R_FG_GLASS_RED,   0, 8, 2, 0
   LObj  LO::S_M_CRATE,        0, 9
@@ -132,8 +132,7 @@ glass_finaleData:
   LObj  LO::S_M_CRATE,        2, 6
   LObj  LO::S_CUSTOM,         2, 4, Metatiles::KEY_RED
   LObjN LO::R_COIN,           0, 8, 1, 1
-  LObj  LO::R_CUSTOM,         2, 2, Metatiles::FORCE_RIGHT, (0<<4)|3
-  LObjN LO::R_FG_GLASS_BLUE,  0, 7, 0, 3
+  LObjN LO::R_FG_GLASS_BLUE,  2, 7, 0, 3
   LObjN LO::R_COIN,           2, 3, 0, 1
   LObjN LO::WIDE_1,           1, 6, 2, LN1::SOLID_LEDGE
   LObjN LO::TALL_1,           1, 6, 4, LN1::LADDER
