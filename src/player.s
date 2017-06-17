@@ -1660,9 +1660,13 @@ LimitObjectAmount:
   iny ; yes, this is a player projectile
   cpy 0
   bne :+
-  pla ; abort
   pla
-  rts
+  pla
+  ; if there's too many then just do a regular stun instead
+  lda #0
+  sta PressedUp
+  sta PressedDown
+  jmp AbilityNone
 : inx
   cpx #ObjectLen
   bne :--
