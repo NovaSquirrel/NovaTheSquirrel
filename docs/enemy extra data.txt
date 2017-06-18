@@ -1,0 +1,74 @@
+Each sprite in the level has four bits of extra data that gets copied into the sprite's ObjectF3 variable when the sprite is initialized.
+
+-SPINNER-
+..xy
+  |+- move back and forth horizontally sine movement
+  +-- move back and forth vertically, sine movement
+if x and y are both set, the spinner moves in a circle
+If x and y are both unset, the spinner has its normal homing movement
+
+-GEORGE-
+0: throw a bottle every 64 frames
+1: 50% chance to throw the bottle every 32 frames
+2: 12.5% chance to throw the bottle every 8 frames
+
+-ICE_1-
+0: walk forward
+1: hop forward
+
+-ICE_2-
+0: weird stuff
+1: just walk forward without gravity
+
+-CANNON_1-
+specifies type of burger, but it doesn't do anything yet
+
+-CANNON_2-
+specifies max number of the object that can exist before the cannon stops firing
+actual sprite to shoot is taken from the column data
+
+-BURGER-
+specifies type of burger, but it doesn't do anything yet
+
+-FIRE_WALK-
+0: walks off edges
+1: walk back and forth on a platform
+
+-FIRE_JUMP-
+0: jumps forward
+1: jumps in place, shoots fireballs at the player with trigonometry
+
+-FIREWORK_SHOOTER-
+0: shoot up
+1: shoot up and to the side
+
+-BOSS_FIGHT-
+specifies the boss number
+
+-FALLING_SPIKE-
+specifies the minimum amount of proximity (in blocks, horizontally) for the spike to start falling
+
+-BIG_GLIDER-
+0: fly down
+1: fly up
+
+direction bit specifies left/right as usual
+
+-BIG_LWSS-
+0: fly down
+1: fly up
+
+-BOOMERANG_GUY-
+0: shoot normal range
+1: shoot long range
+2: shoot short range
+
+-MOVING_PLATFORM_HORIZ-
+specifies the number of blocks to move forward before turning around
+
+-MOVING_PLATFORM_LINE-
+0: don't automatically start moving
+1: automatically start moving
+
+-FIREBAR-
+specifies the radius
