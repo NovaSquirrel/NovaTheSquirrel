@@ -180,6 +180,7 @@ funkundergroundSprite:
   LSpr Enemy::THWOMP,              0,  38,   2
   LSpr Enemy::SPINNER,             1,  55,   2
   LSpr Enemy::GEORGE,              1,  63,  12
+  LSpr Enemy::CHECKPOINT,          0,  71,   5
   LSpr Enemy::GOOMBA,              1,  73,   5
   LSpr Enemy::GOOMBA,              1,  77,   6
   LSpr Enemy::GOOMBA,              1,  95,  12

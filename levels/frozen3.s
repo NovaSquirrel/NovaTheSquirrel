@@ -26,7 +26,7 @@ frozen3Data:
   LObjN LO::R_ROCK,           0, 10, 4, 1
   LObjN LO::R_ROCK,           0, 12, 9, 2
   LObj  LO::S_PRIZE,          4, 7
-  LWriteCol InventoryItem::SPRING
+  LWriteCol InventoryItem::BLOCK
   LObj  LO::S_MTRACK_SSL,      3, 11
   LObjN LO::R_ROCK,           1, 2, 9, 1
   LObjN LO::WIDE_1,           0, 8, 2, LN1::FALLTHROUGH_LEDGE
@@ -142,8 +142,8 @@ frozen3Data:
   LObjN LO::WIDE_3,           1, 3, 0, LN3::MINE_TRACKS_BRAKES
   LWriteCol $40
   LObj  LO::R_CUSTOM,         3, 3, Metatiles::CAMPFIRE, (7<<4)|0
-  LObj  LO::S_MTRACK_UPRIGHT,  0, 5
-  LObjN LO::R_GROUND,         9, 10, 4, 4
+  LObj  LO::S_MTRACK_UPRIGHT,  1, 5
+  LObjN LO::R_GROUND,         8, 10, 4, 4
   LObjN LO::R_ROCK,           1, 3, 1, 3
   LObjN LO::RECT_3,           1, 0, 1, LN3::ROCK, 16
   LObjN LO::R_ROCK,           0, 2, 4, 1
@@ -156,7 +156,7 @@ frozen3Data:
   LObj  LO::R_CUSTOM,         0, 8, Metatiles::FORK_ARROW_UP, (2<<4)|0
   LObjN LO::WIDE_1,           0, 11, 2, LN1::SOLID_LEDGE
   LObj  LO::S_DOOR,           1, 9
-  LWriteCol 9, 246
+  LWriteCol 9, 248
   LObjN LO::WIDE_1,           4, 8, 2, LN1::SOLID_LEDGE
   LObj  LO::S_W_ARROW_RIGHT,  2, 7
   LObjN LO::WIDE_1,           0, 11, 0, LN1::SOLID_LEDGE
@@ -201,15 +201,15 @@ frozen3Data:
   LObj  LO::S_EXIT_DOOR,      3, 6
   LXPlus16
   LObjN LO::R_ROCK,           7, 0, 15, 3
-  LObjN LO::R_ROCK,           0, 4, 3, 6
+  LObjN LO::R_ROCK,           0, 4, 4, 6
   LObjN LO::R_ROCK,           0, 11, 15, 3
-  LObjN LO::R_COIN,           5, 5, 2, 2
+  LObjN LO::R_COIN,           7, 5, 2, 2
   LObjN LO::WIDE_1,           0, 8, 2, LN1::SOLID_LEDGE
   LObj  LO::S_DOOR,           1, 9
   LWriteCol 9, 155
   LObj  LO::S_PRIZE,          3, 8
   LWriteCol InventoryItem::ABILITY_BOOMERANG
-  LObjN LO::R_ROCK,           3, 4, 3, 6
+  LObjN LO::R_ROCK,           2, 4, 2, 6
   LFinished
 
 frozen3Sprite:
@@ -233,7 +233,7 @@ frozen3Sprite:
   LSpr Enemy::BIG_GLIDER,          1,  87,   2
   LSpr Enemy::BOOMERANG_GUY,       0,  89,   8, 1
   LSpr Enemy::ICE_1,               0,  94,   9
-  LSpr Enemy::BOOMERANG_GUY,       0,  99,   2, 1
+  LSpr Enemy::BOOMERANG_GUY,       0,  99,   2
   LSpr Enemy::BOOMERANG_GUY,       0, 103,  10, 1
   LSpr Enemy::BIG_GLIDER,          1, 123,   7
   LSpr Enemy::BIG_GLIDER,          1, 125,  11

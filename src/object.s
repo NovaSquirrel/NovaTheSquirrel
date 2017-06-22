@@ -399,12 +399,22 @@ Bump:
   ora ObjectVYL,y
   beq Nothing
 
-  lda #SFX::BUMP
-  jsr PlaySoundDebounce
+  ; Don't change velocity on enemies that store other data in the velocity variables
+  ldy #EnemyBumpBlacklistSize-1
+  lda ObjectF1,x
+  and #<~1
+: cmp EnemyBumpBlacklist,y
+  beq BumpStunOnly
+  dey
+  bpl :-
+
   lda #>-1
   sta ObjectVYH,x
   lda #<-$30
   sta ObjectVYL,x
+BumpStunOnly:
+  lda #SFX::BUMP
+  jsr PlaySoundDebounce
   lda ObjectF1,x
   eor #1
   sta ObjectF1,x
@@ -511,6 +521,11 @@ EnemyAbilityTable:
   .byt Enemy::BOOMERANG_GUY,    AbilityType::BOOMERANG
   .byt Enemy::GRABBY_HAND,      AbilityType::BOOMERANG
   .byt 0
+EnemyBumpBlacklist:
+  .byt Enemy::GRABBY_HAND*2
+  .byt Enemy::FIREBAR*2
+  .byt Enemy::KING*2
+EnemyBumpBlacklistSize = 3
 .endproc
 
 ; Copies the position from object X to object Y

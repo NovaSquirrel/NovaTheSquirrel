@@ -67,8 +67,8 @@ direction bit specifies left/right as usual
 specifies the number of blocks to move forward before turning around
 
 -MOVING_PLATFORM_LINE-
-0: don't automatically start moving
-1: automatically start moving
+0: automatically start moving
+1: wait until the player steps on the platform
 
 -FIREBAR-
 specifies the radius
