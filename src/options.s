@@ -255,7 +255,11 @@ NoOptionChange:
 
   lda keynew
   and #KEY_START
-  jne JumpToLevelSelect
+  beq :+
+    lda OptionsViaInventory
+    jeq JumpToLevelSelect
+    rts
+  :
 
   lda keynew
   and #KEY_A
@@ -265,9 +269,9 @@ NoOptionChange:
   lda Cursor ; 0 = Start game
   bne :+
   lda OptionsViaInventory
-  beq ReturnFromInventory
+  beq ReturnFromTitle
   rts
-ReturnFromInventory:
+ReturnFromTitle:
   jmp JumpToLevelSelect
 :
   cmp #LastOptionConst ; 4 = Delete save
