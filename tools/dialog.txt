@@ -104,7 +104,7 @@
 [KOREY]That could help. Are you saying you've got something to share?
 [SHERWIN]Yes! I heard there was a fight with some weird green squirrel? She totally kicked some Scheme Team members' butts.
 [KOREY]Oh good! Do you know where she is? Or where -you- are?
-[SHERWIN]I got taken to Atomic Videoclip Zone so I'll asume that's their base. The squirrel seemed to be heading to Bummer Club.
+[SHERWIN]I got taken to Atomic Videoclip Zone so I'll assume that's their base. The squirrel seemed to be heading to Bummer Club.
 [KOREY]I'll meet up with her there.
 []Korey rushes to the scene, introduces himself and explains Latte's situation to Nova. They chat a bit.
 `scene NOVA_AND_KOREY

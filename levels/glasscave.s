@@ -76,7 +76,8 @@ glasscaveData:
   LObjN LO::WIDE_1,           0, 9, 6, LN1::SOLID_LEDGE
   LObj  LO::S_SIGNPOST,       1, 8
   LWriteCol <AboutPlaceable, >AboutPlaceable
-  LObjN LO::RECT_1,           2, 0, 1, LN1::GROUND, 16
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 2
+  LObjN LO::RECT_1,           1, 0, 1, LN1::GROUND, 16
   LObj  LO::S_PRIZE,          1, 6
   LWriteCol InventoryItem::BLOCK | 128
   LObj  LO::S_PRIZE,          1, 5

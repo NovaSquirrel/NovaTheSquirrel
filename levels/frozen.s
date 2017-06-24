@@ -20,10 +20,10 @@ frozen:
 
 frozenData:
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::FROZEN_CAVE
+  LObjN LO::R_ROCK,           0, 0, 6, 1
   LObjN LO::R_GROUND,         0, 7, 4, 4
   LObjN LO::RECT_3,           0, 12, 2, LN3::ROCK, 18
-  LObjN LO::R_ROCK,           1, 0, 5, 1
-  LObjN LO::WIDE_3,           4, 6, 10, LN3::MINE_TRACKS
+  LObjN LO::WIDE_3,           5, 6, 10, LN3::MINE_TRACKS
   LObjN LO::RECT_3,           2, 0, 2, LN3::ROCK, 41
   LObjN LO::R_COIN,           0, 8, 3, 0
   LObj  LO::S_TALL_GRASS,     4, 11

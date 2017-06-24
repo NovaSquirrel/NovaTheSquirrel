@@ -1211,12 +1211,19 @@ AbsDifference = 1
   lda #0
   jsr DispEnemyWideNonsequentialFlipped
 
+  lda ObjectF2,x ; don't turn while stunned
+  beq :+
+  cmp #ENEMY_STATE_PAUSE
+  beq WaitExplode
+  rts
+:
+
   inc ObjectF4,x
   lda ObjectF4,x
-  cmp #255
+  cmp #255 ; explode if it's been long enough
   beq DoExplode
   cmp #120
-  bcs Exit
+  bcs Exit ; no retargeting past a certain point
 
 ; Angle the rocket to aim at the player
   lda retraces
@@ -1263,11 +1270,30 @@ Exit:
   jsr EnemyCheckOverlappingOnSolid
   bcc :+
 DoExplode:
+  lda ObjectF2,x
+  bne :+
+  lda ObjectTimer,x
+  bne :+
+    lda #ENEMY_STATE_PAUSE
+    sta ObjectF2,x
+    lda #15
+    sta ObjectTimer,x
+  :
+  rts
+
+WaitExplode:
+  lda ObjectF3,x
+  add #2
+  sta ObjectF3,x
+
+  lda ObjectTimer,x
+  cmp #1
+  bne :+
     lda #7
     jmp EnemyExplode
   :
-
   rts
+
 FrameRight:
   .byt $06, $06, $07, $07
   .byt OAM_COLOR_2,                     OAM_COLOR_2|OAM_YFLIP,           OAM_COLOR_2,                     OAM_COLOR_2|OAM_YFLIP
@@ -2617,15 +2643,6 @@ Draw:
   lda #12
   ldy #OAM_COLOR_2
   jsr DispEnemyWide
-
-  ; Die if touching a falling boulder
-  lda ObjectF4,x
-  beq :+
-    jsr EnemyPlayerTouch
-    bcc :+
-     lda #0
-     sta PlayerHealth
-  :
   rts
 
 StartFalling:

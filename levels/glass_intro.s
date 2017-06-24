@@ -46,7 +46,7 @@ glass_introData:
   LObjN LO::R_FG_GLASS_RED,   0, 10, 9, 0
   LObjN LO::R_BG_GLASS_BLUE,  4, 3, 0, 12
   LObj  LO::S_FG_GLASS_RED,   0, 10
-  LObjN LO::R_CEILING_BARRIER,4, 0, 0, 1
+  LObjN LO::R_CEILING_BARRIER,4, 0, 0, 2
   LObjN LO::R_FG_GLASS_RED,   1, 2, 0, 6
   LObj  LO::S_CUSTOM,         0, 9, Metatiles::LOCK_GREEN
   LObjN LO::R_GROUND,         0, 11, 2, 3
