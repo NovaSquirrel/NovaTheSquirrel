@@ -775,39 +775,35 @@ EmptySlot:
 ; Changes a block in the level immediately and queues a PPU update.
 ; input: A (new block), LevelBlockPtr,y (block to change)
 ; output: carry (success)
-; locals: 0, 1, 2, 3
+; locals: 0, 1, 2, 3, LevelDecodePointer, LevelSpritePointer
 .proc ChangeBlock
 SaveX = 0 
 SaveY = 1
-Address = 2
-Temp = 3
-  sty SaveY
+Temp = 2
+TempSlot = 3
+LeftPointer = LevelDecodePointer  ; reuse pointers
+RightPointer = LevelSpritePointer
+
+  sty SaveY       ; save X and Y so the routine calling this doesn't have to
   stx SaveX
   sta (LevelBlockPtr),y
 
-  sty SaveY       ; we need Y later when we calculate the PPU address
-  tax             ; will use X to fetch the tiles needed afterwards
+  tax             ; X = block type, to index into metatile info tables
 
-; find a slot for the block update
-  ldy #0
-  sty Address+1
+  ; find a slot for the block update
+  ldy #MaxNumBlockUpdates-1
 : lda BlockUpdateA1,y
   beq :+          ; empty slot found
-  iny
-  cpy #MaxNumBlockUpdates
-  bne :-
+  dey
+  bpl :-
+;  no free slots, return with carry clear
   ldy SaveY
   ldx SaveX
   clc
-  rts ;  no free slots, handle it how you want
+  rts 
 :
-  ; queue the PPU update
-
-  ; This was originally supposed to restore the bank after temporarily switching to the one with metatile definitions,
-  ; however the boomerangs had a problem with calling ChangeBlock via DoCollectible so right now it's commented out.
-  ; Just use ChangeBlockFar for now if you need to call it from another bank.
-;  lda #MAINLOOP_BANK
-;  jsr _SetPRG
+  ; queue the block update
+  ; needs the bank set to MAINLOOP_BANK
 
   lda MetatileUL,x
   sta BlockUpdateT1,y
@@ -818,37 +814,31 @@ Temp = 3
   lda MetatileLR,x
   sta BlockUpdateT4,y
 
-  ; restore the bank back to the one we were in
-;  lda PRGBank
-;  jsr _SetPRG
-
-  ; Y is still the block update index
-
-  ; calculate the PPU address
-  ldx SaveY ; index for PPURowAddrHi/Lo
+  ; use a lookup table to find the PPU addresses for the block updates
+  ldx SaveY ; Y index into the level
   lda LevelBlockPtr+0
   lsr
   lsr
   lsr
   and #%11110
   ora PPURowAddrLo,x
-  sta Address+0
-  lda Address+1
-  ora PPURowAddrHi,x
-  sta Address+1
+  sta BlockUpdateA2,y
+  lda PPURowAddrHi,x
+  sta Temp
 
+  ; use $2000 or $2400 as a base depending on the screen number
   ldx #$20
   lda LevelBlockPtr+1
   and #1
   beq :+
      ldx #$24
 : txa
-  ora Address+1
+  ora Temp
   sta BlockUpdateA1,y
-  lda Address+0
-  sta BlockUpdateA2,y
+  ora #$03 ; get attribute table base
+  sta Temp ; save for the attribute table update
 
-  ; move down 1 row
+  ; calculate the bottom row from the top row
   lda BlockUpdateA2,y
   add #32
   sta BlockUpdateB2,y
@@ -856,6 +846,83 @@ Temp = 3
   adc #0
   sta BlockUpdateB1,y
 
+  ; update the attribute square too
+  ; but first find a slot for that (maybe find and update identical slots later?)
+  ldy #0
+: lda TileUpdateA1,y
+  beq :+   ; found a free slot
+  iny
+  cpy #MaxNumTileUpdates 
+  bne :-   ; keep going
+  jmp Exit ; no slots? don't bother updating the attribute table
+:
+
+  ; calculate attribute address and value
+  lda Temp
+  sta TileUpdateA1,y
+
+  ; set up the two pointers
+  lda LevelBlockPtr+0
+  and #%11101111
+  sta LeftPointer+0
+  ora #%00010000
+  sta RightPointer+0
+  lda LevelBlockPtr+1
+  sta LeftPointer+1
+  sta RightPointer+1
+
+  ; xxxx0000 <--- low byte of block pointer
+  ; 0000yyyy <--- Y coordinate, in SaveY
+  ; 11yyyxxx <--- attribute table format
+  lda SaveY
+  asl            ; 000yyyy0
+  asl            ; 00yyyy00
+  and #%00111000 ; 00yyy000
+  ora #%11000000 ; 11yyy000
+  sta Temp
+  lda LevelBlockPtr
+  lsr            ; 0xxxx000
+  lsr            ; 00xxxx00
+  lsr            ; 000xxxx0
+  lsr            ; 0000xxxx
+  lsr            ; 00000xxx
+  ora Temp       ; 11yyyxxx
+  sta TileUpdateA2,y
+
+  sty TempSlot
+  lda SaveY
+  and #<~1 ; round to 32 pixel square
+  tay
+  lda (LeftPointer),y
+  tax
+  lda MetatilePalettes,x
+  and #%00000011
+  sta Temp
+  ; top right corner of attribute byte
+  lda (RightPointer),y
+  tax
+  lda MetatilePalettes,x
+  and #%00001100
+  ora Temp
+  sta Temp
+  iny
+  ; bottom left corner of attribute byte
+  lda (LeftPointer),y
+  tax
+  lda MetatilePalettes,x
+  and #%00110000
+  ora Temp
+  sta Temp
+  ; top right corner of attribute byte
+  lda (RightPointer),y
+  tax
+  lda MetatilePalettes,x
+  and #%11000000
+  ora Temp
+  ldy TempSlot
+  sta TileUpdateT,y
+
+Exit:
   sec             ; success
   ldx SaveX
   ldy SaveY
