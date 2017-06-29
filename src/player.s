@@ -1788,8 +1788,10 @@ AbilityNice:
   sta ObjectVYH,x
 :
 
-  lda PressedDown           ; down+B: ice ride
+  lda PressedDown       ; down+B: ice ride
   beq :+
+;  lda PlayerNeedsGround ; only allow one ice ride before touching the ground
+;  bne :+
   jsr RideOnProjectile
 :
 @Exit:
@@ -1924,9 +1926,14 @@ AbilityBurger:
 RideOnProjectile:
   inc PlayerNeedsGround
 
+  lda PlayerPYL
+  sta 0
+  lda PlayerPYH
+  sta 1
+
   ldy PlayerDir
   lda PlayerPXL
-  sub :+,y
+  sub @XOffset,y
   sta ObjectPXL,x
 
   lda PlayerPXH
@@ -1943,8 +1950,26 @@ RideOnProjectile:
   lda #0
   sta PlayerVYL
   sta PlayerVYH
+
+  ; Don't push into ceilings
+  lda PlayerPXL
+  add #$40
+  lda PlayerPXH
+  adc #0
+  ldy PlayerPYH
+  jsr GetLevelColumnPtr
+  tay
+  lda MetatileFlags,y
+  bpl @NotPushedIntoCeiling
+    ; restore the Y position
+    lda 0
+    sta PlayerPYL
+    lda 1
+    sta PlayerPYH
+@NotPushedIntoCeiling:
   rts
-: .byt $70, $10
+@XOffset:
+ .byt $70, $10
 
 SetXVelocity:
   sta ObjectVXL,x
