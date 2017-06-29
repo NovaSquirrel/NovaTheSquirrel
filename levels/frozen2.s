@@ -50,7 +50,8 @@ frozen2Data:
   LObj  LO::S_MTRACK_UPRIGHT,  1, 9
   LObjN LO::R_MTRACK_SUPPORTSONLY,  1, 6, 0, 8
   LObj  LO::S_SPRING,         1, 4
-  LObjN LO::R_ROCK,           2, 0, 2, 2
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObjN LO::R_ROCK,           1, 0, 2, 2
   LObj  LO::S_COIN,           1, 8
   LObj  LO::S_MTRACK_UPRIGHT,  0, 9
   LObj  LO::S_MTRACK_BUMP,     1, 5
@@ -84,7 +85,8 @@ frozen2Data:
   LObjN LO::WIDE_3,           0, 11, 2, LN3::MINE_TRACKS
   LObj  LO::S_MTRACK_SSR,      1, 7
   LObj  LO::S_MTRACK_SSR,      1, 8
-  LObjN LO::WIDE_3,           1, 8, 6, LN3::MINE_TRACKS
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObjN LO::WIDE_3,           0, 8, 6, LN3::MINE_TRACKS
   LObjN LO::R_MTRACK_SUPPORTSONLY,  0, 9, 0, 5
   LObjN LO::R_ROCK,           1, 0, 10, 5
   LObjN LO::WIDE_3,           0, 11, 2, LN3::MINE_TRACKS
