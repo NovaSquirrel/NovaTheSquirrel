@@ -2957,6 +2957,8 @@ Done:
     bcs NoRide
       lda #2
       sta PlayerRidingSomething
+      lda #0
+      sta PlayerNeedsGround
 
       lda ObjectPYL,x
       sub #$80-$20

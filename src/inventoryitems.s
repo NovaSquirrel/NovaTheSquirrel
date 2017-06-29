@@ -885,6 +885,8 @@ ResetCheckpointString:
 .byt "Reset to checkpoint",0
 
 ExitLevelCode:
+  lda #0
+  sta PlayerAbility
   jmp PauseScreen::GoBackToLevelSelect
 TossItemsCode:
   inc TossMode
