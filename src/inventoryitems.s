@@ -521,6 +521,8 @@ TossOutItem:
   lda keynew
   and #KEY_SELECT
   beq NotSelect
+    lda PauseScreenPage  ; Don't allow swapping when on page 2
+    bne NotSelect
     lda InventoryCursorY ; \ if it's on the "other options" item, don't allow swapping with it
     cmp #InventoryLen    ; /
     beq NotSelect

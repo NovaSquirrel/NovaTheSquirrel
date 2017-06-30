@@ -347,7 +347,12 @@ BuyLoop:
     jsr GetBuyItem
     stx 5
     lda ItemShopTable,x
-    beq NoBuyItem
+    jeq NoBuyItem
+
+    lda SavedCoins+0
+    sta TempVal+0
+    lda SavedCoins+1
+    sta TempVal+1
 
     lda keydown
     and #KEY_SELECT
@@ -374,7 +379,7 @@ SkipCost:
     lda ItemShopTable,x
     jsr InventoryGiveSavedItem
     stx 0 ; item slot number
-    bcc NoBuyItem
+    jcc TooManyItems
     jsr WaitVblank
     lda #$23
     sta PPUADDR
@@ -411,9 +416,13 @@ NoBuyItem:
   and #KEY_LEFT
   beq :+
     lda Cursor
-    beq :+
+    beq @WrapLeft
     dec Cursor
     inc NeedUpdateItemInfo
+    bne :+
+@WrapLeft:
+    lda #9
+    sta Cursor
   :
 
   lda keynew
@@ -421,9 +430,13 @@ NoBuyItem:
   beq :+
     lda Cursor
     cmp #9
-    beq :+
+    beq @WrapRight
     inc Cursor
     inc NeedUpdateItemInfo
+    bne :+
+@WrapRight:
+    lda #0
+    sta Cursor
   :
 
   ; Move the cursor
@@ -460,6 +473,27 @@ NotEnoughFunds:
   sta PPUSCROLL
   jmp BuyLoop
 
+TooManyItems:
+  ; restore the old money count
+  lda TempVal+0
+  sta SavedCoins+0
+  lda TempVal+1
+  sta SavedCoins+1
+
+  jsr WaitVblank
+  PositionXY 0, 7, 10
+  jsr PutStringImmediate
+  .byt "You can't carry that ",0
+  PositionXY 0, 7, 11
+  jsr PutStringImmediate
+  .byt "many items!     ",0
+
+  lda #0
+  sta PPUSCROLL
+  sta PPUSCROLL
+  jmp BuyLoop
+
+; Makes the item index from Cursor and CursorY
 GetBuyItem:
   lda #0
   sub CursorY
@@ -571,9 +605,13 @@ TossLoop:
   and #KEY_LEFT
   beq :+
     lda Cursor
-    beq :+
+    beq @WrapLeft
     dec Cursor
     inc NeedUpdateItemInfo
+    bne :+
+@WrapLeft:
+    lda #9
+    sta Cursor
   :
 
   lda keynew
@@ -581,9 +619,13 @@ TossLoop:
   beq :+
     lda Cursor
     cmp #9
-    beq :+
+    beq @WrapRight
     inc Cursor
     inc NeedUpdateItemInfo
+    bne :+
+@WrapRight:
+    lda #0
+    sta Cursor
   :
 
   lda keynew

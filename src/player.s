@@ -1952,11 +1952,15 @@ RideOnProjectile:
   sta PlayerVYH
 
   ; Don't push into ceilings
+  lda PlayerPYL
+  add #$80
+  lda PlayerPYH
+  adc #0
+  tay
   lda PlayerPXL
   add #$40
   lda PlayerPXH
   adc #0
-  ldy PlayerPYH
   jsr GetLevelColumnPtr
   tay
   lda MetatileFlags,y
