@@ -1358,24 +1358,24 @@ NotOffTop:
   :
   ; If going upwards, check on top
   lda ObjectVYH,x
-  bpl NotUp
-  lda ObjectPXL,x
-  add #$40
-  lda ObjectPXH,x
-  adc #0
-  ldy ObjectPYH,x
-  sty TempY
-  jsr GetLevelColumnPtr
-  tay
-  lda MetatileFlags,y
-  bpl :+
-  lda #0
-  sta ObjectVYH,x
-  lda #$10
-  sta ObjectVYL,x
-: clc
-  rts
-NotUp:
+  bpl GoingDown
+    lda ObjectPXL,x
+    add #$40
+    lda ObjectPXH,x
+    adc #0
+    ldy ObjectPYH,x
+    sty TempY
+    jsr GetLevelColumnPtr
+    tay
+    lda MetatileFlags,y
+    bpl :+
+      lda #0
+      sta ObjectVYH,x
+      lda #$10
+      sta ObjectVYL,x
+  : clc
+    rts
+GoingDown:
   lda ObjectPYL,x
   add #$80
   lda ObjectPYH,x
@@ -1387,16 +1387,33 @@ NotUp:
   tay
   lda MetatileFlags,y
   cmp #M_SOLID_TOP
-  bcc :+ ; no touching solid
+  bcc NoTouchSolid
 YesSolid:
+    ; Snap to the ground
     lda #$80
     sta ObjectPYL,x
     lda #0
     sta ObjectVYH,x
     sta ObjectVYL,x
+
+    ; Check if the snapping pushed the fireball into the ground
+    ldy ObjectPYH,x
+    lda ObjectPXL,x
+    add #$40
+    lda ObjectPXH,x
+    adc #0
+    jsr GetLevelColumnPtr
+    tay
+    lda MetatileFlags,y
+    cmp #M_SOLID_ALL
+    bcc :+
+      dec ObjectPYH,x
+    :
+
     sec
     rts
-: clc
+NoTouchSolid:
+  ; clc - if we get here via bcc it's already cleared
   rts
 .endproc
 
