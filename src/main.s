@@ -589,7 +589,7 @@ SkipNoAutorepeat:
   sta OAM_XPOS+(4*6),y
   sta OAM_XPOS+(4*7),y
   lda PlayerDrawY
-  add #8
+  add #7
   sta OAM_YPOS+(4*4),y
   sta OAM_YPOS+(4*6),y
   add #8
@@ -639,7 +639,6 @@ SkipNoAutorepeat:
     sta TouchWidthA
     sta TouchWidthB
     sta TouchHeightA
-    lda #15
     sta TouchHeightB
     jsr ChkTouchGeneric
     bcs :+
