@@ -445,6 +445,9 @@ NoDisplayLevelNumber:
 .proc RunPlaceBlockMode
 Offset = 2
 Type   = 3
+PlayerDrawX = 4
+PlayerDrawY = 5
+
 ; Make sure rendering is ong
   lda #OBJ_ON | BG_ON
   sta PPUMASK
@@ -538,6 +541,10 @@ SkipNoAutorepeat:
   sta OAM_ATTR+(4*1),y
   sta OAM_ATTR+(4*2),y
   sta OAM_ATTR+(4*3),y
+  sta OAM_ATTR+(4*4),y
+  sta OAM_ATTR+(4*5),y
+  sta OAM_ATTR+(4*6),y
+  sta OAM_ATTR+(4*7),y
   lda PlaceBlockX
   asl
   asl
@@ -562,9 +569,36 @@ SkipNoAutorepeat:
   sta OAM_YPOS+(4*1),y
   sta OAM_YPOS+(4*3),y
 
+  ; Draw player marker
+  RealYPosToScreenPos PlayerPYL, PlayerPYH, PlayerDrawY
+  RealXPosToScreenPos PlayerPXL, PlayerPXH, PlayerDrawX
+  lda #$34
+  sta OAM_TILE+(4*4),y
+  lda #$35
+  sta OAM_TILE+(4*5),y
+  lda #$36
+  sta OAM_TILE+(4*6),y
+  lda #$37
+  sta OAM_TILE+(4*7),y
+  ldx PlayerDir
+  lda PlayerDrawX
+  add PlayerSymbolXOffset,x
+  sta OAM_XPOS+(4*4),y
+  sta OAM_XPOS+(4*5),y
+  add #8
+  sta OAM_XPOS+(4*6),y
+  sta OAM_XPOS+(4*7),y
+  lda PlayerDrawY
+  add #8
+  sta OAM_YPOS+(4*4),y
+  sta OAM_YPOS+(4*6),y
+  add #8
+  sta OAM_YPOS+(4*5),y
+  sta OAM_YPOS+(4*7),y
+
   tya
-  add #4*4
-  sty OamPtr
+  add #8*4
+  sta OamPtr
 
 ; Cancel the block if possible
   lda keynew
@@ -583,6 +617,34 @@ SkipNoAutorepeat:
   lda keynew
   and #KEY_A
   beq :+
+    ; Is the block being placed a solid one?
+    ldx Type
+    lda PlaceableMetatiles,x
+    tax
+    lda MetatileFlags,x
+    bpl NotSolid
+
+    ; If solid, check for collision with the player tile
+    lda OAM_XPOS+(4*0),y
+    sta TouchLeftA
+    lda OAM_YPOS+(4*0),y
+    sta TouchTopA
+
+    lda OAM_XPOS+(4*4),y
+    sta TouchLeftB
+    lda OAM_YPOS+(4*4),y
+    sta TouchTopB
+
+    lda #16
+    sta TouchWidthA
+    sta TouchWidthB
+    sta TouchHeightA
+    lda #15
+    sta TouchHeightB
+    jsr ChkTouchGeneric
+    bcs :+
+NotSolid:
+
     ldy PlaceBlockY
     lda ScrollX+1
     add PlaceBlockX
@@ -614,6 +676,9 @@ End:
   lda #0
   sta PlaceBlockInLevel
   jmp ClearOAM
+
+PlayerSymbolXOffset:
+  .byt <-8, 0
 
 ; block, spring, arrow left/down/up/right, arrow metal left/down/up/right, wood box, metal box
 PlaceableTiles0:
