@@ -29,6 +29,7 @@ WorldTimes8 = 15
   jsr CopyFromSavedInventory
 
 ; Stop any music that was playing
+; TODO: this routine is in VWF_BANK! so if SOUND_BANK gets moved I have to use a trampoline here
   lda #SOUND_BANK
   jsr SetPRG
   jsr pently_init
@@ -66,6 +67,7 @@ WorldTimes8 = 15
   ldy #<Instructions2
   jsr vwfPutsAtRow
 
+; Only display the shop text if the first world has been cleared
   lda LevelCleared
   bpl :+
   ldx #6

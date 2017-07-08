@@ -150,13 +150,13 @@ Loop:
 
   lda keynew
   and #KEY_START
-  jne JumpToLevelSelect
+  jne LevelSelect
 
   lda keynew
   and #KEY_A
   beq NoA
   ldy Cursor
-  jeq JumpToLevelSelect
+  jeq LevelSelect
   dey
   jeq BuyMode
   dey
@@ -223,6 +223,11 @@ ClearMiddleMenu:
   sta PPUSCROLL
   sta PPUSCROLL
   rts
+
+LevelSelect:
+  lda #VWF_BANK
+  jsr SetPRG
+  jmp ShowLevelSelect
 
 UpdateInventoryAmounts:
   jsr WaitVblank
