@@ -50,6 +50,7 @@
 REAL_COLLISION_TEST = 1 ; use real coordinates instead of screen coordinates
 NMI_MUSIC = 1
 LEVEL_INTROS = 1
+PLAYTESTING_BUILD = 1
 ;CPU_METER = 1
 ;DEBUG = 1
 ;AUTO_CLIMB = 1

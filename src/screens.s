@@ -203,6 +203,7 @@ BummerInstead:
   lda #VWF_BANK
   jsr SetPRG
 
+.ifndef PLAYTESTING_BUILD
   ; Calculate the starting world
   ldy #0
 : lda LevelAvailable,y
@@ -224,6 +225,10 @@ BummerInstead:
   inc StartedLevelNumber
   bne :-
 :
+.else
+  lda #0
+  sta StartedLevelNumber
+.endif
 
   jmp ShowLevelSelect
 SkipLevelSelect:
