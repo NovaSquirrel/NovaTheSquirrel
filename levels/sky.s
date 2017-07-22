@@ -19,6 +19,7 @@ sky:
   .byt $00, $00 ; boundaries
 
 skyData:
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LObjN LO::R_GROUND,         4, 7, 3, 7
   LObjN LO::WIDE_1,           6, 8, 1, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           3, 10, 2, LN1::FENCE
@@ -64,7 +65,8 @@ skyData:
   LObjN LO::R_GROUND,         0, 5, 2, 9
   LObjN LO::WIDE_1,           1, 4, 1, LN1::FENCE
   LObjN LO::R_GROUND,         4, 9, 7, 5
-  LObjN LO::WIDE_1,           2, 4, 3, LN1::SPIKES
+  LObjN LO::R_ENEMY_BARRIER      ,  1, 1, 0, 1
+  LObjN LO::WIDE_1,           1, 4, 3, LN1::SPIKES
   LObjN LO::WIDE_1,           0, 5, 3, LN1::SOLID_LEDGE
   LObjN LO::R_COIN,           0, 7, 3, 1
   LObj  LO::S_COIN,           5, 6
@@ -79,7 +81,8 @@ skyData:
   LObjN LO::WIDE_2,           1, 8, 1, LN2::BUSH
   LObjN LO::R_COIN,           5, 8, 3, 0
   LObjN LO::WIDE_1,           0, 9, 2, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_1,           2, 12, 0, LN1::SPIKES
+  LObjN LO::R_ENEMY_BARRIER      ,  2, 1, 0, 1
+  LObjN LO::WIDE_1,           0, 12, 0, LN1::SPIKES
   LObjN LO::WIDE_1,           0, 13, 2, LN1::SOLID_LEDGE
   LObj  LO::S_PRIZE,          1, 9
   LWriteCol InventoryItem::ABILITY_FIRE
@@ -99,7 +102,8 @@ skyData:
   LObj  LO::S_FLOWER,         4, 6
   LSetX 125
   LWriteCol Enemy::KING
-  LObjN LO::WIDE_1,           4, 6, 4, LN1::FENCE
+  LObjN LO::R_ENEMY_BARRIER      ,  4, 1, 0, 1
+  LObjN LO::WIDE_1,           0, 6, 4, LN1::FENCE
   LObjN LO::R_GROUND,         0, 7, 4, 7
   LObj  LO::S_GROUND_CLIMB_R, 5, 7
   LObjN LO::R_GROUND,         0, 8, 0, 1
@@ -112,7 +116,8 @@ skyData:
   LObj  LO::S_PRIZE,          0, 6
   LObj  LO::S_HEART,          4, 6
   LObj  LO::S_SPRING,         0, 9
-  LObjN LO::WIDE_2,           7, 10, 1, LN2::BUSH
+  LObjN LO::R_ENEMY_BARRIER      ,  2, 1, 0, 1
+  LObjN LO::WIDE_2,           5, 10, 1, LN2::BUSH
   LObjN LO::R_GROUND,         0, 11, 9, 3
   LObj  LO::S_GROUND_CLIMB_L, 3, 10
   LObjN LO::R_GROUND,         1, 10, 5, 0
@@ -123,7 +128,8 @@ skyData:
   LObjN LO::R_GROUND,         1, 9, 6, 5
   LObjN LO::R_GROUND,         1, 8, 5, 0
   LObjN LO::WIDE_1,           1, 7, 0, LN1::SPIKES
-  LObj  LO::S_BIGHEART,       2, 7
+  LObjN LO::R_ENEMY_BARRIER      ,  1, 1, 0, 1
+  LObj  LO::S_BIGHEART,       1, 7
   LObjN LO::WIDE_2,           3, 8, 4, LN2::STONE_BRIDGE
   LObjN LO::R_WATER,          0, 11, 4, 3
   LObjN LO::R_COIN,           1, 6, 2, 0
@@ -146,7 +152,8 @@ skyData:
   LObjN LO::R_GROUND,         0, 12, 8, 2
   LObjN LO::WIDE_1,           2, 11, 4, LN1::TALLGRASS
   LObjN LO::R_COIN,           1, 9, 2, 0
-  LObj  LO::S_SPRING,         5, 11
+  LObjN LO::R_ENEMY_BARRIER      ,  3, 1, 0, 1
+  LObj  LO::S_SPRING,         2, 11
   LObjN LO::R_GROUND,         7, 12, 8, 2
   LObjN LO::R_GROUND,         9, 10, 6, 4
   LObj  LO::S_GROUND_CLIMB_R, 7, 10
@@ -173,11 +180,16 @@ skySprite:
   LSpr Enemy::GOOMBA,              1, 103,   8
   LSpr Enemy::GOOMBA,              1, 116,   6
   LSpr Enemy::CANNON_2,            0, 120,   1, 2
+  LSpr Enemy::KING,                0, 122,   1
   LSpr Enemy::OWL,                 0, 130,   6
   LSpr Enemy::THWOMP,              0, 139,   7
+  LSpr Enemy::KING,                0, 140,   1
+  LSpr Enemy::KING,                0, 155,   1
   LSpr Enemy::GOOMBA,              1, 161,   7
+  LSpr Enemy::KING,                0, 183,   1
   LSpr Enemy::GOOMBA,              1, 184,   6
   LSpr Enemy::KING,                0, 216,   2
+  LSpr Enemy::KING,                0, 223,   1
   LSpr Enemy::GOOMBA,              1, 232,  10
   LSpr Enemy::GOOMBA,              1, 236,  11
   .byt 255 ; end
