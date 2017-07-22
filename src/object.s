@@ -627,6 +627,7 @@ No:
 .endproc
 
 ; Causes the object to hover in place
+; takes over ObjectF4 and uses it for hover position
 .proc EnemyHover
   ldy ObjectF4,x
 
@@ -1262,6 +1263,10 @@ ForceSolid:
 
   clc
   rts
+.endproc
+.proc EnemyWalkEvenIfStunned
+  sta EnemyWalk::WalkDistance
+  jmp EnemyWalk::Yes
 .endproc
 
 ; Increases enemy gravity and applies it

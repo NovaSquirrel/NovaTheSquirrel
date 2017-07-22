@@ -542,7 +542,7 @@ ProjFlame:
 
 ProjWaterBottle:
   jsr EnemyGravity
-  jsr EnemyApplyVelocity
+  jsr EnemyApplyVelocity ; actually applies the vertical velocity a second time
 
   jsr GetPointerForMiddle
   cmp #Metatiles::CAMPFIRE

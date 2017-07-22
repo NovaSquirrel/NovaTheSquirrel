@@ -2152,6 +2152,12 @@ Direction: .byt <-1, 1
 .endproc
 
 .proc ObjectBossFight
+WALKER = 0
+JUMPER = 1
+DIAGONAL = 2
+BOMBER = 3
+SMILOID = 4
+
   ; Get the boss number
   lda ObjectF3,x
   asl
@@ -2168,27 +2174,49 @@ Direction: .byt <-1, 1
   pha
   rts
 
-NumRoutines = 1
+NumRoutines = 2
 
 RunBossRoutine:
   .raddr DABGFight
+  .raddr DABGFight
 InitBossRoutine:
   .raddr DABGInit
+  .raddr DABGInit
+MaxOnScreen:
+  .byt 6, 3
+AmountToKill:
+  .byt 12, 8
+EnemyListIndex: ; where to start in EnemyList
+  .byt 0, 12
+
+EnemyList:
+; fight 1
+  .byt WALKER, WALKER, WALKER, WALKER
+  .byt WALKER, WALKER, WALKER, WALKER
+  .byt WALKER, WALKER, WALKER, WALKER
+; fight 2
+  .byt SMILOID, SMILOID, SMILOID, SMILOID
+  .byt WALKER, WALKER, WALKER, WALKER
 
 DABGInit:
-  lda #12
+  ldy ObjectF3,x
+  lda AmountToKill,y
   sta LevelVariable
+  lda EnemyListIndex,y
+  sta LevelVariable2
   rts
 DABGFight:
   stx TempX
 
-  lda #6
+; Limit max number of enemies onscreen to the amount left
+  ldy ObjectF3,x
+  lda MaxOnScreen,y
   sta 1 ; max
   lda LevelVariable
   beq WonTeleport
-  cmp #6
+  cmp MaxOnScreen,y
   bcs :+
-  sta 1 ; max is the minimum of 6 or the number of enemies left
+  sta 1
 :
 
   lda retraces
@@ -2202,6 +2230,12 @@ DABGFight:
   jsr FindFreeObjectForTypeX
   bcc NoAddST
   jsr ObjectClearX
+  ; get the next enemy
+  ldy LevelVariable2
+  lda EnemyList,y
+  inc LevelVariable2
+  sta ObjectF3,x
+
   lda PlayerPXH
   sta ObjectPXH,x
   lda #0
@@ -2223,10 +2257,11 @@ WonTeleport:
 .endproc
 
 .proc ObjectSchemeTeam
-WALKER = 0
-JUMPER = 1
-DIAGONAL = 2
-BOMBER = 3
+WALKER = ObjectBossFight::WALKER
+JUMPER = ObjectBossFight::JUMPER
+DIAGONAL = ObjectBossFight::DIAGONAL
+BOMBER = ObjectBossFight::BOMBER
+SMILOID = ObjectBossFight::SMILOID
 
 HeadTile = 0
 BodyTile = 1
@@ -2234,31 +2269,24 @@ BodyTile = 1
 ProjectileIndex = EnemyGetShotTest::ProjectileIndex
 ProjectileType  = EnemyGetShotTest::ProjectileType
 
+  ; Do alternate behavior if it's a smiloid
+  lda ObjectF3,x
+  cmp #SMILOID
+  jcs DoSmiloid
+
   ; Fall and move forward if not falling
+  ; Regular enemies are 8x16, so temporarily change EnemyRightEdge
   lda #$70
   sta EnemyRightEdge
   jsr EnemyFall
   bcc :+
   lda #$0e
   jsr EnemyWalk
-: jsr EnemyAutoBump
-  lda #$f0
+  jsr EnemyAutoBump
+: lda #$f0
   sta EnemyRightEdge
 
-  ; Wrap positions around
-  lda ObjectPYH,x
-  bmi :+
-    cmp #14
-    bcc :+
-      lda #0
-      sta ObjectPYH,x
-      sta ObjectPYL,x
-      
-      jsr huge_rand
-      and #$1f
-      sta ObjectPXH,x
-  :
-
+  jsr WrapVertically
   jsr DrawSchemeTeam
 
 ShootPlayerMaybe:
@@ -2281,12 +2309,13 @@ ShootPlayerMaybe:
     and #1
     tay
     lda BulletSpeedXL,y
+
     sta 1
     lda BulletSpeedXH,y
     sta 2
 
     jsr FindFreeObjectY
-    bcc :+
+    bcc NoShoot
       jsr ObjectCopyPosXY
       jsr ObjectClearY
       lda #Enemy::BLASTER_SHOT*2
@@ -2433,10 +2462,163 @@ BulletSpeedXL:
 BulletSpeedXH:
   .byt >($11), >(-$11)
 
-BodyAnim:
+BulletSpeedXL2:
+  .byt <($21), <(-$21)
+BulletSpeedXH2:
+  .byt >($21), >(-$21)
+
+BodyAnim: ; animations for the body types
   .byt $10, $11, $10, $12 ; walking
   .byt $14, $15, $14, $15 ; jumping
   .byt $13, $13, $13, $13 ; flying
+
+WrapVertically:
+  ; Wrap positions around
+  lda ObjectPYH,x
+  bmi :+
+    cmp #14
+    bcc :+
+      lda #0
+      sta ObjectPYH,x
+      sta ObjectPYL,x
+      
+      jsr huge_rand
+      and #$1f
+      sta ObjectPXH,x
+  :
+  rts
+
+; ------------------ smiloid-only stuff ---------------
+
+DoSmiloid:
+  jsr EnemyFall
+  bcc :+
+  ; smiloid jumping
+  lda PlayerPYH
+  sub ObjectPYH,x
+  abs                ; get coarse distance difference
+  cmp #2
+  bcc :+
+    lda ObjectF2,x
+    bne :+
+    lda PlayerPYH    ; player above smiloid?
+    cmp ObjectPYH,x
+    bcs :+
+      lda #<(-$50)
+      sta ObjectVYL,x
+      lda #>(-$50)
+      sta ObjectVYH,x
+  :
+
+  lda ObjectF2,x ; float over to player while the smiloid is stunned
+  beq :+
+;    jsr EnemyLookAtPlayer
+    lda #$20
+    jsr EnemyWalkEvenIfStunned
+    jsr EnemyAutoBump
+
+    lda ObjectPYH,x
+    cmp PlayerPYH
+    bcc :+
+      lda #<(-$10)
+      sta ObjectVYL,x
+      lda #>(-$10)
+      sta ObjectVYH,x
+  :
+
+  lda #$10
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+  jsr WrapVertically
+
+  lda #$04
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouchHurt
+
+  ; smiloid shooting
+  lda ObjectF2,x
+  bne NoShoot2
+
+  lda retraces
+  and #15
+  bne NoShoot2
+
+  lda PlayerPYL
+  add #$80
+  lda PlayerPYH
+  adc #0
+  cmp ObjectPYH,x
+  bne NoShoot2
+    lda ObjectPXH,x ; look at the player
+    cmp PlayerPXH
+    lda ObjectF1,x
+    and #<~1
+    adc #0
+    sta ObjectF1,x
+    and #1
+    tay            ; use the direction as an index now
+    lda BulletSpeedXL2,y
+
+    sta 1
+    lda BulletSpeedXH2,y
+    sta 2
+
+    jsr FindFreeObjectY
+    bcc NoShoot2
+      jsr ObjectCopyPosXYOffset
+      jsr ObjectClearY
+      lda #Enemy::BLASTER_SHOT*2
+      sta ObjectF1,y
+      lda #$1c
+      sta ObjectF3,y
+      lda #10
+      sta ObjectTimer,y
+      lda 1
+      sta ObjectVXL,y
+      lda 2
+      sta ObjectVXH,y
+NoShoot2:
+
+  ; check for collision with bullets
+  jsr EnemyGetShotTest
+  bcc :+
+  lda ObjectF2,x
+  bne :+
+    ; stun the enemy
+    lda #ENEMY_STATE_STUNNED
+    sta ObjectF2,x
+    lda #180
+    sta ObjectTimer,x
+
+    ; remove the projectile
+    ldy ProjectileIndex
+    lda #0
+    sta ObjectF1,y
+
+    lda #SFX::ENEMY_HURT
+    sta NeedSFX
+
+    inc ObjectF4,x ; increment damage counter
+    lda ObjectF4,x
+    cmp #4         ; die if shot too much
+    bcc :+
+      lda #Enemy::POOF * 2
+      sta ObjectF1,x
+      lda #0
+      sta ObjectTimer,x
+      sta ObjectF2,x
+      sta ObjectF3,x
+      sta ObjectF4,x
+      sta O_RAM::OBJ_TYPE ; fixes a bug where after changing to the poof, it still checks for projectiles
+
+      lda #SFX::ENEMY_SMOOSH
+      sta NeedSFX
+
+      countdown LevelVariable
+:
+
+  rts
 .endproc
 
 .proc ObjectFlyingArrow

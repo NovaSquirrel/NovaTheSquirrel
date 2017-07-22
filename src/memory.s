@@ -199,6 +199,7 @@
   ScratchPage = $700
 
   LevelVariable:     .res 1 ; cleared to zero on level start, free for whatever
+  LevelVariable2:    .res 1
 
   NeedAbilityChange: .res 1
   NeedAbilityChangeNoSound: .res 1
