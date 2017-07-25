@@ -2185,7 +2185,7 @@ InitBossRoutine:
 MaxOnScreen:
   .byt 6, 3
 AmountToKill:
-  .byt 12, 8
+  .byt 12, 10
 EnemyListIndex: ; where to start in EnemyList
   .byt 0, 12
 
@@ -2195,8 +2195,9 @@ EnemyList:
   .byt WALKER, WALKER, WALKER, WALKER
   .byt WALKER, WALKER, WALKER, WALKER
 ; fight 2
-  .byt SMILOID, SMILOID, SMILOID, SMILOID
-  .byt WALKER, WALKER, WALKER, WALKER
+  .byt SMILOID, WALKER, SMILOID, WALKER
+  .byt WALKER,  WALKER, WALKER,  WALKER
+  .byt SMILOID, SMILOID
 
 DABGInit:
   ldy ObjectF3,x

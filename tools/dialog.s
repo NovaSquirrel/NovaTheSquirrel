@@ -155,8 +155,8 @@ AfterFirstBattle:
 .byt SCR::NARRATE, CHAR::SHERWIN, "Y", "e", "s", $fd, $c0, $c3, "a", "r", $ff, $88, " ", "w", $c4, " ", $be, "f", "i", $db, "t", SCR::NEWLINE, $9d, " ", $9c, " ", $c8, "i", "r", $ff, "g", "r", $d7, "n", SCR::NEWLINE, $80, "?", " ", "S", $c3, " ", $bc, "t", $ad, $fe, "k", "i", $f3, "e", "d", SCR::NEWLINE, $9c, " ", "S", $e2, "e", $d0, " ", "T", $ec, "m", " ", $d0, "m", "b", $ed, "s", "'", SCR::NEWLINE, $a7, "t", "s", "."
 ; [KOREY]Oh good! Do you know where she is? Or where -you- are?
 .byt SCR::NARRATE, CHAR::KOREY, "O", "h", " ", $cf, "o", "d", $fd, "D", "o", " ", $a6, " ", $8f, " ", $da, $ed, "e", SCR::NEWLINE, $aa, " ", $b9, "?", " ", "O", $ea, $da, $ed, $e7, "-", $a6, "-", " ", "a", "r", "e", "?"
-; [SHERWIN]I got taken to Atomic Videoclip Zone so I'll asume that's their base. The squirrel seemed to be heading to Bummer Club.
-.byt SCR::NARRATE, CHAR::SHERWIN, $c0, $cf, $d3, $90, "n", " ", $bb, "A", $bc, "m", "i", "c", SCR::NEWLINE, "V", "i", "d", "e", "o", "c", "l", "i", "p", " ", "Z", $ac, " ", $cc, " ", $d5, " ", $c4, "u", $d0, SCR::NEWLINE, $e0, $c6, $e9, $a2, "i", $ea, "b", $c4, "e", $f6, $f8, "e", SCR::NEWLINE, $80, " ", $b3, $d0, $ff, $bb, $ba, $c3, $f7, $b1, SCR::NEWLINE, $bb, "B", "u", "m", $d0, $ea, "C", "l", "u", "b", "."
+; [SHERWIN]I got taken to Atomic Videoclip Zone so I'll assume that's their base. The squirrel seemed to be heading to Bummer Club.
+.byt SCR::NARRATE, CHAR::SHERWIN, $c0, $cf, $d3, $90, "n", " ", $bb, "A", $bc, "m", "i", "c", SCR::NEWLINE, "V", "i", "d", "e", "o", "c", "l", "i", "p", " ", "Z", $ac, " ", $cc, " ", $d5, " ", $c4, "s", "u", $d0, SCR::NEWLINE, $e0, $c6, $e9, $a2, "i", $ea, "b", $c4, "e", $f6, $f8, "e", SCR::NEWLINE, $80, " ", $b3, $d0, $ff, $bb, $ba, $c3, $f7, $b1, SCR::NEWLINE, $bb, "B", "u", "m", $d0, $ea, "C", "l", "u", "b", "."
 ; [KOREY]I'll meet up with her there.
 .byt SCR::NARRATE, CHAR::KOREY, $d5, " ", $d0, "e", $d3, $cd, " ", $9d, " ", $a9, " ", $88, "."
 ; []Korey rushes to the scene, introduces himself and explains Latte's situation to Nova. They chat a bit.
@@ -192,8 +192,8 @@ SmiloidAtBummerClub:
 .byt SCR::SCENE, SCENES::NOVA_AND_SMILOID
 ; <2 S_TEAM>Hey squirrel! Your adventure stops here!
 .byt SCR::SAY, SCR::SPEAKER_2|CHAR::S_TEAM, "H", "e", $fe, $80, $fd, "Y", $b6, " ", $f7, "v", $e6, "t", "u", "r", "e", SCR::NEWLINE, $de, "o", "p", $fb, $a9, "e", "!"
-; <1 SMILOID>Have a nice day!!!! Prepare to die!
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SMILOID, "H", "a", "v", $e7, $be, "n", "i", "c", $e7, "d", "a", "y", "!", "!", "!", $fd, "P", "r", "e", "p", "a", "r", $e7, $bc, SCR::NEWLINE, "d", $e3, "!"
+; <1 SMILOID>Have a nice day!!!! Prepare to die! Also do NOT shoot me three times.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SMILOID, "H", "a", "v", $e7, $be, "n", "i", "c", $e7, "d", "a", "y", "!", "!", "!", $fd, "P", "r", "e", "p", "a", "r", $e7, $bc, SCR::NEWLINE, "d", $e3, $fd, "A", "l", $cc, " ", $c5, " ", "N", "O", "T", " ", $df, $e4, $d3, $d0, SCR::NEWLINE, $e0, "r", $d7, " ", "t", "i", $d0, "s", "."
 ; <0 NOVA_WOW>Lia, run!
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA_WOW, "L", "i", "a", $f5, "r", $f2, "!"
 ; [LIA]Aaa, way ahead of you there, Nova!

@@ -128,7 +128,7 @@
 :SmiloidAtBummerClub:
 `scene NOVA_AND_SMILOID
 <2 S_TEAM>Hey squirrel! Your adventure stops here!
-<1 SMILOID>Have a nice day!!!! Prepare to die!
+<1 SMILOID>Have a nice day!!!! Prepare to die! Also do NOT shoot me three times.
 <0 NOVA_WOW>Lia, run!
 [LIA]Aaa, way ahead of you there, Nova!
 <2 S_TEAM>Don't worry, we're only interested in taking out *you*.

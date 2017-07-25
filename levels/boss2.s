@@ -56,7 +56,8 @@ boss2Data:
   LObjN LO::WIDE_1,           0, 7, 3, LN1::SOLID_LEDGE
   LObjN LO::R_BG_GLASS_RED,   0, 8, 0, 1
   LObjN LO::R_GROUND,         0, 10, 5, 2
-  LObj  LO::S_BIGHEART,       2, 6
+  LObj  LO::S_BIGHEART,       1, 4
+  LObj  LO::S_BIGHEART,       1, 6
   LObjN LO::R_BG_GLASS_BLUE,  1, 4, 0, 2
   LObjN LO::R_CEILING_BARRIER,2, 0, 0, 4
   LObjN LO::R_SOLID_BLOCK,    1, 4, 0, 8
