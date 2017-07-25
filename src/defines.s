@@ -274,6 +274,7 @@ MS_EMPTY = 32
   BRICKS
   BALLOON
   FLOAT_TEXT
+  PUSHABLE_BLOCK
 .endenum
 
 .enum MusicTracks

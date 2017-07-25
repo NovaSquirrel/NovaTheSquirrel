@@ -104,6 +104,7 @@ BricksHi:
 .endproc
 
 ; inputs: A (Poof subtype)
+; locals: TempVal+1
 .proc MakePoofAtBlock
   pha
   sty TempVal+1
@@ -121,9 +122,14 @@ BricksHi:
   sta ObjectPXL,y
   sta ObjectPYL,y
   sta ObjectTimer,y
+  sta ObjectF3,y
+  lda PlayerDir
+  sta ObjectF4,y
+  sec
   rts
 NoSlotFree:
   pla
+  clc
   rts
 .endproc
 
@@ -265,12 +271,17 @@ Delete:
   rts
 .endproc
 .proc TouchedPushableBlock
+GoUp = 9
 OldLevelBlockPtr = 10
 OldYIndex = 12
-  lda FallingBlockPointer+1
-  beq :+
+  ; Make sure there's a free slot first
+  sty OldYIndex
+  jsr FindFreeObjectY
+  bcs :+
+    ldy OldYIndex
     rts
   :
+  ldy OldYIndex
 
   ; save the old pointer
   lda LevelBlockPtr+0
@@ -292,9 +303,7 @@ Left:
   
   jsr PreMove
 
-  lda #Metatiles::PUSHABLE_BLOCK
-  jsr ChangeBlockFar
-  jmp Erase
+  jmp EraseL
 Right:
   lda LevelBlockPtr
   add #16
@@ -303,25 +312,44 @@ Right:
 
   jsr PreMove
 
-  lda #Metatiles::PUSHABLE_BLOCK
-  jsr ChangeBlockFar
   jmp Erase
 
-Erase:     ; erase old position
+EraseL:
+  jsr Erase
+  lda #Enemy::POOF*2+1 ; make the block move left instead
+  sta ObjectF1,y
+  rts
+Erase:
+  ; put a BOULDER_SOLID where it's moving into
+  lda #Metatiles::BOULDER_SOLID
+  jsr ChangeBlockFar
+
+  tya
+  sub OldYIndex
+  sta GoUp
+
   ldy OldYIndex
   lda OldLevelBlockPtr+0
   sta LevelBlockPtr+0
   lda OldLevelBlockPtr+1
   sta LevelBlockPtr+1
-  lda BackgroundMetatile
-  jmp ChangeBlockFar
 
-EraseBoth: ; hit a cherry bomb
-  lda #SFX::BOOM1
-  jsr PlaySound
   lda BackgroundMetatile
   jsr ChangeBlockFar
-  jmp Erase
+  lda #PoofSubtype::PUSHABLE_BLOCK
+  jsr MakePoofAtBlock
+  ; don't need to check for success since we already checked
+  ; if there was a free slot
+  lda GoUp
+  sta ObjectVYL,y
+  rts
+
+;EraseBoth: ; hit a cherry bomb
+;  lda #SFX::BOOM1
+;  jsr PlaySound
+;  lda BackgroundMetatile
+;  jsr ChangeBlockFar
+;  jmp Erase
 
 PreMove:   ; check if the block should move up or anything
   ; can't move if the block has another pushable block on top
@@ -334,8 +362,6 @@ PreMove:   ; check if the block should move up or anything
   lda (LevelBlockPtr),y ; only overwrite blank blocks
   cmp BackgroundMetatile
   beq MoveIsOkay
-  cmp #Metatiles::CHERRY_BOMB
-  beq EraseBoth
 ; okay it's solid, but is the one above solid?
     dey
     lda (LevelBlockPtr),y ; nope, move over there
@@ -346,19 +372,6 @@ Abort:
     pla
     rts
 MoveIsOkay:
-  ; check if moving onto air
-  iny
-  lda (LevelBlockPtr),y
-  cmp BackgroundMetatile
-  bne :+
-    ; if moving into air, start falling
-    lda LevelBlockPtr+0
-    sta FallingBlockPointer+0
-    lda LevelBlockPtr+1
-    sta FallingBlockPointer+1
-    sty FallingBlockY
-  :
-  dey
   rts
 .endproc
 

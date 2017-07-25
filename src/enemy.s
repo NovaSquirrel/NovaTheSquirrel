@@ -190,6 +190,87 @@ Metasprite:
   jmp GenericPoof
 .endproc
 
+.proc ObjectPushableBlock
+  lda FallingBlockPointer+1
+  bne OnlyDraw
+
+  ; Move in the appropriate direction
+  lda ObjectF1,x
+  lsr
+  bcs :+
+    lda ObjectPXL,x
+    add #$20
+    sta ObjectPXL,x
+    addcarryx ObjectPXH
+  :
+  lda ObjectF1,x
+  lsr
+  bcc :+
+    lda ObjectPXL,x
+    sub #$20
+    sta ObjectPXL,x
+    subcarryx ObjectPXH
+  :
+  ; Go up if necessary
+  lda ObjectVYL,x
+  beq :+
+    lda ObjectPYL,x
+    sub #$20
+    sta ObjectPYL,x
+    subcarryx ObjectPYH
+  :
+
+  ; 
+  lda ObjectPXL,x
+  bne NotAligned
+    lda #0
+    sta ObjectF1,x
+    ldy ObjectPYH,x
+    lda ObjectPXH,x
+    jsr GetLevelColumnPtr
+    lda #Metatiles::PUSHABLE_BLOCK
+    jsr ChangeBlockFar
+
+    ; Check if it needs to start falling
+    iny
+    lda (LevelBlockPtr),y
+    cmp BackgroundMetatile
+    beq :+
+      rts
+    :
+    ; Start falling
+    lda LevelBlockPtr+0
+    sta FallingBlockPointer+0
+    lda LevelBlockPtr+1
+    sta FallingBlockPointer+1
+    sty FallingBlockY
+    rts
+  NotAligned:
+
+OnlyDraw:
+  ; Move the block one pixel up to counteract sprites being drawn one pixel down 
+  lda ObjectPYL,x
+  pha
+  lda ObjectPYH,x
+  pha
+
+  lda ObjectPYL,x
+  sub #$10
+  sta ObjectPYL,x
+  subcarryx ObjectPYH
+
+  lda #$58
+  ldy #OAM_COLOR_1
+  jsr DispEnemyWide
+
+  ; Restore Y position
+  pla
+  sta ObjectPYH,x
+  pla
+  sta ObjectPYL,x
+  rts
+.endproc
+
 .proc ObjectFlyawayBalloon
 DrawX = O_RAM::OBJ_DRAWX
 DrawY = O_RAM::OBJ_DRAWY
@@ -272,6 +353,9 @@ DrawY = O_RAM::OBJ_DRAWY
   jeq ObjectFlyawayBalloon
   cmp #PoofSubtype::FLOAT_TEXT
   jeq ObjectFloatingText
+  cmp #PoofSubtype::PUSHABLE_BLOCK
+  jeq ObjectPushableBlock
+  ; refactor this?
 
   lda #OAM_COLOR_1
   sta 1
