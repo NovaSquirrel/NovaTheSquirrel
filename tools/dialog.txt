@@ -390,3 +390,9 @@
 `scene NOVA_LIA_SIGN
 <2 SIGN>You should have some up arrow blocks in your inventory. Use them wisely.
 `end
+
+:AboutPickupBlock:
+`scene NOVA_AND_SIGN
+<1 SIGN>Stand on these pickup blocks and press Up to pick them up. Press Down to set them down again.
+`end
+

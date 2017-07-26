@@ -190,6 +190,75 @@ Metasprite:
   jmp GenericPoof
 .endproc
 
+.proc ObjectCarryableBlock
+  jsr CarryAboveHead
+
+  ; Animation for picking the block up
+  ldy ObjectF4,x
+  beq :+
+    dec ObjectF4,x
+    lda ObjectPYL,x
+    add YAnimationL,y
+    sta ObjectPYL,x
+    lda ObjectPYH,x
+    adc YAnimationH,y
+    sta ObjectPYH,x
+  :  
+
+  lda PlayerOnGround ; Down = place on the ground
+  beq :+
+  lda keydown
+  and #KEY_DOWN
+  beq :+
+    ; Check if it would push the player into a ceiling
+    ; similar to the code used for ice and burgers
+    lda PlayerPYL
+    add #$80
+    lda PlayerPYH
+    adc #<-1
+    tay
+    lda PlayerPXL
+    add #$40
+    lda PlayerPXH
+    adc #0
+    jsr GetLevelColumnPtr
+    tay
+    lda MetatileFlags,y
+    bmi :+
+
+    ; Get the tile this is going to go into
+    lda PlayerPYL
+    add #<(20*16)
+    lda PlayerPYH
+    adc #>(20*16)
+    tay
+    lda PlayerPXL
+    add #$40
+    lda PlayerPXH
+    adc #0
+    jsr GetLevelColumnPtr
+    cmp BackgroundMetatile ; can only place it into background
+    bne :+
+      lda #Metatiles::PICKUP_BLOCK
+      jsr ChangeBlockFar
+      dec PlayerPYH
+      lda #0
+      sta ObjectF1,x
+      sta CarryingPickupBlock
+      rts
+  :
+
+  lda #$58
+  ldy #OAM_COLOR_1
+  jsr DispEnemyWide
+  rts
+YAnimationL:
+  .lobytes 0, 2*16, 4*16, 8*16, 10*16, 16*16, 20*16, 24*16
+YAnimationH:
+  .hibytes 0, 2*16, 4*16, 8*16, 10*16, 16*16, 20*16, 24*16
+
+.endproc
+
 .proc ObjectPushableBlock
   lda FallingBlockPointer+1
   bne OnlyDraw
@@ -346,22 +415,34 @@ DrawY = O_RAM::OBJ_DRAWY
   RealXPosToScreenPosByX ObjectPXL, ObjectPXH, DrawX
 .endif
   RealYPosToScreenPosByX ObjectPYL, ObjectPYH, DrawY
-  lda ObjectF2,x
-  cmp #PoofSubtype::BRICKS
-  jeq BrickPoof
-  cmp #PoofSubtype::BALLOON
-  jeq ObjectFlyawayBalloon
-  cmp #PoofSubtype::FLOAT_TEXT
-  jeq ObjectFloatingText
-  cmp #PoofSubtype::PUSHABLE_BLOCK
-  jeq ObjectPushableBlock
-  ; refactor this?
+
+  ldy ObjectF2,x
+  beq RegularPoof
+    lda ObjHi-1,y
+    pha
+    lda ObjLo-1,y
+    pha
+    rts
+RegularPoof:
 
   lda #OAM_COLOR_1
   sta 1
   lda #$51
   sta 2
   jmp GenericPoof
+
+ObjLo:
+  .byt <(BrickPoof-1)
+  .byt <(ObjectFlyawayBalloon-1)
+  .byt <(ObjectFloatingText-1)
+  .byt <(ObjectPushableBlock-1)
+  .byt <(ObjectCarryableBlock-1)
+ObjHi:
+  .byt >(BrickPoof-1)
+  .byt >(ObjectFlyawayBalloon-1)
+  .byt >(ObjectFloatingText-1)
+  .byt >(ObjectPushableBlock-1)
+  .byt >(ObjectCarryableBlock-1)
 .endproc
 
 .proc ObjectSneaker
@@ -2115,6 +2196,22 @@ Frames:
 .byt 0, 4, 8, 4
 .endproc
 
+.proc CarryAboveHead
+  ; Position above the player's head
+  lda PlayerPXL
+  sub #$40
+  sta ObjectPXL,x
+  lda PlayerPXH
+  sbc #0
+  sta ObjectPXH,x
+  lda PlayerPYL
+  sta ObjectPYL,x
+  lda PlayerPYH
+  sub #1
+  sta ObjectPYH,x
+  rts
+.endproc
+
 .proc ObjectSunKey
   lda #$14
   ldy #OAM_COLOR_3
@@ -2122,6 +2219,8 @@ Frames:
   jsr EnemyPlayerTouch
   ; Pick up if touching and pressing Up
   bcc :+
+    lda CarryingPickupBlock
+    bne :+
     lda keydown
     and #KEY_UP
     beq :+
@@ -2142,18 +2241,7 @@ IsCarried:
     sta ObjectF4,x
     sta CarryingSunKey
   :
-  ; Position above the player's head
-  lda PlayerPXL
-  sub #$40
-  sta ObjectPXL,x
-  lda PlayerPXH
-  sbc #0
-  sta ObjectPXH,x
-  lda PlayerPYL
-  sta ObjectPYL,x
-  lda PlayerPYH
-  sub #1
-  sta ObjectPYH,x
+  jsr CarryAboveHead
 
   lda retraces
   bne :+

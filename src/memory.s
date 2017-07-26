@@ -289,6 +289,7 @@ LevelZeroWhenLoad_Start:
   FallingBlockY:          .res 1
   BackgroundMetatile:     .res 1
   CarryingSunKey:         .res 1
+  CarryingPickupBlock:    .res 1
 
   ; ScreenFlags stores flags for each screen in the level; so far there's just one flag:
   SCREEN_BOUNDARY = 1 ; boundary on left side of screen

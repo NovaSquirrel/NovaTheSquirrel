@@ -275,6 +275,8 @@ MS_EMPTY = 32
   BALLOON
   FLOAT_TEXT
   PUSHABLE_BLOCK
+  CARRYABLE_BLOCK
+  COUNT
 .endenum
 
 .enum MusicTracks

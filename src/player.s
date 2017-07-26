@@ -1038,18 +1038,57 @@ FC___LR:
   jsr SavePosition
   lsr PlayerOnLadder
 
-  ; Should probably check for special ground,
-  ; but so far spikes are the only type of it
-  lda BlockLL
-  cmp #Metatiles::SPIKES
+  ; Right now spikes and pickup blocks are the
+  ; only special ground types. If there are more
+  ; I should probably use a table.
+  lda #Metatiles::SPIKES
+  cmp BlockLL
   beq @Spikes
-  lda BlockLR
-  cmp #Metatiles::SPIKES
+  cmp BlockLR
   beq @Spikes
   bne @NoSpikes
 @Spikes:
   jsr HurtPlayer
 @NoSpikes:
+
+  lda keynew ; check for a block to pickup if pressing up
+  and #KEY_UP
+  beq :+
+    lda CarryingPickupBlock
+    ora CarryingSunKey
+    bne :+
+    jsr FindFreeObjectY
+    bcc :+
+    sty TempVal
+
+    lda PlayerPYL
+    add #<(24*16)
+    lda PlayerPYH
+    adc #>(24*16)
+    tay
+    lda PlayerPXL
+    add #$40
+    lda PlayerPXH
+    adc #0
+    jsr GetLevelColumnPtr
+    cmp #Metatiles::PICKUP_BLOCK
+    bne :+
+      lda BackgroundMetatile
+      jsr ChangeBlockFar
+      ldy TempVal
+      lda #Enemy::POOF*2
+      sta ObjectF1,y
+      lda #PoofSubtype::CARRYABLE_BLOCK
+      sta ObjectF2,y
+      lda #8
+      sta ObjectF4,y ; animation counter
+      lda PlayerPXH
+      sta ObjectPXH,y
+      lda PlayerPYH
+      sta ObjectPYH,y
+      ; PXL and PYL are set before the block ever gets drawn
+      inc CarryingPickupBlock
+  :
 
   ; Fall through a platform
   ldx BlockLL

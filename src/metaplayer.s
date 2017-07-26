@@ -123,8 +123,6 @@ BricksHi:
   sta ObjectPYL,y
   sta ObjectTimer,y
   sta ObjectF3,y
-  lda PlayerDir
-  sta ObjectF4,y
   sec
   rts
 NoSlotFree:
@@ -268,8 +266,10 @@ Delete:
 .endproc
 
 .proc TouchedPickupBlock
+  ; unused because I'm treating pickup blocks specially anyway
   rts
 .endproc
+
 .proc TouchedPushableBlock
 GoUp = 9
 OldLevelBlockPtr = 10
