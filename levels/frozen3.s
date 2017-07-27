@@ -132,6 +132,7 @@ frozen3Data:
   LObjN LO::R_COIN,           0, 8, 0, 2
   LObjN LO::WIDE_3,           2, 3, 0, LN3::MINE_TRACKS_BRAKES
   LWriteCol $30
+  LObjN LO::R_CEILING_BARRIER,0, 4, 3, 0
   LObjN LO::R_GROUND,         0, 8, 4, 6
   LObj  LO::S_MTRACK_BUMP,     1, 7
   LObjN LO::R_SOLID_BLOCK,    3, 4, 0, 3

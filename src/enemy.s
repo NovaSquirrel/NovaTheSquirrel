@@ -207,6 +207,8 @@ Metasprite:
 
   lda PlayerOnGround ; Down = place on the ground
   beq :+
+  lda PlayerRidingSomething
+  bne :+
   lda keydown
   and #KEY_DOWN
   beq :+
@@ -245,6 +247,8 @@ Metasprite:
       lda #0
       sta ObjectF1,x
       sta CarryingPickupBlock
+      lda #SFX::PLACE_BLOCK
+      sta NeedSFX
       rts
   :
 
@@ -3220,9 +3224,9 @@ NoMove:
   add #$18
   ldy #OAM_COLOR_2
   jsr DispEnemyWide
-  jsr EnemyPlayerTouchHurt
   pla
   sta ObjectF2,x
+  jsr EnemyPlayerTouchHurt
   rts
 .endproc
 

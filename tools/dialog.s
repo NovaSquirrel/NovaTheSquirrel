@@ -529,6 +529,11 @@ HintUpArrow:
 ; <2 SIGN>You should have some up arrow blocks in your inventory. Use them wisely.
 .byt SCR::SAY, SCR::SPEAKER_2|CHAR::SIGN, "Y", $f4, " ", $df, $a0, " ", $9b, $9c, " ", $cd, SCR::NEWLINE, "a", $d9, "o", "w", " ", "b", "l", "o", $f3, $fb, $bf, $91, SCR::NEWLINE, $d8, "v", $e6, $bc, "r", "y", $f6, "U", $e5, " ", $92, " ", "w", $b9, "e", "l", "y", "."
 .byt SCR::END_SCRIPT
+AboutPickupBlock:
+.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
+; <1 SIGN>Stand on these pickup blocks and press Up to pick them up. Press Down to set them down again. Oh, and definitely copy a glider for this level if you have no weapon.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "S", "t", $a4, $c2, " ", $89, "p", "i", $f3, $cd, " ", "b", "l", "o", $f3, "s", SCR::NEWLINE, $a4, "p", "r", "e", $f1, " ", "U", "p", " ", $bb, "p", "i", $f3, " ", $92, " ", $cd, ".", SCR::NEWLINE, "P", "r", "e", $f1, " ", "D", "o", "w", "n", " ", $bb, $e5, $d3, $92, " ", $c5, "w", "n", SCR::NEWLINE, "a", "g", "a", $d8, $f6, "O", "h", $f5, $a4, "d", "e", "f", $d8, "i", $eb, $d2, "c", "o", "p", "y", SCR::NEWLINE, $be, "g", "l", "i", "d", $ed, " ", $a5, " ", $99, " ", "l", "e", "v", "e", "l", " ", $ce, " ", $a6, SCR::NEWLINE, $9b, $d1, " ", $c8, "a", "p", $c2, "."
+.byt SCR::END_SCRIPT
 
 CutsceneDictionary:
 .byt "squirre", 'l'|128

@@ -393,6 +393,6 @@
 
 :AboutPickupBlock:
 `scene NOVA_AND_SIGN
-<1 SIGN>Stand on these pickup blocks and press Up to pick them up. Press Down to set them down again.
+<1 SIGN>Stand on these pickup blocks and press Up to pick them up. Press Down to set them down again. Oh, and definitely copy a glider for this level if you have no weapon.
 `end
 
