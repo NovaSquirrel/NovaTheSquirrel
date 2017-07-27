@@ -857,25 +857,25 @@ TossModeString2:
 
 ; More options list
 MoreItemsListNameL:
-.byt <ExitLevelString
+.byt <ResetCheckpointString
 .byt <TossItemsString
 .byt <GameOptionsString
-.byt <ResetCheckpointString
+.byt <ExitLevelString
 MoreItemsListNameH:
-.byt >ExitLevelString
+.byt >ResetCheckpointString
 .byt >TossItemsString
 .byt >GameOptionsString
-.byt >ResetCheckpointString
+.byt >ExitLevelString
 MoreItemsListCodeL:
-.byt <(ExitLevelCode-1)
+.byt <(ResetCheckpointCode-1)
 .byt <(TossItemsCode-1)
 .byt <(GameOptionsCode-1)
-.byt <(ResetCheckpointCode-1)
+.byt <(ExitLevelCode-1)
 MoreItemsListCodeH:
-.byt >(ExitLevelCode-1)
+.byt >(ResetCheckpointCode-1)
 .byt >(TossItemsCode-1)
 .byt >(GameOptionsCode-1)
-.byt >(ResetCheckpointCode-1)
+.byt >(ExitLevelCode-1)
 
 ExitLevelString:
 .byt "Exit level",0
