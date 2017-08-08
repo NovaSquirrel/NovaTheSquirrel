@@ -145,6 +145,8 @@ ListOfProcessTiles:
   .byt Metatiles::MINE_TRACK_STEEP_RIGHT_BOT
   .byt Metatiles::MINE_TRACK_GRADUAL_LEFT_L
   .byt Metatiles::MINE_TRACK_GRADUAL_RIGHT_R
+  .byt Metatiles::FROZEN_CRACK
+  .byt Metatiles::SNOWMAN_TOP
 ListOfProcessAddrLo:
   .byt <(ProcessGround-1)
   .byt <(ProcessRock-1)
@@ -176,6 +178,8 @@ ListOfProcessAddrLo:
   .byt <(ProcessTrackSteepR-1)
   .byt <(ProcessTrackGradualL-1)
   .byt <(ProcessTrackGradualR-1)
+  .byt <(ProcessFrozenCrack-1)
+  .byt <(ProcessSnowman-1)
 ListOfProcessAddrHi:
   .byt >(ProcessGround-1)
   .byt >(ProcessRock-1)
@@ -207,7 +211,21 @@ ListOfProcessAddrHi:
   .byt >(ProcessTrackSteepR-1)
   .byt >(ProcessTrackGradualL-1)
   .byt >(ProcessTrackGradualR-1)
-
+  .byt >(ProcessFrozenCrack-1)
+  .byt >(ProcessSnowman-1)
+ProcessFrozenCrack:
+  jsr huge_rand
+  lsr
+  bcc :+
+  lda #Metatiles::FROZEN_CRACK2
+  sta (Pointer),y
+:
+  rts
+ProcessSnowman:
+  iny
+  lda #Metatiles::SNOWMAN_BOTTOM
+  sta (Pointer),y
+  rts
 ProcessTrackSupports:
 : dey
   lda (Pointer),y

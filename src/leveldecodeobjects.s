@@ -131,6 +131,8 @@
   .byt BLOCK_SINGLE,           Metatiles::MINE_TRACK_GRADUAL_RIGHT_R
   .byt BLOCK_RECTANGLE,        Metatiles::MINE_TRACK_SUPPORTS_ONLY
   .byt BLOCK_RECTANGLE,        Metatiles::ENEMY_BARRIER
+  .byt BLOCK_SINGLE,           Metatiles::SNOWMAN_TOP
+  .byt BLOCK_SINGLE,           Metatiles::FROZEN_CRACK
 .endproc
 
 .proc ObjectTypesList
@@ -175,7 +177,7 @@
   .byt Metatiles::SOLID_ROCK
   .byt Metatiles::MINE_TRACK
   .byt Metatiles::MINE_TRACK_BRAKES
-  .byt Metatiles::EMPTY
+  .byt Metatiles::FROZEN_CRACK
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY

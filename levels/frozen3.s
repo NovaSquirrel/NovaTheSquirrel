@@ -102,7 +102,8 @@ frozen3Data:
   LObjN LO::R_ROCK,           0, 9, 8, 5
   LObjN LO::R_SOLID_BLOCK,    4, 0, 4, 2
   LObj  LO::S_BIGHEART,       2, 8
-  LObjN LO::R_SOLID_BLOCK,    1, 7, 0, 1
+  LObj  LO::S_MTRACK_SUPPORTS, 1, 6
+  LObjN LO::R_SOLID_BLOCK,    0, 7, 0, 1
   LObj  LO::S_SOLID_BLOCK,    1, 8
   LObj  LO::S_MTRACK_SSR,      1, 7
   LObjN LO::R_GROUND,         0, 10, 4, 4
@@ -146,13 +147,15 @@ frozen3Data:
   LObj  LO::S_MTRACK_UPRIGHT,  1, 5
   LObjN LO::R_GROUND,         8, 10, 4, 4
   LObjN LO::R_ROCK,           1, 3, 1, 3
+  LObjN LO::R_MTRACK_SUPPORTSONLY,  0, 7, 0, 2
   LObjN LO::RECT_3,           1, 0, 1, LN3::ROCK, 16
   LObjN LO::R_ROCK,           0, 2, 4, 1
   LObjN LO::R_GROUND,         3, 8, 4, 6
   LObj  LO::S_BIGHEART,       2, 2
   LObjN LO::R_GROUND,         3, 6, 8, 8
   LObj  LO::S_W_ARROW_RIGHT,  7, 8
-  LObj  LO::R_CUSTOM,         4, 2, Metatiles::METAL_CRATE, (2<<4)|0
+  LObjN LO::R_MTRACK_SUPPORTSONLY,  1, 2, 0, 3
+  LObj  LO::R_CUSTOM,         3, 2, Metatiles::METAL_CRATE, (2<<4)|0
   LObj  LO::R_CUSTOM,         0, 7, Metatiles::CAMPFIRE, (2<<4)|0
   LObj  LO::R_CUSTOM,         0, 8, Metatiles::FORK_ARROW_UP, (2<<4)|0
   LObjN LO::WIDE_1,           0, 11, 2, LN1::SOLID_LEDGE

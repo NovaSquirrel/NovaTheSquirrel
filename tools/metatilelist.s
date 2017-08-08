@@ -205,6 +205,10 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_PAL_1 ;FROZEN_BACKGROUND
   .byt M_PAL_1 ;ENEMY_BARRIER
   .byt M_PAL_1 ;BOULDER_SOLID
+  .byt M_PAL_3 ;FROZEN_CRACK
+  .byt M_PAL_3 ;FROZEN_CRACK2
+  .byt M_PAL_0 ;SNOWMAN_TOP
+  .byt M_PAL_0 ;SNOWMAN_BOTTOM
 .endproc
 
 .pushseg
@@ -411,6 +415,10 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_EMPTY ;FROZEN_BACKGROUND
   .byt M_EMPTY ;ENEMY_BARRIER
   .byt M_SOLID_ALL|M_SOLID_TOP ;BOULDER_SOLID
+  .byt M_POST_PROCESS ;FROZEN_CRACK
+  .byt M_EMPTY ;FROZEN_CRACK2
+  .byt M_SOLID_ALL|M_POST_PROCESS ;SNOWMAN_TOP
+  .byt M_SOLID_ALL ;SNOWMAN_BOTTOM
 .endproc
 
 .popseg
@@ -616,6 +624,10 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $78 ;FROZEN_BACKGROUND
   .byt $3f ;ENEMY_BARRIER
   .byt $3f ;BOULDER_SOLID
+  .byt $c0 ;FROZEN_CRACK
+  .byt $c8 ;FROZEN_CRACK2
+  .byt $c4 ;SNOWMAN_TOP
+  .byt $c6 ;SNOWMAN_BOTTOM
 .endproc
 
 .proc MetatileLL
@@ -820,6 +832,10 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $7a ;FROZEN_BACKGROUND
   .byt $3f ;ENEMY_BARRIER
   .byt $3f ;BOULDER_SOLID
+  .byt $d0 ;FROZEN_CRACK
+  .byt $d8 ;FROZEN_CRACK2
+  .byt $d4 ;SNOWMAN_TOP
+  .byt $d6 ;SNOWMAN_BOTTOM
 .endproc
 
 .proc MetatileUR
@@ -1024,6 +1040,10 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $79 ;FROZEN_BACKGROUND
   .byt $3f ;ENEMY_BARRIER
   .byt $3f ;BOULDER_SOLID
+  .byt $c1 ;FROZEN_CRACK
+  .byt $c9 ;FROZEN_CRACK2
+  .byt $c5 ;SNOWMAN_TOP
+  .byt $c7 ;SNOWMAN_BOTTOM
 .endproc
 
 .proc MetatileLR
@@ -1228,5 +1248,9 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $7b ;FROZEN_BACKGROUND
   .byt $3f ;ENEMY_BARRIER
   .byt $3f ;BOULDER_SOLID
+  .byt $d1 ;FROZEN_CRACK
+  .byt $d9 ;FROZEN_CRACK2
+  .byt $d5 ;SNOWMAN_TOP
+  .byt $d7 ;SNOWMAN_BOTTOM
 .endproc
 

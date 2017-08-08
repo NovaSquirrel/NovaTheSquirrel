@@ -632,12 +632,6 @@
 					"W":	1,
 					"H":	3
 				}, {
-					"Id":	"SMALL_ROCK",
-					"X":	59,
-					"Y":	9,
-					"W":	1,
-					"H":	1
-				}, {
 					"Id":	"WATER",
 					"X":	117,
 					"Y":	11,
@@ -1074,6 +1068,30 @@
 					"Y":	4,
 					"W":	4,
 					"H":	1
+				}, {
+					"Id":	"SMALL_ROCK",
+					"X":	59,
+					"Y":	9,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_SUPPORTS",
+					"X":	92,
+					"Y":	6,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_SUPPORTS_ONLY",
+					"X":	151,
+					"Y":	2,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"MINE_TRACK_SUPPORTS_ONLY",
+					"X":	134,
+					"Y":	7,
+					"W":	1,
+					"H":	3
 				}]
 		}, {
 			"Name":	"Sprites",

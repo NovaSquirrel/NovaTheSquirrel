@@ -1682,7 +1682,7 @@ NoShoot:
 
 .proc ObjectCloud
 Distance = 1
-  jsr EnemyApplyVelocity
+  jsr EnemyApplyXVelocity
 
   lda ObjectF2,x
   jne NoShootNoMove

@@ -1637,3 +1637,35 @@ C .byt $3f
 C .byt $3f
 C .byt $3f
 C .byt $3f
+
+R FROZEN_CRACK
+C .byt M_PAL_3
+C .byt M_POST_PROCESS
+C .byt $c0
+C .byt $d0
+C .byt $c1
+C .byt $d1
+
+R FROZEN_CRACK2
+C .byt M_PAL_3
+C .byt M_EMPTY
+C .byt $c8
+C .byt $d8
+C .byt $c9
+C .byt $d9
+
+R SNOWMAN_TOP
+C .byt M_PAL_0
+C .byt M_SOLID_ALL|M_POST_PROCESS
+C .byt $c4
+C .byt $d4
+C .byt $c5
+C .byt $d5
+
+R SNOWMAN_BOTTOM
+C .byt M_PAL_0
+C .byt M_SOLID_ALL
+C .byt $c6
+C .byt $d6
+C .byt $c7
+C .byt $d7

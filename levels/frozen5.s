@@ -63,7 +63,7 @@ frozen5Data:
   LObjN LO::RECT_3,           1, 0, 1, LN3::ROCK, 20
   LObj  LO::S_CUSTOM,         0, 5, Metatiles::PICKUP_BLOCK
   LObjN LO::R_SOLID_BLOCK,    1, 2, 0, 3
-  LObjN LO::R_SOLID_BLOCK,    6, 5, 0, 1
+  LObj  LO::S_SNOWMAN,         6, 5
   LObjN LO::R_ROCK,           0, 7, 5, 3
   LObjN LO::WIDE_1,           1, 6, 3, LN1::TALLGRASS
   LObjN LO::R_COIN,           1, 5, 2, 0
@@ -116,7 +116,8 @@ frozen5Data:
   LObjN LO::R_SOLID_BLOCK,    3, 3, 0, 3
   LObj  LO::S_CUSTOM,         1, 2, Metatiles::LOCK_RED
   LObjN LO::R_SOLID_BLOCK,    0, 3, 2, 0
-  LObjN LO::R_ROCK,           2, 11, 2, 3
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObjN LO::R_ROCK,           1, 11, 2, 3
   LObjN LO::R_SOLID_BLOCK,    1, 3, 0, 7
   LObj  LO::R_CUSTOM,         1, 3, Metatiles::PICKUP_BLOCK, (3<<4)|4
   LObjN LO::WIDE_1,           1, 11, 7, LN1::FALLTHROUGH_LEDGE
@@ -126,6 +127,7 @@ frozen5Data:
   LObj  LO::S_PRIZE,          0, 10
   LWriteCol InventoryItem::ABILITY_WATER | 128
   LObjN LO::R_SOLID_BLOCK,    1, 0, 0, 7
+  LObjN LO::TALL_2,           0, 8, 2, LN2::TRUNK
   LObjN LO::RECT_3,           1, 0, 2, LN3::ROCK, 21
   LObjN LO::R_GROUND,         2, 7, 4, 7
   LObjN LO::WIDE_1,           2, 6, 0, LN1::FENCE
@@ -140,11 +142,16 @@ frozen5Data:
   LObjN LO::R_ROCK,           1, 9, 3, 5
   LObj  LO::S_CUSTOM,         3, 8, Metatiles::PUSHABLE_BLOCK
   LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObjN LO::WIDE_3,            0, 7, 2, LN3::FROZEN_CRACK
   LObjN LO::WIDE_1,           0, 9, 6, LN1::SOLID_LEDGE
   LObj  LO::R_CUSTOM,         0, 13, Metatiles::LAVA_MAIN, (6<<4)|1
-  LObjN LO::R_COIN,           2, 6, 7, 0
+  LObjN LO::WIDE_3,            1, 4, 2, LN3::FROZEN_CRACK
+  LObjN LO::WIDE_3,            0, 11, 2, LN3::FROZEN_CRACK
+  LObjN LO::R_COIN,           1, 6, 7, 0
   LObjN LO::R_ROCK,           1, 1, 6, 1
+  LObjN LO::WIDE_3,            0, 10, 2, LN3::FROZEN_CRACK
   LObjN LO::R_ROCK,           1, 0, 7, 1
+  LObjN LO::WIDE_3,            0, 5, 2, LN3::FROZEN_CRACK
   LObjN LO::R_ROCK,           3, 9, 3, 5
   LObjN LO::R_GROUND,         4, 8, 4, 6
   LObjN LO::R_COIN,           5, 1, 3, 1
@@ -160,12 +167,18 @@ frozen5Data:
   LObj  LO::S_MTRACK_SSL,      4, 8
   LObj  LO::S_MTRACK_SSL,      1, 7
   LObj  LO::R_CUSTOM,         0, 12, Metatiles::LAVA_MAIN, (12<<4)|2
-  LObj  LO::S_MTRACK,         1, 6
+  LObjN LO::WIDE_3,            1, 5, 1, LN3::FROZEN_CRACK
+  LObj  LO::S_MTRACK,         0, 6
+  LObjN LO::WIDE_3,            0, 10, 1, LN3::FROZEN_CRACK
   LObjN LO::WIDE_1,           1, 8, 1, LN1::SOLID_LEDGE
   LObjN LO::WIDE_3,           2, 6, 4, LN3::MINE_TRACKS
-  LObjN LO::R_CEILING_BARRIER,4, 0, 0, 1
-  LObj  LO::S_MTRACK_SSL,      1, 6
+  LObjN LO::WIDE_3,            1, 4, 2, LN3::FROZEN_CRACK
+  LObjN LO::WIDE_3,            1, 9, 2, LN3::FROZEN_CRACK
+  LObjN LO::R_CEILING_BARRIER,2, 0, 0, 1
+  LObjN LO::WIDE_3,            1, 2, 2, LN3::FROZEN_CRACK
+  LObj  LO::S_MTRACK_SSL,      0, 6
   LObj  LO::S_MTRACK_SSL,      1, 5
+  LObjN LO::WIDE_3,            0, 7, 1, LN3::FROZEN_CRACK
   LObj  LO::S_MTRACK_SSL,      1, 4
   LObjN LO::WIDE_3,           1, 3, 1, LN3::MINE_TRACKS
   LObjN LO::R_GROUND,         1, 4, 5, 10

@@ -48,7 +48,9 @@ frozenData:
   LObjN LO::R_ROCK,           3, 10, 1, 0
   LObjN LO::R_ROCK,           0, 11, 3, 3
   LObjN LO::R_GROUND,         4, 8, 3, 6
-  LObjN LO::R_GROUND,         6, 10, 1, 1
+  LObj  LO::S_FLOWER,         2, 7
+  LObj  LO::S_FLOWER,         4, 9
+  LObjN LO::R_GROUND,         0, 10, 1, 1
   LObjN LO::R_ROCK,           0, 12, 12, 2
   LObjN LO::R_GROUND,         2, 9, 3, 2
   LObj  LO::S_MTRACK_SSL,      4, 8
@@ -60,10 +62,19 @@ frozenData:
   LObjN LO::R_ROCK,           0, 10, 0, 0
   LObjN LO::RECT_3,           1, 0, 1, LN3::ROCK, 20
   LObj  LO::R_CUSTOM,         0, 12, Metatiles::LAVA_MAIN, (14<<4)|2
-  LObjN LO::TALL_2,           2, 5, 4, LN2::PATH_LINE
+  LObj  LO::S_FROZENCRACK,     1, 4
+  LObj  LO::S_FROZENCRACK,     0, 10
+  LObjN LO::TALL_2,           1, 5, 4, LN2::PATH_LINE
   LObjN LO::WIDE_2,           1, 9, 6, LN2::PATH_LINE
-  LObjN LO::WIDE_2,           2, 6, 6, LN2::PATH_LINE
-  LObjN LO::WIDE_1,           8, 7, 3, LN1::FALLTHROUGH_LEDGE
+  LObj  LO::S_FROZENCRACK,     1, 3
+  LObj  LO::S_FROZENCRACK,     0, 8
+  LObjN LO::WIDE_2,           1, 6, 6, LN2::PATH_LINE
+  LObj  LO::S_FROZENCRACK,     3, 4
+  LObj  LO::S_FROZENCRACK,     0, 11
+  LObj  LO::S_FROZENCRACK,     3, 5
+  LObj  LO::S_FROZENCRACK,     1, 3
+  LObj  LO::S_FROZENCRACK,     0, 9
+  LObjN LO::WIDE_1,           1, 7, 3, LN1::FALLTHROUGH_LEDGE
   LObjN LO::R_ROCK,           1, 2, 6, 0
   LObj  LO::S_SPRING,         1, 9
   LObjN LO::R_ROCK,           0, 10, 0, 0
@@ -75,33 +86,47 @@ frozenData:
   LWriteCol <AboutIceJump, >AboutIceJump
   LObjN LO::WIDE_1,           1, 11, 3, LN1::TALLGRASS
   LObjN LO::RECT_3,           1, 0, 3, LN3::ROCK, 16
-  LObjN LO::R_GROUND,         5, 8, 2, 6
+  LObjN LO::TALL_2,           5, 4, 3, LN2::TRUNK
+  LObjN LO::R_GROUND,         0, 8, 2, 6
   LObjN LO::WIDE_1,           1, 7, 0, LN1::FENCE
-  LObjN LO::R_COIN,           2, 7, 3, 0
+  LObjN LO::TALL_2,           1, 4, 3, LN2::TRUNK
+  LObjN LO::R_COIN,           1, 7, 3, 0
   LObjN LO::WIDE_1,           0, 8, 3, LN1::SOLID_LEDGE
   LObj  LO::R_CUSTOM,         0, 12, Metatiles::LAVA_MAIN, (4<<4)|2
-  LObjN LO::WIDE_1,           2, 10, 1, LN1::SOLID_LEDGE
-  LObjN LO::R_ROCK,           3, 12, 11, 2
-  LObjN LO::RECT_3,           4, 0, 1, LN3::ROCK, 20
+  LObj  LO::S_FROZENCRACK,     1, 10
+  LObj  LO::S_FROZENCRACK,     1, 5
+  LObjN LO::WIDE_1,           0, 10, 1, LN1::SOLID_LEDGE
+  LObj  LO::S_FROZENCRACK,     2, 8
+  LObjN LO::R_ROCK,           1, 12, 11, 2
+  LObjN LO::TALL_2,           3, 4, 7, LN2::TRUNK
+  LObjN LO::RECT_3,           1, 0, 1, LN3::ROCK, 20
   LObjN LO::R_ROCK,           1, 8, 5, 3
   LObjN LO::WIDE_1,           1, 7, 0, LN1::FENCE
   LObj  LO::S_MTRACK_STOP,     3, 7
   LObjN LO::WIDE_3,           1, 7, 11, LN3::MINE_TRACKS
   LObjN LO::WIDE_3,           3, 7, 0, LN3::MINE_TRACKS_BRAKES
   LWriteCol $20
-  LObjN LO::R_MTRACK_SUPPORTSONLY,  6, 8, 0, 6
-  LObj  LO::S_MTRACK_SSR,      3, 8
+  LObj  LO::S_MTRACK_SSL,      5, 5
+  LObj  LO::S_MTRACK_SSL,      1, 4
+  LObjN LO::R_MTRACK_SUPPORTSONLY,  0, 8, 0, 6
+  LObjN LO::WIDE_3,           1, 3, 4, LN3::MINE_TRACKS
+  LObj  LO::S_MTRACK_SSR,      2, 8
   LObj  LO::S_MTRACK_SSR,      1, 9
   LObj  LO::S_MTRACK_SSR,      1, 10
-  LObjN LO::WIDE_3,           1, 10, 11, LN3::MINE_TRACKS
-  LObjN LO::R_MTRACK_SUPPORTSONLY,  3, 11, 0, 3
+  LObj  LO::S_MTRACK_SSR,      1, 4
+  LObjN LO::WIDE_3,           0, 10, 11, LN3::MINE_TRACKS
+  LObj  LO::S_MTRACK_SSR,      1, 5
+  LObjN LO::R_MTRACK_SUPPORTSONLY,  2, 11, 0, 3
   LObjN LO::R_COIN,           1, 1, 3, 1
   LObj  LO::S_COIN,           0, 2
   LObjN LO::WIDE_1,           0, 3, 3, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_3,           5, 10, 0, LN3::MINE_TRACKS_BRAKES
+  LObj  LO::S_MTRACK_SSL,      2, 8
+  LObjN LO::WIDE_3,           1, 7, 4, LN3::MINE_TRACKS
+  LObjN LO::WIDE_3,           2, 10, 0, LN3::MINE_TRACKS_BRAKES
   LWriteCol $20
   LObjN LO::R_ROCK,           1, 11, 5, 3
-  LObj  LO::S_MTRACK_STOP,     2, 10
+  LObj  LO::S_MTRACK_SSR,      2, 8
+  LObj  LO::S_MTRACK_STOP,     0, 10
   LObjN LO::R_COIN,           1, 5, 3, 0
   LObjN LO::WIDE_1,           0, 6, 2, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           1, 9, 1, LN1::SOLID_LEDGE
@@ -154,13 +179,22 @@ frozenData:
   LObjN LO::WIDE_3,           4, 7, 0, LN3::MINE_TRACKS_BRAKES
   LWriteCol $40
   LObj  LO::R_CUSTOM,         0, 13, Metatiles::LAVA_MAIN, (15<<4)|1
-  LObjN LO::RECT_3,           5, 0, 2, LN3::ROCK, 23
+  LObjN LO::WIDE_3,            1, 10, 2, LN3::FROZEN_CRACK
+  LObjN LO::WIDE_3,            1, 4, 2, LN3::FROZEN_CRACK
+  LObjN LO::WIDE_3,            2, 6, 2, LN3::FROZEN_CRACK
+  LObjN LO::RECT_3,           1, 0, 2, LN3::ROCK, 23
   LObj  LO::S_MTRACK_UPRIGHT,  3, 7
   LObjN LO::R_MTRACK_SUPPORTSONLY,  0, 8, 0, 4
-  LObjN LO::WIDE_3,           7, 7, 12, LN3::MINE_TRACKS
+  LObjN LO::WIDE_3,            1, 4, 1, LN3::FROZEN_CRACK
+  LObjN LO::WIDE_3,            1, 11, 2, LN3::FROZEN_CRACK
+  LObjN LO::WIDE_3,            2, 8, 1, LN3::FROZEN_CRACK
+  LObjN LO::WIDE_3,            2, 5, 2, LN3::FROZEN_CRACK
+  LObjN LO::WIDE_3,           1, 7, 12, LN3::MINE_TRACKS
   LObjN LO::R_MTRACK_SUPPORTSONLY,  0, 8, 0, 4
   LObj  LO::R_CUSTOM,         1, 13, Metatiles::LAVA_MAIN, (8<<4)|1
-  LObjN LO::R_GROUND,         9, 8, 4, 6
+  LObjN LO::WIDE_3,            3, 10, 1, LN3::FROZEN_CRACK
+  LObjN LO::WIDE_3,            1, 6, 1, LN3::FROZEN_CRACK
+  LObjN LO::R_GROUND,         5, 8, 4, 6
   LObj  LO::S_MTRACK_STOP,     3, 7
   LObjN LO::RECT_3,           1, 0, 1, LN3::ROCK, 43
   LObjN LO::R_GROUND,         1, 6, 5, 8
@@ -176,7 +210,8 @@ frozenData:
   LObjN LO::R_WATER,          0, 13, 10, 1
   LObjN LO::WIDE_1,           1, 9, 7, LN1::SOLID_LEDGE
   LObjN LO::R_COIN,           0, 10, 4, 2
-  LObjN LO::RECT_3,           4, 2, 3, LN3::ROCK, 18
+  LObjN LO::WIDE_1,           1, 8, 4, LN1::TALLGRASS
+  LObjN LO::RECT_3,           3, 2, 3, LN3::ROCK, 18
   LObjN LO::R_ROCK,           6, 11, 12, 3
   LObjN LO::WIDE_2,           1, 10, 2, LN2::FLOWER
   LObj  LO::S_EXIT_DOOR,      7, 9
