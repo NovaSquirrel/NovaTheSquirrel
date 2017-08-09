@@ -1930,6 +1930,11 @@ WasNotClose:
 .proc ObjectRonald
   jsr EnemyFall
 
+  lda ObjectF3,x
+  bne :+
+    jsr EnemyActivateIfNear
+  :
+
   ; Change direction to face the player
   jsr EnemyLookAtPlayer
 

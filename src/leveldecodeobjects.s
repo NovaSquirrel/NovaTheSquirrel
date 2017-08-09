@@ -133,6 +133,7 @@
   .byt BLOCK_RECTANGLE,        Metatiles::ENEMY_BARRIER
   .byt BLOCK_SINGLE,           Metatiles::SNOWMAN_TOP
   .byt BLOCK_SINGLE,           Metatiles::FROZEN_CRACK
+  .byt BLOCK_RECTANGLE,        Metatiles::ICE2
 .endproc
 
 .proc ObjectTypesList

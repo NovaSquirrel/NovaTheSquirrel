@@ -318,15 +318,17 @@ ContinueDown:
   cmp #15
   bcs @Exit
   lda (Pointer),y
+  cmp BackgroundMetatile
   bne @Exit
   lda Temp1
   sta (Pointer),y
-  bne :-
+  bne :- ; unconditional
 @Exit:
   rts
 ProcessStoneBridge:
   dey
   lda (Pointer),y
+  cmp BackgroundMetatile
   bne :+
   lda #Metatiles::STONE_BRIDGE_TOP
   sta (Pointer),y
@@ -351,6 +353,7 @@ ProcessStoneBridge:
 ProcessPalmTree:
   dey
   lda (Pointer),y
+  cmp BackgroundMetatile
   bne @Exit
   lda #Metatiles::PALM_TREE_TOP_L
   sta (Pointer),y
@@ -422,12 +425,14 @@ ProcessBushBot:
 ProcessTrunkL:
   ; Make right side
   lda (RightPointer),y
+  cmp BackgroundMetatile
   bne :+
   lda #Metatiles::BG_TRUNK_R
   sta (RightPointer),y
 : dey
   ; Make treetop
   lda (Pointer),y
+  cmp BackgroundMetatile
   bne :+
   lda #Metatiles::BG_TREETOP_LL
   sta (Pointer),y

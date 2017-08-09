@@ -3,14 +3,14 @@
 MasterLevelListL:
   .byt <intro_a, <grassy_a, <funkunderground, <sky, <water, <grassy2_a, <underground_2, <boss1
   .byt <glass_intro, <arrows, <burgers, <glasscave, <chiptall, <falldown, <glass_finale, <boss2
-  .byt <frozen, <frozen2, <frozen3, <frozen4, <frozen5, <emptylevel
+  .byt <frozen, <frozen2, <frozen3, <frozen4, <frozen5, <frozen6, <emptylevel
 ; sub-levels
   .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden, <puzzle2
 
 MasterLevelListH:
   .byt >intro_a, >grassy_a, >funkunderground, >sky, >water, >grassy2_a, >underground_2, >boss1
   .byt >glass_intro, >arrows, >burgers, >glasscave, >chiptall, >falldown, >glass_finale, >boss2
-  .byt >frozen, >frozen2, >frozen3, >frozen4, >frozen5, >emptylevel
+  .byt >frozen, >frozen2, >frozen3, >frozen4, >frozen5, >frozen6, >emptylevel
 ; sub-levels
   .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden, >puzzle2
 
@@ -49,6 +49,7 @@ PUZ = 128 ; puzzle
   Frozen3
   Frozen4
   Frozen5
+  Frozen6
   EmptyLevel
 
 ; sublevels
@@ -83,6 +84,7 @@ PUZ = 128 ; puzzle
 .include "../levels/frozen3.s"
 .include "../levels/frozen4.s"
 .include "../levels/frozen5.s"
+.include "../levels/frozen6.s"
 .include "../levels/falldown.s"
 .include "../levels/glasscave.s"
 .include "../levels/chiptall.s"

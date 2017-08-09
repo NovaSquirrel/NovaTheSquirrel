@@ -465,9 +465,12 @@ DoFireball:
   jmp @Done
 :
   lda (LevelBlockPtr),y
+  cmp #Metatiles::ICE2
+  beq @YesIce
   cmp #Metatiles::ICE
   bne :+
-  lda #Metatiles::EMPTY
+@YesIce:
+  lda BackgroundMetatile
   jsr ChangeBlockFar
   lda #SFX::ARROW_SHOOT
   jsr PlaySound
@@ -511,11 +514,14 @@ NotFlame:
   bcc :+
   ldy 4 ; TheY
   lda 0 ; Block
+  cmp #Metatiles::ICE2
+  beq @YesIce
   cmp #Metatiles::ICE
   bne :+
+@YesIce:
   lda #SFX::ARROW_SHOOT
   jsr PlaySound
-  lda #Metatiles::EMPTY
+  lda BackgroundMetatile
   jmp ChangeBlockFar
 :
   rts 

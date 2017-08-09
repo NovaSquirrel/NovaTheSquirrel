@@ -209,6 +209,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_PAL_3 ;FROZEN_CRACK2
   .byt M_PAL_0 ;SNOWMAN_TOP
   .byt M_PAL_0 ;SNOWMAN_BOTTOM
+  .byt M_PAL_0 ;ICE2
 .endproc
 
 .pushseg
@@ -419,6 +420,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt M_EMPTY ;FROZEN_CRACK2
   .byt M_SOLID_ALL|M_POST_PROCESS ;SNOWMAN_TOP
   .byt M_SOLID_ALL ;SNOWMAN_BOTTOM
+  .byt M_ICE|M_SOLID_ALL|M_SOLID_TOP ;ICE2
 .endproc
 
 .popseg
@@ -628,6 +630,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $c8 ;FROZEN_CRACK2
   .byt $c4 ;SNOWMAN_TOP
   .byt $c6 ;SNOWMAN_BOTTOM
+  .byt $5c ;ICE2
 .endproc
 
 .proc MetatileLL
@@ -836,6 +839,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $d8 ;FROZEN_CRACK2
   .byt $d4 ;SNOWMAN_TOP
   .byt $d6 ;SNOWMAN_BOTTOM
+  .byt $5e ;ICE2
 .endproc
 
 .proc MetatileUR
@@ -1044,6 +1048,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $c9 ;FROZEN_CRACK2
   .byt $c5 ;SNOWMAN_TOP
   .byt $c7 ;SNOWMAN_BOTTOM
+  .byt $5d ;ICE2
 .endproc
 
 .proc MetatileLR
@@ -1252,5 +1257,6 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
   .byt $d9 ;FROZEN_CRACK2
   .byt $d5 ;SNOWMAN_TOP
   .byt $d7 ;SNOWMAN_BOTTOM
+  .byt $5f ;ICE2
 .endproc
 

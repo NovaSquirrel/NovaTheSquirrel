@@ -122,10 +122,12 @@ frozen5Data:
   LObj  LO::R_CUSTOM,         1, 3, Metatiles::PICKUP_BLOCK, (3<<4)|4
   LObjN LO::WIDE_1,           1, 11, 7, LN1::FALLTHROUGH_LEDGE
   LObjN LO::R_COIN,           1, 12, 5, 0
-  LObjN LO::R_SOLID_BLOCK,    2, 3, 1, 4
-  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObjN LO::WIDE_1,           1, 10, 0, LN1::USED_PRIZE
+  LObjN LO::R_SOLID_BLOCK,    1, 3, 1, 4
   LObj  LO::S_PRIZE,          0, 10
   LWriteCol InventoryItem::ABILITY_WATER | 128
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObjN LO::WIDE_1,           0, 10, 0, LN1::USED_PRIZE
   LObjN LO::R_SOLID_BLOCK,    1, 0, 0, 7
   LObjN LO::TALL_2,           0, 8, 2, LN2::TRUNK
   LObjN LO::RECT_3,           1, 0, 2, LN3::ROCK, 21

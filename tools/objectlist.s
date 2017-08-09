@@ -106,7 +106,7 @@
   .byt 0 ;FLAMES
   .byt 0 ;WATER_BOTTLE
   .byt 0 ;ICE_BLOCK
-  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET | ObjBehavior::WAIT_UNTIL_NEAR ;RONALD
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;RONALD
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::AUTO_RESET | ObjBehavior::WAIT_UNTIL_NEAR ;RONALD_BURGER
   .byt ObjBehavior::AUTO_REMOVE ;FRIES
   .byt ObjBehavior::AUTO_REMOVE ;FRY

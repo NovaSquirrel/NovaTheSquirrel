@@ -1669,3 +1669,11 @@ C .byt $c6
 C .byt $d6
 C .byt $c7
 C .byt $d7
+
+R ICE2
+C .byt M_PAL_0
+C .byt M_ICE|M_SOLID_ALL|M_SOLID_TOP
+C .byt $5c
+C .byt $5e
+C .byt $5d
+C .byt $5f
