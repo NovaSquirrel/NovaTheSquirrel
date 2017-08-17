@@ -455,6 +455,8 @@ DoFireball:
   sta ObjectVYH,x
 
   ldy TempY
+  cpy #15
+  bcs @Done
   lda (LevelBlockPtr),y
   cmp #Metatiles::WATER_FROZEN
   bne :+
