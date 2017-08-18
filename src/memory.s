@@ -321,6 +321,7 @@ INVENTORY_EQUIPPED  = 254
 GameStateLen = 1+2+10+10+2 ; update if more stuff is added
   PlayerAbilityVar: .res 1
   PlayerNeedsGround: .res 1 ; sets to zero when the player touches the ground
+  PlayerRidingSomethingLast: .res 1 ; player was riding something last frame
 
 ; Checkpoint information
   CheckpointGameState:   .res GameStateLen

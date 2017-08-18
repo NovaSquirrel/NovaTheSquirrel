@@ -1225,6 +1225,8 @@ DrawX2 = 4
   jsr MakeDrawX
   RealYPosToScreenPos PlayerPYL, PlayerPYH, DrawY
 
+  lda PlayerRidingSomething
+  sta PlayerRidingSomethingLast
   lda #0
   sta PlayerRidingSomething
 

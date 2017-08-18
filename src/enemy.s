@@ -207,7 +207,7 @@ Metasprite:
 
   lda PlayerOnGround ; Down = place on the ground
   beq :+
-  lda PlayerRidingSomething
+  lda PlayerRidingSomethingLast
   bne :+
   lda keydown
   and #KEY_DOWN
