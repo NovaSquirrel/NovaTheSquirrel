@@ -58,6 +58,7 @@ DemoCutscene:
   lda #DIALOG_BANK
   jsr SetPRG
 
+.ifndef HAS_DICTIONARY_TABLE
   ; Load first word into table, and load pointers
   lda #<CutsceneDictionary
   sta ScratchPage+0
@@ -88,6 +89,9 @@ DictionaryWordFound:
   inx
   cpx #128
   bcc MoreDictionary
+CutsceneDictionaryTable = ScratchPage
+.endif
+
 ; --------------------------------------------------
 
 ; Clear cutscene related variables
@@ -213,9 +217,9 @@ IsDictionaryWord:
   ; Get table index
   sub #$80
   tax
-  lda ScratchPage+0,x
+  lda CutsceneDictionaryTable+0,x
   sta 0
-  lda ScratchPage+128,x
+  lda CutsceneDictionaryTable+128,x
   sta 1
 
   lda #0

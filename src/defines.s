@@ -54,6 +54,7 @@ PLAYTESTING_BUILD = 1
 ;CPU_METER = 1
 ;DEBUG = 1
 ;AUTO_CLIMB = 1
+HAS_DICTIONARY_TABLE = 1
 ; -------------------------------------
 
 .include "../tools/objectenum.s"
