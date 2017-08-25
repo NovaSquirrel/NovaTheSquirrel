@@ -72,6 +72,7 @@ OPTIONS_BANK = $e
 .include "levelselect.s"
 .include "shop.s"
 .include "options.s"
+.include "prelevel.s"
 
 .segment "PRG7" ; dialog
 .include "../tools/dialog.s"

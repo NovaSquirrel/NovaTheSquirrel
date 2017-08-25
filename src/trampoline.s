@@ -136,3 +136,11 @@
   jmp SetPRG_Restore
 .endproc
 
+.proc DecompressTextFar
+  pha
+  lda #DIALOG_BANK
+  jsr _SetPRG
+  pla
+  jsr DecompressText
+  jmp SetPRG_Restore
+.endproc

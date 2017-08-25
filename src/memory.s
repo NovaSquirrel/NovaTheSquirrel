@@ -172,6 +172,8 @@
   ; The reason they're not already in one of the temporary space buffers is that they're
   ; written as a group, and LevelBackgroundColor and SpriteTileSlots *are* used elsewhere
 
+  CompressedTextPointer = LevelDecodePointer
+
   LevelHeaderPointer = TouchTemp ; pointer to the level header, for reading it
   LevelDecodeXPos = TouchTemp+2  ; current X position
   CollectedBitsIndex: .res 1 ; 0 or 128, for alternate or current collectedbits
@@ -209,7 +211,6 @@
   InventoryCursorY:   .res 1
   InventoryCursorYSwap: .res 1
   PlayerRidingSomething: .res 1 ; if 1, player is treated to be standing on a solid and can jump
-  DisplayLevelNumber: .res 1    ; a timer for showing the current level editor on the screen
   SwitchCooldownTimer: .res 1
 
   CutsceneOldBank: .res 1

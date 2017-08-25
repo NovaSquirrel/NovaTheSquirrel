@@ -67,15 +67,6 @@ WorldTimes8 = 15
   ldy #<Instructions2
   jsr vwfPutsAtRow
 
-; Only display the shop text if the first world has been cleared
-  lda LevelCleared
-  bpl :+
-  ldx #6
-  lda #>Instructions3
-  ldy #<Instructions3
-  jsr vwfPutsAtRow
-:
-
   ; Write last row with the world number
   lda #>Instructions4
   ldy #<Instructions4
@@ -110,15 +101,6 @@ WorldTimes8 = 15
   sta PPUADDR
   ldy #$50
   ldx #9
-  jsr WriteIncreasing
-  ; Start: Items and shop
-  ; (doesn't matter if shop isn't enabled, the text won't be rendered so it'll be blank anyway)
-  lda #$23
-  sta PPUADDR
-  lda #$2b
-  sta PPUADDR
-  ldy #$60
-  ldx #10
   jsr WriteIncreasing
   lda #$21
   sta PPUADDR
@@ -188,7 +170,8 @@ Loop:
     .endif
     lda CurLevel
     ora WorldTimes8
-    jmp StartLevel
+    sta StartedLevelNumber
+    jmp ShowPreLevel
   :
   lda keynew
   and #KEY_START

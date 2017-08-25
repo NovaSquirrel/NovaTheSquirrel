@@ -146,17 +146,17 @@ Loop:
   lda #OBJ_ON|BG_ON
   sta PPUMASK
 
-  jsr OptionsScreenCommonLoop
+  jsr OptionsScreenCommonLoop ; Update palette and read controller
 
   lda keynew
   and #KEY_START
-  jne LevelSelect
+  jne GotoPreLevel
 
   lda keynew
   and #KEY_A
   beq NoA
   ldy Cursor
-  jeq LevelSelect
+  jeq GotoPreLevel
   dey
   jeq BuyMode
   dey
@@ -224,10 +224,10 @@ ClearMiddleMenu:
   sta PPUSCROLL
   rts
 
-LevelSelect:
+GotoPreLevel:
   lda #VWF_BANK
   jsr SetPRG
-  jmp ShowLevelSelect
+  jmp ShowPreLevel
 
 UpdateInventoryAmounts:
   jsr WaitVblank

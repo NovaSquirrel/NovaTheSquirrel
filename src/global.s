@@ -1030,10 +1030,6 @@ Exit:
 
 ; A = level to start
 .proc StartLevel
-  pha
-  sta StartedLevelNumber
-
-  inc DisplayLevelNumber
 ;  lda SavedAbility
 ;  sta PlayerAbility
 
@@ -1060,9 +1056,7 @@ Exit:
   lda #0
   sta ScriptFlags+0 ; clear first 8 flags
   sta PuzzleMode
-  pla
 FromCheckpoint:
-  pha
   lda #4
   sta PlayerHealth
   sta MakeCheckpoint
@@ -1076,8 +1070,9 @@ FromCheckpoint:
 
 ; Decompress Nova tiles and common sprite tiles
   jsr UploadNovaAndCommon
-  pla
+
 ; Finally decompress the level and start the game engine
+  lda StartedLevelNumber
   jsr DecompressLevel
   jmp MainLoopInit
 
@@ -1747,5 +1742,65 @@ Convert:
 .proc CheckScriptFlag
   jsr IndexToBitmap
   and ScriptFlags,y
+  rts
+.endproc
+
+; Decompresses text with dictionary compression
+; inputs: CompressedTextPointer, X (output buffer index)
+; outputs: StringBuffer, X (output buffer index), A (terminator byte)
+; locals: 0, 1
+.proc DecompressText
+Next:
+  ldy #0
+  lda (CompressedTextPointer),y  ; Read from the pointer
+  inc16 CompressedTextPointer    ; Step the pointer ahead one byte
+
+  cmp #$20 ; 0x00-0x1F stops decompression
+  bcc Exit
+  cmp #$80 ; 0x80-0xFF are dictionary words
+  bcs DictionaryWord
+
+  ; Directly write a byte to the string buffer
+  sta StringBuffer,x
+  inx
+  bne Next ; Unconditional since no string is longer than 255 chars
+
+Exit:
+  rts
+
+DictionaryWord:
+  ; Read a pointer from the dictionary table
+  sub #$80
+  tay
+  lda CutsceneDictionaryTable+0,y
+  sta 0
+  lda CutsceneDictionaryTable+128,y
+  sta 1
+
+  ; Copy the word over
+  ldy #0
+: lda (0),y
+  php        ; Save the negative flag
+  and #127   ; Strip off the ending flag if it was there
+  sta StringBuffer,x
+
+  inx        ; \ Step both buffers ahead a byte
+  iny        ; /
+  plp
+  bpl :-     ; Positive = not the last character
+  bmi Next   ; Negative = last character, return to reading the script
+.endproc
+
+; Print the results of DecompressText to the nametable
+.proc PrintDecompressedText
+  lda #0
+  sta StringBuffer,x
+  tax ; X = 0
+: lda StringBuffer,x
+  beq Exit
+  sta PPUDATA
+  inx
+  bne :- ; unconditional
+Exit:
   rts
 .endproc
