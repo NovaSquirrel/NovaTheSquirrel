@@ -97,6 +97,15 @@ PUZ = 128 ; puzzle
   .addr PreLevelFrozen6
   .byt 255
 .endproc
+
+.proc PreLevelHasCutscene
+  .byt LevelId::IntroA
+  .byt LevelId::Boss1
+  .byt LevelId::GlassIntro
+  .byt LevelId::Burgers
+  .byt LevelId::Boss2
+  .byt 255
+.endproc
 .popseg
 
 .include "../levels/intro_a.s"

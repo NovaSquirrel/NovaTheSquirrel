@@ -43,7 +43,7 @@ intro_aData:
   LObjN LO::WIDE_1,           3, 11, 5, LN1::SOLID_LEDGE
   LObjN LO::R_COIN,           8, 10, 2, 0
   LObjN LO::WIDE_2,           1, 12, 2, LN2::BUSH
-  LObjN LO::TALL_2,           3, 11, 1, LN2::TRUNK_L
+  LObjN LO::TALL_2,           3, 10, 2, LN2::TRUNK_L
   LObjN LO::WIDE_2,           2, 12, 2, LN2::BUSH
   LObjN LO::R_COIN,           1, 10, 2, 0
   LObj  LO::S_SIGNPOST,       4, 10

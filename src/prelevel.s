@@ -84,6 +84,19 @@ OptionCount = 13
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
   sta PPUCTRL
 
+  ; Is there a cutscene?
+  ldx #0
+PreLevelCutsceneCheck:
+  lda PreLevelHasCutscene,x
+  bmi PreLevelCutsceneNotFound
+  cmp StartedLevelNumber
+  beq PreLevelCutsceneFound
+  inx
+  bne PreLevelCutsceneCheck ; unconditional
+PreLevelCutsceneFound:
+  inc OptionCount
+PreLevelCutsceneNotFound:
+
   ; Only display "Play cutscene" if it's actually an option
   lda OptionCount
   cmp #4
@@ -204,6 +217,10 @@ Loop:
   :
 
   lda keynew
+  and #KEY_B
+  jne ShowLevelSelect
+
+  lda keynew
   and #KEY_A
   beq :+
     ldy Cursor
@@ -239,14 +256,20 @@ StarXPos2: .byt 19*8,   21*8,   22*8,    23*8
 StarYPos:  .byt 20*8-1, 22*8-1, 24*8-1,  17*8-1
 
 OptionLevel:
+  lda #0
+  sta CutscenesEnabled
   jmp StartLevel
 
 OptionShop:
+  lda LevelCleared ; Shop unlocked
+  jpl Loop
   jmp ShowShop
 
 OptionSelect:
   jmp ShowLevelSelect
 
 OptionCutscene:
-  jmp Loop
+  lda #1
+  sta CutscenesEnabled
+  jmp StartLevel
 .endproc

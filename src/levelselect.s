@@ -176,6 +176,7 @@ Loop:
     sta StartedLevelNumber
     jmp ShowPreLevel
   :
+.if 0
   lda keynew
   and #KEY_START
   beq :+
@@ -192,6 +193,7 @@ Loop:
 ;    jmp PauseScreen
     jmp ShowShop
   :
+.endif
   lda keynew
   and #KEY_LEFT
   beq :+

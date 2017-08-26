@@ -527,6 +527,10 @@ Nope:
 .endproc
 
 .proc TouchedStoryTrigger
+  lda CutscenesEnabled
+  beq Exit
+
+  ; Remove all the story triggers in the column
   lda #0
   tay
 Loop:
@@ -546,6 +550,7 @@ Loop:
   lda ColumnBytes+1,x
   sta ScriptPtr+1
   inc NeedDialog
+Exit:
   rts
 .endproc
 

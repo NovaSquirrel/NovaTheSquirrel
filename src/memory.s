@@ -213,9 +213,10 @@
   PlayerRidingSomething: .res 1 ; if 1, player is treated to be standing on a solid and can jump
   SwitchCooldownTimer: .res 1
 
-  CutsceneOldBank: .res 1
-  CutsceneOldSP:   .res 1
-  IntroShownAlready: .res 1
+  CutsceneOldBank: .res 1   ; Old bank, so it can restore to it
+  CutsceneOldSP:   .res 1   ; Old stack pointer
+  IntroShownAlready: .res 1 ; prevents the cutscene from being shown twice
+  CutscenesEnabled:  .res 1 ; if 0, don't show them
 
 ; when an intro cutscene happens, this is set to the level number
 ; and if it's the same level as the previous one, it's skipped

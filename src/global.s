@@ -1303,6 +1303,9 @@ NoLevelChange:
   sta PlayerPXL
   ldx TempX
 
+  ; If cutscenes are enabled, check if we're teleporting onto a dialog trigger
+  lda CutscenesEnabled
+  beq :+
   lda PlayerPXH
   ldy PlayerPYH
   jsr GetLevelColumnPtr

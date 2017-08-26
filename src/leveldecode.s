@@ -592,19 +592,14 @@ fill_loop:
   rts
 
 SpecialConfigStartDialog:
-; Only re-show the dialog for a level that was already cleared
-; if the player is holding Select
+  lda CutscenesEnabled
+  beq SkipDialog
+
+  ; Don't reshow dialogs already shown once
   lda LevelNumber
   cmp IntroShownAlready
   beq SkipDialog
   sta IntroShownAlready
-;  lda keydown
-;  and #KEY_SELECT
-;  bne ShowDialogAnyway    ; Select = show no matter what
-;  ldy StartedLevelNumber
-;  jsr IndexToBitmap
-;  and LevelCleared,y      ; Not cleared? Show
-;  bne SkipDialog
 ShowDialogAnyway:
   inc NeedDialog
   ldy #0
