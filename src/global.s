@@ -511,6 +511,7 @@ Custom:
   ldy #$00
   stx PPUADDR
   sty PPUADDR
+AddressSet:
   ldx #64
   ldy #4
 : sta PPUDATA
@@ -529,6 +530,18 @@ Custom:
   rts
 .endproc
 ClearNameCustom = ClearName::Custom
+
+; clear the second (right) nametable
+.proc ClearNameRight
+  lda #$3f
+Custom:
+  ldx #$24
+  ldy #$00
+  stx PPUADDR
+  sty PPUADDR
+  jmp ClearName::AddressSet
+.endproc
+ClearNameRightCustom = ClearNameRight::Custom
 
 ; Wait for any key to be pressed
 .proc WaitForKey

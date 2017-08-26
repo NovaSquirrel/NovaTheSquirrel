@@ -41,6 +41,7 @@
   ; (this way the level isn't shown for a frame before the dialog starts)
   lda #MAINLOOP_BANK
   jsr SetPRG
+
   lda NeedDialog
   bne :+
   jsr RenderLevelScreens ; Render the screen the player's on

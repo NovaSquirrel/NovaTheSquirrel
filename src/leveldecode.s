@@ -257,6 +257,7 @@ NoLinks:
   ; currently it says Loading
   ; also display the level number
   jsr ClearName
+  jsr ClearNameRight
   jsr ClearOAM
   lda #19*8
   sta OAM_XPOS
