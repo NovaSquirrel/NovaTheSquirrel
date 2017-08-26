@@ -1119,6 +1119,11 @@ StartLevel_FromCheckpoint = StartLevel::FromCheckpoint
   lda #$30
   sta PPUDATA
 
+  lda #$3f
+  sta PPUADDR
+  lda #$00
+  sta PPUADDR
+
   lda PlayerAbility
   beq :+
   lda PlayerAbility
