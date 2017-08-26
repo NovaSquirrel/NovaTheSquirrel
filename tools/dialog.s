@@ -8,8 +8,6 @@ Intro:
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::KEE, "N", "o", " ", "i", "d", $ec, $f5, $a1, $f6, "Y", $f4, " ", $95, SCR::NEWLINE, "p", "r", "e", "t", "t", $fe, "d", $ce, "f", $ed, $e6, $d3, $b4, " ", $e0, $f4, $db, "."
 ; <0 NOVA>... I have a lot of questions. Come on, let's look around.
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, ".", ".", $f6, $c0, $9b, $be, "l", "o", $d3, $bd, "q", "u", "e", $de, "i", $c2, "s", ".", SCR::NEWLINE, "C", "o", $d0, " ", $c2, $f5, $a8, $e9, $95, " ", "a", "r", $f4, $f0, "."
-; [](Press up to read the signs or go in doors. Skip dialog with Start.)
-.byt SCR::NARRATE, CHAR::NONE, "(", "P", "r", "e", $f1, " ", $cd, " ", $bb, "r", $ec, $ff, $a2, " ", "s", "i", "g", "n", "s", SCR::NEWLINE, $c9, " ", $cf, " ", $bf, $c5, $c9, "s", $f6, "S", "k", "i", "p", " ", "d", "i", "a", "l", "o", "g", SCR::NEWLINE, $9d, " ", "S", "t", "a", $ee, ".", ")"
 .byt SCR::END_SCRIPT
 Tutorial1:
 .byt SCR::SCENE, SCENES::NOVA_SIGN_KEE
@@ -535,132 +533,512 @@ AboutPickupBlock:
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "S", "t", $a4, $c2, " ", $89, "p", "i", $f3, $cd, " ", "b", "l", "o", $f3, "s", SCR::NEWLINE, $a4, "p", "r", "e", $f1, " ", "U", "p", " ", $bb, "p", "i", $f3, " ", $92, " ", $cd, ".", SCR::NEWLINE, "P", "r", "e", $f1, " ", "D", "o", "w", "n", " ", $bb, $e5, $d3, $92, " ", $c5, "w", "n", SCR::NEWLINE, "a", "g", "a", $d8, $f6, "O", "h", $f5, $a4, "d", "e", "f", $d8, "i", $eb, $d2, "c", "o", "p", "y", SCR::NEWLINE, $be, "g", "l", "i", "d", $ed, " ", $a5, " ", $99, " ", "l", "e", "v", "e", "l", " ", $ce, " ", $a6, SCR::NEWLINE, $9b, $d1, " ", $c8, "a", "p", $c2, "."
 .byt SCR::END_SCRIPT
 
+PreLevelIntro:
+;  Nova sets off on her new
+.byt " ", $a1, " ", $e5, "t", $fb, "o", "f", "f", " ", $c2, " ", $a9, " ", $f9, "w"
+.byt SCR::NEWLINE
+;  adventure and learns how
+.byt " ", $f7, "v", $e6, "t", "u", "r", $e7, $a4, "l", $ec, "r", "n", $fb, $b5
+.byt SCR::NEWLINE
+;  to play in this new world.
+.byt " ", $bb, "p", "l", "a", $fe, $bf, $99, " ", $f9, "w", " ", "w", $c9, $ef, "."
+.byt SCR::NEWLINE
+;  (Press Up to read signs)
+.byt " ", "(", "P", "r", "e", $f1, " ", "U", "p", " ", $bb, "r", $ec, $ff, "s", "i", "g", "n", "s", ")"
+.byt SCR::END_SCRIPT
+PreLevelUnderground:
+; A familiar underground cave
+.byt "A", " ", "f", "a", "m", $dc, "i", "a", $ea, $f2, "d", $ed, "g", "r", $f4, $f0, " ", "c", "a", "v", "e"
+.byt SCR::NEWLINE
+; made of bricks. Except it's
+.byt "m", $f7, $e7, $bd, "b", $fc, $f3, "s", $f6, "E", "x", "c", "e", "p", $d3, "i", "t", "'", "s"
+.byt SCR::NEWLINE
+; above ground this time?
+.byt "a", "b", "o", "v", $e7, "g", "r", $f4, $f0, " ", $99, " ", "t", "i", $d0, "?"
+.byt SCR::END_SCRIPT
+PreLevelSky:
+; A level set high up in the
+.byt "A", " ", "l", "e", "v", "e", "l", " ", $e5, $d3, "h", "i", $db, " ", $cd, " ", $bf, $a2
+.byt SCR::NEWLINE
+; sky. Be careful not to fall.
+.byt "s", "k", "y", $f6, "B", $e7, "c", "a", "r", "e", "f", "u", "l", " ", $a3, " ", $bb, "f", $ad, "."
+.byt SCR::END_SCRIPT
+PreLevelWater:
+; A nice tropical beach area.
+.byt "A", " ", "n", "i", "c", $e7, $fa, "o", "p", "i", "c", "a", "l", " ", "b", $ec, $e2, " ", "a", "r", $ec, "."
+.byt SCR::END_SCRIPT
+PreLevelBoss1:
+; Nova's first encounter with
+.byt $a1, $e9, "f", "i", "r", $de, " ", $e6, "c", $f4, $e1, $ed, " ", $9d
+.byt SCR::NEWLINE
+; the evil Scheme Team. Shoot
+.byt $a2, " ", "e", "v", $dc, " ", "S", $e2, "e", $d0, " ", "T", $ec, "m", $f6, "S", "h", $e4, "t"
+.byt SCR::NEWLINE
+; them then touch them to win.
+.byt $92, " ", $94, " ", $bc, "u", $e2, " ", $92, " ", $bb, "w", $d8, "."
+.byt SCR::END_SCRIPT
+PreLevelGlassIntro:
+;  Nova travels to a glassy
+.byt " ", $a1, " ", $fa, "a", "v", "e", "l", $fb, $bb, $be, "g", "l", $c4, "s", "y"
+.byt SCR::NEWLINE
+;  neon world (Bummer Club),
+.byt " ", $f9, $c2, " ", "w", $c9, $ef, " ", "(", "B", "u", "m", $d0, $ea, "C", "l", "u", "b", ")", ","
+.byt SCR::NEWLINE
+;  full of puzzles.
+.byt " ", "f", "u", "l", "l", " ", $bd, "p", "u", "z", "z", "l", "e", "s", "."
+.byt SCR::END_SCRIPT
+PreLevelBurgers:
+;  Nova is joined by a friend
+.byt " ", $a1, " ", $b8, "j", "o", $d8, $d6, "b", $fe, $be, "f", $fc, $e6, "d"
+.byt SCR::NEWLINE
+;  and fights against burger
+.byt " ", $a4, "f", "i", $db, "t", $fb, "a", "g", "a", $d8, $de, " ", "b", "u", "r", "g", $ed
+.byt SCR::NEWLINE
+;  themed enemies.
+.byt " ", $92, $d6, $e6, "e", "m", $e3, "s", "."
+.byt SCR::END_SCRIPT
+PreLevelChipTall:
+;   "Nova, this level looks
+.byt " ", " ", '"', $a1, $f5, $99, " ", "l", "e", "v", "e", "l", " ", $95, "s"
+.byt SCR::NEWLINE
+;   unfinished!"
+.byt " ", " ", $f2, "f", $d8, $b9, $c3, "d", "!", '"'
+.byt SCR::NEWLINE
+;   (Check your inventory)
+.byt " ", " ", "(", "C", $c3, $f3, " ", $91, " ", $d8, "v", $e6, $bc, "r", "y", ")"
+.byt SCR::END_SCRIPT
+PreLevelTall:
+;   A large puzzle tower!
+.byt " ", " ", "A", " ", "l", "a", "r", "g", $e7, "p", "u", "z", "z", "l", $e7, $bc, $c8, "r", "!"
+.byt SCR::END_SCRIPT
+PreLevelGlassFinale:
+;   Some more tricky puzzles!
+.byt " ", " ", "S", "o", $d0, " ", "m", $c9, $e7, $fa, "i", $f3, $fe, "p", "u", "z", "z", "l", "e", "s", "!"
+.byt SCR::NEWLINE
+;   (Check your inventory)
+.byt " ", " ", "(", "C", $c3, $f3, " ", $91, " ", $d8, "v", $e6, $bc, "r", "y", ")"
+.byt SCR::END_SCRIPT
+PreLevelBoss2:
+;  Nova runs into the Scheme
+.byt " ", $a1, " ", "r", $f2, $fb, $d8, $bb, $a2, " ", "S", $e2, "e", $d0
+.byt SCR::NEWLINE
+;  Team again and they've got
+.byt " ", "T", $ec, "m", " ", "a", "g", "a", $bf, $a4, $98, "'", "v", $e7, $cf, "t"
+.byt SCR::NEWLINE
+;  a new weapon this time!
+.byt " ", $be, $f9, "w", " ", $c8, "a", "p", $c2, " ", $99, " ", "t", "i", $d0, "!"
+.byt SCR::END_SCRIPT
+PreLevelFrozen:
+; Nova enters the icy and
+.byt $a1, " ", $e6, $eb, "r", $fb, $a2, " ", "i", "c", $fe, $ca, "d"
+.byt SCR::NEWLINE
+; lava filled Frozen Volcano.
+.byt "l", "a", "v", $be, "f", $dc, "l", $d6, "F", "r", "o", "z", $e6, " ", "V", "o", "l", $b0, "o", "."
+.byt SCR::END_SCRIPT
+PreLevelFrozen2:
+; More minecart shenanigans.
+.byt "M", $c9, $e7, "m", $d8, "e", "c", "a", $ee, " ", $aa, "n", $ca, "i", "g", $ca, "s", "."
+.byt SCR::END_SCRIPT
+PreLevelFrozen3:
+; A boomerang and Life filled
+.byt "A", " ", "b", $e4, $d0, "r", $ca, "g", " ", $a4, "L", $ce, $e7, "f", $dc, "l", "e", "d"
+.byt SCR::NEWLINE
+; cave.
+.byt "c", "a", "v", "e", "."
+.byt SCR::END_SCRIPT
+PreLevelFrozen5:
+; Cave of the Strife Clouds.
+.byt "C", "a", "v", $e7, $bd, $a2, " ", "S", $fa, $ce, $e7, "C", "l", $f4, "d", "s", "."
+.byt SCR::END_SCRIPT
+PreLevelFrozen6:
+; Ronald is back for revenge.
+.byt "R", $c2, "a", $ef, " ", $b8, "b", "a", $f3, " ", $a5, " ", "r", $9f, "g", "e", "."
+.byt SCR::END_SCRIPT
+
 CutsceneDictionary:
-.byt "squirre", 'l'|128
-.byt "proble", 'm'|128
-.byt "thin", 'k'|128
-.byt "afte", 'r'|128
-.byt "Latt", 'e'|128
-.byt "Atomic Videoclip Zon", 'e'|128
-.byt "-halp I've been taken", '-'|128
-.byt "Nuclear Power Pant", 's'|128
-.byt "ther", 'e'|128
-.byt "these", ' '|128
-.byt "about", ' '|128
-.byt "wha", 't'|128
-.byt "ove", 'r'|128
-.byt "lik", 'e'|128
-.byt "just", ' '|128
-.byt "kno", 'w'|128
-.byt "tak", 'e'|128
-.byt "you", 'r'|128
-.byt "the", 'm'|128
-.byt "tha", 'n'|128
-.byt "the", 'n'|128
-.byt "loo", 'k'|128
-.byt "com", 'e'|128
-.byt "from", ' '|128
-.byt "the", 'y'|128
-.byt "thi", 's'|128
-.byt "that", ' '|128
-.byt "have", ' '|128
-.byt "som", 'e'|128
-.byt "wit", 'h'|128
-.byt "wil", 'l'|128
-.byt "eve", 'n'|128
-.byt "oul", 'd'|128
-.byt "Nov", 'a'|128
-.byt "th", 'e'|128
-.byt "no", 't'|128
-.byt "and", ' '|128
-.byt "fo", 'r'|128
-.byt "yo", 'u'|128
-.byt "bu", 't'|128
-.byt "le", 't'|128
-.byt "he", 'r'|128
-.byt "sh", 'e'|128
-.byt "an", 'y'|128
-.byt "on", 'e'|128
-.byt "al", 'l'|128
-.byt "ou", 't'|128
-.byt "ge", 't'|128
-.byt "ca", 'n'|128
-.byt "in", 'g'|128
-.byt "hi", 'm'|128
-.byt "se", 'e'|128
-.byt "no", 'w'|128
-.byt "ho", 'w'|128
-.byt "ou", 'r'|128
-.byt "wa", 'y'|128
-.byt "is", ' '|128
-.byt "i", 's'|128
-.byt "be", ' '|128
-.byt "to", ' '|128
-.byt "t", 'o'|128
-.byt "of", ' '|128
-.byt "a", ' '|128
-.byt "in", ' '|128
-.byt "I", ' '|128
-.byt "it", ' '|128
-.byt "o", 'n'|128
-.byt "h", 'e'|128
-.byt "a", 's'|128
-.byt "d", 'o'|128
-.byt "a", 't'|128
-.byt "c", 't'|128
-.byt "w", 'e'|128
-.byt "o", 'r'|128
-.byt "a", 'n'|128
-.byt "m", 'y'|128
-.byt "s", 'o'|128
-.byt "u", 'p'|128
-.byt "i", 'f'|128
-.byt "g", 'o'|128
-.byt "m", 'e'|128
-.byt "n", 'o'|128
-.byt "ly", ' '|128
-.byt "t", ' '|128
-.byt "I'm", ' '|128
-.byt "I'l", 'l'|128
-.byt "ed", ' '|128
-.byt "e", 'e'|128
-.byt "i", 'n'|128
-.byt "r", 'r'|128
-.byt "w", 'h'|128
-.byt "g", 'h'|128
-.byt "i", 'l'|128
-.byt "s", 'p'|128
-.byt "s", 't'|128
-.byt "s", 'h'|128
-.byt "t", 'h'|128
-.byt "n", 't'|128
-.byt "c", 'h'|128
-.byt "i", 'e'|128
-.byt "o", 'o'|128
-.byt "s", 'e'|128
-.byt "e", 'n'|128
-.byt "e", ' '|128
-.byt "'t", ' '|128
-.byt "'s", ' '|128
-.byt "r", ' '|128
-.byt "t", 'e'|128
-.byt "e", 'a'|128
-.byt "e", 'r'|128
-.byt "r", 't'|128
-.byt "l", 'd'|128
-.byt "n", 'd'|128
-.byt "s", 's'|128
-.byt "u", 'n'|128
-.byt "c", 'k'|128
-.byt "o", 'u'|128
-.byt ",", ' '|128
-.byt ".", ' '|128
-.byt "a", 'd'|128
-.byt "T", 'h'|128
-.byt "n", 'e'|128
-.byt "t", 'r'|128
-.byt "s", ' '|128
-.byt "r", 'i'|128
-.byt "!", ' '|128
-.byt "y", ' '|128
-.byt "d", ' '|128
+DictionaryWord0: .byt "squirre", 'l'|128
+DictionaryWord1: .byt "proble", 'm'|128
+DictionaryWord2: .byt "thin", 'k'|128
+DictionaryWord3: .byt "afte", 'r'|128
+DictionaryWord4: .byt "Latt", 'e'|128
+DictionaryWord5: .byt "Atomic Videoclip Zon", 'e'|128
+DictionaryWord6: .byt "-halp I've been taken", '-'|128
+DictionaryWord7: .byt "Nuclear Power Pant", 's'|128
+DictionaryWord8: .byt "ther", 'e'|128
+DictionaryWord9: .byt "these", ' '|128
+DictionaryWord10: .byt "about", ' '|128
+DictionaryWord11: .byt "wha", 't'|128
+DictionaryWord12: .byt "ove", 'r'|128
+DictionaryWord13: .byt "lik", 'e'|128
+DictionaryWord14: .byt "just", ' '|128
+DictionaryWord15: .byt "kno", 'w'|128
+DictionaryWord16: .byt "tak", 'e'|128
+DictionaryWord17: .byt "you", 'r'|128
+DictionaryWord18: .byt "the", 'm'|128
+DictionaryWord19: .byt "tha", 'n'|128
+DictionaryWord20: .byt "the", 'n'|128
+DictionaryWord21: .byt "loo", 'k'|128
+DictionaryWord22: .byt "com", 'e'|128
+DictionaryWord23: .byt "from", ' '|128
+DictionaryWord24: .byt "the", 'y'|128
+DictionaryWord25: .byt "thi", 's'|128
+DictionaryWord26: .byt "that", ' '|128
+DictionaryWord27: .byt "have", ' '|128
+DictionaryWord28: .byt "som", 'e'|128
+DictionaryWord29: .byt "wit", 'h'|128
+DictionaryWord30: .byt "wil", 'l'|128
+DictionaryWord31: .byt "eve", 'n'|128
+DictionaryWord32: .byt "oul", 'd'|128
+DictionaryWord33: .byt "Nov", 'a'|128
+DictionaryWord34: .byt "th", 'e'|128
+DictionaryWord35: .byt "no", 't'|128
+DictionaryWord36: .byt "and", ' '|128
+DictionaryWord37: .byt "fo", 'r'|128
+DictionaryWord38: .byt "yo", 'u'|128
+DictionaryWord39: .byt "bu", 't'|128
+DictionaryWord40: .byt "le", 't'|128
+DictionaryWord41: .byt "he", 'r'|128
+DictionaryWord42: .byt "sh", 'e'|128
+DictionaryWord43: .byt "an", 'y'|128
+DictionaryWord44: .byt "on", 'e'|128
+DictionaryWord45: .byt "al", 'l'|128
+DictionaryWord46: .byt "ou", 't'|128
+DictionaryWord47: .byt "ge", 't'|128
+DictionaryWord48: .byt "ca", 'n'|128
+DictionaryWord49: .byt "in", 'g'|128
+DictionaryWord50: .byt "hi", 'm'|128
+DictionaryWord51: .byt "se", 'e'|128
+DictionaryWord52: .byt "no", 'w'|128
+DictionaryWord53: .byt "ho", 'w'|128
+DictionaryWord54: .byt "ou", 'r'|128
+DictionaryWord55: .byt "wa", 'y'|128
+DictionaryWord56: .byt "is", ' '|128
+DictionaryWord57: .byt "i", 's'|128
+DictionaryWord58: .byt "be", ' '|128
+DictionaryWord59: .byt "to", ' '|128
+DictionaryWord60: .byt "t", 'o'|128
+DictionaryWord61: .byt "of", ' '|128
+DictionaryWord62: .byt "a", ' '|128
+DictionaryWord63: .byt "in", ' '|128
+DictionaryWord64: .byt "I", ' '|128
+DictionaryWord65: .byt "it", ' '|128
+DictionaryWord66: .byt "o", 'n'|128
+DictionaryWord67: .byt "h", 'e'|128
+DictionaryWord68: .byt "a", 's'|128
+DictionaryWord69: .byt "d", 'o'|128
+DictionaryWord70: .byt "a", 't'|128
+DictionaryWord71: .byt "c", 't'|128
+DictionaryWord72: .byt "w", 'e'|128
+DictionaryWord73: .byt "o", 'r'|128
+DictionaryWord74: .byt "a", 'n'|128
+DictionaryWord75: .byt "m", 'y'|128
+DictionaryWord76: .byt "s", 'o'|128
+DictionaryWord77: .byt "u", 'p'|128
+DictionaryWord78: .byt "i", 'f'|128
+DictionaryWord79: .byt "g", 'o'|128
+DictionaryWord80: .byt "m", 'e'|128
+DictionaryWord81: .byt "n", 'o'|128
+DictionaryWord82: .byt "ly", ' '|128
+DictionaryWord83: .byt "t", ' '|128
+DictionaryWord84: .byt "I'm", ' '|128
+DictionaryWord85: .byt "I'l", 'l'|128
+DictionaryWord86: .byt "ed", ' '|128
+DictionaryWord87: .byt "e", 'e'|128
+DictionaryWord88: .byt "i", 'n'|128
+DictionaryWord89: .byt "r", 'r'|128
+DictionaryWord90: .byt "w", 'h'|128
+DictionaryWord91: .byt "g", 'h'|128
+DictionaryWord92: .byt "i", 'l'|128
+DictionaryWord93: .byt "s", 'p'|128
+DictionaryWord94: .byt "s", 't'|128
+DictionaryWord95: .byt "s", 'h'|128
+DictionaryWord96: .byt "t", 'h'|128
+DictionaryWord97: .byt "n", 't'|128
+DictionaryWord98: .byt "c", 'h'|128
+DictionaryWord99: .byt "i", 'e'|128
+DictionaryWord100: .byt "o", 'o'|128
+DictionaryWord101: .byt "s", 'e'|128
+DictionaryWord102: .byt "e", 'n'|128
+DictionaryWord103: .byt "e", ' '|128
+DictionaryWord104: .byt "'t", ' '|128
+DictionaryWord105: .byt "'s", ' '|128
+DictionaryWord106: .byt "r", ' '|128
+DictionaryWord107: .byt "t", 'e'|128
+DictionaryWord108: .byt "e", 'a'|128
+DictionaryWord109: .byt "e", 'r'|128
+DictionaryWord110: .byt "r", 't'|128
+DictionaryWord111: .byt "l", 'd'|128
+DictionaryWord112: .byt "n", 'd'|128
+DictionaryWord113: .byt "s", 's'|128
+DictionaryWord114: .byt "u", 'n'|128
+DictionaryWord115: .byt "c", 'k'|128
+DictionaryWord116: .byt "o", 'u'|128
+DictionaryWord117: .byt ",", ' '|128
+DictionaryWord118: .byt ".", ' '|128
+DictionaryWord119: .byt "a", 'd'|128
+DictionaryWord120: .byt "T", 'h'|128
+DictionaryWord121: .byt "n", 'e'|128
+DictionaryWord122: .byt "t", 'r'|128
+DictionaryWord123: .byt "s", ' '|128
+DictionaryWord124: .byt "r", 'i'|128
+DictionaryWord125: .byt "!", ' '|128
+DictionaryWord126: .byt "y", ' '|128
+DictionaryWord127: .byt "d", ' '|128
+
+CutsceneDictionaryTable:
+.byt <DictionaryWord0
+.byt <DictionaryWord1
+.byt <DictionaryWord2
+.byt <DictionaryWord3
+.byt <DictionaryWord4
+.byt <DictionaryWord5
+.byt <DictionaryWord6
+.byt <DictionaryWord7
+.byt <DictionaryWord8
+.byt <DictionaryWord9
+.byt <DictionaryWord10
+.byt <DictionaryWord11
+.byt <DictionaryWord12
+.byt <DictionaryWord13
+.byt <DictionaryWord14
+.byt <DictionaryWord15
+.byt <DictionaryWord16
+.byt <DictionaryWord17
+.byt <DictionaryWord18
+.byt <DictionaryWord19
+.byt <DictionaryWord20
+.byt <DictionaryWord21
+.byt <DictionaryWord22
+.byt <DictionaryWord23
+.byt <DictionaryWord24
+.byt <DictionaryWord25
+.byt <DictionaryWord26
+.byt <DictionaryWord27
+.byt <DictionaryWord28
+.byt <DictionaryWord29
+.byt <DictionaryWord30
+.byt <DictionaryWord31
+.byt <DictionaryWord32
+.byt <DictionaryWord33
+.byt <DictionaryWord34
+.byt <DictionaryWord35
+.byt <DictionaryWord36
+.byt <DictionaryWord37
+.byt <DictionaryWord38
+.byt <DictionaryWord39
+.byt <DictionaryWord40
+.byt <DictionaryWord41
+.byt <DictionaryWord42
+.byt <DictionaryWord43
+.byt <DictionaryWord44
+.byt <DictionaryWord45
+.byt <DictionaryWord46
+.byt <DictionaryWord47
+.byt <DictionaryWord48
+.byt <DictionaryWord49
+.byt <DictionaryWord50
+.byt <DictionaryWord51
+.byt <DictionaryWord52
+.byt <DictionaryWord53
+.byt <DictionaryWord54
+.byt <DictionaryWord55
+.byt <DictionaryWord56
+.byt <DictionaryWord57
+.byt <DictionaryWord58
+.byt <DictionaryWord59
+.byt <DictionaryWord60
+.byt <DictionaryWord61
+.byt <DictionaryWord62
+.byt <DictionaryWord63
+.byt <DictionaryWord64
+.byt <DictionaryWord65
+.byt <DictionaryWord66
+.byt <DictionaryWord67
+.byt <DictionaryWord68
+.byt <DictionaryWord69
+.byt <DictionaryWord70
+.byt <DictionaryWord71
+.byt <DictionaryWord72
+.byt <DictionaryWord73
+.byt <DictionaryWord74
+.byt <DictionaryWord75
+.byt <DictionaryWord76
+.byt <DictionaryWord77
+.byt <DictionaryWord78
+.byt <DictionaryWord79
+.byt <DictionaryWord80
+.byt <DictionaryWord81
+.byt <DictionaryWord82
+.byt <DictionaryWord83
+.byt <DictionaryWord84
+.byt <DictionaryWord85
+.byt <DictionaryWord86
+.byt <DictionaryWord87
+.byt <DictionaryWord88
+.byt <DictionaryWord89
+.byt <DictionaryWord90
+.byt <DictionaryWord91
+.byt <DictionaryWord92
+.byt <DictionaryWord93
+.byt <DictionaryWord94
+.byt <DictionaryWord95
+.byt <DictionaryWord96
+.byt <DictionaryWord97
+.byt <DictionaryWord98
+.byt <DictionaryWord99
+.byt <DictionaryWord100
+.byt <DictionaryWord101
+.byt <DictionaryWord102
+.byt <DictionaryWord103
+.byt <DictionaryWord104
+.byt <DictionaryWord105
+.byt <DictionaryWord106
+.byt <DictionaryWord107
+.byt <DictionaryWord108
+.byt <DictionaryWord109
+.byt <DictionaryWord110
+.byt <DictionaryWord111
+.byt <DictionaryWord112
+.byt <DictionaryWord113
+.byt <DictionaryWord114
+.byt <DictionaryWord115
+.byt <DictionaryWord116
+.byt <DictionaryWord117
+.byt <DictionaryWord118
+.byt <DictionaryWord119
+.byt <DictionaryWord120
+.byt <DictionaryWord121
+.byt <DictionaryWord122
+.byt <DictionaryWord123
+.byt <DictionaryWord124
+.byt <DictionaryWord125
+.byt <DictionaryWord126
+.byt <DictionaryWord127
+.byt >DictionaryWord0
+.byt >DictionaryWord1
+.byt >DictionaryWord2
+.byt >DictionaryWord3
+.byt >DictionaryWord4
+.byt >DictionaryWord5
+.byt >DictionaryWord6
+.byt >DictionaryWord7
+.byt >DictionaryWord8
+.byt >DictionaryWord9
+.byt >DictionaryWord10
+.byt >DictionaryWord11
+.byt >DictionaryWord12
+.byt >DictionaryWord13
+.byt >DictionaryWord14
+.byt >DictionaryWord15
+.byt >DictionaryWord16
+.byt >DictionaryWord17
+.byt >DictionaryWord18
+.byt >DictionaryWord19
+.byt >DictionaryWord20
+.byt >DictionaryWord21
+.byt >DictionaryWord22
+.byt >DictionaryWord23
+.byt >DictionaryWord24
+.byt >DictionaryWord25
+.byt >DictionaryWord26
+.byt >DictionaryWord27
+.byt >DictionaryWord28
+.byt >DictionaryWord29
+.byt >DictionaryWord30
+.byt >DictionaryWord31
+.byt >DictionaryWord32
+.byt >DictionaryWord33
+.byt >DictionaryWord34
+.byt >DictionaryWord35
+.byt >DictionaryWord36
+.byt >DictionaryWord37
+.byt >DictionaryWord38
+.byt >DictionaryWord39
+.byt >DictionaryWord40
+.byt >DictionaryWord41
+.byt >DictionaryWord42
+.byt >DictionaryWord43
+.byt >DictionaryWord44
+.byt >DictionaryWord45
+.byt >DictionaryWord46
+.byt >DictionaryWord47
+.byt >DictionaryWord48
+.byt >DictionaryWord49
+.byt >DictionaryWord50
+.byt >DictionaryWord51
+.byt >DictionaryWord52
+.byt >DictionaryWord53
+.byt >DictionaryWord54
+.byt >DictionaryWord55
+.byt >DictionaryWord56
+.byt >DictionaryWord57
+.byt >DictionaryWord58
+.byt >DictionaryWord59
+.byt >DictionaryWord60
+.byt >DictionaryWord61
+.byt >DictionaryWord62
+.byt >DictionaryWord63
+.byt >DictionaryWord64
+.byt >DictionaryWord65
+.byt >DictionaryWord66
+.byt >DictionaryWord67
+.byt >DictionaryWord68
+.byt >DictionaryWord69
+.byt >DictionaryWord70
+.byt >DictionaryWord71
+.byt >DictionaryWord72
+.byt >DictionaryWord73
+.byt >DictionaryWord74
+.byt >DictionaryWord75
+.byt >DictionaryWord76
+.byt >DictionaryWord77
+.byt >DictionaryWord78
+.byt >DictionaryWord79
+.byt >DictionaryWord80
+.byt >DictionaryWord81
+.byt >DictionaryWord82
+.byt >DictionaryWord83
+.byt >DictionaryWord84
+.byt >DictionaryWord85
+.byt >DictionaryWord86
+.byt >DictionaryWord87
+.byt >DictionaryWord88
+.byt >DictionaryWord89
+.byt >DictionaryWord90
+.byt >DictionaryWord91
+.byt >DictionaryWord92
+.byt >DictionaryWord93
+.byt >DictionaryWord94
+.byt >DictionaryWord95
+.byt >DictionaryWord96
+.byt >DictionaryWord97
+.byt >DictionaryWord98
+.byt >DictionaryWord99
+.byt >DictionaryWord100
+.byt >DictionaryWord101
+.byt >DictionaryWord102
+.byt >DictionaryWord103
+.byt >DictionaryWord104
+.byt >DictionaryWord105
+.byt >DictionaryWord106
+.byt >DictionaryWord107
+.byt >DictionaryWord108
+.byt >DictionaryWord109
+.byt >DictionaryWord110
+.byt >DictionaryWord111
+.byt >DictionaryWord112
+.byt >DictionaryWord113
+.byt >DictionaryWord114
+.byt >DictionaryWord115
+.byt >DictionaryWord116
+.byt >DictionaryWord117
+.byt >DictionaryWord118
+.byt >DictionaryWord119
+.byt >DictionaryWord120
+.byt >DictionaryWord121
+.byt >DictionaryWord122
+.byt >DictionaryWord123
+.byt >DictionaryWord124
+.byt >DictionaryWord125
+.byt >DictionaryWord126
+.byt >DictionaryWord127

@@ -20,7 +20,6 @@ PUZ = 128 ; puzzle
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B1
   .byt B1,     B1,     B1|PUZ, B1,     B1|PUZ, B1,     B1|PUZ, B1
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B1
-
 .endproc
 
 .enum LevelId
@@ -60,6 +59,45 @@ PUZ = 128 ; puzzle
   Garden
   PuzzleBomb
 .endenum
+
+.pushseg
+.segment "PRGe"
+.proc PreLevelText
+  .byt LevelId::IntroA
+  .addr PreLevelIntro
+  .byt LevelId::FunkUnderground
+  .addr PreLevelUnderground
+  .byt LevelId::Sky
+  .addr PreLevelSky
+  .byt LevelId::Water
+  .addr PreLevelWater
+  .byt LevelId::Boss1
+  .addr PreLevelBoss1
+  .byt LevelId::GlassIntro
+  .addr PreLevelGlassIntro
+  .byt LevelId::Burgers
+  .addr PreLevelBurgers
+  .byt LevelId::ChipTall
+  .addr PreLevelChipTall
+  .byt LevelId::Tall
+  .addr PreLevelTall
+  .byt LevelId::GlassFinale
+  .addr PreLevelGlassFinale
+  .byt LevelId::Boss2
+  .addr PreLevelBoss2
+  .byt LevelId::Frozen
+  .addr PreLevelFrozen
+  .byt LevelId::Frozen2
+  .addr PreLevelFrozen2
+  .byt LevelId::Frozen3
+  .addr PreLevelFrozen3
+  .byt LevelId::Frozen5
+  .addr PreLevelFrozen5
+  .byt LevelId::Frozen6
+  .addr PreLevelFrozen6
+  .byt 255
+.endproc
+.popseg
 
 .include "../levels/intro_a.s"
 .include "../levels/intro_b.s"

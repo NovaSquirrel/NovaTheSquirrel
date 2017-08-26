@@ -17,6 +17,7 @@
 
 .proc ShowPreLevel
 ; 10, 11, 12 used by palette cycle
+LevelTextAddress = 8
 Cursor = 14
 OptionCount = 13
   jsr OptionsScreenSetup
@@ -89,6 +90,47 @@ OptionCount = 13
     .byt "* Play  Cutscene *",0
   :
 
+  ; Is there pre-level text?
+  ldx #0
+PreLevelTextCheck:
+  lda PreLevelText,x
+  bmi PreLevelTextNotFound
+  cmp StartedLevelNumber
+  beq PreLevelTextFound
+  inx
+  inx
+  inx
+  bne PreLevelTextCheck ; unconditional
+PreLevelTextFound:
+  lda PreLevelText+1,x
+  sta CompressedTextPointer+0
+  lda PreLevelText+2,x
+  sta CompressedTextPointer+1
+  lda #$e2
+  sta LevelTextAddress+0
+  lda #$20
+  sta LevelTextAddress+1
+
+: ; Draw each line of the pre-level text
+  ldx #0
+  jsr DecompressTextFar
+  pha ; save the terminator byte
+  lda LevelTextAddress+1
+  sta PPUADDR
+  lda LevelTextAddress+0
+  sta PPUADDR
+
+  ; Go down two rows
+  add #64
+  sta LevelTextAddress+0
+  addcarry LevelTextAddress+1
+
+  jsr PrintDecompressedText
+  pla ; get the terminator byte
+  cmp #SCR::END_SCRIPT
+  bne :-
+
+.if 0
   ; "text"
   PositionXY 0, 4, 7
   jsr PutStringImmediate
@@ -102,6 +144,8 @@ OptionCount = 13
   PositionXY 0, 4, 13
   jsr PutStringImmediate
   .byt "aaaaaa",0
+.endif
+PreLevelTextNotFound:
 
   ; Options
   PositionXY 0, 10, 24

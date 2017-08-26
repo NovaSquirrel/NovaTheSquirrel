@@ -141,6 +141,10 @@
   lda #DIALOG_BANK
   jsr _SetPRG
   pla
+
   jsr DecompressText
-  jmp SetPRG_Restore
+  pha
+  jsr SetPRG_Restore
+  pla
+  rts
 .endproc

@@ -4,7 +4,6 @@
 <0 NOVA>Hey Kee? What just happened? Where are we?
 <1 KEE>No idea, Nova. You look pretty different now though.
 <0 NOVA>... I have a lot of questions. Come on, let's look around.
-[](Press up to read the signs or go in doors. Skip dialog with Start.)
 `end
 
 :Tutorial1:
@@ -396,3 +395,106 @@
 <1 SIGN>Stand on these pickup blocks and press Up to pick them up. Press Down to set them down again. Oh, and definitely copy a glider for this level if you have no weapon.
 `end
 
+
+`manualwrap
+:PreLevelIntro:
+ Nova sets off on her new
+`nl
+ adventure and learns how
+`nl
+ to play in this new world.
+`nl
+ (Press Up to read signs)
+`end
+
+:PreLevelUnderground:
+A familiar underground cave
+`nl
+made of bricks. Except it's
+`nl
+above ground this time?
+`end
+
+:PreLevelSky:
+A level set high up in the
+`nl
+sky. Be careful not to fall.
+`end
+
+:PreLevelWater:
+A nice tropical beach area.
+`end
+
+:PreLevelBoss1:
+Nova's first encounter with
+`nl
+the evil Scheme Team. Shoot
+`nl
+them then touch them to win.
+`end
+
+:PreLevelGlassIntro:
+ Nova travels to a glassy
+`nl
+ neon world (Bummer Club),
+`nl
+ full of puzzles.
+`end
+
+:PreLevelBurgers:
+ Nova is joined by a friend
+`nl
+ and fights against burger
+`nl
+ themed enemies.
+`end
+
+:PreLevelChipTall:
+  "Nova, this level looks
+`nl
+  unfinished!"
+`nl
+  (Check your inventory)
+`end
+
+:PreLevelTall:
+  A large puzzle tower!
+`end
+
+:PreLevelGlassFinale:
+  Some more tricky puzzles!
+`nl
+  (Check your inventory)
+`end
+
+:PreLevelBoss2:
+ Nova runs into the Scheme
+`nl
+ Team again and they've got
+`nl
+ a new weapon this time!
+`end
+
+:PreLevelFrozen:
+Nova enters the icy and
+`nl
+lava filled Frozen Volcano.
+`end
+
+:PreLevelFrozen2:
+More minecart shenanigans.
+`end
+
+:PreLevelFrozen3:
+A boomerang and Life filled
+`nl
+cave.
+`end
+
+:PreLevelFrozen5:
+Cave of the Strife Clouds.
+`end
+
+:PreLevelFrozen6:
+Ronald is back for revenge.
+`end
