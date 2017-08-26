@@ -80,7 +80,8 @@ frozen6Data:
   LObj  LO::S_DOOR,           1, 2
   LWriteCol 3, 109
   LObjN LO::WIDE_1,           0, 8, 1, LN1::SOLID_LEDGE
-  LObj  LO::S_SPRING,         1, 12
+  LObj  LO::S_SPRING,         1, 11
+  LObjN LO::R_ROCK,           0, 12, 0, 0
   LObjN LO::R_COIN,           1, 1, 0, 2
   LObjN LO::TALL_2,           0, 5, 2, LN2::TRUNK
   LObjN LO::R_ROCK,           0, 8, 1, 6
@@ -218,9 +219,9 @@ frozen6Data:
   LObjN LO::R_ROCK,           2, 5, 1, 9
   LObj  LO::S_MTRACK_STOP,     2, 4
   LObjN LO::R_ICE2,            0, 5, 15, 0
-  LObj  LO::S_SPRING,         11, 7
+  LObj  LO::S_SPRING,         13, 7
   LObjN LO::WIDE_1,           0, 8, 0, LN1::SOLID_LEDGE
-  LObjN LO::R_ICE2,            5, 5, 6, 0
+  LObjN LO::R_ICE2,            3, 5, 6, 0
   LObjN LO::WIDE_1,           7, 7, 5, LN1::SOLID_LEDGE
   LObj  LO::S_EXIT_DOOR,      3, 5
   LFinished

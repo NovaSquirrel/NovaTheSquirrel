@@ -41,12 +41,14 @@ intro_aData:
   LObj  LO::S_SPRING,         2, 12
   LObjN LO::WIDE_1,           3, 12, 0, LN1::SPIKES
   LObjN LO::WIDE_1,           3, 11, 5, LN1::SOLID_LEDGE
-  LObjN LO::R_COIN,           8, 10, 8, 0
+  LObjN LO::R_COIN,           8, 10, 2, 0
   LObjN LO::WIDE_2,           1, 12, 2, LN2::BUSH
-  LObj  LO::S_SIGNPOST,       3, 12
+  LObjN LO::TALL_2,           3, 11, 1, LN2::TRUNK_L
+  LObjN LO::WIDE_2,           2, 12, 2, LN2::BUSH
+  LObjN LO::R_COIN,           1, 10, 2, 0
+  LObj  LO::S_SIGNPOST,       4, 10
   LWriteCol <Tutorial2, >Tutorial2
-  LObjN LO::WIDE_2,           1, 12, 2, LN2::BUSH
-  LObjN LO::R_GROUND,         6, 11, 10, 1
+  LObjN LO::R_GROUND,         0, 11, 10, 1
   LObjN LO::WIDE_1,           2, 6, 0, LN1::SOLID_LEDGE
   LObj  LO::S_SPRING,         0, 10
   LObj  LO::S_SOLID_BLOCK,    1, 7
