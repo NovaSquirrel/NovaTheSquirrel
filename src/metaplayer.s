@@ -584,8 +584,7 @@ ExitDoor:
   jsr CopyToSavedInventory
   jsr SaveEventFlags
 
-  lda StartedLevelNumber
-  jmp StartLevel
+  jmp ShowPreLevelFar
 .endproc
 
 .proc ConfiscateItems

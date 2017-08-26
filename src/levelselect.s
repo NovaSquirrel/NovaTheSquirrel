@@ -23,6 +23,9 @@ NovaDirection = 13
 IconNum = 14
 WorldTimes8 = 15
 
+  ldx #255 ; reinitialize stack pointer just in case
+  txs
+
   ; Make the inventory have the correct information
 ;  lda SavedAbility
 ;  sta PlayerAbility

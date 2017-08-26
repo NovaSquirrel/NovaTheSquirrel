@@ -148,3 +148,9 @@
   pla
   rts
 .endproc
+
+.proc ShowPreLevelFar
+  lda #OPTIONS_BANK
+  jsr SetPRG
+  jmp ShowPreLevel
+.endproc

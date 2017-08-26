@@ -20,6 +20,9 @@
 LevelTextAddress = 8
 Cursor = 14
 OptionCount = 13
+  ldx #255 ; reinitialize stack pointer just in case
+  txs
+
   jsr OptionsScreenSetup
   jsr ClearOAM
 
