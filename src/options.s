@@ -169,7 +169,7 @@ OptionsPalette:
 .proc ShowOptions
 Cursor = 13
 LastOptionNum = 14
-LastOptionConst = 4
+LastOptionConst = 5
 
   lda #LastOptionConst
   sub OptionsViaInventory
@@ -208,6 +208,9 @@ LastOptionConst = 4
   jsr PutStringImmediate
   .byt "Run method",0
   PositionXY 0, 3, 18
+  jsr PutStringImmediate
+  .byt "B always shoots",0
+  PositionXY 0, 3, 20
   jsr PutStringImmediate
   .byt "Delete save",0
   PositionXY 0, 3, 24
@@ -347,15 +350,16 @@ PrintChoiceValue:
 
 ; Nametable addresses to put the choice values at
 HiName:
-  .hibytes $2159+64*1, $2159+64*2, $2159+64*3, $2159+64*4
+  .hibytes $2159+64*1, $2159+64*2, $2159+64*3, $2159+64*4, $2159+64*5
 LoName:
-  .lobytes $2159+64*1, $2159+64*2, $2159+64*3, $2159+64*4
+  .lobytes $2159+64*1, $2159+64*2, $2159+64*3, $2159+64*4, $2159+64*5
 
 ; Text for the different choices
 ChoiceValues:
   .byt "SlowFast"
   .byt "FastSlow"
   .byt "B   Tap "
+  .byt "No  Yes "
   .byt "No  Yes "
 .endproc
 

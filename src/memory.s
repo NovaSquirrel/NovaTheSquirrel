@@ -376,6 +376,7 @@ SavedOptions:
   SavedAcceleration:  .res 1
   SavedRunSpeed:      .res 1
   SavedRunStyle:      .res 1
+  SavedShootWhileWalking: .res 1
   DeleteSavePlaceholder: .res 1 ; "delete file" placeholder
 SaveEnd:
 .code

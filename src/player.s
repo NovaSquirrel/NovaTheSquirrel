@@ -419,6 +419,9 @@ NotOffTopBottom:
     :
     jmp SkipTail
 NoTail:
+  ; shooting while moving left/right okay if explicitly enabled, if on tap run, or if jumping
+  lda SavedShootWhileWalking
+  bne OkayIfLeftRight
   lda SavedRunStyle
   bne OkayIfLeftRight
   lda PlayerJumping
@@ -2083,7 +2086,7 @@ MakeShot:
   beq Left
 Right:
   lda PlayerPXL
-  add #$40
+  add #$80
   sta ObjectPXL,x
   lda PlayerPXH
   adc #0
