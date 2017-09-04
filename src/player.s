@@ -1129,20 +1129,29 @@ FC___LR:
      rts
   :
 
+  ; Set "Player on ground" flag
   inc PlayerOnGround
+
+  ; If player started running via tap, keep running
+  ; and don't let the B button being unpressed stop it.
+  lda RunStartedWithTap
+  bne :+
+    lda keydown
+    and #KEY_B
+    sta PlayerWasRunning
+  :
+
   lda SavedRunStyle
-  bne RunStyleTap
-  lda keydown
-  and #KEY_B
-  sta PlayerWasRunning
-  jmp RunStyleWasB
+  beq RunStyleWasB
 RunStyleTap:
+  ; Double-tap to run
   countdown TapRunTimer
 
-  ; If you turn around you're not longer running
+  ; If you press in a different direction than
+  ; when you started running, you're not running
   lda keydown
   and #KEY_LEFT|KEY_RIGHT
-  beq :+
+;  beq :+
   cmp TapRunKey
   bne RunCancel
 
@@ -1153,8 +1162,13 @@ RunStyleTap:
     lda PlayerWasRunning
     beq :+
 RunCancel:
+      lda PlayerWasRunning
+      php
       lda #0
       sta PlayerWasRunning
+      sta RunStartedWithTap
+      plp
+      beq :+
       sta TapRunTimer
   :
 
@@ -1162,12 +1176,13 @@ RunCancel:
   lda keynew
   and #KEY_LEFT|KEY_RIGHT
   beq :+
-    ldy TapRunTimer
-    beq @SetTapTimer
+    ldy TapRunTimer   ; Is the tap timer going?
+    beq @SetTapTimer  ; Nope
     lda #1
     sta PlayerWasRunning
+    sta RunStartedWithTap
     bne :+
-@SetTapTimer:
+@SetTapTimer:         ; Start the tap timer
     sta TapRunKey
     lda #15
     sta TapRunTimer

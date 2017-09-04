@@ -206,7 +206,7 @@ LastOptionConst = 5
   .byt "Run speed",0
   PositionXY 0, 3, 16
   jsr PutStringImmediate
-  .byt "Run method",0
+  .byt "Double-tap run",0
   PositionXY 0, 3, 18
   jsr PutStringImmediate
   .byt "B always shoots",0
@@ -358,7 +358,7 @@ LoName:
 ChoiceValues:
   .byt "SlowFast"
   .byt "FastSlow"
-  .byt "B   Tap "
+  .byt "No  Yes "
   .byt "No  Yes "
   .byt "No  Yes "
 .endproc

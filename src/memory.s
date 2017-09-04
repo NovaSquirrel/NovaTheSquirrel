@@ -271,10 +271,11 @@
   NovaDecelSpeed: .res 1
   NovaRunSpeedL:  .res 1
   NovaRunSpeedR:  .res 1
-  TapRunTimer: .res 1
-  TapRunKey:   .res 1
+  TapRunTimer: .res 1           ; timer for determining if it's a double tap
+  TapRunKey:   .res 1           ; which d-pad button the run was started right (left/right)
 
 LevelZeroWhenLoad_Start:
+  RunStartedWithTap:      .res 1 ; if 1, the current run started with a tap
   PlayerHasBalloon:       .res 1
   DelayedMetaEditIndexHi: .res MaxDelayedMetaEdits  ; high address in the level array, or 0 if unused
   IsScrollUpdate:         .res 1   ; nonzero = yes
@@ -360,7 +361,8 @@ GameStateLen = 1+2+10+10+2 ; update if more stuff is added
   PlaceBlockItemIndex:  .res 1
   ChipCount:            .res 1
   SNESController:       .res 1 ; 1 if SNES controller, 0 if NES
-  AttackKeyDownSnapshot: .res 2
+
+  AttackKeyDownSnapshot: .res 2 ; snapshot of what keys were down when the attack started
 
 .segment "SAVE"
 SaveStart:
@@ -375,7 +377,7 @@ SavedGameState_Start: ; apparently this isn't actually used in one chunk?
 SavedOptions:
   SavedAcceleration:  .res 1
   SavedRunSpeed:      .res 1
-  SavedRunStyle:      .res 1
+  SavedRunStyle:      .res 1    ; if 1, can double-tap to run
   SavedShootWhileWalking: .res 1
   DeleteSavePlaceholder: .res 1 ; "delete file" placeholder
 SaveEnd:
