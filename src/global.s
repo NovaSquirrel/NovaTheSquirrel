@@ -1069,6 +1069,10 @@ Exit:
   lda #0
   sta ScriptFlags+0 ; clear first 8 flags
   sta PuzzleMode
+
+  ; Copy the level select number to the checkpoint number
+  lda StartedLevelNumber
+  sta CheckpointLevelNumber
 FromCheckpoint:
   lda #4
   sta PlayerHealth
@@ -1085,7 +1089,7 @@ FromCheckpoint:
   jsr UploadNovaAndCommon
 
 ; Finally decompress the level and start the game engine
-  lda StartedLevelNumber
+  lda CheckpointLevelNumber
   jsr DecompressLevel
   jmp MainLoopInit
 

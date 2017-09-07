@@ -1,5 +1,6 @@
-; p... bbbb
-; |    ++++- bank, 0-15
+; pd.. bbbb
+; ||   ++++- bank, 0-15
+; |+-------- 1 if palette should be uploaded without any buffering
 ; +--------- 1 if this is a palette
 
 IS_GRAPHIC =        %00000000 ; compressed graphics
