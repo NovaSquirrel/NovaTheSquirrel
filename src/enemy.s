@@ -784,7 +784,10 @@ ThrowBottle:
 
 .proc ObjectIce1
   lda ObjectF3,x
-  bne BouncyEnemy
+  cmp #2
+  beq KickEnemy
+  cmp #1
+  beq BouncyEnemy
   jsr EnemyFall
   bcc NoWalk
   lda ObjectF4,x
@@ -814,6 +817,10 @@ Draw:
 Frames:
   .byt $0a, $0e, $0a, $12
 
+KickEnemy:
+  jsr EnemyFall
+  jmp Draw
+
 BouncyEnemy:
   lda ObjectF2,x
   bne :+
@@ -835,6 +842,47 @@ BouncyEnemy:
 .endproc
 
 .proc ObjectIce2
+  lda #$16
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+
+  lda PlayerPXH
+  sub ObjectPXH,x
+  abs
+  cmp #3
+  bcc CloseUp
+  ; Far from the player, walk and bump into things
+    lda #$10
+    jsr EnemyWalk
+    jsr EnemyAutoBump
+
+    jmp WasFar
+CloseUp:
+  ; Close up to the player, try and make spikes
+    lda #Enemy::FALLING_SPIKE*2
+    jsr CountObjectAmount
+    cpy #3
+    bcs :+
+    jsr FindFreeObjectY
+    bcc :+
+    jsr ObjectClearY
+    lda #Enemy::FALLING_SPIKE*2
+    sta ObjectF1,y
+    lda PlayerPXH
+    sta ObjectPXH,y
+    jsr huge_rand
+    sta ObjectPXL,y
+
+    lda #0
+    sta ObjectPYH,y
+    lda #3
+    sta ObjectF3,y
+  :
+WasFar:
+
+  jmp EnemyPlayerTouchHurt
+
+.if 0 ; unused behavior
   lda ObjectF3,x
   beq DoNormal
 
@@ -905,6 +953,7 @@ MakeIce:
 : lda 4
   sta ObjectPXH,x
   rts
+.endif
 .endproc
 
 .proc EnemyBounceRandomHeights
