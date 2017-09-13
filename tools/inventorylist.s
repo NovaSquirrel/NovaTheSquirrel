@@ -155,7 +155,7 @@
   .byt <(DoSwitchAbility-1) ;ABILITY_BURGER
   .byt <(DoNothing-1) ;LAMP_OIL
   .byt <(DoPlaceRope-1) ;ROPE
-  .byt <(DoNothing-1) ;BALLOON
+  .byt <(DoBalloon-1) ;BALLOON
   .byt <(DoHealthRestoreSmall-1) ;SMALL_HEALTH_RESTORE
   .byt <(DoHealthRestoreBig-1) ;BIG_HEALTH_RESTORE
   .byt <(DoPlaceableItem-1) ;BLOCK
@@ -171,7 +171,7 @@
   .byt <(DoPlaceableItem-1) ;WOOD_BOX
   .byt <(DoPlaceableItem-1) ;METAL_BOX
   .byt <(DoNothing-1) ;ABILITY_BACKUP
-  .byt <(DoNothing-1) ;AUTO_BALLOON
+  .byt <(DoBalloon-1) ;AUTO_BALLOON
 .endproc
 
 .proc InventoryICodeH
@@ -199,7 +199,7 @@
   .byt >(DoSwitchAbility-1) ;ABILITY_BURGER
   .byt >(DoNothing-1) ;LAMP_OIL
   .byt >(DoPlaceRope-1) ;ROPE
-  .byt >(DoNothing-1) ;BALLOON
+  .byt >(DoBalloon-1) ;BALLOON
   .byt >(DoHealthRestoreSmall-1) ;SMALL_HEALTH_RESTORE
   .byt >(DoHealthRestoreBig-1) ;BIG_HEALTH_RESTORE
   .byt >(DoPlaceableItem-1) ;BLOCK
@@ -215,7 +215,7 @@
   .byt >(DoPlaceableItem-1) ;WOOD_BOX
   .byt >(DoPlaceableItem-1) ;METAL_BOX
   .byt >(DoNothing-1) ;ABILITY_BACKUP
-  .byt >(DoNothing-1) ;AUTO_BALLOON
+  .byt >(DoBalloon-1) ;AUTO_BALLOON
 .endproc
 
 .proc InventoryShortName

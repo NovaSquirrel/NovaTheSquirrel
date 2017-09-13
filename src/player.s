@@ -337,22 +337,19 @@ SkipApplyGravity:
 
   lda PlayerPYH ; don't kill if on the top side of the screen
   bmi :+
+  lda PlayerHasBalloon
+  bne :+
+
+  lda #InventoryItem::AUTO_BALLOON
+  jsr InventoryHasItem
+  bcc DieInPit
+  inc PlayerHasBalloon
+  jsr RemoveOneItem
+  jmp NotOffTopBottom
+
+DieInPit:
   lda #0
   sta PlayerHealth
-.if 0
-  lda PuzzleMode
-  bne :+
-  ; In action mode, die
-  ; (A = 0 still)
-  sta PlayerHealth
-: jmp @ActionMode
-
-  ; In puzzle mode, a non-linked screen wraps around
-  lda PlayerPYH
-  and #$0f
-  sta PlayerPYH
-@ActionMode:
-.endif
 
   jmp NotOffTopBottom
 LevelLinkNonzero:

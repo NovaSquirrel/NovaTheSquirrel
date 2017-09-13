@@ -202,8 +202,8 @@ R BALLOON
 C .byt InventoryIcon::BULLET
 C .byt <NameBalloon
 C .byt >NameBalloon
-C .byt <(DoNothing-1)
-C .byt >(DoNothing-1)
+C .byt <(DoBalloon-1)
+C .byt >(DoBalloon-1)
 C ThinFontText "BALLOON "
 
 R SMALL_HEALTH_RESTORE
@@ -330,6 +330,6 @@ R AUTO_BALLOON
 C .byt InventoryIcon::BULLET
 C .byt <NameAutoBalloon
 C .byt >NameAutoBalloon
-C .byt <(DoNothing-1)
-C .byt >(DoNothing-1)
+C .byt <(DoBalloon-1)
+C .byt >(DoBalloon-1)
 C ThinFontText "ABALLOON"

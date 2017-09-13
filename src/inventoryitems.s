@@ -59,7 +59,8 @@ NameArrowRightMetal: .byt "Arrow (right metal)",0
 NameWoodBox: .byt "Wood spring box",0
 NameMetalBox: .byt "Metal box",0
 
-
+.pushseg
+.code
 .proc RemoveOneItem
   cpx #255       ; for triggering the item effect without using an actual item
   beq Unlimited
@@ -76,6 +77,13 @@ EmptyNow: ; Is empty now, so remove the item
   lda #0
   sta InventoryType,x
   rts
+.endproc
+.popseg
+
+.proc DoBalloon
+  lda #1
+  sta PlayerHasBalloon
+  jmp RemoveOneItem
 .endproc
 
 .proc DoHealthRestore
