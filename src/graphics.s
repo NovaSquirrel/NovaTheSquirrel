@@ -45,7 +45,7 @@ AltGrassy2: .byt $00
 PalBummer:  .byt $03
             .byt $1a, $2a, $3a
             .byt $2d, $10, $30
-            .byt $06, $16, $27
+            .byt $06, $16, $26
             .byt $02, $22, $32
 PalTitle:   .byt $02
             .byt $0f, $2a, $12
