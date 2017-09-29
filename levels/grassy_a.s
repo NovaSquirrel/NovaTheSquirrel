@@ -34,8 +34,8 @@ grassy_aData:
   LObj  LO::S_FLOWER,         1, 12
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 24
   LObjN LO::R_BRICKWALL,      1, 11, 7, 1
-  LObjN LO::R_COIN,           4, 9, 1, 1
-  LObjN LO::TALL_2,           6, 10, 2, LN2::TRUNK_L
+  LObjN LO::R_COIN,           3, 9, 2, 1
+  LObjN LO::TALL_2,           7, 10, 2, LN2::TRUNK_L
   LObj  LO::S_FLOWER,         2, 12
   LObjN LO::TALL_2,           1, 10, 2, LN2::TRUNK_L
   LObjN LO::WIDE_3,           3, 12, 5, LN3::WHITEFENCE
@@ -47,14 +47,17 @@ grassy_aData:
   LObjN LO::TALL_1,           3, 8, 4, LN1::LADDER
   LObj  LO::S_BRICKPRIZE,     1, 5
   LObjN LO::R_BRICK,          1, 10, 7, 0
-  LObjN LO::R_BRICK,          7, 8, 0, 1
+  LObjN LO::R_COIN,           3, 11, 4, 1
+  LObjN LO::R_BRICK,          4, 8, 0, 1
   LObjN LO::R_GROUND,         1, 8, 10, 1
   LObjN LO::WIDE_1,           0, 13, 10, LN1::SPIKES
   LObjN LO::R_GROUND,         0, 14, 10, 0
   LObjN LO::WIDE_1,           1, 7, 8, LN1::FENCE
-  LObjN LO::TALL_1,           10, 8, 4, LN1::LADDER
+  LObjN LO::R_COIN,           2, 6, 4, 0
+  LObjN LO::TALL_1,           8, 8, 4, LN1::LADDER
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 31
-  LObjN LO::R_GROUND,         7, 3, 14, 5
+  LObjN LO::R_COIN,           2, 10, 3, 0
+  LObjN LO::R_GROUND,         5, 3, 14, 5
   LObjN LO::RECT_2,           1, 9, 3, LN2::BLACK, 12
   LObj  LO::S_FLOWER,         1, 2
   LObj  LO::S_FLOWER,         4, 2

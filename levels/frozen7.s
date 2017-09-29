@@ -26,7 +26,7 @@ frozen7Data:
   LObjN LO::RECT_1,           0, 12, 2, LN1::GROUND, 18
   LObjN LO::WIDE_1,           2, 11, 0, LN1::FENCE
   LObjN LO::TALL_2,           1, 3, 8, LN2::TRUNK
-  LObjN LO::R_COIN,           1, 8, 0, 2
+  LObjN LO::R_COIN,           1, 8, 1, 2
   LObj  LO::R_CUSTOM,         2, 12, Metatiles::LAVA_MAIN, (6<<4)|2
   LObjN LO::WIDE_1,           3, 10, 2, LN1::SOLID_LEDGE
   LObjN LO::R_COIN,           3, 7, 2, 0
@@ -104,7 +104,8 @@ frozen7Data:
   LObj  LO::S_SPRING,         0, 11
   LObjN LO::WIDE_1,           0, 12, 4, LN1::SOLID_LEDGE
   LObj  LO::S_SOLID_ROCK,     1, 7
-  LObjN LO::R_CEILING_BARRIER,2, 0, 0, 1
+  LObjN LO::R_COIN,           1, 11, 2, 0
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
   LObjN LO::RECT_3,           1, 0, 1, LN3::ROCK, 22
   LObjN LO::WIDE_1,           0, 8, 4, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           1, 13, 1, LN1::SOLID_LEDGE
@@ -163,7 +164,7 @@ frozen7Data:
   LObjN LO::R_ROCK,           2, 0, 0, 5
   LObjN LO::R_GROUND,         0, 11, 5, 3
   LObjN LO::R_ROCK,           1, 0, 0, 2
-  LObjN LO::R_COIN,           0, 10, 2, 0
+  LObjN LO::R_COIN,           0, 9, 2, 1
   LObjN LO::WIDE_1,           2, 7, 2, LN1::SOLID_LEDGE
   LObjN LO::TALL_2,           1, 0, 6, LN2::TRUNK
   LObj  LO::S_SNOWMAN,         0, 9
@@ -181,7 +182,7 @@ frozen7Data:
   LObjN LO::WIDE_3,           1, 9, 13, LN3::MINE_TRACKS
   LObjN LO::R_MTRACK_SUPPORTSONLY,  1, 10, 0, 0
   LObjN LO::R_GROUND,         0, 11, 2, 3
-  LObjN LO::R_COIN,           1, 4, 1, 0
+  LObjN LO::R_COIN,           1, 3, 1, 1
   LObjN LO::R_MTRACK_SUPPORTSONLY,  1, 10, 0, 0
   LObjN LO::R_ROCK,           1, 1, 10, 1
   LObj  LO::R_CUSTOM,         0, 12, Metatiles::LAVA_MAIN, (11<<4)|2
@@ -215,7 +216,8 @@ frozen7Data:
   LObjN LO::R_GROUND,         0, 7, 2, 7
   LObjN LO::R_GROUND,         3, 9, 0, 5
   LObjN LO::R_GROUND,         1, 11, 3, 3
-  LObj  LO::R_CUSTOM,         4, 12, Metatiles::LAVA_MAIN, (10<<4)|2
+  LObjN LO::R_COIN,           1, 9, 1, 1
+  LObj  LO::R_CUSTOM,         3, 12, Metatiles::LAVA_MAIN, (10<<4)|2
   LObjN LO::R_GROUND,         11, 11, 1, 3
   LFinished
 
@@ -245,7 +247,6 @@ frozen7Sprite:
   LSpr Enemy::FIRE_JUMP,           0, 134,  10, 1
   LSpr Enemy::MINECART,            0, 136,   9
   LSpr Enemy::FIRE_JUMP,           1, 149,  10, 1
-  LSpr Enemy::FIRE_WALK,           0, 150,   2, 1
   LSpr Enemy::CHECKPOINT,          0, 152,   2
   LSpr Enemy::ICE_1,               1, 158,   5, 1
   LSpr Enemy::FIRE_WALK,           0, 159,   1, 1

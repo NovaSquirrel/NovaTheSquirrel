@@ -42,7 +42,8 @@ frozen2Data:
   LObjN LO::WIDE_3,           1, 9, 3, LN3::MINE_TRACKS
   LObjN LO::WIDE_3,           1, 9, 0, LN3::MINE_TRACKS_BRAKES
   LWriteCol $08
-  LObjN LO::WIDE_1,           2, 7, 1, LN1::FALLTHROUGH_LEDGE
+  LObjN LO::R_COIN,           2, 6, 1, 0
+  LObjN LO::WIDE_1,           0, 7, 1, LN1::FALLTHROUGH_LEDGE
   LObj  LO::S_COIN,           0, 8
   LObjN LO::WIDE_3,           1, 5, 6, LN3::MINE_TRACKS
   LObjN LO::WIDE_3,           0, 9, 0, LN3::MINE_TRACKS_BRAKES
@@ -95,9 +96,10 @@ frozen2Data:
   LObjN LO::R_GROUND,         4, 9, 3, 5
   LObjN LO::R_GROUND,         4, 11, 3, 3
   LObjN LO::WIDE_2,           1, 10, 2, LN2::FLOWER
-  LObj  LO::R_CUSTOM,         3, 12, Metatiles::LAVA_MAIN, (1<<4)|2
+  LObjN LO::R_COIN,           1, 9, 1, 0
+  LObj  LO::R_CUSTOM,         2, 12, Metatiles::LAVA_MAIN, (1<<4)|2
   LObjN LO::R_ROCK,           2, 0, 10, 3
-  LObjN LO::R_COIN,           0, 9, 1, 0
+  LObjN LO::R_COIN,           0, 8, 1, 0
   LObjN LO::R_GROUND,         0, 10, 3, 4
   LObjN LO::TALL_2,           4, 4, 3, LN2::TRUNK
   LObjN LO::R_GROUND,         0, 8, 6, 6
@@ -149,7 +151,8 @@ frozen2Data:
   LObjN LO::WIDE_1,           0, 10, 1, LN1::SOLID_LEDGE
   LObj  LO::S_FROZENCRACK,     1, 4
   LObj  LO::S_FROZENCRACK,     0, 11
-  LObjN LO::R_SOLID_BLOCK,    1, 7, 3, 0
+  LObjN LO::R_COIN,           1, 6, 3, 0
+  LObjN LO::R_SOLID_BLOCK,    0, 7, 3, 0
   LObjN LO::WIDE_1,           1, 3, 3, LN1::SOLID_LEDGE
   LObjN LO::R_ROCK,           0, 8, 6, 6
   LObjN LO::WIDE_1,           3, 7, 2, LN1::TALLGRASS
@@ -186,7 +189,8 @@ frozen2Data:
   LObj  LO::S_FROZENCRACK,     1, 7
   LObj  LO::S_FROZENCRACK,     3, 9
   LObjN LO::R_GROUND,         2, 4, 4, 10
-  LObjN LO::TALL_1,           5, 4, 5, LN1::LADDER
+  LObjN LO::R_COIN,           1, 2, 3, 0
+  LObjN LO::TALL_1,           4, 4, 5, LN1::LADDER
   LObjN LO::RECT_3,           0, 10, 4, LN3::ROCK, 18
   LObj  LO::S_PRIZE,          1, 7
   LWriteCol InventoryItem::ABILITY_BACKUP
@@ -205,8 +209,10 @@ frozen2Data:
   LObj  LO::S_CUSTOM,         2, 6, Metatiles::PUSHABLE_BLOCK
   LObj  LO::S_CUSTOM,         2, 3, Metatiles::PUSHABLE_BLOCK
   LObjN LO::WIDE_1,           0, 4, 2, LN1::SOLID_LEDGE
-  LObjN LO::R_ROCK,           1, 13, 2, 1
+  LObjN LO::R_COIN,           1, 10, 0, 2
+  LObjN LO::R_ROCK,           0, 13, 2, 1
   LObjN LO::R_ROCK,           2, 0, 1, 6
+  LObjN LO::R_COIN,           0, 10, 0, 2
   LObjN LO::R_ROCK,           1, 10, 2, 4
   LObj  LO::S_MTRACK_UPRIGHT,  1, 9
   LObjN LO::R_GROUND,         2, 9, 8, 5
@@ -218,7 +224,8 @@ frozen2Data:
   LXPlus16
   LObjN LO::WIDE_1,           0, 7, 2, LN1::TALLGRASS
   LObjN LO::R_ROCK,           0, 8, 7, 6
-  LObjN LO::WIDE_3,           7, 7, 11, LN3::MINE_TRACKS
+  LObjN LO::R_COIN,           2, 6, 3, 0
+  LObjN LO::WIDE_3,           5, 7, 11, LN3::MINE_TRACKS
   LObjN LO::WIDE_1,           11, 8, 3, LN1::SOLID_LEDGE
   LObj  LO::S_EXIT_DOOR,      2, 6
   LObjN LO::R_SOLID_BLOCK,    4, 0, 0, 14

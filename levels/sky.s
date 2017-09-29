@@ -22,7 +22,8 @@ skyData:
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LObjN LO::R_GROUND,         4, 7, 3, 7
   LObjN LO::WIDE_1,           6, 8, 1, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_1,           3, 10, 2, LN1::FENCE
+  LObjN LO::R_COIN,           3, 9, 2, 0
+  LObjN LO::WIDE_1,           0, 10, 2, LN1::FENCE
   LObjN LO::R_GROUND,         0, 11, 6, 3
   LObj  LO::S_PRIZE,          3, 7
   LObj  LO::S_SPRING,         3, 10
@@ -43,7 +44,8 @@ skyData:
   LObjN LO::R_SOLID_BLOCK,    1, 1, 0, 4
   LObjN LO::TALL_2,           0, 6, 8, LN2::TRUNK
   LObjN LO::WIDE_1,           2, 10, 6, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_1,           7, 4, 6, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           6, 7, 3, 0
+  LObjN LO::WIDE_1,           1, 4, 6, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           0, 9, 2, LN1::TALLGRASS
   LObjN LO::R_GROUND,         0, 10, 3, 4
   LObjN LO::TALL_1,           3, 4, 5, LN1::LADDER
@@ -90,6 +92,7 @@ skyData:
   LObj  LO::S_SOLID_BLOCK,    0, 13
   LObjN LO::WIDE_1,           1, 8, 2, LN1::SOLID_LEDGE
   LObjN LO::R_SOLID_BLOCK,    0, 8, 0, 1
+  LObjN LO::R_COIN,           0, 10, 2, 1
   LObj  LO::S_BIGHEART,       0, 12
   LObj  LO::S_SPRING,         2, 7
   LObjN LO::TALL_1,           1, 8, 5, LN1::LADDER
@@ -115,6 +118,7 @@ skyData:
   LObjN LO::WIDE_1,           1, 5, 0, LN1::SPIKES
   LObj  LO::S_PRIZE,          0, 6
   LObj  LO::S_HEART,          4, 6
+  LObjN LO::R_COIN,           0, 7, 0, 1
   LObj  LO::S_SPRING,         0, 9
   LObjN LO::R_ENEMY_BARRIER      ,  2, 1, 0, 1
   LObjN LO::WIDE_2,           5, 10, 1, LN2::BUSH
@@ -143,8 +147,8 @@ skyData:
   LObjN LO::WIDE_1,           2, 9, 1, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           1, 12, 7, LN1::TALLGRASS
   LObjN LO::WIDE_1,           2, 7, 1, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_1,           3, 8, 1, LN1::SOLID_LEDGE
-  LObjN LO::R_COIN,           0, 10, 2, 1
+  LObjN LO::R_COIN,           2, 10, 3, 1
+  LObjN LO::WIDE_1,           1, 8, 1, LN1::SOLID_LEDGE
   LObjN LO::WIDE_2,           3, 8, 3, LN2::BUSH
   LObjN LO::R_GROUND,         0, 9, 8, 3
   LObjN LO::WIDE_1,           5, 8, 2, LN1::FENCE
@@ -155,8 +159,12 @@ skyData:
   LObjN LO::R_ENEMY_BARRIER      ,  3, 1, 0, 1
   LObj  LO::S_SPRING,         2, 11
   LObjN LO::R_GROUND,         7, 12, 8, 2
-  LObjN LO::R_GROUND,         9, 10, 6, 4
-  LObj  LO::S_GROUND_CLIMB_R, 7, 10
+  LObjN LO::TALL_2,           1, 9, 2, LN2::TRUNK_L
+  LObjN LO::TALL_2,           3, 9, 2, LN2::TRUNK_L
+  LObjN LO::TALL_2,           3, 9, 2, LN2::TRUNK_L
+  LObjN LO::R_GROUND,         2, 10, 6, 4
+  LObjN LO::R_COIN,           1, 9, 4, 0
+  LObj  LO::S_GROUND_CLIMB_R, 6, 10
   LObjN LO::R_GROUND,         0, 11, 3, 3
   LObjN LO::WIDE_1,           1, 10, 2, LN1::FENCE
   LObj  LO::S_GROUND_CLIMB_R, 3, 11

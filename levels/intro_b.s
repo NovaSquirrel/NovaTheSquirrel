@@ -37,7 +37,7 @@ intro_bData:
   LObjN LO::R_GROUND,         1, 9, 9, 3
   LObjN LO::R_BRICK,          1, 5, 4, 0
   LObjN LO::WIDE_1,           0, 8, 4, LN1::FENCE
-  LObj  LO::S_COIN,           1, 1
+  LObjN LO::R_COIN,           1, 1, 2, 0
   LObj  LO::S_BRICKPRIZE,     0, 2
   LObjN LO::R_COIN,           0, 4, 3, 0
   LObjN LO::R_BRICK,          1, 2, 1, 0
@@ -51,7 +51,8 @@ intro_bData:
   LObjN LO::R_BRICK,          3, 5, 2, 0
   LObj  LO::S_BRICKPRIZE,     2, 5
   LObjN LO::TALL_1,           2, 9, 3, LN1::LADDER
-  LObjN LO::TALL_2,           3, 10, 2, LN2::TRUNK_L
+  LObjN LO::R_COIN,           1, 9, 0, 3
+  LObjN LO::TALL_2,           2, 10, 2, LN2::TRUNK_L
   LObjN LO::WIDE_1,           3, 12, 4, LN1::TALLGRASS
   LObj  LO::S_BIGHEART,       2, 4
   LObj  LO::S_SOLID_BLOCK,    0, 5
@@ -68,10 +69,12 @@ intro_bData:
   LObj  LO::S_PRIZE,          1, 4
   LObjN LO::WIDE_1,           0, 8, 4, LN1::FALLTHROUGH_LEDGE
   LObj  LO::S_SPRING,         0, 12
-  LObj  LO::S_SOLID_BLOCK,    5, 4
+  LObjN LO::R_COIN,           1, 6, 3, 0
+  LObj  LO::S_SOLID_BLOCK,    4, 4
   LObjN LO::TALL_2,           0, 5, 7, LN2::TRUNK
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 21
-  LObjN LO::WIDE_1,           1, 4, 2, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           1, 3, 2, 0
+  LObjN LO::WIDE_1,           0, 4, 2, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           0, 8, 1, LN1::SOLID_LEDGE
   LObj  LO::S_FLOWER,         0, 12
   LObj  LO::S_SPRING,         1, 7
@@ -96,7 +99,8 @@ intro_bData:
   LObjN LO::R_WATER,          0, 12, 4, 2
   LObjN LO::R_GROUND,         5, 7, 1, 1
   LObjN LO::R_GROUND,         0, 9, 6, 5
-  LObjN LO::WIDE_1,           7, 9, 7, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           3, 7, 3, 0
+  LObjN LO::WIDE_1,           4, 9, 7, LN1::SOLID_LEDGE
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 22
   LObjN LO::TALL_1,           4, 9, 3, LN1::LADDER
   LObj  LO::S_SOLID_ROCK,     3, 8
@@ -106,6 +110,7 @@ intro_bData:
   LObj  LO::S_HEART,          0, 6
   LObjN LO::RECT_2,           0, 11, 1, LN2::BLACK, 4
   LObj  LO::S_PRIZE,          1, 3
+  LObjN LO::R_COIN,           0, 5, 3, 0
   LObj  LO::S_PRIZE,          2, 3
   LObjN LO::WIDE_1,           5, 9, 1, LN1::FALLTHROUGH_LEDGE
   LObj  LO::S_SPRING,         0, 12
@@ -142,6 +147,7 @@ intro_bData:
   LObjN LO::WIDE_1,           2, 12, 4, LN1::TALLGRASS
   LObjN LO::WIDE_1,           5, 10, 4, LN1::SOLID_LEDGE
   LObjN LO::R_BRICK,          2, 6, 3, 0
+  LObjN LO::R_COIN,           0, 8, 1, 1
   LObj  LO::S_PRIZE,          2, 6
   LObjN LO::R_GROUND,         1, 10, 6, 4
   LObjN LO::WIDE_1,           1, 9, 4, LN1::TALLGRASS
@@ -157,7 +163,8 @@ intro_bData:
   LObjN LO::WIDE_2,           5, 12, 1, LN2::FLOWER
   LObjN LO::R_GROUND,         4, 12, 5, 2
   LObjN LO::WIDE_1,           1, 11, 3, LN1::FENCE
-  LObjN LO::R_GROUND,         5, 13, 15, 1
+  LObjN LO::R_COIN,           1, 10, 2, 0
+  LObjN LO::R_GROUND,         4, 13, 15, 1
   LObj  LO::S_PRIZE,          4, 7
   LObj  LO::S_SPRING,         0, 12
   LObj  LO::S_EXIT_DOOR,      7, 11

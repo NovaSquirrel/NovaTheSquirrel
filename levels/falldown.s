@@ -194,7 +194,8 @@ falldownData:
   LObjN LO::TALL_1,           1, 0, 1, LN1::LADDER
   LObjN LO::WIDE_1,           0, 2, 2, LN1::SOLID_LEDGE
   LObj  LO::R_CUSTOM,         0, 10, Metatiles::SPRING, (3<<4)|0
-  LObj  LO::S_SOLID_BLOCK,    3, 4
+  LObjN LO::R_COIN,           3, 1, 2, 2
+  LObj  LO::S_SOLID_BLOCK,    0, 4
   LObjN LO::WIDE_1,           1, 4, 3, LN1::SOLID_LEDGE
   LObj  LO::S_CUSTOM,         0, 5, Metatiles::TOGGLE_SWITCH
   LObj  LO::S_CUSTOM,         2, 3, Metatiles::TOGGLE_SWITCH
@@ -225,10 +226,12 @@ falldownData:
   LObjN LO::R_FG_GLASS_RED,   2, 0, 1, 14
   LObjN LO::TALL_1,           4, 0, 4, LN1::LADDER
   LObjN LO::WIDE_1,           0, 5, 3, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_1,           1, 7, 3, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           1, 1, 1, 3
+  LObjN LO::WIDE_1,           0, 7, 3, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           0, 10, 0, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           0, 13, 6, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_1,           4, 2, 0, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           2, 9, 1, 3
+  LObjN LO::WIDE_1,           2, 2, 0, LN1::SOLID_LEDGE
   LObjN LO::TALL_1,           0, 7, 5, LN1::LADDER
   LObjN LO::WIDE_1,           3, 7, 0, LN1::SOLID_LEDGE
   LObjN LO::R_FG_GLASS_BLUE,  2, 0, 1, 14
@@ -238,13 +241,15 @@ falldownData:
   LObjN LO::WIDE_1,           4, 13, 6, LN1::SOLID_LEDGE
   LObj  LO::S_PRIZE,          2, 10
   LWriteCol InventoryItem::SPRING | 128
+  LObjN LO::R_COIN,           0, 12, 4, 0
   LObj  LO::S_PRIZE,          2, 10
   LWriteCol InventoryItem::SPRING | 128
   LObj  LO::S_PRIZE,          2, 10
   LWriteCol InventoryItem::SPRING | 128
   LObjN LO::R_FG_GLASS_RED,   1, 0, 1, 14
   LObjN LO::R_FG_GLASS_RED,   2, 0, 1, 14
-  LObjN LO::R_FG_GLASS_RED,   2, 14, 5, 0
+  LObjN LO::R_COIN,           2, 11, 2, 2
+  LObjN LO::R_FG_GLASS_RED,   0, 14, 5, 0
   LObj  LO::S_BIGHEART,       3, 13
   LObjN LO::WIDE_1,           2, 3, 2, LN1::SOLID_LEDGE
   LObj  LO::S_SPRING,         1, 2
@@ -261,6 +266,7 @@ falldownData:
   LObjN LO::WIDE_1,           0, 12, 2, LN1::SOLID_LEDGE
   LObj  LO::S_CUSTOM,         1, 11, Metatiles::TOGGLE_SWITCH
   LObjN LO::WIDE_1,           1, 4, 2, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           0, 8, 2, 0
   LObjN LO::WIDE_1,           0, 9, 2, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           2, 11, 2, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           1, 2, 2, LN1::SOLID_LEDGE
@@ -272,7 +278,8 @@ falldownData:
   LObjN LO::TALL_1,           2, 8, 4, LN1::LADDER
   LObjN LO::WIDE_1,           0, 13, 1, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           1, 8, 2, LN1::SOLID_LEDGE
-  LObjN LO::R_FG_GLASS_RED,   3, 5, 2, 3
+  LObjN LO::R_COIN,           2, 5, 0, 2
+  LObjN LO::R_FG_GLASS_RED,   1, 5, 2, 3
   LObjN LO::WIDE_1,           3, 2, 2, LN1::SOLID_LEDGE
   LObjN LO::TALL_1,           0, 12, 2, LN1::LADDER
   LObj  LO::S_SPRING,         1, 1
@@ -299,7 +306,8 @@ falldownData:
   LObjN LO::TALL_1,           3, 0, 2, LN1::LADDER
   LObjN LO::WIDE_1,           0, 13, 2, LN1::SOLID_LEDGE
   LObj  LO::S_SPRING,         1, 12
-  LObjN LO::WIDE_1,           3, 6, 0, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           1, 5, 1, 2
+  LObjN LO::WIDE_1,           2, 6, 0, LN1::SOLID_LEDGE
   LObjN LO::R_FG_GLASS_BLUE,  2, 0, 1, 14
   LObjN LO::R_SOLID_BLOCK,    2, 0, 1, 0
   LObjN LO::R_SOLID_BLOCK,    0, 1, 0, 10

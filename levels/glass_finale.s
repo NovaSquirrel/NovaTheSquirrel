@@ -26,6 +26,7 @@ glass_finaleData:
   LObjN LO::R_BG_GLASS_GREEN, 1, 2, 7, 0
   LObjN LO::R_BG_GLASS_GREEN, 0, 3, 0, 3
   LObjN LO::R_BG_GLASS_GREEN, 1, 6, 6, 0
+  LObjN LO::R_COIN,           0, 11, 2, 0
   LObj  LO::S_PRIZE,          1, 5
   LWriteCol InventoryItem::BIG_HEALTH_RESTORE
   LObjN LO::WIDE_1,           0, 9, 0, LN1::SOLID_LEDGE
@@ -37,7 +38,8 @@ glass_finaleData:
   LObjN LO::R_FG_GLASS_BLUE,  1, 11, 6, 3
   LObjN LO::R_FG_GLASS_RED,   1, 6, 4, 0
   LObjN LO::R_BG_GLASS_RED,   0, 7, 0, 3
-  LObjN LO::R_FG_GLASS_RED,   4, 3, 6, 0
+  LObjN LO::R_COIN,           1, 4, 2, 1
+  LObjN LO::R_FG_GLASS_RED,   3, 3, 6, 0
   LObjN LO::R_BG_GLASS_RED,   0, 4, 0, 1
   LObjN LO::R_BG_GLASS_RED,   0, 7, 0, 3
   LObj  LO::S_SPRING,         1, 10
@@ -96,6 +98,7 @@ glass_finaleData:
   LObjN LO::R_GROUND,         0, 9, 9, 5
   LObjN LO::R_BG_GLASS_BLUE,  2, 2, 0, 3
   LObjN LO::R_BG_GLASS_BLUE,  1, 2, 2, 0
+  LObjN LO::R_COIN,           0, 3, 2, 1
   LObjN LO::R_BG_GLASS_BLUE,  0, 5, 2, 0
   LObjN LO::R_BG_GLASS_BLUE,  3, 2, 0, 3
   LObj  LO::S_M_ARROW_RIGHT,  1, 3
@@ -168,8 +171,10 @@ glass_finaleData:
   LObj  LO::S_M_ARROW_RIGHT,  1, 3
   LObj  LO::S_M_CRATE,        2, 3
   LObjN LO::R_BG_GLASS_BLUE,  0, 10, 0, 4
-  LObj  LO::S_M_CRATE,        2, 3
-  LObj  LO::S_M_CRATE,        2, 3
+  LObjN LO::R_COIN,           1, 5, 0, 2
+  LObj  LO::S_M_CRATE,        1, 3
+  LObjN LO::R_COIN,           1, 5, 0, 2
+  LObj  LO::S_M_CRATE,        1, 3
   LObj  LO::R_CUSTOM,         3, 3, Metatiles::FORK_ARROW_DOWN, (1<<4)|0
   LObj  LO::S_M_ARROW_RIGHT,  0, 6
   LObjN LO::R_BG_GLASS_BLUE,  0, 10, 0, 4
@@ -184,6 +189,7 @@ glass_finaleData:
   LObj  LO::S_PRIZE,          3, 4
   LWriteCol InventoryItem::ABILITY_GLIDER | 128
   LObjN LO::WIDE_1,           0, 7, 1, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           0, 8, 0, 2
   LObj  LO::S_SPRING,         1, 10
   LObjN LO::R_BG_GLASS_GRAY,  1, 1, 1, 1
   LObjN LO::R_GROUND,         0, 7, 6, 3
@@ -209,7 +215,8 @@ glass_finaleData:
   LObjN LO::R_BG_GLASS_RED,   0, 5, 0, 1
   LObjN LO::R_GROUND,         0, 7, 4, 7
   LObjN LO::R_BG_GLASS_GRAY,  2, 3, 1, 1
-  LObj  LO::S_SPRING,         3, 10
+  LObjN LO::R_COIN,           3, 7, 0, 2
+  LObj  LO::S_SPRING,         0, 10
   LObjN LO::R_GROUND,         0, 11, 0, 3
   LObjN LO::R_GROUND,         3, 11, 11, 3
   LObjN LO::R_CEILING_BARRIER,1, 0, 0, 2
@@ -242,7 +249,8 @@ glass_finaleData:
   LObjN LO::R_FG_GLASS_RED,   1, 1, 7, 0
   LObjN LO::R_BG_GLASS_GREEN, 0, 9, 7, 0
   LObjN LO::R_BG_GLASS_GREEN, 0, 12, 7, 0
-  LObjN LO::WIDE_1,           2, 10, 0, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           2, 5, 3, 0
+  LObjN LO::WIDE_1,           0, 10, 0, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           3, 10, 0, LN1::SOLID_LEDGE
   LObjN LO::R_BG_GLASS_RED,   3, 3, 0, 11
   LObjN LO::R_GROUND,         3, 7, 4, 7
@@ -255,13 +263,15 @@ glass_finaleData:
   LObjN LO::R_FG_GLASS_RED,   3, 5, 7, 0
   LObjN LO::R_BG_GLASS_RED,   0, 6, 0, 3
   LObjN LO::R_BG_GLASS_GREEN, 1, 7, 5, 0
-  LObjN LO::R_BG_GLASS_GREEN, 1, 10, 4, 0
+  LObjN LO::R_COIN,           1, 3, 3, 0
+  LObjN LO::R_BG_GLASS_GREEN, 0, 10, 4, 0
   LObjN LO::R_BG_GLASS_GREEN, 0, 13, 4, 0
   LObjN LO::R_BG_GLASS_RED,   5, 6, 0, 8
   LObjN LO::R_BG_GLASS_BLUE,  2, 3, 1, 1
   LObjN LO::R_FG_GLASS_RED,   3, 8, 5, 0
   LObjN LO::R_BG_GLASS_RED,   0, 9, 0, 5
-  LObjN LO::R_BG_GLASS_GREEN, 1, 10, 3, 0
+  LObjN LO::R_COIN,           1, 6, 3, 0
+  LObjN LO::R_BG_GLASS_GREEN, 0, 10, 3, 0
   LObjN LO::R_BG_GLASS_GREEN, 0, 13, 3, 0
   LObj  LO::S_W_ARROW_RIGHT,  3, 4
   LObjN LO::R_BG_GLASS_RED,   1, 9, 0, 5

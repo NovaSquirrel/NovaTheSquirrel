@@ -25,7 +25,7 @@ frozenData:
   LObjN LO::RECT_3,           0, 12, 2, LN3::ROCK, 18
   LObjN LO::WIDE_3,           5, 6, 10, LN3::MINE_TRACKS
   LObjN LO::RECT_3,           2, 0, 2, LN3::ROCK, 41
-  LObjN LO::R_COIN,           0, 8, 3, 0
+  LObjN LO::R_COIN,           0, 8, 3, 1
   LObj  LO::S_TALL_GRASS,     4, 11
   LObjN LO::R_ROCK,           2, 3, 1, 0
   LObjN LO::WIDE_1,           0, 11, 0, LN1::FENCE
@@ -55,6 +55,7 @@ frozenData:
   LObjN LO::R_GROUND,         2, 9, 3, 2
   LObj  LO::S_MTRACK_SSL,      4, 8
   LObjN LO::WIDE_3,           1, 7, 2, LN3::MINE_TRACKS
+  LObjN LO::R_COIN,           0, 10, 2, 1
   LObj  LO::S_MTRACK_SSR,      3, 8
   LObj  LO::S_MTRACK_SSR,      1, 9
   LObjN LO::R_ROCK,           0, 11, 1, 0
@@ -127,7 +128,7 @@ frozenData:
   LObjN LO::R_ROCK,           1, 11, 5, 3
   LObj  LO::S_MTRACK_SSR,      2, 8
   LObj  LO::S_MTRACK_STOP,     0, 10
-  LObjN LO::R_COIN,           1, 5, 3, 0
+  LObjN LO::R_COIN,           1, 4, 3, 1
   LObjN LO::WIDE_1,           0, 6, 2, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           1, 9, 1, LN1::SOLID_LEDGE
   LObj  LO::S_BIGHEART,       0, 10
@@ -202,7 +203,8 @@ frozenData:
   LObj  LO::S_SOLID_ROCK,     2, 5
   LObjN LO::WIDE_1,           2, 6, 7, LN1::SOLID_LEDGE
   LObjN LO::R_WATER,          0, 12, 7, 2
-  LObjN LO::WIDE_1,           3, 9, 2, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           2, 4, 3, 1
+  LObjN LO::WIDE_1,           1, 9, 2, LN1::SOLID_LEDGE
   LObjN LO::R_ROCK,           5, 6, 4, 8
   LObj  LO::S_FLOWER,         1, 5
   LObjN LO::WIDE_2,           0, 5, 2, LN2::FLOWER

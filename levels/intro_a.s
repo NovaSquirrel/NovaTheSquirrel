@@ -65,7 +65,8 @@ intro_aData:
   LWriteCol <Tutorial4, >Tutorial4
   LObjN LO::WIDE_2,           2, 12, 2, LN2::BUSH
   LObjN LO::WIDE_1,           1, 4, 2, LN1::SOLID_LEDGE
-  LObjN LO::TALL_1,           3, 8, 4, LN1::LADDER
+  LObjN LO::R_COIN,           2, 9, 0, 2
+  LObjN LO::TALL_1,           1, 8, 4, LN1::LADDER
   LObjN LO::R_GROUND,         1, 8, 7, 4
   LObj  LO::S_SIGNPOST,       2, 7
   LWriteCol <Tutorial5, >Tutorial5

@@ -48,7 +48,8 @@ chiptallData:
   LObj  LO::S_CUSTOM,         1, 6, Metatiles::CHIP
   LObj  LO::S_PRIZE,          0, 9
   LWriteCol InventoryItem::ABILITY_BURGER
-  LObj  LO::S_CUSTOM,         5, 2, Metatiles::CHIP
+  LObjN LO::R_COIN,           3, 8, 1, 1
+  LObj  LO::S_CUSTOM,         2, 2, Metatiles::CHIP
   LObjN LO::WIDE_1,           1, 7, 2, LN1::SOLID_LEDGE
   LObj  LO::S_CUSTOM,         0, 11, Metatiles::CHIP
   LObj  LO::S_CUSTOM,         1, 6, Metatiles::TOGGLE_SWITCH
@@ -63,7 +64,8 @@ chiptallData:
   LObjN LO::WIDE_1,           1, 12, 0, LN1::SOLID_LEDGE
   LObj  LO::S_CUSTOM,         5, 3, Metatiles::CHIP
   LObjN LO::TALL_1,           2, 3, 6, LN1::LADDER
-  LObj  LO::S_SOLID_ROCK,     4, 2
+  LObjN LO::R_COIN,           2, 3, 0, 6
+  LObj  LO::S_SOLID_ROCK,     2, 2
   LObj  LO::S_SOLID_ROCK,     0, 11
   LObj  LO::S_CUSTOM,         2, 7, Metatiles::CHIP
   LObjN LO::TALL_1,           1, 11, 3, LN1::LADDER
@@ -78,7 +80,8 @@ chiptallData:
   LObj  LO::S_CUSTOM,         0, 9, Metatiles::TOGGLE_SWITCH
   LObjN LO::WIDE_1,           0, 10, 2, LN1::FALLTHROUGH_LEDGE
   LObjN LO::R_GROUND,         0, 13, 7, 1
-  LObj  LO::S_SIGNPOST,       5, 12
+  LObjN LO::R_COIN,           1, 8, 1, 1
+  LObj  LO::S_SIGNPOST,       4, 12
   LWriteCol <AboutSunKey, >AboutSunKey
   LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
   LObj  LO::R_CUSTOM,         1, 0, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|12
@@ -87,19 +90,23 @@ chiptallData:
   LObjN LO::RECT_1,           0, 14, 0, LN1::GROUND, 39
   LObj  LO::R_CUSTOM,         4, 6, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|4
   LObjN LO::WIDE_1,           1, 6, 2, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           0, 9, 2, 0
   LObj  LO::R_CUSTOM,         0, 10, Metatiles::TOGGLE_BLOCK_ON, (4<<4)|0
   LObj  LO::S_CUSTOM,         1, 5, Metatiles::TOGGLE_SWITCH
   LObj  LO::R_CUSTOM,         3, 4, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|5
   LObj  LO::R_CUSTOM,         1, 0, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|3
   LObj  LO::R_CUSTOM,         0, 4, Metatiles::TOGGLE_BLOCK_ON, (4<<4)|0
-  LObj  LO::R_CUSTOM,         1, 11, Metatiles::TOGGLE_BLOCK_OFF, (3<<4)|0
-  LObj  LO::R_CUSTOM,         1, 7, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|3
+  LObjN LO::R_COIN,           1, 7, 0, 2
+  LObj  LO::R_CUSTOM,         0, 11, Metatiles::TOGGLE_BLOCK_OFF, (3<<4)|0
+  LObjN LO::R_COIN,           1, 3, 2, 0
+  LObj  LO::R_CUSTOM,         0, 7, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|3
   LObj  LO::R_CUSTOM,         2, 5, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|5
   LObj  LO::R_CUSTOM,         1, 4, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|4
   LObjN LO::WIDE_1,           1, 13, 15, LN1::SPIKES
   LObj  LO::R_CUSTOM,         1, 5, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|4
   LObj  LO::R_CUSTOM,         0, 10, Metatiles::TOGGLE_BLOCK_OFF, (5<<4)|0
-  LObj  LO::R_CUSTOM,         2, 3, Metatiles::TOGGLE_BLOCK_ON, (3<<4)|0
+  LObjN LO::R_COIN,           1, 5, 0, 2
+  LObj  LO::R_CUSTOM,         1, 3, Metatiles::TOGGLE_BLOCK_ON, (3<<4)|0
   LObjN LO::WIDE_1,           0, 7, 2, LN1::SOLID_LEDGE
   LObj  LO::S_CUSTOM,         1, 6, Metatiles::TOGGLE_SWITCH
   LObj  LO::S_BIGHEART,       0, 9
@@ -109,11 +116,13 @@ chiptallData:
   LObj  LO::R_CUSTOM,         2, 4, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|3
   LObj  LO::R_CUSTOM,         0, 8, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|2
   LObj  LO::R_CUSTOM,         1, 10, Metatiles::TOGGLE_BLOCK_OFF, (3<<4)|0
-  LObj  LO::R_CUSTOM,         3, 3, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|6
+  LObjN LO::R_COIN,           1, 6, 0, 2
+  LObj  LO::R_CUSTOM,         2, 3, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|6
   LObjN LO::WIDE_1,           1, 10, 2, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           0, 13, 2, LN1::SPIKES
   LObj  LO::S_CUSTOM,         1, 9, Metatiles::TOGGLE_SWITCH
-  LObjN LO::R_GROUND,         2, 13, 4, 0
+  LObjN LO::R_COIN,           2, 10, 0, 2
+  LObjN LO::R_GROUND,         0, 13, 4, 0
   LObjN LO::R_CEILING_BARRIER,3, 0, 0, 1
   LObjN LO::R_SOLID_ROCK,     1, 0, 0, 11
   LObj  LO::S_CUSTOM,         0, 12, Metatiles::LOCK_RED
@@ -127,7 +136,8 @@ chiptallData:
   LObjN LO::R_SOLID_ROCK,     2, 0, 1, 12
   LObjN LO::R_GROUND,         0, 13, 15, 1
   LObjN LO::R_SOLID_ROCK,     2, 0, 2, 0
-  LObj  LO::S_BG_GLASS_GRAY,  5, 4
+  LObjN LO::R_COIN,           1, 9, 1, 1
+  LObj  LO::S_BG_GLASS_GRAY,  4, 4
   LObj  LO::S_SIGNPOST,       0, 12
   LWriteCol <AboutChipTall, >AboutChipTall
   LObj  LO::S_BG_GLASS_GRAY,  1, 3
@@ -162,7 +172,8 @@ chiptallData:
   LObj  LO::S_CUSTOM,         1, 3, Metatiles::CHIP
   LObjN LO::WIDE_1,           0, 7, 2, LN1::SOLID_LEDGE
   LObj  LO::S_BIGHEART,       1, 8
-  LObj  LO::S_CUSTOM,         2, 10, Metatiles::CHIP
+  LObjN LO::R_COIN,           2, 5, 1, 3
+  LObj  LO::S_CUSTOM,         0, 10, Metatiles::CHIP
   LObjN LO::WIDE_1,           2, 4, 2, LN1::SOLID_LEDGE
   LObj  LO::R_CUSTOM,         0, 5, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|3
   LObj  LO::S_CUSTOM,         2, 6, Metatiles::CHIP
@@ -173,7 +184,8 @@ chiptallData:
   LObj  LO::S_CUSTOM,         1, 6, Metatiles::TOGGLE_SWITCH
   LObj  LO::R_CUSTOM,         3, 4, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|3
   LObj  LO::S_CUSTOM,         1, 6, Metatiles::CHIP
-  LObj  LO::R_CUSTOM,         3, 10, Metatiles::TOGGLE_BLOCK_ON, (2<<4)|0
+  LObjN LO::R_COIN,           1, 2, 0, 4
+  LObj  LO::R_CUSTOM,         2, 10, Metatiles::TOGGLE_BLOCK_ON, (2<<4)|0
   LObjN LO::TALL_1,           1, 0, 2, LN1::LADDER
   LObj  LO::S_BIGHEART,       0, 9
   LObjN LO::WIDE_1,           3, 5, 0, LN1::SOLID_LEDGE

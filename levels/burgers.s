@@ -24,10 +24,11 @@ burgersData:
   LObjN LO::R_GROUND,         0, 8, 4, 4
   LObjN LO::R_GROUND,         0, 13, 11, 1
   LObj  LO::S_BG_GLASS_BLUE,  4, 5
-  LObjN LO::WIDE_1,           1, 8, 0, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           1, 8, 5, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           0, 8, 0, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_1,           0, 8, 5, LN1::SOLID_LEDGE
-  LObj  LO::S_BG_GLASS_BLUE,  2, 3
+  LObjN LO::WIDE_1,           0, 8, 0, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           1, 9, 1, 2
+  LObj  LO::S_BG_GLASS_BLUE,  1, 3
   LObj  LO::S_SIGNPOST,       0, 7
   LWriteCol <AboutAutoItem, >AboutAutoItem
   LObj  LO::S_PRIZE,          2, 5
@@ -83,9 +84,12 @@ burgersData:
   LWriteCol InventoryItem::BIG_HEALTH_RESTORE
   LObjN LO::R_FG_GLASS_BLUE,  3, 8, 6, 0
   LObjN LO::R_FG_GLASS_BLUE,  0, 9, 0, 1
-  LObjN LO::R_COIN,           2, 7, 2, 0
+  LObjN LO::R_BG_GLASS_RED,   1, 4, 0, 3
+  LObjN LO::R_BG_GLASS_RED,   1, 4, 2, 0
+  LObjN LO::R_COIN,           0, 7, 2, 0
   LObjN LO::R_FG_GLASS_BLUE,  1, 9, 0, 5
-  LObj  LO::S_BG_GLASS_RED,   2, 9
+  LObjN LO::R_BG_GLASS_RED,   2, 4, 0, 3
+  LObj  LO::S_BG_GLASS_RED,   0, 9
   LObjN LO::R_FG_GLASS_BLUE,  1, 9, 0, 5
   LObj  LO::S_BG_GLASS_RED,   1, 12
   LObjN LO::WIDE_1,           1, 12, 5, LN1::SOLID_LEDGE
@@ -93,11 +97,13 @@ burgersData:
   LObjN LO::R_COIN,           0, 8, 0, 1
   LObjN LO::R_FG_GLASS_BLUE,  1, 0, 0, 9
   LObj  LO::S_BG_GLASS_RED,   1, 13
-  LObjN LO::WIDE_1,           3, 10, 2, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           3, 9, 2, 0
+  LObjN LO::WIDE_1,           0, 10, 2, LN1::SOLID_LEDGE
   LObj  LO::S_BG_GLASS_RED,   1, 12
   LObjN LO::WIDE_1,           1, 7, 2, LN1::SOLID_LEDGE
   LObj  LO::S_BG_GLASS_RED,   1, 10
-  LObj  LO::S_M_ARROW_RIGHT,  2, 2
+  LObjN LO::R_COIN,           1, 4, 0, 2
+  LObj  LO::S_M_ARROW_RIGHT,  1, 2
   LObj  LO::S_M_ARROW_UP,     0, 11
   LObj  LO::S_W_ARROW_RIGHT,  2, 4
   LObjN LO::R_FG_GLASS_BLUE,  0, 5, 0, 9
@@ -108,6 +114,7 @@ burgersData:
   LObj  LO::S_M_ARROW_DOWN,   1, 4
   LObj  LO::S_M_ARROW_LEFT,   0, 11
   LObj  LO::S_BIGHEART,       2, 8
+  LObjN LO::R_COIN,           0, 10, 0, 2
   LObj  LO::S_M_ARROW_DOWN,   2, 2
   LObj  LO::S_M_ARROW_RIGHT,  0, 7
   LObjN LO::R_GROUND,         0, 12, 9, 2
@@ -119,11 +126,14 @@ burgersData:
   LObjN LO::R_ENEMY_BARRIER      ,  1, 0, 0, 5
   LObj  LO::S_PRIZE,          0, 9
   LWriteCol InventoryItem::ABILITY_BURGER | 128
-  LObjN LO::WIDE_1,           4, 11, 3, LN1::SOLID_LEDGE
-  LObj  LO::S_BIGHEART,       1, 10
+  LObjN LO::R_BG_GLASS_RED,   4, 6, 0, 4
+  LObjN LO::WIDE_1,           0, 11, 3, LN1::SOLID_LEDGE
+  LObjN LO::R_BG_GLASS_RED,   1, 6, 1, 0
+  LObj  LO::S_BIGHEART,       0, 10
   LObj  LO::S_PRIZE,          1, 8
   LWriteCol InventoryItem::HEALTH_RESTORE
-  LObjN LO::R_COIN,           3, 8, 3, 0
+  LObjN LO::R_BG_GLASS_RED,   1, 6, 0, 4
+  LObjN LO::R_COIN,           2, 8, 3, 0
   LObjN LO::WIDE_1,           0, 9, 4, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           3, 6, 3, LN1::SOLID_LEDGE
   LObjN LO::R_SOLID_BLOCK,    2, 6, 0, 3
@@ -131,7 +141,8 @@ burgersData:
   LObj  LO::S_BIGHEART,       1, 7
   LObj  LO::S_CUSTOM,         0, 8, Metatiles::KEY_RED
   LObjN LO::R_GROUND,         0, 9, 2, 5
-  LObjN LO::R_SOLID_BLOCK,    1, 6, 0, 2
+  LObjN LO::R_COIN,           1, 3, 0, 2
+  LObjN LO::R_SOLID_BLOCK,    0, 6, 0, 2
   LObj  LO::S_SPRING,         1, 8
   LObjN LO::R_SOLID_BLOCK,    1, 10, 2, 0
   LObjN LO::R_SOLID_BLOCK,    2, 5, 4, 0
@@ -168,22 +179,26 @@ burgersData:
   LObjN LO::R_FG_GLASS_RED,   3, 7, 2, 1
   LObjN LO::R_FG_GLASS_RED,   0, 9, 8, 1
   LObjN LO::R_FG_GLASS_RED,   2, 11, 0, 3
-  LObjN LO::R_FG_GLASS_RED,   2, 2, 4, 1
+  LObjN LO::R_COIN,           1, 5, 0, 2
+  LObjN LO::R_FG_GLASS_RED,   1, 2, 4, 1
   LObj  LO::S_PRIZE,          1, 6
   LWriteCol InventoryItem::ABILITY_BURGER | 128
   LObjN LO::R_FG_GLASS_RED,   1, 11, 0, 3
-  LObjN LO::R_BG_GLASS_RED,   2, 4, 0, 4
+  LObjN LO::R_COIN,           1, 5, 0, 2
+  LObjN LO::R_BG_GLASS_RED,   1, 4, 0, 4
   LObjN LO::R_FG_GLASS_BLUE,  3, 0, 3, 4
   LObjN LO::R_BG_GLASS_BLUE,  0, 5, 0, 4
   LObjN LO::R_FG_GLASS_BLUE,  0, 10, 3, 4
   LObjN LO::R_COIN,           1, 7, 1, 2
   LObjN LO::R_BG_GLASS_BLUE,  2, 5, 0, 4
   LObjN LO::R_FG_GLASS_BLUE,  1, 0, 1, 1
-  LObjN LO::R_FG_GLASS_RED,   1, 11, 4, 3
+  LObjN LO::R_COIN,           1, 9, 2, 0
+  LObjN LO::R_FG_GLASS_RED,   0, 11, 4, 3
   LObjN LO::R_FG_GLASS_BLUE,  1, 0, 0, 6
   LObjN LO::TALL_1,           3, 4, 6, LN1::LADDER
   LObjN LO::R_FG_GLASS_RED,   2, 4, 3, 10
-  LObjN LO::R_SOLID_BLOCK,    3, 4, 0, 2
+  LObjN LO::R_COIN,           2, 3, 1, 0
+  LObjN LO::R_SOLID_BLOCK,    1, 4, 0, 2
   LObj  LO::R_CUSTOM,         2, 5, Metatiles::WOOD_CRATE, (2<<4)|0
   LObjN LO::R_SOLID_BLOCK,    4, 4, 0, 2
   LObjN LO::R_COIN,           1, 2, 2, 1
@@ -192,8 +207,11 @@ burgersData:
   LObjN LO::R_GROUND,         5, 6, 3, 8
   LObj  LO::S_PRIZE,          4, 5
   LObjN LO::R_GROUND,         0, 8, 6, 6
-  LObjN LO::R_FG_GLASS_RED,   6, 3, 3, 0
-  LObjN LO::R_GROUND,         3, 8, 6, 6
+  LObjN LO::R_COIN,           2, 5, 0, 2
+  LObjN LO::R_FG_GLASS_RED,   4, 3, 3, 0
+  LObjN LO::R_BG_GLASS_BLUE,  0, 4, 0, 3
+  LObjN LO::R_BG_GLASS_BLUE,  3, 4, 0, 3
+  LObjN LO::R_GROUND,         0, 8, 6, 6
   LObj  LO::S_EXIT_DOOR,      3, 6
   LFinished
 

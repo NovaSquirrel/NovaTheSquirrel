@@ -29,6 +29,7 @@ frozen3Data:
   LWriteCol InventoryItem::BLOCK
   LObj  LO::S_MTRACK_SSL,      3, 11
   LObjN LO::R_ROCK,           1, 2, 9, 1
+  LObjN LO::R_COIN,           0, 7, 2, 0
   LObjN LO::WIDE_1,           0, 8, 2, LN1::FALLTHROUGH_LEDGE
   LObjN LO::WIDE_3,           0, 10, 8, LN3::MINE_TRACKS
   LObjN LO::WIDE_3,           1, 10, 0, LN3::MINE_TRACKS_BRAKES
@@ -55,7 +56,7 @@ frozen3Data:
   LObjN LO::WIDE_3,           1, 7, 0, LN3::MINE_TRACKS_BRAKES
   LWriteCol $08
   LObjN LO::R_MTRACK_SUPPORTSONLY,  0, 8, 0, 6
-  LObjN LO::R_COIN,           1, 5, 1, 0
+  LObjN LO::R_COIN,           1, 3, 1, 2
   LObjN LO::WIDE_1,           0, 6, 3, LN1::FALLTHROUGH_LEDGE
   LObj  LO::S_CUSTOM,         2, 5, Metatiles::TOGGLE_SWITCH
   LObjN LO::R_ROCK,           2, 0, 8, 3
@@ -78,7 +79,8 @@ frozen3Data:
   LObjN LO::R_GROUND,         2, 8, 3, 6
   LObjN LO::R_GROUND,         4, 10, 5, 4
   LObjN LO::WIDE_1,           4, 7, 4, LN1::SOLID_LEDGE
-  LObj  LO::S_SOLID_ROCK,     1, 9
+  LObjN LO::R_COIN,           1, 5, 2, 0
+  LObj  LO::S_SOLID_ROCK,     0, 9
   LObjN LO::WIDE_1,           5, 3, 4, LN1::SOLID_LEDGE
   LObjN LO::R_GROUND,         1, 8, 4, 6
   LObj  LO::S_HEART,          3, 7
@@ -150,9 +152,12 @@ frozen3Data:
   LObjN LO::R_MTRACK_SUPPORTSONLY,  0, 7, 0, 2
   LObjN LO::RECT_3,           1, 0, 1, LN3::ROCK, 16
   LObjN LO::R_ROCK,           0, 2, 4, 1
-  LObjN LO::R_GROUND,         3, 8, 4, 6
-  LObj  LO::S_BIGHEART,       2, 2
-  LObjN LO::R_GROUND,         3, 6, 8, 8
+  LObjN LO::R_COIN,           1, 7, 1, 0
+  LObjN LO::R_GROUND,         2, 8, 4, 6
+  LObjN LO::R_COIN,           1, 5, 2, 0
+  LObj  LO::S_BIGHEART,       1, 2
+  LObjN LO::R_COIN,           3, 3, 4, 0
+  LObjN LO::R_GROUND,         0, 6, 8, 8
   LObj  LO::S_W_ARROW_RIGHT,  7, 8
   LObjN LO::R_MTRACK_SUPPORTSONLY,  1, 2, 0, 3
   LObj  LO::R_CUSTOM,         3, 2, Metatiles::METAL_CRATE, (2<<4)|0
@@ -188,7 +193,8 @@ frozen3Data:
   LObjN LO::R_ROCK,           0, 8, 1, 3
   LObjN LO::R_ROCK,           0, 11, 11, 3
   LObjN LO::R_ROCK,           1, 0, 10, 3
-  LObjN LO::WIDE_3,           4, 7, 4, LN3::MINE_TRACKS
+  LObjN LO::R_COIN,           1, 9, 3, 1
+  LObjN LO::WIDE_3,           3, 7, 4, LN3::MINE_TRACKS
   LObjN LO::R_COIN,           1, 5, 2, 0
   LObjN LO::R_MTRACK_SUPPORTSONLY,  1, 8, 0, 1
   LObjN LO::R_SOLID_BLOCK,    0, 10, 4, 0

@@ -28,14 +28,15 @@ gardenData:
   LObjN LO::TALL_2,           3, 8, 2, LN2::TRUNK_L
   LObjN LO::WIDE_2,           2, 11, 3, LN2::STONE_BRIDGE
   LObjN LO::R_WATER,          0, 13, 3, 1
-  LObjN LO::R_COIN,           1, 9, 1, 0
+  LObjN LO::R_COIN,           1, 8, 1, 1
   LObjN LO::R_GROUND,         3, 11, 9, 3
   LObjN LO::R_BRICKWALL,      1, 9, 4, 1
   LObjN LO::R_BRICK,          1, 6, 3, 0
   LObjN LO::R_COIN,           1, 4, 2, 0
   LObj  LO::S_PRIZE,          0, 6
   LObjN LO::WIDE_1,           5, 10, 1, LN1::FENCE
-  LObjN LO::WIDE_1,           5, 10, 1, LN1::FENCE
+  LObjN LO::R_COIN,           5, 8, 1, 0
+  LObjN LO::WIDE_1,           0, 10, 1, LN1::FENCE
   LObjN LO::R_GROUND,         0, 11, 9, 3
   LObjN LO::R_COIN,           2, 7, 2, 0
   LObjN LO::WIDE_2,           0, 10, 4, LN2::FLOWER
@@ -74,7 +75,7 @@ gardenData:
   LObjN LO::WIDE_1,           4, 6, 7, LN1::SOLID_LEDGE
   LObjN LO::WIDE_2,           0, 10, 4, LN2::FLOWER
   LObjN LO::RECT_1,           0, 11, 3, LN1::GROUND, 18
-  LObjN LO::R_COIN,           1, 7, 2, 0
+  LObjN LO::R_COIN,           1, 7, 2, 1
   LObj  LO::S_STATUE,         0, 9
   LObj  LO::S_STATUE,         2, 9
   LObjN LO::TALL_1,           3, 6, 4, LN1::LADDER
@@ -86,7 +87,8 @@ gardenData:
   LObjN LO::WIDE_2,           2, 8, 2, LN2::BUSH
   LObjN LO::WIDE_2,           5, 8, 2, LN2::BUSH
   LObjN LO::R_GROUND,         0, 9, 4, 5
-  LObj  LO::S_FLOWER,         3, 8
+  LObjN LO::R_COIN,           1, 6, 2, 0
+  LObj  LO::S_FLOWER,         2, 8
   LObjN LO::R_GROUND,         2, 11, 7, 3
   LObjN LO::TALL_2,           1, 8, 2, LN2::TRUNK_L
   LObjN LO::WIDE_2,           3, 10, 1, LN2::FLOWER

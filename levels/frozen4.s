@@ -79,7 +79,8 @@ frozen4Data:
   LObjN LO::R_ROCK,           0, 12, 1, 2
   LObj  LO::S_BIGHEART,       1, 11
   LObjN LO::R_ROCK,           1, 9, 1, 5
-  LObjN LO::R_ROCK,           2, 8, 1, 6
+  LObjN LO::R_COIN,           1, 3, 0, 5
+  LObjN LO::R_ROCK,           1, 8, 1, 6
   LObjN LO::WIDE_1,           1, 3, 2, LN1::SOLID_LEDGE
   LObjN LO::R_ROCK,           1, 5, 1, 9
   LObjN LO::R_ROCK,           2, 3, 6, 11
@@ -143,7 +144,8 @@ frozen4Data:
   LObjN LO::R_ROCK,           2, 0, 2, 4
   LObjN LO::R_COIN,           0, 11, 1, 0
   LObjN LO::R_ROCK,           3, 0, 7, 2
-  LObjN LO::R_GROUND,         1, 10, 9, 4
+  LObjN LO::R_COIN,           1, 8, 1, 0
+  LObjN LO::R_GROUND,         0, 10, 9, 4
   LObjN LO::WIDE_1,           1, 9, 0, LN1::FENCE
   LObj  LO::S_SNOWMAN,         2, 8
   LObjN LO::WIDE_2,           1, 9, 3, LN2::FLOWER
@@ -157,7 +159,8 @@ frozen4Data:
   LObjN LO::WIDE_2,           2, 7, 1, LN2::FLOWER
   LObj  LO::S_HEART,          1, 6
   LObjN LO::R_GROUND,         2, 6, 2, 8
-  LObj  LO::S_SPRING,         3, 9
+  LObjN LO::R_COIN,           3, 4, 0, 4
+  LObj  LO::S_SPRING,         0, 9
   LObjN LO::R_GROUND,         0, 10, 7, 4
   LObjN LO::R_ROCK,           3, 0, 10, 2
   LObj  LO::S_CUSTOM,         0, 9, Metatiles::CAMPFIRE
@@ -187,6 +190,7 @@ frozen4Data:
   LObjN LO::R_COIN,           1, 2, 4, 0
   LObjN LO::WIDE_1,           0, 7, 10, LN1::SPIKES
   LObjN LO::R_ROCK,           0, 8, 10, 1
+  LObjN LO::R_COIN,           0, 10, 9, 0
   LObj  LO::S_FROZENCRACK,     3, 1
   LObj  LO::S_FROZENCRACK,     0, 11
   LObj  LO::S_FROZENCRACK,     2, 4

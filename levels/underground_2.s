@@ -39,6 +39,7 @@ underground_2Data:
   LObjN LO::R_GROUND,         0, 12, 3, 2
   LObj  LO::S_SOLID_ROCK,     2, 11
   LObjN LO::R_GROUND,         2, 1, 1, 4
+  LObjN LO::R_COIN,           0, 9, 1, 1
   LObjN LO::R_GROUND,         0, 11, 5, 3
   LObjN LO::TALL_2,           3, 4, 4, LN2::PATH_LINE
   LObjN LO::WIDE_2,           2, 5, 2, LN2::STRIPED_LOG_HORIZ
@@ -54,14 +55,16 @@ underground_2Data:
   LObjN LO::R_GROUND,         1, 0, 6, 4
   LObjN LO::WIDE_1,           0, 10, 3, LN1::TALLGRASS
   LObjN LO::R_GROUND,         0, 11, 3, 3
-  LObjN LO::R_GROUND,         6, 9, 3, 5
+  LObjN LO::R_COIN,           1, 8, 1, 1
+  LObjN LO::R_GROUND,         5, 9, 3, 5
   LObjN LO::R_GROUND,         1, 0, 5, 2
   LObjN LO::WIDE_1,           0, 9, 0, LN1::SPIKES
   LObj  LO::S_FLOWER,         2, 8
   LObjN LO::R_GROUND,         3, 7, 3, 7
   LObjN LO::R_GROUND,         1, 0, 2, 3
   LObj  LO::S_BIG_BUSH, 0, 6
-  LObjN LO::R_GROUND,         3, 10, 4, 4
+  LObjN LO::R_COIN,           1, 4, 1, 1
+  LObjN LO::R_GROUND,         2, 10, 4, 4
   LObjN LO::R_AIR,            2, 10, 0, 4
   LObj  LO::S_SPRING,         1, 9
   LObjN LO::R_GROUND,         1, 0, 4, 3
@@ -69,6 +72,7 @@ underground_2Data:
   LObjN LO::R_SOLID_BLOCK,    1, 10, 2, 0
   LObj  LO::S_PRIZE,          1, 10
   LWriteCol InventoryItem::ABILITY_FIRE
+  LObjN LO::R_COIN,           0, 12, 3, 0
   LObjN LO::R_SOLID_BLOCK,    2, 6, 0, 3
   LObj  LO::S_HEART,          0, 10
   LObjN LO::WIDE_1,           0, 11, 1, LN1::FALLTHROUGH_LEDGE
@@ -90,14 +94,16 @@ underground_2Data:
   LObj  LO::S_SOLID_BLOCK,    0, 7
   LObjN LO::R_GROUND,         0, 8, 6, 2
   LObjN LO::R_GROUND,         2, 11, 1, 1
-  LObjN LO::RECT_1,           4, 0, 2, LN1::GROUND, 17
+  LObjN LO::R_COIN,           1, 7, 2, 0
+  LObjN LO::RECT_1,           3, 0, 2, LN1::GROUND, 17
   LObjN LO::R_AIR,            1, 2, 5, 0
   LObj  LO::S_SPRING,         0, 7
   LObj  LO::S_GROUND,         0, 8
   LObjN LO::R_AIR,            1, 1, 3, 0
   LObjN LO::WIDE_1,           3, 7, 3, LN1::TALLGRASS
   LObjN LO::R_GROUND,         0, 8, 6, 2
-  LObjN LO::R_GROUND,         5, 11, 1, 3
+  LObjN LO::R_COIN,           1, 6, 2, 0
+  LObjN LO::R_GROUND,         4, 11, 1, 3
   LObj  LO::S_GROUND_CLIMB_R, 2, 8
   LObjN LO::R_GROUND,         0, 9, 4, 5
   LObjN LO::TALL_2,           2, 6, 2, LN2::TRUNK_L
@@ -108,7 +114,8 @@ underground_2Data:
   LObj  LO::S_SPRING,         1, 9
   LObjN LO::R_ROCK,           1, 0, 5, 2
   LObjN LO::R_ROCK,           0, 7, 5, 7
-  LObjN LO::R_BRICK,          3, 7, 1, 1
+  LObjN LO::R_COIN,           2, 4, 2, 0
+  LObjN LO::R_BRICK,          1, 7, 1, 1
   LObjN LO::R_BRICK,          2, 7, 1, 2
   LObjN LO::R_ROCK,           1, 0, 3, 4
   LObjN LO::R_ROCK,           0, 10, 5, 4
@@ -130,7 +137,8 @@ underground_2Data:
   LObjN LO::R_AIR,            3, 8, 1, 3
   LObj  LO::S_PRIZE,          0, 9
   LObj  LO::S_SPRING,         3, 9
-  LObjN LO::R_ROCK,           1, 7, 1, 7
+  LObjN LO::R_COIN,           1, 5, 2, 0
+  LObjN LO::R_ROCK,           0, 7, 1, 7
   LObj  LO::S_PRIZE,          2, 7
   LObjN LO::R_GROUND,         0, 10, 9, 4
   LObj  LO::S_GROUND_CLIMB_L, 2, 9
@@ -151,7 +159,8 @@ underground_2Data:
   LObjN LO::WIDE_1,           0, 7, 0, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           0, 9, 2, LN1::TALLGRASS
   LObjN LO::R_GROUND,         0, 10, 4, 4
-  LObjN LO::R_GROUND,         4, 4, 6, 3
+  LObjN LO::R_COIN,           1, 8, 2, 0
+  LObjN LO::R_GROUND,         3, 4, 6, 3
   LObjN LO::R_GROUND,         1, 12, 4, 2
   LObjN LO::R_COIN,           1, 11, 2, 0
   LObjN LO::WIDE_2,           2, 10, 3, LN2::STONE_BRIDGE
@@ -167,10 +176,14 @@ underground_2Data:
   LObjN LO::R_ROCK,           1, 0, 4, 4
   LObjN LO::R_ROCK,           0, 9, 5, 5
   LObjN LO::R_GROUND,         0, 9, 0, 5
-  LObjN LO::R_ROCK,           5, 0, 6, 2
+  LObjN LO::TALL_2,           4, 5, 3, LN2::TRUNK
+  LObjN LO::R_ROCK,           1, 0, 6, 2
   LObj  LO::S_SOLID_ROCK,     0, 8
   LObjN LO::R_ROCK,           1, 11, 8, 3
-  LObjN LO::WIDE_1,           3, 6, 2, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           3, 3, 2, 0
+  LObjN LO::R_COIN,           0, 5, 2, 0
+  LObjN LO::WIDE_1,           0, 6, 2, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           0, 7, 2, 0
   LObj  LO::S_BIGHEART,       1, 4
   LObjN LO::WIDE_1,           1, 9, 0, LN1::SOLID_LEDGE
   LObjN LO::R_ROCK,           1, 0, 2, 8
