@@ -72,8 +72,8 @@ burgersData:
   LObjN LO::R_BG_GLASS_BLUE,  1, 1, 0, 13
   LObjN LO::R_GROUND,         1, 8, 4, 6
   LObj  LO::S_BIGHEART,       1, 7
-  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
-  LObj  LO::S_CEILING_BARRIER,0, 0
+  LObj  LO::S_CEILING_BARRIER,1, 0
+  LObjN LO::R_CEILING_BARRIER,0, 0, 0, 1
   LObj  LO::S_CUSTOM,         0, 7, Metatiles::KEY_GREEN
   LObjN LO::R_FG_GLASS_BLUE,  1, 0, 0, 7
   LObjN LO::R_ENEMY_BARRIER      ,  1, 0, 0, 4
@@ -126,14 +126,11 @@ burgersData:
   LObjN LO::R_ENEMY_BARRIER      ,  1, 0, 0, 5
   LObj  LO::S_PRIZE,          0, 9
   LWriteCol InventoryItem::ABILITY_BURGER | 128
-  LObjN LO::R_BG_GLASS_RED,   4, 6, 0, 4
-  LObjN LO::WIDE_1,           0, 11, 3, LN1::SOLID_LEDGE
-  LObjN LO::R_BG_GLASS_RED,   1, 6, 1, 0
-  LObj  LO::S_BIGHEART,       0, 10
+  LObjN LO::WIDE_1,           4, 11, 3, LN1::SOLID_LEDGE
+  LObj  LO::S_BIGHEART,       1, 10
   LObj  LO::S_PRIZE,          1, 8
   LWriteCol InventoryItem::HEALTH_RESTORE
-  LObjN LO::R_BG_GLASS_RED,   1, 6, 0, 4
-  LObjN LO::R_COIN,           2, 8, 3, 0
+  LObjN LO::R_COIN,           3, 8, 3, 0
   LObjN LO::WIDE_1,           0, 9, 4, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           3, 6, 3, LN1::SOLID_LEDGE
   LObjN LO::R_SOLID_BLOCK,    2, 6, 0, 3
