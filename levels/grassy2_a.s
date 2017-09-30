@@ -29,7 +29,8 @@ grassy2_aData:
   LObjN LO::WIDE_1,           0, 11, 1, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           2, 7, 4, LN1::FENCE
   LObjN LO::R_GROUND,         0, 8, 4, 4
-  LObjN LO::R_GROUND,         6, 2, 7, 2
+  LObjN LO::R_CEILING_BARRIER,5, 0, 0, 2
+  LObjN LO::R_GROUND,         1, 2, 7, 2
   LObjN LO::WIDE_1,           0, 11, 1, LN1::SOLID_LEDGE
   LObjN LO::R_COIN,           1, 1, 5, 0
   LObj  LO::S_COIN,           0, 10
@@ -59,7 +60,8 @@ grassy2_aData:
   LObjN LO::R_BRICK,          1, 5, 2, 0
   LObj  LO::S_GROUND_CLIMB_R, 0, 9
   LObjN LO::R_GROUND,         1, 10, 4, 4
-  LObj  LO::S_GROUND,         2, 1
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObj  LO::S_GROUND,         1, 1
   LObj  LO::S_SPRING,         0, 9
   LObjN LO::R_GROUND,         1, 1, 1, 2
   LObjN LO::R_GROUND,         2, 1, 13, 4
@@ -90,7 +92,8 @@ grassy2_aData:
   LObj  LO::S_PRIZE,          1, 9
   LObjN LO::R_COIN,           3, 8, 0, 2
   LObj  LO::S_SPRING,         0, 11
-  LObjN LO::WIDE_1,           2, 7, 0, LN1::SOLID_LEDGE
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObjN LO::WIDE_1,           1, 7, 0, LN1::SOLID_LEDGE
   LObjN LO::TALL_2,           1, 4, 2, LN2::TRUNK_L
   LObjN LO::R_GROUND,         0, 7, 4, 7
   LObjN LO::TALL_2,           3, 4, 2, LN2::TRUNK_L
