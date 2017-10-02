@@ -2722,45 +2722,44 @@ WrapVertically:
 ; ------------------ smiloid-only stuff ---------------
 
 DoSmiloid:
-  jsr EnemyFall
-  bcc :+
-  ; smiloid jumping
-  lda PlayerPYH
-  sub ObjectPYH,x
-  abs                ; get coarse distance difference
-  cmp #2
-  bcc :+
-    lda ObjectF2,x
-    bne :+
-    lda PlayerPYH    ; player above smiloid?
-    cmp ObjectPYH,x
-    bcs :+
-      lda #<(-$50)
-      sta ObjectVYL,x
-      lda #>(-$50)
-      sta ObjectVYH,x
-  :
-
   lda ObjectF2,x ; float over to player while the smiloid is stunned
-  beq :+
-;    jsr EnemyLookAtPlayer
-    lda #$20
-    jsr EnemyWalkEvenIfStunned
-    jsr EnemyAutoBump
-
-    lda ObjectPYH,x
-    cmp PlayerPYH
+  bne NotMoving
+    jsr EnemyFall
     bcc :+
-      lda #<(-$10)
-      sta ObjectVYL,x
-      lda #>(-$10)
-      sta ObjectVYH,x
+    ; smiloid jumping
+    lda PlayerPYH
+    sub ObjectPYH,x
+    abs                ; get coarse distance difference
+    cmp #2
+    bcc :+
+      lda ObjectF2,x
+      bne :+
+      lda PlayerPYH    ; player above smiloid?
+      cmp ObjectPYH,x
+      bcs :+
+        ; Jump!
+        lda #<(-$50)
+        sta ObjectVYL,x
+        lda #>(-$50)
+        sta ObjectVYH,x
   :
-
   lda #$10
   jsr EnemyWalk
   jsr EnemyAutoBump
   jsr WrapVertically
+NotMoving:
+
+  lda ObjectF2,x
+  beq :+
+    lda ObjectPYH,x
+    cmp #2
+    bcc :+
+      lda ObjectVYL,x
+      sub #$01
+      sta ObjectVYL,x
+      subcarryx ObjectVYH
+      jsr EnemyApplyYVelocity
+  :
 
   lda #$04
   ldy #OAM_COLOR_2

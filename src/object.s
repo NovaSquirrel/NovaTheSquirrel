@@ -1080,6 +1080,8 @@ YOnly:
   rts
 .endproc
 
+EnemyApplyYVelocity = EnemyApplyVelocity::YOnly
+
 ; Walks forward, and turns around if walking farther
 ; would cause the object to fall off the edge of a platform
 ; input: A (walk speed), X (object slot)
