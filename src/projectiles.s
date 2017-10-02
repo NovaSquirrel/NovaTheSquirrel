@@ -725,7 +725,7 @@ ProjExplosion:
   jmp DispObject8x8_Attr
 
 ProjIceBlock:
-  jsr EnemyFall
+  jsr EnemyFallIce
   lda ObjectF3,x
   sta TempVal ; keep the F3 that was actually used for later
   jsr EnemyWalk
@@ -772,7 +772,7 @@ ProjIceBlock:
     lda #0
     sta ObjectF1,x
 @NotFreeze:
-cmp #Metatiles::LAVA_TOP
+  cmp #Metatiles::LAVA_TOP
   bne @NotFreezeLava
     lda #Metatiles::LAVA_FROZEN
     jsr ChangeBlockFar
@@ -977,6 +977,145 @@ ProjMirror:
   sta 3
   lda #$71 ; tile
   jmp DispObject8x8_XYOffset
+.endproc
+
+; To do, share code with regular EnemyFall
+; because it's basically the same thing
+.proc EnemyFallIce
+  jsr EnemyGravity
+
+  ; Remove enemy if it falls too far off the bottom
+  lda ObjectPYH,x
+  bmi :+
+    cmp #250
+    bcc NotOffTop
+    lda #0
+    sta ObjectPYH,x
+    sta ObjectPYL,x
+    rts
+NotOffTop:
+    cmp #15
+    bcc :+
+      lda #0
+      sta ObjectF1,x
+      pla
+      pla
+      rts
+  :
+
+  jsr EnemyCheckStandingOnSolidIce
+  beq :+ ; no touching solid
+    lda #0
+    sta ObjectPYL,x
+    sta ObjectVYH,x
+    sta ObjectVYL,x
+    sec
+    rts
+: clc
+  rts
+.endproc
+
+; Checks if an object is on top of a solid block (ice version)
+; input: X (object slot)
+; output: Zero flag (not zero if on top of a solid block)
+; locals: 0, 1, 2, 3, 4
+.proc EnemyCheckStandingOnSolidIce
+LeftBlock = 1
+RightBlock = 2
+YIndex = 3
+EitherSolid = 4
+LeftPtr = LevelDecodePointer
+
+  lda #0
+  sta EitherSolid
+  lda ObjectVYH,x
+  bpl :+
+  lda #0
+  rts
+:
+
+  lda ObjectPYH,x ; get left side
+  add #1
+  pha
+  tay
+  sty YIndex
+  lda ObjectPXH,x
+  jsr GetLevelColumnPtr
+  sta LeftBlock
+  tay
+  ; Copy the block pointer over
+  lda LevelBlockPtr+0
+  sta LeftPtr+0
+  lda LevelBlockPtr+1
+  sta LeftPtr+1
+  ; Now test solidity
+  lda MetatileFlags,y
+  cmp #M_SOLID_TOP
+  rol EitherSolid
+
+  pla ; get right side
+  tay ; reuse same Y
+  lda ObjectPXL,x
+  add EnemyRightEdge
+  lda ObjectPXH,x
+  adc #0
+  jsr GetLevelColumnPtr
+  sta RightBlock
+  tay
+  lda MetatileFlags,y
+  cmp #M_SOLID_TOP
+  rol EitherSolid
+
+  ; Check if anything needs to be frozen
+  ldy YIndex
+  lda LeftBlock
+  jsr IsIce
+  bcs :+
+  ; Left is unfrozen, make sure right is
+    lda RightBlock
+    jsr IsIce
+    bcc No
+     lda LeftPtr+0
+     sta LevelBlockPtr
+     lda LeftPtr+1
+     sta LevelBlockPtr+1
+     bne Freeze ; unconditional, never zero
+  :
+
+  ; Left is frozen, make sure right isn't
+  lda RightBlock
+  jsr IsIce
+  bcc Freeze
+
+No:
+  lda EitherSolid
+  rts
+
+Freeze:
+  lda #0
+  sta 0
+  lda (LevelBlockPtr),y
+  cmp #Metatiles::WATER_TOP
+  beq OK
+  cmp #Metatiles::LAVA_TOP
+  bne No
+OK:
+  sub #1
+  jsr DelayChangeBlockFar
+
+  lda EitherSolid
+  rts
+
+IsIce:
+  cmp #Metatiles::WATER_FROZEN
+  beq Yes
+  cmp #Metatiles::LAVA_FROZEN
+  beq Yes
+  clc
+  rts
+Yes:
+  sec
+  rts
 .endproc
 
 .proc ObjectBlasterShot
