@@ -209,10 +209,10 @@ frozen2Data:
   LObj  LO::S_CUSTOM,         2, 6, Metatiles::PUSHABLE_BLOCK
   LObj  LO::S_CUSTOM,         2, 3, Metatiles::PUSHABLE_BLOCK
   LObjN LO::WIDE_1,           0, 4, 2, LN1::SOLID_LEDGE
-  LObjN LO::R_COIN,           1, 10, 0, 2
+  LObjN LO::TALL_2,           1, 10, 2, LN2::TRUNK
   LObjN LO::R_ROCK,           0, 13, 2, 1
   LObjN LO::R_ROCK,           2, 0, 1, 6
-  LObjN LO::R_COIN,           0, 10, 0, 2
+  LObjN LO::TALL_2,           0, 10, 2, LN2::TRUNK
   LObjN LO::R_ROCK,           1, 10, 2, 4
   LObj  LO::S_MTRACK_UPRIGHT,  1, 9
   LObjN LO::R_GROUND,         2, 9, 8, 5

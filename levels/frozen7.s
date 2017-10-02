@@ -36,9 +36,11 @@ frozen7Data:
   LObj  LO::S_HEART,          0, 11
   LObjN LO::TALL_2,           2, 3, 8, LN2::TRUNK
   LObj  LO::S_SPRING,         1, 11
-  LObjN LO::R_SOLID_BLOCK,    1, 8, 1, 3
+  LObjN LO::WIDE_1,           1, 7, 1, LN1::TALLGRASS
+  LObjN LO::R_SOLID_BLOCK,    0, 8, 1, 3
   LObjN LO::RECT_3,           2, 0, 3, LN3::ROCK, 16
   LObjN LO::R_AIR,            3, 3, 5, 0
+  LObjN LO::WIDE_1,           0, 7, 0, LN1::FENCE
   LObjN LO::R_SOLID_BLOCK,    0, 8, 1, 3
   LObjN LO::R_GROUND,         0, 12, 5, 2
   LObj  LO::S_CUSTOM,         1, 4, Metatiles::PUSHABLE_BLOCK
@@ -85,7 +87,8 @@ frozen7Data:
   LObj  LO::S_SOLID_BLOCK,    3, 2
   LObjN LO::R_COIN,           0, 7, 2, 0
   LObjN LO::WIDE_1,           0, 8, 2, LN1::SOLID_LEDGE
-  LObjN LO::R_SOLID_BLOCK,    3, 5, 0, 2
+  LObjN LO::WIDE_1,           3, 4, 0, LN1::FENCE
+  LObjN LO::R_SOLID_BLOCK,    0, 5, 0, 2
   LObjN LO::TALL_2,           0, 8, 6, LN2::TRUNK
   LObjN LO::WIDE_1,           1, 5, 3, LN1::SOLID_LEDGE
   LObjN LO::WIDE_2,           1, 4, 7, LN2::FLOWER
@@ -109,7 +112,8 @@ frozen7Data:
   LObjN LO::RECT_3,           1, 0, 1, LN3::ROCK, 22
   LObjN LO::WIDE_1,           0, 8, 4, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           1, 13, 1, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_1,           3, 5, 0, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           1, 12, 0, LN1::FENCE
+  LObjN LO::WIDE_1,           2, 5, 0, LN1::SOLID_LEDGE
   LObj  LO::S_SOLID_ROCK,     1, 4
   LObjN LO::R_GROUND,         0, 5, 5, 3
   LObjN LO::TALL_2,           0, 9, 3, LN2::TRUNK
@@ -152,6 +156,7 @@ frozen7Data:
   LObjN LO::R_MTRACK_SUPPORTSONLY,  0, 5, 0, 9
   LObj  LO::S_CEILING_BARRIER,2, 0
   LObjN LO::R_COIN,           0, 3, 2, 0
+  LObjN LO::WIDE_1,           0, 4, 0, LN1::FENCE
   LObjN LO::R_GROUND,         0, 5, 2, 9
   LObjN LO::R_ROCK,           1, 0, 13, 0
   LObj  LO::S_SOLID_BLOCK,    1, 4
@@ -203,22 +208,68 @@ frozen7Data:
   LObj  LO::R_CUSTOM,         0, 12, Metatiles::LAVA_MAIN, (4<<4)|2
   LObjN LO::WIDE_1,           4, 2, 1, LN1::SOLID_LEDGE
   LObjN LO::R_ROCK,           1, 6, 3, 8
-  LObj  LO::S_HEART,          4, 2
-  LObjN LO::WIDE_1,           0, 3, 4, LN1::SOLID_LEDGE
-  LObjN LO::R_SOLID_BLOCK,    0, 6, 1, 0
-  LObjN LO::R_SOLID_BLOCK,    2, 5, 0, 1
+  LObj  LO::S_HEART,          4, 3
+  LObjN LO::R_SOLID_BLOCK,    0, 6, 2, 0
+  LObj  LO::S_SPRING,         2, 5
   LObjN LO::TALL_2,           0, 7, 7, LN2::TRUNK
-  LObj  LO::S_CUSTOM,         2, 2, Metatiles::PICKUP_BLOCK
-  LObjN LO::R_SOLID_BLOCK,    3, 5, 0, 1
+  LObjN LO::WIDE_1,           5, 5, 0, LN1::FENCE
+  LObjN LO::R_SOLID_BLOCK,    0, 6, 2, 0
   LObjN LO::TALL_2,           0, 7, 7, LN2::TRUNK
-  LObjN LO::R_SOLID_BLOCK,    1, 6, 1, 0
-  LObj  LO::S_CUSTOM,         1, 5, Metatiles::PICKUP_BLOCK
+  LObj  LO::S_PRIZE,          2, 3
+  LObjN LO::TALL_2,           0, 4, 1, LN2::TRUNK
   LObjN LO::R_GROUND,         0, 7, 2, 7
-  LObjN LO::R_GROUND,         3, 9, 0, 5
-  LObjN LO::R_GROUND,         1, 11, 3, 3
-  LObjN LO::R_COIN,           1, 9, 1, 1
-  LObj  LO::R_CUSTOM,         3, 12, Metatiles::LAVA_MAIN, (10<<4)|2
-  LObjN LO::R_GROUND,         11, 11, 1, 3
+  LObjN LO::WIDE_1,           1, 3, 3, LN1::SOLID_LEDGE
+  LObj  LO::S_SPRING,         2, 11
+  LObj  LO::R_CUSTOM,         0, 12, Metatiles::LAVA_MAIN, (11<<4)|2
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObjN LO::TALL_2,           0, 6, 4, LN2::PATH_LINE
+  LObjN LO::R_SOLID_BLOCK,    1, 0, 0, 1
+  LObj  LO::S_CUSTOM,         0, 2, Metatiles::LOCK_GREEN
+  LObjN LO::R_SOLID_BLOCK,    0, 3, 8, 0
+  LObjN LO::WIDE_2,           0, 6, 7, LN2::PATH_LINE
+  LObjN LO::WIDE_2,           0, 10, 7, LN2::PATH_LINE
+  LObj  LO::S_DOOR,           2, 1
+  LWriteCol 10, 195
+  LObjN LO::WIDE_1,           0, 9, 0, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           2, 1, 2, 0
+  LObjN LO::WIDE_1,           1, 9, 0, LN1::SOLID_LEDGE
+  LObjN LO::TALL_2,           3, 6, 4, LN2::PATH_LINE
+  LObjN LO::R_ROCK,           1, 0, 6, 3
+  LObjN LO::R_COIN,           1, 8, 2, 0
+  LObjN LO::R_GROUND,         0, 12, 8, 2
+  LObj  LO::S_CUSTOM,         1, 9, Metatiles::KEY_GREEN
+  LObj  LO::S_BIGHEART,       0, 10
+  LObjN LO::R_ROCK,           2, 4, 2, 7
+  LObjN LO::R_CEILING_BARRIER,3, 0, 0, 1
+  LObjN LO::WIDE_3,           0, 4, 4, LN3::MINE_TRACKS
+  LObj  LO::S_MTRACK_BUMP,     1, 4
+  LObj  LO::S_DOOR,           0, 10
+  LWriteCol 1, 180
+  LObjN LO::R_COIN,           1, 2, 1, 1
+  LObjN LO::R_MTRACK_SUPPORTSONLY,  0, 5, 0, 6
+  LObj  LO::S_MTRACK_UPRIGHT,  1, 4
+  LObjN LO::WIDE_3,           1, 11, 3, LN3::MINE_TRACKS
+  LObjN LO::WIDE_3,           1, 2, 14, LN3::MINE_TRACKS
+  LObj  LO::S_MTRACK_SSR,      0, 5
+  LObjN LO::R_COIN,           0, 8, 1, 1
+  LObjN LO::R_MTRACK_SUPPORTSONLY,  0, 12, 0, 2
+  LObj  LO::S_MTRACK_SSR,      1, 6
+  LObj  LO::S_MTRACK_SUPPORTS, 1, 6
+  LObj  LO::S_MTRACK_SUPPORTS, 0, 11
+  LObjN LO::WIDE_3,           1, 6, 3, LN3::MINE_TRACKS
+  LObj  LO::S_MTRACK_SSL,      0, 11
+  LObjN LO::R_COIN,           1, 3, 1, 1
+  LObj  LO::S_MTRACK_SSL,      0, 10
+  LObj  LO::S_MTRACK_SSL,      1, 9
+  LObj  LO::S_MTRACK_SSL,      1, 8
+  LObjN LO::R_COIN,           1, 4, 1, 1
+  LObjN LO::WIDE_3,           0, 7, 2, LN3::MINE_TRACKS
+  LObj  LO::S_MTRACK_UPLEFT,   1, 7
+  LObj  LO::S_MTRACK_SUPPORTS, 1, 7
+  LObjN LO::R_MTRACK_SUPPORTSONLY,  0, 8, 0, 6
+  LObj  LO::S_MTRACK_BUMP,     1, 7
+  LObjN LO::R_GROUND,         2, 3, 1, 11
+  LObj  LO::R_CUSTOM,         2, 3, Metatiles::TOGGLE_BLOCK_ON, (10<<4)|0
   LFinished
 
 frozen7Sprite:
@@ -252,4 +303,9 @@ frozen7Sprite:
   LSpr Enemy::FIRE_WALK,           0, 159,   1, 1
   LSpr Enemy::ICE_1,               1, 161,   5, 1
   LSpr Enemy::ICE_2,               0, 164,   7
+  LSpr Enemy::MOVING_PLATFORM_LINE, 0, 177,  10
+  LSpr Enemy::FIRE_JUMP,           1, 180,   8, 1
+  LSpr Enemy::FIRE_JUMP,           1, 183,   8, 1
+  LSpr Enemy::CHECKPOINT,          0, 196,  11
+  LSpr Enemy::MINECART,            0, 199,  11
   .byt 255 ; end
