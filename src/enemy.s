@@ -2753,12 +2753,18 @@ NotMoving:
   beq :+
     lda ObjectPYH,x
     cmp #2
+    beq AtTop
     bcc :+
       lda ObjectVYL,x
       sub #$01
       sta ObjectVYL,x
       subcarryx ObjectVYH
       jsr EnemyApplyYVelocity
+      jmp :+
+AtTop:
+     lda #0
+     sta ObjectVYL,x
+     sta ObjectVYH,x
   :
 
   lda #$04
