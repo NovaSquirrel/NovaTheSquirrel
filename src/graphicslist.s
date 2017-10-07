@@ -53,6 +53,8 @@ GraphicsList:
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGShopIcons,  >BGShopIcons
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPWind,       >SPWind
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPBoomerang,  >SPBoomerang
+  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGExposition, >BGExposition
+  .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPMolSno,     >SPMolSno
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)
 DoGraphicUpload:

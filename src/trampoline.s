@@ -154,3 +154,12 @@
   jsr SetPRG
   jmp ShowPreLevel
 .endproc
+
+.proc LoadExpositionGraphics
+  lda #GraphicsUpload::CHR_FONT
+  jsr DoGraphicUpload
+  lda #GraphicsUpload::BG_EXPOSITION
+  jsr DoGraphicUpload
+  lda #DIALOG_BANK
+  jmp SetPRG
+.endproc

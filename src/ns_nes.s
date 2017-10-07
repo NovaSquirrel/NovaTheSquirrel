@@ -477,7 +477,7 @@ DJ_Label:
 .endmacro
 
 .macro skip2
-  bit $2c ; BIT absolute
+  .byt $2c ; BIT absolute
 .endmacro
 
 .macro asr ; Arithmetic shift left

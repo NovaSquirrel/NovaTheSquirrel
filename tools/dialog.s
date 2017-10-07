@@ -1,13 +1,25 @@
 Intro:
-.byt SCR::SCENE, SCENES::NOVA_AND_KEE
-; []After some mishaps involving a teleporter and rays from a strange new device, a fox and squirrel end up transformed and in the strange world of Latte.
-.byt SCR::NARRATE, CHAR::NONE, "A", "f", $eb, $ea, $9c, " ", "m", $b9, "h", "a", "p", $fb, $d8, "v", "o", "l", "v", $b1, SCR::NEWLINE, $be, $eb, "l", "e", "p", $c9, $eb, $ea, $a4, "r", "a", "y", $fb, $97, "a", SCR::NEWLINE, $de, "r", $ca, "g", $e7, $f9, "w", " ", "d", "e", "v", "i", "c", "e", $f5, $be, "f", "o", "x", " ", $ca, "d", SCR::NEWLINE, $80, " ", $e6, $ff, $cd, " ", $fa, $ca, "s", $a5, $d0, "d", SCR::NEWLINE, $a4, $bf, $a2, " ", $de, "r", $ca, "g", $e7, "w", $c9, $ef, " ", "o", "f", SCR::NEWLINE, $84, "."
-; <0 NOVA>Hey Kee? What just happened? Where are we?
-.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "H", "e", $fe, "K", $d7, "?", " ", "W", "h", $c6, " ", "j", "u", $de, SCR::NEWLINE, "h", "a", "p", "p", $e6, "e", "d", "?", " ", "W", $a9, $e7, "a", "r", $e7, $c8, "?"
-; <1 KEE>No idea, Nova. You look pretty different now though.
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::KEE, "N", "o", " ", "i", "d", $ec, $f5, $a1, $f6, "Y", $f4, " ", $95, SCR::NEWLINE, "p", "r", "e", "t", "t", $fe, "d", $ce, "f", $ed, $e6, $d3, $b4, " ", $e0, $f4, $db, "."
-; <0 NOVA>... I have a lot of questions. Come on, let's look around.
-.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, ".", ".", $f6, $c0, $9b, $be, "l", "o", $d3, $bd, "q", "u", "e", $de, "i", $c2, "s", ".", SCR::NEWLINE, "C", "o", $d0, " ", $c2, $f5, $a8, $e9, $95, " ", "a", "r", $f4, $f0, "."
+.byt SCR::RUN_ASM
+jsr LoadExpositionGraphics
+lda #' '
+jsr ClearNameCustom
+brk
+.byt SCR::MONO_TEXT, <ExpositionText1, >ExpositionText1
+.byt SCR::MONO_TEXT, <ExpositionText2, >ExpositionText2
+.byt SCR::MONO_TEXT, <ExpositionText3, >ExpositionText3
+.byt SCR::MONO_TEXT, <ExpositionText4, >ExpositionText4
+.byt SCR::MONO_TEXT, <ExpositionText5, >ExpositionText5
+.byt SCR::MONO_TEXT, <ExpositionText6, >ExpositionText6
+.byt SCR::MONO_TEXT, <ExpositionText7, >ExpositionText7
+.byt SCR::MONO_TEXT, <ExpositionText8, >ExpositionText8
+.byt SCR::MONO_TEXT, <ExpositionText9, >ExpositionText9
+.byt SCR::MONO_TEXT, <ExpositionText10, >ExpositionText10
+.byt SCR::MONO_TEXT, <ExpositionText11, >ExpositionText11
+.byt SCR::MONO_TEXT, <ExpositionText12, >ExpositionText12
+.byt SCR::MONO_TEXT, <ExpositionText13, >ExpositionText13
+.byt SCR::MONO_TEXT, <ExpositionText14, >ExpositionText14
+.byt SCR::MONO_TEXT, <ExpositionText15, >ExpositionText15
+.byt SCR::MONO_TEXT, <ExpositionText16, >ExpositionText16
 .byt SCR::END_SCRIPT
 Tutorial1:
 .byt SCR::SCENE, SCENES::NOVA_SIGN_KEE
@@ -254,6 +266,10 @@ ColaSigns:
 .byt SCR::NARRATE, CHAR::NOVA, "Y", $f4, " ", $8f, " ", "m", "a", "y", $ba, $a2, " ", "r", $ec, $cc, "n", SCR::NEWLINE, "M", "o", "l", "S", $d1, " ", $c8, $e1, " ", "c", "r", "a", "z", $fe, $ca, "d", SCR::NEWLINE, "b", $f4, $db, $d3, $ad, " ", $a2, " ", "c", "o", "l", $be, $b9, SCR::NEWLINE, "b", "e", "c", "a", "u", $e5, " ", $a2, " ", "v", "o", "l", $b0, "o", " ", $c3, " ", "l", "i", "v", "e", "s", SCR::NEWLINE, $bf, $b8, "c", $8c, $d6, $9d, SCR::NEWLINE, $f7, "v", $ed, "t", $b9, "e", $d0, $e1, "s", "."
 ; [SHERWIN]You think so?
 .byt SCR::NARRATE, CHAR::SHERWIN, "Y", $f4, " ", $82, " ", $cc, "?"
+; [NOVA]I think I'm about to see him... hopefully he cooperates?
+.byt SCR::NARRATE, CHAR::NOVA, $c0, $82, " ", $d4, $8a, $bb, $b3, " ", $b2, ".", ".", ".", SCR::NEWLINE, "h", "o", "p", "e", "f", "u", "l", $d2, $c3, " ", "c", $e4, "p", $ed, $c6, "e", "s", "?"
+; [SHERWIN]"Molten Snow", eh? That's just a fancy name for water isn't it?
+.byt SCR::NARRATE, CHAR::SHERWIN, '"', "M", "o", "l", $eb, "n", " ", "S", $b4, '"', $f5, "e", "h", "?", " ", $f8, $c6, "'", "s", SCR::NEWLINE, $8e, $be, "f", $ca, "c", $fe, "n", "a", $d0, " ", $a5, " ", "w", $c6, $ed, SCR::NEWLINE, $b9, "n", $e8, "i", "t", "?"
 .byt SCR::END_SCRIPT
 MolSnoMeet:
 .byt SCR::SCENE, SCENES::NOVA_AND_MOLSNO
@@ -653,6 +669,206 @@ PreLevelFrozen5:
 PreLevelFrozen6:
 ; Ronald is back for revenge.
 .byt "R", $c2, "a", $ef, " ", $b8, "b", "a", $f3, " ", $a5, " ", "r", $9f, "g", "e", "."
+.byt SCR::END_SCRIPT
+; INTRO CUTSCENE TEXT
+ExpositionText1:
+; The world of Latte lived
+.byt $f8, $e7, "w", $c9, $ef, " ", $bd, $84, " ", "l", "i", "v", "e", "d"
+.byt SCR::NEWLINE
+; in peace for many years.
+.byt $bf, "p", $ec, "c", $e7, $a5, " ", "m", $ab, " ", "y", $ec, "r", "s", "."
+.byt SCR::NEWLINE
+; It is a video game world,
+.byt "I", $d3, $b8, $be, "v", "i", "d", "e", "o", " ", "g", "a", $d0, " ", "w", $c9, $ef, ","
+.byt SCR::NEWLINE
+; ruled by a guy named Korey.
+.byt "r", "u", "l", $d6, "b", $fe, $be, "g", "u", $fe, "n", "a", $d0, $ff, "K", $c9, "e", "y", "."
+.byt SCR::END_SCRIPT
+ExpositionText2:
+; One day, it was attacked by
+.byt "O", $f9, " ", "d", "a", "y", $f5, $c1, "w", $c4, " ", $c6, "t", "a", $f3, $d6, "b", "y"
+.byt SCR::NEWLINE
+; the "Scheme Team," a robot
+.byt $a2, " ", '"', "S", $e2, "e", $d0, " ", "T", $ec, "m", ",", '"', " ", $be, "r", "o", "b", "o", "t"
+.byt SCR::NEWLINE
+; army with a thirst for
+.byt "a", "r", $cb, " ", $9d, " ", $be, $e0, "i", "r", $de, " ", $a5
+.byt SCR::NEWLINE
+; destruction and power.
+.byt "d", "e", $de, "r", "u", $c7, "i", $c2, " ", $a4, "p", "o", $c8, "r", "."
+.byt SCR::END_SCRIPT
+ExpositionText3:
+; When it seemed hopeless,
+.byt "W", $c3, "n", " ", $c1, $b3, $d0, $ff, "h", "o", "p", "e", "l", "e", $f1, ","
+.byt SCR::NEWLINE
+; the Double Action Blaster
+.byt $a2, " ", "D", $f4, "b", "l", $e7, "A", $c7, "i", $c2, " ", "B", "l", $c4, $eb, "r"
+.byt SCR::NEWLINE
+; Guys showed up and blasted
+.byt "G", "u", "y", $fb, $df, "o", $c8, $ff, $cd, " ", $a4, "b", "l", $c4, $eb, "d"
+.byt SCR::NEWLINE
+; their way to victory.
+.byt $a2, "i", $ea, $b7, " ", $bb, "v", "i", $c7, $c9, "y", "."
+.byt SCR::END_SCRIPT
+ExpositionText4:
+; The Scheme Team was stopped
+.byt $f8, $e7, "S", $e2, "e", $d0, " ", "T", $ec, "m", " ", "w", $c4, " ", $de, "o", "p", "p", "e", "d"
+.byt SCR::NEWLINE
+; and arrested, but the Guys
+.byt $a4, "a", $d9, "e", $de, "e", "d", $f5, $a7, " ", $a2, " ", "G", "u", "y", "s"
+.byt SCR::NEWLINE
+; disappeared shortly after.
+.byt "d", $b9, "a", "p", "p", $ec, "r", $d6, $df, $c9, "t", $d2, $83, "."
+.byt SCR::NEWLINE
+; Latte was now vulnerable.
+.byt $84, " ", "w", $c4, " ", $b4, " ", "v", "u", "l", $f9, "r", "a", "b", "l", "e", "."
+.byt SCR::END_SCRIPT
+ExpositionText5:
+; Henceforth, replying to any
+.byt "H", $e6, "c", "e", $a5, $e0, $f5, "r", "e", "p", "l", "y", $b1, " ", $bb, $ab
+.byt SCR::NEWLINE
+; post with nothing more than
+.byt "p", "o", $de, " ", $9d, " ", $a3, "h", $b1, " ", "m", $c9, $e7, $93
+.byt SCR::NEWLINE
+; the word "nice" will result
+.byt $a2, " ", "w", $c9, $ff, '"', "n", "i", "c", "e", '"', " ", $9e, " ", "r", "e", "s", "u", "l", "t"
+.byt SCR::NEWLINE
+; in an immediate arrest.
+.byt $bf, $ca, " ", "i", "m", $d0, "d", "i", $c6, $e7, "a", $d9, "e", $de, "."
+.byt SCR::END_SCRIPT
+ExpositionText6:
+; Yes, this has seriously
+.byt "Y", "e", "s", $f5, $99, " ", "h", $c4, " ", $e5, $fc, $f4, "s", "l", "y"
+.byt SCR::NEWLINE
+; become *this* large of a
+.byt "b", "e", $96, " ", "*", $99, "*", " ", "l", "a", "r", "g", $e7, $bd, "a"
+.byt SCR::NEWLINE
+; problem and it's going to
+.byt $81, " ", $a4, "i", "t", $e9, $cf, $b1, " ", $bc
+.byt SCR::NEWLINE
+; stop, before it's too late!
+.byt $de, "o", "p", $f5, "b", "e", $a5, $e7, "i", "t", $e9, $bc, "o", " ", "l", $c6, "e", "!"
+.byt SCR::END_SCRIPT
+ExpositionText7:
+; Too late? What sort of harm
+.byt "T", $e4, " ", "l", $c6, "e", "?", " ", "W", "h", $c6, " ", $cc, $ee, " ", $bd, "h", "a", "r", "m"
+.byt SCR::NEWLINE
+; could possibly come out of
+.byt "c", $a0, " ", "p", "o", $f1, "i", "b", $d2, $96, " ", $ae, " ", "o", "f"
+.byt SCR::NEWLINE
+; that kind of harmless fun?
+.byt $9a, "k", $d8, $ff, $bd, "h", "a", "r", "m", "l", "e", $f1, " ", "f", $f2, "?"
+.byt SCR::END_SCRIPT
+ExpositionText8:
+; Remember, the Scheme Team
+.byt "R", "e", $d0, "m", "b", $ed, $f5, $a2, " ", "S", $e2, "e", $d0, " ", "T", $ec, "m"
+.byt SCR::NEWLINE
+; has Smiloids with them, and
+.byt "h", $c4, " ", "S", "m", $dc, "o", "i", "d", $fb, $9d, " ", $92, $f5, $ca, "d"
+.byt SCR::NEWLINE
+; these highly dangerous bots
+.byt $89, "h", "i", $db, $d2, "d", $ca, "g", $ed, $f4, $fb, "b", "o", "t", "s"
+.byt SCR::NEWLINE
+; derive their power from
+.byt "d", $ed, "i", "v", $e7, $a2, "i", $ea, "p", "o", $c8, $ea, "f", "r", "o", "m"
+.byt SCR::NEWLINE
+; that kind of behavior.
+.byt $9a, "k", $d8, $ff, $bd, "b", "e", "h", "a", "v", "i", $c9, "."
+.byt SCR::END_SCRIPT
+ExpositionText9:
+; If they become too powerful
+.byt "I", "f", " ", $98, " ", "b", "e", $96, " ", $bc, "o", " ", "p", "o", $c8, "r", "f", "u", "l"
+.byt SCR::NEWLINE
+; they will break out of jail
+.byt $98, " ", $9e, " ", "b", "r", $ec, "k", " ", $ae, " ", $bd, "j", "a", $dc
+.byt SCR::NEWLINE
+; and we would be totally
+.byt $a4, $c8, " ", "w", $a0, " ", $ba, $bc, "t", $ad, "y"
+.byt SCR::NEWLINE
+; screwed!
+.byt "s", "c", "r", "e", $c8, "d", "!"
+.byt SCR::END_SCRIPT
+ExpositionText10:
+; Well, my friends, it looks
+.byt "W", "e", "l", "l", $f5, $cb, " ", "f", $fc, $e6, "d", "s", $f5, $c1, $95, "s"
+.byt SCR::NEWLINE
+; like today will be a very
+.byt $8d, " ", $bc, "d", "a", $fe, $9e, " ", $ba, $be, "v", $ed, "y"
+.byt SCR::NEWLINE
+; "Nice" day for us. Let's
+.byt '"', "N", "i", "c", "e", '"', " ", "d", "a", $fe, $a5, " ", "u", "s", $f6, "L", "e", "t", "'", "s"
+.byt SCR::NEWLINE
+; bust out of this place!
+.byt "b", "u", $de, " ", $ae, " ", $bd, $99, " ", "p", "l", "a", "c", "e", "!"
+.byt SCR::END_SCRIPT
+ExpositionText11:
+; The Scheme Team constructs
+.byt $f8, $e7, "S", $e2, "e", $d0, " ", "T", $ec, "m", " ", "c", $c2, $de, "r", "u", $c7, "s"
+.byt SCR::NEWLINE
+; a fortress as well as a new
+.byt $be, $a5, $fa, "e", $f1, " ", $c4, " ", $c8, "l", "l", " ", $c4, " ", $be, $f9, "w"
+.byt SCR::NEWLINE
+; master plan. This time they
+.byt "m", $c4, $eb, $ea, "p", "l", $ca, $f6, $f8, $b8, "t", "i", $d0, " ", $98
+.byt SCR::NEWLINE
+; would be ready for anything
+.byt "w", $a0, " ", $ba, "r", $ec, "d", $fe, $a5, " ", $ab, $e0, $b1
+.byt SCR::END_SCRIPT
+ExpositionText12:
+; However, in doing so they
+.byt "H", "o", $c8, "v", $ed, $f5, $bf, $c5, $b1, " ", $cc, " ", $98
+.byt SCR::NEWLINE
+; kidnap a man named Sherwin
+.byt "k", "i", "d", "n", "a", "p", " ", $be, "m", $ca, " ", "n", "a", $d0, $ff, "S", $a9, "w", $d8
+.byt SCR::NEWLINE
+; when they confuse him for
+.byt $da, $e6, " ", $98, " ", "c", $c2, "f", "u", $e5, " ", $b2, " ", $a5
+.byt SCR::NEWLINE
+; a Blaster Guy due to looks.
+.byt $be, "B", "l", $c4, $eb, $ea, "G", "u", $fe, "d", "u", $e7, $bb, $95, "s", "."
+.byt SCR::END_SCRIPT
+ExpositionText13:
+; Sherwin decides the proper
+.byt "S", $a9, "w", $bf, "d", "e", "c", "i", "d", "e", $fb, $a2, " ", "p", "r", "o", "p", $ed
+.byt SCR::NEWLINE
+; course of action is to go
+.byt "c", $b6, $e5, " ", $bd, "a", $c7, "i", $c2, " ", $b8, $bb, $cf
+.byt SCR::NEWLINE
+; make a thread on the Latte
+.byt "m", "a", "k", $e7, $be, $e0, "r", $ec, $ff, $c2, " ", $a2, " ", $84
+.byt SCR::NEWLINE
+; forums about the incident.
+.byt $a5, "u", "m", $fb, $8a, $a2, " ", $d8, "c", "i", "d", $e6, "t", "."
+.byt SCR::END_SCRIPT
+ExpositionText14:
+; These robot guys with guns
+.byt $f8, "e", $e5, " ", "r", "o", "b", "o", $d3, "g", "u", "y", $fb, $9d, " ", "g", $f2, "s"
+.byt SCR::NEWLINE
+; just went and kidnapped me.
+.byt $8e, $c8, $e1, " ", $a4, "k", "i", "d", "n", "a", "p", "p", $d6, $d0, "."
+.byt SCR::NEWLINE
+; This is illegal, you know!
+.byt $f8, $b8, $b8, $dc, "l", "e", "g", "a", "l", $f5, $a6, " ", $8f, "!"
+.byt SCR::END_SCRIPT
+ExpositionText15:
+; Robot guys with guns? Uh...
+.byt "R", "o", "b", "o", $d3, "g", "u", "y", $fb, $9d, " ", "g", $f2, "s", "?", " ", "U", "h", ".", ".", "."
+.byt SCR::NEWLINE
+; Oh no. I think we might be
+.byt "O", "h", " ", $d1, $f6, $c0, $82, " ", $c8, " ", "m", "i", $db, $d3, "b", "e"
+.byt SCR::NEWLINE
+; screwed after all.
+.byt "s", "c", "r", "e", $c8, $ff, $83, " ", $ad, "."
+.byt SCR::END_SCRIPT
+ExpositionText16:
+; Fortunately, through random
+.byt "F", $c9, "t", $f2, $c6, "e", "l", "y", $f5, $e0, "r", $f4, $db, " ", "r", $ca, $c5, "m"
+.byt SCR::NEWLINE
+; luck a squirrel appears in
+.byt "l", "u", $f3, " ", $be, $80, " ", "a", "p", "p", $ec, "r", $fb, $d8
+.byt SCR::NEWLINE
+; Latte. Can she fix things?
+.byt $84, $f6, "C", $ca, " ", $aa, " ", "f", "i", "x", " ", $e0, $b1, "s", "?"
 .byt SCR::END_SCRIPT
 
 CutsceneDictionary:

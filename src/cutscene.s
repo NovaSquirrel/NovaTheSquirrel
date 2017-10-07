@@ -212,6 +212,7 @@ SkipTheScript:
   beq ScriptLoop
 
 IsDictionaryWord:
+  sta $5555
   ; Get table index
   sub #$80
   tax
@@ -302,7 +303,7 @@ NopeNothingToDraw:
   .raddr ShowScene  ; xx - scene number
   .raddr Transition ;
   .raddr NoSkip     ;
-
+  .raddr MonoText   ; aa aa - text pointer
 ; Command, disables skipping the dialog
 NoSkip:
   inc CutsceneNoSkip
@@ -849,11 +850,85 @@ IncreaseBy1:
   lda #1
   jmp ScriptIncreasePointerBy
 
-; input: A (flag number)
-; output: Y (flag index), A (mask used to manipulate that flag)
-GetFlag:
-  tay
-  jmp IndexToBitmap
+MonoText:
+LevelTextAddress = 8
+  sta CompressedTextPointer+0
+  iny
+  lda (ScriptPtr),y
+  sta CompressedTextPointer+1
+
+  lda #$e2
+  sta LevelTextAddress+0
+  lda #$20
+  sta LevelTextAddress+1
+
+MonoTextLoop:
+  ldx #0 ; X is the StringBuffer index
+  jsr DecompressTextFar
+  pha ; save the terminator byte
+
+  jsr WaitVblank
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
+  sta PPUCTRL
+  lda #BG_ON|OBJ_ON
+  sta PPUMASK
+
+  lda #0
+  sta StringBuffer,x
+  tax ; X = 0
+: lda StringBuffer,x
+  beq :+
+  ldy LevelTextAddress+1
+  sty PPUADDR
+  ldy LevelTextAddress+0
+  sty PPUADDR
+  inc LevelTextAddress+0
+  sta PPUDATA
+  lda #0
+  sta PPUSCROLL
+  sta PPUSCROLL
+  jsr WaitVblank
+  inx
+  bne :- ; unconditional
+:
+
+  ; Go down two rows
+  lda LevelTextAddress+0
+  and #<~31
+  ora #2
+  add #64
+  sta LevelTextAddress+0
+  addcarry LevelTextAddress+1
+
+  pla ; get the terminator byte
+  cmp #SCR::END_SCRIPT
+  bne MonoTextLoop
+
+  ; ----------------
+
+  ; Wait for a key press
+: jsr WaitVblank
+  jsr ReadJoy
+
+  lda keynew
+  and #KEY_START ; Start = skip everything
+  beq @NoSkip
+  ldx CutsceneOldSP
+  txs
+  jmp StartCutscene::SkipTheScript
+@NoSkip:
+  lda keynew
+  and #KEY_A
+  beq :-
+  
+  ; Clear everything
+  jsr WaitVblank
+  lda #0
+  sta PPUMASK
+  lda #' '
+  jsr ClearNameCustom
+
+  jmp IncreaseBy2
 .endproc
 
 .pushseg

@@ -106,6 +106,8 @@ HAS_DICTIONARY_TABLE = 1
   BG_SHOPICONS
   SP_WIND
   SP_BOOMERANG
+  BG_EXPOSITION
+  SP_MOLSNO
 .endenum
 
 .enum SFX
@@ -297,6 +299,7 @@ MS_EMPTY = 32
   SCENE         ; xx - scene number
   TRANSITION    ; transition effect
   NO_SKIP       ; disable skipping the dialog
+  MONO_TEXT     ; display monospaced text
   SPEAKER_0 = %0000000
   SPEAKER_1 = %0100000
   SPEAKER_2 = %1000000

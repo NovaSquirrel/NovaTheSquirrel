@@ -144,6 +144,10 @@ int main(int argc, char *argv[]) {
         AutoWordWrap = 1;
       else if(!strcmp(Command, "nodictionarytable"))
         MakeDictionaryTable = 0;
+      else if(!strcmp(Command, "monotext"))
+        fprintf(OutputFile, ".byt SCR::MONO_TEXT, <%s, >%s", Arg, Arg);
+      else if(!strcmp(Command, "clear"))
+        fprintf(OutputFile, ".byt SCR::CLEAR_ALL");
 
       if(Buffer[0] == '?') {
         if(!strcmp(Command, "on"))

@@ -146,21 +146,6 @@ PreLevelTextFound:
   cmp #SCR::END_SCRIPT
   bne :-
 
-.if 0
-  ; "text"
-  PositionXY 0, 4, 7
-  jsr PutStringImmediate
-  .byt "aaaaaa",0
-  PositionXY 0, 4, 9
-  jsr PutStringImmediate
-  .byt "aaaaaa",0
-  PositionXY 0, 4, 11
-  jsr PutStringImmediate
-  .byt "aaaaaa",0
-  PositionXY 0, 4, 13
-  jsr PutStringImmediate
-  .byt "aaaaaa",0
-.endif
 PreLevelTextNotFound:
 
   ; Options

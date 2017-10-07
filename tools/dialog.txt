@@ -1,9 +1,25 @@
 :Intro:
-`scene NOVA_AND_KEE
-[]After some mishaps involving a teleporter and rays from a strange new device, a fox and squirrel end up transformed and in the strange world of Latte.
-<0 NOVA>Hey Kee? What just happened? Where are we?
-<1 KEE>No idea, Nova. You look pretty different now though.
-<0 NOVA>... I have a lot of questions. Come on, let's look around.
+`asm
+:jsr LoadExpositionGraphics
+:lda #' '
+:jsr ClearNameCustom
+:brk
+`monotext ExpositionText1
+`monotext ExpositionText2
+`monotext ExpositionText3
+`monotext ExpositionText4
+`monotext ExpositionText5
+`monotext ExpositionText6
+`monotext ExpositionText7
+`monotext ExpositionText8
+`monotext ExpositionText9
+`monotext ExpositionText10
+`monotext ExpositionText11
+`monotext ExpositionText12
+`monotext ExpositionText13
+`monotext ExpositionText14
+`monotext ExpositionText15
+`monotext ExpositionText16
 `end
 
 :Tutorial1:
@@ -169,6 +185,8 @@
 `scene FORUMS
 [NOVA]You know maybe the reason MolSno went crazy and bought all the cola is because the volcano he lives in is covered with advertisements.
 [SHERWIN]You think so?
+[NOVA]I think I'm about to see him... hopefully he cooperates?
+[SHERWIN]"Molten Snow", eh? That's just a fancy name for water isn't it?
 `end
 
 :MolSnoMeet:
@@ -497,4 +515,162 @@ Cave of the Strife Clouds.
 
 :PreLevelFrozen6:
 Ronald is back for revenge.
+`end
+
+
+
+:; INTRO CUTSCENE TEXT
+
+:ExpositionText1:
+The world of Latte lived
+`nl
+in peace for many years.
+`nl
+It is a video game world,
+`nl
+ruled by a guy named Korey.
+`end
+
+:ExpositionText2:
+One day, it was attacked by
+`nl
+the "Scheme Team," a robot
+`nl
+army with a thirst for
+`nl
+destruction and power.
+`end
+
+:ExpositionText3:
+When it seemed hopeless,
+`nl
+the Double Action Blaster
+`nl
+Guys showed up and blasted
+`nl
+their way to victory.
+`end
+
+:ExpositionText4:
+The Scheme Team was stopped
+`nl
+and arrested, but the Guys
+`nl
+disappeared shortly after.
+`nl
+Latte was now vulnerable.
+`end
+
+:ExpositionText5:
+Henceforth, replying to any
+`nl
+post with nothing more than
+`nl
+the word "nice" will result
+`nl
+in an immediate arrest.
+`end
+
+:ExpositionText6:
+Yes, this has seriously
+`nl
+become *this* large of a
+`nl
+problem and it's going to
+`nl
+stop, before it's too late!
+`end
+
+:ExpositionText7:
+Too late? What sort of harm
+`nl
+could possibly come out of
+`nl
+that kind of harmless fun?
+`end
+
+:ExpositionText8:
+Remember, the Scheme Team
+`nl
+has Smiloids with them, and
+`nl
+these highly dangerous bots
+`nl
+derive their power from
+`nl
+that kind of behavior.
+`end
+
+:ExpositionText9:
+If they become too powerful
+`nl
+they will break out of jail
+`nl
+and we would be totally
+`nl
+screwed!
+`end
+
+:ExpositionText10:
+Well, my friends, it looks
+`nl
+like today will be a very
+`nl
+"Nice" day for us. Let's
+`nl
+bust out of this place!
+`end
+
+:ExpositionText11:
+The Scheme Team constructs
+`nl
+a fortress as well as a new
+`nl
+master plan. This time they
+`nl
+would be ready for anything
+`end
+
+:ExpositionText12:
+However, in doing so they
+`nl
+kidnap a man named Sherwin
+`nl
+when they confuse him for
+`nl
+a Blaster Guy due to looks.
+`end
+
+:ExpositionText13:
+Sherwin decides the proper
+`nl
+course of action is to go
+`nl
+make a thread on the Latte
+`nl
+forums about the incident.
+`end
+
+:ExpositionText14:
+These robot guys with guns
+`nl
+just went and kidnapped me.
+`nl
+This is illegal, you know!
+`end
+
+:ExpositionText15:
+Robot guys with guns? Uh...
+`nl
+Oh no. I think we might be
+`nl
+screwed after all.
+`end
+
+:ExpositionText16:
+Fortunately, through random
+`nl
+luck a squirrel appears in
+`nl
+Latte. Can she fix things?
 `end
