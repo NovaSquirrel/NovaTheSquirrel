@@ -2826,6 +2826,9 @@ NoShoot2:
     sta ObjectF2,x
     lda #180
     sta ObjectTimer,x
+    lda #0
+    sta ObjectVYL,x
+    sta ObjectVYH,x
 
     ; remove the projectile
     ldy ProjectileIndex

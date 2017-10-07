@@ -93,7 +93,8 @@ OPTIONS_BANK = $e
 .segment "PRG0" ; levels
 .include "levels.s"
 .segment "PRG1" ; levels
-.segment "PRG2" ; levels
+.include "levels2.s"
+.segment "PRG2" ; levels (though let's be honest here, we're not gonna fill up PRG1)
 .segment "PRG3" ; levels
 .segment "PRG4" ; levels
 .segment "PRG5" ; levels

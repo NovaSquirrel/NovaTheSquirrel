@@ -1,25 +1,27 @@
-; to do: figure out how I want to select banks
-
 MasterLevelListL:
   .byt <intro_a, <grassy_a, <funkunderground, <sky, <water, <grassy2_a, <underground_2, <boss1
   .byt <glass_intro, <arrows, <burgers, <glasscave, <chiptall, <falldown, <glass_finale, <boss2
-  .byt <frozen, <frozen2, <frozen3, <frozen4, <frozen5, <frozen6, <frozen7, <emptylevel
+  .byt <frozen, <frozen2, <frozen3, <frozen4, <frozen5, <frozen6, <frozen7, <boss3
+  .byt <emptylevel
 ; sub-levels
   .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden, <puzzle2
 
 MasterLevelListH:
   .byt >intro_a, >grassy_a, >funkunderground, >sky, >water, >grassy2_a, >underground_2, >boss1
   .byt >glass_intro, >arrows, >burgers, >glasscave, >chiptall, >falldown, >glass_finale, >boss2
-  .byt >frozen, >frozen2, >frozen3, >frozen4, >frozen5, >frozen6, >frozen7, >emptylevel
+  .byt >frozen, >frozen2, >frozen3, >frozen4, >frozen5, >frozen6, >frozen7, >boss3
+  .byt >emptylevel
 ; sub-levels
   .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden, >puzzle2
 
 .proc LevelBanks
 B1 = LEVELS_BANK1
+B2 = LEVELS_BANK2
 PUZ = 128 ; puzzle
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B1
   .byt B1,     B1,     B1|PUZ, B1,     B1|PUZ, B1,     B1|PUZ, B1
-  .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B1
+  .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B2
+  .byt B1
 ; sub-levels
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1
 .endproc
@@ -52,6 +54,9 @@ PUZ = 128 ; puzzle
   Frozen5
   Frozen6
   Frozen7
+  Boss3
+
+; world 4
   EmptyLevel
 
 ; sublevels

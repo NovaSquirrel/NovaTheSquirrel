@@ -17,7 +17,7 @@ frozen7:
   .byt GraphicsUpload::BG_MINES
   .byt GraphicsUpload::BG_CHIP
   .byt 255 ; end
-  .byt $00, $00 ; boundaries
+  .byt $00, $02 ; boundaries
 
 frozen7Data:
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::FROZEN_CAVE
@@ -265,11 +265,30 @@ frozen7Data:
   LObjN LO::R_COIN,           1, 4, 1, 1
   LObjN LO::WIDE_3,           0, 7, 2, LN3::MINE_TRACKS
   LObj  LO::S_MTRACK_UPLEFT,   1, 7
-  LObj  LO::S_MTRACK_SUPPORTS, 1, 7
+  LObjN LO::R_COIN,           1, 1, 5, 0
+  LObj  LO::S_MTRACK_SUPPORTS, 0, 7
   LObjN LO::R_MTRACK_SUPPORTSONLY,  0, 8, 0, 6
   LObj  LO::S_MTRACK_BUMP,     1, 7
-  LObjN LO::R_GROUND,         2, 3, 1, 11
-  LObj  LO::R_CUSTOM,         2, 3, Metatiles::TOGGLE_BLOCK_ON, (10<<4)|0
+  LObjN LO::R_MTRACK_SUPPORTSONLY,  4, 3, 0, 11
+  LObj  LO::S_MTRACK_SSR,      1, 3
+  LObj  LO::S_MTRACK_SSR,      1, 4
+  LObj  LO::S_MTRACK_SSR,      1, 5
+  LObj  LO::S_MTRACK_SSR,      1, 6
+  LObjN LO::WIDE_3,           1, 6, 10, LN3::MINE_TRACKS
+  LObjN LO::R_MTRACK_SUPPORTSONLY,  0, 7, 0, 7
+  LObjN LO::R_GROUND,         5, 7, 10, 7
+  LObj  LO::S_PRIZE,          2, 3
+  LWriteCol InventoryItem::HEALTH_RESTORE
+  LObjN LO::WIDE_1,           1, 4, 0, LN1::SOLID_LEDGE
+  LObj  LO::S_EXIT_DOOR,      3, 5
+  LObj  LO::S_SIGNPOST,       2, 6
+  LWriteCol <ColaSigns, >ColaSigns
+  LObjN LO::WIDE_1,           1, 2, 0, LN1::FENCE
+  LObjN LO::R_ROCK,           0, 3, 7, 3
+  LObjN LO::WIDE_1,           2, 2, 0, LN1::FENCE
+  LObjN LO::R_ROCK,           0, 7, 5, 7
+  LObjN LO::WIDE_1,           2, 2, 0, LN1::FENCE
+  LObjN LO::WIDE_1,           2, 2, 0, LN1::FENCE
   LFinished
 
 frozen7Sprite:
