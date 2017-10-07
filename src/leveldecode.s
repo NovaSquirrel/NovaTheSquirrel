@@ -108,9 +108,12 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
   dey
   bpl :-
 
-  lda #LEVELS_BANK1 ; get this out of the way
-  sta LevelBank
+  lda #LEVELS_BANK1 ; first level bank has list of level information
   jsr SetPRG
+  ; get the bank for this level
+  ldy LevelNumber
+  lda LevelBanks,y
+  sta LevelBank ; store the bank number
 
 ; get the start of the level header
   lda MasterLevelListL,x
@@ -140,6 +143,10 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
 : sta ColumnBytes,x
   inx
   bne :-
+
+; Switch to the bank actually containing the level data, to read it
+  lda LevelBank
+  jsr SetPRG
 
 ; now read the header
   ldy #0

@@ -20,6 +20,8 @@ PUZ = 128 ; puzzle
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B1
   .byt B1,     B1,     B1|PUZ, B1,     B1|PUZ, B1,     B1|PUZ, B1
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B1
+; sub-levels
+  .byt B1,     B1,     B1,     B1,     B1,     B1,     B1
 .endproc
 
 .enum LevelId
