@@ -291,21 +291,9 @@ MS_EMPTY = 32
   NEWLINE       ; new line
   RUN_ASM       ; runs inline asm
   POKE          ; aa aa xx - poke value in address
-  FLAG_ON       ; xx - flag
-  FLAG_OFF      ; xx - flag
-  FLAG_TOGGLE   ; xx - flag
-  IF_FLAG_ON    ; xx - flag
-  IF_FLAG_OFF   ; xx - flag
-  IF_ITEM       ; xx - item
-  IF_NOT_ITEM   ; xx - item
-  IF_CHOICE     ; xx - choice number
-  GOTO          ; goto
-  CALL          ; call
-  RETURN        ; returns from a call
   SAY           ; .ssn nnnn
   THINK         ; .||+-++++- name/face
   NARRATE       ; .++------- speaker
-  CHOICES       ; xx - choice set
   SCENE         ; xx - scene number
   TRANSITION    ; transition effect
   NO_SKIP       ; disable skipping the dialog
@@ -314,9 +302,6 @@ MS_EMPTY = 32
   SPEAKER_2 = %1000000
   SPEAKER_3 = %1100000
 .endenum
-
-SCRIPT_FIRST_IF = SCR::IF_FLAG_ON
-SCRIPT_LAST_IF = SCR::IF_CHOICE
 
 .enum CHAR
   NONE

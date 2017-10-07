@@ -187,8 +187,6 @@ SkipTheScript:
   sta IRQAddress+0
   lda #>ScriptBRK
   sta IRQAddress+1
-  lda #0
-  sta ScriptIf
 .endproc
 ; this space needs to be empty
 .proc ScriptLoop
@@ -298,21 +296,9 @@ NopeNothingToDraw:
   .raddr NewLine    ;
   .raddr RunAsm     ;
   .raddr Poke       ; aa aa vv - address, value
-  .raddr FlagOn     ; ff - flag
-  .raddr FlagOff    ; ff - flag
-  .raddr FlagToggle ; ff - flag
-  .raddr IfOn       ; ff - flag
-  .raddr IfOff      ; ff - flag
-  .raddr IfItem     ; ii - item
-  .raddr IfNotItem  ; ii - item
-  .raddr IfChoice   ; nn - choice num
-  .raddr Goto       ; aa aa - address
-  .raddr Call       ; aa aa - address
-  .raddr Return     ;
   .raddr Say        ; \  .ssccccc
   .raddr Think      ;  |  ||+++++- character (0-31). determines name and face
   .raddr Narrate    ; /   ++------ slot (0-3)
-  .raddr ShowChoice ; xx - choice set 
   .raddr ShowScene  ; xx - scene number
   .raddr Transition ;
   .raddr NoSkip     ;
@@ -609,10 +595,6 @@ ShowScene:
 SpriteXPositions:
   .byt 8*8+4, 12*8+4, 16*8+4, 20*8+4
 
-; Command, show preset choices
-ShowChoice:
-  jmp IncreaseBy1
-
 SwitchSpeaker:
   pha
   and #31
@@ -828,64 +810,6 @@ Narrate:
   jsr EraseOldTail
   jmp IncreaseBy1
 
-ConditionalGotoCall:
-  pha
-  lda ScriptIf
-  lsr
-  bcs @Skip
-  lsr ; Disable the current if chain
-  sta ScriptIf
-  pla
-  rts
-@Skip:
-  lsr ; Disable the current if chain
-  sta ScriptIf
-  pla ; the PHA in ConditionalGotoCall
-  pla ; \ jsr ConditionalGotoCall
-  pla ; /
-  jmp IncreaseBy2
-
-; Command, jumps
-Goto:
-  jsr ConditionalGotoCall
-  pha ; Save low byte of new pointer
-  ; Get the high byte of the new pointer and set the current pointer to it
-  iny
-  lda (ScriptPtr),y
-  sta ScriptPtr+1
-  pla
-  sta ScriptPtr+0
-  jmp ScriptLoop
-
-; Command, calls subroutine
-Call:
-  jsr ConditionalGotoCall
-  pha ; Save low byte of new pointer
-
-  lda ScriptPtr+0 ; Save current position (plus 2) in return address
-  add #2
-  sta ScriptReturn+0
-  lda ScriptPtr+1
-  adc #0
-  sta ScriptReturn+1
-
-  ; Get the high byte of the new pointer and set the current pointer to it
-  iny
-  lda (ScriptPtr),y
-  sta ScriptPtr+1
-  pla
-  sta ScriptPtr+0
-
-  jmp ScriptLoop
-
-; Command, returns from subroutine
-Return:
-  lda ScriptReturn+0
-  sta ScriptPtr+0
-  lda ScriptReturn+1
-  sta ScriptPtr+1
-  jmp ScriptLoop
-
 ; Command, starts running inline asm
 RunAsm:
   jmp (ScriptPtr)
@@ -914,86 +838,6 @@ GetPointer:
   sta 1
   iny  
   rts
-
-; An if statement was false, so mark the whole thing false
-IfFalse:
-  lda #3
-  sta ScriptIf
-  jmp IncreaseBy1
-
-; Command, check if flag is on
-IfOn:
-  tay
-  jsr InitIf
-  jsr IndexToBitmap
-  and ScriptFlags,y
-  beq IfFalse
-  jmp IncreaseBy1
-
-; Command, check if flag is off
-IfOff:
-  tay
-  jsr InitIf
-  jsr IndexToBitmap
-  and ScriptFlags,y
-  bne IfFalse
-  jmp IncreaseBy1
-
-; Command, check if player has item
-IfItem:
-  tax
-  jsr InitIf
-  txa
-  jsr InventoryHasItem
-  bcc IfFalse
-  jmp IncreaseBy1
-
-; Command, check if player doesn't have item
-IfNotItem:
-  tax
-  jsr InitIf
-  txa
-  jsr InventoryHasItem
-  bcs IfFalse
-  jmp IncreaseBy1
-
-; Command, check if choice is the specified one
-IfChoice:
-  tax
-  jsr InitIf
-  txa
-  cmp ScriptChoice
-  bne IfFalse
-  jmp IncreaseBy1
-
-; If ScriptIf is 0, it's set to 2, meaning execute anyway
-; If it's 3 it's kept 3, meaning don't execute
-InitIf:
-  lda ScriptIf
-  ora #2
-  sta ScriptIf
-  rts
-
-; Command, turn a flag on
-FlagOn:
-  jsr GetFlag
-  ora ScriptFlags,y
-  sta ScriptFlags,y
-  jmp IncreaseBy1
-
-; Command, turn a flag off
-FlagOff:
-  jsr GetFlag
-  eor #255
-  and ScriptFlags,y
-  sta ScriptFlags,y
-  jmp IncreaseBy1
-
-; Command, toggle a flag
-FlagToggle:
-  jsr GetFlag
-  eor ScriptFlags,y
-  jmp IncreaseBy1
 
 IncreaseBy3:
   lda #3

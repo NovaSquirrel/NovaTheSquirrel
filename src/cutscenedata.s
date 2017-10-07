@@ -15,15 +15,6 @@
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;
 
-.proc ChoiceList
-YesNo:
-  .byt 2, "Yes",0, "No",0
-.endproc
-
-.enum CHOICELIST
-  YES_OR_NO
-.endenum
-
 .proc CharacterNameData
 None:     .byt 0
 Nova:     .byt "Nova",0

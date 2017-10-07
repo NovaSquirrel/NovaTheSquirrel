@@ -159,10 +159,7 @@
   ; Not reusable because many things set the pointer and trigger a cutscene later.
   ScriptPtr: .res 2
 
-  ScriptIf = TouchTemp ; 0 (normal), 2 (enable), 3 (disable)
-  ScriptReturn = ScriptIf+1
-  ScriptChoice = ScriptReturn+2
-  ScriptPageEnded = ScriptChoice+1 ; page is already ended, don't prompt the user for a key press
+  ScriptPageEnded = TouchTemp ; page is already ended, don't prompt the user for a key press
 
   SpriteTileSlots:    .res 4   ; \ keep together
   LevelDecodePointer: .res 2   ;  \ in this order
