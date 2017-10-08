@@ -113,6 +113,7 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
   ; get the bank for this level
   ldy LevelNumber
   lda LevelBanks,y
+  and #31
   sta LevelBank ; store the bank number
 
 ; get the start of the level header

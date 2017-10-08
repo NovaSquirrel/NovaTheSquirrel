@@ -63,7 +63,9 @@ intro_bData:
   LObjN LO::TALL_2,           0, 10, 2, LN2::TRUNK_L
   LObjN LO::R_GROUND,         2, 5, 6, 5
   LObjN LO::RECT_2,           1, 11, 1, LN2::BLACK, 4
-  LObjN LO::R_GROUND,         4, 4, 7, 0
+  LObj  LO::S_SIGNPOST,       1, 4
+  LWriteCol <SignCollectibleAbout, >SignCollectibleAbout
+  LObjN LO::R_GROUND,         3, 4, 7, 0
   LObjN LO::WIDE_2,           2, 3, 3, LN2::FLOWER
   LObj  LO::S_SOLID_BLOCK,    0, 7
   LObj  LO::S_PRIZE,          1, 4
@@ -173,6 +175,7 @@ intro_bData:
 intro_bSprite:
   LSpr Enemy::GOOMBA,              1,  23,   4
   LSpr Enemy::OWL,                 1,  42,   8
+  LSpr Enemy::COLLECTIBLE,         0,  61,   3
   LSpr Enemy::OWL,                 1,  70,   3
   LSpr Enemy::GOOMBA,              1,  82,   8
   LSpr Enemy::GOOMBA,              1,  84,   8

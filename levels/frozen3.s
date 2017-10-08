@@ -267,4 +267,5 @@ frozen3Sprite:
   LSpr Enemy::ICE_1,               0, 191,   7, 1
   LSpr Enemy::ICE_1,               1, 198,   9, 1
   LSpr Enemy::MINECART,            0, 202,   2
+  LSpr Enemy::COLLECTIBLE,         0, 246,   9
   .byt 255 ; end

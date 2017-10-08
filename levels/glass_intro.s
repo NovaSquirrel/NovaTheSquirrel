@@ -108,13 +108,13 @@ glass_introData:
   LObjN LO::R_BG_GLASS_RED,   2, 4, 0, 3
   LObjN LO::R_GROUND,         0, 8, 5, 6
   LObj  LO::S_COIN,           1, 7
-  LObj  LO::S_PRIZE,          1, 5
+  LObjN LO::R_COIN,           1, 1, 8, 0
+  LObj  LO::S_PRIZE,          0, 5
   LObj  LO::S_SIGNPOST,       1, 7
   LWriteCol <SignMeltIceAbout, >SignMeltIceAbout
   LObjN LO::R_FG_GLASS_RED,   2, 2, 13, 1
   LObj  LO::R_CUSTOM,         0, 4, Metatiles::ICE, (0<<4)|3
-  LObjN LO::R_COIN,           1, 1, 5, 0
-  LObjN LO::R_SOLID_BLOCK,    0, 8, 1, 0
+  LObjN LO::R_SOLID_BLOCK,    1, 8, 1, 0
   LObjN LO::R_SOLID_BLOCK,    1, 6, 0, 1
   LObjN LO::R_BG_GLASS_GREEN, 1, 11, 2, 2
   LObj  LO::R_CUSTOM,         1, 8, Metatiles::ICE, (6<<4)|0
@@ -122,9 +122,7 @@ glass_introData:
   LObjN LO::R_AIR,            1, 2, 3, 0
   LObj  LO::S_W_ARROW_DOWN,   1, 7
   LObj  LO::S_W_ARROW_RIGHT,  0, 11
-  LObj  LO::S_DOOR,           1, 1
-  LWriteCol $20, <EmptyRoom, >EmptyRoom
-  LObj  LO::S_CUSTOM,         1, 9, Metatiles::ICE
+  LObj  LO::S_CUSTOM,         2, 9, Metatiles::ICE
   LObj  LO::R_CUSTOM,         0, 10, Metatiles::ICE, (10<<4)|0
   LObj  LO::S_COIN,           1, 7
   LObjN LO::R_FG_GLASS_RED,   1, 4, 1, 0
@@ -244,6 +242,7 @@ glass_introSprite:
   LSpr Enemy::CHECKPOINT,          0,  97,   8
   LSpr Enemy::GOOMBA,              0, 108,   7
   LSpr Enemy::SNEAKER,             1, 112,   6
+  LSpr Enemy::COLLECTIBLE,         0, 113,   1
   LSpr Enemy::GOOMBA,              0, 117,   9
   LSpr Enemy::SNEAKER,             1, 123,   9
   LSpr Enemy::ICE_1,               0, 164,  11

@@ -184,6 +184,7 @@ Exit:
   .raddr ObjectFallingSpike ; falling spike
   .raddr ObjectCloudSword
   .raddr ObjectFireworkShot
+  .raddr ObjectCollectible
 .endproc
 
 ; other enemy attributes
@@ -1813,4 +1814,22 @@ AsrAsrAsr:
   asr
   asr
   rts  
+.endproc
+
+.proc ObjectCollectible
+  jsr EnemyHover
+
+  lda #0
+  sta O_RAM::TILEBASE
+  lda #$64
+  ldy #OAM_COLOR_1
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouch
+  bcc :+
+    lda #0
+    sta ObjectF1,x
+    lda #SFX::COIN
+    jsr PlaySound
+  :
+  rts
 .endproc

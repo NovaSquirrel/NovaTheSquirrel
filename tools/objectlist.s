@@ -63,6 +63,7 @@
   .byt GraphicsUpload::SP_MINES ;FALLING_SPIKE
   .byt GraphicsUpload::SP_WIND ;CLOUD_SWORD
   .byt GraphicsUpload::SP_EXPLODE ;FIREWORK_SHOT
+  .byt 0 ;COLLECTIBLE
 .endproc
 
 .proc ObjBehaviors
@@ -130,6 +131,7 @@
   .byt ObjBehavior::AUTO_REMOVE ;FALLING_SPIKE
   .byt ObjBehavior::AUTO_REMOVE ;CLOUD_SWORD
   .byt ObjBehavior::AUTO_REMOVE ;FIREWORK_SHOT
+  .byt ObjBehavior::AUTO_REMOVE ;COLLECTIBLE
 .endproc
 
 .proc ObjFlags
@@ -197,5 +199,6 @@
   .byt ObjFlag::PRIMARY ;FALLING_SPIKE
   .byt ObjFlag::SECONDARY ;CLOUD_SWORD
   .byt ObjFlag::SECONDARY ;FIREWORK_SHOT
+  .byt ObjFlag::PRIMARY ;COLLECTIBLE
 .endproc
 

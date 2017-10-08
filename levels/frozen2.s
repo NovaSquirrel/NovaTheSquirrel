@@ -256,6 +256,7 @@ frozen2Sprite:
   LSpr Enemy::BOMB_GUY,            1, 105,   4
   LSpr Enemy::BOMB_GUY,            1, 110,   4
   LSpr Enemy::BOMB_GUY,            0, 113,   6
+  LSpr Enemy::COLLECTIBLE,         0, 113,   9
   LSpr Enemy::BOMB_GUY,            1, 115,   2
   LSpr Enemy::CHECKPOINT,          0, 117,   2
   LSpr Enemy::GEORGE,              1, 126,   7

@@ -229,6 +229,7 @@ frozen5Sprite:
   LSpr Enemy::BIG_GLIDER,          1,  97,   8, 1
   LSpr Enemy::CHECKPOINT,          0, 100,   2
   LSpr Enemy::MOVING_PLATFORM_HORIZ, 0, 103,  13, 6
+  LSpr Enemy::COLLECTIBLE,         0, 110,  12
   LSpr Enemy::CLOUD,               1, 123,   5
   LSpr Enemy::CLOUD,               1, 126,   6
   LSpr Enemy::THWOMP,              0, 134,   3

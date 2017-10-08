@@ -999,9 +999,9 @@ Ground:
   sta PPUDATA
   lda #$0f
   sta PPUDATA
-  lda #$10
-  sta PPUDATA
   lda #$00
+  sta PPUDATA
+  lda #$10
   sta PPUDATA
   ; palette 2
   sta PPUDATA

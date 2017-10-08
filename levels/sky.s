@@ -186,6 +186,7 @@ skySprite:
   LSpr Enemy::GOOMBA,              0,  73,   5
   LSpr Enemy::KING,                0,  95,   1
   LSpr Enemy::GOOMBA,              1, 103,   8
+  LSpr Enemy::COLLECTIBLE,         0, 110,  11
   LSpr Enemy::GOOMBA,              1, 116,   6
   LSpr Enemy::CANNON_2,            0, 120,   1, 2
   LSpr Enemy::KING,                0, 122,   1

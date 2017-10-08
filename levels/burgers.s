@@ -126,7 +126,9 @@ burgersData:
   LObjN LO::R_ENEMY_BARRIER      ,  1, 0, 0, 5
   LObj  LO::S_PRIZE,          0, 9
   LWriteCol InventoryItem::ABILITY_BURGER | 128
-  LObjN LO::WIDE_1,           4, 11, 3, LN1::SOLID_LEDGE
+  LObjN LO::R_SOLID_BLOCK,    2, 1, 0, 2
+  LObjN LO::R_SOLID_BLOCK,    0, 4, 3, 0
+  LObjN LO::WIDE_1,           2, 11, 3, LN1::SOLID_LEDGE
   LObj  LO::S_BIGHEART,       1, 10
   LObj  LO::S_PRIZE,          1, 8
   LWriteCol InventoryItem::HEALTH_RESTORE
@@ -221,6 +223,7 @@ burgersSprite:
   LSpr Enemy::RONALD_BURGER,       0, 103,   2, 0
   LSpr Enemy::RONALD,              1, 104,   3
   LSpr Enemy::CHECKPOINT,          0, 107,  11
+  LSpr Enemy::COLLECTIBLE,         0, 111,   2
   LSpr Enemy::RONALD,              1, 120,   5
   LSpr Enemy::RONALD,              1, 129,   3
   LSpr Enemy::RONALD_BURGER,       0, 142,   1

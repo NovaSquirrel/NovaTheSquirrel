@@ -1450,6 +1450,12 @@
 					"H":	1,
 					"XFlip":	true,
 					"Extra":	"1"
+				}, {
+					"Id":	"COLLECTIBLE",
+					"X":	113,
+					"Y":	9,
+					"W":	1,
+					"H":	1
 				}]
 		}, {
 			"Name":	"Control",

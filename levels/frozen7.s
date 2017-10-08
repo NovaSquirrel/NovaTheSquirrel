@@ -327,4 +327,5 @@ frozen7Sprite:
   LSpr Enemy::FIRE_JUMP,           1, 183,   8, 1
   LSpr Enemy::CHECKPOINT,          0, 196,  11
   LSpr Enemy::MINECART,            0, 199,  11
+  LSpr Enemy::COLLECTIBLE,         0, 215,   7
   .byt 255 ; end

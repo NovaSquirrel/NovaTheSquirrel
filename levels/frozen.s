@@ -230,6 +230,7 @@ frozenSprite:
   LSpr Enemy::ICE_1,               0,  68,  11
   LSpr Enemy::GEORGE,              1,  85,  11
   LSpr Enemy::MINECART,            0,  93,   7
+  LSpr Enemy::COLLECTIBLE,         0, 113,   1
   LSpr Enemy::CHECKPOINT,          0, 115,   2
   LSpr Enemy::GEORGE,              1, 125,   5
   LSpr Enemy::MINECART,            0, 128,   5

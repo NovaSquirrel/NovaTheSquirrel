@@ -17,9 +17,6 @@
 		"GFXUpload":	["PAL_GRASSY", "PAL_ENEMY1", "BG_COMMON", "BG_GRASSY", "BG_SUBURBS", "BG_GRASSYBG"],
 		"BGColor":	49
 	},
-	"Config":	{
-		"StartDialog":	"Nice_Announcement"
-	},
 	"Layers":	[{
 			"Name":	"Foreground",
 			"Type":	"Rectangle",

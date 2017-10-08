@@ -237,6 +237,7 @@ frozen6Sprite:
   LSpr Enemy::CHECKPOINT,          0,  65,  12
   LSpr Enemy::RONALD_BURGER,       0,  77,   2
   LSpr Enemy::RONALD,              1,  86,   6, 1
+  LSpr Enemy::COLLECTIBLE,         0,  96,   3
   LSpr Enemy::MINECART,            0, 100,  11
   LSpr Enemy::CHECKPOINT,          0, 108,   4
   LSpr Enemy::FIRE_JUMP,           1, 125,   8, 1

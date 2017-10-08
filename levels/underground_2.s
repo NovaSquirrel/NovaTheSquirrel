@@ -204,6 +204,7 @@ underground_2Sprite:
   LSpr Enemy::SNEAKER,             1,  42,   8
   LSpr Enemy::OWL,                 0,  54,   8
   LSpr Enemy::GOOMBA,              1,  67,   5
+  LSpr Enemy::COLLECTIBLE,         0,  67,  11
   LSpr Enemy::MOVING_PLATFORM_HORIZ, 0,  67,  13, 4
   LSpr Enemy::GOOMBA,              1,  69,   5
   LSpr Enemy::GEORGE,              1,  74,   9

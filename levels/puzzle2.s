@@ -188,8 +188,12 @@ puzzle2Data:
   LObjN LO::R_FG_GLASS_BLUE,  2, 4, 3, 3
   LObjN LO::TALL_1,           4, 4, 8, LN1::LADDER
   LObjN LO::R_GROUND,         0, 13, 5, 1
-  LObj  LO::S_EXIT_DOOR,      4, 11
-  LObjN LO::R_GROUND,         7, 3, 3, 11
+  LObj  LO::S_BG_GLASS_GRAY,  2, 6
+  LObj  LO::S_BG_GLASS_GRAY,  2, 5
+  LObj  LO::S_EXIT_DOOR,      0, 11
+  LObj  LO::S_BG_GLASS_GRAY,  2, 4
+  LObj  LO::S_BG_GLASS_GRAY,  2, 3
+  LObjN LO::R_GROUND,         3, 3, 3, 11
   LObjN LO::R_GROUND,         4, 12, 5, 2
   LObj  LO::S_PRIZE,          1, 9
   LWriteCol InventoryItem::BIG_HEALTH_RESTORE
@@ -220,4 +224,5 @@ puzzle2Sprite:
   LSpr Enemy::BOULDER,             0, 153,   6
   LSpr Enemy::CHECKPOINT,          0, 153,   9
   LSpr Enemy::ROCKET_LAUNCHER,     1, 163,  12
+  LSpr Enemy::COLLECTIBLE,         0, 188,   7
   .byt 255 ; end

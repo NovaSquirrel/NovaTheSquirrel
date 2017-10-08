@@ -187,6 +187,7 @@ waterData:
 
 waterSprite:
   LSpr Enemy::GOOMBA,              1,  18,  10
+  LSpr Enemy::COLLECTIBLE,         0,  28,   2
   LSpr Enemy::OWL,                 0,  37,   6
   LSpr Enemy::CANNON_1,            1,  50,  10
   LSpr Enemy::GEORGE,              1,  56,  12

@@ -135,6 +135,7 @@ grassy_aSprite:
   LSpr Enemy::THWOMP,              0,  88,   9
   LSpr Enemy::THWOMP,              0,  91,   9
   LSpr Enemy::SNEAKER,             1, 114,  10
+  LSpr Enemy::COLLECTIBLE,         0, 138,   2
   LSpr Enemy::GOOMBA,              0, 139,   4
   LSpr Enemy::GOOMBA,              1, 152,   9
   LSpr Enemy::OWL,                 1, 173,   6

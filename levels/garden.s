@@ -19,7 +19,6 @@ garden:
   .byt $01, $00 ; boundaries
 
 gardenData:
-  .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <Nice_Announcement, >Nice_Announcement
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $07, LevelBackgroundId::CLOUDS
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 19
   LObjN LO::WIDE_3,           11, 12, 3, LN3::WHITEFENCE

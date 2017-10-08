@@ -115,8 +115,8 @@ arrowsData:
   LObjN LO::R_FG_GLASS_BLUE,  4, 7, 8, 0
   LObj  LO::S_CUSTOM,         1, 6, Metatiles::PUSHABLE_BLOCK
   LObjN LO::R_FG_GLASS_BLUE,  3, 8, 0, 6
-  LObjN LO::WIDE_1,           3, 3, 3, LN1::SOLID_LEDGE
-  LObj  LO::S_PRIZE,          0, 3
+  LObj  LO::S_PRIZE,          3, 3
+  LObjN LO::WIDE_1,           0, 3, 3, LN1::SOLID_LEDGE
   LObjN LO::R_COIN,           4, 2, 3, 0
   LObjN LO::R_ROCK,           0, 3, 3, 3
   LObjN LO::R_GROUND,         0, 7, 3, 7
@@ -209,7 +209,8 @@ arrowsData:
   LObjN LO::R_FG_GLASS_BLUE,  1, 3, 0, 2
   LObjN LO::R_FG_GLASS_BLUE,  0, 6, 4, 0
   LObj  LO::S_CUSTOM,         0, 11, Metatiles::TOGGLE_SWITCH
-  LObj  LO::S_CUSTOM,         2, 5, Metatiles::TOGGLE_SWITCH
+  LObj  LO::S_CUSTOM,         1, 3, Metatiles::TOGGLE_BLOCK_OFF
+  LObj  LO::S_CUSTOM,         1, 5, Metatiles::TOGGLE_SWITCH
   LObj  LO::R_CUSTOM,         0, 7, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|4
   LObj  LO::S_CUSTOM,         1, 8, Metatiles::TOGGLE_SWITCH
   LObjN LO::WIDE_1,           0, 9, 0, LN1::FALLTHROUGH_LEDGE
@@ -262,6 +263,7 @@ arrowsSprite:
   LSpr Enemy::BIG_LWSS,            0, 162,   1
   LSpr Enemy::GOOMBA,              1, 172,   3
   LSpr Enemy::CHECKPOINT,          0, 183,  12
+  LSpr Enemy::COLLECTIBLE,         0, 184,   3
   LSpr Enemy::BIG_LWSS,            0, 185,  12, 1
   LSpr Enemy::CHECKPOINT,          0, 212,   8
   .byt 255 ; end

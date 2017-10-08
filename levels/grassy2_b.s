@@ -119,9 +119,10 @@ grassy2_bData:
   LObjN LO::TALL_2,           1, 11, 1, LN2::PATH_LINE
   LObj  LO::S_SPRING,         2, 10
   LObjN LO::R_GROUND,         0, 11, 5, 3
-  LObj  LO::S_PRIZE,          3, 8
+  LObj  LO::S_PRIZE,          2, 8
   LWriteCol InventoryItem::BIG_HEALTH_RESTORE
-  LObjN LO::R_GROUND,         15, 1, 0, 4
+  LXPlus16
+  LObjN LO::R_GROUND,         0, 1, 0, 4
   LObjN LO::R_COIN,           1, 3, 1, 1
   LObjN LO::R_GROUND,         0, 5, 6, 0
   LObj  LO::S_PRIZE,          1, 2
@@ -153,6 +154,7 @@ grassy2_bSprite:
   LSpr Enemy::OWL,                 0, 119,   5
   LSpr Enemy::SNEAKER,             0, 127,   5
   LSpr Enemy::FIRE_JUMP,           1, 129,   9
+  LSpr Enemy::COLLECTIBLE,         0, 134,   8
   LSpr Enemy::MOVING_PLATFORM_LINE, 0, 143,   6
   LSpr Enemy::MOVING_PLATFORM_LINE, 0, 148,  10
   LSpr Enemy::MOVING_PLATFORM_LINE, 0, 153,   8

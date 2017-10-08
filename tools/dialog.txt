@@ -8,8 +8,7 @@
 `image $a6, $21, <$22ae, >$22ae
 `monotext ExpositionText1
 `ground
-
-`image $8d, $22, <$226a, >$226a
+`image $8d, $22, <$226a, >$226a ; bill
 
 `image $82, $11, <$22cd, >$22cd
 `image $82, $11, <$22cf, >$22cf
@@ -92,37 +91,6 @@
 <2 KEE>Alright, while you're doing that I'm going to try and figure things out on my own.
 `end
 
-:Nice_Announcement:
-`scene NOTHING
-[]Before Nova arrived in Latteverse, the world was attacked by the "Scheme Team", a robot army that attempted to kill everyone. They were stopped by the Double Action Blaster Guys, who blasted their way to victory. The Scheme Team was arrested, but the Blaster Guys are nowhere to be found...
-[KOREY]New announcement for the Latteverse:
-`scene FORUMS
-[KOREY]Henceforth, replying to any post with nothing more than the word "nice" or a loopholed "you think you're being witty but you're not" variation of it will result in an immediate arrest. Yes, this has seriously become this large of a problem and it's going to stop.
-[IKE]...Why? What does it actually hurt?
-[KOREY]Some of the Scheme Team members are Smiloids. These highly-dangerous robots derive their power from exactly this kind of behavior, and they shoot people while wishing them a NICE day. We can't risk it if we want to keep them contained, especially without our heroes.
-[]Meanwhile, it seems like the Scheme Team has escaped after all...
-`scene TWO_BAD_GUYS
-<0 S_TEAM>So you actually saw one of the Blaster Guys around here? We'd better capture him so that he can't interfere with the plans...
-<1 S_TEAM>GOOD idea. Hey, I think he's over there checking his mail!!
-<0 SHERWIN>Oh it's a fine day. *checks mail* 
-`scene SHERWIN_ALONE
-<0 SHERWIN>Whoa, could you two maybe knock?
-`scene SHERWIN_WITH_BAD_GUYS_AS_POLICE
-<2 S_TEAM>You're coming with us!!
-<0 SHERWIN>Wait, am I being arrested? Hi police guy!
-<1 S_TEAM>Yeah, we know who you are, you're one of the blaster guys.
-<0 SHERWIN>Uh, no! I'm Sherwin actually.
-<1 S_TEAM>Suuuuure. I'd recognize that beard and orange shirt anywhere.
-<2 S_TEAM>We're going to lock you up forever yes you heard me FOREVER.
-[]-Sherwin gets taken to the Scheme Team lair-
-`transition
-[SHERWIN]WELL I guess I'll go post about this on the forums. I'll create a new thread. I'll need a good name, hmmm...
-`scene FORUMS
-[]-halp I've been taken-
-[SHERWIN]These robot guys with guns just took me. This is illegal you know!
-[KOREY]Gosh dangit, guess I was too late. It's over, we're doomed.
-`end
-
 :FirstSchemeTeamEncounter:
 `scene NOVA_AND_BAD_GUYS_AND_IKE
 <0 NOVA>Oh, finally some other people! Could you tell me where I am?
@@ -135,7 +103,7 @@
 `scene TWO_BAD_GUYS
 []The Scheme Team members flee.
 <0 S_TEAM>Ouch. That squirrel isn't as weak as she seemed. We need to tell the boss so we can take care of this.
-<0 S_TEAM>Hey Bill???
+<0 S_TEAM>Hey Science Guy???
 `scene BAD_GUYS_AND_LEADER
 <2 BILL>What? Why do you guys look beat-up?
 <0 S_TEAM>There's this weird green squirrel that totally kicked our butts, without even having a gun. Is that going to pose a threat to the plans?
@@ -221,7 +189,7 @@
 :ColaSigns:
 []-halp I've been taken-
 `scene FORUMS
-[NOVA]You know maybe the reason MolSno went crazy and bought all the cola is because the volcano he lives in is covered with advertisements.
+[NOVA]You know maybe the reason MolSno went crazy and bought all the cola is because the volcano he lives in is covered with cola advertisements.
 [SHERWIN]You think so?
 [NOVA]I think I'm about to see him... hopefully he cooperates?
 [SHERWIN]"Molten Snow", eh? That's just a fancy name for water isn't it?
@@ -366,6 +334,11 @@
 :SignPickupAbout:
 `scene NOVA_AND_SIGN
 <1 SIGN>You can pick up these blocks. Stand on them and press Down+A.
+`end
+
+:SignCollectibleAbout:
+`scene NOVA_AND_SIGN
+<1 SIGN>These are collectibles. Each level has one, usually as a secret or reward for a challenge.
 `end
 
 :SignWaterFire:

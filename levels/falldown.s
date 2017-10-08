@@ -350,6 +350,7 @@ falldownSprite:
   LSpr Enemy::ELECTRIC_FAN,        1, 137,   1
   LSpr Enemy::ELECTRIC_FAN,        1, 140,   6
   LSpr Enemy::ROCKET_LAUNCHER,     0, 147,   5
+  LSpr Enemy::COLLECTIBLE,         0, 149,   5
   LSpr Enemy::ROCKET_LAUNCHER,     0, 163,   7
   LSpr Enemy::ROCKET_LAUNCHER,     1, 188,   7
   LSpr Enemy::ELECTRIC_FAN,        1, 204,  11

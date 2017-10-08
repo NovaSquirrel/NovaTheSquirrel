@@ -305,6 +305,7 @@ glass_finaleSprite:
   LSpr Enemy::FIREWORK_SHOOTER,    0,  39,   5, 1
   LSpr Enemy::BIG_LWSS,            0,  42,   8, 1
   LSpr Enemy::CHECKPOINT,          0,  47,   3
+  LSpr Enemy::COLLECTIBLE,         0,  47,   9
   LSpr Enemy::BIG_GLIDER,          0,  58,   3
   LSpr Enemy::BIG_LWSS,            0,  61,   5
   LSpr Enemy::BIG_GLIDER,          1,  65,   1, 1

@@ -909,6 +909,13 @@
 					"Y":	8,
 					"W":	2,
 					"H":	2
+				}, {
+					"Id":	"SIGNPOST",
+					"X":	60,
+					"Y":	4,
+					"W":	1,
+					"H":	1,
+					"Extra":	"SignCollectibleAbout"
 				}]
 		}, {
 			"Name":	"Sprites",
@@ -986,6 +993,12 @@
 					"Id":	"OWL",
 					"X":	203,
 					"Y":	11,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"COLLECTIBLE",
+					"X":	61,
+					"Y":	3,
 					"W":	1,
 					"H":	1
 				}]

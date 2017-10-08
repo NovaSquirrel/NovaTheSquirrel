@@ -212,6 +212,7 @@ chiptallSprite:
   LSpr Enemy::SUN_KEY,             0,  67,  12
   LSpr Enemy::CHECKPOINT,          0,  68,   6
   LSpr Enemy::CHECKPOINT,          0, 114,  12
+  LSpr Enemy::COLLECTIBLE,         0, 123,   3
   LSpr Enemy::SUN,                 0, 131,   1
   LSpr Enemy::CANNON_1,            1, 142,   7
   LSpr Enemy::OWL,                 0, 152,   7

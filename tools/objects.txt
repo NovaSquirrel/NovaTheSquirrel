@@ -322,3 +322,8 @@ R FIREWORK_SHOT
 C .byt GraphicsUpload::SP_EXPLODE
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::SECONDARY
+
+R COLLECTIBLE
+C .byt 0
+C .byt ObjBehavior::AUTO_REMOVE
+C .byt ObjFlag::PRIMARY

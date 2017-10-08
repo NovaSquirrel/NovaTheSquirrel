@@ -19,7 +19,7 @@ B1 = LEVELS_BANK1
 B2 = LEVELS_BANK2
 PUZ = 128 ; puzzle
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B1
-  .byt B1,     B1,     B1|PUZ, B1,     B1|PUZ, B1,     B1|PUZ, B1
+  .byt B1,     B1,     B1|PUZ, B1,     B1|PUZ, B1,     B2|PUZ, B1
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B2
   .byt B1
 ; sub-levels
@@ -144,7 +144,6 @@ PUZ = 128 ; puzzle
 .include "../levels/falldown.s"
 .include "../levels/glasscave.s"
 .include "../levels/chiptall.s"
-.include "../levels/glass_finale.s"
 .include "../levels/boss2.s"
 
 ;Level data:

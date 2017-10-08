@@ -260,4 +260,5 @@ frozen4Sprite:
   LSpr Enemy::FIRE_JUMP,           1, 198,   2
   LSpr Enemy::FIRE_JUMP,           1, 199,   6
   LSpr Enemy::FIRE_JUMP,           1, 201,   6
+  LSpr Enemy::COLLECTIBLE,         0, 244,   8
   .byt 255 ; end
