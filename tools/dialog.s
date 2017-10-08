@@ -4,21 +4,56 @@ jsr LoadExpositionGraphics
 lda #' '
 jsr ClearNameCustom
 brk
+.byt SCR::GROUND
+.byt SCR::IMAGE, $a6, $21, <$22ae, >$22ae
 .byt SCR::MONO_TEXT, <ExpositionText1, >ExpositionText1
+.byt SCR::GROUND
+.byt SCR::IMAGE, $8d, $22, <$226a, >$226a
+.byt SCR::IMAGE, $82, $11, <$22cd, >$22cd
+.byt SCR::IMAGE, $82, $11, <$22cf, >$22cf
+.byt SCR::IMAGE, $82, $11, <$22d1, >$22d1
+.byt SCR::IMAGE, $82, $11, <$22d3, >$22d3
 .byt SCR::MONO_TEXT, <ExpositionText2, >ExpositionText2
+.byt SCR::GROUND
+.byt SCR::IMAGE, $88, $11, <$22c9, >$22c9
+.byt SCR::IMAGE, $86, $11, <$22cb, >$22cb
+.byt SCR::IMAGE, $80, $11, <$22d0, >$22d0
+.byt SCR::IMAGE, $80, $11, <$22d2, >$22d2
+.byt SCR::IMAGE, $80, $11, <$22d4, >$22d4
+.byt SCR::IMAGE, $80, $11, <$22d6, >$22d6
 .byt SCR::MONO_TEXT, <ExpositionText3, >ExpositionText3
+.byt SCR::GROUND
 .byt SCR::MONO_TEXT, <ExpositionText4, >ExpositionText4
+.byt SCR::IMAGE, $a9, $32, <$228d, >$228d
+.byt SCR::IMAGE, $d0, $22, <$2290, >$2290
 .byt SCR::MONO_TEXT, <ExpositionText5, >ExpositionText5
+.byt SCR::IMAGE, $a9, $32, <$228d, >$228d
+.byt SCR::IMAGE, $d0, $22, <$2290, >$2290
 .byt SCR::MONO_TEXT, <ExpositionText6, >ExpositionText6
+.byt SCR::IMAGE, $a9, $32, <$228d, >$228d
+.byt SCR::IMAGE, $d3, $22, <$2290, >$2290
 .byt SCR::MONO_TEXT, <ExpositionText7, >ExpositionText7
+.byt SCR::IMAGE, $a9, $32, <$228d, >$228d
+.byt SCR::IMAGE, $d0, $22, <$2290, >$2290
 .byt SCR::MONO_TEXT, <ExpositionText8, >ExpositionText8
+.byt SCR::IMAGE, $a9, $32, <$228d, >$228d
+.byt SCR::IMAGE, $d0, $22, <$2290, >$2290
 .byt SCR::MONO_TEXT, <ExpositionText9, >ExpositionText9
+.byt SCR::GROUND
 .byt SCR::MONO_TEXT, <ExpositionText10, >ExpositionText10
+.byt SCR::GROUND
 .byt SCR::MONO_TEXT, <ExpositionText11, >ExpositionText11
+.byt SCR::IMAGE, $a0, $23, <$228d, >$228d
 .byt SCR::MONO_TEXT, <ExpositionText12, >ExpositionText12
 .byt SCR::MONO_TEXT, <ExpositionText13, >ExpositionText13
+.byt SCR::IMAGE, $a9, $32, <$228d, >$228d
+.byt SCR::IMAGE, $d6, $22, <$2290, >$2290
 .byt SCR::MONO_TEXT, <ExpositionText14, >ExpositionText14
+.byt SCR::IMAGE, $a9, $32, <$228d, >$228d
+.byt SCR::IMAGE, $d0, $22, <$2290, >$2290
 .byt SCR::MONO_TEXT, <ExpositionText15, >ExpositionText15
+.byt SCR::GROUND
+.byt SCR::IMAGE, $a4, $21, <$22af, >$22af
 .byt SCR::MONO_TEXT, <ExpositionText16, >ExpositionText16
 .byt SCR::END_SCRIPT
 Tutorial1:
@@ -724,6 +759,9 @@ ExpositionText4:
 .byt $84, " ", "w", $c4, " ", $b4, " ", "v", "u", "l", $f9, "r", "a", "b", "l", "e", "."
 .byt SCR::END_SCRIPT
 ExpositionText5:
+; -Korey-
+.byt "-", "K", $c9, "e", "y", "-"
+.byt SCR::NEWLINE
 ; Henceforth, replying to any
 .byt "H", $e6, "c", "e", $a5, $e0, $f5, "r", "e", "p", "l", "y", $b1, " ", $bb, $ab
 .byt SCR::NEWLINE
@@ -737,6 +775,9 @@ ExpositionText5:
 .byt $bf, $ca, " ", "i", "m", $d0, "d", "i", $c6, $e7, "a", $d9, "e", $de, "."
 .byt SCR::END_SCRIPT
 ExpositionText6:
+; -Korey-
+.byt "-", "K", $c9, "e", "y", "-"
+.byt SCR::NEWLINE
 ; Yes, this has seriously
 .byt "Y", "e", "s", $f5, $99, " ", "h", $c4, " ", $e5, $fc, $f4, "s", "l", "y"
 .byt SCR::NEWLINE
@@ -750,6 +791,9 @@ ExpositionText6:
 .byt $de, "o", "p", $f5, "b", "e", $a5, $e7, "i", "t", $e9, $bc, "o", " ", "l", $c6, "e", "!"
 .byt SCR::END_SCRIPT
 ExpositionText7:
+; -Ike-
+.byt "-", "I", "k", "e", "-"
+.byt SCR::NEWLINE
 ; Too late? What sort of harm
 .byt "T", $e4, " ", "l", $c6, "e", "?", " ", "W", "h", $c6, " ", $cc, $ee, " ", $bd, "h", "a", "r", "m"
 .byt SCR::NEWLINE
@@ -760,6 +804,9 @@ ExpositionText7:
 .byt $9a, "k", $d8, $ff, $bd, "h", "a", "r", "m", "l", "e", $f1, " ", "f", $f2, "?"
 .byt SCR::END_SCRIPT
 ExpositionText8:
+; -Korey-
+.byt "-", "K", $c9, "e", "y", "-"
+.byt SCR::NEWLINE
 ; Remember, the Scheme Team
 .byt "R", "e", $d0, "m", "b", $ed, $f5, $a2, " ", "S", $e2, "e", $d0, " ", "T", $ec, "m"
 .byt SCR::NEWLINE
@@ -776,6 +823,9 @@ ExpositionText8:
 .byt $9a, "k", $d8, $ff, $bd, "b", "e", "h", "a", "v", "i", $c9, "."
 .byt SCR::END_SCRIPT
 ExpositionText9:
+; -Korey-
+.byt "-", "K", $c9, "e", "y", "-"
+.byt SCR::NEWLINE
 ; If they become too powerful
 .byt "I", "f", " ", $98, " ", "b", "e", $96, " ", $bc, "o", " ", "p", "o", $c8, "r", "f", "u", "l"
 .byt SCR::NEWLINE
@@ -789,8 +839,11 @@ ExpositionText9:
 .byt "s", "c", "r", "e", $c8, "d", "!"
 .byt SCR::END_SCRIPT
 ExpositionText10:
-; Well, my friends, it looks
-.byt "W", "e", "l", "l", $f5, $cb, " ", "f", $fc, $e6, "d", "s", $f5, $c1, $95, "s"
+; (Meanwhile...)
+.byt "(", "M", $ec, "n", $da, $dc, "e", ".", ".", ".", ")"
+.byt SCR::NEWLINE
+; "Well, my friends, it looks
+.byt '"', "W", "e", "l", "l", $f5, $cb, " ", "f", $fc, $e6, "d", "s", $f5, $c1, $95, "s"
 .byt SCR::NEWLINE
 ; like today will be a very
 .byt $8d, " ", $bc, "d", "a", $fe, $9e, " ", $ba, $be, "v", $ed, "y"
@@ -798,8 +851,8 @@ ExpositionText10:
 ; "Nice" day for us. Let's
 .byt '"', "N", "i", "c", "e", '"', " ", "d", "a", $fe, $a5, " ", "u", "s", $f6, "L", "e", "t", "'", "s"
 .byt SCR::NEWLINE
-; bust out of this place!
-.byt "b", "u", $de, " ", $ae, " ", $bd, $99, " ", "p", "l", "a", "c", "e", "!"
+; bust out of this place!"
+.byt "b", "u", $de, " ", $ae, " ", $bd, $99, " ", "p", "l", "a", "c", "e", "!", '"'
 .byt SCR::END_SCRIPT
 ExpositionText11:
 ; The Scheme Team constructs
@@ -841,6 +894,9 @@ ExpositionText13:
 .byt $a5, "u", "m", $fb, $8a, $a2, " ", $d8, "c", "i", "d", $e6, "t", "."
 .byt SCR::END_SCRIPT
 ExpositionText14:
+; -Sherwin-
+.byt "-", "S", $a9, "w", $d8, "-"
+.byt SCR::NEWLINE
 ; These robot guys with guns
 .byt $f8, "e", $e5, " ", "r", "o", "b", "o", $d3, "g", "u", "y", $fb, $9d, " ", "g", $f2, "s"
 .byt SCR::NEWLINE
@@ -851,6 +907,9 @@ ExpositionText14:
 .byt $f8, $b8, $b8, $dc, "l", "e", "g", "a", "l", $f5, $a6, " ", $8f, "!"
 .byt SCR::END_SCRIPT
 ExpositionText15:
+; -Korey-
+.byt "-", "K", $c9, "e", "y", "-"
+.byt SCR::NEWLINE
 ; Robot guys with guns? Uh...
 .byt "R", "o", "b", "o", $d3, "g", "u", "y", $fb, $9d, " ", "g", $f2, "s", "?", " ", "U", "h", ".", ".", "."
 .byt SCR::NEWLINE

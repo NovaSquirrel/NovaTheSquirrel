@@ -163,3 +163,10 @@
   lda #DIALOG_BANK
   jmp SetPRG
 .endproc
+
+.proc LoadDialogGraphic
+  jsr DoGraphicUpload
+  lda #DIALOG_BANK
+  jmp SetPRG
+.endproc
+

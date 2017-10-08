@@ -300,6 +300,9 @@ MS_EMPTY = 32
   TRANSITION    ; transition effect
   NO_SKIP       ; disable skipping the dialog
   MONO_TEXT     ; display monospaced text
+  UPLOAD        ; upload to the PPU
+  IMAGE         ; rectangle image stamp
+  GROUND        ; add ground
   SPEAKER_0 = %0000000
   SPEAKER_1 = %0100000
   SPEAKER_2 = %1000000

@@ -4,21 +4,59 @@
 :lda #' '
 :jsr ClearNameCustom
 :brk
+`ground
+`image $a6, $21, <$22ae, >$22ae
 `monotext ExpositionText1
+`ground
+
+`image $8d, $22, <$226a, >$226a
+
+`image $82, $11, <$22cd, >$22cd
+`image $82, $11, <$22cf, >$22cf
+`image $82, $11, <$22d1, >$22d1
+`image $82, $11, <$22d3, >$22d3
 `monotext ExpositionText2
+`ground
+`image $88, $11, <$22c9, >$22c9
+`image $86, $11, <$22cb, >$22cb
+
+`image $80, $11, <$22d0, >$22d0
+`image $80, $11, <$22d2, >$22d2
+`image $80, $11, <$22d4, >$22d4
+`image $80, $11, <$22d6, >$22d6
 `monotext ExpositionText3
+`ground
 `monotext ExpositionText4
+`image $a9, $32, <$228d, >$228d
+`image $d0, $22, <$2290, >$2290
 `monotext ExpositionText5
+`image $a9, $32, <$228d, >$228d
+`image $d0, $22, <$2290, >$2290
 `monotext ExpositionText6
+`image $a9, $32, <$228d, >$228d
+`image $d3, $22, <$2290, >$2290
 `monotext ExpositionText7
+`image $a9, $32, <$228d, >$228d
+`image $d0, $22, <$2290, >$2290
 `monotext ExpositionText8
+`image $a9, $32, <$228d, >$228d
+`image $d0, $22, <$2290, >$2290
 `monotext ExpositionText9
+`ground
 `monotext ExpositionText10
+`ground
 `monotext ExpositionText11
+`image $a0, $23, <$228d, >$228d
 `monotext ExpositionText12
 `monotext ExpositionText13
+`image $a9, $32, <$228d, >$228d
+`image $d6, $22, <$2290, >$2290
 `monotext ExpositionText14
+`image $a9, $32, <$228d, >$228d
+`image $d0, $22, <$2290, >$2290
 `monotext ExpositionText15
+`ground
+`image $a4, $21, <$22af, >$22af
 `monotext ExpositionText16
 `end
 
@@ -562,6 +600,8 @@ Latte was now vulnerable.
 `end
 
 :ExpositionText5:
+-Korey-
+`nl
 Henceforth, replying to any
 `nl
 post with nothing more than
@@ -572,6 +612,8 @@ in an immediate arrest.
 `end
 
 :ExpositionText6:
+-Korey-
+`nl
 Yes, this has seriously
 `nl
 become *this* large of a
@@ -582,6 +624,8 @@ stop, before it's too late!
 `end
 
 :ExpositionText7:
+-Ike-
+`nl
 Too late? What sort of harm
 `nl
 could possibly come out of
@@ -590,6 +634,8 @@ that kind of harmless fun?
 `end
 
 :ExpositionText8:
+-Korey-
+`nl
 Remember, the Scheme Team
 `nl
 has Smiloids with them, and
@@ -602,6 +648,8 @@ that kind of behavior.
 `end
 
 :ExpositionText9:
+-Korey-
+`nl
 If they become too powerful
 `nl
 they will break out of jail
@@ -612,13 +660,15 @@ screwed!
 `end
 
 :ExpositionText10:
-Well, my friends, it looks
+(Meanwhile...)
+`nl
+"Well, my friends, it looks
 `nl
 like today will be a very
 `nl
 "Nice" day for us. Let's
 `nl
-bust out of this place!
+bust out of this place!"
 `end
 
 :ExpositionText11:
@@ -652,6 +702,8 @@ forums about the incident.
 `end
 
 :ExpositionText14:
+-Sherwin-
+`nl
 These robot guys with guns
 `nl
 just went and kidnapped me.
@@ -660,6 +712,8 @@ This is illegal, you know!
 `end
 
 :ExpositionText15:
+-Korey-
+`nl
 Robot guys with guns? Uh...
 `nl
 Oh no. I think we might be

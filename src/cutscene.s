@@ -14,28 +14,18 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;
-.if 0
-DemoCutscene:
-  .byt SCR::SCENE, 0
-  .byt SCR::SAY, CHAR::NOVA|SCR::SPEAKER_0
-  .byt $80, $81, $82, $83
-  .byt SCR::NEWLINE
-  .byt SCR::NEWLINE
-  .byt SCR::TRANSITION
-  .byt SCR::SAY, CHAR::NOVA|SCR::SPEAKER_0
-  .byt "This is a demo script"
-  .byt SCR::NEWLINE
-  .byt "and it seems to be working"
-  .byt SCR::SAY, CHAR::NOVA|SCR::SPEAKER_0
-  .byt "This is a demo"
-  .byt SCR::END_SCRIPT
-.endif
 
 .proc StartCutscene
   lda PRGBank ; we'll return to the original bank when we're done
   sta CutsceneOldBank
   tsx
   stx CutsceneOldSP
+
+  ; Save the background color, so it can be white during this routine
+  lda LevelBackgroundColor
+  sta LevelBackgroundColorSave
+  lda #$30
+  sta LevelBackgroundColor
 
   lda #SOUND_BANK
   jsr SetPRG
@@ -121,6 +111,8 @@ CutsceneDictionaryTable = ScratchPage
   jsr ScriptLoopInit
 SkipTheScript:
   jsr ClearOAM
+  lda LevelBackgroundColorSave
+  sta LevelBackgroundColor
 
 ; Clean up and restore gameplay graphics
   lda #0
@@ -139,7 +131,7 @@ SkipTheScript:
   lda CutsceneOldBank
   jsr SetPRG
 
-  ; This prevents Start from immediately launching into the inventory
+  ; This prevents Start from immediately launching into the inventory (but doesn't work anyway?)
   lda #255
   sta keylast
   lda #0
@@ -304,6 +296,9 @@ NopeNothingToDraw:
   .raddr Transition ;
   .raddr NoSkip     ;
   .raddr MonoText   ; aa aa - text pointer
+  .raddr Palette    ; pl .. .. .. - position, length/3
+  .raddr Image      ; start, size, x, y
+  .raddr Ground     ; add ground
 ; Command, disables skipping the dialog
 NoSkip:
   inc CutsceneNoSkip
@@ -928,7 +923,66 @@ MonoTextLoop:
   lda #' '
   jsr ClearNameCustom
 
+  jsr WaitVblank
+  lda #0
+  sta PPUMASK
+
   jmp IncreaseBy2
+
+Palette:
+  jsr LoadDialogGraphic
+  jmp IncreaseBy1
+
+Image:
+ImageTile    = 0
+ImageWidth   = 1 ; Hx
+ImageHeight  = 2 ; xW
+ImageAddress = 3 ; also 4
+  sta ImageTile ; start
+  iny
+  lda (ScriptPtr),y
+  unpack ImageWidth, ImageHeight
+  iny
+  lda (ScriptPtr),y
+  sta ImageAddress+0 ; address
+  iny
+  lda (ScriptPtr),y
+  sta ImageAddress+1 ; address
+
+  ; Make sure PPU increment is 1 and not 32
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
+  sta PPUCTRL
+
+ImageRowLoop:
+  lda ImageAddress+1
+  sta PPUADDR
+  lda ImageAddress+0
+  sta PPUADDR
+  add #32
+  sta ImageAddress+0
+  addcarry ImageAddress+1
+
+  ldx ImageTile
+  ldy ImageWidth
+: stx PPUDATA
+  inx
+  dey
+  bpl :-
+
+  lda ImageTile
+  add #$10
+  sta ImageTile
+
+  dec ImageHeight
+  bpl ImageRowLoop
+
+  lda #4
+  jmp ScriptIncreasePointerBy
+
+Ground:
+  jsr CutsceneGround
+  jmp ScriptLoop
+
 .endproc
 
 .pushseg
@@ -940,18 +994,20 @@ MonoTextLoop:
   sta PPUADDR
   lda #$00
   sta PPUADDR
-  lda #$30
-  ldx #$0f
   ; palette 1
+  lda #$30
   sta PPUDATA
-  stx PPUDATA
+  lda #$0f
   sta PPUDATA
-  stx PPUDATA
+  lda #$10
+  sta PPUDATA
+  lda #$00
+  sta PPUDATA
   ; palette 2
   sta PPUDATA
   sta PPUDATA
-  stx PPUDATA
-  stx PPUDATA
+  sta PPUDATA
+  sta PPUDATA
   ; palette 3
   sta PPUDATA
   ldx #$1a
@@ -965,31 +1021,7 @@ MonoTextLoop:
   lda #0
   jsr ClearNameCustom
 
-; Top row of ground
-  lda #>($2000+32*24+6)
-  sta PPUADDR
-  lda #<($2000+32*24+6)
-  sta PPUADDR
-  lda #$18
-  sta PPUDATA
-  lda #$16
-  ldx #18
-  jsr WritePPURepeated
-  lda #$1a
-  sta PPUDATA
-
-; Bottom row of ground
-  lda #>($2000+32*25+6)
-  sta PPUADDR
-  lda #<($2000+32*25+6)
-  sta PPUADDR
-  lda #$19
-  sta PPUDATA
-  lda #$17
-  ldx #18
-  jsr WritePPURepeated
-  lda #$1b
-  sta PPUDATA
+  jsr CutsceneGround
 
 ; Write attribute table bytes for ground
   lda #>($2400-16)
@@ -1074,3 +1106,32 @@ NametableLoop:
 .endproc
 
 .popseg
+
+.proc CutsceneGround
+; Top row of ground
+  lda #>($2000+32*24+6)
+  sta PPUADDR
+  lda #<($2000+32*24+6)
+  sta PPUADDR
+  lda #$18
+  sta PPUDATA
+  lda #$16
+  ldx #18
+  jsr WritePPURepeated
+  lda #$1a
+  sta PPUDATA
+
+; Bottom row of ground
+  lda #>($2000+32*25+6)
+  sta PPUADDR
+  lda #<($2000+32*25+6)
+  sta PPUADDR
+  lda #$19
+  sta PPUDATA
+  lda #$17
+  ldx #18
+  jsr WritePPURepeated
+  lda #$1b
+  sta PPUDATA
+  rts
+.endproc

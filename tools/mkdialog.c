@@ -148,6 +148,12 @@ int main(int argc, char *argv[]) {
         fprintf(OutputFile, ".byt SCR::MONO_TEXT, <%s, >%s", Arg, Arg);
       else if(!strcmp(Command, "clear"))
         fprintf(OutputFile, ".byt SCR::CLEAR_ALL");
+      else if(!strcmp(Command, "upload"))
+        fprintf(OutputFile, ".byt SCR::UPLOAD, %s", Arg);
+      else if(!strcmp(Command, "image"))
+        fprintf(OutputFile, ".byt SCR::IMAGE, %s", Arg);
+      else if(!strcmp(Command, "ground"))
+        fprintf(OutputFile, ".byt SCR::GROUND");
 
       if(Buffer[0] == '?') {
         if(!strcmp(Command, "on"))

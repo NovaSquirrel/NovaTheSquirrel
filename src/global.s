@@ -503,7 +503,7 @@ Finish:
   rts
 .endproc
 
-; clear the nametable
+; clear the nametable (including attributes)
 .proc ClearName
   lda #$3f ; clear tile
 Custom:

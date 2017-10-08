@@ -74,6 +74,17 @@ PalLevelSel: .byt $07
              .byt $1a, $2a, $3a
              .byt $00, $10, $30
 
+PalExpositionForum:
+             .byt $21
+
+PalExpositionSchemeTeam:
+             .byt $21
+
+PalExpositionSherwins:
+             .byt $21
+             .byt $17, $27, $37 ;sherwin
+             .byt $0f, $27, $30 ;blaster guy
+
 AbilityIcons: .incbin "chr/sppowericons.chr"
 AbilityGfx:   .incbin "chr/sppowergfx.chr"
 AbilityOffsets:
