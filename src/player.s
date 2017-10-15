@@ -1707,6 +1707,12 @@ AbilityTable:
 LimitObjectAmount:
 ; limits the number of projectiles to a given amount by aborting if it's already at the limit
   sta 0  ; 0 = limit
+
+  lda InfiniteProjectileCheat
+  beq :+
+  rts
+:
+
   ldx #0
   ldy #0 ; Y = counter for number of player projectiles
 : lda ObjectF1,x
@@ -1970,8 +1976,11 @@ AbilityBurger:
 
   lda PressedDown           ; down+B: burger ride
   beq :+
+  lda InfiniteProjectileCheat
+  bne @BurgerOK
   lda PlayerNeedsGround ; only allow one burger ride before touching the ground
   bne :+
+@BurgerOK:
   jsr RideOnProjectile
 :
   lda #$30

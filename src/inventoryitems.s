@@ -931,10 +931,11 @@ KB = KEY_B
   .byt KU, KD, KU, KD, KU, KD, KU, KD ; up/down
   .byt KB, KA, KL, KL, KB, KA, KL, KL ; BALL
   .byt KL, KD, KU, KR, KL, KD, KU, KR ; ddr pattern
-  .byt KD, KD, KD, KD, KU, KU, KU, KU ; down*4, up*4
-  .byt KU, KU, KU, KU, KU, KU, KU, KU ; up
+  .byt KD, KD, KD, KD, KU, KU, KU, KU ; down*4, up*4 (ice)
+  .byt KU, KU, KU, KU, KU, KU, KU, KU ; up (balloon)
   .byt KB, KB, KB, KB, KB, KB, KB, KB ; burger
   .byt KD, KA, KD, KU, KU, KU, KU, KU ; rich
+  .byt KR, KR, KD, KD, KR, KR, KD, KD ; infinite projectiles
   .byt 0
 .endproc
 
@@ -962,6 +963,7 @@ Routines:
   .raddr Balloon ; up
   .raddr Burger ; b repeatedly
   .raddr Rich
+  .raddr InfiniteProjectiles
 Rich:
   lda #99
   sta Coins+0
@@ -1004,6 +1006,9 @@ NextAbility:
 Balloon:
   lda #128
   sta PlayerHasBalloon
+  rts
+InfiniteProjectiles:
+  inc InfiniteProjectileCheat
   rts
 .endproc
 

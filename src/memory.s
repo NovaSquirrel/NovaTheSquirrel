@@ -361,7 +361,8 @@ GameStateLen = 1+2+10+10+2 ; update if more stuff is added
 
   AttackKeyDownSnapshot: .res 2 ; snapshot of what keys were down when the attack started
 
-  LevelBackgroundColorSave: .res 1
+  LevelBackgroundColorSave: .res 1 ; for cutscenes
+  InfiniteProjectileCheat: .res 1
 
 .segment "SAVE"
 SaveStart:
