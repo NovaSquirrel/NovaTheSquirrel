@@ -4,6 +4,9 @@ I M_FIRST_COLLECTIBLE = Metatiles::COIN
 I M_LAST_COLLECTIBLE = Metatiles::CHIP
 I M_FIRST_SPECIAL_WALL = Metatiles::LOCK_RED
 I M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
+I M_FIRST_SPECIAL_GROUND = Metatiles::SPIKES
+I M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
+
 E Metatiles
 L MetatilePalettes
 I .pushseg
@@ -95,13 +98,30 @@ C .byt $0d
 C .byt $0e
 C .byt $0f
 
+##### SPECIAL GROUND ####
 R SPIKES
 C .byt M_PAL_1
-C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_GROUND
+C .byt M_SPECIAL_GROUND|M_SOLID_ALL|M_SOLID_TOP
 C .byt $12
 C .byt $13
 C .byt $12
 C .byt $13
+
+R WOOD_CRATE
+C .byt M_PAL_2
+C .byt M_SPECIAL_GROUND|M_SOLID_ALL|M_SOLID_TOP
+C .byt $d4
+C .byt $d5
+C .byt $d6
+C .byt $d7
+
+R PICKUP_BLOCK
+C .byt M_PAL_1
+C .byt M_SPECIAL_GROUND|M_SOLID_ALL|M_SOLID_TOP
+C .byt $28
+C .byt $0d
+C .byt $2a
+C .byt $0f
 
 ##### M_SPECIAL_MISC list starts here #####
 R LADDER
@@ -378,14 +398,6 @@ C .byt $d0
 C .byt $d1
 C .byt $d2
 C .byt $d3
-
-R WOOD_CRATE
-C .byt M_PAL_2
-C .byt M_COLLECTIBLE|M_SOLID_ALL|M_SOLID_TOP
-C .byt $d4
-C .byt $d5
-C .byt $d6
-C .byt $d7
 
 R INVENTORY_ITEM
 C .byt M_PAL_1
@@ -815,14 +827,6 @@ C .byt $99
 C .byt $9a
 C .byt $9b
 
-R PICKUP_BLOCK
-C .byt M_PAL_1
-C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL
-C .byt $28
-C .byt $0d
-C .byt $2a
-C .byt $0f
-
 R PUSHABLE_BLOCK
 C .byt M_PAL_1
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL
@@ -1097,7 +1101,7 @@ C .byt M_EMPTY
 C .byt $90
 C .byt $91
 C .byt $92
-C .byt $d8
+C .byt $3d
 
 R PALM_TREE_TOP_R
 C .byt M_PAL_0

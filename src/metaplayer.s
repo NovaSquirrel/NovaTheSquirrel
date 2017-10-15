@@ -157,7 +157,6 @@ CollectibleLo:
   .byt <(TouchedWoodArrow-1)
   .byt <(TouchedWoodArrow-1)
   .byt <(TouchedWoodBomb-1)
-  .byt <(TouchedWoodCrate-1)
   .byt <(TouchedInventoryItem-1)
   .byt <(TouchedInventoryItemAuto-1)
   .byt <(TouchedChip-1)
@@ -177,7 +176,6 @@ CollectibleHi:
   .byt >(TouchedWoodArrow-1)
   .byt >(TouchedWoodArrow-1)
   .byt >(TouchedWoodBomb-1)
-  .byt >(TouchedWoodCrate-1)
   .byt >(TouchedInventoryItem-1)
   .byt >(TouchedInventoryItemAuto-1)
   .byt >(TouchedChip-1)
@@ -228,7 +226,6 @@ SpecialWallLo:
   .byt <(TouchedLock-1)
   .byt <(TouchedLock-1)
   .byt <(TouchedChipSocket-1)
-  .byt <(TouchedPickupBlock-1)
   .byt <(TouchedPushableBlock-1)
 
 SpecialWallHi:
@@ -236,8 +233,47 @@ SpecialWallHi:
   .byt >(TouchedLock-1)
   .byt >(TouchedLock-1)
   .byt >(TouchedChipSocket-1)
-  .byt >(TouchedPickupBlock-1)
   .byt >(TouchedPushableBlock-1)
+
+SpecialGroundLo:
+  .byt <(HurtPlayer-1) ; spikes
+  .byt <(TouchedWoodCrate-1)
+  .byt <(TouchedPickupBlock-1)
+SpecialGroundHi:
+  .byt >(HurtPlayer-1)
+  .byt >(TouchedWoodCrate-1)
+  .byt >(TouchedPickupBlock-1)
+
+.proc TouchedPickupBlock
+  lda keynew ; check for a block to pickup if pressing up
+  and #KEY_UP
+  beq :+
+    lda CarryingPickupBlock
+    ora CarryingSunKey
+    bne :+
+    jsr FindFreeObjectY
+    bcc :+
+    sty TempVal
+
+    ldy TempY
+    lda BackgroundMetatile
+    jsr ChangeBlockFar
+    ldy TempVal
+    lda #Enemy::POOF*2
+    sta ObjectF1,y
+    lda #PoofSubtype::CARRYABLE_BLOCK
+    sta ObjectF2,y
+    lda #8
+    sta ObjectF4,y ; animation counter
+    lda PlayerPXH
+    sta ObjectPXH,y
+    lda PlayerPYH
+    sta ObjectPYH,y
+    ; PXL and PYL are set before the block ever gets drawn
+    inc CarryingPickupBlock
+  :
+  rts
+.endproc
 
 .proc TouchedCeilingBarrier
   lda #0
@@ -263,11 +299,6 @@ Delete:
   lda BackgroundMetatile
   ldy TempY
   jmp ChangeBlockFar
-.endproc
-
-.proc TouchedPickupBlock
-  ; unused because I'm treating pickup blocks specially anyway
-  rts
 .endproc
 
 .proc TouchedPushableBlock
@@ -900,6 +931,33 @@ Call:
   lda CollectibleHi,y
   pha
   lda CollectibleLo,y
+  pha
+  ldy TempY
+  ldx TempX
+  lda TempVal
+  rts
+.endproc
+
+.proc DoSpecialGround
+  sty TempY
+  stx TempX
+  sta TempVal
+  ; Is this a collectible??
+  sub #M_FIRST_SPECIAL_GROUND
+  cmp #M_LAST_SPECIAL_GROUND+1-M_FIRST_SPECIAL_GROUND
+  bcs :+
+  jsr Call
+: ldy TempY
+  ldx TempX
+  lda TempVal
+  rts
+Call:
+  lda TempVal
+  sub #Metatiles::SPIKES
+  tay
+  lda SpecialGroundHi,y
+  pha
+  lda SpecialGroundLo,y
   pha
   ldy TempY
   ldx TempX
