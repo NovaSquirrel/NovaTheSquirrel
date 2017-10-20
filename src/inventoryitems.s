@@ -699,6 +699,28 @@ TryCode:
   cmp TempSpace+7
   bne Nope
   jsr CheatCodeRoutines
+
+  jsr WaitVblank
+  lda #0
+  sta PPUMASK
+
+  ldy #<CheaterString
+  lda #>CheaterString
+  ldx #2
+  jsr vwfPutsAtRow
+
+  lda #0
+  sta PPUSCROLL
+  sta PPUSCROLL
+  jsr WaitVblank
+  lda #BG_ON
+  sta PPUMASK
+
+  ldx #60
+: jsr WaitVblank
+  dex
+  bne :-
+
   jmp Done
 Nope:
   txa
@@ -1016,3 +1038,5 @@ PausedString:
   .byt "P A U S E D",0
 LevelSelectString:
   .byt "Nova the Squirrel",0
+CheaterString:
+  .byt "Cheater!!",0
