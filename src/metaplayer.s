@@ -15,46 +15,48 @@
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;
 
-OpenPrize: ; insert effects here
+.proc OpenPrize
   lda #Metatiles::USED_PRIZE
   jsr ChangeBlock
 
   stx TempX
-  jsr GetBlockX
+  jsr GetBlockX ; Get block X position, to get an index for ColumnBytes
   tax
 
+  ; By default the block that will get placed above is the inventory item pickup.
   lda #Metatiles::INVENTORY_ITEM
   sta TempVal
 
   lda ColumnBytes,x
-  beq JustACoin
+  beq JustACoin ; No contents = block only has a coin.
 
-  ; If it's an ability backup block, it contains 
+  ; If the top bit is set, it's a forced-use item pickup.
   cmp #128
   bcc :+
     pha
     lda #Metatiles::INVENTORY_ITEM_AUTO
-    sta TempVal
+    sta TempVal ; Change the block that will be placed.
     pla
-    and #127 ; take off the top bit
-    sta ColumnBytes,x ; change the column byte
   :
+
+  ; If it's an ability backup block, it contains the current ability
   cmp #InventoryItem::ABILITY_BACKUP
   bne :+
     lda PlayerAbility
-    beq JustACoin ; if no ability, then it's just a coin
+    beq JustACoin ; If no ability, then it's just a coin.
     add #InventoryItem::ABILITY_BLASTER-1
     sta ColumnBytes,x
   :
 
-  ; Open a prize
+  ; Put the item pickup above the block.
   ldx TempX
-  pha ; item number
+  pha ; Save item number
   dey
   lda TempVal
   jsr ChangeBlock
   iny
-  pla ; item number
+  pla ; Restore item number
+  and #127
   jmp MakeFloatingTextAtBlock
 
 JustACoin:
@@ -65,6 +67,7 @@ JustACoin:
   lda #SFX::COIN
   jsr PlaySoundDebounce
   jmp AddCoin
+.endproc
 
 BricksLo:
   .byt <(BrokeBricks-1)
@@ -103,7 +106,8 @@ BricksHi:
   jmp OpenPrize
 .endproc
 
-; inputs: A (Poof subtype)
+; Creates a "poof" effect located at a block.
+; inputs: A (Poof subtype), LevelBlockPtr (pointer), Y (Y position)
 ; locals: TempVal+1
 .proc MakePoofAtBlock
   pha
@@ -113,21 +117,21 @@ BricksHi:
   lda #Enemy::POOF*2
   sta ObjectF1,y
   pla
-  sta ObjectF2,y
-  jsr GetBlockX
+  sta ObjectF2,y      ; F2 = subtype
+  jsr GetBlockX       ; Set X position
   sta ObjectPXH,y
-  lda TempVal+1
+  lda TempVal+1       ; Set Y position
   sta ObjectPYH,y
-  lda #0
+  lda #0              ; Clear low position bits and state bytes
   sta ObjectPXL,y
   sta ObjectPYL,y
   sta ObjectTimer,y
   sta ObjectF3,y
-  sec
+  sec                 ; Success
   rts
 NoSlotFree:
   pla
-  clc
+  clc                 ; Failure
   rts
 .endproc
 
@@ -141,6 +145,7 @@ NoSlotFree:
   lda #SFX::SMASH
   jmp PlaySoundDebounce
 .endproc
+
 CollectibleLo:
   .byt <(TouchedCoin-1)
   .byt <(TouchedBigHeart-1)
@@ -227,7 +232,6 @@ SpecialWallLo:
   .byt <(TouchedLock-1)
   .byt <(TouchedChipSocket-1)
   .byt <(TouchedPushableBlock-1)
-
 SpecialWallHi:
   .byt >(TouchedLock-1)
   .byt >(TouchedLock-1)
@@ -245,9 +249,10 @@ SpecialGroundHi:
   .byt >(TouchedPickupBlock-1)
 
 .proc TouchedPickupBlock
-  lda keynew ; check for a block to pickup if pressing up
+  lda keynew ; Check for a block to pick up if pressing up.
   and #KEY_UP
   beq :+
+    ; Don't allow if already holding something.
     lda CarryingPickupBlock
     ora CarryingSunKey
     bne :+
@@ -255,9 +260,11 @@ SpecialGroundHi:
     bcc :+
     sty TempVal
 
+    ; Erase the block being picked up.
     ldy TempY
     lda BackgroundMetatile
     jsr ChangeBlockFar
+    ; Create the pickup block object.
     ldy TempVal
     lda #Enemy::POOF*2
     sta ObjectF1,y
@@ -269,7 +276,8 @@ SpecialGroundHi:
     sta ObjectPXH,y
     lda PlayerPYH
     sta ObjectPYH,y
-    ; PXL and PYL are set before the block ever gets drawn
+    ; PXL and PYL are set before the block ever gets drawn,
+    ; so don't waste bytes setting them here.
     inc CarryingPickupBlock
   :
   rts
@@ -305,7 +313,8 @@ Delete:
 GoUp = 9
 OldLevelBlockPtr = 10
 OldYIndex = 12
-  ; Make sure there's a free slot first
+  ; Make sure there's a free object slot first,
+  ; because the block has to turn into an object.
   sty OldYIndex
   jsr FindFreeObjectY
   bcs :+
@@ -314,90 +323,93 @@ OldYIndex = 12
   :
   ldy OldYIndex
 
-  ; save the old pointer
+  ; Save the level block pointer
   lda LevelBlockPtr+0
   sta OldLevelBlockPtr+0
   lda LevelBlockPtr+1
   sta OldLevelBlockPtr+1
-  sty OldYIndex
 
+  ; Determine whether the player is pushing against the left or right side.
+  ; This is done by comparing the block X position against the player X position.
   jsr GetBlockX
   sta 0
   lda PlayerPXH
   cmp 0
-  bcc Right
-Left:
+  bcc Right ; Player < Block, so block is to be pushed right
+Left:       ; Player >= Block, so block is to be pushed left
+
+  ; Move the block pointer left
   lda LevelBlockPtr
   sub #16
   sta LevelBlockPtr
   subcarry LevelBlockPtr+1
   
-  jsr PreMove
+  jsr PreMove ; Test the new position
+  jmp EraseL  ; Erase the old block and create the moving block object
 
-  jmp EraseL
 Right:
+  ; Move the block pointer right
   lda LevelBlockPtr
   add #16
   sta LevelBlockPtr
   addcarry LevelBlockPtr+1
 
-  jsr PreMove
-
-  jmp Erase
+  jsr PreMove ; Test the new position
+  jmp Erase   ; Erase the old block and create the moving block object
 
 EraseL:
-  jsr Erase
-  lda #Enemy::POOF*2+1 ; make the block move left instead
+  jsr Erase            ; Do all the same work as for moving right
+  lda #Enemy::POOF*2+1 ; Set the direction bit in the moving block to left
   sta ObjectF1,y
   rts
 Erase:
-  ; put a BOULDER_SOLID where it's moving into
+  ; Put a temporary BOULDER_SOLID where it's moving into.
+  ; It's a solid, transparent block meant to give solidity to object.
   lda #Metatiles::BOULDER_SOLID
   jsr ChangeBlockFar
 
+  ; Determine if there's a difference between the original Y coordinate and the desired one.
+  ; If there is, GoUp will be nonzero.
   tya
   sub OldYIndex
   sta GoUp
 
+  ; Restore the old block pointer and index so the old block can be erased
   ldy OldYIndex
   lda OldLevelBlockPtr+0
   sta LevelBlockPtr+0
   lda OldLevelBlockPtr+1
   sta LevelBlockPtr+1
 
+  ; Erase the block that just got pushed
   lda BackgroundMetatile
   jsr ChangeBlockFar
+  ; Make the moving block object
   lda #PoofSubtype::PUSHABLE_BLOCK
   jsr MakePoofAtBlock
-  ; don't need to check for success since we already checked
-  ; if there was a free slot
+  ; Success is guaranteed since free space was already checked for earlier
   lda GoUp
-  sta ObjectVYL,y
+  sta ObjectVYL,y ; If nonzero, moving block object climbs upwards
   rts
 
-;EraseBoth: ; hit a cherry bomb
-;  lda #SFX::BOOM1
-;  jsr PlaySound
-;  lda BackgroundMetatile
-;  jsr ChangeBlockFar
-;  jmp Erase
-
-PreMove:   ; check if the block should move up or anything
-  ; can't move if the block has another pushable block on top
+; Verify if the block should move at all, and if it should climb something.
+PreMove:
+  ; First, refuse to move if another pushable block is on top.
   dey
   lda (OldLevelBlockPtr),y
   cmp #Metatiles::PUSHABLE_BLOCK
   beq Abort
   iny
 
-  lda (LevelBlockPtr),y ; only overwrite blank blocks
+  ; If the space in front is free, we can move.
+  lda (LevelBlockPtr),y
   cmp BackgroundMetatile
   beq MoveIsOkay
-; okay it's solid, but is the one above solid?
+    ; Space in front is taken, but is there a block on top of that?
     dey
-    lda (LevelBlockPtr),y ; nope, move over there
+    lda (LevelBlockPtr),y
     cmp BackgroundMetatile
-    beq MoveIsOkay
+    beq MoveIsOkay ; Exit this routine with the modified Y register.
 Abort:
     pla
     pla
@@ -498,14 +510,16 @@ HasSunKey:
   jsr GetBlockX
   tay
   lda ColumnBytes,y
-  jmp FarInventoryCode
+  ; Clear the forced-item bit to get only the item number.
+  and #127
+  jmp FarInventoryCode ; Run the item code directly.
 .endproc
 
 .proc TouchedLadder
 XForMiddle = TempSpace+5
   lda keydown
   and #KEY_UP|KEY_DOWN
-  rtseq
+  beq _rts
   lda #2
   sta PlayerOnLadder
 
@@ -514,6 +528,7 @@ XForMiddle = TempSpace+5
   sta PlayerPXL
   lda XForMiddle
   sta PlayerPXH
+_rts:
   rts
 .endproc
 
@@ -623,14 +638,14 @@ ExitDoor:
   jmp ShowPreLevelFar
 .endproc
 
-.proc ConfiscateItems
 ; Remove items that the player shouldn't exit the level with
+.proc ConfiscateItems
   ldx #InventoryLen
 Loop:
   ; Loop through the bad items, looking for a match
   ldy #0
-: lda BadItems,y ; read from bad items list
-  beq ItemIsGood ; end of the list? item must be good then
+: lda BadItems,y ; Read from bad items list.
+  beq ItemIsGood ; Zero is the end-of-list marker, so stop when it's found.
   iny
   cmp InventoryType,x
   bne :-

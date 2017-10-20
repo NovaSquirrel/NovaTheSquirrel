@@ -29,7 +29,7 @@ M_SPECIAL_MISC    ; doors, springs
 M_SPECIAL_WALL    ; locks, pushable blocks
 M_SPECIAL_CEILING ; ? blocks
 M_SPECIAL_GROUND  ; spikes
-M_ICE             ; slip on if you're in puzzle mode. also thaws to fire
+M_ICE             ; thaws to fire
 M_BRICKS          ; breakable bricks
 M_LAVA            ;
 M_COLLECTIBLE     ; coins
@@ -39,7 +39,7 @@ M_MINETRACK       ; regular horizontal track
 
 M_SOLID_ALL =      %10000000 ; this block is solid on all sides
 M_SOLID_TOP =      %01000000 ; this block is solid only on the top
-M_POST_PROCESS =   %00100000 ; this block needs to be preprocessed
+M_POST_PROCESS =   %00100000 ; this block needs to be postprocessed
 M_BEHAVIOR =       %00011111 ; mask for the block's behavior only
 
 ; MetatilePalettes, MetatileFlags
