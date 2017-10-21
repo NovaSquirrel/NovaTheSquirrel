@@ -166,8 +166,7 @@ Loop:
     .ifndef DEBUG
       lda WorldTimes8
       ora CurLevel
-      tay
-      jsr IndexToBitmap
+      jsr IndexAToBitmap
       and LevelAvailable,y
       beq :+
     .endif
@@ -366,9 +365,9 @@ DrawLevelIcon:
 
   lda IconNum
   ora WorldTimes8
-  tay
-  jsr IndexToBitmap
+  jsr IndexAToBitmap
   pha ; save mask to reuse it
+  pha
   and LevelCleared,y
   cmp #1
   rol 2
@@ -376,6 +375,14 @@ DrawLevelIcon:
   and LevelAvailable,y
   cmp #1
   rol 2
+
+  pla ; if the collectible item was obtained, it overrides the icon
+  and LevelCleared,y
+  and CollectibleBits,y
+  beq :+
+    lda #2
+    sta 2
+  :
 
   lda 2 ; Tile is this value * 4 + $20 
   tay
@@ -416,7 +423,7 @@ DrawLevelIcon:
   rts
 
 IconPalettes:
-  .byt OAM_COLOR_3, OAM_COLOR_1, OAM_COLOR_3, OAM_COLOR_2
+  .byt OAM_COLOR_3, OAM_COLOR_1, OAM_COLOR_2, OAM_COLOR_2
 
 Lda1AsrAsrNegAdd1:
   lda 1

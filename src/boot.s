@@ -139,7 +139,7 @@ DoNothing:
   bne :-
 
   ; Initialize the savefile if it's corrupted
-  ldx #7
+  ldx #8
 : lda SaveTag,x
   cmp SaveTagString,x
   bne InitSave
@@ -168,7 +168,7 @@ InitSave:
   sta LevelAvailable+2
 
   ; Write tag to SRAM
-  ldx #7
+  ldx #8
 : lda SaveTagString,x
   sta SaveTag,x
   dex
@@ -203,7 +203,7 @@ NoInitSave:
   jmp JumpToLevelSelect
 .endproc
 
-SaveTagString: .byt "squirrel"
+SaveTagString: .byt "squirrel", 1
 
 .proc InitMapper
   ; UNROM needs no intialization

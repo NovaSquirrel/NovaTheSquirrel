@@ -1819,6 +1819,16 @@ AsrAsrAsr:
 .proc ObjectCollectible
   jsr EnemyHover
 
+  ; Flicker if the collectible was already gotten
+  ldy StartedLevelNumber
+  jsr IndexToBitmap
+  and CollectibleBits,y 
+  cmp #1 ; \  convert any nonzero to 1
+  lda #0 ;  |
+  adc #0 ; /
+  and retraces
+  bne DontDraw
+
   lda #0
   sta O_RAM::TILEBASE
   lda #$64
@@ -1830,6 +1840,12 @@ AsrAsrAsr:
     sta ObjectF1,x
     lda #SFX::COIN
     jsr PlaySound
+
+    ldy StartedLevelNumber
+    jsr IndexToBitmap
+    ora CollectibleBits,y 
+    sta CollectibleBits,y
   :
+DontDraw:
   rts
 .endproc

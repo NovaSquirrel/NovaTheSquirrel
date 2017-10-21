@@ -317,7 +317,6 @@ CurrentGameState:
   ; InventoryAmount is also used for flags when it's values above 99:
 INVENTORY_UNLIMITED = 255
 INVENTORY_EQUIPPED  = 254
-  ScriptFlags:        .res 32  ; flags for scripts. first two bytes reset when entering a level on the level select
 GameStateLen = 1+2+10+10+2 ; update if more stuff is added
   PlayerAbilityVar: .res 1
   PlayerNeedsGround: .res 1 ; sets to zero when the player touches the ground
@@ -366,14 +365,14 @@ GameStateLen = 1+2+10+10+2 ; update if more stuff is added
 
 .segment "SAVE"
 SaveStart:
-  SaveTag:            .res 8
+  SaveTag:            .res 9
 SavedGameState_Start: ; apparently this isn't actually used in one chunk?
   SavedAbility:       .res 1
   SavedCoins:         .res 2
   InventorySaved:     .res InventoryLen*2
-  ScriptFlagsSaved:   .res 32  ; version of the flags for scripts that are actually in the save file. 256 flags
   LevelCleared:       .res 8   ; 64 levels, bit = enabled
   LevelAvailable:     .res 8   ; 64 levels, bit = enabled
+  CollectibleBits:    .res 8   ; 64 levels, bit = gotten
 SavedOptions:
   SavedAcceleration:  .res 1
   SavedRunSpeed:      .res 1

@@ -633,7 +633,6 @@ ExitDoor:
   ; Copy some state back to the savefile
   jsr ConfiscateItems
   jsr CopyToSavedInventory
-  jsr SaveEventFlags
 
   jmp ShowPreLevelFar
 .endproc
@@ -665,15 +664,6 @@ BadItems:
   .byt InventoryItem::ARROW_LEFT_METAL, InventoryItem::ARROW_DOWN_METAL, InventoryItem::ARROW_RIGHT_METAL, InventoryItem::ARROW_UP_METAL
   .byt InventoryItem::WOOD_BOX, InventoryItem::METAL_BOX
   .byt 0
-.endproc
-
-.proc SaveEventFlags
-  ldy #31
-: lda ScriptFlags,y
-  sta ScriptFlagsSaved
-  dey
-  bpl :-
-  rts
 .endproc
 
 .proc TouchedSpringDown

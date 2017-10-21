@@ -585,6 +585,7 @@ ClearNameRightCustom = ClearNameRight::Custom
 ; locals: TempVal+1
 .proc IndexToBitmap
   tya
+UseA:
   pha
   lsr
   lsr
@@ -597,6 +598,7 @@ ClearNameRightCustom = ClearNameRight::Custom
   ldy TempVal+1
   rts
 .endproc
+IndexAToBitmap = IndexToBitmap::UseA
 
 ; sets the Y position for every sprite to an offscreen value
 .proc ClearOAM
@@ -1067,7 +1069,6 @@ Exit:
 
   jsr CopyFromSavedInventory
   lda #0
-  sta ScriptFlags+0 ; clear first 8 flags
   sta PuzzleMode
 
   ; Copy the level select number to the checkpoint number
@@ -1757,16 +1758,6 @@ Convert:
   inx
   cpx #4*8
   bne :-
-  rts
-.endproc
-
-; Checks if a given script flag is on or not
-; inputs: A (flag number)
-; outputs: Z flag (NOT of flag status)
-; locals: TempVal+1 (because of IndexToBitmap)
-.proc CheckScriptFlag
-  jsr IndexToBitmap
-  and ScriptFlags,y
   rts
 .endproc
 
