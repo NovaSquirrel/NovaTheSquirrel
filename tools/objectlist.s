@@ -64,6 +64,8 @@
   .byt GraphicsUpload::SP_WIND ;CLOUD_SWORD
   .byt GraphicsUpload::SP_EXPLODE ;FIREWORK_SHOT
   .byt 0 ;COLLECTIBLE
+  .byt GraphicsUpload::SP_MOLSNO ;MOLSNO
+  .byt GraphicsUpload::SP_MOLSNO ;MOLSNO_NOTE
 .endproc
 
 .proc ObjBehaviors
@@ -132,6 +134,8 @@
   .byt ObjBehavior::AUTO_REMOVE ;CLOUD_SWORD
   .byt ObjBehavior::AUTO_REMOVE ;FIREWORK_SHOT
   .byt ObjBehavior::AUTO_REMOVE ;COLLECTIBLE
+  .byt 0 ;MOLSNO
+  .byt ObjBehavior::AUTO_REMOVE ;MOLSNO_NOTE
 .endproc
 
 .proc ObjFlags
@@ -200,5 +204,7 @@
   .byt ObjFlag::SECONDARY ;CLOUD_SWORD
   .byt ObjFlag::SECONDARY ;FIREWORK_SHOT
   .byt ObjFlag::PRIMARY ;COLLECTIBLE
+  .byt ObjFlag::ESSENTIAL ;MOLSNO
+  .byt ObjFlag::PRIMARY ;MOLSNO_NOTE
 .endproc
 

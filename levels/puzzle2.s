@@ -193,7 +193,8 @@ puzzle2Data:
   LObj  LO::S_EXIT_DOOR,      0, 11
   LObj  LO::S_BG_GLASS_GRAY,  2, 4
   LObj  LO::S_BG_GLASS_GRAY,  2, 3
-  LObjN LO::R_GROUND,         3, 3, 3, 11
+  LObjN LO::R_COIN,           3, 2, 3, 0
+  LObjN LO::R_GROUND,         0, 3, 3, 11
   LObjN LO::R_GROUND,         4, 12, 5, 2
   LObj  LO::S_PRIZE,          1, 9
   LWriteCol InventoryItem::BIG_HEALTH_RESTORE

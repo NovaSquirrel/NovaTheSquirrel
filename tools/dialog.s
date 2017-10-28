@@ -633,6 +633,16 @@ PreLevelBoss2:
 ;  a new weapon this time!
 .byt " ", $be, $f9, "w", " ", $c8, "a", "p", $c2, " ", $99, " ", "t", "i", $d0, "!"
 .byt SCR::END_SCRIPT
+PreLevelBoss3:
+; Nova fights against MolSno
+.byt $a1, " ", "f", "i", $db, "t", $fb, "a", "g", "a", $d8, $de, " ", "M", "o", "l", "S", $d1
+.byt SCR::NEWLINE
+; for access to the F-a-ancy
+.byt $a5, " ", "a", "c", "c", "e", $f1, " ", $bb, $a2, " ", "F", "-", "a", "-", $ca, "c", "y"
+.byt SCR::NEWLINE
+; Cola.
+.byt "C", "o", "l", "a", "."
+.byt SCR::END_SCRIPT
 PreLevelFrozen:
 ; Nova enters the icy and
 .byt $a1, " ", $e6, $eb, "r", $fb, $a2, " ", "i", "c", $fe, $ca, "d"

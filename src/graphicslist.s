@@ -55,6 +55,7 @@ GraphicsList:
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPBoomerang,  >SPBoomerang
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGExposition, >BGExposition
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPMolSno,     >SPMolSno
+  .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemyMolSno, >PalEnemyMolSno
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)
 DoGraphicUpload:

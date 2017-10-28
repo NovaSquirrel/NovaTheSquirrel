@@ -185,6 +185,8 @@ Exit:
   .raddr ObjectCloudSword
   .raddr ObjectFireworkShot
   .raddr ObjectCollectible
+  .raddr ObjectMolSno
+  .raddr ObjectMolSnoNote
 .endproc
 
 ; other enemy attributes
@@ -1551,7 +1553,7 @@ Good:
 ; Randomly swaps two object slots, because the NES can only display 8 sprites per scanline
 ; and any past that aren't drawn. This way sprites are don't just drop out of visibility.
 .proc FlickerEnemies
-  rts
+;  rts
   lda retraces
   and #15
   tax

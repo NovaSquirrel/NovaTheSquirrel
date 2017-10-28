@@ -63,6 +63,9 @@ PalEnemy3:  .byt $61
 PalEnemy4:  .byt $61
             .byt $04, $14, $24
             .byt $11, $21, $31
+PalEnemyMolSno:
+            .byt $60
+            .byt $0f, $16, $30
 
 PalLevelSel: .byt $07
              .byt $30, $30, $30

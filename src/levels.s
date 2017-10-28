@@ -2,7 +2,7 @@ MasterLevelListL:
   .byt <intro_a, <grassy_a, <funkunderground, <sky, <water, <grassy2_a, <underground_2, <boss1
   .byt <glass_intro, <arrows, <burgers, <glasscave, <chiptall, <falldown, <glass_finale, <boss2
   .byt <frozen, <frozen2, <frozen3, <frozen4, <frozen5, <frozen6, <frozen7, <boss3
-  .byt <emptylevel
+  .byt <insane1, <emptylevel
 ; sub-levels
   .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden, <puzzle2
 
@@ -10,7 +10,7 @@ MasterLevelListH:
   .byt >intro_a, >grassy_a, >funkunderground, >sky, >water, >grassy2_a, >underground_2, >boss1
   .byt >glass_intro, >arrows, >burgers, >glasscave, >chiptall, >falldown, >glass_finale, >boss2
   .byt >frozen, >frozen2, >frozen3, >frozen4, >frozen5, >frozen6, >frozen7, >boss3
-  .byt >emptylevel
+  .byt >insane1, >emptylevel
 ; sub-levels
   .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden, >puzzle2
 
@@ -21,7 +21,7 @@ PUZ = 128 ; puzzle
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B1
   .byt B1,     B1,     B1|PUZ, B1,     B1|PUZ, B1,     B2|PUZ, B1
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B2
-  .byt B1
+  .byt B2,     B1
 ; sub-levels
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1
 .endproc
@@ -57,6 +57,7 @@ PUZ = 128 ; puzzle
   Boss3
 
 ; world 4
+  Insane1
   EmptyLevel
 
 ; sublevels
@@ -103,6 +104,8 @@ PUZ = 128 ; puzzle
   .addr PreLevelFrozen5
   .byt LevelId::Frozen6
   .addr PreLevelFrozen6
+  .byt LevelId::Boss3
+  .addr PreLevelBoss3
   .byt 255
 .endproc
 
@@ -112,6 +115,7 @@ PUZ = 128 ; puzzle
   .byt LevelId::GlassIntro
   .byt LevelId::Burgers
   .byt LevelId::Boss2
+  .byt LevelId::Boss3
   .byt 255
 .endproc
 .popseg

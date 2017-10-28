@@ -170,3 +170,20 @@
   jmp SetPRG
 .endproc
 
+; For calling code in Object Bank 2 from Object Bank 1.
+; input: A (<Routine), Y (>Routine)
+.proc InObjectBank2
+  sta 0             ; Store the address pointer
+  sty 1
+
+  lda #OBJECT_BANK2 ; Swap to bank 2
+  jsr _SetPRG
+
+  jsr Call          ; Call the routine
+
+  lda #OBJECT_BANK  ; Swap bank to bank 1
+  jmp _SetPRG
+
+Call:
+  jmp (0)
+.endproc

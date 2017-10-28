@@ -327,3 +327,13 @@ R COLLECTIBLE
 C .byt 0
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::PRIMARY
+
+R MOLSNO
+C .byt GraphicsUpload::SP_MOLSNO
+C .byt 0
+C .byt ObjFlag::ESSENTIAL
+
+R MOLSNO_NOTE
+C .byt GraphicsUpload::SP_MOLSNO
+C .byt ObjBehavior::AUTO_REMOVE
+C .byt ObjFlag::PRIMARY

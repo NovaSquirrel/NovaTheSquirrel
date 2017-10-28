@@ -24,6 +24,7 @@ LEVELS_BANK1 = $0
 LEVELS_BANK2 = $1
 LEVELS_BANK3 = $2
 LEVELS_BANK4 = $3
+OBJECT_BANK2 = $6
 DIALOG_BANK = $7
 MAINLOOP_BANK = $9
 OBJECT_BANK = $8
@@ -38,13 +39,13 @@ INVENTORY_BANK = $e
 THINFONT_BANK = $d
 OPTIONS_BANK = $e
 
-.segment "PRG6" ;
-.segment "PRG7" ;
 .segment "PRG8" ; object bank
 .include "object.s"
 .include "enemy.s"
 .include "drawsprite.s"
 .include "projectiles.s"
+.segment "PRG6" ;
+.include "object2.s"
 .segment "PRG9" ; main loop stuff
 .include "metatile.s"
 .include "../tools/metatilelist.s"

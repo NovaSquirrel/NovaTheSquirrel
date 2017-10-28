@@ -504,6 +504,14 @@ them then touch them to win.
  a new weapon this time!
 `end
 
+:PreLevelBoss3:
+Nova fights against MolSno
+`nl
+for access to the F-a-ancy
+`nl
+Cola.
+`end
+
 :PreLevelFrozen:
 Nova enters the icy and
 `nl

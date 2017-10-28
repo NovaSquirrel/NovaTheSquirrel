@@ -311,8 +311,8 @@ DidntSkipPlayerAndEnemies:
 
   lda NeedLevelRerender
   beq :+
-    lda #MAINLOOP_BANK
-    jsr SetPRG
+;    lda #MAINLOOP_BANK
+;    jsr SetPRG
     jsr WaitVblank
     jsr RenderLevelScreens
     lda #0

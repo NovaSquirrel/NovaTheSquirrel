@@ -274,13 +274,14 @@ frozen7Data:
   LObj  LO::S_MTRACK_SSR,      1, 4
   LObj  LO::S_MTRACK_SSR,      1, 5
   LObj  LO::S_MTRACK_SSR,      1, 6
-  LObjN LO::WIDE_3,           1, 6, 10, LN3::MINE_TRACKS
+  LObjN LO::WIDE_3,           1, 6, 5, LN3::MINE_TRACKS
   LObjN LO::R_MTRACK_SUPPORTSONLY,  0, 7, 0, 7
   LObjN LO::R_GROUND,         5, 7, 10, 7
   LObj  LO::S_PRIZE,          2, 3
   LWriteCol InventoryItem::HEALTH_RESTORE
   LObjN LO::WIDE_1,           1, 4, 0, LN1::SOLID_LEDGE
-  LObj  LO::S_EXIT_DOOR,      3, 5
+  LObj  LO::S_SOLID_BLOCK,    1, 6
+  LObj  LO::S_EXIT_DOOR,      2, 5
   LObj  LO::S_SIGNPOST,       2, 6
   LWriteCol <ColaSigns, >ColaSigns
   LObjN LO::WIDE_1,           1, 2, 0, LN1::FENCE
