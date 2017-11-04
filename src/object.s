@@ -1843,10 +1843,7 @@ AsrAsrAsr:
     lda #SFX::COIN
     jsr PlaySound
 
-    ldy StartedLevelNumber
-    jsr IndexToBitmap
-    ora CollectibleBits,y 
-    sta CollectibleBits,y
+    inc NeedCollectibleBitSet ; delayed
   :
 DontDraw:
   rts

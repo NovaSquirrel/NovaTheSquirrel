@@ -1040,6 +1040,15 @@ FC___LR:
   jsr SavePosition
   lsr PlayerOnLadder
 
+  lda NeedCollectibleBitSet ; delayed
+  beq :+
+    lsr NeedCollectibleBitSet
+    ldy StartedLevelNumber
+    jsr IndexToBitmap
+    ora CollectibleBits,y 
+    sta CollectibleBits,y
+  :
+
   ; Fall through a platform
   ldx BlockLL
   lda MetatileFlags,x

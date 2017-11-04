@@ -31,7 +31,7 @@
   random2:          .res 2 ; / combined to get a 2147385345 period randomizer
 
   ScrollX:          .res 2  ; Current X scroll value, using 12.4 coordinates for easy math with object coordinates
-  ScrollSpeed:      .res 2
+  ScrollSpeed:      .res 2  ; unused?
 
   LevelBlockPtr:    .res 2  ; written to by GetLevelColumnPtr
 
@@ -290,6 +290,7 @@ LevelZeroWhenLoad_Start:
   BackgroundMetatile:     .res 1
   CarryingSunKey:         .res 1
   CarryingPickupBlock:    .res 1
+  NeedCollectibleBitSet: .res 1
 
   ; ScreenFlags stores flags for each screen in the level; so far there's just one flag:
   SCREEN_BOUNDARY = 1 ; boundary on left side of screen
