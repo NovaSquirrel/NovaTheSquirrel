@@ -576,6 +576,14 @@ BackgroundRoutines:
   .raddr BGClouds
   .raddr BGCloudsEverywhere
   .raddr MakeFrozenBackground
+  .raddr BGStars
+
+BGStars:
+  lda #<StarryBackground
+  sta LevelRoutine+0
+  lda #>StarryBackground
+  sta LevelRoutine+1
+  rts
 
 MakeFrozenBackground:
   lda #Metatiles::FROZEN_BACKGROUND
@@ -961,7 +969,7 @@ RowChooseMask = 2
   lda #3
   bne NotCloudsEverywhere
 CloudsEverywhere:
-  lda #15 
+  lda #15
 NotCloudsEverywhere:
   sta RowChooseMask
 

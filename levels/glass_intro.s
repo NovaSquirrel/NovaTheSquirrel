@@ -20,6 +20,7 @@ glass_intro:
 
 glass_introData:
   .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <AfterFirstBattle, >AfterFirstBattle
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 17
   LObjN LO::R_BG_GLASS_GREEN, 2, 5, 10, 0
   LObj  LO::S_SIGNPOST,       5, 12

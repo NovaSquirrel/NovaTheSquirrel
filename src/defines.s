@@ -571,6 +571,7 @@ LSpecialCmd = $f7
   CLOUDS
   CLOUDS_EVERYWHERE
   FROZEN_CAVE
+  STARS
 .endenum
 
 .macro ThinFontText String

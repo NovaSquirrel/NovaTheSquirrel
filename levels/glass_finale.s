@@ -20,6 +20,7 @@ glass_finale:
 
 glass_finaleData:
   .byt LSpecialCmd, LevelSpecialConfig::PUZZLE_MODE, AbilityType::NONE, InventoryItem::ARROW_UP, 128|15, InventoryItem::HEALTH_RESTORE, 128|4, $00
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
   LObjN LO::R_GROUND,         0, 13, 10, 1
   LObj  LO::S_SIGNPOST,       3, 12
   LWriteCol <HintUpArrow, >HintUpArrow

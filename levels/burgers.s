@@ -21,6 +21,7 @@ burgers:
 burgersData:
   .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <MeetLia, >MeetLia
   .byt LSpecialCmd, LevelSpecialConfig::PUZZLE_MODE, AbilityType::NONE, $00
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
   LObjN LO::R_GROUND,         0, 8, 4, 4
   LObjN LO::R_GROUND,         0, 13, 11, 1
   LObj  LO::S_BG_GLASS_BLUE,  4, 5

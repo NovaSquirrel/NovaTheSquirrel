@@ -402,6 +402,12 @@ DidntSkipPlayerAndEnemies:
     bpl :-
   :
 
+  lda LevelRoutine+1
+  beq :+
+    jmp (LevelRoutine)
+  :
+LevelRoutineDone:
+
 .ifdef CPU_METER
   lda #OBJ_ON | BG_ON
   sta PPUMASK
@@ -664,4 +670,61 @@ PlaceableMetatiles:
   .byt Metatiles::WOOD_ARROW_LEFT, Metatiles::WOOD_ARROW_DOWN, Metatiles::WOOD_ARROW_UP, Metatiles::WOOD_ARROW_RIGHT
   .byt Metatiles::METAL_ARROW_LEFT, Metatiles::METAL_ARROW_DOWN, Metatiles::METAL_ARROW_UP, Metatiles::METAL_ARROW_RIGHT
   .byt Metatiles::WOOD_CRATE, Metatiles::METAL_CRATE
+.endproc
+
+.proc StarryBackground
+  lda PlaceBlockInLevel
+  bne Skip
+  lda OamPtr
+  cmp #$fd
+  bcc :+
+Skip:
+    jmp MainLoop::LevelRoutineDone
+  :
+
+  ; Get scroll position, shifted
+  lda ScrollX+1
+  sta 0
+  lda ScrollX+0
+  lsr 0
+  ror
+  lsr 0
+  ror
+  lsr 0
+  ror
+  lsr 0
+  ror
+  lsr 0
+  ror
+  lsr 0
+  ror
+  neg ; Move opposite the scroll amount
+  sta 0
+
+  ldy #3
+  ldx OamPtr
+Loop:
+  lda #$50
+  sta OAM_TILE,x
+  tya
+  ora #OAM_PRIORITY
+  sta OAM_ATTR,x
+  lda 0
+  add StarXOffset,y
+  sta OAM_XPOS,x
+  lda StarYPos,y
+  sta OAM_YPOS,x
+  inx
+  inx
+  inx
+  inx
+  dey
+  bpl Loop
+  stx OamPtr
+
+  jmp MainLoop::LevelRoutineDone
+StarXOffset:
+  .byt 0, 64, 128, 192
+StarYPos:
+  .byt 8, 64+8, 128+8, 192+8
 .endproc

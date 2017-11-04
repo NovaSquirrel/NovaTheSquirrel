@@ -20,6 +20,7 @@ boss2:
 
 boss2Data:
   .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <SmiloidAtBummerClub, >SmiloidAtBummerClub
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $02, LevelBackgroundId::STARS
   LSetX 0
   LWriteCol 11, 33
   LObjN LO::R_SOLID_BLOCK,    2, 4, 0, 8

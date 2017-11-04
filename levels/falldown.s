@@ -35,6 +35,7 @@ falldown:
   .byt $00, $f0 ; link
 
 falldownData:
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
   LObjN LO::R_GROUND,         0, 4, 4, 8
   LObjN LO::R_GROUND,         0, 13, 6, 1
   LObjN LO::WIDE_1,           5, 4, 4, LN1::SOLID_LEDGE

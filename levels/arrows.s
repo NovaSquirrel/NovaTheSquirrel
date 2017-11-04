@@ -19,6 +19,7 @@ arrows:
   .byt $00, $00 ; boundaries
 
 arrowsData:
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
   LObjN LO::R_GROUND,         0, 6, 7, 8
   LObjN LO::R_BG_GLASS_GRAY,  2, 1, 8, 0
   LObjN LO::R_BG_GLASS_GRAY,  0, 2, 0, 3

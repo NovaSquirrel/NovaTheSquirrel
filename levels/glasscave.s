@@ -19,6 +19,7 @@ glasscave:
   .byt $00, $00 ; boundaries
 
 glasscaveData:
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
   LObjN LO::R_FG_GLASS_BLUE,  0, 0, 4, 8
   LObjN LO::R_GROUND,         0, 13, 15, 1
   LObjN LO::R_FG_GLASS_BLUE,  5, 0, 6, 5
