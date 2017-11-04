@@ -571,6 +571,8 @@ EnemyBumpBlacklistSize = 3
   rts
 .endproc
 
+.pushseg
+.code
 ; Least significant bit in an object's primary state byte is direction
 ; so changing from right to left and vice versa is just an exclusive or
 .proc EnemyTurnAround
@@ -581,6 +583,7 @@ EnemyBumpBlacklistSize = 3
 No:
   rts
 .endproc
+.popseg
 
 ; Counts the amount of a certain object that currently exists
 ; inputs: A (object type * 2)
@@ -1200,6 +1203,8 @@ EnemyPlayerTouchCustomSize = EnemyPlayerTouch::AfterHeightWidth
   jmp EnemyPlayerTouch::AfterHeightWidth
 .endproc
 
+.pushseg
+.code
 ; Makes the enemy walk forward and checks for collision
 ; input: A (walking distance), X (object slot)
 ; output: carry (bumped into something), 0 (block that was bumped into)
@@ -1269,6 +1274,7 @@ ForceSolid:
   clc
   rts
 .endproc
+.popseg
 .proc EnemyWalkEvenIfStunned
   sta EnemyWalk::WalkDistance
   jmp EnemyWalk::Yes
