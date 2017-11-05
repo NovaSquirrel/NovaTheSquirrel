@@ -576,14 +576,42 @@ SpinnerFrame2:
 
 .proc ObjectOwl
   jsr EnemyFall
+
+  lda ObjectF3,x
+  bne FlyingOwl
   lda #$10
   jsr EnemyWalkOnPlatform
+Display:
   lda retraces
   and #4
   add #$18
   ldy #OAM_COLOR_2
   jsr DispEnemyWide
   jmp EnemyPlayerTouchHurt
+
+FlyingOwl:
+  lda ObjectF2,x
+  bne Display
+  
+  lda #$10
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+
+  lda retraces
+  and #15
+  bne :+
+    jsr EnemyLookAtPlayer
+
+    lda PlayerPYH
+    cmp ObjectPYH,x
+    bcs :+
+    lda #<(-$040)
+    sta ObjectVYL,x
+    lda #>(-$040)
+    sta ObjectVYH,x
+  :
+
+  jmp Display
 .endproc
 
 .proc ObjectKing
