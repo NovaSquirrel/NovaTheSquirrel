@@ -676,7 +676,7 @@ PlaceableMetatiles:
   lda PlaceBlockInLevel
   bne Skip
   lda OamPtr
-  cmp #$fd
+  cmp #255-(8*4)
   bcc :+
 Skip:
     jmp MainLoop::LevelRoutineDone
@@ -701,7 +701,7 @@ Skip:
   neg ; Move opposite the scroll amount
   sta 0
 
-  ldy #3
+  ldy #7
   ldx OamPtr
 Loop:
   lda #$50
@@ -724,7 +724,9 @@ Loop:
 
   jmp MainLoop::LevelRoutineDone
 StarXOffset:
-  .byt 0, 64, 128, 192
+  .lobytes 0, 64, 128, 192
+  .lobytes 0+128, 64+128, 128+128, 192+128
 StarYPos:
-  .byt 8, 64+8, 128+8, 192+8
+  .lobytes 8, 64+8, 128+8, 192+8
+  .lobytes 8+8, 64+8+8, 128+8+8, 192+8+8
 .endproc
