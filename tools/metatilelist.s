@@ -532,9 +532,9 @@ M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
   .byt $3f ;GRAVEL
   .byt $5c ;ICE
   .byt $3f ;PATH_MARKER
-  .byt $c0 ;CLOUD_L
-  .byt $c2 ;CLOUD_M
-  .byt $c4 ;CLOUD_R
+  .byt $5b ;CLOUD_L
+  .byt $5d ;CLOUD_M
+  .byt $5f ;CLOUD_R
   .byt $ce ;BG_FENCE
   .byt $3f ;BG_TALL_GRASS
   .byt $cc ;BG_FLOWER_1
@@ -741,9 +741,9 @@ M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
   .byt $bf ;GRAVEL
   .byt $5e ;ICE
   .byt $3f ;PATH_MARKER
-  .byt $d0 ;CLOUD_L
-  .byt $d1 ;CLOUD_M
-  .byt $d4 ;CLOUD_R
+  .byt $6b ;CLOUD_L
+  .byt $6c ;CLOUD_M
+  .byt $6f ;CLOUD_R
   .byt $de ;BG_FENCE
   .byt $ca ;BG_TALL_GRASS
   .byt $da ;BG_FLOWER_1
@@ -950,8 +950,8 @@ M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
   .byt $3f ;GRAVEL
   .byt $5d ;ICE
   .byt $3f ;PATH_MARKER
-  .byt $c1 ;CLOUD_L
-  .byt $c3 ;CLOUD_M
+  .byt $5c ;CLOUD_L
+  .byt $5e ;CLOUD_M
   .byt $3f ;CLOUD_R
   .byt $cf ;BG_FENCE
   .byt $3f ;BG_TALL_GRASS
@@ -1159,8 +1159,8 @@ M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
   .byt $bf ;GRAVEL
   .byt $5f ;ICE
   .byt $3f ;PATH_MARKER
-  .byt $d1 ;CLOUD_L
-  .byt $d1 ;CLOUD_M
+  .byt $6c ;CLOUD_L
+  .byt $6c ;CLOUD_M
   .byt $3f ;CLOUD_R
   .byt $df ;BG_FENCE
   .byt $cb ;BG_TALL_GRASS
