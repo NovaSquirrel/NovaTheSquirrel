@@ -19,7 +19,6 @@ grassy_b:
   .byt $00, $02 ; boundaries
 
 grassy_bData:
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 55
   LObj  LO::S_FLOWER,         7, 12
   LObj  LO::S_FLOWER,         3, 12
@@ -164,6 +163,7 @@ grassy_bData:
   LObj  LO::S_SOLID_BLOCK,    1, 10
   LObjN LO::R_COIN,           4, 9, 3, 0
   LObj  LO::S_EXIT_DOOR,      6, 9
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LFinished
 
 grassy_bSprite:

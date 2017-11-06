@@ -19,7 +19,6 @@ garden:
   .byt $01, $00 ; boundaries
 
 gardenData:
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $07, LevelBackgroundId::CLOUDS
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 19
   LObjN LO::WIDE_3,           11, 12, 3, LN3::WHITEFENCE
   LObjN LO::WIDE_2,           4, 10, 2, LN2::BUSH
@@ -93,6 +92,7 @@ gardenData:
   LObjN LO::WIDE_2,           3, 10, 1, LN2::FLOWER
   LObj  LO::S_DOOR,           2, 9
   LWriteCol $21, LevelId::IntroB
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $07, LevelBackgroundId::CLOUDS
   LFinished
 
 gardenSprite:

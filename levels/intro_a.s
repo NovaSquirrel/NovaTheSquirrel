@@ -19,7 +19,6 @@ intro_a:
 
 intro_aData:
   .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <Intro, >Intro
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $04, LevelBackgroundId::CLOUDS
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 79
   LObj  LO::S_COIN,           6, 11
   LObj  LO::S_COIN,           2, 10
@@ -72,6 +71,7 @@ intro_aData:
   LWriteCol <Tutorial5, >Tutorial5
   LObj  LO::S_DOOR,           2, 6
   LWriteCol $21, LevelId::Garden
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $04, LevelBackgroundId::CLOUDS
   LFinished
 
 intro_aSprite:

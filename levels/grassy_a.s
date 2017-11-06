@@ -22,7 +22,6 @@ grassy_a:
   .byt $07, $80 ; link
 
 grassy_aData:
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $07, LevelBackgroundId::CLOUDS
   LObjN LO::R_GROUND,         7, 6, 7, 2
   LObjN LO::WIDE_2,           1, 5, 5, LN2::BUSH
   LObjN LO::R_GROUND,         0, 9, 9, 3
@@ -124,6 +123,7 @@ grassy_aData:
   LObjN LO::RECT_1,           3, 0, 5, LN1::GROUND, 16
   LObj  LO::S_DOOR,           7, 11
   LWriteCol $21, LevelId::GrassyB
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $07, LevelBackgroundId::CLOUDS
   LFinished
 
 grassy_aSprite:

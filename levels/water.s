@@ -20,7 +20,6 @@ water:
   .byt $00, $00 ; boundaries
 
 waterData:
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LObjN LO::R_GROUND,         0, 13, 7, 1
   LObjN LO::WIDE_1,           6, 12, 6, LN1::TALLGRASS
   LObjN LO::R_SAND,           2, 13, 11, 1
@@ -183,6 +182,7 @@ waterData:
   LObjN LO::R_GROUND,         2, 6, 4, 6
   LObj  LO::S_EXIT_DOOR,      2, 4
   LObjN LO::R_GROUND,         3, 2, 2, 12
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LFinished
 
 waterSprite:

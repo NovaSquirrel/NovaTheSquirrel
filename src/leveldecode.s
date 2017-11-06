@@ -965,6 +965,7 @@ StartPage = 0
 EndPage   = 1
 Column    = 0
 RowChooseMask = 2
+AttemptsLeft = 3
 
   lda #3
   bne NotCloudsEverywhere
@@ -973,6 +974,7 @@ CloudsEverywhere:
 NotCloudsEverywhere:
   sta RowChooseMask
 
+  ; Multiply start page and end page out into actual column numbers
   lda StartPage
   asl
   asl
@@ -986,6 +988,7 @@ NotCloudsEverywhere:
   asl
   sta EndPage
 Loop:
+  ; Pick a random column relative to this one
   jsr huge_rand
   and #3
   add #9
@@ -999,6 +1002,10 @@ Loop:
   bcs Exit
   sta Column
 
+  ; Attempt to place the cloud down
+  lda #4
+  sta AttemptsLeft
+TryAgain:
   lda Column
   jsr GetLevelColumnPtr
 
@@ -1008,22 +1015,35 @@ Loop:
   and RowChooseMask
   tay
 
-  ; insert the cloud metatiles
+  ; Test to see if this column and row works
   lda (LevelBlockPtr),y
-  bne :+
-  lda #Metatiles::CLOUD_L
-  sta (LevelBlockPtr),y
-: jsr NextColumn
+  bne Bad
+  jsr NextColumn
   lda (LevelBlockPtr),y
-  bne :+
-  lda #Metatiles::CLOUD_M
-  sta (LevelBlockPtr),y
-: jsr NextColumn
+  bne Bad
+  jsr NextColumn
   lda (LevelBlockPtr),y
-  bne :+
+  bne Bad
+  ; Good, so go backwards and put those back in!
   lda #Metatiles::CLOUD_R
   sta (LevelBlockPtr),y
-: bne Loop
+  jsr PrevColumn
+  lda #Metatiles::CLOUD_M
+  sta (LevelBlockPtr),y
+  jsr PrevColumn
+  lda #Metatiles::CLOUD_L
+  sta (LevelBlockPtr),y
+  jmp Loop
+
+Bad:
+  inc Column
+  lda Column
+  cmp #$f8
+  bcc Exit
+
+  dec AttemptsLeft
+  bne TryAgain
+  jmp Loop
 
 Exit:
   rts
@@ -1031,6 +1051,11 @@ Exit:
 NextColumn:
   tya
   add #16
+  tay
+  rts
+PrevColumn:
+  tya
+  sub #16
   tay
   rts
 .endproc

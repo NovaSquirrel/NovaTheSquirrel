@@ -19,7 +19,6 @@ intro_b:
   .byt $00, $04 ; boundaries
 
 intro_bData:
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0d, LevelBackgroundId::CLOUDS
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 31
   LObjN LO::WIDE_1,           2, 12, 3, LN1::TALLGRASS
   LObjN LO::TALL_2,           4, 10, 2, LN2::TRUNK_L
@@ -170,6 +169,7 @@ intro_bData:
   LObj  LO::S_PRIZE,          4, 7
   LObj  LO::S_SPRING,         0, 12
   LObj  LO::S_EXIT_DOOR,      7, 11
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0d, LevelBackgroundId::CLOUDS
   LFinished
 
 intro_bSprite:

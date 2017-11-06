@@ -19,7 +19,6 @@ underground_2:
   .byt $00, $00 ; boundaries
 
 underground_2Data:
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LObjN LO::R_GROUND,         0, 13, 10, 1
   LObjN LO::WIDE_1,           6, 3, 3, LN1::SOLID_LEDGE
   LObjN LO::WIDE_2,           0, 12, 3, LN2::BUSH
@@ -194,6 +193,7 @@ underground_2Data:
   LObj  LO::S_EXIT_DOOR,      12, 6
   LObjN LO::R_COIN,           2, 6, 1, 1
   LObjN LO::R_ROCK,           3, 5, 2, 2
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LFinished
 
 underground_2Sprite:

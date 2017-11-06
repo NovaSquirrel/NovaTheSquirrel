@@ -19,7 +19,6 @@ sky:
   .byt $00, $00 ; boundaries
 
 skyData:
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LObjN LO::R_GROUND,         4, 7, 3, 7
   LObjN LO::WIDE_1,           6, 8, 1, LN1::SOLID_LEDGE
   LObjN LO::R_COIN,           3, 9, 2, 0
@@ -175,6 +174,7 @@ skyData:
   LObjN LO::TALL_2,           3, 9, 2, LN2::TRUNK_L
   LObjN LO::R_COIN,           2, 11, 2, 0
   LObj  LO::S_EXIT_DOOR,      4, 10
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LFinished
 
 skySprite:
