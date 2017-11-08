@@ -38,6 +38,7 @@ ENEMY_STATE_INIT    = 128|4
   GET_SHOT        = $02
   AUTO_RESET      = $04
   WAIT_UNTIL_NEAR = $08
+  BUMP_ON_CEILING = $10
 .endenum
 
 ; object flags
@@ -78,6 +79,10 @@ Loop:
   lsr O_RAM::OBJ_FLAG ; wait until near to activate
   bcc :+
     jsr EnemyActivateIfNear
+  :
+  lsr O_RAM::OBJ_FLAG ; wait until near to activate
+  bcc :+
+    jsr EnemyBumpOnCeiling
   :
   ; If an object is in an init state, reset it
   lda ObjectF2,x
@@ -1303,8 +1308,7 @@ SkipGravity:
   lda ObjectPYH,x
   adc ObjectVYH,x
   sta ObjectPYH,x
-
-  jmp EnemyBumpOnCeiling
+  rts
 .endproc
 
 .proc EnemyDecTimer
