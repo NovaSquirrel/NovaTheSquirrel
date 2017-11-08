@@ -871,6 +871,15 @@ Exit:
 .endproc
 
 .proc TouchedWoodCrate
+  ; Don't trigger if there's a crate above this one
+  dey
+  lda (LevelBlockPtr),y
+  iny
+  cmp #Metatiles::WOOD_CRATE
+  bne :+
+    rts
+  :
+
   lda #4
   sta 0 ; delay time
   lda BackgroundMetatile

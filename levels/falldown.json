@@ -2026,13 +2026,6 @@
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
-				}, {
-					"Id":	"BACKGROUND",
-					"X":	0,
-					"Y":	0,
-					"W":	1,
-					"H":	1,
-					"Extra":	"STARS"
 				}]
 		}]
 }

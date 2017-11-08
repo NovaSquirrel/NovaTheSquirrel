@@ -290,8 +290,9 @@ LevelZeroWhenLoad_Start:
   BackgroundMetatile:     .res 1
   CarryingSunKey:         .res 1
   CarryingPickupBlock:    .res 1
-  LevelRoutine:           .res 2 ; called once a frame
-  NeedCollectibleBitSet: .res 1
+  LevelRoutine:           .res 2 ; called once a frame, very important that it doesn't cross a page boundary
+                                 ; to do: actually verify that it doesn't?
+  NeedCollectibleBitSet:  .res 1
 
   ; ScreenFlags stores flags for each screen in the level; so far there's just one flag:
   SCREEN_BOUNDARY = 1 ; boundary on left side of screen

@@ -602,7 +602,9 @@ FlyingOwl:
   bne :+
     jsr EnemyLookAtPlayer
 
+    ; Fly up
     lda PlayerPYH
+    bmi :+
     cmp ObjectPYH,x
     bcs :+
     lda #<(-$040)
@@ -1030,6 +1032,20 @@ MakeIce:
 .endproc
 
 .proc ObjectThwomp
+  lda ObjectF3,x ; if behavior set to 1, home in on player
+  beq :+
+  lda ObjectF2,x
+  bne :+
+    lda #$10
+    jsr EnemyWalk
+    jsr EnemyAutoBump
+
+    jsr huge_rand
+    and #7
+    bne :+
+    jsr EnemyLookAtPlayer
+  :
+
   lda ObjectF2,x
   cmp #ENEMY_STATE_ACTIVE
   bne :+
@@ -1047,7 +1063,7 @@ MakeIce:
     sta ObjectPYL,x
     subcarryx ObjectPYH
 
-    ; Check for collision
+    ; Check for collision with the ceiling
     ldy ObjectPYH,x
     lda ObjectPXH,x
     jsr GetLevelColumnPtr
@@ -1063,10 +1079,11 @@ MakeIce:
 
   lda ObjectF2,x
   bne :+
-  lda ObjectPXH,x
+  lda ObjectPXH,x ; Player within 4 blocks horizontally
   sub PlayerPXH
   abs
-  cmp #4
+  ldy ObjectF3,x           ; smaller distance if on homing mode
+  cmp DistanceToTrigger,y
   bcs :+
     lda #ENEMY_STATE_ACTIVE
     sta ObjectF2,x
@@ -1081,6 +1098,9 @@ MakeIce:
   ldy #OAM_COLOR_2
   jsr DispEnemyWide
   jmp EnemyPlayerTouchHurt
+
+DistanceToTrigger:
+  .byt 4, 2
 .endproc
 
 ; Hover the cannon and control logic relating to when to shoot

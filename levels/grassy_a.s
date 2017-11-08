@@ -22,8 +22,10 @@ grassy_a:
   .byt $07, $80 ; link
 
 grassy_aData:
-  LObjN LO::R_GROUND,         7, 6, 7, 2
-  LObjN LO::WIDE_2,           1, 5, 5, LN2::BUSH
+  LObjN LO::R_SOLID_BLOCK,    7, 0, 0, 5
+  LObjN LO::R_GROUND,         0, 6, 7, 2
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 2
+  LObjN LO::WIDE_2,           0, 5, 5, LN2::BUSH
   LObjN LO::R_GROUND,         0, 9, 9, 3
   LObjN LO::R_GROUND,         2, 13, 10, 1
   LObj  LO::S_SKWIRLBUSH,     8, 12

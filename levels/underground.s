@@ -18,7 +18,6 @@ underground:
   .byt $00, $0c ; boundaries
 
 undergroundData:
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LObjN LO::RECT_1,           0, 10, 4, LN1::GROUND, 19
   LObjN LO::R_BRICK,          5, 1, 9, 5
   LObjN LO::WIDE_1,           0, 9, 9, LN1::TALLGRASS
@@ -156,6 +155,7 @@ undergroundData:
   LObj  LO::S_PRIZE,          2, 10
   LWriteCol InventoryItem::HEALTH_RESTORE
   LObjN LO::R_GROUND,         2, 8, 1, 4
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LFinished
 
 undergroundSprite:

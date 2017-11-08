@@ -686,17 +686,17 @@ Skip:
   lda ScrollX+1
   sta 0
   lda ScrollX+0
-  lsr 0
+  lsr 0 ; aaaaaaaa bbbbbbbb
   ror
-  lsr 0
+  lsr 0 ; 0aaaaaaa abbbbbbb
   ror
-  lsr 0
+  lsr 0 ; 00aaaaaa aabbbbbb
   ror
-  lsr 0
+  lsr 0 ; 000aaaaa aaabbbbb
   ror
-  lsr 0
+  lsr 0 ; 0000aaaa aaaabbbb
   ror
-  lsr 0
+  lsr 0 ; 00000aaa aaaaabbb - Scroll at half normal speed
   ror
   neg ; Move opposite the scroll amount
   sta 0

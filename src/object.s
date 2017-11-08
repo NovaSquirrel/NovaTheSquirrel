@@ -34,10 +34,10 @@ ENEMY_STATE_INIT    = 128|4
 
 ; common object behaviors that get put in ORAM::OBJ_FLAG
 .enum ObjBehavior
-  AUTO_REMOVE     = $1
-  GET_SHOT        = $2
-  AUTO_RESET      = $4
-  WAIT_UNTIL_NEAR = $8
+  AUTO_REMOVE     = $01
+  GET_SHOT        = $02
+  AUTO_RESET      = $04
+  WAIT_UNTIL_NEAR = $08
 .endenum
 
 ; object flags
@@ -1303,7 +1303,8 @@ SkipGravity:
   lda ObjectPYH,x
   adc ObjectVYH,x
   sta ObjectPYH,x
-  rts
+
+  jmp EnemyBumpOnCeiling
 .endproc
 
 .proc EnemyDecTimer
@@ -1852,5 +1853,23 @@ AsrAsrAsr:
     inc NeedCollectibleBitSet ; delayed
   :
 DontDraw:
+  rts
+.endproc
+
+.proc EnemyBumpOnCeiling
+  ldy ObjectPYH,x
+  lda ObjectPYL,x
+  add #$80
+  lda ObjectPXH,x
+  adc #0
+  jsr GetLevelColumnPtr
+  tay
+  lda MetatileFlags,y
+  bpl :+
+    lda #<($30)
+    sta ObjectVYL,x
+    lda #>($30)
+    sta ObjectVYH,x
+  :
   rts
 .endproc
