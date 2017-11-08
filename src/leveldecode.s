@@ -998,7 +998,8 @@ Loop:
   beq :+
   cmp EndPage
   bcs Exit
-: cmp #256-3-9 ; ??
+:
+  cmp #256-3-9 ; ??
   bcs Exit
   sta Column
 
@@ -1039,7 +1040,7 @@ Bad:
   inc Column
   lda Column
   cmp #$f8
-  bcc Exit
+  bcs Exit
 
   dec AttemptsLeft
   bne TryAgain
