@@ -659,17 +659,22 @@ PlayerSymbolXOffset:
 ; block, spring, arrow left/down/up/right, arrow metal left/down/up/right, wood box, metal box
 PlaceableTiles0:
   .byt $0c, $3f, $c0, $c4, $c8, $cc, $c0, $c4, $c8, $cc, $d4, $d4
+  .byt $3f, $3f, $3f
 PlaceableTiles1:
   .byt $0d, $18, $c1, $c5, $c9, $cd, $c1, $c5, $c9, $cd, $d5, $d5
+  .byt $e1, $f2, $ef
 PlaceableTiles2:
   .byt $0e, $3f, $c2, $c6, $ca, $ce, $c2, $c6, $ca, $ce, $d6, $d6
+  .byt $3f, $3f, $3f
 PlaceableTiles3:
   .byt $0f, $19, $c3, $c7, $cb, $cf, $c3, $c7, $cb, $cf, $d7, $d7
+  .byt $e1, $f4, $f1
 PlaceableMetatiles:
   .byt Metatiles::SOLID_BLOCK, Metatiles::SPRING
   .byt Metatiles::WOOD_ARROW_LEFT, Metatiles::WOOD_ARROW_DOWN, Metatiles::WOOD_ARROW_UP, Metatiles::WOOD_ARROW_RIGHT
   .byt Metatiles::METAL_ARROW_LEFT, Metatiles::METAL_ARROW_DOWN, Metatiles::METAL_ARROW_UP, Metatiles::METAL_ARROW_RIGHT
   .byt Metatiles::WOOD_CRATE, Metatiles::METAL_CRATE
+  .byt Metatiles::MINE_TRACK, Metatiles::MINE_TRACK_UP, Metatiles::MINE_TRACK_BUMP
 .endproc
 
 .proc StarryBackground

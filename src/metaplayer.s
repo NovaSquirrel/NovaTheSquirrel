@@ -658,11 +658,11 @@ ItemIsGood:
 BadItems:
   .byt InventoryItem::RED_KEY, InventoryItem::GREEN_KEY, InventoryItem::BLUE_KEY
   .byt InventoryItem::FIRE_BOOTS, InventoryItem::SUCTION_BOOTS, InventoryItem::ICE_SKATES, InventoryItem::FLIPPERS
-  .byt InventoryItem::ALWAYS_JUMPING
   .byt InventoryItem::BLOCK, InventoryItem::SPRING
   .byt InventoryItem::ARROW_LEFT, InventoryItem::ARROW_DOWN, InventoryItem::ARROW_RIGHT, InventoryItem::ARROW_UP
   .byt InventoryItem::ARROW_LEFT_METAL, InventoryItem::ARROW_DOWN_METAL, InventoryItem::ARROW_RIGHT_METAL, InventoryItem::ARROW_UP_METAL
   .byt InventoryItem::WOOD_BOX, InventoryItem::METAL_BOX
+  .byt InventoryItem::MINE_TRACK, InventoryItem::MINE_TRACK_JUMP, InventoryItem::MINE_TRACK_BUMP
   .byt 0
 .endproc
 

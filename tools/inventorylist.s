@@ -8,8 +8,6 @@
   .byt InventoryIcon::SHIELD ;SUCTION_BOOTS
   .byt InventoryIcon::SHIELD ;ICE_SKATES
   .byt InventoryIcon::SHIELD ;FLIPPERS
-  .byt InventoryIcon::PANTS ;NUCLEAR_PANTS
-  .byt InventoryIcon::EFFECT ;ALWAYS_JUMPING
   .byt InventoryIcon::ABILITY ;ABILITY_BLASTER
   .byt InventoryIcon::ABILITY ;ABILITY_GLIDER
   .byt InventoryIcon::ABILITY ;ABILITY_BOMB
@@ -38,6 +36,9 @@
   .byt InventoryIcon::PLACEABLE ;ARROW_RIGHT_METAL
   .byt InventoryIcon::PLACEABLE ;WOOD_BOX
   .byt InventoryIcon::PLACEABLE ;METAL_BOX
+  .byt InventoryIcon::PLACEABLE ;MINE_TRACK
+  .byt InventoryIcon::PLACEABLE ;MINE_TRACK_JUMP
+  .byt InventoryIcon::PLACEABLE ;MINE_TRACK_BUMP
   .byt InventoryIcon::NOTHING ;ABILITY_BACKUP
   .byt InventoryIcon::BULLET ;AUTO_BALLOON
 .endproc
@@ -52,8 +53,6 @@
   .byt <NameSuctionBoots ;SUCTION_BOOTS
   .byt <NameIceSkates ;ICE_SKATES
   .byt <NameFlippers ;FLIPPERS
-  .byt <NameNuclearPowerPants ;NUCLEAR_PANTS
-  .byt <NameAlwaysJumping ;ALWAYS_JUMPING
   .byt <NameBlaster ;ABILITY_BLASTER
   .byt <NameGlider ;ABILITY_GLIDER
   .byt <NameBomb ;ABILITY_BOMB
@@ -82,6 +81,9 @@
   .byt <NameArrowRightMetal ;ARROW_RIGHT_METAL
   .byt <NameWoodBox ;WOOD_BOX
   .byt <NameMetalBox ;METAL_BOX
+  .byt <NameMineTrack ;MINE_TRACK
+  .byt <NameMineTrackJump ;MINE_TRACK_JUMP
+  .byt <NameMineTrackBump ;MINE_TRACK_BUMP
   .byt <NameEmpty ;ABILITY_BACKUP
   .byt <NameAutoBalloon ;AUTO_BALLOON
 .endproc
@@ -96,8 +98,6 @@
   .byt >NameSuctionBoots ;SUCTION_BOOTS
   .byt >NameIceSkates ;ICE_SKATES
   .byt >NameFlippers ;FLIPPERS
-  .byt >NameNuclearPowerPants ;NUCLEAR_PANTS
-  .byt >NameAlwaysJumping ;ALWAYS_JUMPING
   .byt >NameBlaster ;ABILITY_BLASTER
   .byt >NameGlider ;ABILITY_GLIDER
   .byt >NameBomb ;ABILITY_BOMB
@@ -126,6 +126,9 @@
   .byt >NameArrowRightMetal ;ARROW_RIGHT_METAL
   .byt >NameWoodBox ;WOOD_BOX
   .byt >NameMetalBox ;METAL_BOX
+  .byt >NameMineTrack ;MINE_TRACK
+  .byt >NameMineTrackJump ;MINE_TRACK_JUMP
+  .byt >NameMineTrackBump ;MINE_TRACK_BUMP
   .byt >NameEmpty ;ABILITY_BACKUP
   .byt >NameAutoBalloon ;AUTO_BALLOON
 .endproc
@@ -140,8 +143,6 @@
   .byt <(DoNothing-1) ;SUCTION_BOOTS
   .byt <(DoNothing-1) ;ICE_SKATES
   .byt <(DoNothing-1) ;FLIPPERS
-  .byt <(DoNothing-1) ;NUCLEAR_PANTS
-  .byt <(DoNothing-1) ;ALWAYS_JUMPING
   .byt <(DoSwitchAbility-1) ;ABILITY_BLASTER
   .byt <(DoSwitchAbility-1) ;ABILITY_GLIDER
   .byt <(DoSwitchAbility-1) ;ABILITY_BOMB
@@ -170,6 +171,9 @@
   .byt <(DoPlaceableItem-1) ;ARROW_RIGHT_METAL
   .byt <(DoPlaceableItem-1) ;WOOD_BOX
   .byt <(DoPlaceableItem-1) ;METAL_BOX
+  .byt <(DoPlaceableItem-1) ;MINE_TRACK
+  .byt <(DoPlaceableItem-1) ;MINE_TRACK_JUMP
+  .byt <(DoPlaceableItem-1) ;MINE_TRACK_BUMP
   .byt <(DoNothing-1) ;ABILITY_BACKUP
   .byt <(DoBalloon-1) ;AUTO_BALLOON
 .endproc
@@ -184,8 +188,6 @@
   .byt >(DoNothing-1) ;SUCTION_BOOTS
   .byt >(DoNothing-1) ;ICE_SKATES
   .byt >(DoNothing-1) ;FLIPPERS
-  .byt >(DoNothing-1) ;NUCLEAR_PANTS
-  .byt >(DoNothing-1) ;ALWAYS_JUMPING
   .byt >(DoSwitchAbility-1) ;ABILITY_BLASTER
   .byt >(DoSwitchAbility-1) ;ABILITY_GLIDER
   .byt >(DoSwitchAbility-1) ;ABILITY_BOMB
@@ -214,6 +216,9 @@
   .byt >(DoPlaceableItem-1) ;ARROW_RIGHT_METAL
   .byt >(DoPlaceableItem-1) ;WOOD_BOX
   .byt >(DoPlaceableItem-1) ;METAL_BOX
+  .byt >(DoPlaceableItem-1) ;MINE_TRACK
+  .byt >(DoPlaceableItem-1) ;MINE_TRACK_JUMP
+  .byt >(DoPlaceableItem-1) ;MINE_TRACK_BUMP
   .byt >(DoNothing-1) ;ABILITY_BACKUP
   .byt >(DoBalloon-1) ;AUTO_BALLOON
 .endproc
@@ -228,8 +233,6 @@
   ThinFontText "SUCKBOOT" ;SUCTION_BOOTS
   ThinFontText "ICESKATE" ;ICE_SKATES
   ThinFontText "FLIPPERS" ;FLIPPERS
-  ThinFontText "NUCLEAR " ;NUCLEAR_PANTS
-  ThinFontText "JUMPING " ;ALWAYS_JUMPING
   ThinFontText "BLASTER " ;ABILITY_BLASTER
   ThinFontText "GLIDER  " ;ABILITY_GLIDER
   ThinFontText "BOMBS   " ;ABILITY_BOMB
@@ -258,6 +261,9 @@
   ThinFontText "ARROW RM" ;ARROW_RIGHT_METAL
   ThinFontText "WOOD BOX" ;WOOD_BOX
   ThinFontText "METALBOX" ;METAL_BOX
+  ThinFontText "MINERAIL" ;MINE_TRACK
+  ThinFontText "MINEJUMP" ;MINE_TRACK_JUMP
+  ThinFontText "MINEBUMP" ;MINE_TRACK_BUMP
   ThinFontText "ABILITY " ;ABILITY_BACKUP
   ThinFontText "ABALLOON" ;AUTO_BALLOON
 .endproc

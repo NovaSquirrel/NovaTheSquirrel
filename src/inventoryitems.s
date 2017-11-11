@@ -34,7 +34,6 @@ NameMirror: .byt "Mirror",0
 NameWater: .byt "Water bottle",0
 NameFan: .byt "Tornadoes",0
 NameBurger: .byt "Dinner Blaster",0
-NameFancyCola: .byt "Fa-a-ancy cola",0
 NameRedKey: .byt "Red key",0
 NameGreenKey: .byt "Green key",0
 NameBlueKey: .byt "Blue key",0
@@ -44,8 +43,6 @@ NameIceSkates: .byt "Iceskates",0
 NameSuctionBoots: .byt "Suction boots",0
 NameBlock: .byt "Block",0
 NameSpring: .byt "Spring",0
-NameNuclearPowerPants: .byt "Nuclear Power Pants",0
-NameAlwaysJumping: .byt "Always jumping",0
 NameBalloon: .byt "Balloon",0
 NameAutoBalloon: .byt "Auto Balloon",0
 NameArrowLeft: .byt "Arrow (left)",0
@@ -58,6 +55,10 @@ NameArrowUpMetal: .byt "Arrow (up metal)",0
 NameArrowRightMetal: .byt "Arrow (right metal)",0
 NameWoodBox: .byt "Wood spring box",0
 NameMetalBox: .byt "Metal box",0
+
+NameMineTrack:     .byt "Mine rail",0
+NameMineTrackJump: .byt "Mine rail (jump)",0
+NameMineTrackBump: .byt "Mine rail (bump)",0
 
 .pushseg
 .code

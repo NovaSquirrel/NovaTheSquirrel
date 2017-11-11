@@ -78,22 +78,6 @@ C .byt <(DoNothing-1)
 C .byt >(DoNothing-1)
 C ThinFontText "FLIPPERS"
 
-R NUCLEAR_PANTS
-C .byt InventoryIcon::PANTS
-C .byt <NameNuclearPowerPants
-C .byt >NameNuclearPowerPants
-C .byt <(DoNothing-1)
-C .byt >(DoNothing-1)
-C ThinFontText "NUCLEAR "
-
-R ALWAYS_JUMPING
-C .byt InventoryIcon::EFFECT
-C .byt <NameAlwaysJumping
-C .byt >NameAlwaysJumping
-C .byt <(DoNothing-1)
-C .byt >(DoNothing-1)
-C ThinFontText "JUMPING "
-
 R ABILITY_BLASTER
 C .byt InventoryIcon::ABILITY
 C .byt <NameBlaster
@@ -317,6 +301,30 @@ C .byt >NameMetalBox
 C .byt <(DoPlaceableItem-1)
 C .byt >(DoPlaceableItem-1)
 C ThinFontText "METALBOX"
+
+R MINE_TRACK
+C .byt InventoryIcon::PLACEABLE
+C .byt <NameMineTrack
+C .byt >NameMineTrack
+C .byt <(DoPlaceableItem-1)
+C .byt >(DoPlaceableItem-1)
+C ThinFontText "MINERAIL"
+
+R MINE_TRACK_JUMP
+C .byt InventoryIcon::PLACEABLE
+C .byt <NameMineTrackJump
+C .byt >NameMineTrackJump
+C .byt <(DoPlaceableItem-1)
+C .byt >(DoPlaceableItem-1)
+C ThinFontText "MINEJUMP"
+
+R MINE_TRACK_BUMP
+C .byt InventoryIcon::PLACEABLE
+C .byt <NameMineTrackBump
+C .byt >NameMineTrackBump
+C .byt <(DoPlaceableItem-1)
+C .byt >(DoPlaceableItem-1)
+C ThinFontText "MINEBUMP"
 
 R ABILITY_BACKUP
 C .byt InventoryIcon::NOTHING
