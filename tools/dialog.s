@@ -537,6 +537,26 @@ AboutPickupBlock:
 ; <1 SIGN>Stand on these pickup blocks and press Up to pick them up. Press Down to set them down again. Oh, and definitely copy a glider for this level if you have no weapon.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "S", "t", $a4, $c2, " ", $89, "p", "i", $f3, $cd, " ", "b", "l", "o", $f3, "s", SCR::NEWLINE, $a4, "p", "r", "e", $f1, " ", "U", "p", " ", $bb, "p", "i", $f3, " ", $92, " ", $cd, ".", SCR::NEWLINE, "P", "r", "e", $f1, " ", "D", "o", "w", "n", " ", $bb, $e5, $d3, $92, " ", $c5, "w", "n", SCR::NEWLINE, "a", "g", "a", $d8, $f6, "O", "h", $f5, $a4, "d", "e", "f", $d8, "i", $eb, $d2, "c", "o", "p", "y", SCR::NEWLINE, $be, "g", "l", "i", "d", $ed, " ", $a5, " ", $99, " ", "l", "e", "v", "e", "l", " ", $ce, " ", $a6, SCR::NEWLINE, $9b, $d1, " ", $c8, "a", "p", $c2, "."
 .byt SCR::END_SCRIPT
+SignAboutInsane2b:
+.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
+; <1 SIGN>I, the sign, have loaded tons of placeable rails into your inventory. If the minecarts give you too much trouble, be a wimp and use blocks.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "I", $f5, $a2, " ", "s", "i", "g", "n", $f5, $9b, "l", "o", $f7, $d6, $bc, "n", "s", SCR::NEWLINE, $bd, "p", "l", "a", "c", $ec, "b", "l", $e7, "r", "a", $dc, $fb, $d8, $bb, $91, SCR::NEWLINE, $d8, "v", $e6, $bc, "r", "y", $f6, "I", "f", " ", $a2, " ", "m", $d8, "e", "c", "a", $ee, "s", SCR::NEWLINE, "g", "i", "v", $e7, $a6, " ", $bc, "o", " ", "m", "u", $e2, " ", $fa, $f4, "b", "l", "e", $f5, "b", "e", SCR::NEWLINE, $be, "w", "i", "m", "p", " ", $a4, "u", $e5, " ", "b", "l", "o", $f3, "s", "."
+.byt SCR::RUN_ASM
+lda #99
+sta 0
+:
+lda #InventoryItem::BLOCK
+jsr InventoryGiveItem
+lda #InventoryItem::MINE_TRACK
+jsr InventoryGiveItem
+lda #InventoryItem::MINE_TRACK_JUMP
+jsr InventoryGiveItem
+lda #InventoryItem::MINE_TRACK_BUMP
+jsr InventoryGiveItem
+dec 0
+bne :-
+brk
+.byt SCR::END_SCRIPT
 
 PreLevelIntro:
 ;  Nova sets off on her new

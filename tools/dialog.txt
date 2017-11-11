@@ -425,6 +425,29 @@
 `end
 
 
+
+:SignAboutInsane2b:
+`scene NOVA_AND_SIGN
+<1 SIGN>I, the sign, have loaded tons of placeable rails into your inventory. If the minecarts give you too much trouble, be a wimp and use blocks.
+`asm
+:lda #99
+:sta 0
+::
+:lda #InventoryItem::BLOCK
+:jsr InventoryGiveItem
+:lda #InventoryItem::MINE_TRACK
+:jsr InventoryGiveItem
+:lda #InventoryItem::MINE_TRACK_JUMP
+:jsr InventoryGiveItem
+:lda #InventoryItem::MINE_TRACK_BUMP
+:jsr InventoryGiveItem
+:dec 0
+:bne :-
+:brk
+`end
+
+
+
 `manualwrap
 :PreLevelIntro:
  Nova sets off on her new

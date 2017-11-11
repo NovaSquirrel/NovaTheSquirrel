@@ -576,6 +576,7 @@ SpinnerFrame2:
 
 .proc ObjectOwl
   jsr EnemyFall
+  jsr EnemyBumpOnCeiling
 
   lda ObjectF3,x
   bne FlyingOwl
@@ -706,6 +707,7 @@ MetaspriteL:
       lda #>(-$68)
       sta ObjectVYH,x
   :
+  jsr EnemyBumpOnCeiling
 
   lda #$10
   jsr EnemyWalk

@@ -4,7 +4,7 @@ MasterLevelListL:
   .byt <frozen, <frozen2, <frozen3, <frozen4, <frozen5, <frozen6, <frozen7, <boss3
   .byt <insane1, <emptylevel
 ; sub-levels
-  .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden, <puzzle2
+  .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden, <puzzle2, <insane1b
 
 MasterLevelListH:
   .byt >intro_a, >grassy_a, >funkunderground, >sky, >water, >grassy2_a, >underground_2, >boss1
@@ -12,7 +12,7 @@ MasterLevelListH:
   .byt >frozen, >frozen2, >frozen3, >frozen4, >frozen5, >frozen6, >frozen7, >boss3
   .byt >insane1, >emptylevel
 ; sub-levels
-  .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden, >puzzle2
+  .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden, >puzzle2, >insane1b
 
 .proc LevelBanks
 B1 = LEVELS_BANK1
@@ -23,7 +23,7 @@ PUZ = 128 ; puzzle
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B2
   .byt B2,     B1
 ; sub-levels
-  .byt B1,     B1,     B1,     B1,     B1,     B1,     B1
+  .byt B1,     B1,     B1,     B1,     B1,     B1,     B2
 .endproc
 
 .enum LevelId
@@ -67,6 +67,7 @@ PUZ = 128 ; puzzle
   Underground2
   Garden
   PuzzleBomb
+  Insane1B
 .endenum
 
 .pushseg

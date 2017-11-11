@@ -1,6 +1,6 @@
 insane1:
   .byt MusicTracks::NONE|0
-  .byt 3
+  .byt 5
   .byt $fb
   .byt GraphicsUpload::SP_WALKER
   .byt GraphicsUpload::SP_MINES
@@ -17,7 +17,7 @@ insane1:
   .byt GraphicsUpload::BG_MINES
   .byt GraphicsUpload::BG_TROPICAL
   .byt 255 ; end
-  .byt $00, $00 ; boundaries
+  .byt $00, $02 ; boundaries
 
 insane1Data:
   LObjN LO::R_GROUND,         0, 13, 11, 1
@@ -117,11 +117,16 @@ insane1Data:
   LObj  LO::S_GROUND_CLIMB_L, 4, 11
   LObj  LO::S_GROUND_CLIMB_L, 1, 10
   LObjN LO::R_GROUND,         0, 11, 1, 0
-  LObj  LO::S_GROUND,         1, 10
+  LSetX 102
+  LWriteCol Enemy::MINECART
+  LObj  LO::S_GROUND,         0, 10
   LObj  LO::R_CUSTOM,         1, 7, Metatiles::WOOD_CRATE, (0<<4)|2
   LObjN LO::R_GROUND,         0, 10, 0, 4
   LObj  LO::R_CUSTOM,         1, 7, Metatiles::WOOD_CRATE, (7<<4)|0
-  LObjN LO::R_SAND,           8, 7, 4, 7
+  LObjN LO::WIDE_3,           0, 10, 7, LN3::MINE_TRACKS
+  LObjN LO::R_MTRACK_SUPPORTSONLY,  1, 11, 0, 3
+  LObjN LO::R_MTRACK_SUPPORTSONLY,  5, 11, 0, 3
+  LObjN LO::R_SAND,           2, 7, 4, 7
   LObj  LO::R_CUSTOM,         5, 10, Metatiles::WOOD_CRATE, (8<<4)|0
   LObjN LO::R_COIN,           1, 7, 2, 0
   LObjN LO::TALL_2,           1, 12, 2, LN2::PALM_TREE
@@ -216,11 +221,12 @@ insane1Data:
   LObjN LO::TALL_2,           3, 12, 2, LN2::PALM_TREE
   LObjN LO::TALL_2,           4, 12, 2, LN2::PALM_TREE
   LObjN LO::R_MTRACK_SUPPORTSONLY,  4, 9, 0, 5
-  LObjN LO::R_GROUND,         1, 9, 9, 5
+  LObjN LO::R_GROUND,         1, 9, 12, 5
   LObj  LO::S_SOLID_BLOCK,    2, 8
   LObjN LO::R_COIN,           1, 4, 2, 1
   LObj  LO::S_SPRING,         1, 8
-  LObj  LO::S_EXIT_DOOR,      2, 7
+  LObj  LO::S_DOOR,           2, 7
+  LWriteCol $21, LevelId::Insane1B
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LFinished
 
@@ -241,6 +247,8 @@ insane1Sprite:
   LSpr Enemy::THWOMP,              0,  80,   4
   LSpr Enemy::CHECKPOINT,          0,  91,   3
   LSpr Enemy::CANNON_1,            0,  93,   4
+  LSpr Enemy::CANNON_2,            0, 102,   5, 2
+  LSpr Enemy::COLLECTIBLE,         0, 106,   9
   LSpr Enemy::BALL_GUY,            1, 107,   5
   LSpr Enemy::BALL_GUY,            1, 110,   5
   LSpr Enemy::OWL,                 0, 113,   5, 1

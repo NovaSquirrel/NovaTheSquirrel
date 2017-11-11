@@ -1073,7 +1073,7 @@
 					"Id":	"GROUND",
 					"X":	227,
 					"Y":	9,
-					"W":	10,
+					"W":	13,
 					"H":	6
 				}, {
 					"Id":	"SOLID_BLOCK",
@@ -1093,12 +1093,6 @@
 					"Y":	12,
 					"W":	1,
 					"H":	3
-				}, {
-					"Id":	"EXIT_DOOR",
-					"X":	233,
-					"Y":	7,
-					"W":	1,
-					"H":	1
 				}, {
 					"Id":	"SPRING",
 					"X":	231,
@@ -1172,6 +1166,31 @@
 					"Y":	7,
 					"W":	1,
 					"H":	1
+				}, {
+					"Id":	"MINE_TRACK",
+					"X":	104,
+					"Y":	10,
+					"W":	8,
+					"H":	1
+				}, {
+					"Id":	"MINE_TRACK_SUPPORTS_ONLY",
+					"X":	105,
+					"Y":	11,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"MINE_TRACK_SUPPORTS_ONLY",
+					"X":	110,
+					"Y":	11,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"DOOR",
+					"X":	233,
+					"Y":	7,
+					"W":	1,
+					"H":	1,
+					"Extra":	"Insane1B"
 				}]
 		}, {
 			"Name":	"Sprites",
@@ -1395,6 +1414,19 @@
 					"Y":	8,
 					"W":	1,
 					"H":	1
+				}, {
+					"Id":	"COLLECTIBLE",
+					"X":	106,
+					"Y":	9,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"CANNON_2",
+					"X":	102,
+					"Y":	5,
+					"W":	1,
+					"H":	1,
+					"Extra":	"2"
 				}]
 		}, {
 			"Name":	"Control",
@@ -1402,7 +1434,7 @@
 			"Tileset":	"novact",
 			"Data":	[{
 					"Id":	"PLAYER_START_R",
-					"X":	3,
+					"X":	5,
 					"Y":	12,
 					"W":	1,
 					"H":	1
@@ -1420,6 +1452,19 @@
 					"W":	1,
 					"H":	1,
 					"Extra":	"CLOUDS"
+				}, {
+					"Id":	"COLUMN_DATA",
+					"X":	102,
+					"Y":	6,
+					"W":	1,
+					"H":	1,
+					"Extra":	"Enemy::MINECART"
+				}, {
+					"Id":	"SCROLL_LOCK",
+					"X":	239,
+					"Y":	0,
+					"W":	1,
+					"H":	1
 				}]
 		}]
 }
