@@ -1210,6 +1210,9 @@ WriteIncreasing16:
   cpy TempVal+2
   bne :+
   ; Item found
+  lda InventoryAmount,x
+  cmp #98
+  bcs Fail
   inc InventoryAmount,x
   sec
   rts
@@ -1224,6 +1227,7 @@ WriteIncreasing16:
   inx
   cpx #InventoryLen
   bne :-
+Fail:
   clc ; No free slots
   rts
 
