@@ -1101,7 +1101,7 @@ C .byt M_EMPTY
 C .byt $90
 C .byt $91
 C .byt $92
-C .byt $3d
+C .byt $d8
 
 R PALM_TREE_TOP_R
 C .byt M_PAL_0

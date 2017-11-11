@@ -1187,7 +1187,7 @@ M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
   .byt $3f ;STONE_BRIDGE
   .byt $3f ;STONE_BRIDGE_RIGHT
   .byt $93 ;PALM_TREE
-  .byt $3d ;PALM_TREE_TOP_L
+  .byt $d8 ;PALM_TREE_TOP_L
   .byt $3f ;PALM_TREE_TOP_R
   .byt $99 ;SAND_UL
   .byt $99 ;SAND_U
