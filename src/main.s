@@ -46,14 +46,13 @@
   bne :+
   jsr RenderLevelScreens ; Render the screen the player's on
   jsr WaitVblank
-  lda #BG_ON             ; Turn PPU display on
-  sta PPUMASK
 :
 
   ; Make sure NMI is on
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
   jsr ClearOAM
+
   jmp VBlankUpdates
 .endproc
 
