@@ -72,9 +72,9 @@ funkundergroundData:
   LObjN LO::WIDE_2,           1, 10, 2, LN2::FLOWER
   LObjN LO::R_GROUND,         0, 11, 2, 1
   LObjN LO::R_GROUND,         0, 13, 4, 1
-  LObj  LO::S_BRICKPRIZE,     1, 7
+  LObjN LO::R_BRICK,          1, 7, 2, 0
+  LObj  LO::S_BRICKPRIZE,     0, 7
   LWriteCol InventoryItem::HEALTH_RESTORE
-  LObjN LO::R_BRICK,          0, 7, 2, 0
   LObjN LO::R_COIN,           0, 8, 1, 1
   LObjN LO::R_BRICK,          2, 2, 0, 1
   LObjN LO::R_SOLID_BLOCK,    0, 10, 0, 1
@@ -135,9 +135,12 @@ funkundergroundData:
   LObj  LO::S_SOLID_BLOCK,    0, 6
   LObjN LO::R_SOLID_BLOCK,    1, 3, 9, 0
   LObjN LO::TALL_2,           0, 4, 1, LN2::TRUNK
-  LObjN LO::R_BRICK,          0, 6, 1, 0
+  LObj  LO::S_CUSTOM,         0, 6, Metatiles::REPLACE_BRICK
+  LSetX 167
+  LWriteCol Metatiles::BG_TRUNK
   LObjN LO::TALL_2,           0, 7, 1, LN2::TRUNK
-  LObjN LO::R_BRICK,          6, 7, 0, 1
+  LObj  LO::S_BRICK,          1, 6
+  LObjN LO::R_BRICK,          5, 7, 0, 1
   LObjN LO::TALL_2,           3, 4, 10, LN2::TRUNK
   LObj  LO::S_COIN,           2, 2
   LObj  LO::S_COIN,           2, 4

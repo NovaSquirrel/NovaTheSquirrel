@@ -2,3 +2,4 @@
 .include "../levels/glass_finale.s"
 .include "../levels/insane1.s"
 .include "../levels/insane1b.s"
+.include "../levels/insane2.s"

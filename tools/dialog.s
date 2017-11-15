@@ -510,8 +510,8 @@ AboutPlaceable:
 .byt SCR::SCENE, SCENES::NOVA_LIA_SIGN
 ; <2 SIGN>In these item boxes are items that allow you to place a block in the world. Use them to get across.
 .byt SCR::SAY, SCR::SPEAKER_2|CHAR::SIGN, "I", "n", " ", $89, "i", $eb, "m", " ", "b", "o", "x", "e", $fb, "a", "r", $e7, "i", $eb, "m", "s", SCR::NEWLINE, $9a, $ad, "o", "w", " ", $a6, " ", $bb, "p", "l", "a", "c", $e7, "a", SCR::NEWLINE, "b", "l", "o", $f3, " ", $bf, $a2, " ", "w", $c9, $ef, $f6, "U", $e5, " ", $92, SCR::NEWLINE, $bb, $af, " ", "a", "c", "r", "o", $f1, "."
-; <1 LIA>You can't scroll the screen while playing the block, so be careful.
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::LIA, "Y", $f4, " ", $b0, $e8, "s", "c", "r", "o", "l", "l", " ", $a2, " ", "s", "c", "r", $d7, "n", SCR::NEWLINE, $da, $dc, $e7, "p", "l", "a", "y", $b1, " ", $a2, " ", "b", "l", "o", $f3, $f5, $cc, " ", "b", "e", SCR::NEWLINE, "c", "a", "r", "e", "f", "u", "l", "."
+; <1 LIA>You can't scroll the screen while placing the block, so be careful.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::LIA, "Y", $f4, " ", $b0, $e8, "s", "c", "r", "o", "l", "l", " ", $a2, " ", "s", "c", "r", $d7, "n", SCR::NEWLINE, $da, $dc, $e7, "p", "l", "a", "c", $b1, " ", $a2, " ", "b", "l", "o", $f3, $f5, $cc, " ", "b", "e", SCR::NEWLINE, "c", "a", "r", "e", "f", "u", "l", "."
 .byt SCR::END_SCRIPT
 AboutChipTall:
 .byt SCR::SCENE, SCENES::NOVA_LIA_SIGN
@@ -536,6 +536,11 @@ AboutPickupBlock:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
 ; <1 SIGN>Stand on these pickup blocks and press Up to pick them up. Press Down to set them down again. Oh, and definitely copy a glider for this level if you have no weapon.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "S", "t", $a4, $c2, " ", $89, "p", "i", $f3, $cd, " ", "b", "l", "o", $f3, "s", SCR::NEWLINE, $a4, "p", "r", "e", $f1, " ", "U", "p", " ", $bb, "p", "i", $f3, " ", $92, " ", $cd, ".", SCR::NEWLINE, "P", "r", "e", $f1, " ", "D", "o", "w", "n", " ", $bb, $e5, $d3, $92, " ", $c5, "w", "n", SCR::NEWLINE, "a", "g", "a", $d8, $f6, "O", "h", $f5, $a4, "d", "e", "f", $d8, "i", $eb, $d2, "c", "o", "p", "y", SCR::NEWLINE, $be, "g", "l", "i", "d", $ed, " ", $a5, " ", $99, " ", "l", "e", "v", "e", "l", " ", $ce, " ", $a6, SCR::NEWLINE, $9b, $d1, " ", $c8, "a", "p", $c2, "."
+.byt SCR::END_SCRIPT
+AboutFireWind:
+.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
+; <1 SIGN>Copy this fan to get a wind ability. What happens when you shoot wind at fire? (Hint: Down+B shoots straight forward.)
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "C", "o", "p", $fe, $99, " ", "f", $ca, " ", $bb, $af, " ", $be, "w", $d8, "d", SCR::NEWLINE, "a", "b", $dc, "i", "t", "y", $f6, "W", "h", $c6, " ", "h", "a", "p", "p", $e6, $fb, $da, $e6, SCR::NEWLINE, $a6, " ", $df, $e4, $d3, "w", $d8, $ff, $c6, " ", "f", "i", "r", "e", "?", " ", "(", "H", $d8, "t", ":", SCR::NEWLINE, "D", "o", "w", "n", "+", "B", " ", $df, $e4, "t", $fb, $de, "r", "a", "i", $db, "t", SCR::NEWLINE, $a5, "w", "a", "r", "d", ".", ")"
 .byt SCR::END_SCRIPT
 SignAboutInsane2b:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN

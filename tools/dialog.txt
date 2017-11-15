@@ -399,7 +399,7 @@
 :AboutPlaceable:
 `scene NOVA_LIA_SIGN
 <2 SIGN>In these item boxes are items that allow you to place a block in the world. Use them to get across.
-<1 LIA>You can't scroll the screen while playing the block, so be careful.
+<1 LIA>You can't scroll the screen while placing the block, so be careful.
 `end
 
 :AboutChipTall:
@@ -424,6 +424,10 @@
 <1 SIGN>Stand on these pickup blocks and press Up to pick them up. Press Down to set them down again. Oh, and definitely copy a glider for this level if you have no weapon.
 `end
 
+:AboutFireWind:
+`scene NOVA_AND_SIGN
+<1 SIGN>Copy this fan to get a wind ability. What happens when you shoot wind at fire? (Hint: Down+B shoots straight forward.)
+`end
 
 
 :SignAboutInsane2b:

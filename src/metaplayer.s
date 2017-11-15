@@ -98,6 +98,9 @@ BricksHi:
   ; change it
   jsr ChangeBlock
 
+  lda #PoofSubtype::BRICKS
+  jsr MakePoofAtBlock
+
   lda #SFX::SMASH
   jmp PlaySoundDebounce
 .endproc
