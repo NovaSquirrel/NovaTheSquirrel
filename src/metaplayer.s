@@ -743,6 +743,9 @@ FoundCloner:
 
   lda BlockX
   sta ObjectPXH,y
+  lda #0
+  sta ObjectPXL,y
+  sta ObjectPYL,y
   rts
 .endproc
 

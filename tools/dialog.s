@@ -542,6 +542,16 @@ AboutFireWind:
 ; <1 SIGN>Copy this fan to get a wind ability. What happens when you shoot wind at fire? (Hint: Down+B shoots straight forward.)
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "C", "o", "p", $fe, $99, " ", "f", $ca, " ", $bb, $af, " ", $be, "w", $d8, "d", SCR::NEWLINE, "a", "b", $dc, "i", "t", "y", $f6, "W", "h", $c6, " ", "h", "a", "p", "p", $e6, $fb, $da, $e6, SCR::NEWLINE, $a6, " ", $df, $e4, $d3, "w", $d8, $ff, $c6, " ", "f", "i", "r", "e", "?", " ", "(", "H", $d8, "t", ":", SCR::NEWLINE, "D", "o", "w", "n", "+", "B", " ", $df, $e4, "t", $fb, $de, "r", "a", "i", $db, "t", SCR::NEWLINE, $a5, "w", "a", "r", "d", ".", ")"
 .byt SCR::END_SCRIPT
+AboutGliderToggle:
+.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
+; <1 SIGN>Gliders can trigger the green toggle switches, and destroy boxes with glider emblems on them as well as normal bricks.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "G", "l", "i", "d", $ed, $fb, $b0, " ", $fa, "i", "g", "g", $ed, " ", $a2, " ", "g", "r", $d7, "n", SCR::NEWLINE, $bc, "g", "g", "l", $e7, "s", "w", "i", "t", $e2, "e", "s", $f5, $a4, "d", "e", $de, "r", "o", "y", SCR::NEWLINE, "b", "o", "x", "e", $fb, $9d, " ", "g", "l", "i", "d", $ed, " ", "e", "m", "b", "l", "e", "m", $fb, $c2, SCR::NEWLINE, $92, " ", $c4, " ", $c8, "l", "l", " ", $c4, " ", $d1, "r", "m", "a", "l", SCR::NEWLINE, "b", $fc, $f3, "s", "."
+.byt SCR::END_SCRIPT
+AboutCloner:
+.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
+; <1 SIGN>Red switches activate cloners. This one creates a Buddy to help you out, which can pick up items and press toggles for you.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "R", $d6, "s", "w", "i", "t", $e2, "e", $fb, "a", $c7, "i", "v", $c6, "e", SCR::NEWLINE, "c", "l", $ac, "r", "s", $f6, $f8, $b8, $ac, " ", "c", "r", $ec, $eb, $fb, "a", SCR::NEWLINE, "B", "u", "d", "d", $fe, $bb, $c3, "l", "p", " ", $a6, " ", $ae, $f5, $da, "i", $e2, SCR::NEWLINE, $b0, " ", "p", "i", $f3, " ", $cd, " ", "i", $eb, "m", $fb, $a4, "p", "r", "e", $f1, SCR::NEWLINE, $bc, "g", "g", "l", "e", $fb, $a5, " ", $a6, "."
+.byt SCR::END_SCRIPT
 SignAboutInsane2b:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
 ; <1 SIGN>I, the sign, have loaded tons of placeable rails into your inventory. If the minecarts give you too much trouble, be a wimp and use blocks.

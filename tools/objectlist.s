@@ -66,6 +66,7 @@
   .byt 0 ;COLLECTIBLE
   .byt GraphicsUpload::SP_MOLSNO ;MOLSNO
   .byt GraphicsUpload::SP_MOLSNO ;MOLSNO_NOTE
+  .byt GraphicsUpload::SP_BOOMERANG ;BUDDY
 .endproc
 
 .proc ObjBehaviors
@@ -136,6 +137,7 @@
   .byt ObjBehavior::AUTO_REMOVE ;COLLECTIBLE
   .byt 0 ;MOLSNO
   .byt ObjBehavior::AUTO_REMOVE ;MOLSNO_NOTE
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BUDDY
 .endproc
 
 .proc ObjFlags
@@ -206,5 +208,6 @@
   .byt ObjFlag::PRIMARY ;COLLECTIBLE
   .byt ObjFlag::ESSENTIAL ;MOLSNO
   .byt ObjFlag::PRIMARY ;MOLSNO_NOTE
+  .byt ObjFlag::PRIMARY ;BUDDY
 .endproc
 

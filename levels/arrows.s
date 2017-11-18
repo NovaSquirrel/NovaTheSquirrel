@@ -19,7 +19,6 @@ arrows:
   .byt $00, $00 ; boundaries
 
 arrowsData:
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
   LObjN LO::R_GROUND,         0, 6, 7, 8
   LObjN LO::R_BG_GLASS_GRAY,  2, 1, 8, 0
   LObjN LO::R_BG_GLASS_GRAY,  0, 2, 0, 3
@@ -224,7 +223,9 @@ arrowsData:
   LObjN LO::R_FG_GLASS_BLUE,  3, 2, 7, 0
   LObj  LO::R_CUSTOM,         0, 3, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|5
   LObjN LO::WIDE_1,           0, 9, 4, LN1::SOLID_LEDGE
-  LObjN LO::R_GROUND,         5, 9, 4, 5
+  LObjN LO::R_BG_GLASS_GREEN, 3, 5, 2, 0
+  LObjN LO::R_BG_GLASS_GREEN, 1, 4, 0, 3
+  LObjN LO::R_GROUND,         1, 9, 4, 5
   LObjN LO::R_FG_GLASS_BLUE,  2, 3, 0, 4
   LObj  LO::S_M_ARROW_RIGHT,  0, 4
   LObj  LO::S_W_ARROW_UP,     0, 8
@@ -246,7 +247,11 @@ arrowsData:
   LObjN LO::R_FG_GLASS_BLUE,  1, 0, 11, 4
   LObjN LO::R_SOLID_BLOCK,    1, 7, 0, 2
   LObjN LO::R_FG_GLASS_BLUE,  0, 10, 10, 4
-  LObj  LO::S_EXIT_DOOR,      4, 8
+  LObjN LO::R_BG_GLASS_GREEN, 3, 7, 0, 2
+  LObj  LO::S_BG_GLASS_GREEN, 1, 7
+  LObj  LO::S_EXIT_DOOR,      0, 8
+  LObjN LO::R_BG_GLASS_GREEN, 1, 7, 0, 2
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
   LFinished
 
 arrowsSprite:

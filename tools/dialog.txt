@@ -429,6 +429,17 @@
 <1 SIGN>Copy this fan to get a wind ability. What happens when you shoot wind at fire? (Hint: Down+B shoots straight forward.)
 `end
 
+:AboutGliderToggle:
+`scene NOVA_AND_SIGN
+<1 SIGN>Gliders can trigger the green toggle switches, and destroy boxes with glider emblems on them as well as normal bricks.
+`end
+
+:AboutCloner:
+`scene NOVA_AND_SIGN
+<1 SIGN>Red switches activate cloners. This one creates a Buddy to help you out, which can pick up items and press toggles for you.
+`end
+
+
 
 :SignAboutInsane2b:
 `scene NOVA_AND_SIGN

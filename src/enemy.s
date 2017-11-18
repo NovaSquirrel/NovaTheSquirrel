@@ -1006,6 +1006,9 @@ MakeIce:
   jsr EnemyFall
   jsr EnemyBounceRandomHeights
 
+  jsr EnemyBumpOnCeiling
+
+.if 0
   ; Bounce against ceilings
   lda ObjectPYL,x
   sub #$20
@@ -1021,6 +1024,7 @@ MakeIce:
   sta ObjectVYL,x
   sta ObjectVYH,x
 :
+.endif
 
   lda #$10
   jsr EnemyWalk
@@ -3560,4 +3564,44 @@ MetaspriteL:
 
 .proc ObjectMolSnoNote
   rts
+.endproc
+
+.proc ObjectBuddy
+  jsr EnemyFall
+  jsr EnemyBumpOnCeiling
+
+  lda #$10
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+
+  jsr GetPointerForMiddleWide
+  cmp #Metatiles::SPRING
+  bne :+
+    lda #<-1
+    sta ObjectVYH,x
+    lda #<-$60
+    sta ObjectVYL,x
+    bne DoneInteract
+  :
+  cmp #Metatiles::CAMPFIRE
+  bne :+
+    lda #0
+    sta ObjectF1,x
+    rts
+  :
+  cmp #Metatiles::TOGGLE_SWITCH
+  bne :+
+    jsr SwitchCooldown
+    bcc DoneInteract
+    jsr HitToggleSwitch
+    jmp DoneInteract
+  :
+  jsr DoCollectibleFar
+DoneInteract:
+
+  lda retraces
+  and #4
+  add #$14
+  ldy #OAM_COLOR_3
+  jmp DispEnemyWide
 .endproc

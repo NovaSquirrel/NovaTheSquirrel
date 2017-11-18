@@ -66,5 +66,6 @@
   COLLECTIBLE
   MOLSNO
   MOLSNO_NOTE
+  BUDDY
 .endenum
 
