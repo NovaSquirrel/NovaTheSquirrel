@@ -187,6 +187,7 @@ Exit:
   .raddr ObjectCollectible
   .raddr ObjectMolSno
   .raddr ObjectMolSnoNote
+  .raddr ObjectBuddy
 .endproc
 
 ; other enemy attributes
@@ -1255,8 +1256,9 @@ NotFacingRight:
 
 ; check if the object bumped into a wall
   tay
-  cpy #Metatiles::GRAVEL
-  beq ForceSolid
+; gravel currently removed
+;  cpy #Metatiles::GRAVEL
+;  beq ForceSolid
   lda MetatileFlags,y
   and #M_SOLID_ALL
   beq :+
@@ -1871,4 +1873,30 @@ DontDraw:
     sta ObjectVYH,x
   :
   rts
+.endproc
+
+.proc GetPointerForMiddle
+  lda ObjectPYL,x
+  add #$40
+  lda ObjectPYH,x
+  adc #0
+  tay
+  lda ObjectPXL,x
+  add #$40
+  lda ObjectPXH,x
+  adc #0
+  jmp GetLevelColumnPtr
+.endproc
+
+.proc GetPointerForMiddleWide
+  lda ObjectPYL,x
+  add #$80
+  lda ObjectPYH,x
+  adc #0
+  tay
+  lda ObjectPXL,x
+  add #$80
+  lda ObjectPXH,x
+  adc #0
+  jmp GetLevelColumnPtr
 .endproc

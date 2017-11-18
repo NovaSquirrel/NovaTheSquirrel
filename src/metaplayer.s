@@ -690,28 +690,59 @@ Failed:
 .endproc
 
 .proc TouchedToggleSwitch
-  lda SwitchCooldownTimer
-  beq :+
-    rts
-  :
-  lda #60
-  sta SwitchCooldownTimer
-
+  jsr SwitchCooldown
+  bcc :+
   jmp HitToggleSwitch
+: rts
 .endproc
 
 .proc TouchedTeleporter
-  lda SwitchCooldownTimer
-  beq :+
-    rts
-  :
-  lda #60
-  sta SwitchCooldownTimer
+  jsr SwitchCooldown
+  bcc :+
   jsr GetBlockX        ; Get the block's X position
-  jmp DoTeleport
+  jmp DoTeleport       ; Do the teleport encoded in that position
+: rts
 .endproc
 
 .proc TouchedCloneSwitch
+BlockX = 3
+BlockY = 4
+
+; To do: make sure I don't need to restore anything?
+  jsr SwitchCooldown
+  bcc No
+  jsr GetBlockX        ; Get the block's X position
+  tay
+  lda ColumnBytes,y    ; Column byte for switch indicates where the cloner is
+  sta BlockX
+  jsr GetLevelColumnPtr
+  ; Find cloner
+  ldy #14
+: lda (LevelBlockPtr),y
+  cmp #Metatiles::CLONER
+  beq FoundCloner
+  dey
+  bpl :-
+No:
+  rts
+
+FoundCloner:
+  sty BlockY
+  jsr FindFreeObjectY
+  bcc No
+
+  jsr ObjectClearY
+
+  ldx BlockX        ; Write whatever kind of enemy it is
+  lda ColumnBytes,x
+  sta ObjectF1,y
+
+  lda BlockY
+  sub #1
+  sta ObjectPYH,y
+
+  lda BlockX
+  sta ObjectPXH,y
   rts
 .endproc
 

@@ -136,6 +136,20 @@
   jmp SetPRG_Restore
 .endproc
 
+.if 0
+; Allows object bank 2 bank to change blocks
+; Unsure if needed?
+.proc ChangeBlockFarObject2
+  pha
+  lda #MAINLOOP_BANK
+  jsr _SetPRG
+  pla
+  jsr ChangeBlock
+  lda #OBJECT_BANK2
+  jmp _SetPRG
+.endproc
+.endif
+
 .proc DecompressTextFar
   pha
   lda #DIALOG_BANK
@@ -172,6 +186,7 @@
 
 ; For calling code in Object Bank 2 from Object Bank 1.
 ; input: A (<Routine), Y (>Routine)
+; locals: 0, 1
 .proc InObjectBank2
   sta 0             ; Store the address pointer
   sty 1

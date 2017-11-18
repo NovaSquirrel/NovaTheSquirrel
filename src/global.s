@@ -1824,3 +1824,15 @@ DictionaryWord:
 Exit:
   rts
 .endproc
+
+.proc SwitchCooldown
+  lda SwitchCooldownTimer
+  beq :+
+    clc
+    rts
+  :
+  lda #60
+  sta SwitchCooldownTimer
+  sec
+  rts
+.endproc

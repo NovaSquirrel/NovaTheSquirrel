@@ -276,30 +276,6 @@ ObjectPlayerProjectileRoutines:
   .raddr ProjBurger
   .raddr ProjMirror
 
-GetPointerForMiddle:
-  lda ObjectPYL,x
-  add #$40
-  lda ObjectPYH,x
-  adc #0
-  tay
-  lda ObjectPXL,x
-  add #$40
-  lda ObjectPXH,x
-  adc #0
-  jmp GetLevelColumnPtr
-
-GetPointerForMiddleWide:
-  lda ObjectPYL,x
-  add #$80
-  lda ObjectPYH,x
-  adc #0
-  tay
-  lda ObjectPXL,x
-  add #$80
-  lda ObjectPXH,x
-  adc #0
-  jmp GetLevelColumnPtr
-
 BreakBricks:
   ; Break any bricks the projectile touches
   jsr GetPointerForMiddle
@@ -395,6 +371,15 @@ ProjLifeGlider:
     lda #0
     sta ObjectF1,x
     jsr HitToggleSwitch
+    lda #0 ; make the next branch always happen
+  :
+  cmp #Metatiles::GLIDER_BLOCK
+  bne :+
+    lda #0
+    sta ObjectF1,x
+    lda BackgroundMetatile
+    ldy 0
+    jsr ChangeBlockFar    
   :
 
   jsr ObjectRemoveTooLow
@@ -559,6 +544,7 @@ ProjWaterBottle:
     jsr PlaySound
     lda #0
     sta ObjectF1,x
+    lda #Metatiles::CAMPFIRE_OUT
     jsr ChangeBlockFar
   :
 
@@ -748,6 +734,7 @@ ProjIceBlock:
     jsr PlaySound
     lda #0
     sta ObjectF1,x
+    lda #Metatiles::CAMPFIRE_OUT
     jsr ChangeBlockFar
     jmp @NotFreeze
 : cmp #Metatiles::WATER_TOP
@@ -887,7 +874,7 @@ ProjTornado:
   jsr GetBlockUnderProjectile
   cmp #Metatiles::CAMPFIRE
   bne :+
-    lda #0
+    lda #Metatiles::CAMPFIRE_OUT
     jsr ChangeBlockFar
     lda #20
     sta 0

@@ -787,7 +787,7 @@ C .byt $87
 
 R CLONER
 C .byt M_PAL_1
-C .byt M_EMPTY
+C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $b0
 C .byt $b1
 C .byt $b2
@@ -841,17 +841,9 @@ R CAMPFIRE_OUT
 C .byt M_PAL_2
 C .byt M_EMPTY
 C .byt $3f
-C .byt $bc
+C .byt $b8
 C .byt $3f
-C .byt $be
-
-R GRAVEL
-C .byt M_PAL_1
-C .byt M_EMPTY
-C .byt $3f
-C .byt $bf
-C .byt $3f
-C .byt $bf
+C .byt $ba
 
 R ICE
 C .byt M_PAL_1
@@ -1452,10 +1444,10 @@ C .byt $63
 R GLIDER_BLOCK
 C .byt M_PAL_1
 C .byt M_SOLID_ALL|M_SOLID_TOP
-C .byt $3e
-C .byt $3e
-C .byt $3e
-C .byt $3e
+C .byt $bc
+C .byt $bd
+C .byt $be
+C .byt $bf
 
 ############# minecart tracks ###############
 R MINE_TRACK
