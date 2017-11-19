@@ -539,8 +539,8 @@ AboutPickupBlock:
 .byt SCR::END_SCRIPT
 AboutFireWind:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
-; <1 SIGN>Copy this fan to get a wind ability. What happens when you shoot wind at fire? (Hint: Down+B shoots straight forward.)
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "C", "o", "p", $fe, $99, " ", "f", $ca, " ", $bb, $af, " ", $be, "w", $d8, "d", SCR::NEWLINE, "a", "b", $dc, "i", "t", "y", $f6, "W", "h", $c6, " ", "h", "a", "p", "p", $e6, $fb, $da, $e6, SCR::NEWLINE, $a6, " ", $df, $e4, $d3, "w", $d8, $ff, $c6, " ", "f", "i", "r", "e", "?", " ", "(", "H", $d8, "t", ":", SCR::NEWLINE, "D", "o", "w", "n", "+", "B", " ", $df, $e4, "t", $fb, $de, "r", "a", "i", $db, "t", SCR::NEWLINE, $a5, "w", "a", "r", "d", ".", ")"
+; <1 SIGN>Copy this fan to get a wind ability. What happens when you shoot wind at fire? (Hint: Up+B/Down+B control the angle.)
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "C", "o", "p", $fe, $99, " ", "f", $ca, " ", $bb, $af, " ", $be, "w", $d8, "d", SCR::NEWLINE, "a", "b", $dc, "i", "t", "y", $f6, "W", "h", $c6, " ", "h", "a", "p", "p", $e6, $fb, $da, $e6, SCR::NEWLINE, $a6, " ", $df, $e4, $d3, "w", $d8, $ff, $c6, " ", "f", "i", "r", "e", "?", " ", "(", "H", $d8, "t", ":", SCR::NEWLINE, "U", "p", "+", "B", "/", "D", "o", "w", "n", "+", "B", " ", "c", $c2, $fa, "o", "l", " ", $a2, SCR::NEWLINE, $ca, "g", "l", "e", ".", ")"
 .byt SCR::END_SCRIPT
 AboutGliderToggle:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN

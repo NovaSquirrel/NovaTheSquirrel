@@ -426,7 +426,7 @@
 
 :AboutFireWind:
 `scene NOVA_AND_SIGN
-<1 SIGN>Copy this fan to get a wind ability. What happens when you shoot wind at fire? (Hint: Down+B shoots straight forward.)
+<1 SIGN>Copy this fan to get a wind ability. What happens when you shoot wind at fire? (Hint: Up+B/Down+B control the angle.)
 `end
 
 :AboutGliderToggle:
