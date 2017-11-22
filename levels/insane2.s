@@ -303,12 +303,14 @@ insane2Data:
   LObjN LO::R_FG_GLASS_RED,   1, 6, 3, 2
   LObjN LO::R_BG_GLASS_RED,   2, 3, 0, 2
   LObjN LO::TALL_2,           0, 10, 4, LN2::TRUNK
-  LObj  LO::S_EXIT_DOOR,      2, 4
+  LObjN LO::WIDE_1,           1, 9, 2, LN1::SOLID_LEDGE
+  LObj  LO::S_EXIT_DOOR,      1, 4
   LObjN LO::R_FG_GLASS_RED,   0, 6, 0, 1
   LObj  LO::S_FG_GLASS_RED,   1, 6
+  LObjN LO::TALL_2,           0, 7, 1, LN2::TRUNK
   LObjN LO::R_COIN,           5, 7, 2, 2
   LObj  LO::R_CUSTOM,         0, 10, Metatiles::SPRING, (12<<4)|0
-  LObjN LO::R_FG_GLASS_RED,   0, 11, 12, 3
+  LObjN LO::R_SOLID_ROCK,     0, 11, 12, 3
   LObjN LO::R_FG_GLASS_RED,   3, 3, 6, 0
   LObjN LO::TALL_2,           0, 4, 2, LN2::TRUNK
   LObjN LO::R_FG_GLASS_RED,   0, 7, 6, 0

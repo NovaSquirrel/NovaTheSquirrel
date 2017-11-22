@@ -411,12 +411,14 @@ PutArrows:
 @ArrowRowLoop:
   ; Top row
   lda (LevelBlockPtr),y
+  cmp BackgroundMetatile
   bne :+
   lda 1
   sta (LevelBlockPtr),y
 : iny
   ; Bottom row
   lda (LevelBlockPtr),y
+  cmp BackgroundMetatile
   bne :+
   lda 1
   sta (LevelBlockPtr),y
