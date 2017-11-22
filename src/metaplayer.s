@@ -520,11 +520,16 @@ HasSunKey:
 
 .proc TouchedLadder
 XForMiddle = TempSpace+5
+  lda DownLockFromRideable
+  bne _rts
   lda keydown
   and #KEY_UP|KEY_DOWN
   beq _rts
   lda #2
   sta PlayerOnLadder
+
+  lda #0
+  sta PlayerNeedsGround
 
   ; snap onto the ladder
   lda #$50

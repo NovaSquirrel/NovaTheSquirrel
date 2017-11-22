@@ -365,6 +365,7 @@ GameStateLen = 1+2+10+10+2 ; update if more stuff is added
 
   LevelBackgroundColorSave: .res 1 ; for cutscenes
   InfiniteProjectileCheat: .res 1
+  DownLockFromRideable: .res 1 ; set to 1 when riding on a burger or ice. unset when it's unpressed
 
 .segment "SAVE"
 SaveStart:

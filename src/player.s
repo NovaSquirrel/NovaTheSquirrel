@@ -542,6 +542,7 @@ NotLeft:
   NotDown:
    lda #0
    sta PlayerDownTimer
+   sta DownLockFromRideable
   YesDown:
 
   lda keydown
@@ -1949,6 +1950,7 @@ AbilityBurger:
 
 RideOnProjectile:
   inc PlayerNeedsGround
+  inc DownLockFromRideable
 
   lda PlayerPYL
   sta 0
