@@ -26,12 +26,12 @@ Index = 8
   tax
   stx Index
   ldy #63
+  lda #255
 : sta UploadTileSpace,y
   dey
   bpl :-
 
-; A and X still zero
-  tay ; and now Y is too. Y will be used for the index into UploadTileSpace
+  ldy #0 ; Y will be used for the index into UploadTileSpace
 
 Loop:
   ; Left character
@@ -41,21 +41,21 @@ Loop:
   tax
   lda ThinFont1,x
   and #$f0
-  sta UploadTileSpace+0,y
+  sta UploadTileSpace+0+8,y
   lda ThinFont2,x
   and #$f0
-  sta UploadTileSpace+1,y
-  sta UploadTileSpace+2,y
+  sta UploadTileSpace+1+8,y
+  sta UploadTileSpace+2+8,y
   lda ThinFont3,x
   and #$f0
-  sta UploadTileSpace+3,y
+  sta UploadTileSpace+3+8,y
   lda ThinFont4,x
   and #$f0
-  sta UploadTileSpace+4,y
-  sta UploadTileSpace+5,y
+  sta UploadTileSpace+4+8,y
+  sta UploadTileSpace+5+8,y
   lda ThinFont5,x
   and #$f0
-  sta UploadTileSpace+6,y
+  sta UploadTileSpace+6+8,y
 
   ; Right character
   ldx Index
@@ -64,32 +64,36 @@ Loop:
   tax
   lda ThinFont1,x
   and #$0f
-  ora UploadTileSpace+0,y
-  sta UploadTileSpace+0,y
+  ora UploadTileSpace+0+8,y
+  sta UploadTileSpace+0+8,y
   lda ThinFont2,x
   and #$0f
   pha
-  ora UploadTileSpace+1,y
-  sta UploadTileSpace+1,y
+  ora UploadTileSpace+1+8,y
+  sta UploadTileSpace+1+8,y
   pla
-  ora UploadTileSpace+2,y
-  sta UploadTileSpace+2,y
+  ora UploadTileSpace+2+8,y
+  sta UploadTileSpace+2+8,y
   lda ThinFont3,x
   and #$0f
-  ora UploadTileSpace+3,y
-  sta UploadTileSpace+3,y
+  ora UploadTileSpace+3+8,y
+  sta UploadTileSpace+3+8,y
   lda ThinFont4,x
   and #$0f
   pha
-  ora UploadTileSpace+4,y
-  sta UploadTileSpace+4,y
+  ora UploadTileSpace+4+8,y
+  sta UploadTileSpace+4+8,y
   pla
-  ora UploadTileSpace+5,y
-  sta UploadTileSpace+5,y
+  ora UploadTileSpace+5+8,y
+  sta UploadTileSpace+5+8,y
   lda ThinFont5,x
   and #$0f
-  ora UploadTileSpace+6,y
-  sta UploadTileSpace+6,y
+  ora UploadTileSpace+6+8,y
+  sta UploadTileSpace+6+8,y
+
+  lda #0
+  sta UploadTileSpace+7+0,y
+  sta UploadTileSpace+7+8,y
 
   ; Next tile
   tya
