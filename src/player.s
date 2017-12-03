@@ -1936,6 +1936,8 @@ AbilityBurger:
 
   lda PressedDown           ; down+B: burger ride
   beq :+
+  lda PlayerOnLadder
+  bne :+
   lda InfiniteProjectileCheat
   bne @BurgerOK
   lda PlayerNeedsGround ; only allow one burger ride before touching the ground

@@ -91,12 +91,12 @@ insane3Data:
   LObj  LO::S_FG_GLASS_RED,   0, 10
   LObj  LO::S_FG_GLASS_BLUE,  0, 12
   LObjN LO::R_ROCK,           1, 0, 15, 0
-  LObjN LO::R_SOLID_ROCK,     0, 6, 4, 0
+  LObjN LO::R_SOLID_BLOCK,    0, 6, 4, 0
   LObj  LO::S_PRIZE,          2, 3
   LWriteCol InventoryItem::ABILITY_FIRE
   LObjN LO::WIDE_3,           0, 10, 2, LN3::MINE_TRACKS
   LObjN LO::TALL_1,           0, 13, 1, LN1::LADDER
-  LObj  LO::S_SOLID_ROCK,     2, 5
+  LObj  LO::S_SOLID_BLOCK,    2, 5
   LObjN LO::R_MTRACK_SUPPORTSONLY,  0, 11, 0, 3
   LObjN LO::WIDE_3,           1, 4, 6, LN3::MINE_TRACKS
   LObjN LO::R_CEILING_BARRIER,0, 5, 4, 0
@@ -187,9 +187,9 @@ insane3Data:
 
 insane3Sprite:
   LSpr Enemy::KING,                0,  35,   2
-  LSpr Enemy::OWL,                 0,  54,   5, 1
+  LSpr Enemy::OWL,                 0,  49,   9, 1
   LSpr Enemy::GEORGE,              1,  54,  12
-  LSpr Enemy::OWL,                 0,  56,   9, 1
+  LSpr Enemy::OWL,                 0,  55,   5, 1
   LSpr Enemy::OWL,                 0,  59,   6, 1
   LSpr Enemy::SNEAKER,             0,  72,   4
   LSpr Enemy::SNEAKER,             0,  74,   6

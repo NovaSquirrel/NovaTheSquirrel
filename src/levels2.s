@@ -4,3 +4,4 @@
 .include "../levels/insane1b.s"
 .include "../levels/insane2.s"
 .include "../levels/insane3.s"
+.include "../levels/insane4.s"

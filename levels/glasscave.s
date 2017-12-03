@@ -19,7 +19,6 @@ glasscave:
   .byt $00, $00 ; boundaries
 
 glasscaveData:
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
   LObjN LO::R_FG_GLASS_BLUE,  0, 0, 4, 8
   LObjN LO::R_GROUND,         0, 13, 15, 1
   LObjN LO::R_FG_GLASS_BLUE,  5, 0, 6, 5
@@ -67,7 +66,8 @@ glasscaveData:
   LObjN LO::WIDE_1,           2, 14, 15, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           1, 8, 6, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           2, 12, 4, LN1::SOLID_LEDGE
-  LObjN LO::R_ENEMY_BARRIER      ,  4, 1, 0, 3
+  LObjN LO::R_CEILING_BARRIER,3, 0, 1, 0
+  LObjN LO::R_ENEMY_BARRIER      ,  1, 1, 0, 3
   LObjN LO::R_GROUND,         1, 0, 5, 9
   LObj  LO::S_SOLID_BLOCK,    0, 10
   LObjN LO::TALL_1,           8, 5, 4, LN1::LADDER
@@ -190,6 +190,7 @@ glasscaveData:
   LObjN LO::R_GROUND,         14, 4, 3, 10
   LObj  LO::S_PRIZE,          2, 2
   LWriteCol InventoryItem::ABILITY_BURGER
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
   LFinished
 
 glasscaveSprite:

@@ -64,7 +64,8 @@ insane2Data:
   LObj  LO::R_CUSTOM,         1, 7, Metatiles::PICKUP_BLOCK, (2<<4)|1
   LObj  LO::S_CUSTOM,         0, 12, Metatiles::TOGGLE_SWITCH
   LObj  LO::R_CUSTOM,         1, 10, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|2
-  LObj  LO::S_CUSTOM,         1, 11, Metatiles::KEY_RED
+  LObj  LO::S_CEILING_BARRIER,1, 5
+  LObj  LO::S_CUSTOM,         0, 11, Metatiles::KEY_RED
   LObjN LO::R_GROUND,         1, 4, 3, 8
   LObj  LO::S_CUSTOM,         1, 3, Metatiles::LOCK_RED
   LObjN LO::R_CEILING_BARRIER,1, 0, 0, 2
