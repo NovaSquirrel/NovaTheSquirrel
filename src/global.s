@@ -801,9 +801,39 @@ RightPointer = LevelSpritePointer
 
   sty SaveY       ; save X and Y so the routine calling this doesn't have to
   stx SaveX
-  sta (LevelBlockPtr),y
-
+  sta (LevelBlockPtr),y ; Do the actual write
   tax             ; X = block type, to index into metatile info tables
+
+  ; First, determine if the block is even onscreen?
+  ; Start by getting the metatile column
+  lda LevelBlockPtr
+  sta Temp
+  lda LevelBlockPtr+1
+  .repeat 4
+    lsr
+    ror Temp
+  .endrep
+  ; Temp = metatile column of the block
+
+  lda ScrollX+1
+  and #<~1       ; clear bottom bit
+  sub #5         ; go back two 32 pixel chunks (plus one for less than or equal)
+  bcc @FineLeft
+  cmp Temp
+  bcc @FineLeft
+  jmp Exit
+@FineLeft:
+
+  lda ScrollX+1
+  and #<~1       ; clear bottom bit
+  add #21        ; go forward 10 32 pixel chunks, plus one (for right side of chunk)
+  bcs @FineRight
+  cmp Temp
+  bcs @FineRight
+  jmp Exit
+@FineRight:
+
+  ; OKAY so the block is actually on the screen, so update nametable
 
   ; find a slot for the block update
   ldy #MaxNumBlockUpdates-1
@@ -872,7 +902,7 @@ RightPointer = LevelSpritePointer
   jmp Exit ; no slots? don't bother updating the attribute table
 :
 
-  ; calculate attribute address and value
+  ; Calculate attribute address and value
   lda Temp
   sta TileUpdateA1,y
 
