@@ -325,6 +325,7 @@ ContinueDown:
   bne :- ; unconditional
 @Exit:
   rts
+
 ProcessStoneBridge:
   dey
   lda (Pointer),y
@@ -350,6 +351,7 @@ ProcessStoneBridge:
   rts
 @OK:
   rts
+
 ProcessPalmTree:
   dey
   lda (Pointer),y
@@ -361,17 +363,25 @@ ProcessPalmTree:
   sta (RightPointer),y
 @Exit:
   rts
+
 ProcessSand:
+  ; Temp1 will be a bitmap for solidity on the four sides of the ground tile
   lda #0
   sta Temp1
-  dey
-  lda (Pointer),y
-  jsr IsSand
-  iny
+
+  ; Look for sand to left and right
   lda (RightPointer),y
   jsr IsSand
   lda (LeftPointer),y
   jsr IsSand
+  ; Look for sand above
+  dey
+  lda (Pointer),y
+  jsr IsSand
+  iny
+
+  jsr PreventGoingPastScroll
+
   ldx Temp1
   lda SandLUT,x
   sta (Pointer),y
@@ -381,6 +391,7 @@ ProcessSand:
   lda #Metatiles::BG_LINE_TOP
   sta (Pointer),y
 : rts
+
 ProcessStripedLogHoriz:
   lda (RightPointer),y
   cmp #Metatiles::STRIPED_LOG_HORIZ
@@ -399,9 +410,11 @@ ProcessStripedLogHoriz:
   rts
 @OK:
   rts
+
 ProcessTropicalFlower:
   lda #Metatiles::FLOWER_STEM
   jmp ContinueDown
+
 ProcessBigBush:
   lda #Metatiles::BG_TREETOP_LR
   sta (RightPointer),y
@@ -411,10 +424,12 @@ ProcessBigBush:
   lda #Metatiles::BG_TREETOP_UR
   sta (RightPointer),y 
   rts
+
 ProcessBigSpikyBush:
   lda #Metatiles::BIG_SPIKY_BUSH_R
   sta (RightPointer),y
   rts
+
 ProcessBushBot:
   dey
   lda (Pointer),y
@@ -422,6 +437,7 @@ ProcessBushBot:
   lda #Metatiles::BG_BUSH_TOP
   sta (Pointer),y
 : rts
+
 ProcessTrunkL:
   ; Make right side
   lda (RightPointer),y
@@ -444,12 +460,14 @@ ProcessTrunkL:
   lda #Metatiles::BG_TREETOP_UR
   sta (RightPointer),y
 : rts
+
 ProcessFlower:
   jsr huge_rand
   and #3
   add (Pointer),y
   sta (Pointer),y
   rts
+
 ProcessLadder:
   dey
   lda (Pointer),y
@@ -481,29 +499,37 @@ ProcessCloud:
   rts
 
 ProcessGround:
+  ; Temp1 will be a bitmap for solidity on the four sides of the ground tile
   lda #0
   sta Temp1
+  ; Ground above?
   dey
   lda (Pointer),y
   jsr IsGround
+  ; Ground to the left and right?
   iny
   lda (LeftPointer),y
   jsr IsGround
   lda (RightPointer),y
   jsr IsGround
+  ; Ground below?
   iny
   lda (Pointer),y
   jsr IsGround
-  lda (Pointer),y
+  lda (Pointer),y ; Add a line underneath the ground if it's empty
+  cmp BackgroundMetatile
   bne DontPutLine
   lda #Metatiles::BG_LINE_TOP
   sta (Pointer),y
 DontPutLine:
   dey
+
+  jsr PreventGoingPastScroll
+
   ldx Temp1
-  cpx #15
+  cpx #15          ; if it's completely filled, do some additional checks
   beq ExtraGround
-  lda GroundLUT,x
+  lda GroundLUT,x  ; otherwise just use the LUT
   sta (Pointer),y
   rts
 
@@ -511,50 +537,95 @@ ExtraGround:
   lda #0
   sta Temp1
   dey
+  ; Take the bottom left and botom right measurements
   lda (LeftPointer),y
   jsr IsGround
   lda (RightPointer),y
   jsr IsGround
   iny
+  ; and use them in another lookup table
   ldx Temp1
   lda ExtraGroundTable,x
   sta (Pointer),y
   rts
+
 ExtraGroundTable:
   .byt Metatiles::GROUND_INNER_BOTH
   .byt Metatiles::GROUND_INNER_LEFT
   .byt Metatiles::GROUND_INNER_RIGHT
   .byt Metatiles::GROUND_MIDDLE_M
 
+PreventGoingPastScroll:
+  ; Right side shouldn't link up past a scroll boundary
+  cpy #$f0
+  bcc @NotRightSide
+  ldx Pointer+1
+  lda ScreenFlags-$60+1,x
+  beq @NotRightSide ; modify if more screen flags added later
+  lda Temp1
+  and #%1101
+  sta Temp1
+@NotRightSide:
+
+  ; Left side shouldn't link up past a scroll boundary
+  cpy #$10
+  bcs @NotLeftSide
+  ldx Pointer+1
+  lda ScreenFlags-$60,x
+  beq @NotLeftSide ; modify if more screen flags added later
+  lda Temp1
+  and #%1011
+  sta Temp1
+@NotLeftSide:
+  rts
+
 ProcessRock:
+  ; Temp1 will be a bitmap for solidity on the four sides of the ground tile
   lda #0
   sta Temp1
+  ; Look for rock above
   dey
   lda (Pointer),y
   jsr IsRock
+  ; Look for rock to the left and right
   iny
   lda (LeftPointer),y
   jsr IsRock
   lda (RightPointer),y
   jsr IsRock
+  ; Look for rock below
   iny
   lda (Pointer),y
   jsr IsRock
   dey
+
+  jsr PreventGoingPastScroll
+
   ldx Temp1
   lda RockLUT,x
   sta (Pointer),y
   rts
 
-SandLUT:
-  .byt Metatiles::SAND_U
-  .byt Metatiles::SAND_UR
-  .byt Metatiles::SAND_UL
-  .byt Metatiles::SAND_U
-  .byt Metatiles::SAND
-  .byt Metatiles::SAND_R
-  .byt Metatiles::SAND_L
-  .byt Metatiles::SAND
+SandLUT: ; RLU
+  .byt Metatiles::SAND_U  ; 000
+  .byt Metatiles::SAND    ; 00U
+  .byt Metatiles::SAND_UR ; 0L0
+  .byt Metatiles::SAND_R  ; 0LU
+  .byt Metatiles::SAND_UL ; R00
+  .byt Metatiles::SAND_L  ; R0U
+  .byt Metatiles::SAND_U  ; RL0
+  .byt Metatiles::SAND    ; RLU
+.if 0
+; was URL. Rearranged to allow some code reuse
+  .byt Metatiles::SAND_U  ; 000
+  .byt Metatiles::SAND_UR ; 00L
+  .byt Metatiles::SAND_UL ; 0R0
+  .byt Metatiles::SAND_U  ; 0RL
+  .byt Metatiles::SAND    ; U00
+  .byt Metatiles::SAND_R  ; U0L
+  .byt Metatiles::SAND_L  ; UR0
+  .byt Metatiles::SAND    ; URL
+.endif
 
 GroundLUT:                            ; ULRD
   .byt Metatiles::GROUND_NARROW_TOP   ; 0000
@@ -592,49 +663,54 @@ RockLUT:                     ; ULRD
   .byt Metatiles::ROCK_BOT_M ; 1110
   .byt Metatiles::ROCK_MID_M ; 1111
 
+; Rotate a 1 into Temp1 if the accumulator is a fallthrough ledge
 IsFallthroughLedge:
-  cmp #Metatiles::FALLTHROUGH_LEDGE_L
-  bcc NoItIsnt
   cmp #Metatiles::FALLTHROUGH_LEDGE_S+1
   bcs NoItIsnt
-  sec
+  cmp #Metatiles::FALLTHROUGH_LEDGE_L
   rol Temp1
   rts
+
+; Rotate a 1 into Temp1 if the accumulator is a solid
 IsSolidLedge:
-  cmp #Metatiles::SOLID_LEDGE_L
-  bcc NoItIsnt
   cmp #Metatiles::SOLID_LEDGE_S+1
   bcs NoItIsnt
-  sec
+  cmp #Metatiles::SOLID_LEDGE_L
+  bcc NoItIsnt
   rol Temp1
   rts
+
+; Rotate a 1 into Temp1 if the accumulator is sand
 IsSand:
-  cmp #Metatiles::SAND_UL
-  bcc NoItIsnt
   cmp #Metatiles::SAND_R+1
   bcs NoItIsnt
-  sec
+  cmp #Metatiles::SAND_UL
   rol Temp1
   rts
+
+; Rotate a 1 into Temp1 if the accumulator is a ground tile
 IsGround:
-  cmp #Metatiles::GROUND_TOP_L
-  bcc NoItIsnt
   cmp #Metatiles::GROUND_CLIMB_R+1
   bcs NoItIsnt
-  sec
+  cmp #Metatiles::GROUND_TOP_L
   rol Temp1
   rts
+
+; Rotate a 0 into Temp1 because it's not a match
 NoItIsnt:
   clc
   rol Temp1
   rts
+
+; Rotate a 1 into Temp1 if the accumulator is rock
 IsRock:
   cmp #Metatiles::ROCK_TOP_L
   bcc NoItIsnt
   cmp #Metatiles::ROCK_BOT_R+1
   bcs NoItIsnt
   sec
-  rol Temp1
+
+rol Temp1
   rts
 
 ProcessWater:
