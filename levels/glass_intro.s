@@ -20,7 +20,6 @@ glass_intro:
 
 glass_introData:
   .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <AfterFirstBattle, >AfterFirstBattle
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 17
   LObjN LO::R_BG_GLASS_GREEN, 2, 5, 10, 0
   LObj  LO::S_SIGNPOST,       5, 12
@@ -133,7 +132,8 @@ glass_introData:
   LObjN LO::R_CEILING_BARRIER,1, 0, 0, 2
   LObj  LO::S_COIN,           0, 8
   LObjN LO::R_FG_GLASS_RED,   1, 0, 0, 2
-  LObj  LO::S_COIN,           2, 9
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 2
+  LObj  LO::S_COIN,           1, 9
   LObj  LO::S_W_ARROW_RIGHT,  1, 2
   LObj  LO::S_W_ARROW_UP,     0, 13
   LObj  LO::S_COIN,           1, 7
@@ -235,6 +235,7 @@ glass_introData:
   LObjN LO::R_BG_GLASS_BLUE,  4, 11, 0, 3
   LObj  LO::S_EXIT_DOOR,      2, 8
   LObjN LO::R_BG_GLASS_BLUE,  2, 11, 0, 3
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
   LFinished
 
 glass_introSprite:

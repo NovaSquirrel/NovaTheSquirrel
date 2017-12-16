@@ -3547,23 +3547,247 @@ NoRetarget:
 .endproc
 
 .proc ObjectMolSno
-  lda #<MetaspriteL
-  ldy #>MetaspriteL
+  lda #$10
+  add ObjectF4,x ; speed up with damage
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+
+  jsr EnemyFall
+  bcc :+
+    lda ObjectPXH,x
+    cmp #6
+    beq @YesJump
+    lda ObjectPXH,x
+    cmp #8
+    bne :+
+@YesJump:
+      lda #<(-$060)
+      sta ObjectVYL,x
+      lda #>(-$060)
+      sta ObjectVYH,x
+  :
+
+; Move position up temporarily
+  lda ObjectPYL,x
+  sub #$80
+  sta ObjectPYL,x
+  subcarryx ObjectPYH
+
+  lda ObjectF3,x ; invincibility
+  beq :+
+  dec ObjectF3,x
+  lda retraces
+  and #1
+  beq DontDraw
+:
+
+; Lookup the correct animation frame
+  lda ObjectF1,x
+  and #1
+  asl ;2
+  asl ;4
+  sta 0
+  lda retraces
+  and #4
+  lsr
+  lsr
+  ora 0
+
+  ; Use throwing frame if throwing
+  ldy ObjectF2,x
+  cpy #ENEMY_STATE_ACTIVE
+  bne :+
+    and #4
+    ora #2
+  :
+
+  tay
+  lda FramesLo,y
+  pha
+  lda FramesHi,y
+  tay
+  pla
   jsr DispEnemyMetasprite
+DontDraw:
+
+; Switch into can throwing mode
+  lda ObjectF2,x
+  cmp #ENEMY_STATE_NORMAL
+  bne :+
+    dec ObjectTimer,x
+    bne :+
+      lda #ENEMY_STATE_ACTIVE
+      sta ObjectF2,x
+      jsr huge_rand
+      and #15
+      add #50
+      sta ObjectTimer,x
+      lda #ENEMY_STATE_ACTIVE
+      sta ObjectF2,x
+  :
+
+; Throw cans
+  lda ObjectF2,x
+  cmp #ENEMY_STATE_ACTIVE
+  bne :+
+    dec ObjectTimer,x
+    bne @NoResetThrow
+    lda #ENEMY_STATE_NORMAL
+    sta ObjectF2,x
+    lda #180
+    sta ObjectTimer,x
+@NoResetThrow:
+    lda retraces
+    and #7
+    bne :+
+      jsr FindFreeObjectY
+      bcc :+
+        jsr EnemyLookAtPlayer
+        lda #Enemy::MOLSNO_NOTE*2
+        sta ObjectF1,y
+        lda #0
+        sta ObjectF2,y
+        lda #40
+        sta ObjectTimer,y
+
+        jsr ObjectCopyPosXYOffset
+
+        sty TempY
+        jsr AimAtPlayer
+        lda #1
+        jsr SpeedAngle2Offset
+        ldy TempY
+        lda 0
+        sta ObjectVXL,y
+        lda 1
+        sta ObjectVXH,y
+        lda 2
+        sta ObjectVYL,y
+        lda 3
+        sta ObjectVYH,y
+  :
+
+; Move position back down
+  lda ObjectPYL,x
+  add #$80
+  sta ObjectPYL,x
+  addcarryx ObjectPYH
+
+; Write health indicator
+  ldy OamPtr
+  lda #$48
+  sub ObjectF4,x
+  sta OAM_TILE,y
+  lda #OAM_COLOR_1
+  sta OAM_ATTR,y
+  lda #24
+  sta OAM_YPOS,y
+  lda #256-32
+  sta OAM_XPOS,y
+  iny
+  iny
+  iny
+  iny
+  sty OamPtr
+
+; If the boss is out of hitpoints, wait a bit and then teleport
+  lda ObjectF4,x
+  cmp #8
+  bcc :+
+    inc LevelVariable
+    lda LevelVariable
+    cmp #30
+    bcc NotShot
+    lda #16
+    jmp DoTeleport
+  :
+
+; Get hit by projectiles
+  lda ObjectF3,x
+  bne NotShot
+  jsr EnemyGetShotTest
+  bcc :+
+ProjectileIndex = TempVal+2
+  ldy ProjectileIndex
+  lda #0
+  sta ObjectF1,y
+  inc ObjectF4,x ; increase hit counter
+  lda #90
+  sta ObjectF3,x ; be invincible for a bit
+  lda #SFX::ENEMY_HURT
+  sta NeedSFX
+:
+NotShot:
+
   rts
+FramesLo:
+  .lobytes MetaspriteR, MetaspriteRWalk, MetaspriteRThrow, MetaspriteRMusic
+  .lobytes MetaspriteL, MetaspriteLWalk, MetaspriteLThrow, MetaspriteLMusic
+FramesHi:
+  .hibytes MetaspriteR, MetaspriteRWalk, MetaspriteRThrow, MetaspriteRMusic
+  .hibytes MetaspriteL, MetaspriteLWalk, MetaspriteLThrow, MetaspriteLMusic
 
 MetaspriteR:
   MetaspriteHeader 2, 3, 2
   .byt $00, $10, $02
   .byt $01, $11, $03
+MetaspriteRWalk:
+  MetaspriteHeader 2, 3, 2
+  .byt $00, $10, $04
+  .byt $01, $11, $05
+MetaspriteRThrow:
+  MetaspriteHeader 2, 3, 2
+  .byt $06, $16, $08
+  .byt $07, $17, $09
+MetaspriteRMusic:
+  MetaspriteHeader 2, 3, 2
+  .byt $12, $10, $02
+  .byt $13, $11, $03
 MetaspriteL:
   MetaspriteHeader 2, 3, 2
   .byt $01|OAM_XFLIP, $11|OAM_XFLIP, $03|OAM_XFLIP
   .byt $00|OAM_XFLIP, $10|OAM_XFLIP, $02|OAM_XFLIP
+MetaspriteLWalk:
+  MetaspriteHeader 2, 3, 2
+  .byt $01|OAM_XFLIP, $11|OAM_XFLIP, $05|OAM_XFLIP
+  .byt $00|OAM_XFLIP, $10|OAM_XFLIP, $04|OAM_XFLIP
+MetaspriteLThrow:
+  MetaspriteHeader 2, 3, 2
+  .byt $07|OAM_XFLIP, $17|OAM_XFLIP, $09|OAM_XFLIP
+  .byt $06|OAM_XFLIP, $16|OAM_XFLIP, $08|OAM_XFLIP
+MetaspriteLMusic:
+  MetaspriteHeader 2, 3, 2
+  .byt $13|OAM_XFLIP, $11|OAM_XFLIP, $03|OAM_XFLIP
+  .byt $12|OAM_XFLIP, $10|OAM_XFLIP, $02|OAM_XFLIP
 .endproc
 
 .proc ObjectMolSnoNote
+  dec ObjectTimer,x
+  bne :+
+  lda #0
+  sta ObjectF1,x
   rts
+:
+
+  jsr EnemyApplyVelocity
+  lda retraces
+  lsr
+  lsr
+  and #3
+  tay
+  lda Attr,y
+  sta 1
+
+  lda Tile,y
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_Attr
+  jmp SmallEnemyPlayerTouchHurt
+
+Tile:
+  .byt $14, $15, $14, $15
+Attr:
+  .byt OAM_COLOR_2, OAM_COLOR_2, OAM_COLOR_2|OAM_XFLIP|OAM_YFLIP, OAM_COLOR_2|OAM_XFLIP|OAM_YFLIP
+
 .endproc
 
 .proc ObjectBuddy
