@@ -742,6 +742,7 @@ DoneCheckMiddle:
     lda BlockUL
     jsr DoSpecialWall
   :
+  tay
   lda #$70
   add PlayerPXL            ; right side
   lda PlayerPXH
