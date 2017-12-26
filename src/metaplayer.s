@@ -406,6 +406,8 @@ PreMove:
 
   ; If the space in front is free, we can move.
   lda (LevelBlockPtr),y
+  cmp #Metatiles::CHERRY_BOMB
+  beq ExplodeCherryBomb
   cmp BackgroundMetatile
   beq MoveIsOkay
     ; Space in front is taken, but is there a block on top of that?
@@ -419,6 +421,24 @@ Abort:
     rts
 MoveIsOkay:
   rts
+ExplodeCherryBomb:
+  pla
+  pla
+  lda #SFX::BOOM1
+  sta NeedSFX
+; Erase bomb
+  lda BackgroundMetatile
+  jsr ChangeBlockFar
+  lda #PoofSubtype::POOF
+  jsr MakePoofAtBlock
+; Erase block too
+  ldy OldYIndex
+  lda OldLevelBlockPtr+0
+  sta LevelBlockPtr+0
+  lda OldLevelBlockPtr+1
+  sta LevelBlockPtr+1
+  lda BackgroundMetatile
+  jmp ChangeBlockFar
 .endproc
 
 .proc TouchedLock
@@ -733,6 +753,12 @@ No:
 
 FoundCloner:
   sty BlockY
+
+  ldx BlockX        ; Check if it's a block cloner first
+  lda ColumnBytes,x
+  cmp #2
+  bcc BlockCloner
+
   jsr FindFreeObjectY
   bcc No
 
@@ -752,6 +778,18 @@ FoundCloner:
   sta ObjectPXL,y
   sta ObjectPYL,y
   rts
+Specials:
+  .byt Metatiles::PUSHABLE_BLOCK
+  .byt Metatiles::PICKUP_BLOCK
+
+BlockCloner:
+  tax
+  dey
+  lda (LevelBlockPtr),y
+  cmp BackgroundMetatile
+  bne No
+  lda Specials,x
+  jmp ChangeBlockFar
 .endproc
 
 .proc TouchedGenericSwitch
