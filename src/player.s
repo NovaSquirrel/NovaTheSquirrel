@@ -728,6 +728,7 @@ DoneCheckMiddle:
   add #<(8*16)
   lda PlayerPYH
   adc #>(8*16)
+  pha ; save Y index so DoSpecialWall isn't required to preserve it
   tay
   lda PlayerPXH
   jsr GetLevelColumnPtr
@@ -742,6 +743,7 @@ DoneCheckMiddle:
     lda BlockUL
     jsr DoSpecialWall
   :
+  pla ; get Y index back
   tay
   lda #$70
   add PlayerPXL            ; right side
