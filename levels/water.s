@@ -200,6 +200,7 @@ waterSprite:
   LSpr Enemy::CANNON_1,            0, 110,  10
   LSpr Enemy::THWOMP,              0, 119,   5
   LSpr Enemy::SNEAKER,             1, 128,   7
+  LSpr Enemy::CHECKPOINT,          0, 134,  10
   LSpr Enemy::SPINNER,             0, 147,   7
   LSpr Enemy::BALL_GUY,            1, 160,  10
   LSpr Enemy::GEORGE,              1, 168,   4

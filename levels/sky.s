@@ -180,10 +180,12 @@ skyData:
 skySprite:
   LSpr Enemy::OWL,                 0,  13,  10
   LSpr Enemy::FIRE_JUMP,           0,  37,   5
+  LSpr Enemy::CHECKPOINT,          0,  43,   8
   LSpr Enemy::GEORGE,              1,  50,   9
   LSpr Enemy::FIRE_JUMP,           1,  53,   3
   LSpr Enemy::CANNON_1,            1,  57,   6
   LSpr Enemy::GOOMBA,              0,  73,   5
+  LSpr Enemy::CHECKPOINT,          0,  81,   4
   LSpr Enemy::KING,                0,  95,   1
   LSpr Enemy::GOOMBA,              1, 103,   8
   LSpr Enemy::COLLECTIBLE,         0, 110,  11
@@ -193,6 +195,7 @@ skySprite:
   LSpr Enemy::OWL,                 0, 130,   6
   LSpr Enemy::THWOMP,              0, 139,   7
   LSpr Enemy::KING,                0, 140,   1
+  LSpr Enemy::CHECKPOINT,          0, 154,   9
   LSpr Enemy::KING,                0, 155,   1
   LSpr Enemy::GOOMBA,              1, 161,   7
   LSpr Enemy::KING,                0, 183,   1
