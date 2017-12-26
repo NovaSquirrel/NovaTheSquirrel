@@ -121,7 +121,7 @@ M_BEHAVIOR =       %00011111 ; mask for the block's behavior only
 .scope
   Low = 14
   High = 15
-  ; Object stuff ---- add bank switching if object code is separated from metatile code!
+  ; Object stuff ----
   ; Clear objects
   lda #0
   sta JustTeleported
@@ -129,6 +129,25 @@ M_BEHAVIOR =       %00011111 ; mask for the block's behavior only
 : sta ObjectF1,y
   dey
   bpl :-
+
+  lda CarryingPickupBlock
+  beq NoPickupBlock
+  jsr FindFreeObjectY
+  bcc NoSlotForPickupBlock ; should never fail because objects were just cleared
+  lda #Enemy::POOF*2
+  sta ObjectF1,y
+  lda PlayerPXH
+  sta ObjectPXH,y
+  lda PlayerPYH
+  sta ObjectPYH,y
+  lda #PoofSubtype::CARRYABLE_BLOCK
+  sta ObjectF2,y
+  bne NoPickupBlock
+NoSlotForPickupBlock:
+  lda #0
+  sta CarryingPickupBlock
+NoPickupBlock:
+
   ; Try to spawn enemies
   ; - get low column
   lda ScrollX+1
