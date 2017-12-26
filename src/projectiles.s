@@ -537,6 +537,9 @@ ProjWaterBottle:
   jsr EnemyGravity
   jsr EnemyApplyVelocity ; actually applies the vertical velocity a second time
 
+  lda ObjectPYH,x
+  cmp #15
+  bcs :+
   jsr GetPointerForMiddle
   cmp #Metatiles::CAMPFIRE
   bne :+
