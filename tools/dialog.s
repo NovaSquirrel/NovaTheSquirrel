@@ -552,6 +552,11 @@ AboutCloner:
 ; <1 SIGN>Red switches activate cloners. This one creates a Buddy to help you out, which can pick up items and press toggles for you.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "R", $d6, "s", "w", "i", "t", $e2, "e", $fb, "a", $c7, "i", "v", $c6, "e", SCR::NEWLINE, "c", "l", $ac, "r", "s", $f6, $f8, $b8, $ac, " ", "c", "r", $ec, $eb, $fb, "a", SCR::NEWLINE, "B", "u", "d", "d", $fe, $bb, $c3, "l", "p", " ", $a6, " ", $ae, $f5, $da, "i", $e2, SCR::NEWLINE, $b0, " ", "p", "i", $f3, " ", $cd, " ", "i", $eb, "m", $fb, $a4, "p", "r", "e", $f1, SCR::NEWLINE, $bc, "g", "g", "l", "e", $fb, $a5, " ", $a6, "."
 .byt SCR::END_SCRIPT
+AboutGeorgeReminder:
+.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
+; <1 SIGN>This volcano can be copied too. Hold Select to get rid of your Fire ability if you have it, then stun and copy the volcano.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f8, $b8, "v", "o", "l", $b0, "o", " ", $b0, " ", $ba, "c", "o", "p", $e3, "d", SCR::NEWLINE, $bc, "o", $f6, "H", "o", $ef, " ", "S", "e", "l", "e", $c7, " ", $bb, $af, " ", $fc, $ff, "o", "f", SCR::NEWLINE, $91, " ", "F", "i", "r", $e7, "a", "b", $dc, "i", "t", $fe, $ce, " ", $a6, " ", "h", "a", "v", "e", SCR::NEWLINE, "i", "t", $f5, $94, " ", $de, $f2, " ", $a4, "c", "o", "p", $fe, $a2, SCR::NEWLINE, "v", "o", "l", $b0, "o", "."
+.byt SCR::END_SCRIPT
 SignAboutInsane2b:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
 ; <1 SIGN>I, the sign, have loaded tons of placeable rails into your inventory. If the minecarts give you too much trouble, be a wimp and use blocks.

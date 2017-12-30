@@ -22,7 +22,6 @@ chiptall:
 
 chiptallData:
   .byt LSpecialCmd, LevelSpecialConfig::PUZZLE_MODE, AbilityType::NONE, InventoryItem::BLOCK, 128|98, InventoryItem::SPRING, 128|98, InventoryItem::HEALTH_RESTORE, 128|9, $00
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
   LObjN LO::R_SOLID_ROCK,     0, 0, 1, 14
   LObjN LO::R_SOLID_ROCK,     2, 0, 13, 1
   LObjN LO::R_SOLID_ROCK,     0, 14, 2, 0
@@ -173,7 +172,8 @@ chiptallData:
   LObj  LO::S_CUSTOM,         1, 3, Metatiles::CHIP
   LObjN LO::WIDE_1,           0, 7, 2, LN1::SOLID_LEDGE
   LObj  LO::S_BIGHEART,       1, 8
-  LObjN LO::R_COIN,           2, 5, 1, 3
+  LObjN LO::R_SOLID_ROCK,     2, 0, 1, 0
+  LObjN LO::R_COIN,           0, 5, 1, 3
   LObj  LO::S_CUSTOM,         0, 10, Metatiles::CHIP
   LObjN LO::WIDE_1,           2, 4, 2, LN1::SOLID_LEDGE
   LObj  LO::R_CUSTOM,         0, 5, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|3
@@ -201,6 +201,7 @@ chiptallData:
   LObj  LO::S_EXIT_DOOR,      5, 11
   LObjN LO::R_COIN,           5, 2, 0, 8
   LObjN LO::R_SOLID_ROCK,     3, 0, 1, 14
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
   LFinished
 
 chiptallSprite:

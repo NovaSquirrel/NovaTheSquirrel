@@ -1257,17 +1257,43 @@ CannonFrame:
 .endproc
 
 .proc ObjectBurger
+  ; Burger type 1 has thwomp-like behavior
+  lda ObjectF3,x
+  cmp #1
+  bne :+
+    lda ObjectPXH,x
+    cmp PlayerPXH
+    bne :+
+      lda #0
+      sta ObjectVXL,x
+      sta ObjectVXH,x
+      lda #ENEMY_STATE_ACTIVE
+      sta ObjectF2,x  
+  :
+  lda ObjectF2,x
+  cmp #ENEMY_STATE_ACTIVE
+  bne :+
+    jsr EnemyFall
+  :
+
   jsr EnemyDespawnTimer
   lda ObjectF2,x
   bne :+
   jsr EnemyApplyVelocity
 : ; Display the different burger varieties differently
-  lda ObjectF3,x
+  lda ObjectF3,x ; multiply variety by 4 for starting tile number
   asl
   asl
   ora #$10
   ldy #OAM_COLOR_3
   jsr DispEnemyWide
+
+; ----------------
+  lda ObjectF3,x
+  cmp #2
+  bne NotHoming
+NotHoming:
+
   jmp EnemyPlayerTouchHurt
 ;  jmp GoombaSmoosh
 .endproc

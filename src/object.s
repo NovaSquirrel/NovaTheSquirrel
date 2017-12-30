@@ -1209,6 +1209,7 @@ EnemyPlayerTouchCustomSize = EnemyPlayerTouch::AfterHeightWidth
 ; Makes the enemy walk forward and checks for collision
 ; input: A (walking distance), X (object slot)
 ; output: carry (bumped into something), 0 (block that was bumped into)
+; locals: 0, 1, 2
 .proc EnemyWalk ; assumes 16x16 enemies
 WalkDistance = 0
 NewXL = 1
@@ -1438,6 +1439,7 @@ NoTouchSolid:
 ; Checks if an object is on top of a solid block
 ; input: X (object slot)
 ; output: Zero flag (not zero if on top of a solid block)
+; locals: 0
 .proc EnemyCheckStandingOnSolid
   lda #0
   sta 0

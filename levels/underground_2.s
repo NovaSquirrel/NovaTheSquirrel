@@ -20,7 +20,8 @@ underground_2:
 
 underground_2Data:
   LObjN LO::R_GROUND,         0, 13, 10, 1
-  LObjN LO::WIDE_1,           6, 3, 3, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           6, 1, 3, 1
+  LObjN LO::WIDE_1,           0, 3, 3, LN1::SOLID_LEDGE
   LObjN LO::WIDE_2,           0, 12, 3, LN2::BUSH
   LObj  LO::S_PRIZE,          1, 10
   LObj  LO::S_SOLID_BLOCK,    3, 12

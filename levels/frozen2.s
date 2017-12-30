@@ -19,7 +19,6 @@ frozen2:
   .byt $00, $02 ; boundaries
 
 frozen2Data:
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::FROZEN_CAVE
   LObjN LO::R_ROCK,           0, 8, 4, 3
   LObjN LO::R_ROCK,           0, 12, 9, 2
   LObjN LO::WIDE_1,           5, 10, 2, LN1::SOLID_LEDGE
@@ -220,15 +219,17 @@ frozen2Data:
   LObj  LO::S_MTRACK_UPRIGHT,  5, 8
   LObjN LO::R_GROUND,         2, 8, 3, 6
   LObjN LO::WIDE_1,           1, 7, 2, LN1::TALLGRASS
-  LObjN LO::R_WATER,          3, 8, 15, 6
-  LXPlus16
-  LObjN LO::WIDE_1,           0, 7, 2, LN1::TALLGRASS
+  LObjN LO::R_WATER,          3, 8, 5, 6
+  LObjN LO::WIDE_1,           6, 7, 2, LN1::TALLGRASS
   LObjN LO::R_ROCK,           0, 8, 7, 6
-  LObjN LO::R_COIN,           2, 6, 3, 0
-  LObjN LO::WIDE_3,           5, 7, 11, LN3::MINE_TRACKS
-  LObjN LO::WIDE_1,           11, 8, 3, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           3, 6, 3, 0
+  LObjN LO::WIDE_3,           4, 7, 11, LN3::MINE_TRACKS
+  LObjN LO::R_MTRACK_SUPPORTSONLY,  3, 8, 0, 6
+  LObjN LO::R_MTRACK_SUPPORTSONLY,  3, 8, 0, 6
+  LObjN LO::R_MTRACK_SUPPORTSONLY,  3, 8, 0, 6
+  LObjN LO::WIDE_1,           2, 8, 3, LN1::SOLID_LEDGE
   LObj  LO::S_EXIT_DOOR,      2, 6
-  LObjN LO::R_SOLID_BLOCK,    4, 0, 0, 14
+  LObjN LO::R_SOLID_BLOCK,    14, 0, 0, 14
   LObjN LO::R_SOLID_BLOCK,    1, 0, 13, 4
   LObj  LO::S_BIGHEART,       0, 8
   LObjN LO::R_SOLID_BLOCK,    0, 10, 13, 4
@@ -239,6 +240,7 @@ frozen2Data:
   LObj  LO::S_PRIZE,          1, 7
   LWriteCol InventoryItem::HEALTH_RESTORE
   LObjN LO::R_SOLID_BLOCK,    3, 0, 0, 14
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::FROZEN_CAVE
   LFinished
 
 frozen2Sprite:

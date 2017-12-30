@@ -38,7 +38,9 @@ grassy_bData:
   LObjN LO::R_COIN,           1, 7, 4, 0
   LObjN LO::WIDE_1,           0, 8, 4, LN1::TALLGRASS
   LObjN LO::RECT_1,           0, 9, 3, LN1::GROUND, 21
-  LObjN LO::R_AIR,            5, 9, 3, 0
+  LObj  LO::S_SIGNPOST,       1, 8
+  LWriteCol <AboutGeorgeReminder, >AboutGeorgeReminder
+  LObjN LO::R_AIR,            4, 9, 3, 0
   LObjN LO::TALL_2,           1, 7, 2, LN2::TRUNK_L
   LObjN LO::R_GROUND,         4, 3, 6, 3
   LObjN LO::R_COIN,           1, 1, 4, 0

@@ -439,6 +439,10 @@
 <1 SIGN>Red switches activate cloners. This one creates a Buddy to help you out, which can pick up items and press toggles for you.
 `end
 
+:AboutGeorgeReminder:
+`scene NOVA_AND_SIGN
+<1 SIGN>This volcano can be copied too. Hold Select to get rid of your Fire ability if you have it, then stun and copy the volcano.
+`end
 
 
 :SignAboutInsane2b:

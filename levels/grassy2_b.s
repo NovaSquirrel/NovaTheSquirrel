@@ -64,11 +64,14 @@ grassy2_bData:
   LObj  LO::S_HEART,          5, 6
   LObj  LO::S_GROUND_CLIMB_L, 2, 6
   LObjN LO::R_GROUND,         1, 6, 5, 8
-  LObjN LO::R_GROUND,         6, 9, 2, 5
+  LObjN LO::WIDE_1,           6, 9, 0, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           0, 10, 0, LN1::SOLID_LEDGE
   LObjN LO::R_AIR,            0, 11, 2, 1
   LObj  LO::S_DOOR,           0, 11
   LWriteCol 3, 212
+  LObjN LO::R_GROUND,         0, 13, 0, 1
   LObj  LO::S_BIG_BUSH, 1, 8
+  LObjN LO::R_GROUND,         0, 9, 1, 5
   LObjN LO::TALL_2,           2, 9, 4, LN2::PATH_LINE
   LObjN LO::R_COIN,           1, 5, 2, 0
   LObjN LO::R_ENEMY_BARRIER      ,  1, 1, 0, 3

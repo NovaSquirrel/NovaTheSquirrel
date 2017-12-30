@@ -885,6 +885,13 @@
 					"Y":	7,
 					"W":	1,
 					"H":	3
+				}, {
+					"Id":	"SIGNPOST",
+					"X":	29,
+					"Y":	8,
+					"W":	1,
+					"H":	1,
+					"Extra":	"AboutGeorgeReminder"
 				}]
 		}, {
 			"Name":	"Sprites",
