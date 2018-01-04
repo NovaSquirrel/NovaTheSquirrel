@@ -67,6 +67,8 @@
   .byt GraphicsUpload::SP_MOLSNO ;MOLSNO
   .byt GraphicsUpload::SP_MOLSNO ;MOLSNO_NOTE
   .byt GraphicsUpload::SP_BOOMERANG ;BUDDY
+  .byt 0 ;BEAM_EMITTER
+  .byt 0 ;LASER_BEAM
 .endproc
 
 .proc ObjBehaviors
@@ -138,6 +140,8 @@
   .byt 0 ;MOLSNO
   .byt ObjBehavior::AUTO_REMOVE ;MOLSNO_NOTE
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BUDDY
+  .byt 0 ;BEAM_EMITTER
+  .byt 0 ;LASER_BEAM
 .endproc
 
 .proc ObjFlags
@@ -209,5 +213,7 @@
   .byt ObjFlag::ESSENTIAL ;MOLSNO
   .byt ObjFlag::PRIMARY ;MOLSNO_NOTE
   .byt ObjFlag::PRIMARY ;BUDDY
+  .byt ObjFlag::PRIMARY ;BEAM_EMITTER
+  .byt ObjFlag::SECONDARY ;LASER_BEAM
 .endproc
 

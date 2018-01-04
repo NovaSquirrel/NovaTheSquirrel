@@ -912,7 +912,7 @@ ProjBurger:
     jmp ChangeToExplosion
   :
 
-  jsr GetBlockUnderProjectile
+  jsr GetPointerForMiddleWide
   cmp #Metatiles::CEILING_BARRIER
   beq @DoExplosion
   tay
@@ -936,17 +936,7 @@ ProjBurger:
 :
   rts
 
-GetBlockUnderProjectile:
-  lda ObjectPYL,x
-  add #$40
-  lda ObjectPYH,x
-  adc #0
-  tay
-  lda ObjectPXL,x
-  add #$40
-  lda ObjectPXH,x
-  adc #0
-  jmp GetLevelColumnPtr
+GetBlockUnderProjectile = GetPointerForMiddle
 
 ProjMirror:
   jsr EnemyApplyVelocity

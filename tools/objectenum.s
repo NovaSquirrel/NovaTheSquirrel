@@ -67,5 +67,7 @@
   MOLSNO
   MOLSNO_NOTE
   BUDDY
+  BEAM_EMITTER
+  LASER_BEAM
 .endenum
 

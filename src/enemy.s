@@ -388,13 +388,7 @@ DrawY = O_RAM::OBJ_DRAWY
   sta OamPtr
 NoDraw:
 
-  ; Apply velocity
-  lda ObjectPYL,x
-  add ObjectVYL,x
-  sta ObjectPYL,x
-  lda ObjectPYH,x
-  adc ObjectVYH,x
-  sta ObjectPYH,x
+  jsr EnemyApplyYVelocity
 
   ; Increase velocity
   lda ObjectVYL,x
@@ -3854,4 +3848,83 @@ DoneInteract:
   add #$14
   ldy #OAM_COLOR_3
   jmp DispEnemyWide
+.endproc
+
+.proc ObjectBeamEmitter
+  lda retraces
+  and #7
+  bne :+
+    jsr FindFreeObjectY
+    bcc :+
+      jsr ObjectCopyPosXYOffset
+
+      txa
+      pha
+      lda ObjectF3,x
+      tax
+      lda TableXL,x
+      sta ObjectVXL,y
+      lda TableXH,x
+      sta ObjectVXH,y
+      lda TableYL,x
+      sta ObjectVYL,y
+      lda TableYH,x
+      sta ObjectVYH,y
+      pla
+      tax
+
+      lda #Enemy::LASER_BEAM*2
+      sta ObjectF1,y
+      lda #30
+      sta ObjectTimer,y
+  :
+  rts
+
+TableXL: .lobytes $70, -$70, 0, 0
+TableXH: .hibytes $70, -$70, 0, 0
+TableYL: .lobytes 0, 0, $70, -$70
+TableYH: .hibytes 0, 0, $70, -$70
+.endproc
+
+.proc ObjectLaserBeam
+  dec ObjectTimer,x
+  beq Destroy
+
+  jsr GetPointerForMiddle
+  tay
+  lda MetatileFlags,y
+  bmi Destroy ; hit a solid
+
+  lda #OAM_COLOR_3
+  sta 1
+  lda #$54
+  jsr DispObject8x8_Attr
+  jsr SmallPlayerTouch
+  bcc NoTouch
+    jsr HurtPlayer
+    lda ObjectVXL,x
+    bne Horizontal
+  Vertical:
+    ; Now push the player away
+    lda #<(-$40)
+    sta PlayerVXL
+    lda #>(-$40)
+    sta PlayerVXH
+    lda PlayerDir
+    beq :+
+      lda #<($40)
+      sta PlayerVXL
+      lda #>($40)
+      sta PlayerVXH
+    :
+    jmp EnemyApplyVelocity
+  Horizontal:
+    ; not sure how to handle horizontal well yet
+NoTouch:
+  jmp EnemyApplyVelocity
+
+Destroy:
+  lda #0
+  sta ObjectF1,x
+  rts
 .endproc

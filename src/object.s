@@ -188,6 +188,8 @@ Exit:
   .raddr ObjectMolSno
   .raddr ObjectMolSnoNote
   .raddr ObjectBuddy
+  .raddr ObjectBeamEmitter
+  .raddr ObjectLaserBeam
 .endproc
 
 ; other enemy attributes
@@ -1902,3 +1904,4 @@ DontDraw:
   adc #0
   jmp GetLevelColumnPtr
 .endproc
+
