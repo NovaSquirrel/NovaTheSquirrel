@@ -1481,16 +1481,7 @@ NoTouchSolid:
 ; input: X (object slot)
 ; output: carry (set if overlapping a solid), 0 (block type), 1 (Y position)
 .proc EnemyCheckOverlappingOnSolid
-  lda ObjectPYL,x
-  add #$80
-  lda ObjectPYH,x
-  adc #0
-  tay
-  lda ObjectPXL,x
-  add #$80
-  lda ObjectPXH,x
-  adc #0
-  jsr GetLevelColumnPtr
+  jsr GetPointerForMiddleWide
   sta 0
   sty 1
   tay

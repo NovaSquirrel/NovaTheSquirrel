@@ -2985,6 +2985,7 @@ ArrowHit:
   cpy #8
   bcs WasNotArrow
 
+ChangeTheDirection:
   jsr SnapXY
 
   ; Get the arrow direction
@@ -3890,10 +3891,8 @@ TableYH: .hibytes 0, 0, $70, -$70
   dec ObjectTimer,x
   beq Destroy
 
-  jsr GetPointerForMiddle
-  tay
-  lda MetatileFlags,y
-  bmi Destroy ; hit a solid
+  jsr EnemyCheckOverlappingOnSolid
+  bcs HitSolid
 
   lda #OAM_COLOR_3
   sta 1
@@ -3923,8 +3922,27 @@ TableYH: .hibytes 0, 0, $70, -$70
 NoTouch:
   jmp EnemyApplyVelocity
 
+HitSolid:
+  ldy #7
+: lda ReactWithTypes,y
+  cmp 0 ; block type
+  beq ArrowHit
+  dey
+  bpl :-
+  ; drop into Destroy
 Destroy:
   lda #0
   sta ObjectF1,x
   rts
+ArrowHit:
+  ; Change into an arrow and fly off
+  lda #Enemy::FLYING_ARROW*2
+  sta ObjectF1,x
+  jmp ObjectFlyingArrow::ChangeTheDirection
+
+ReactWithTypes:
+  .byt Metatiles::METAL_ARROW_LEFT,  Metatiles::METAL_ARROW_DOWN
+  .byt Metatiles::METAL_ARROW_UP,    Metatiles::METAL_ARROW_RIGHT
+  .byt Metatiles::WOOD_ARROW_LEFT,   Metatiles::WOOD_ARROW_DOWN
+  .byt Metatiles::WOOD_ARROW_UP,     Metatiles::WOOD_ARROW_RIGHT
 .endproc
