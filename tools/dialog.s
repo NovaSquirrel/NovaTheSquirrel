@@ -557,6 +557,11 @@ AboutGeorgeReminder:
 ; <1 SIGN>This volcano can be copied too. Hold Select to get rid of your Fire ability if you have it, then stun and copy the volcano.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f8, $b8, "v", "o", "l", $b0, "o", " ", $b0, " ", $ba, "c", "o", "p", $e3, "d", SCR::NEWLINE, $bc, "o", $f6, "H", "o", $ef, " ", "S", "e", "l", "e", $c7, " ", $bb, $af, " ", $fc, $ff, "o", "f", SCR::NEWLINE, $91, " ", "F", "i", "r", $e7, "a", "b", $dc, "i", "t", $fe, $ce, " ", $a6, " ", "h", "a", "v", "e", SCR::NEWLINE, "i", "t", $f5, $94, " ", $de, $f2, " ", $a4, "c", "o", "p", $fe, $a2, SCR::NEWLINE, "v", "o", "l", $b0, "o", "."
 .byt SCR::END_SCRIPT
+AboutLaser:
+.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
+; <1 SIGN>Don't touch the deadly laser beam.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "D", $c2, $e8, $bc, "u", $e2, " ", $a2, " ", "d", $ec, "d", $d2, "l", $c4, $ed, SCR::NEWLINE, "b", $ec, "m", "."
+.byt SCR::END_SCRIPT
 SignAboutInsane2b:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
 ; <1 SIGN>I, the sign, have loaded tons of placeable rails into your inventory. If the minecarts give you too much trouble, be a wimp and use blocks.

@@ -444,6 +444,11 @@
 <1 SIGN>This volcano can be copied too. Hold Select to get rid of your Fire ability if you have it, then stun and copy the volcano.
 `end
 
+:AboutLaser:
+`scene NOVA_AND_SIGN
+<1 SIGN>Don't touch the deadly laser beam.
+`end
+
 
 :SignAboutInsane2b:
 `scene NOVA_AND_SIGN

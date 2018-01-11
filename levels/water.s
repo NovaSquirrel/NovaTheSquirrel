@@ -196,7 +196,7 @@ waterSprite:
   LSpr Enemy::THWOMP,              0,  89,   2
   LSpr Enemy::OWL,                 0,  97,   7
   LSpr Enemy::SPINNER,             1, 103,   2
-  LSpr Enemy::FIRE_JUMP,           1, 105,   4
+  LSpr Enemy::FIRE_JUMP,           1, 105,   4, 1
   LSpr Enemy::CANNON_1,            0, 110,  10
   LSpr Enemy::THWOMP,              0, 119,   5
   LSpr Enemy::SNEAKER,             1, 128,   7

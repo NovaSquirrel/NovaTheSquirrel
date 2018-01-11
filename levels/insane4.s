@@ -241,11 +241,12 @@ insane4Data:
   LObjN LO::WIDE_1,           4, 7, 4, LN1::USED_PRIZE
   LObjN LO::TALL_2,           0, 8, 2, LN2::TRUNK
   LObjN LO::WIDE_1,           1, 6, 2, LN1::USED_PRIZE
-  LObjN LO::WIDE_1,           1, 5, 0, LN1::USED_PRIZE
   LObj  LO::S_DOOR,           0, 9
   LWriteCol 2, 200
+  LObjN LO::WIDE_1,           1, 5, 0, LN1::USED_PRIZE
   LObjN LO::R_ROCK,           0, 11, 3, 3
-  LObjN LO::TALL_2,           2, 8, 2, LN2::TRUNK
+  LObj  LO::S_EXIT_DOOR,      1, 9
+  LObjN LO::TALL_2,           1, 8, 2, LN2::TRUNK
   LObjN LO::WIDE_1,           2, 13, 15, LN1::SPIKES
   LObjN LO::R_SOLID_BLOCK,    0, 14, 15, 0
   LObj  LO::R_CUSTOM,         1, 8, Metatiles::FORCE_RIGHT, (5<<4)|0
@@ -253,7 +254,7 @@ insane4Data:
   LObjN LO::WIDE_1,           5, 4, 2, LN1::SOLID_LEDGE
   LObj  LO::R_CUSTOM,         0, 7, Metatiles::FORCE_UP, (0<<4)|1
   LObj  LO::S_DOOR,           1, 2
-  LWriteCol 9, 188
+  LWriteCol 9, 187
   LObj  LO::R_CUSTOM,         0, 7, Metatiles::GLIDER_BLOCK, (3<<4)|0
   LObj  LO::R_CUSTOM,         0, 8, Metatiles::GLIDER_BLOCK, (0<<4)|1
   LObj  LO::R_CUSTOM,         0, 10, Metatiles::GLIDER_BLOCK, (2<<4)|0
@@ -361,8 +362,9 @@ insane4Sprite:
   LSpr Enemy::SNEAKER,             1, 217,   7
   LSpr Enemy::SPINNER,             1, 221,   7, 2
   LSpr Enemy::KING,                0, 226,   1
+  LSpr Enemy::COLLECTIBLE,         0, 228,   9
   LSpr Enemy::OWL,                 0, 232,   4
-  LSpr Enemy::OWL,                 0, 238,   7
+  LSpr Enemy::OWL,                 0, 238,   7, 1
   LSpr Enemy::OWL,                 0, 245,   6
   LSpr Enemy::SPINNER,             1, 252,   5, 3
   .byt 255 ; end

@@ -3905,12 +3905,14 @@ TableYH: .hibytes 0, 0, $70, -$70
     bne Horizontal
   Vertical:
     ; Now push the player away
+    lda PlayerVXH
+    php
     lda #<(-$40)
     sta PlayerVXL
     lda #>(-$40)
     sta PlayerVXH
-    lda PlayerDir
-    beq :+
+    plp
+    bpl :+
       lda #<($40)
       sta PlayerVXL
       lda #>($40)
