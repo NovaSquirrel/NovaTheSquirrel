@@ -14,7 +14,7 @@ intro_b:
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_GRASSY
   .byt GraphicsUpload::BG_GRASSYBG
-  .byt GraphicsUpload::BG_TROPICAL
+  .byt GraphicsUpload::BG_JUNGLE
   .byt 255 ; end
   .byt $00, $04 ; boundaries
 
@@ -26,7 +26,9 @@ intro_bData:
   LObjN LO::TALL_2,           1, 10, 2, LN2::TRUNK_L
   LObj  LO::S_TALL_GRASS,     2, 12
   LObjN LO::TALL_2,           1, 10, 2, LN2::TRUNK_L
-  LObj  LO::S_GROUND_CLIMB_L, 6, 12
+  LObjN LO::R_SKWIRLBUSH,     1, 2, 4, 3
+  LObjN LO::R_WOOD_PLATFORM,  2, 6, 0, 6
+  LObj  LO::S_GROUND_CLIMB_L, 3, 12
   LObj  LO::S_GROUND_CLIMB_L, 1, 11
   LObjN LO::R_GROUND,         0, 12, 2, 0
   LObj  LO::S_GROUND_CLIMB_L, 1, 10
@@ -42,16 +44,23 @@ intro_bData:
   LObjN LO::R_BRICK,          1, 2, 1, 0
   LObjN LO::WIDE_1,           0, 5, 1, LN1::PRIZE
   LObj  LO::S_SPRING,         4, 8
-  LObjN LO::R_GROUND,         6, 9, 9, 3
+  LObjN LO::R_SKWIRLBUSH,     2, 0, 4, 3
+  LObjN LO::R_WOOD_PLATFORM,  2, 4, 0, 10
+  LObjN LO::R_GROUND,         2, 9, 9, 3
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 31
   LObj  LO::S_FLOWER,         1, 8
-  LObj  LO::S_COIN,           2, 7
+  LObjN LO::R_SKWIRLBUSH,     1, 1, 4, 3
+  LObj  LO::S_COIN,           1, 7
   LObj  LO::S_SOLID_ROCK,     0, 8
-  LObjN LO::R_BRICK,          3, 5, 2, 0
-  LObj  LO::S_BRICKPRIZE,     2, 5
+  LObjN LO::R_WOOD_PLATFORM,  1, 5, 0, 3
+  LObjN LO::R_SKWIRLBUSH,     2, 0, 4, 3
+  LObjN LO::R_BRICK,          0, 5, 2, 0
+  LObjN LO::R_WOOD_PLATFORM,  2, 4, 0, 4
+  LObj  LO::S_BRICKPRIZE,     0, 5
   LObjN LO::TALL_1,           2, 9, 3, LN1::LADDER
-  LObjN LO::R_COIN,           1, 9, 0, 3
-  LObjN LO::TALL_2,           2, 10, 2, LN2::TRUNK_L
+  LObjN LO::R_SKWIRLBUSH,     1, 2, 4, 3
+  LObjN LO::R_COIN,           0, 9, 0, 3
+  LObjN LO::R_WOOD_PLATFORM,  2, 6, 0, 6
   LObjN LO::WIDE_1,           3, 12, 4, LN1::TALLGRASS
   LObj  LO::S_BIGHEART,       2, 4
   LObj  LO::S_SOLID_BLOCK,    0, 5
@@ -100,11 +109,16 @@ intro_bData:
   LObjN LO::R_WATER,          0, 12, 4, 2
   LObjN LO::R_GROUND,         5, 7, 1, 1
   LObjN LO::R_GROUND,         0, 9, 6, 5
-  LObjN LO::R_COIN,           3, 7, 3, 0
-  LObjN LO::WIDE_1,           4, 9, 7, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           3, 6, 2, 0
+  LObjN LO::WIDE_2,           0, 7, 2, LN2::STRIPED_LOG_HORIZ
+  LObjN LO::R_SKWIRLBUSH,     1, 0, 4, 3
+  LObjN LO::R_WOOD_PLATFORM,  2, 4, 0, 4
+  LObjN LO::WIDE_1,           1, 9, 7, LN1::SOLID_LEDGE
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 22
-  LObjN LO::TALL_1,           4, 9, 3, LN1::LADDER
-  LObj  LO::S_SOLID_ROCK,     3, 8
+  LObj  LO::S_BIG_SPIKY_BUSH, 1, 12
+  LObjN LO::TALL_1,           3, 9, 3, LN1::LADDER
+  LObj  LO::S_BIG_SPIKY_BUSH, 2, 12
+  LObj  LO::S_SOLID_ROCK,     1, 8
   LObjN LO::R_SOLID_BLOCK,    1, 2, 0, 4
   LObjN LO::R_GROUND,         0, 7, 6, 3
   LObjN LO::R_BRICK,          1, 3, 4, 0
@@ -137,13 +151,18 @@ intro_bData:
   LObjN LO::TALL_2,           2, 10, 2, LN2::TRUNK_L
   LObjN LO::R_GROUND,         4, 10, 6, 4
   LObj  LO::S_GROUND_CLIMB_L, 0, 10
-  LObjN LO::R_BRICK,          2, 7, 2, 0
+  LObjN LO::WIDE_1,           1, 9, 4, LN1::TALLGRASS
+  LObjN LO::R_BRICK,          1, 7, 2, 0
   LObj  LO::S_COIN,           1, 6
   LObj  LO::S_HEART,          1, 6
   LObj  LO::S_GROUND_CLIMB_R, 2, 10
-  LObjN LO::R_GROUND,         1, 12, 4, 0
+  LObjN LO::R_SKWIRLBUSH,     1, 2, 4, 3
+  LObjN LO::R_COIN,           0, 7, 1, 0
+  LObjN LO::WIDE_2,           0, 8, 1, LN2::STRIPED_LOG_HORIZ
+  LObjN LO::R_GROUND,         0, 12, 4, 0
   LObjN LO::R_GROUND,         0, 13, 14, 1
-  LObj  LO::S_GROUND_CLIMB_R, 4, 12
+  LObjN LO::R_WOOD_PLATFORM,  2, 6, 0, 5
+  LObj  LO::S_GROUND_CLIMB_R, 2, 12
   LObjN LO::TALL_2,           3, 10, 2, LN2::TRUNK_L
   LObjN LO::WIDE_1,           2, 12, 4, LN1::TALLGRASS
   LObjN LO::WIDE_1,           5, 10, 4, LN1::SOLID_LEDGE
@@ -152,23 +171,28 @@ intro_bData:
   LObj  LO::S_PRIZE,          2, 6
   LObjN LO::R_GROUND,         1, 10, 6, 4
   LObjN LO::WIDE_1,           1, 9, 4, LN1::TALLGRASS
-  LObj  LO::S_SOLID_BLOCK,    5, 4
-  LObjN LO::TALL_2,           0, 5, 4, LN2::TRUNK
-  LObjN LO::WIDE_1,           1, 4, 4, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_1,           0, 12, 4, LN1::SPIKES
+  LObjN LO::R_SKWIRLBUSH,     3, 0, 4, 3
+  LObjN LO::R_WOOD_PLATFORM,  2, 4, 0, 5
+  LObjN LO::WIDE_1,           1, 12, 4, LN1::SPIKES
   LObjN LO::R_GROUND,         0, 13, 13, 1
-  LObj  LO::S_SOLID_BLOCK,    5, 4
-  LObjN LO::TALL_2,           0, 5, 4, LN2::TRUNK
+  LObjN LO::R_SKWIRLBUSH,     3, 0, 4, 3
+  LObjN LO::R_WOOD_PLATFORM,  2, 4, 0, 5
   LObjN LO::R_GROUND,         0, 10, 6, 2
-  LObjN LO::R_COIN,           2, 7, 2, 0
-  LObjN LO::WIDE_2,           5, 12, 1, LN2::FLOWER
+  LObjN LO::R_COIN,           1, 6, 2, 0
+  LObjN LO::WIDE_2,           0, 7, 2, LN2::STRIPED_LOG_HORIZ
+  LObj  LO::S_BIG_SPIKY_BUSH, 1, 9
+  LObj  LO::S_BIG_SPIKY_BUSH, 2, 9
+  LObjN LO::WIDE_2,           3, 12, 1, LN2::FLOWER
   LObjN LO::R_GROUND,         4, 12, 5, 2
   LObjN LO::WIDE_1,           1, 11, 3, LN1::FENCE
   LObjN LO::R_COIN,           1, 10, 2, 0
-  LObjN LO::R_GROUND,         4, 13, 15, 1
-  LObj  LO::S_PRIZE,          4, 7
+  LObjN LO::R_SKWIRLBUSH,     3, 1, 4, 3
+  LObjN LO::R_GROUND,         1, 13, 15, 1
+  LObjN LO::R_WOOD_PLATFORM,  1, 5, 0, 7
+  LObj  LO::S_PRIZE,          3, 7
   LObj  LO::S_SPRING,         0, 12
-  LObj  LO::S_EXIT_DOOR,      7, 11
+  LObjN LO::WIDE_1,           2, 12, 4, LN1::TALLGRASS
+  LObj  LO::S_EXIT_DOOR,      5, 11
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0d, LevelBackgroundId::CLOUDS
   LFinished
 

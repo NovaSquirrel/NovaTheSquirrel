@@ -57,6 +57,7 @@ GraphicsList:
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPMolSno,     >SPMolSno
   .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemyMolSno, >PalEnemyMolSno
   .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy5,    >PalEnemy5
+  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGJungle,     >BGJungle
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)
 DoGraphicUpload:

@@ -17,7 +17,7 @@
 	"Header":	{
 		"Music":	"NONE",
 		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_FIRE", "SP_SUN"],
-		"GFXUpload":	["PAL_GRASSY", "PAL_ENEMY1", "BG_COMMON", "BG_GRASSY", "BG_GRASSYBG"],
+		"GFXUpload":	["PAL_GRASSY", "PAL_ENEMY1", "BG_COMMON", "BG_GRASSY", "BG_GRASSYBG", "BG_JUNGLE"],
 		"BGColor":	49
 	},
 	"Layers":	[{
@@ -25,53 +25,23 @@
 			"Type":	"Rectangle",
 			"Tileset":	"novafg",
 			"Data":	[{
+					"Id":	"PALM_TREE",
+					"X":	29,
+					"Y":	7,
+					"W":	1,
+					"H":	6
+				}, {
 					"Id":	"GROUND",
 					"X":	0,
 					"Y":	13,
 					"W":	80,
 					"H":	2
 				}, {
-					"Id":	"GROUND",
-					"X":	10,
-					"Y":	11,
-					"W":	2,
-					"H":	1
-				}, {
-					"Id":	"GROUND_CLIMB_L",
-					"X":	8,
-					"Y":	12,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"GROUND_CLIMB_L",
-					"X":	9,
-					"Y":	11,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"GROUND_CLIMB_R",
-					"X":	12,
-					"Y":	11,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"GROUND_CLIMB_R",
-					"X":	13,
-					"Y":	12,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"GROUND",
-					"X":	9,
-					"Y":	12,
-					"W":	4,
-					"H":	1
-				}, {
-					"Id":	"SOLID_LEDGE",
+					"Id":	"PALM_TREE",
 					"X":	25,
-					"Y":	11,
-					"W":	6,
-					"H":	1
+					"Y":	7,
+					"W":	1,
+					"H":	6
 				}, {
 					"Id":	"SIGNPOST",
 					"X":	44,
@@ -91,12 +61,6 @@
 					"Y":	11,
 					"W":	11,
 					"H":	2
-				}, {
-					"Id":	"SOLID_LEDGE",
-					"X":	46,
-					"Y":	6,
-					"W":	1,
-					"H":	1
 				}, {
 					"Id":	"SIGNPOST",
 					"X":	11,
@@ -284,12 +248,6 @@
 					"W":	3,
 					"H":	1
 				}, {
-					"Id":	"BG_TRUNK_L",
-					"X":	37,
-					"Y":	10,
-					"W":	1,
-					"H":	3
-				}, {
 					"Id":	"COIN",
 					"X":	40,
 					"Y":	10,
@@ -301,6 +259,114 @@
 					"Y":	9,
 					"W":	1,
 					"H":	3
+				}, {
+					"Id":	"PALM_TREE",
+					"X":	20,
+					"Y":	6,
+					"W":	1,
+					"H":	7
+				}, {
+					"Id":	"BRICKWALL_MIDDLE",
+					"X":	25,
+					"Y":	11,
+					"W":	4,
+					"H":	2
+				}, {
+					"Id":	"BRICKWALL_MIDDLE",
+					"X":	29,
+					"Y":	11,
+					"W":	2,
+					"H":	2
+				}, {
+					"Id":	"STRIPED_LOG_HORIZ",
+					"X":	5,
+					"Y":	9,
+					"W":	2,
+					"H":	1
+				}, {
+					"Id":	"STRIPED_LOG_HORIZ",
+					"X":	2,
+					"Y":	7,
+					"W":	2,
+					"H":	1
+				}, {
+					"Id":	"COIN",
+					"X":	5,
+					"Y":	8,
+					"W":	2,
+					"H":	1
+				}, {
+					"Id":	"COIN",
+					"X":	2,
+					"Y":	6,
+					"W":	2,
+					"H":	1
+				}, {
+					"Id":	"SQUIRREL_BUSH",
+					"X":	1,
+					"Y":	2,
+					"W":	7,
+					"H":	2
+				}, {
+					"Id":	"SQUIRREL_BUSH",
+					"X":	11,
+					"Y":	2,
+					"W":	7,
+					"H":	2
+				}, {
+					"Id":	"WOOD_PLATFORM",
+					"X":	4,
+					"Y":	4,
+					"W":	1,
+					"H":	9
+				}, {
+					"Id":	"WOOD_PLATFORM",
+					"X":	14,
+					"Y":	4,
+					"W":	1,
+					"H":	9
+				}, {
+					"Id":	"SQUIRREL_BUSH",
+					"X":	2,
+					"Y":	1,
+					"W":	5,
+					"H":	1
+				}, {
+					"Id":	"SQUIRREL_BUSH",
+					"X":	12,
+					"Y":	1,
+					"W":	5,
+					"H":	1
+				}, {
+					"Id":	"SAND",
+					"X":	9,
+					"Y":	11,
+					"W":	4,
+					"H":	2
+				}, {
+					"Id":	"WOOD_PLATFORM",
+					"X":	43,
+					"Y":	5,
+					"W":	1,
+					"H":	8
+				}, {
+					"Id":	"STRIPED_LOG_HORIZ",
+					"X":	44,
+					"Y":	6,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"SQUIRREL_BUSH",
+					"X":	41,
+					"Y":	1,
+					"W":	5,
+					"H":	4
+				}, {
+					"Id":	"BG_TRUNK_L",
+					"X":	37,
+					"Y":	9,
+					"W":	1,
+					"H":	4
 				}]
 		}, {
 			"Name":	"Sprites",

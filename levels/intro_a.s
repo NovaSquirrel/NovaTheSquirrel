@@ -14,42 +14,54 @@ intro_a:
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_GRASSY
   .byt GraphicsUpload::BG_GRASSYBG
+  .byt GraphicsUpload::BG_JUNGLE
   .byt 255 ; end
   .byt $08, $00 ; boundaries
 
 intro_aData:
   .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <Intro, >Intro
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 79
-  LObj  LO::S_COIN,           6, 11
+  LObjN LO::R_SKWIRLBUSH,     1, 2, 6, 1
+  LObjN LO::R_SKWIRLBUSH,     1, 1, 4, 0
+  LObjN LO::R_COIN,           0, 6, 1, 0
+  LObjN LO::WIDE_2,           0, 7, 1, LN2::STRIPED_LOG_HORIZ
+  LObjN LO::R_WOOD_PLATFORM,  2, 4, 0, 8
+  LObjN LO::R_COIN,           1, 8, 1, 0
+  LObjN LO::WIDE_2,           0, 9, 1, LN2::STRIPED_LOG_HORIZ
+  LObj  LO::S_COIN,           1, 11
   LObj  LO::S_COIN,           2, 10
-  LObj  LO::S_GROUND_CLIMB_L, 0, 12
-  LObj  LO::S_GROUND_CLIMB_L, 1, 11
-  LObjN LO::R_GROUND,         0, 12, 3, 0
+  LObjN LO::R_SAND,           1, 11, 3, 1
   LObj  LO::S_COIN,           1, 9
   LObj  LO::S_FLOWER,         0, 10
-  LObjN LO::R_GROUND,         0, 11, 1, 0
-  LObj  LO::S_SIGNPOST,       1, 10
+  LObjN LO::R_SKWIRLBUSH,     1, 2, 6, 1
+  LObj  LO::S_SIGNPOST,       0, 10
   LWriteCol <Tutorial1, >Tutorial1
-  LObj  LO::S_GROUND_CLIMB_R, 1, 11
-  LObj  LO::S_GROUND_CLIMB_R, 1, 12
-  LObjN LO::R_BRICK,          2, 6, 3, 0
+  LObjN LO::R_SKWIRLBUSH,     1, 1, 4, 0
+  LObjN LO::R_WOOD_PLATFORM,  2, 4, 0, 8
+  LObjN LO::R_BRICK,          1, 6, 3, 0
   LObj  LO::S_PRIZE,          1, 6
   LObjN LO::R_BRICK,          0, 9, 3, 0
   LObj  LO::S_PRIZE,          1, 9
   LWriteCol InventoryItem::HEALTH_RESTORE
   LObj  LO::S_SPRING,         2, 12
-  LObjN LO::WIDE_1,           3, 12, 0, LN1::SPIKES
-  LObjN LO::WIDE_1,           3, 11, 5, LN1::SOLID_LEDGE
-  LObjN LO::R_COIN,           8, 10, 2, 0
+  LObjN LO::TALL_2,           1, 6, 6, LN2::PALM_TREE
+  LObjN LO::WIDE_1,           2, 12, 0, LN1::SPIKES
+  LObjN LO::TALL_2,           3, 7, 5, LN2::PALM_TREE
+  LObjN LO::R_BRICKWALL,      0, 11, 3, 1
+  LObjN LO::TALL_2,           4, 7, 5, LN2::PALM_TREE
+  LObjN LO::R_BRICKWALL,      0, 11, 1, 1
+  LObjN LO::R_COIN,           4, 10, 2, 0
   LObjN LO::WIDE_2,           1, 12, 2, LN2::BUSH
-  LObjN LO::TALL_2,           3, 10, 2, LN2::TRUNK_L
+  LObjN LO::TALL_2,           3, 9, 3, LN2::TRUNK_L
   LObjN LO::WIDE_2,           2, 12, 2, LN2::BUSH
   LObjN LO::R_COIN,           1, 10, 2, 0
-  LObj  LO::S_SIGNPOST,       4, 10
+  LObjN LO::R_SKWIRLBUSH,     1, 1, 4, 3
+  LObjN LO::R_WOOD_PLATFORM,  2, 5, 0, 7
+  LObjN LO::WIDE_2,           1, 6, 2, LN2::STRIPED_LOG_HORIZ
+  LObj  LO::S_SIGNPOST,       0, 10
   LWriteCol <Tutorial2, >Tutorial2
   LObjN LO::R_GROUND,         0, 11, 10, 1
-  LObjN LO::WIDE_1,           2, 6, 0, LN1::SOLID_LEDGE
-  LObj  LO::S_SPRING,         0, 10
+  LObj  LO::S_SPRING,         2, 10
   LObj  LO::S_SOLID_BLOCK,    1, 7
   LObjN LO::R_GROUND,         0, 8, 7, 2
   LObj  LO::S_SOLID_BLOCK,    7, 7
