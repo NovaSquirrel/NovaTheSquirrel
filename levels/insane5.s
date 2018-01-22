@@ -157,18 +157,19 @@ insane5Data:
   LObjN LO::WIDE_1,           1, 8, 0, LN1::FALLTHROUGH_LEDGE
   LObj  LO::S_SPRING,         0, 12
   LObj  LO::R_CUSTOM,         1, 8, Metatiles::TOGGLE_BLOCK_OFF, (1<<4)|0
-  LObj  LO::S_GROUND_CLIMB_L, 1, 12
+  LObjN LO::WIDE_1,           1, 5, 1, LN1::FALLTHROUGH_LEDGE
+  LObj  LO::S_GROUND_CLIMB_L, 0, 12
   LObj  LO::S_CUSTOM,         1, 1, Metatiles::TOGGLE_BLOCK_ON
   LObj  LO::S_CUSTOM,         0, 7, Metatiles::PUSHABLE_BLOCK
   LObjN LO::R_FG_GLASS_RED,   0, 8, 6, 0
   LObjN LO::R_BG_GLASS_BLUE,  0, 9, 0, 2
-  LObjN LO::R_FG_GLASS_RED,   1, 4, 4, 0
+  LObjN LO::R_FG_GLASS_RED,   1, 4, 5, 0
   LObjN LO::R_COIN,           0, 10, 4, 0
   LObj  LO::S_CUSTOM,         1, 11, Metatiles::TOGGLE_SWITCH
   LObjN LO::R_BG_GLASS_BLUE,  1, 5, 0, 2
   LObj  LO::S_HEART,          0, 11
-  LObj  LO::S_SPRING,         3, 7
-  LObjN LO::R_BG_GLASS_BLUE,  0, 9, 0, 2
+  LObjN LO::R_COIN,           2, 5, 1, 2
+  LObjN LO::R_BG_GLASS_BLUE,  1, 9, 0, 2
   LObjN LO::R_FG_GLASS_RED,   1, 3, 0, 5
   LObj  LO::R_CUSTOM,         0, 11, Metatiles::FORCE_LEFT, (2<<4)|0
   LObjN LO::R_FG_GLASS_RED,   1, 3, 1, 0
@@ -360,8 +361,8 @@ insane5Data:
   LObjN LO::R_FG_GLASS_RED,   1, 2, 2, 0
   LObj  LO::S_COIN,           0, 5
   LObj  LO::S_FG_GLASS_RED,   1, 1
-  LObj  LO::S_COIN,           0, 4
-  LObj  LO::S_COIN,           0, 6
+  LObjN LO::R_SOLID_ROCK,     0, 4, 0, 1
+  LObj  LO::S_CUSTOM,         0, 6, Metatiles::LOCK_GREEN
   LObjN LO::R_BG_GLASS_BLUE,  0, 8, 0, 6
   LObj  LO::S_CUSTOM,         0, 14, Metatiles::FORCE_LEFT
   LObj  LO::S_COIN,           1, 5
@@ -441,7 +442,8 @@ insane5Data:
   LObj  LO::R_CUSTOM,         0, 4, Metatiles::TOGGLE_BLOCK_OFF, (3<<4)|0
   LObj  LO::R_CUSTOM,         0, 10, Metatiles::TOGGLE_BLOCK_ON, (2<<4)|0
   LObj  LO::R_CUSTOM,         0, 11, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|2
-  LObj  LO::S_PRIZE,          1, 2
+  LObj  LO::S_CEILING_BARRIER,1, 0
+  LObj  LO::S_PRIZE,          0, 2
   LWriteCol InventoryItem::ARROW_UP
   LObj  LO::R_CUSTOM,         0, 7, Metatiles::TOGGLE_BLOCK_ON, (2<<4)|0
   LObjN LO::R_COIN,           0, 9, 1, 0
