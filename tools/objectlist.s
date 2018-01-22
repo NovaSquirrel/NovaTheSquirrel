@@ -140,7 +140,7 @@
   .byt 0 ;MOLSNO
   .byt ObjBehavior::AUTO_REMOVE ;MOLSNO_NOTE
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BUDDY
-  .byt 0 ;BEAM_EMITTER
+  .byt ObjBehavior::AUTO_REMOVE ;BEAM_EMITTER
   .byt 0 ;LASER_BEAM
 .endproc
 

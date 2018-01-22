@@ -345,7 +345,7 @@ C .byt ObjFlag::PRIMARY
 
 R BEAM_EMITTER
 C .byt 0
-C .byt 0
+C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::PRIMARY
 
 R LASER_BEAM

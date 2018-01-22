@@ -86,7 +86,7 @@ DontHaveExtraRAM:
   sta JOY1
   sta SNESController
   jsr ReadJoy8bits
-  sta 2 ; first 8 bits
+; sta 2 ; first 8 bits
   jsr ReadJoy8bits
   sta 1 ; middle 8 bits
   jsr ReadJoy8bits

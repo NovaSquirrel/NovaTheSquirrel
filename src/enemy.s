@@ -1787,13 +1787,7 @@ Destroy:
       jsr FindFreeObjectY
       bcc NoShoot
         jsr ObjectClearY
-        lda ObjectPXH,x
-        sta ObjectPXH,y
-        lda ObjectPYH,x
-        sta ObjectPYH,y
-        lda #0
-        sta ObjectPXL,y
-        sta ObjectPYL,y
+        jsr ObjectCopyPosXY
 
         lda ObjectF1,x
         and #1
@@ -3817,7 +3811,14 @@ Attr:
 
   lda #$10
   jsr EnemyWalk
+  bcc :+
+  ; Interact with solid collectibles too (arrow blocks)
+  ldy ObjectPYH,x
+  lda 0
+  jsr DoCollectibleFar
+  sec
   jsr EnemyAutoBump
+:
 
   jsr GetPointerForMiddleWide
   cmp #Metatiles::SPRING
@@ -3852,6 +3853,13 @@ DoneInteract:
 .endproc
 
 .proc ObjectBeamEmitter
+; to do, make the -emitter- do the collision instead
+  lda ObjectPXH,x
+  sub PlayerPXH
+  abs
+  cmp #10
+  bcs :+
+
   lda retraces
   and #7
   bne :+
@@ -3879,17 +3887,54 @@ DoneInteract:
       lda #30
       sta ObjectTimer,y
   :
+
+.if 0
+  lda ObjectPXH,x
+  jsr GetLevelColumnPtr ; prep LevelBlockPtr
+  ldy ObjectPYH,x       ; prep Y index
+
+  stx TempX
+  lda ObjectF3,x
+  cmp #2
+  beq Down
+  cmp #3
+  beq Up
   rts
 
-TableXL: .lobytes $70, -$70, 0, 0
-TableXH: .hibytes $70, -$70, 0, 0
-TableYL: .lobytes 0, 0, $70, -$70
-TableYH: .hibytes 0, 0, $70, -$70
+Down:
+  lda (LevelBlockPtr),y
+  iny
+  tax
+  lda MetatileFlags,x
+  bpl Down
+
+  ldx TempX
+  rts
+
+Up:
+  lda (LevelBlockPtr),y
+  dey
+  tax
+  lda MetatileFlags,x
+  bpl Up
+
+  ldx TempX
+.endif
+  rts
+
+TableXL: .lobytes $80, -$80, 0, 0
+TableXH: .hibytes $80, -$80, 0, 0
+TableYL: .lobytes 0, 0, $80, -$80
+TableYH: .hibytes 0, 0, $80, -$80
 .endproc
 
 .proc ObjectLaserBeam
   dec ObjectTimer,x
   beq Destroy
+
+  lda ObjectPYH,x
+  cmp #15
+  bcs Destroy
 
   jsr EnemyCheckOverlappingOnSolid
   bcs HitSolid
@@ -3898,6 +3943,7 @@ TableYH: .hibytes 0, 0, $70, -$70
   sta 1
   lda #$54
   jsr DispObject8x8_Attr
+
   jsr SmallPlayerTouch
   bcc NoTouch
     jsr HurtPlayer
@@ -3905,17 +3951,24 @@ TableYH: .hibytes 0, 0, $70, -$70
     bne Horizontal
   Vertical:
     ; Now push the player away
-    lda PlayerVXH
-    php
-    lda #<(-$40)
+    lda #<(-$80)
     sta PlayerVXL
-    lda #>(-$40)
+    lda #>(-$80)
     sta PlayerVXH
-    plp
-    bpl :+
-      lda #<($40)
+
+    ; Compare player X to object X
+    ; Still not completely flawless, but better than direction or X speed
+    lda PlayerPXH
+    cmp ObjectPXH,x
+    bcc :+
+    bne RightAnyway
+    lda PlayerPXL
+    cmp ObjectPXL,x
+    bcc :+
+RightAnyway:
+      lda #<($80)
       sta PlayerVXL
-      lda #>($40)
+      lda #>($80)
       sta PlayerVXH
     :
     jmp EnemyApplyVelocity
