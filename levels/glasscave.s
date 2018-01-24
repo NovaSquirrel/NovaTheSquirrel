@@ -190,7 +190,7 @@ glasscaveData:
   LObjN LO::R_GROUND,         14, 4, 3, 10
   LObj  LO::S_PRIZE,          2, 2
   LWriteCol InventoryItem::ABILITY_BURGER
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
+  .byt LSpecialCmd, LevelSpecialConfig::STARS
   LFinished
 
 glasscaveSprite:

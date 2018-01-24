@@ -551,6 +551,9 @@ SpecialConfigTable:
   .raddr SpecialConfigEnablePuzzle
   .raddr SpecialConfigMakeBackgrounds
   .raddr SpecialConfigStartDialog
+  .raddr MakeFrozenBackground
+  .raddr SetBGStars
+  .raddr SetAnimatedWater
 
 SpecialConfigMakeBackgrounds:
   lda (LevelDecodePointer),y
@@ -577,13 +580,17 @@ SpecialConfigMakeBackgrounds:
 BackgroundRoutines:
   .raddr BGClouds
   .raddr BGCloudsEverywhere
-  .raddr MakeFrozenBackground
-  .raddr BGStars
 
-BGStars:
+SetBGStars:
   lda #<StarryBackground
   sta LevelRoutine+0
   lda #>StarryBackground
+  sta LevelRoutine+1
+  rts
+SetAnimatedWater:
+  lda #<DoAnimatedWater
+  sta LevelRoutine+0
+  lda #>DoAnimatedWater
   sta LevelRoutine+1
   rts
 

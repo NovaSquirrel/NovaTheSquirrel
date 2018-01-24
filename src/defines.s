@@ -569,13 +569,14 @@ LSpecialCmd = $f7
   PUZZLE_MODE       ; [aa][ii] ... 00 - ability, item IDs
   MAKE_BACKGROUNDS  ; sl bb - start screen, length, background id
   SET_START_DIALOG  ; aa aa - dialog address
+  FROZEN_CAVE
+  STARS
+  ANIMATED_WATER  
 .endenum
 
 .enum LevelBackgroundId
   CLOUDS
   CLOUDS_EVERYWHERE
-  FROZEN_CAVE
-  STARS
 .endenum
 
 .macro ThinFontText String

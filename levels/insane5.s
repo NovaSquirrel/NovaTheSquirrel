@@ -500,7 +500,7 @@ insane5Data:
   LObj  LO::R_CUSTOM,         2, 6, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|2
   LObjN LO::R_GROUND,         2, 12, 6, 2
   LObj  LO::S_EXIT_DOOR,      5, 10
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
+  .byt LSpecialCmd, LevelSpecialConfig::STARS
   LFinished
 
 insane5Sprite:

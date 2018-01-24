@@ -251,7 +251,7 @@ arrowsData:
   LObj  LO::S_BG_GLASS_GREEN, 1, 7
   LObj  LO::S_EXIT_DOOR,      0, 8
   LObjN LO::R_BG_GLASS_GREEN, 1, 7, 0, 2
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
+  .byt LSpecialCmd, LevelSpecialConfig::STARS
   LFinished
 
 arrowsSprite:

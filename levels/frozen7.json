@@ -1857,18 +1857,18 @@
 					"W":	1,
 					"H":	1
 				}, {
-					"Id":	"BACKGROUND",
-					"X":	0,
-					"Y":	0,
-					"W":	1,
-					"H":	1,
-					"Extra":	"FROZEN_CAVE"
-				}, {
 					"Id":	"SCROLL_LOCK",
 					"X":	239,
 					"Y":	0,
 					"W":	1,
 					"H":	1
+				}, {
+					"Id":	"LEVEL_EFFECT",
+					"X":	0,
+					"Y":	0,
+					"W":	1,
+					"H":	1,
+					"Extra":	"FROZEN_CAVE"
 				}]
 		}]
 }

@@ -21,7 +21,6 @@ frozen3:
   .byt $00, $02 ; boundaries
 
 frozen3Data:
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::FROZEN_CAVE
   LObjN LO::R_ROCK,           0, 0, 15, 1
   LObjN LO::R_ROCK,           0, 10, 4, 1
   LObjN LO::R_ROCK,           0, 12, 9, 2
@@ -220,6 +219,7 @@ frozen3Data:
   LObj  LO::S_PRIZE,          3, 8
   LWriteCol InventoryItem::ABILITY_BOOMERANG
   LObjN LO::R_ROCK,           2, 4, 2, 6
+  .byt LSpecialCmd, LevelSpecialConfig::FROZEN_CAVE
   LFinished
 
 frozen3Sprite:

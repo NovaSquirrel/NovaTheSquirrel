@@ -235,7 +235,7 @@ glass_introData:
   LObjN LO::R_BG_GLASS_BLUE,  4, 11, 0, 3
   LObj  LO::S_EXIT_DOOR,      2, 8
   LObjN LO::R_BG_GLASS_BLUE,  2, 11, 0, 3
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
+  .byt LSpecialCmd, LevelSpecialConfig::STARS
   LFinished
 
 glass_introSprite:

@@ -199,6 +199,7 @@ puzzle2Data:
   LObj  LO::S_PRIZE,          1, 9
   LWriteCol InventoryItem::BIG_HEALTH_RESTORE
   LObj  LO::S_EXIT_DOOR,      3, 10
+  .byt LSpecialCmd, LevelSpecialConfig::STARS
   LFinished
 
 puzzle2Sprite:

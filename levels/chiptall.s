@@ -201,7 +201,7 @@ chiptallData:
   LObj  LO::S_EXIT_DOOR,      5, 11
   LObjN LO::R_COIN,           5, 2, 0, 8
   LObjN LO::R_SOLID_ROCK,     3, 0, 1, 14
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
+  .byt LSpecialCmd, LevelSpecialConfig::STARS
   LFinished
 
 chiptallSprite:

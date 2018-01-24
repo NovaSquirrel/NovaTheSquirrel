@@ -19,7 +19,6 @@ frozen:
   .byt $00, $00 ; boundaries
 
 frozenData:
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::FROZEN_CAVE
   LObjN LO::R_ROCK,           0, 0, 6, 1
   LObjN LO::R_GROUND,         0, 7, 4, 4
   LObjN LO::RECT_3,           0, 12, 2, LN3::ROCK, 18
@@ -217,6 +216,7 @@ frozenData:
   LObjN LO::R_ROCK,           6, 11, 12, 3
   LObjN LO::WIDE_2,           1, 10, 2, LN2::FLOWER
   LObj  LO::S_EXIT_DOOR,      7, 9
+  .byt LSpecialCmd, LevelSpecialConfig::FROZEN_CAVE
   LFinished
 
 frozenSprite:

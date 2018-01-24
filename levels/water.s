@@ -183,6 +183,7 @@ waterData:
   LObj  LO::S_EXIT_DOOR,      2, 4
   LObjN LO::R_GROUND,         3, 2, 2, 12
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
+  .byt LSpecialCmd, LevelSpecialConfig::ANIMATED_WATER
   LFinished
 
 waterSprite:

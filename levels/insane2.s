@@ -377,7 +377,7 @@ insane2Data:
   LObj  LO::S_BG_GLASS_GREEN, 1, 4
   LObj  LO::S_BG_GLASS_GREEN, 0, 10
   LObjN LO::TALL_2,           1, 2, 10, LN2::PATH_LINE
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::STARS
+  .byt LSpecialCmd, LevelSpecialConfig::STARS
   LFinished
 
 insane2Sprite:

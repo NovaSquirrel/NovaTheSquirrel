@@ -182,7 +182,7 @@ insane3Data:
   LObjN LO::R_COIN,           2, 0, 0, 1
   LObj  LO::S_SPRING,         0, 2
   LObj  LO::S_SOLID_BLOCK,    0, 3
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::FROZEN_CAVE
+  .byt LSpecialCmd, LevelSpecialConfig::FROZEN_CAVE
   LFinished
 
 insane3Sprite:

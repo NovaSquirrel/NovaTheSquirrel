@@ -20,7 +20,6 @@ frozen4:
   .byt $00, $04 ; boundaries
 
 frozen4Data:
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::FROZEN_CAVE
   LObjN LO::R_ROCK,           0, 0, 7, 7
   LObjN LO::R_GROUND,         0, 12, 9, 2
   LObj  LO::S_FLOWER,         4, 11
@@ -221,6 +220,7 @@ frozen4Data:
   LObj  LO::R_CUSTOM,         3, 6, Metatiles::SNOWMAN_TOP, (4<<4)|0
   LObj  LO::R_CUSTOM,         0, 8, Metatiles::SNOWMAN_TOP, (4<<4)|0
   LObjN LO::R_ROCK,           5, 0, 2, 14
+  .byt LSpecialCmd, LevelSpecialConfig::FROZEN_CAVE
   LFinished
 
 frozen4Sprite:

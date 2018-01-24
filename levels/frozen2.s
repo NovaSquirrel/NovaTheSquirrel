@@ -240,7 +240,7 @@ frozen2Data:
   LObj  LO::S_PRIZE,          1, 7
   LWriteCol InventoryItem::HEALTH_RESTORE
   LObjN LO::R_SOLID_BLOCK,    3, 0, 0, 14
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::FROZEN_CAVE
+  .byt LSpecialCmd, LevelSpecialConfig::FROZEN_CAVE
   LFinished
 
 frozen2Sprite:

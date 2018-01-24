@@ -734,3 +734,39 @@ StarYPos:
   .lobytes 8, 64+8, 128+8, 192+8
   .lobytes 8+8, 64+8+8, 128+8+8, 192+8+8
 .endproc
+
+.proc DoAnimatedWater
+; Don't overwrite a more important update
+  lda UploadTileAddress+1
+  bne Nope
+
+; Slowly animate
+  lda retraces
+  and #%00011111
+  bne Nope
+  
+  lda #GRAPHICS_BANK2
+  jsr SetPRG
+  lda #$07
+  sta UploadTileAddress+1
+  lda #$c0
+  sta UploadTileAddress+0
+
+; Calculate the offset into the water tiles needed
+  lda retraces
+  and #%01100000
+  asl
+  ora #%00111111
+  tax
+
+; Copy tiles
+  ldy #63
+: lda AnimWaterGfx,x
+  sta UploadTileSpace,y
+  dex
+  dey
+  bpl :-
+
+Nope:
+  jmp MainLoop::LevelRoutineDone
+.endproc
