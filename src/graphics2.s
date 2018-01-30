@@ -13,3 +13,4 @@ SPMolSno:      ChrFile "../chr/spmolsno.pb53",    512,   $1800
 BGJungle:      ChrFile "../chr/bgjungle.pb53",    1024,  $0800
 BGCloudsGfx:   ChrFile "../chr/bgclouds.pb53",    768,   $0500
 AnimWaterGfx:  .incbin "../chr/animwater.chr"
+ToggleBlockGFX: .incbin "../chr/toggleblock.chr"

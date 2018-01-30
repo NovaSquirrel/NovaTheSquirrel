@@ -94,6 +94,17 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
     jsr CopyFromSavedInventory
   :
 
+.ifdef NEW_TOGGLE_BEHAVIOR
+  ; Copy the metatile flags
+  lda #MAINLOOP_BANK
+  jsr SetPRG
+  ldy #0
+: lda MetatileFlagsROM,y
+  sta MetatileFlags,y
+  iny
+  bne :-
+.endif
+
   ; Using Y for these loops because X needs to be preserved for a bit later
   lda #0
   ldy #LevelZeroWhenLoad_End-LevelZeroWhenLoad_Start-1
@@ -459,6 +470,26 @@ DoLevelUploadListAndSprites:
   iny
   bne :-
 :
+
+.ifdef NEW_TOGGLE_BEHAVIOR
+  ; If blocks are toggled, upload the toggled blocks
+  lda ToggleBlockEnabled
+  beq NoToggle
+  lda #GRAPHICS_BANK2
+  jsr _SetPRG
+  lda #>$0800
+  sta PPUADDR
+  lda #<$0800
+  sta PPUADDR
+  ldy #0
+: lda ToggleBlockGFX,y
+  sta PPUDATA
+  iny
+  cpy #127
+  bne :-
+  jsr SetPRG_Restore
+NoToggle:
+.endif
 
   jmp FlushPaletteWrites
 .endproc

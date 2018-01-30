@@ -9,10 +9,7 @@ I M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
 
 E Metatiles
 L MetatilePalettes
-I .pushseg
-I .code
-L MetatileFlags
-I .popseg
+L MetatileFlagsROM
 L MetatileUL
 L MetatileLL
 L MetatileUR

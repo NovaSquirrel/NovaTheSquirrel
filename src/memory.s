@@ -285,6 +285,9 @@ LevelZeroWhenLoad_Start:
   LevelLinkDown:          .res 16
   ScreenFlags:            .res 16
   ScreenFlagsDummy:       .res 1
+  ; ScreenFlags stores flags for each screen in the level; so far there's just one flag:
+  SCREEN_BOUNDARY = 1 ; boundary on left side of screen
+  ; Now more stuff...
   FallingBlockPointer:    .res 2
   FallingBlockY:          .res 1
   BackgroundMetatile:     .res 1
@@ -293,9 +296,10 @@ LevelZeroWhenLoad_Start:
   LevelRoutine:           .res 2 ; called once a frame, very important that it doesn't cross a page boundary
                                  ; to do: actually verify that it doesn't?
   NeedCollectibleBitSet:  .res 1
-
-  ; ScreenFlags stores flags for each screen in the level; so far there's just one flag:
-  SCREEN_BOUNDARY = 1 ; boundary on left side of screen
+.ifdef NEW_TOGGLE_BEHAVIOR
+  ToggleBlockEnabled:     .res 1 ; 64 if enabled, 0 if not
+  ToggleBlockUpload:      .res 1 ; 1 or 2 if it needs uploading
+.endif
 LevelZeroWhenLoad_End:
   IsNormalDoor:           .res 1 ; 1 if the level is loading due to a door
 
@@ -305,8 +309,9 @@ LevelZeroWhenLoad_End:
   LevelMap = $6000            ; lasts until $6fff
 
 .segment "BSS2"  ; SRAM
-  CollectedBits:      .res 128 ; stores bits for broken blocks and opened blocks, that sort of thing
-  CollectedAlternate: .res 128 ; alternate buffer to allow going to a different level and back and having it still work
+.ifdef NEW_TOGGLE_BEHAVIOR
+  MetatileFlags:      .res 256 ; RAM copy of MetatileFlags
+.endif
   ColumnBytes:        .res 256 ; stores a byte for each column, for ? block contents and other things
 
   ; Current game state

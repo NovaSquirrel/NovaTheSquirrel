@@ -1720,6 +1720,25 @@ FlyingArrowVY:
 .endproc
 
 .proc HitToggleSwitch
+.ifdef NEW_TOGGLE_BEHAVIOR
+  lda #SFX::TELEPORT
+  jsr PlaySound
+
+  ; Swap the graphics
+  lda ToggleBlockEnabled
+  eor #64
+  sta ToggleBlockEnabled
+  lda #2
+  sta ToggleBlockUpload
+
+  ; Toggle the actual solidity
+  lda MetatileFlags+Metatiles::TOGGLE_BLOCK_ON
+  eor #M_SOLID_ALL+M_SOLID_TOP
+  sta MetatileFlags+Metatiles::TOGGLE_BLOCK_ON
+  lda MetatileFlags+Metatiles::TOGGLE_BLOCK_OFF
+  eor #M_SOLID_ALL+M_SOLID_TOP
+  sta MetatileFlags+Metatiles::TOGGLE_BLOCK_OFF
+.else
   jsr WaitVblank
   lda #0
   sta PPUMASK
@@ -1747,11 +1766,13 @@ Convert:
   cmp #$70
   bne Convert
 
+  ; not sure why I do this GetLevelColumnPtr actually?
   lda PlayerPXH
   ldy PlayerPYH
   jsr GetLevelColumnPtr
   lda #1
   sta NeedLevelRerender
+.endif
   rts
 .endproc
 

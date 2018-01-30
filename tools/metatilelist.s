@@ -213,9 +213,7 @@ M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
   .byt M_PAL_0 ;ICE2
 .endproc
 
-.pushseg
-.code
-.proc MetatileFlags
+.proc MetatileFlagsROM
   .byt M_EMPTY ;EMPTY
   .byt M_SOLID_ALL|M_SOLID_TOP|M_BRICKS ;BRICKS
   .byt M_SOLID_ALL|M_SOLID_TOP|M_BRICKS ;BRICKPRIZE
@@ -423,7 +421,6 @@ M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
   .byt M_ICE|M_SOLID_ALL|M_SOLID_TOP ;ICE2
 .endproc
 
-.popseg
 .proc MetatileUL
   .byt $3f ;EMPTY
   .byt $00 ;BRICKS

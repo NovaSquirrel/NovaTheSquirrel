@@ -401,6 +401,42 @@ DidntSkipPlayerAndEnemies:
     bpl :-
   :
 
+.ifdef NEW_TOGGLE_BEHAVIOR
+  ; Swap toggle block graphics
+  lda ToggleBlockUpload
+  beq NoToggleUpload
+  ; Only do toggle block uploads if there is no upload yet
+  lda UploadTileAddress+1
+  bne NoToggleUpload
+
+  lda #GRAPHICS_BANK2
+  jsr _SetPRG
+  ; Move onto the next step
+  dec ToggleBlockUpload
+
+  ; Set upload address
+  ldy ToggleBlockUpload
+  lda ToggleUploadAddrL,y
+  sta UploadTileAddress+0
+  lda ToggleUploadAddrH,y
+  sta UploadTileAddress+1
+  ; Find offset into the tile data
+  lda ToggleUploadLUT,y
+  eor ToggleBlockEnabled
+  tay
+
+  ; Copy the tiles into the buffer
+  ldx #0
+: lda ToggleBlockGFX,y
+  sta UploadTileSpace,x
+  iny
+  inx
+  cpx #64
+  bne :-
+NoToggleUpload:
+.endif
+
+  ; Run the level routine if there is one
   lda LevelRoutine+1
   beq :+
     jmp (LevelRoutine)
@@ -417,6 +453,15 @@ LevelRoutineDone:
   .endif
   jmp VBlankUpdates
 .endproc
+
+.ifdef NEW_TOGGLE_BEHAVIOR
+ToggleUploadLUT:
+  .byt 64, 0
+ToggleUploadAddrL:
+  .lobytes $0800, $0840
+ToggleUploadAddrH:
+  .hibytes $0800, $0840
+.endif
 
 .proc RunPlaceBlockMode
 Offset = 2
