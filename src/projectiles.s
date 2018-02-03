@@ -1215,8 +1215,22 @@ NoGravity:
 
 .proc ObjectIceBlock
   jsr EnemyDespawnTimer
-  jsr EnemyApplyVelocity
-  rts
+  jsr EnemyFall
+
+  lda ObjectF3,x
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+
+  ldy #$04
+  lda #OAM_COLOR_3 << 2
+  jsr DispEnemyWideFlipped
+
+  ; Count down the speed
+  lda ObjectF3,x
+  beq :+
+    dec ObjectF3,x
+  :
+  jmp EnemyPlayerTouchHurt
 .endproc
 
 .proc ObjectExplosion

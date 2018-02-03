@@ -38,7 +38,7 @@
   .byt GraphicsUpload::SP_FIRE ;FIREBALL
   .byt GraphicsUpload::SP_FIRE ;FLAMES
   .byt GraphicsUpload::SP_KING ;WATER_BOTTLE
-  .byt 0 ;ICE_BLOCK
+  .byt GraphicsUpload::SP_MINES ;ICE_BLOCK
   .byt GraphicsUpload::SP_RONALD ;RONALD
   .byt GraphicsUpload::SP_RONALD ;RONALD_BURGER
   .byt GraphicsUpload::SP_RONALD ;FRIES

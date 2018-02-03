@@ -199,7 +199,7 @@ C .byt 0
 C .byt ObjFlag::SECONDARY
 
 R ICE_BLOCK
-C .byt 0
+C .byt GraphicsUpload::SP_MINES
 C .byt 0
 C .byt ObjFlag::SECONDARY
 

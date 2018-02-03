@@ -149,10 +149,10 @@ insane4Data:
   LObjN LO::R_ROCK,           1, 1, 9, 3
   LObjN LO::R_GROUND,         2, 9, 1, 5
   LObjN LO::R_COIN,           1, 7, 2, 0
-  LObjN LO::R_GROUND,         2, 10, 1, 4
-  LObj  LO::S_PRIZE,          2, 10
+  LObjN LO::R_GROUND,         2, 10, 2, 4
+  LObj  LO::S_PRIZE,          3, 11
   LWriteCol InventoryItem::BLOCK | 128
-  LObjN LO::R_ROCK,           3, 1, 9, 2
+  LObjN LO::R_ROCK,           2, 1, 9, 2
   LObjN LO::WIDE_1,           1, 8, 5, LN1::FALLTHROUGH_LEDGE
   LObjN LO::WIDE_1,           0, 13, 3, LN1::SOLID_LEDGE
   LObj  LO::S_CUSTOM,         1, 8, Metatiles::CLONER
@@ -229,7 +229,8 @@ insane4Data:
   LObjN LO::TALL_2,           3, 6, 2, LN2::TRUNK_L
   LObjN LO::WIDE_2,           2, 8, 2, LN2::FLOWER
   LObjN LO::R_GROUND,         1, 9, 1, 2
-  LObjN LO::TALL_2,           3, 12, 2, LN2::TRUNK_L
+  LObjN LO::WIDE_1,           3, 9, 0, LN1::SOLID_LEDGE
+  LObjN LO::TALL_2,           0, 12, 2, LN2::TRUNK_L
   LObjN LO::R_COIN,           3, 2, 3, 0
   LObjN LO::WIDE_1,           0, 3, 7, LN1::SOLID_LEDGE
   LObjN LO::TALL_2,           0, 12, 2, LN2::TRUNK_L
@@ -343,7 +344,7 @@ insane4Sprite:
   LSpr Enemy::CANNON_1,            1,  79,   6, 1
   LSpr Enemy::CANNON_1,            0,  81,   6, 1
   LSpr Enemy::KING,                0,  83,   2
-  LSpr Enemy::CHECKPOINT,          0,  93,   4
+  LSpr Enemy::CHECKPOINT,          0,  93,   6
   LSpr Enemy::SPINNER,             0, 121,  12, 2
   LSpr Enemy::MOVING_PLATFORM_LINE, 0, 123,   5, 1
   LSpr Enemy::CHECKPOINT,          0, 125,   8

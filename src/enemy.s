@@ -816,6 +816,8 @@ ThrowBottle:
   beq BouncyEnemy
   jsr EnemyFall
   bcc NoWalk
+
+  ; Calculate walk speed for the slippery walking
   lda ObjectF4,x
   inc ObjectF4,x
   and #$3f
@@ -824,7 +826,11 @@ ThrowBottle:
   sub #$20
   eor #255
   add #$21
-: jsr EnemyWalk
+:
+  ldy ObjectF3,x
+  cpy #3
+  beq WalkOnLedge
+  jsr EnemyWalk
   jsr EnemyAutoBump
 NoWalk:
 
@@ -843,8 +849,38 @@ Draw:
 Frames:
   .byt $0a, $0e, $0a, $12
 
+WalkOnLedge:
+  lda #$10
+  jsr EnemyWalkOnPlatform
+  jmp NoWalk
+
 KickEnemy:
   jsr EnemyFall
+
+  lda ObjectF2,x
+  bne :+
+    lda retraces
+    and #63
+    bne :+
+      jsr FindFreeObjectY
+      bcc :+
+        lda #0
+        sta ObjectF2,y
+
+        jsr ObjectCopyPosXY
+        jsr ObjectClearY
+
+        lda ObjectF1,x
+        and #1
+        ora #Enemy::ICE_BLOCK*2
+        sta ObjectF1,y
+        
+        lda #15
+        sta ObjectTimer,y
+        lda #$38
+        sta ObjectF3,y
+  :
+
   jmp Draw
 
 BouncyEnemy:
