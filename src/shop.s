@@ -23,6 +23,57 @@ CursorY = 14
 NeedUpdateItemInfo = 15
   jsr OptionsScreenSetup
   jsr LoadShopItemIcons
+  ; Write Ike's palette
+  ; Maybe actually redo this to something that writes an arbitrary list of things to the PPU?
+  lda #$3f
+  sta PPUADDR
+  lda #$08
+  sta PPUADDR
+  ldx #$30
+  stx PPUDATA
+  lda #$17
+  sta PPUDATA
+  lda #$26
+  sta PPUDATA
+  stx PPUDATA
+  ; Write Ike
+  ldx #$d0
+  lda #>$2079
+  sta PPUADDR
+  lda #<$2079
+  sta PPUADDR
+  stx PPUDATA
+  inx
+  stx PPUDATA
+  inx
+  lda #>$2099
+  sta PPUADDR
+  lda #<$2099
+  sta PPUADDR
+  stx PPUDATA
+  inx
+  stx PPUDATA
+  inx
+  lda #>$20b9
+  sta PPUADDR
+  lda #<$20b9
+  sta PPUADDR
+  stx PPUDATA
+  inx
+  stx PPUDATA
+  ; Attribute table
+  lda #>($23c0+6)
+  sta PPUADDR
+  lda #<($23c0+6)
+  sta PPUADDR
+  ldx #%10101010
+  stx PPUDATA
+  lda #>($23c0+6+8)
+  sta PPUADDR
+  lda #<($23c0+6+8)
+  sta PPUADDR
+  stx PPUDATA
+
   jsr ClearOAM
 
   lda #0
