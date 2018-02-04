@@ -583,6 +583,44 @@ Cave of the Strife Clouds.
 Ronald is back for revenge.
 `end
 
+:PreLevelFrozen7:
+Watch out for a new ice
+`nl
+enemy that can summon
+`nl
+deadly spikes!
+`end
+
+
+:PreLevelInsane1:
+Nova finds herself in the
+`nl
+wacky World Of Insanity.
+`end
+
+:PreLevelInsane2:
+The fan enemy returns for
+`nl
+some tricky puzzles.
+`end
+
+:PreLevelInsane3:
+A wide open underground
+`nl
+area! Where's the exit?
+`end
+
+:PreLevelInsane5:
+Puzzles with laser beams!
+`end
+
+:PreLevelInsane6:
+Trees in the depths of the
+`nl
+earth. With minecarts!
+`end
+
+
 
 
 :; INTRO CUTSCENE TEXT

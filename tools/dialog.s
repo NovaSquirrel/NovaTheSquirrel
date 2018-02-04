@@ -714,6 +714,48 @@ PreLevelFrozen6:
 ; Ronald is back for revenge.
 .byt "R", $c2, "a", $ef, " ", $b8, "b", "a", $f3, " ", $a5, " ", "r", $9f, "g", "e", "."
 .byt SCR::END_SCRIPT
+PreLevelFrozen7:
+; Watch out for a new ice
+.byt "W", $c6, $e2, " ", $ae, " ", $a5, " ", $be, $f9, "w", " ", "i", "c", "e"
+.byt SCR::NEWLINE
+; enemy that can summon
+.byt $e6, "e", $cb, " ", $9a, $b0, " ", "s", "u", "m", "m", $c2
+.byt SCR::NEWLINE
+; deadly spikes!
+.byt "d", $ec, "d", $d2, $dd, "i", "k", "e", "s", "!"
+.byt SCR::END_SCRIPT
+PreLevelInsane1:
+; Nova finds herself in the
+.byt $a1, " ", "f", $d8, "d", $fb, $a9, $e5, "l", "f", " ", $bf, $a2
+.byt SCR::NEWLINE
+; wacky World Of Insanity.
+.byt "w", "a", $f3, $fe, "W", $c9, $ef, " ", "O", "f", " ", "I", "n", "s", $ca, "i", "t", "y", "."
+.byt SCR::END_SCRIPT
+PreLevelInsane2:
+; The fan enemy returns for
+.byt $f8, $e7, "f", $ca, " ", $e6, "e", $cb, " ", "r", "e", "t", "u", "r", "n", $fb, $a5
+.byt SCR::NEWLINE
+; some tricky puzzles.
+.byt $9c, " ", $fa, "i", $f3, $fe, "p", "u", "z", "z", "l", "e", "s", "."
+.byt SCR::END_SCRIPT
+PreLevelInsane3:
+; A wide open underground
+.byt "A", " ", "w", "i", "d", $e7, "o", "p", $e6, " ", $f2, "d", $ed, "g", "r", $f4, $f0
+.byt SCR::NEWLINE
+; area! Where's the exit?
+.byt "a", "r", $ec, $fd, "W", $a9, "e", $e9, $a2, " ", "e", "x", "i", "t", "?"
+.byt SCR::END_SCRIPT
+PreLevelInsane5:
+; Puzzles with laser beams!
+.byt "P", "u", "z", "z", "l", "e", $fb, $9d, " ", "l", $c4, $ed, " ", "b", $ec, "m", "s", "!"
+.byt SCR::END_SCRIPT
+PreLevelInsane6:
+; Trees in the depths of the
+.byt "T", "r", $d7, $fb, $bf, $a2, " ", "d", "e", "p", $e0, $fb, $bd, $a2
+.byt SCR::NEWLINE
+; earth. With minecarts!
+.byt $ec, $ee, "h", $f6, "W", "i", $e0, " ", "m", $d8, "e", "c", "a", $ee, "s", "!"
+.byt SCR::END_SCRIPT
 ; INTRO CUTSCENE TEXT
 ExpositionText1:
 ; The world of Latte lived

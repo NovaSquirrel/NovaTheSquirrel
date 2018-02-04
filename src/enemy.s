@@ -920,6 +920,8 @@ BouncyEnemy:
 
     jmp WasFar
 CloseUp:
+    lda ObjectF2,x
+    bne :+
   ; Close up to the player, try and make spikes
     lda #Enemy::FALLING_SPIKE*2
     jsr CountObjectAmount

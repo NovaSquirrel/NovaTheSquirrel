@@ -254,7 +254,8 @@ insane6Data:
   LObj  LO::S_SOLID_BLOCK,    1, 5
   LObjN LO::WIDE_3,           0, 11, 5, LN3::MINE_TRACKS
   LObj  LO::R_CUSTOM,         0, 14, Metatiles::LAVA_MAIN, (1<<4)|0
-  LObj  LO::R_CUSTOM,         2, 13, Metatiles::LAVA_MAIN, (2<<4)|1
+  LObjN LO::R_CEILING_BARRIER,2, 0, 0, 5
+  LObj  LO::R_CUSTOM,         0, 13, Metatiles::LAVA_MAIN, (2<<4)|1
   LObjN LO::R_ROCK,           3, 12, 2, 2
   LObjN LO::R_SKWIRLBUSH,     3, 2, 4, 3
   LObjN LO::R_COIN,           0, 8, 1, 1

@@ -110,6 +110,19 @@ PUZ = 128 ; puzzle
   .addr PreLevelFrozen5
   .byt LevelId::Frozen6
   .addr PreLevelFrozen6
+  .byt LevelId::Frozen7
+  .addr PreLevelFrozen7
+  .byt LevelId::Insane1
+  .addr PreLevelInsane1
+  .byt LevelId::Insane2
+  .addr PreLevelInsane2
+  .byt LevelId::Insane3
+  .addr PreLevelInsane3
+  .byt LevelId::Insane5
+  .addr PreLevelInsane5
+  .byt LevelId::Insane6
+  .addr PreLevelInsane6
+
   .byt LevelId::Boss3
   .addr PreLevelBoss3
   .byt 255
