@@ -1,5 +1,5 @@
 ; Princess Engine
-; Copyright (C) 2016-2017 NovaSquirrel
+; Copyright (C) 2016-2018 NovaSquirrel
 ;
 ; This program is free software: you can redistribute it and/or
 ; modify it under the terms of the GNU General Public License as
