@@ -177,7 +177,7 @@ NotWalkSpeed:
     lda PlayerHasBalloon ; (but height limit can be removed)
     bmi :+
     lda PlayerPYH
-    cmp #$04
+    cmp #$02
     bcc @LetGo
 :   ; Also if they touch something solid above
     lda PlayerPXL

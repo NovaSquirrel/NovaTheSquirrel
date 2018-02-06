@@ -196,6 +196,7 @@ arrowsData:
   LObjN LO::R_COIN,           1, 10, 0, 1
   LObjN LO::R_FG_GLASS_BLUE,  1, 0, 0, 11
   LObj  LO::S_CUSTOM,         0, 12, Metatiles::LOCK_GREEN
+  LObjN LO::R_FG_GLASS_BLUE,  0, 13, 0, 1
   LObjN LO::R_FG_GLASS_BLUE,  1, 6, 6, 0
   LObjN LO::WIDE_1,           3, 10, 5, LN1::SOLID_LEDGE
   LObj  LO::S_CUSTOM,         1, 9, Metatiles::TOGGLE_SWITCH
@@ -224,7 +225,7 @@ arrowsData:
   LObj  LO::R_CUSTOM,         0, 3, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|5
   LObjN LO::WIDE_1,           0, 9, 4, LN1::SOLID_LEDGE
   LObjN LO::R_BG_GLASS_GREEN, 3, 5, 2, 0
-  LObjN LO::R_BG_GLASS_GREEN, 1, 4, 0, 3
+  LObjN LO::R_BG_GLASS_GREEN, 1, 4, 0, 2
   LObjN LO::R_GROUND,         1, 9, 4, 5
   LObjN LO::R_FG_GLASS_BLUE,  2, 3, 0, 4
   LObj  LO::S_M_ARROW_RIGHT,  0, 4
