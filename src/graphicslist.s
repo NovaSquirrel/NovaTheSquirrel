@@ -59,6 +59,10 @@ GraphicsList:
   .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy5,    >PalEnemy5
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGJungle,     >BGJungle
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGCloudsGfx,  >BGCloudsGfx
+  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGJack,       >BGJack
+  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGDABG,       >BGDABG
+  .byt GRAPHICS_BANK1|IS_PALETTE, <PalDABG,      >PalDABG
+  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGDABGCommon, >BGDABGCommon
 ; Uploads graphics from GraphicsList
 ; input: A (graphic number)
 DoGraphicUpload:

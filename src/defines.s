@@ -116,6 +116,10 @@ NEW_TOGGLE_BEHAVIOR = 1 ; don't blank the screen for toggle block changing
   PAL_ENEMY5
   BG_JUNGLE
   BG_CLOUDS
+  BG_JACK
+  BG_DABG
+  PAL_DABG
+  BG_DABGCOMMON
 .endenum
 
 .enum SFX

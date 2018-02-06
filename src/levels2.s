@@ -7,3 +7,4 @@
 .include "../levels/insane4.s"
 .include "../levels/insane5.s"
 .include "../levels/insane6.s"
+.include "../levels/final1.s"

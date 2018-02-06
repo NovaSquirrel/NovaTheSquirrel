@@ -38,6 +38,13 @@ PalFrozen:  .byt $03
             .byt $0c, $1c, $10
             .byt $17, $27, $38
             .byt $06, $16, $27
+PalDABG:    .byt $03
+            .byt $0f, $29, $17
+            .byt $0f, $16, $30
+            .byt $0f, $27, $37
+            .byt $0f, $16, $26
+
+
 AltGrassy1: .byt $00
             .byt $1b, $2b, $37
 AltGrassy2: .byt $00
