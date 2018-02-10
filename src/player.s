@@ -1310,6 +1310,16 @@ CustomFrameBase:
   sty PlayerTiles+4
   iny
   sty PlayerTiles+5
+
+  ; Animate holding something
+  lda CarryingSunKey
+  ora CarryingPickupBlock
+  beq :+
+    lda #$1f
+    sta PlayerTiles+1
+    lda #$2f
+    sta PlayerTiles+3
+  :
 EndAnimationFrame:
 
   ; Animate swimming
@@ -1366,12 +1376,25 @@ JumpingTilesForSwimming:
   ora PlayerVXH
   beq :+
     lda retraces
+    lsr
+    lsr
+    and #%11
+    tay
+    lda WalkFrameMR,y
+    sta PlayerTiles+3
+    lda WalkFrameBL,y
+    sta PlayerTiles+4
+    lda WalkFrameBR,y
+    sta PlayerTiles+5
+.if 0 ; old walk animation code
+    lda retraces
     and #%100
     beq :+
       lda #$06
       sta PlayerTiles+4
       lda #$07
       sta PlayerTiles+5
+.endif
   :
 NoSpecialAnimation:
 
@@ -1583,6 +1606,12 @@ TailAttackFrame:
   .byt 1, 1, 2, 2, 3, 3, 4, 4, 4, 3, 3, 2, 2, 1
 SwimmingFeet1: .byt $8, $a
 SwimmingFeet2: .byt $9, $b
+
+; up left and up right always $00, $01
+; middle left always $02
+WalkFrameMR: .byt $30, $31, $30, $32
+WalkFrameBL: .byt $04, $33, $35, $33
+WalkFrameBR: .byt $05, $34, $36, $37
 
 MakeDrawX:
   RealXPosToScreenPos PlayerPXL, PlayerPXH, DrawX
