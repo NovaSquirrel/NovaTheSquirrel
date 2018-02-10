@@ -2018,10 +2018,34 @@ Direction: .byt 1, <-1
 .endproc
 
 .proc ObjectBouncer
+  lda #$10
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouchHurt
   rts
 .endproc
 
 .proc ObjectGremlin
+  lda #$00
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouchHurt
+  rts
+.endproc
+
+.proc ObjectTurkey
+  lda #$04
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouchHurt
+  rts
+.endproc
+
+.proc ObjectRover
+  lda #$08
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouchHurt
   rts
 .endproc
 

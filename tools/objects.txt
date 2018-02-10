@@ -144,12 +144,22 @@ C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESE
 C .byt ObjFlag::PRIMARY
 
 R BOUNCER
-C .byt 0
+C .byt GraphicsUpload::SP_FACEBALL
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
 
 R GREMLIN
-C .byt 0
+C .byt GraphicsUpload::SP_FACEBALL
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
+C .byt ObjFlag::PRIMARY
+
+R ROVER
+C .byt GraphicsUpload::SP_FACEBALL
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
+C .byt ObjFlag::PRIMARY
+
+R TURKEY
+C .byt GraphicsUpload::SP_FACEBALL
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
 

@@ -27,8 +27,10 @@
   .byt GraphicsUpload::SP_WIND ;TORNADO
   .byt GraphicsUpload::SP_WIND ;ELECTRIC_FAN
   .byt GraphicsUpload::SP_WIND ;CLOUD
-  .byt 0 ;BOUNCER
-  .byt 0 ;GREMLIN
+  .byt GraphicsUpload::SP_FACEBALL ;BOUNCER
+  .byt GraphicsUpload::SP_FACEBALL ;GREMLIN
+  .byt GraphicsUpload::SP_FACEBALL ;ROVER
+  .byt GraphicsUpload::SP_FACEBALL ;TURKEY
   .byt GraphicsUpload::SP_EXPLODE ;BOMB_GUY
   .byt 0 ;POOF
   .byt 0 ;PLAYER_PROJECTILE
@@ -102,6 +104,8 @@
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;CLOUD
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BOUNCER
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;GREMLIN
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;ROVER
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;TURKEY
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BOMB_GUY
   .byt 0 ;POOF
   .byt 0 ;PLAYER_PROJECTILE
@@ -175,6 +179,8 @@
   .byt ObjFlag::PRIMARY ;CLOUD
   .byt ObjFlag::PRIMARY ;BOUNCER
   .byt ObjFlag::PRIMARY ;GREMLIN
+  .byt ObjFlag::PRIMARY ;ROVER
+  .byt ObjFlag::PRIMARY ;TURKEY
   .byt ObjFlag::PRIMARY ;BOMB_GUY
   .byt ObjFlag::SECONDARY ;POOF
   .byt ObjFlag::ESSENTIAL ;PLAYER_PROJECTILE

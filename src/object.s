@@ -150,6 +150,8 @@ Exit:
   .raddr ObjectCloud
   .raddr ObjectBouncer
   .raddr ObjectGremlin
+  .raddr ObjectRover
+  .raddr ObjectTurkey
   .raddr ObjectBombGuy
   .raddr ObjectPoof
   .raddr ObjectPlayerProjectile
@@ -519,6 +521,8 @@ EnemyAbilityTable:
   .byt Enemy::CLOUD,            AbilityType::FAN
   .byt Enemy::BOUNCER,          AbilityType::BLASTER
   .byt Enemy::GREMLIN,          AbilityType::BLASTER
+  .byt Enemy::TURKEY,           AbilityType::BLASTER
+  .byt Enemy::ROVER,            AbilityType::BLASTER
   .byt Enemy::BOMB_GUY,         AbilityType::BOMB
   .byt Enemy::RONALD,           AbilityType::BURGER
   .byt Enemy::SUN,              AbilityType::FIRE
