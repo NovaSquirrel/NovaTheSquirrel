@@ -247,13 +247,13 @@ SaveTagString: .byt "squirrel", 1
     bne :-
   .endif
   .ifdef MAPPER_ACTION53
-    lda #$81 ; set outer bank to last
-    sta $5000
+    ldx #$81 ; set outer bank to last
+    stx $5000
     lda #$ff
     sta $8000
 
-    lda #$80
-    sta $5000
+    dex
+    stx $5000
         ; ..GGPSMM
     lda #%00111110 ; 256KB game, vertical mirroring, UNROM-style switching
     sta $8000
@@ -272,7 +272,10 @@ SetPRG_Restore:
 .proc SetPRG
   sta PRGBank
 Temporary:
-  lsr NMIInterrupted ; clear NMIInterrupted
+  .ifdef NeedNMIInterrupted
+    lsr NMIInterrupted ; clear NMIInterrupted
+  .endif
+
   .ifdef NMI_MUSIC
     sta RealPRGBank
   .endif
