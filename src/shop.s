@@ -820,7 +820,7 @@ Blank:
   .byt InventoryItem::BIG_HEALTH_RESTORE,   $BC, (55 .mod 100),  (55 / 100)
   .byt InventoryItem::BALLOON,              $C4, (50 .mod 100),  (50 / 100)
   .byt InventoryItem::AUTO_BALLOON,         $C8, (60 .mod 100),  (60 / 100)
-  .byt InventoryItem::ABILITY_BLASTER,      $84, (40 .mod 100),  (40 / 100)
+  .byt InventoryItem::ABILITY_BLASTER,      $84, (40 .mod 100),  (40 / 100) ; cutoff where you need to beat world 1 first?
   .byt InventoryItem::ABILITY_GLIDER,       $88, (30 .mod 100),  (30 / 100)
   .byt InventoryItem::LAMP_OIL,             $B0, (20 .mod 100),  (20 / 100)
   .byt InventoryItem::ROPE,                 $B0, (40 .mod 100),  (40 / 100)

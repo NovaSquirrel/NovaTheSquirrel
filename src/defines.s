@@ -122,6 +122,7 @@ NEW_TOGGLE_BEHAVIOR = 1 ; don't blank the screen for toggle block changing
   BG_DABGCOMMON
   SP_FACEBALL
   PAL_ENEMY6
+  SP_FHBG
 .endenum
 
 .enum SFX
@@ -279,7 +280,7 @@ MS_EMPTY = 32
   BOMB
   EXPLOSION
   ICE_BLOCK
-  KICKED_ICE
+  LAMP_FLAME
   TORNADO
   BURGER
   MIRROR

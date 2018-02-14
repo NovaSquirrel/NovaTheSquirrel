@@ -170,8 +170,8 @@ R LAMP_OIL
 C .byt InventoryIcon::BULLET
 C .byt <NameLampOil
 C .byt >NameLampOil
-C .byt <(DoNothing-1)
-C .byt >(DoNothing-1)
+C .byt <(DoLampOil-1)
+C .byt >(DoLampOil-1)
 C ThinFontText "LAMP OIL"
 
 R ROPE

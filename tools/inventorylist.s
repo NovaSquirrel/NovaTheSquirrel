@@ -154,7 +154,7 @@
   .byt <(DoSwitchAbility-1) ;ABILITY_WATER
   .byt <(DoSwitchAbility-1) ;ABILITY_FAN
   .byt <(DoSwitchAbility-1) ;ABILITY_BURGER
-  .byt <(DoNothing-1) ;LAMP_OIL
+  .byt <(DoLampOil-1) ;LAMP_OIL
   .byt <(DoPlaceRope-1) ;ROPE
   .byt <(DoBalloon-1) ;BALLOON
   .byt <(DoHealthRestoreSmall-1) ;SMALL_HEALTH_RESTORE
@@ -199,7 +199,7 @@
   .byt >(DoSwitchAbility-1) ;ABILITY_WATER
   .byt >(DoSwitchAbility-1) ;ABILITY_FAN
   .byt >(DoSwitchAbility-1) ;ABILITY_BURGER
-  .byt >(DoNothing-1) ;LAMP_OIL
+  .byt >(DoLampOil-1) ;LAMP_OIL
   .byt >(DoPlaceRope-1) ;ROPE
   .byt >(DoBalloon-1) ;BALLOON
   .byt >(DoHealthRestoreSmall-1) ;SMALL_HEALTH_RESTORE

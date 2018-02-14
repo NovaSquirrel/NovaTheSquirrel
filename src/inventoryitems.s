@@ -81,6 +81,67 @@ EmptyNow: ; Is empty now, so remove the item
 .endproc
 .popseg
 
+.proc DoLampOil
+  ldy #63
+: lda LampFlameGfx,y
+  sta UploadTileSpace,y
+  dey
+  bpl :-
+
+  ; Upload to the same tiles used for thin text
+  lda #$17
+  sta UploadTileAddress+1
+  lda #$c0
+  sta UploadTileAddress+0
+
+  ; Left
+  jsr MakeFlame
+  bcc _rts
+  lda #>(-$40)
+  sta ObjectVXH,y
+  lda #<(-$40)
+  sta ObjectVXL,y
+
+  ; Right
+  jsr MakeFlame
+  bcc _rts
+  lda #>($40)
+  sta ObjectVXH,y
+  lda #<($40)
+  sta ObjectVXL,y
+
+  jmp RemoveOneItem
+NoRemoveItem:
+  rts
+
+MakeFlame:
+  jsr FindFreeObjectY
+  bcc _rts
+  jsr ObjectClearY
+  lda #Enemy::PLAYER_PROJECTILE*2
+  sta ObjectF1,y
+  lda #PlayerProjectileType::LAMP_FLAME
+  sta ObjectF2,y
+  lda PlayerPXL
+  sub #$80
+  sta ObjectPXL,y
+  lda PlayerPXH
+  sbc #0
+  sta ObjectPXH,y
+  lda PlayerPYL
+  add #$80
+  sta ObjectPYL,y
+  lda PlayerPYH
+  adc #0
+  sta ObjectPYH,y
+  lda #20
+  sta ObjectTimer,y
+  sec
+_rts:
+  rts
+.endproc
+LampFlameGfx:  .incbin "../chr/lampflame.chr"
+
 .proc DoBalloon
   lda #1
   sta PlayerHasBalloon

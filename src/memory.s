@@ -192,8 +192,8 @@
   BigTempSpace:
   UploadTileSpace:
   StringBuffer:
-  Attributes:      .res 64
                    .res 64
+  Attributes:      .res 64
   ; bigger temp space!!
   ScratchPage = $700
 

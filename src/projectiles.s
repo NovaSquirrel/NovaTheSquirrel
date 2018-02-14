@@ -29,79 +29,143 @@
 ; Actions to take when a projectile hits an enemy.
 ; REMOVE_SHOT means delete the projectile after a collision.
 .proc PlayerProjectileActionTable
+  ; Stun
   .byt PlayerProjectileAction::STUN   | PlayerProjectileAction::REMOVE_SHOT
+  ; Copy
   .byt PlayerProjectileAction::COPY
+  ; Blaster
   .byt PlayerProjectileAction::DAMAGE | PlayerProjectileAction::REMOVE_SHOT
+  ; Glider
   .byt PlayerProjectileAction::DAMAGE | PlayerProjectileAction::REMOVE_SHOT
+  ; Boomerang
   .byt PlayerProjectileAction::DAMAGE
+  ; Fireball
   .byt PlayerProjectileAction::DAMAGE | PlayerProjectileAction::REMOVE_SHOT
+  ; Flame
   .byt PlayerProjectileAction::DAMAGE
+  ; Water bottle
   .byt PlayerProjectileAction::DAMAGE | PlayerProjectileAction::REMOVE_SHOT
+  ; Fireworks cursor
   .byt PlayerProjectileAction::NOTHING
+  ; Bomb
   .byt PlayerProjectileAction::BUMP
+  ; Explosion
   .byt PlayerProjectileAction::DAMAGE
+  ; Ice
   .byt PlayerProjectileAction::BUMP
+  ; Lamp flame
   .byt PlayerProjectileAction::DAMAGE
+  ; Tornado
   .byt PlayerProjectileAction::BLOW_AWAY
+  ; Burger
   .byt PlayerProjectileAction::BUMP
+  ; Mirror?
   .byt PlayerProjectileAction::BUMP
 .endproc
 
 ; Used for setting widths and heights for sprite/projectile collisions
 .ifndef REAL_COLLISION_TEST
 .proc PlayerProjectileSizeTable
+  ; Stun
   .byt 8
+  ; Copy
   .byt 8
+  ; Blaster
   .byt 8
+  ; Glider
   .byt 8
+  ; Boomerang
   .byt 8
+  ; Fireball
   .byt 8
+  ; Flame
+  .byt 16 ; was 8, should be 16?
+  ; Water bottle
   .byt 8
+  ; Fireworks cursor
   .byt 8
-  .byt 8
+  ; Bomb
   .byt 16
+  ; Explosion
   .byt 8
+  ; Ice block
   .byt 16
+  ; Lamp flame
   .byt 16
+  ; Tornado
   .byt 16
+  ; Burger
   .byt 16
+  ; Mirror?
   .byt 16
 .endproc
 .else
 .proc PlayerProjectileSizeTableLo
+  ; Stun
   .byt <(8*16)
+  ; Copy
   .byt <(8*16)
+  ; Blaster
   .byt <(8*16)
+  ; Glider
   .byt <(8*16)
+  ; Boomerang
   .byt <(8*16)
+  ; Fireball
   .byt <(8*16)
-  .byt <(8*16)
-  .byt <(8*16)
-  .byt <(8*16)
+  ; Flame
   .byt <(16*16)
+  ; Water bottle
   .byt <(8*16)
+  ; Fireworks cursor
+  .byt <(8*16)
+  ; Bomb
   .byt <(16*16)
+  ; Explosion
+  .byt <(8*16)
+  ; Ice block
   .byt <(16*16)
+  ; Lamp flame
   .byt <(16*16)
+  ; Tornado
   .byt <(16*16)
+  ; Burger
+  .byt <(16*16)
+  ; Mirror?
   .byt <(16*16)
 .endproc
 .proc PlayerProjectileSizeTableHi
+  ; Stun
   .byt >(8*16)
+  ; Copy
   .byt >(8*16)
+  ; Blaster
   .byt >(8*16)
+  ; Glider
   .byt >(8*16)
+  ; Boomerang
   .byt >(8*16)
+  ; Fireball
   .byt >(8*16)
-  .byt >(8*16)
-  .byt >(8*16)
-  .byt >(8*16)
+  ; Flame
   .byt >(16*16)
+  ; Water bottle
   .byt >(8*16)
+  ; Fireworks cursor
+  .byt >(8*16)
+  ; Bomb
   .byt >(16*16)
+  ; Explosion
+  .byt >(8*16)
+  ; Ice block
   .byt >(16*16)
+  ; Lamp flame
   .byt >(16*16)
+  ; Tornado
   .byt >(16*16)
+  ; Burger
+  .byt >(16*16)
+  ; Mirror
   .byt >(16*16)
 .endproc
 .endif
@@ -109,21 +173,37 @@
 ; Used by ObjectBounceHoriz. If these values are added to ObjectPXL
 ; the new coordinate will be the top right corner.
 .proc PlayerProjectileRightCornerTable
+  ; Stun
   .byt $70
+  ; Copy
   .byt $70
+  ; Blaster
   .byt $70
+  ; Glider
   .byt $70
+  ; Boomerang
   .byt $70
+  ; Fireball
   .byt $70
-  .byt $70
-  .byt $70
-  .byt $70
+  ; Flame
   .byt $f0
+  ; Water bottle
   .byt $70
+  ; Fireworks cursor
+  .byt $70
+  ; Bomb
   .byt $f0
+  ; Explosion
+  .byt $70
+  ; Ice block
   .byt $f0
+  ; Lamp flame
   .byt $f0
+  ; Tornado
   .byt $f0
+  ; Burger
+  .byt $f0
+  ; Mirror
   .byt $f0
 .endproc
 
@@ -271,7 +351,7 @@ ObjectPlayerProjectileRoutines:
   .raddr ProjBomb
   .raddr ProjExplosion
   .raddr ProjIceBlock
-  .raddr ProjKickedIce
+  .raddr ProjLampFlame
   .raddr ProjTornado
   .raddr ProjBurger
   .raddr ProjMirror
@@ -864,12 +944,18 @@ FreezeLavaCommon:
     jsr DelayChangeBlockFar
 : rts
 
-ProjKickedIce:
+ProjLampFlame:
   jsr EnemyApplyVelocity
-  ldy #$70
-  lda #OAM_COLOR_1 << 2
-  jsr DispEnemyWideFlipped
-  jmp ObjectBounceHoriz
+  lda retraces
+  and #8
+  bne :+
+    jsr EnemyTurnAround
+  :
+
+  lda #$7c
+  ldy #OAM_COLOR_1
+  jmp DispEnemyWide
+
 ProjTornado:
   jsr EnemyApplyVelocity
 
@@ -1104,6 +1190,17 @@ Yes:
   lda #OAM_COLOR_2
   sta 1
   lda ObjectF3,x
+  ora O_RAM::TILEBASE
+  jsr DispObject8x8_Attr
+  jmp SmallEnemyPlayerTouchHurt
+.endproc
+
+.proc ObjectFaceballShot
+  jsr EnemyApplyVelocity
+  jsr EnemyDespawnTimer
+
+  lda #OAM_COLOR_2
+  lda #$1f
   ora O_RAM::TILEBASE
   jsr DispObject8x8_Attr
   jmp SmallEnemyPlayerTouchHurt
