@@ -183,6 +183,11 @@ C .byt GraphicsUpload::SP_SCHEME_TEAM
 C .byt 0
 C .byt ObjFlag::SECONDARY
 
+R FACEBALL_SHOT
+C .byt GraphicsUpload::SP_FACEBALL
+C .byt 0
+C .byt ObjFlag::SECONDARY
+
 R SMALL_GLIDER
 C .byt 0
 C .byt 0
@@ -362,3 +367,13 @@ R LASER_BEAM
 C .byt 0
 C .byt 0
 C .byt ObjFlag::SECONDARY
+
+R FOREHEAD_BLOCK_GUY
+C .byt GraphicsUpload::SP_FHBG
+C .byt 0
+C .byt ObjFlag::ESSENTIAL
+
+R FOREHEAD_BLOCK
+C .byt GraphicsUpload::SP_FHBG
+C .byt 0
+C .byt ObjFlag::ESSENTIAL

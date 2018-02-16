@@ -123,6 +123,7 @@ NEW_TOGGLE_BEHAVIOR = 1 ; don't blank the screen for toggle block changing
   SP_FACEBALL
   PAL_ENEMY6
   SP_FHBG
+  PAL_DABG_GRAY
 .endenum
 
 .enum SFX

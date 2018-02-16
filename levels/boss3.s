@@ -41,7 +41,7 @@ boss3Data:
   LXPlus16
   LObjN LO::R_GROUND,         0, 13, 15, 1
   LObj  LO::S_STORY_TRIGGER,         1, 4
-  LWriteCol <AfterSmiloidAtBummerClub, >AfterSmiloidAtBummerClub
+  LWriteCol <MolSnoAfterFight, >MolSnoAfterFight
   LObj  LO::S_SNOWMAN,         2, 11
   LObjN LO::R_COIN,           1, 8, 6, 0
   LObjN LO::WIDE_1,           0, 9, 6, LN1::SOLID_LEDGE

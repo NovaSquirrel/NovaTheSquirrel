@@ -32,7 +32,7 @@ Jafguar:  .byt "Jafguar",0
 Lia:      .byt "Lia",0
 Iti:      .byt "Itimar",0
 NekoEd:   .byt "NekoEd",0
-Bill:     .byt "Scicence Guy",0
+Bill:     .byt "Science Guy",0
 .endproc
 
 .proc CharacterInfoTable

@@ -35,6 +35,7 @@
   .byt 0 ;POOF
   .byt 0 ;PLAYER_PROJECTILE
   .byt GraphicsUpload::SP_SCHEME_TEAM ;BLASTER_SHOT
+  .byt GraphicsUpload::SP_FACEBALL ;FACEBALL_SHOT
   .byt 0 ;SMALL_GLIDER
   .byt GraphicsUpload::SP_BOOMERANG ;BOOMERANG
   .byt GraphicsUpload::SP_FIRE ;FIREBALL
@@ -71,6 +72,8 @@
   .byt GraphicsUpload::SP_BOOMERANG ;BUDDY
   .byt 0 ;BEAM_EMITTER
   .byt 0 ;LASER_BEAM
+  .byt GraphicsUpload::SP_FHBG ;FOREHEAD_BLOCK_GUY
+  .byt GraphicsUpload::SP_FHBG ;FOREHEAD_BLOCK
 .endproc
 
 .proc ObjBehaviors
@@ -110,6 +113,7 @@
   .byt 0 ;POOF
   .byt 0 ;PLAYER_PROJECTILE
   .byt 0 ;BLASTER_SHOT
+  .byt 0 ;FACEBALL_SHOT
   .byt 0 ;SMALL_GLIDER
   .byt ObjBehavior::AUTO_REMOVE ;BOOMERANG
   .byt 0 ;FIREBALL
@@ -146,6 +150,8 @@
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BUDDY
   .byt ObjBehavior::AUTO_REMOVE ;BEAM_EMITTER
   .byt 0 ;LASER_BEAM
+  .byt 0 ;FOREHEAD_BLOCK_GUY
+  .byt 0 ;FOREHEAD_BLOCK
 .endproc
 
 .proc ObjFlags
@@ -185,6 +191,7 @@
   .byt ObjFlag::SECONDARY ;POOF
   .byt ObjFlag::ESSENTIAL ;PLAYER_PROJECTILE
   .byt ObjFlag::SECONDARY ;BLASTER_SHOT
+  .byt ObjFlag::SECONDARY ;FACEBALL_SHOT
   .byt ObjFlag::SECONDARY ;SMALL_GLIDER
   .byt ObjFlag::SECONDARY ;BOOMERANG
   .byt ObjFlag::SECONDARY ;FIREBALL
@@ -221,5 +228,7 @@
   .byt ObjFlag::PRIMARY ;BUDDY
   .byt ObjFlag::PRIMARY ;BEAM_EMITTER
   .byt ObjFlag::SECONDARY ;LASER_BEAM
+  .byt ObjFlag::ESSENTIAL ;FOREHEAD_BLOCK_GUY
+  .byt ObjFlag::ESSENTIAL ;FOREHEAD_BLOCK
 .endproc
 

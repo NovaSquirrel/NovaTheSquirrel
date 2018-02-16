@@ -177,37 +177,39 @@ MeetLia:
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA_WOW, "O", "h", " ", "i", "t", $e9, "L", "i", "a", $fd, $c0, "h", "a", "v", $e6, $e8, $b3, "n", " ", $a6, SCR::NEWLINE, $bf, $a5, "e", "v", $ed, "."
 ; <1 LIA>Das me! I was teleported here while looking for yous.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::LIA, "D", $c4, " ", $d0, $fd, $c0, "w", $c4, " ", $eb, "l", "e", "p", $c9, $eb, $ff, $a9, "e", SCR::NEWLINE, $da, $dc, $e7, $95, $b1, " ", $a5, " ", $a6, "s", "."
-; <0 NOVA>Maybe you can help me out on these puzzles.
-.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "M", "a", "y", $ba, $a6, " ", $b0, " ", $c3, "l", "p", " ", $d0, " ", $ae, SCR::NEWLINE, $c2, " ", $89, "p", "u", "z", "z", "l", "e", "s", "."
+; <0 NOVA_YAY>Maybe you can help me out on these puzzles.
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA_YAY, "M", "a", "y", $ba, $a6, " ", $b0, " ", $c3, "l", "p", " ", $d0, " ", $ae, SCR::NEWLINE, $c2, " ", $89, "p", "u", "z", "z", "l", "e", "s", "."
 ; <1 LIA>Okies! I'd be happy to!
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::LIA, "O", "k", $e3, "s", $fd, "I", "'", $ff, $ba, "h", "a", "p", "p", $fe, $bc, "!"
 .byt SCR::END_SCRIPT
-SmiloidAtBummerClub:
+FHBGAtBummerClub:
 .byt SCR::SCENE, SCENES::NOVA_AND_SMILOID
 ; <2 S_TEAM>Hey squirrel! Your adventure stops here!
 .byt SCR::SAY, SCR::SPEAKER_2|CHAR::S_TEAM, "H", "e", $fe, $80, $fd, "Y", $b6, " ", $f7, "v", $e6, "t", "u", "r", "e", SCR::NEWLINE, $de, "o", "p", $fb, $a9, "e", "!"
-; <1 SMILOID>Have a nice day!!!! Prepare to die! Also do NOT shoot me three times.
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SMILOID, "H", "a", "v", $e7, $be, "n", "i", "c", $e7, "d", "a", "y", "!", "!", "!", $fd, "P", "r", "e", "p", "a", "r", $e7, $bc, SCR::NEWLINE, "d", $e3, $fd, "A", "l", $cc, " ", $c5, " ", "N", "O", "T", " ", $df, $e4, $d3, $d0, SCR::NEWLINE, $e0, "r", $d7, " ", "t", "i", $d0, "s", "."
+; <1 SMILOID>Have a nice day!!!!
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SMILOID, "H", "a", "v", $e7, $be, "n", "i", "c", $e7, "d", "a", "y", "!", "!", "!", "!"
 ; <0 NOVA_WOW>Lia, run!
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA_WOW, "L", "i", "a", $f5, "r", $f2, "!"
 ; [LIA]Aaa, way ahead of you there, Nova!
 .byt SCR::NARRATE, CHAR::LIA, "A", "a", "a", $f5, $b7, " ", "a", $c3, $f7, " ", $bd, $a6, " ", $88, ",", SCR::NEWLINE, $a1, "!"
-; <2 S_TEAM>Don't worry, we're only interested in taking out *you*.
-.byt SCR::SAY, SCR::SPEAKER_2|CHAR::S_TEAM, "D", $c2, $e8, "w", $c9, "r", "y", $f5, $c8, "'", "r", $e7, $c2, "l", "y", SCR::NEWLINE, $d8, $eb, "r", "e", $de, $d6, $bf, "t", "a", "k", $b1, " ", $ae, SCR::NEWLINE, "*", $a6, "*", "."
+; <2 S_TEAM>Oh this Smiloid won't be fighting you. Instead we've hired the very best, Forehead Block Guy!
+.byt SCR::SAY, SCR::SPEAKER_2|CHAR::S_TEAM, "O", "h", " ", $99, " ", "S", "m", $dc, "o", "i", $ff, "w", $c2, $e8, "b", "e", SCR::NEWLINE, "f", "i", $db, "t", $b1, " ", $a6, $f6, "I", "n", $de, $ec, $ff, $c8, "'", "v", "e", SCR::NEWLINE, "h", "i", "r", $d6, $a2, " ", "v", $ed, $fe, "b", "e", $de, $f5, "F", $c9, "e", $c3, $f7, SCR::NEWLINE, "B", "l", "o", $f3, " ", "G", "u", "y", "!"
+; [LIA]Hmm, I fink he's actually safe to touch, only his blocks aren't. Good luck Nova!
+.byt SCR::NARRATE, CHAR::LIA, "H", "m", "m", $f5, $c0, "f", $d8, "k", " ", $c3, $e9, "a", $c7, "u", $ad, $fe, "s", "a", "f", "e", SCR::NEWLINE, $bb, $bc, "u", $e2, $f5, $c2, $d2, "h", $b8, "b", "l", "o", $f3, "s", SCR::NEWLINE, "a", "r", $e6, "'", "t", $f6, "G", $e4, $ff, "l", "u", $f3, " ", $a1, "!"
 .byt SCR::END_SCRIPT
-AfterSmiloidAtBummerClub:
+AfterFHBGAtBummerClub:
 .byt SCR::SCENE, SCENES::NOVA_AND_SMILOID
-; <2 S_TEAM>Oh is that so? Then we'll just have to build a bigger and stronger model!! Then you're toast!
-.byt SCR::SAY, SCR::SPEAKER_2|CHAR::S_TEAM, "O", "h", " ", $b8, $9a, $cc, "?", " ", $f8, $e6, " ", $c8, "'", "l", "l", " ", "j", "u", $de, SCR::NEWLINE, $9b, $bb, "b", "u", $dc, $ff, $be, "b", "i", "g", "g", $ed, " ", $ca, "d", SCR::NEWLINE, $de, "r", $c2, "g", $ed, " ", "m", "o", "d", "e", "l", "!", $fd, $f8, $e6, " ", $a6, "'", "r", "e", SCR::NEWLINE, $bc, $c4, "t", "!"
+; <2 S_TEAM>Oh, you got past him? W-we'll figure out how to take you down, just you wait!
+.byt SCR::SAY, SCR::SPEAKER_2|CHAR::S_TEAM, "O", "h", $f5, $a6, " ", $cf, $d3, "p", $c4, $d3, $b2, "?", " ", "W", "-", $c8, "'", "l", "l", SCR::NEWLINE, "f", "i", "g", "u", "r", $e7, $ae, " ", $b5, " ", $bb, $90, " ", $a6, SCR::NEWLINE, $c5, "w", "n", $f5, $8e, $a6, " ", "w", "a", "i", "t", "!"
 ; <0 NOVA_SILLY>Yeah, we'll see about that.
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA_SILLY, "Y", $ec, "h", $f5, $c8, "'", "l", "l", " ", $b3, " ", $8a, $e0, $c6, "."
 .byt SCR::END_SCRIPT
 NovaAndEclipse:
 .byt SCR::SCENE, SCENES::NOVA_AND_ECLIPSE
-; <0 NOVA>Wow, Eclipse is here too? Is this where everyone went to?
-.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "W", "o", "w", $f5, "E", "c", "l", "i", "p", $e5, " ", $b8, $a9, $e7, $bc, "o", "?", " ", "I", "s", SCR::NEWLINE, $99, " ", $da, $ed, $e7, "e", "v", $ed, "y", $ac, " ", $c8, $e1, " ", $bc, "?"
-; <1 LIA>Apparently?
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::LIA, "A", "p", "p", "a", "r", $e6, "t", "l", "y", "?"
+; <0 NOVA>Wow, Eclipse is here too? Why am I running into all my old friends here?
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "W", "o", "w", $f5, "E", "c", "l", "i", "p", $e5, " ", $b8, $a9, $e7, $bc, "o", "?", SCR::NEWLINE, "W", "h", $fe, "a", "m", " ", $c0, "r", $f2, "n", $b1, " ", $d8, $bb, $ad, " ", $cb, SCR::NEWLINE, "o", $ef, " ", "f", $fc, $e6, "d", $fb, $a9, "e", "?"
+; <1 LIA>I guess everyone's just ending up here?
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::LIA, $c0, "g", "u", "e", $f1, " ", "e", "v", $ed, "y", $ac, $e9, "j", "u", $de, SCR::NEWLINE, $e6, "d", $b1, " ", $cd, " ", $a9, "e", "?"
 ; <2 ECLIPSE>Oh wow. Hi, sis!
 .byt SCR::SAY, SCR::SPEAKER_2|CHAR::ECLIPSE, "O", "h", " ", "w", "o", "w", $f6, "H", "i", $f5, "s", $b9, "!"
 ; <0 NOVA>Hiii! So, what do I get for completing Bummer Club?
@@ -672,11 +674,11 @@ PreLevelBoss2:
 ;  Nova runs into the Scheme
 .byt " ", $a1, " ", "r", $f2, $fb, $d8, $bb, $a2, " ", "S", $e2, "e", $d0
 .byt SCR::NEWLINE
-;  Team again and they've got
-.byt " ", "T", $ec, "m", " ", "a", "g", "a", $bf, $a4, $98, "'", "v", $e7, $cf, "t"
+;  Team again and has you
+.byt " ", "T", $ec, "m", " ", "a", "g", "a", $bf, $a4, "h", $c4, " ", $a6
 .byt SCR::NEWLINE
-;  a new weapon this time!
-.byt " ", $be, $f9, "w", " ", $c8, "a", "p", $c2, " ", $99, " ", "t", "i", $d0, "!"
+;  fight Forehead Block Guy.
+.byt " ", "f", "i", $db, $d3, "F", $c9, "e", $c3, $f7, " ", "B", "l", "o", $f3, " ", "G", "u", "y", "."
 .byt SCR::END_SCRIPT
 PreLevelBoss3:
 ; Nova fights against MolSno

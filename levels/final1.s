@@ -5,12 +5,12 @@ final1:
   .byt GraphicsUpload::SP_WALKER
   .byt GraphicsUpload::SP_CANNON
   .byt GraphicsUpload::SP_FIRE
-  .byt GraphicsUpload::SP_SUN
+  .byt GraphicsUpload::SP_FACEBALL
   .addr final1Data
   .addr final1Sprite
   .byt $31 ; background
   .byt GraphicsUpload::PAL_DABG
-  .byt GraphicsUpload::PAL_ENEMY1
+  .byt GraphicsUpload::PAL_ENEMY6
   .byt GraphicsUpload::BG_DABGCOMMON
   .byt GraphicsUpload::BG_DABG
   .byt GraphicsUpload::BG_GRASSYBG
@@ -32,9 +32,16 @@ final1Data:
   LObjN LO::R_SOLID_ROCK,     2, 9, 0, 1
   LObjN LO::R_GROUND,         3, 11, 2, 3
   LObjN LO::R_GROUND,         3, 9, 2, 5
+  LObjN LO::R_GROUND,         6, 9, 3, 5
+  LObjN LO::R_GROUND,         4, 7, 2, 7
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LFinished
 
 final1Sprite:
-  LSpr Enemy::FIRE_JUMP,           0,   8,   6
+  LSpr Enemy::ROVER,               0,   6,   4
+  LSpr Enemy::GREMLIN,             0,   8,   8
+  LSpr Enemy::BOUNCER,             1,  11,   6
+  LSpr Enemy::TURKEY,              1,  11,  10
+  LSpr Enemy::FIRE_JUMP,           0,  18,  10, 1
+  LSpr Enemy::FIRE_JUMP,           0,  26,   8, 1
   .byt 255 ; end

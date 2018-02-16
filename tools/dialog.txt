@@ -142,29 +142,30 @@
 `scene NOVA_AND_LIA
 <0 NOVA_WOW>Oh it's Lia! I haven't seen you in forever.
 <1 LIA>Das me! I was teleported here while looking for yous.
-<0 NOVA>Maybe you can help me out on these puzzles.
+<0 NOVA_YAY>Maybe you can help me out on these puzzles.
 <1 LIA>Okies! I'd be happy to!
 `end
 
-:SmiloidAtBummerClub:
+:FHBGAtBummerClub:
 `scene NOVA_AND_SMILOID
 <2 S_TEAM>Hey squirrel! Your adventure stops here!
-<1 SMILOID>Have a nice day!!!! Prepare to die! Also do NOT shoot me three times.
+<1 SMILOID>Have a nice day!!!!
 <0 NOVA_WOW>Lia, run!
 [LIA]Aaa, way ahead of you there, Nova!
-<2 S_TEAM>Don't worry, we're only interested in taking out *you*.
+<2 S_TEAM>Oh this Smiloid won't be fighting you. Instead we've hired the very best, Forehead Block Guy!
+[LIA]Hmm, I fink he's actually safe to touch, only his blocks aren't. Good luck Nova!
 `end
 
-:AfterSmiloidAtBummerClub:
+:AfterFHBGAtBummerClub:
 `scene NOVA_AND_SMILOID
-<2 S_TEAM>Oh is that so? Then we'll just have to build a bigger and stronger model!! Then you're toast!
+<2 S_TEAM>Oh, you got past him? W-we'll figure out how to take you down, just you wait!
 <0 NOVA_SILLY>Yeah, we'll see about that.
 `end
 
 :NovaAndEclipse:
 `scene NOVA_AND_ECLIPSE
-<0 NOVA>Wow, Eclipse is here too? Is this where everyone went to?
-<1 LIA>Apparently?
+<0 NOVA>Wow, Eclipse is here too? Why am I running into all my old friends here?
+<1 LIA>I guess everyone's just ending up here?
 <2 ECLIPSE>Oh wow. Hi, sis!
 <0 NOVA>Hiii! So, what do I get for completing Bummer Club?
 <2 ECLIPSE>Oh, it's pretty rad! I'm awarding you some cool pants.
@@ -546,9 +547,9 @@ them then touch them to win.
 :PreLevelBoss2:
  Nova runs into the Scheme
 `nl
- Team again and they've got
+ Team again and has you
 `nl
- a new weapon this time!
+ fight Forehead Block Guy.
 `end
 
 :PreLevelBoss3:

@@ -43,6 +43,11 @@ PalDABG:    .byt $03
             .byt $0f, $16, $30
             .byt $0f, $27, $37
             .byt $0f, $16, $26
+PalDABGGray: .byt $03
+             .byt $0f, $29, $17
+             .byt $0f, $00, $30
+             .byt $0f, $27, $37
+             .byt $0f, $01, $12
 
 
 AltGrassy1: .byt $00

@@ -65,6 +65,8 @@ GraphicsList:
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGDABGCommon, >BGDABGCommon
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPFaceball,   >SPFaceball
   .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy6,    >PalEnemy6
+  .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPFHBG,       >SPFHBG
+  .byt GRAPHICS_BANK1|IS_PALETTE, <PalDABGGray,  >PalDABGGray
 ; input: A (graphic number)
 DoGraphicUpload:
   pha

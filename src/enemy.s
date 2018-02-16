@@ -2026,8 +2026,24 @@ Direction: .byt 1, <-1
 .endproc
 
 .proc ObjectGremlin
+  jsr EnemyFall
+  lda retraces
+  and #15
+  bne :+
+  jsr EnemyLookAtPlayer
+:
+
+  lda #$10
+  jsr EnemyWalk
+  bcc :+
+    lda #<(-$20)
+    sta ObjectVYL,x
+    lda #>(-$20)
+    sta ObjectVYH,x
+  :
+
   lda #$00
-  ldy #OAM_COLOR_2
+  ldy #OAM_COLOR_3
   jsr DispEnemyWide
   jsr EnemyPlayerTouchHurt
   rts
@@ -2042,6 +2058,12 @@ Direction: .byt 1, <-1
 .endproc
 
 .proc ObjectRover
+  jsr EnemyFall
+  bcc :+
+  lda #$10
+  jsr EnemyWalk
+:
+
   lda #$08
   ldy #OAM_COLOR_2
   jsr DispEnemyWide
@@ -3750,6 +3772,7 @@ DontDraw:
   sta ObjectPYL,x
   addcarryx ObjectPYH
 
+DisplayHealth:
 ; Write health indicator
   ldy OamPtr
   lda #$48
@@ -4062,4 +4085,231 @@ ReactWithTypes:
   .byt Metatiles::METAL_ARROW_UP,    Metatiles::METAL_ARROW_RIGHT
   .byt Metatiles::WOOD_ARROW_LEFT,   Metatiles::WOOD_ARROW_DOWN
   .byt Metatiles::WOOD_ARROW_UP,     Metatiles::WOOD_ARROW_RIGHT
+.endproc
+
+
+.proc ObjectFHBG
+  jsr EnemyFall
+
+  lda #$10
+  add ObjectF4,x ; speed up with damage
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+
+  ; Follow player
+  lda retraces
+  and #31
+  bne :+
+    jsr EnemyLookAtPlayer
+  :
+
+  ; Throw blocks
+  lda retraces
+  and #31
+  bne :+
+      jsr FindFreeObjectY
+      bcc :+
+        lda #0
+        sta ObjectF3,y
+
+        jsr ObjectCopyPosXY ; the block will update the position itself
+
+        lda #Enemy::FOREHEAD_BLOCK*2
+        sta ObjectF1,y
+        lda #20
+        sta ObjectTimer,y
+  :
+
+  ; When flashing for invincibility, draw every other frame only
+  lda ObjectF3,x
+  beq :+
+  dec ObjectF3,x
+  lda retraces
+  and #1
+  beq DontDraw
+:
+
+; Move position up temporarily
+  lda ObjectPYL,x
+  sub #$80
+  sta ObjectPYL,x
+  subcarryx ObjectPYH
+
+; Pick the right animation frame
+  lda ObjectF1,x
+  and #1
+  asl ;2
+  asl ;4
+  sta 0
+  lda retraces
+  lsr
+  lsr
+  and #3
+  ora 0
+  tay
+  lda Frames,y
+  tay
+
+; Display that frame
+  lda FramesLo,y
+  pha
+  lda FramesHi,y
+  tay
+  pla
+  jsr DispEnemyMetasprite
+
+; Move position back down
+  lda ObjectPYL,x
+  add #$80
+  sta ObjectPYL,x
+  addcarryx ObjectPYH
+DontDraw:
+
+  jmp ObjectMolSno::DisplayHealth
+
+FramesLo:
+  .lobytes MetaspriteR, MetaspriteRWalk, MetaspriteRWalk2
+  .lobytes MetaspriteL, MetaspriteLWalk, MetaspriteLWalk2
+FramesHi:
+  .hibytes MetaspriteR, MetaspriteRWalk, MetaspriteRWalk2
+  .hibytes MetaspriteL, MetaspriteLWalk, MetaspriteLWalk2
+
+Frames:
+  .byt 0, 1, 0, 2
+  .byt 3, 4, 3, 5
+
+MetaspriteR:
+  MetaspriteHeader 2, 3, 2
+  .byt $00, $01, $04
+  .byt $02, $03, $06
+MetaspriteRWalk:
+  MetaspriteHeader 2, 3, 2
+  .byt $00, $01, $05
+  .byt $02, $03, $06
+MetaspriteRWalk2:
+  MetaspriteHeader 2, 3, 2
+  .byt $00, $01, $04
+  .byt $02, $03, $07
+MetaspriteL:
+  MetaspriteHeader 2, 3, 2
+  .byt $02|OAM_XFLIP, $03|OAM_XFLIP, $06|OAM_XFLIP
+  .byt $00|OAM_XFLIP, $01|OAM_XFLIP, $04|OAM_XFLIP
+MetaspriteLWalk:
+  MetaspriteHeader 2, 3, 2
+  .byt $02|OAM_XFLIP, $03|OAM_XFLIP, $06|OAM_XFLIP
+  .byt $00|OAM_XFLIP, $01|OAM_XFLIP, $05|OAM_XFLIP
+MetaspriteLWalk2:
+  MetaspriteHeader 2, 3, 2
+  .byt $02|OAM_XFLIP, $03|OAM_XFLIP, $07|OAM_XFLIP
+  .byt $00|OAM_XFLIP, $01|OAM_XFLIP, $04|OAM_XFLIP
+.endproc
+
+Ball:
+  ; Slower hover
+  lda retraces
+  lsr
+  and #63
+  sta ObjectF4,x
+  jsr EnemyHover
+
+  lda #$10
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+
+  lda #$14
+  ldy #OAM_COLOR_3
+  jmp DispEnemyWide
+
+Shirt:
+  jsr EnemyHover
+
+  lda #$18
+  ldy #OAM_COLOR_3
+  jmp DispEnemyWide
+
+Shirt2:
+  jsr EnemyHover
+  lda #$1c
+  ldy #OAM_COLOR_3
+  jmp DispEnemyWide
+
+.proc ObjectFHBGBlock
+  ; If it's actually a shirt otr whatever do that routine instead
+  ldy ObjectF3,x
+  dey
+  beq Ball
+  dey
+  beq Shirt
+  dey
+  beq Shirt2
+
+  ; Stay on the guy's head first before it's tossed off
+  lda ObjectTimer,x
+  beq TimerZero
+  dec ObjectTimer,x
+
+  ; When the timer reaches zero, set the velocity, but only when it hits zero for the first time
+  bne DidntReachZero
+  lda #<(-$50)
+  sta ObjectVYL,x
+  lda #>(-$50)
+  sta ObjectVYH,x
+
+  ; Point at player
+  lda ObjectPXH,x
+  cmp PlayerPXH
+  lda #0
+  adc #0
+  tay
+  lda TossVL,y
+  sta ObjectVXL,x
+  lda TossVH,y
+  sta ObjectVXH,x
+DidntReachZero:
+
+  ; Find FHBG
+  ldy #ObjectLen-1
+: lda ObjectF1,y
+  and #<~1
+  cmp #Enemy::FOREHEAD_BLOCK_GUY*2
+  beq Found
+  dey
+  bne :-
+Found:
+  ; Put the block on FHBG's head
+  lda ObjectPXL,y
+  sta ObjectPXL,x
+  lda ObjectPXH,y
+  sta ObjectPXH,x
+  lda ObjectPYL,y
+  sub #$80
+  sta ObjectPYL,x
+  lda ObjectPYH,y
+  sbc #1
+  sta ObjectPYH,x
+  jmp Draw
+
+TimerZero:
+  jsr EnemyGravity
+  jsr EnemyApplyXVelocity
+
+  ; Destroy when it falls off the bottom
+  lda ObjectPYH,x
+  cmp #15
+  bcc Draw
+  lda #0
+  sta ObjectF1,x
+Draw:
+  lda #$00
+  sta O_RAM::TILEBASE
+  lda #$58
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  jmp EnemyPlayerTouchHurt
+
+; Toss horizontal velocities
+TossVL:
+  .lobytes $20, -$20
+TossVH:
+  .hibytes $20, -$20
 .endproc

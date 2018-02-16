@@ -156,6 +156,7 @@ Exit:
   .raddr ObjectPoof
   .raddr ObjectPlayerProjectile
   .raddr ObjectBlasterShot
+  .raddr ObjectFaceballShot
   .raddr ObjectSmallGlider
   .raddr ObjectBoomerang
   .raddr ObjectFireball
@@ -192,6 +193,8 @@ Exit:
   .raddr ObjectBuddy
   .raddr ObjectBeamEmitter
   .raddr ObjectLaserBeam
+  .raddr ObjectFHBG
+  .raddr ObjectFHBGBlock
 .endproc
 
 ; other enemy attributes
@@ -1306,13 +1309,7 @@ GravityAddOK:
 SkipGravity:
 
   ; apply gravity
-  lda ObjectPYL,x
-  add ObjectVYL,x
-  sta ObjectPYL,x
-  lda ObjectPYH,x
-  adc ObjectVYH,x
-  sta ObjectPYH,x
-  rts
+  jmp EnemyApplyYVelocity
 .endproc
 
 .proc EnemyDecTimer
