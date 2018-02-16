@@ -255,6 +255,8 @@ NoFallingBlock:
   lda #OBJECT_BANK
   jsr SetPRG
   jsr RunObjects
+  lda #OBJECT_BANK2
+  jsr SetPRG
   jsr FlickerEnemies
 
   lda #SOUND_BANK

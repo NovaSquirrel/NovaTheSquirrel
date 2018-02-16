@@ -945,12 +945,36 @@ FreezeLavaCommon:
 : rts
 
 ProjLampFlame:
-  jsr EnemyApplyVelocity
+  jsr EnemyApplyXVelocity
   lda retraces
   and #8
   bne :+
     jsr EnemyTurnAround
   :
+
+  ; Calculate an index into the sine table
+  inc ObjectF4,x
+  lda ObjectF4,x
+  asl
+  asl
+  and #31
+  tay
+  ; Get it and sign extend it
+  lda SineTable,y
+  sta 0
+  sex
+  sta 1
+  ; Multiply the table entry by 2
+  asl 0
+  rol 1
+
+  ; Apply the sinewave
+  lda ObjectPYL,x
+  add 0
+  sta ObjectPYL,x
+  lda ObjectPYH,x
+  adc 1
+  sta ObjectPYH,x
 
   lda #$7c
   ldy #OAM_COLOR_1

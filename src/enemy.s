@@ -4234,7 +4234,7 @@ Shirt2:
   jmp DispEnemyWide
 
 .proc ObjectFHBGBlock
-  ; If it's actually a shirt otr whatever do that routine instead
+  ; If it's actually a shirt or whatever, do that routine instead
   ldy ObjectF3,x
   dey
   beq Ball

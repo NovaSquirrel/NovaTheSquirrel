@@ -97,17 +97,17 @@ EmptyNow: ; Is empty now, so remove the item
   ; Left
   jsr MakeFlame
   bcc _rts
-  lda #>(-$40)
+  lda #>(-$20)
   sta ObjectVXH,y
-  lda #<(-$40)
+  lda #<(-$20)
   sta ObjectVXL,y
 
   ; Right
   jsr MakeFlame
   bcc _rts
-  lda #>($40)
+  lda #>($20)
   sta ObjectVXH,y
-  lda #<($40)
+  lda #<($20)
   sta ObjectVXL,y
 
   jmp RemoveOneItem
@@ -128,6 +128,7 @@ MakeFlame:
   lda PlayerPXH
   sbc #0
   sta ObjectPXH,y
+
   lda PlayerPYL
   add #$80
   sta ObjectPYL,y
@@ -136,6 +137,8 @@ MakeFlame:
   sta ObjectPYH,y
   lda #20
   sta ObjectTimer,y
+  lda #3          ; initialize the sine counter
+  sta ObjectF4,y
   sec
 _rts:
   rts
