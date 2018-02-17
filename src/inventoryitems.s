@@ -267,6 +267,7 @@ PauseScreenPage = ScratchPage + 20 ; 0 for inventory, 1 for more options
 TossMode = ScratchPage + 21
 LastMenuOption = ScratchPage + 22
 ExtraOptionsCount = 4 ; constant
+AutoRepeatCount = 5
 
   lda #VWF_BANK
   jsr _SetPRG
@@ -280,6 +281,7 @@ ExtraOptionsCount = 4 ; constant
   lda #0
   sta PauseScreenPage
   sta TossMode
+  sta AutoRepeatCount
   lda #InventoryLen
   sta LastMenuOption
 
@@ -537,6 +539,34 @@ Loop:
   lda #2
   sta OAM_DMA
   jsr ReadJoy
+
+  ; Auto repeat
+  lda keydown
+  and #KEY_UP|KEY_DOWN
+  cmp keylast
+  bne KeysNotSame
+  ; Are we at the delay yet?
+  lda AutoRepeatCount
+  cmp #16
+  beq DoAutoRepeat
+  ; Count up to the delay needed
+  inc AutoRepeatCount  
+  bpl KeysAreSame ; unconditional
+DoAutoRepeat:
+  ; Only every other frame
+  lda retraces
+  lsr
+  bcc KeysAreSame
+
+  ; Apply auto repeat
+  lda keydown
+  sta keynew
+  bne KeysAreSame
+KeysNotSame:
+  ; Reset the counter
+  lda #0
+  sta AutoRepeatCount
+KeysAreSame:
 
   ; Allow switching pages
   lda InventoryCursorY

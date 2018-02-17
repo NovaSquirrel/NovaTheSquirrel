@@ -293,6 +293,7 @@ Loop:
   sta PPUDATA
   jsr UpdateScrollRegister
 
+  ; Delay
   ldx #15
 : jsr WaitVblank
   dex

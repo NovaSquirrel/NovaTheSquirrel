@@ -190,6 +190,7 @@ arrowsData:
   LObjN LO::R_BG_GLASS_GREEN, 0, 7, 2, 0
   LObjN LO::R_BG_GLASS_GREEN, 1, 6, 0, 2
   LObj  LO::S_CEILING_BARRIER,2, 0
+  LObj  LO::S_BG_GLASS_GRAY,  0, 14
   LObjN LO::R_FG_GLASS_BLUE,  1, 0, 3, 8
   LObjN LO::R_BG_GLASS_BLUE,  0, 9, 0, 5
   LObjN LO::WIDE_1,           2, 13, 4, LN1::SOLID_LEDGE
