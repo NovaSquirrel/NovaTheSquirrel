@@ -662,7 +662,8 @@ ExitDoor:
   jsr ConfiscateItems
   jsr CopyToSavedInventory
 
-  jmp ShowPreLevelFar
+  jmp ShowLevelEnd
+;  jmp ShowPreLevelFar
 .endproc
 
 ; Remove items that the player shouldn't exit the level with

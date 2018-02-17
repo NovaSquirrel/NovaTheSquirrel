@@ -1710,14 +1710,20 @@ FlyingArrowVY:
 
 ; Writes four tiles of information to the PPU
 .proc UploadFourTiles
-  .repeat 64, I
-    lda UploadTileSpace+I
+  .repeat 32, I
+    lda UploadTileSpace+I+0
+    sta PPUDATA
+  .endrep
+OnlyTwoTiles:
+  .repeat 32, I
+    lda UploadTileSpace+I+32
     sta PPUDATA
   .endrep
   lda #0
   sta UploadTileAddress+1
   rts
 .endproc
+UploadTwoTiles = UploadFourTiles::OnlyTwoTiles
 
 .proc HitToggleSwitch
 .ifdef NEW_TOGGLE_BEHAVIOR

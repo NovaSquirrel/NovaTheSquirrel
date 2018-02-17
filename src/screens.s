@@ -236,3 +236,69 @@ SkipLevelSelect:
   jmp StartLevel
 .endproc
 
+.proc ShowLevelEnd
+Ptr = 2
+; Prepare the upload data
+  ldx #31
+  lda #$3e
+: sta UploadTileSpace+32,x
+  dex
+  bpl :-
+
+  jsr WaitVblank
+  lda #<$2000
+  sta Ptr+0
+  lda #>$2000
+  sta Ptr+1
+
+Loop:
+  jsr WaitVblank
+  ; Left nametable
+  lda Ptr+1
+  sta PPUADDR
+  lda Ptr+0
+  sta PPUADDR
+  jsr UploadTwoTiles
+  ; Right nametable
+  lda Ptr+1
+  ora #$04
+  sta PPUADDR
+  lda Ptr+0
+  sta PPUADDR
+  jsr UploadTwoTiles
+
+  jsr UpdateScrollRegister
+
+  ; Next row
+  lda Ptr+0
+  add #32
+  sta Ptr+0
+  addcarry Ptr+1
+
+  ; Stop at attribute table
+  lda Ptr+1
+  cmp #$23
+  bne Loop
+  lda Ptr+0
+  cmp #$c0
+  bne Loop
+
+  ; Set background to white
+  jsr WaitVblank
+  lda #$3f
+  sta PPUADDR
+  lda #$00
+  sta PPUADDR
+  lda #$30
+  sta PPUDATA
+  jsr UpdateScrollRegister
+
+  ldx #15
+: jsr WaitVblank
+  dex
+  bne :-
+
+  lda #OPTIONS_BANK
+  jsr SetPRG
+  jmp ShowPreLevel
+.endproc

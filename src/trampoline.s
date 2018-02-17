@@ -163,11 +163,13 @@
   rts
 .endproc
 
+.if 0
 .proc ShowPreLevelFar
   lda #OPTIONS_BANK
   jsr SetPRG
   jmp ShowPreLevel
 .endproc
+.endif
 
 .proc LoadExpositionGraphics
   lda #GraphicsUpload::CHR_FONT
