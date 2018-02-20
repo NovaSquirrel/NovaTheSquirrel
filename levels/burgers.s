@@ -72,8 +72,8 @@ burgersData:
   LObjN LO::R_BG_GLASS_BLUE,  1, 1, 0, 13
   LObjN LO::R_GROUND,         1, 8, 4, 6
   LObj  LO::S_BIGHEART,       1, 7
-  LObj  LO::S_CEILING_BARRIER,1, 0
-  LObjN LO::R_CEILING_BARRIER,0, 0, 0, 1
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObj  LO::S_CEILING_BARRIER,0, 0
   LObj  LO::S_CUSTOM,         0, 7, Metatiles::KEY_GREEN
   LObjN LO::R_FG_GLASS_BLUE,  1, 0, 0, 7
   LObjN LO::R_ENEMY_BARRIER      ,  1, 0, 0, 4
@@ -100,10 +100,11 @@ burgersData:
   LObjN LO::R_COIN,           3, 9, 2, 0
   LObjN LO::WIDE_1,           0, 10, 2, LN1::SOLID_LEDGE
   LObj  LO::S_BG_GLASS_RED,   1, 12
-  LObjN LO::WIDE_1,           1, 7, 2, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           1, 7, 3, LN1::SOLID_LEDGE
   LObj  LO::S_BG_GLASS_RED,   1, 10
   LObjN LO::R_COIN,           1, 4, 0, 2
   LObj  LO::S_M_ARROW_RIGHT,  1, 2
+  LObjN LO::WIDE_1,           0, 5, 1, LN1::SOLID_LEDGE
   LObj  LO::S_M_ARROW_UP,     0, 11
   LObj  LO::S_W_ARROW_RIGHT,  2, 4
   LObjN LO::R_FG_GLASS_BLUE,  0, 5, 0, 9
@@ -219,6 +220,7 @@ burgersSprite:
   LSpr Enemy::RONALD_BURGER,       0,  38,   2
   LSpr Enemy::RONALD_BURGER,       1,  52,   1
   LSpr Enemy::RONALD_BURGER,       0,  76,   1, 0
+  LSpr Enemy::CHECKPOINT,          0,  81,  11
   LSpr Enemy::FIRE_WALK,           0,  94,  12, 1
   LSpr Enemy::RONALD,              1,  99,   6
   LSpr Enemy::RONALD_BURGER,       0, 103,   2, 0

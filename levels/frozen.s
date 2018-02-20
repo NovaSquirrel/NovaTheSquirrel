@@ -168,7 +168,8 @@ frozenData:
   LObjN LO::R_GROUND,         0, 4, 3, 10
   LObjN LO::WIDE_3,           6, 3, 0, LN3::MINE_TRACKS_BRAKES
   LWriteCol $30
-  LObj  LO::S_MTRACK_SSR,      3, 4
+  LObjN LO::R_MTRACK_SUPPORTSONLY,  2, 4, 0, 10
+  LObj  LO::S_MTRACK_SSR,      1, 4
   LObj  LO::S_MTRACK_SSR,      1, 5
   LObj  LO::S_MTRACK_SSR,      1, 6
   LObj  LO::S_MTRACK_SSR,      1, 7

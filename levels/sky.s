@@ -35,8 +35,9 @@ skyData:
   LObjN LO::WIDE_1,           1, 6, 2, LN1::SOLID_LEDGE
   LObj  LO::S_SOLID_BLOCK,    5, 6
   LObjN LO::TALL_2,           0, 7, 7, LN2::TRUNK
-  LObjN LO::WIDE_1,           1, 6, 3, LN1::FALLTHROUGH_LEDGE
-  LObjN LO::R_GROUND,         2, 13, 1, 1
+  LObjN LO::WIDE_1,           1, 6, 3, LN1::SOLID_LEDGE
+  LObjN LO::TALL_1,           2, 6, 2, LN1::LADDER
+  LObjN LO::R_GROUND,         0, 13, 1, 1
   LObj  LO::S_SPRING,         1, 12
   LObjN LO::WIDE_1,           1, 13, 0, LN1::SPIKES
   LObj  LO::S_GROUND,         0, 14

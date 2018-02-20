@@ -129,11 +129,11 @@ puzzle2Data:
   LObj  LO::S_HEART,          1, 8
   LObjN LO::R_BG_GLASS_GRAY,  1, 5, 8, 0
   LObj  LO::S_CUSTOM,         0, 8, Metatiles::LOCK_GREEN
-  LObjN LO::WIDE_1,           1, 9, 4, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           1, 9, 5, LN1::SOLID_LEDGE
   LObjN LO::R_COIN,           1, 6, 5, 0
   LObjN LO::R_FG_GLASS_RED,   2, 3, 1, 0
-  LObj  LO::S_SPRING,         1, 8
-  LObjN LO::R_COIN,           1, 4, 5, 0
+  LObjN LO::R_COIN,           2, 4, 5, 0
+  LObj  LO::S_SPRING,         0, 8
   LObjN LO::WIDE_1,           2, 3, 2, LN1::SOLID_LEDGE
   LObjN LO::R_BG_GLASS_GRAY,  0, 8, 5, 0
   LObjN LO::WIDE_1,           2, 6, 4, LN1::SOLID_LEDGE

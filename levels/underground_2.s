@@ -41,7 +41,7 @@ underground_2Data:
   LObjN LO::R_GROUND,         2, 1, 1, 4
   LObjN LO::R_COIN,           0, 9, 1, 1
   LObjN LO::R_GROUND,         0, 11, 5, 3
-  LObjN LO::TALL_2,           3, 4, 4, LN2::PATH_LINE
+  LObjN LO::TALL_2,           3, 4, 5, LN2::PATH_LINE
   LObjN LO::WIDE_2,           2, 5, 2, LN2::STRIPED_LOG_HORIZ
   LObj  LO::S_PRIZE,          1, 2
   LWriteCol InventoryItem::HEALTH_RESTORE
