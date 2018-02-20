@@ -185,19 +185,6 @@ NoInitSave:
   lda #255
   sta IntroShownAlready
 
-;  .ifdef DEBUG
-  .if 0
-; Sample testing inventory
-  lda #InventoryItem::HEALTH_RESTORE
-  sta InventorySaved+0
-  lda #InventoryItem::ABILITY_GLIDER
-  sta InventorySaved+1
-  lda #InventoryItem::ABILITY_BOMB
-  sta InventorySaved+2
-  lda #InventoryItem::ABILITY_BOOMERANG
-  sta InventorySaved+3
-  .endif
-
 ; Turn on NMI and make sprites use $1xxx in CHR RAM
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL

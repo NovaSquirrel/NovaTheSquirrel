@@ -1046,9 +1046,11 @@ SkipAddr:
   txa
   pha
   ; Copy inventory
-  ldx #InventoryLen*2-1
-: lda InventorySaved,x
+  ldx #InventoryLen-1
+: lda InventorySavedType,x
   sta InventoryType,x
+  lda InventorySavedAmount,x
+  sta InventoryAmount,x
   dex
   bpl :-
   pla
@@ -1060,9 +1062,11 @@ SkipAddr:
   lda PuzzleMode
   bne Exit
   ; Copy inventory
-  ldx #InventoryLen*2-1
+  ldx #InventoryLen-1
 : lda InventoryType,x
-  sta InventorySaved,x
+  sta InventorySavedType,x
+  lda InventoryAmount,x
+  sta InventorySavedAmount,x
   dex
   bpl :-
 Exit:

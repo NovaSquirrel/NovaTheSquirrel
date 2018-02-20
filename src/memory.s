@@ -314,19 +314,25 @@ LevelZeroWhenLoad_End:
 .endif
   ColumnBytes:        .res 256 ; stores a byte for each column, for ? block contents and other things
 
-  ; Current game state
+  PlayerAbility:      .res 1     ; current ability, see the AbilityType enum
+
+; Current game state (saved in checkpoints)
 CurrentGameState:
-  PlayerAbility:    .res 1     ; current ability, see the AbilityType enum
-  Coins:            .res 2     ; 2 digits, BCD
+  Coins:              .res 2     ; 2 digits, BCD
   InventoryLen = 10
-  InventoryType:      .res InventoryLen
-  InventoryAmount:    .res InventoryLen
+  InventoryLenFull = 20          ; full inventory including second page
+  InventoryType:           .res InventoryLen
+  InventoryPerLevelType:   .res InventoryLen
+  InventoryAmount:         .res InventoryLen
+  InventoryPerLevelAmount: .res InventoryLen
   InventoryEnd:
-  ; InventoryAmount is also used for flags when it's values above 99:
+  ; InventoryAmount is also used for flags when it's values above 99 (but it's unused):
 INVENTORY_UNLIMITED = 255
 INVENTORY_EQUIPPED  = 254
-GameStateLen = 1+2+10+10+2 ; update if more stuff is added
-  PlayerAbilityVar: .res 1
+GameStateLen = 2+10*4 ; update if more stuff is added. Just coins and inventory.
+  InventoryPage: .res 1 ; 0 normally, InventoryLen if second page
+
+  PlayerAbilityVar: .res 1  ; used to keep track of ability-related things
   PlayerNeedsGround: .res 1 ; sets to zero when the player touches the ground
   PlayerRidingSomethingLast: .res 1 ; player was riding something last frame
 
@@ -350,7 +356,7 @@ GameStateLen = 1+2+10+10+2 ; update if more stuff is added
   IRQAddress:       .res 2
 
   CurWorld:         .res 1 ; current world for level select
-  LevelSelectInventory: .res 1 ; flag, set to 1 if accessing the inventory via the level select
+  LevelSelectInventory: .res 1 ; flag, set to 1 if accessing the inventory via the level select. probably unused now!
   OptionsViaInventory: .res 1 ; if 1, accessing options via inventory screen
 
   ; the sprite list from the ROM has to be copied here so we can access it in gameplay banks
@@ -376,9 +382,9 @@ GameStateLen = 1+2+10+10+2 ; update if more stuff is added
 SaveStart:
   SaveTag:            .res 9
 SavedGameState_Start: ; apparently this isn't actually used in one chunk?
-  SavedAbility:       .res 1
   SavedCoins:         .res 2
-  InventorySaved:     .res InventoryLen*2
+  InventorySavedType:   .res InventoryLen
+  InventorySavedAmount: .res InventoryLen
   LevelCleared:       .res 8   ; 64 levels, bit = enabled
   LevelAvailable:     .res 8   ; 64 levels, bit = enabled
   CollectibleBits:    .res 8   ; 64 levels, bit = gotten

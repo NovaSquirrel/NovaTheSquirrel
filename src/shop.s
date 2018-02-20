@@ -159,7 +159,7 @@ NeedUpdateItemInfo = 15
   lda #7
   sta PPUDATA
   ldx #0
-: lda InventorySaved,x
+: lda InventorySavedType,x
   jsr ItemShopTableLookup
   sta PPUDATA
   add #2
@@ -175,7 +175,7 @@ NeedUpdateItemInfo = 15
   lda #7
   sta PPUDATA
   ldx #0
-: lda InventorySaved,x
+: lda InventorySavedType,x
   jsr ItemShopTableLookup
   add #1
   sta PPUDATA
@@ -284,7 +284,7 @@ UpdateInventoryAmounts:
   jsr WaitVblank
   PositionXY 0, 6, 26
   ldx #0
-: ldy InventorySaved+InventoryLen,x
+: ldy InventorySavedAmount,x
   beq InventoryZero
   cpy #9
   bcc InventoryUnderTen
@@ -322,7 +322,7 @@ InventoryUnderTen:
   sty OamPtr
 @Loop:
   ; Draw the inventory item amounts
-  ldy InventorySaved+InventoryLen,x
+  ldy InventorySavedAmount,x
   beq @SkipInventoryAmount
     iny
     lda BCD99,y
@@ -689,8 +689,8 @@ TossLoop:
   beq :+
     ldx Cursor
     lda #0
-    sta InventorySaved,x
-    sta InventorySaved+InventoryLen,x
+    sta InventorySavedType,x
+    sta InventorySavedAmount,x
     ; Erase top row of inventory slot
     jsr WaitVblank
     lda #$23
@@ -725,7 +725,7 @@ TossLoop:
   lda NeedUpdateItemInfo
   beq :+
     ldx Cursor
-    lda InventorySaved,x
+    lda InventorySavedType,x
     clc
     jsr UpdateItemInfo
   :
@@ -844,14 +844,14 @@ Blank:
   sta TempVal+2
 ; See if the item is already in the list
   ldx #InventoryLen-1
-: ldy InventorySaved,x
+: ldy InventorySavedType,x
   cpy TempVal+2
   bne :+
   ; Item found
-  lda InventorySaved+InventoryLen,x ; check if 99
+  lda InventorySavedAmount,x ; check if 99
   cmp #98
   beq Fail ; can't get more than 99
-  inc InventorySaved+InventoryLen,x ; amount
+  inc InventorySavedAmount,x ; amount
   sec
   rts
 : ; Item not found, keep looking
@@ -860,7 +860,7 @@ Blank:
 
 ; If item isn't in the list, put it in the first blank slot
   ldx #0
-: ldy InventorySaved,x
+: ldy InventorySavedType,x
   beq Empty
   inx
   cpx #InventoryLen
@@ -870,9 +870,9 @@ Fail:
   rts
 
 Empty: ; Empty slot, put in item
-  sta InventorySaved,x
+  sta InventorySavedType,x
   lda #0
-  sta InventorySaved+InventoryLen,x
+  sta InventorySavedAmount,x
   sec
   rts
 .endproc

@@ -176,6 +176,7 @@ BummerInstead:
   dey
   bpl :-
 
+  ; Reset ability and reset player to checkpoint position
   lda CheckpointX
   sta PlayerPXH
   lda #0
@@ -184,7 +185,7 @@ BummerInstead:
   lda CheckpointY
   sta PlayerPYH
 
-  inc IsNormalDoor ; skip setting X and Y
+  inc IsNormalDoor ; skip setting X and Y (overridden with checkpoint)
 
   lda #$40
   sta PlayerPXL
