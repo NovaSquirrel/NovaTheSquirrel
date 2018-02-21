@@ -136,6 +136,17 @@
   jmp SetPRG_Restore
 .endproc
 
+; Allows any bank to silence sound
+.proc StopSoundFar
+  lda #SOUND_BANK
+  jsr _SetPRG
+  jsr pently_init
+  inc pently_music_playing ; I forget why I inc this
+
+  jmp SetPRG_Restore
+.endproc
+
+
 .if 0
 ; Allows object bank 2 bank to change blocks
 ; Unsure if needed?

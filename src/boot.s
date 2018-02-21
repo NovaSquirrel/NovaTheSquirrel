@@ -150,8 +150,7 @@ InitSave:
   ; Clear out the save section
   lda #0
   tax
-: sta $7e00,x
-  sta $7f00,x
+: sta $7f00,x
   inx
   bne :-
 
@@ -166,7 +165,7 @@ InitSave:
   sta LevelAvailable+1
   lda #255
   sta LevelAvailable+2
-  lda #%11111
+  lda #255
   sta LevelAvailable+3
 
   ; Write tag to SRAM
@@ -192,7 +191,7 @@ NoInitSave:
   jmp JumpToLevelSelect
 .endproc
 
-SaveTagString: .byt "squirrel", 1
+SaveTagString: .byt "squirrel", 2
 
 .proc InitMapper
   ; UNROM needs no intialization

@@ -24,7 +24,7 @@ LEVELS_BANK1 = $0
 LEVELS_BANK2 = $1
 LEVELS_BANK3 = $2
 LEVELS_BANK4 = $3
-OBJECT_BANK2 = $6
+OBJECT_BANK2 = $d
 DIALOG_BANK = $7
 MAINLOOP_BANK = $9
 OBJECT_BANK = $8
@@ -33,7 +33,7 @@ GRAPHICS_BANK2 = $b
 GRAPHICS_BANK1 = $c
 VOICE_BANK = $d
 LEVELPROCESS_BANK = $e
-SOUND_BANK = $e
+SOUND_BANK = $6
 VWF_BANK = $e
 INVENTORY_BANK = $e
 THINFONT_BANK = $d
@@ -44,8 +44,10 @@ OPTIONS_BANK = $e
 .include "enemy.s"
 .include "drawsprite.s"
 .include "projectiles.s"
-.segment "PRG6" ;
-.include "object2.s"
+.segment "PRG6"
+.include "pentlysound.s"
+.include "pentlymusic.s"
+.include "musicseq.s"
 .segment "PRG9" ; main loop stuff
 .include "metatile.s"
 .include "../tools/metatilelist.s"
@@ -61,13 +63,11 @@ OPTIONS_BANK = $e
 .segment "PRGd"
 .include "quadpcm.s"
 .include "thinfont.s"
+.include "object2.s"
 
 .segment "PRGe" ; dialogs, inventory, VWF engine
 .include "vwf_draw.s"
 .include "levelprocess.s"
-.include "pentlysound.s"
-.include "pentlymusic.s"
-.include "musicseq.s"
 .include "inventoryitems.s"
 .include "cutscenedata.s"
 .include "levelselect.s"

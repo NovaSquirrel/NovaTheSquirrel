@@ -32,11 +32,7 @@ WorldTimes8 = 15
   jsr CopyFromSavedInventory
 
 ; Stop any music that was playing
-; TODO: this routine is in VWF_BANK! so if SOUND_BANK gets moved I have to use a trampoline here
-  lda #SOUND_BANK
-  jsr SetPRG
-  jsr pently_init
-  inc pently_music_playing
+  jsr StopSoundFar ; uses a trampoline
 
 ; Initialize PPU stuff
   jsr WaitVblank
