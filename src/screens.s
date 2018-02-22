@@ -90,9 +90,10 @@ DontHaveExtraRAM:
   jsr ReadJoy8bits
   sta 1 ; middle 8 bits
   jsr ReadJoy8bits
-  cmp #$FF ; should be all 1s if official NES or SNES controller
+  cmp #$FF ; last byte should be all 1s if official NES or SNES controller
   bne ThirdPartyController
-  lda 1    ; should be all 1s if NES, but all 0s if SNES with no keys pressed
+  lda 1    ; should be all 1s if NES, but all 0s if SNES
+  and #%00001111
   bne NESController
   inc SNESController
 NESController:
