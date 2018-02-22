@@ -272,11 +272,7 @@ AutoRepeatCount = 5
   lda #VWF_BANK
   jsr _SetPRG
 
-  jsr pently_init
-  lda LevelSelectInventory
-  bne :+
-  inc pently_music_playing
-:
+  jsr StopSoundFar
 
   lda #0
   sta PauseScreenPage

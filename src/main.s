@@ -303,6 +303,9 @@ DidntSkipPlayerAndEnemies:
 .ifdef NMI_MUSIC
     lsr LagFrame
 .endif
+
+    lda #VWF_BANK
+    jsr SetPRG
     jsr PauseScreen
   NoPause:
 
