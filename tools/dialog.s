@@ -263,8 +263,8 @@ JustGotMirror:
 .byt SCR::NARRATE, CHAR::NOVA, "S", "u", "r", "e", $f5, $c0, "g", "u", "e", $f1, " ", $d5, " ", $fa, $fe, $e0, $c6, $f6, "B", "u", "t", SCR::NEWLINE, $da, $fe, "c", "o", "l", "a", "?"
 ; [KOREY]I'll let you in on a little secret - the name Latte comes from the latte caffeinated drink, and in this world caffeine is a really powerful thing, especially in the hands of a squirrel.
 .byt SCR::NARRATE, CHAR::KOREY, $d5, " ", $a8, " ", $a6, " ", $bf, $c2, " ", $be, "l", "i", "t", "t", "l", "e", SCR::NEWLINE, $e5, "c", "r", "e", $d3, "-", " ", $a2, " ", "n", "a", $d0, " ", $84, SCR::NEWLINE, $96, $fb, $97, $a2, " ", "l", $c6, $eb, SCR::NEWLINE, "c", "a", "f", "f", "e", $d8, $c6, $d6, "d", $fc, "n", "k", $f5, $a4, $bf, $99, SCR::NEWLINE, "w", $c9, $ef, " ", "c", "a", "f", "f", "e", $d8, $e7, $b8, $be, "r", $ec, "l", "l", "y", SCR::NEWLINE, "p", "o", $c8, "r", "f", "u", "l", " ", $e0, $b1, $f5, "e", $dd, "e", "c", "i", $ad, $fe, $d8, SCR::NEWLINE, $a2, " ", "h", $ca, "d", $fb, $bd, $be, $80, "."
-; [SHERWIN]Haha yeah, squirrels already tend to be pretty hyper even without any help from coffie!
-.byt SCR::NARRATE, CHAR::SHERWIN, "H", "a", "h", $be, "y", $ec, "h", $f5, $80, $fb, "a", "l", "r", $ec, "d", "y", SCR::NEWLINE, $eb, $f0, " ", $bb, $ba, "p", "r", "e", "t", "t", $fe, "h", "y", "p", $ed, " ", $9f, SCR::NEWLINE, $9d, $ae, " ", $ab, " ", $c3, "l", "p", " ", $97, "c", "o", "f", "f", $e3, "!"
+; [SHERWIN]Haha yeah, squirrels already tend to be pretty hyper even without any help from coffee!
+.byt SCR::NARRATE, CHAR::SHERWIN, "H", "a", "h", $be, "y", $ec, "h", $f5, $80, $fb, "a", "l", "r", $ec, "d", "y", SCR::NEWLINE, $eb, $f0, " ", $bb, $ba, "p", "r", "e", "t", "t", $fe, "h", "y", "p", $ed, " ", $9f, SCR::NEWLINE, $9d, $ae, " ", $ab, " ", $c3, "l", "p", " ", $97, "c", "o", "f", "f", $d7, "!"
 ; []Nova travels to Frozen Volcano, the land of lava and ice.
 .byt SCR::NARRATE, CHAR::NONE, $a1, " ", $fa, "a", "v", "e", "l", $fb, $bb, "F", "r", "o", "z", $e6, SCR::NEWLINE, "V", "o", "l", $b0, "o", $f5, $a2, " ", "l", $a4, $bd, "l", "a", "v", $be, $ca, "d", SCR::NEWLINE, "i", "c", "e", "."
 .byt SCR::END_SCRIPT

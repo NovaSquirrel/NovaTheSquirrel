@@ -19,6 +19,7 @@ frozen:
   .byt $00, $00 ; boundaries
 
 frozenData:
+  .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <JustGotMirror, >JustGotMirror
   LObjN LO::R_ROCK,           0, 0, 6, 1
   LObjN LO::R_GROUND,         0, 7, 4, 4
   LObjN LO::RECT_3,           0, 12, 2, LN3::ROCK, 18

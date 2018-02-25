@@ -200,7 +200,7 @@
 [KOREY]No, it's fa-a-ancy. Completely different. Anyway, in Frozen Volcano, there's this dude named MolSno, short for "Molten Snow". He has a real problem so he bought every single can of fa-a-ancy cola there is and you'll just have to get some from him.
 [NOVA]Sure, I guess I'll try that. But why cola?
 [KOREY]I'll let you in on a little secret - the name Latte comes from the latte caffeinated drink, and in this world caffeine is a really powerful thing, especially in the hands of a squirrel.
-[SHERWIN]Haha yeah, squirrels already tend to be pretty hyper even without any help from coffie!
+[SHERWIN]Haha yeah, squirrels already tend to be pretty hyper even without any help from coffee!
 []Nova travels to Frozen Volcano, the land of lava and ice.
 `end
 

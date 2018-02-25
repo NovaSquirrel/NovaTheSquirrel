@@ -50,17 +50,7 @@ OptionCount = 13
   add #'1'
   sta PPUDATA
 
-  ; - Draw the box of options -
-  ; Top
-  PositionXY 0, 8, 19
-  lda #4
-  sta PPUDATA
-  lda #5
-  ldx #14
-  jsr WritePPURepeated
-  lda #6
-  sta PPUDATA
-  ; Bottom
+  ; Draw bottom of the options box, which is always the same
   PositionXY 0, 8, 25
   lda #9
   sta PPUDATA
@@ -70,6 +60,66 @@ OptionCount = 13
   lda #11
   sta PPUDATA
 
+  ; Is there a cutscene?
+  ldx #0
+PreLevelCutsceneCheck:
+  lda PreLevelHasCutscene,x
+  bmi PreLevelCutsceneNotFound
+  cmp StartedLevelNumber
+  beq PreLevelCutsceneFound
+  inx
+  bne PreLevelCutsceneCheck ; unconditional
+PreLevelCutsceneFound:
+  inc OptionCount
+
+  PositionXY 0, 11, 18
+  jsr PutStringImmediate
+  .byt "Show Intro",0
+
+  ; Draw options box
+  ; Top
+  PositionXY 0, 8, 17
+  lda #4
+  sta PPUDATA
+  lda #5
+  ldx #14
+  jsr WritePPURepeated
+  lda #6
+  sta PPUDATA
+  ; Make sides
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
+  sta PPUCTRL
+  PositionXY 0, 8, 18
+  lda #7
+  ldx #7
+  jsr WritePPURepeated
+  PositionXY 0, 23, 18
+  lda #8
+  ldx #7
+  jsr WritePPURepeated
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
+  sta PPUCTRL
+
+  ; Move cursor to cutscene option if level not already completed
+  lda StartedLevelNumber
+  jsr IndexAToBitmap
+  and LevelCleared,y
+  bne ThereWasCutscene
+  lda #3
+  sta Cursor
+  bne ThereWasCutscene
+PreLevelCutsceneNotFound:
+
+  ; Draw options box without the extra space
+  ; Top
+  PositionXY 0, 8, 19
+  lda #4
+  sta PPUDATA
+  lda #5
+  ldx #14
+  jsr WritePPURepeated
+  lda #6
+  sta PPUDATA
   ; Make sides
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
   sta PPUCTRL
@@ -83,28 +133,7 @@ OptionCount = 13
   jsr WritePPURepeated
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
   sta PPUCTRL
-
-  ; Is there a cutscene?
-  ldx #0
-PreLevelCutsceneCheck:
-  lda PreLevelHasCutscene,x
-  bmi PreLevelCutsceneNotFound
-  cmp StartedLevelNumber
-  beq PreLevelCutsceneFound
-  inx
-  bne PreLevelCutsceneCheck ; unconditional
-PreLevelCutsceneFound:
-  inc OptionCount
-PreLevelCutsceneNotFound:
-
-  ; Only display "Play cutscene" if it's actually an option
-  lda OptionCount
-  cmp #4
-  bne :+
-    PositionXY 0, 7, 17
-    jsr PutStringImmediate
-    .byt "* Play  Cutscene *",0
-  :
+ThereWasCutscene:
 
   ; Is there pre-level text?
   ldx #0
@@ -163,6 +192,7 @@ PreLevelTextNotFound:
     jsr PutStringImmediate
     .byt "??????????",0
   :
+
   PositionXY 0, 13, 20
   jsr PutStringImmediate
   .byt "Start!",0
@@ -236,9 +266,9 @@ Loop:
 
   jmp Loop
 
-StarXPos1: .byt 12*8,   10*8,   9*8,     8*8
-StarXPos2: .byt 19*8,   21*8,   22*8,    23*8
-StarYPos:  .byt 20*8-1, 22*8-1, 24*8-1,  17*8-1
+StarXPos1: .byt 12*8,   10*8,   9*8,     10*8
+StarXPos2: .byt 19*8,   21*8,   22*8,    21*8
+StarYPos:  .byt 20*8-1, 22*8-1, 24*8-1,  18*8-1
 
 OptionLevel:
   lda #0
