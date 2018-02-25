@@ -11,6 +11,9 @@
 		"ExportFormat":	"PrincessNES",
 		"FormatVersion":	1
 	},
+	"Config":	{
+		"StartDialog":	"LiaChat3"
+	},
 	"Header":	{
 		"Music":	"NONE",
 		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_EXPLODE", "SP_WIND"],
@@ -261,30 +264,6 @@
 					"X":	3,
 					"Y":	67,
 					"W":	3,
-					"H":	1
-				}, {
-					"Id":	"LADDER",
-					"X":	5,
-					"Y":	45,
-					"W":	1,
-					"H":	4
-				}, {
-					"Id":	"LADDER",
-					"X":	5,
-					"Y":	43,
-					"W":	1,
-					"H":	2
-				}, {
-					"Id":	"SOLID_LEDGE",
-					"X":	6,
-					"Y":	44,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"SOLID_LEDGE",
-					"X":	4,
-					"Y":	44,
-					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"LOCK_GREEN",
@@ -588,12 +567,6 @@
 					"Id":	"SOLID_BLOCK",
 					"X":	6,
 					"Y":	48,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"SOLID_LEDGE",
-					"X":	6,
-					"Y":	42,
 					"W":	1,
 					"H":	1
 				}, {
@@ -1721,6 +1694,72 @@
 					"Y":	215,
 					"W":	2,
 					"H":	3
+				}, {
+					"Id":	"BG_GLASS_RED",
+					"X":	6,
+					"Y":	71,
+					"W":	6,
+					"H":	1
+				}, {
+					"Id":	"FORCE_DOWN",
+					"X":	2,
+					"Y":	46,
+					"W":	3,
+					"H":	1
+				}, {
+					"Id":	"FORCE_LEFT",
+					"X":	5,
+					"Y":	47,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"LADDER",
+					"X":	6,
+					"Y":	45,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"LADDER",
+					"X":	6,
+					"Y":	43,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"FALLTHROUGH_LEDGE",
+					"X":	6,
+					"Y":	42,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BG_GLASS_RED",
+					"X":	11,
+					"Y":	70,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BG_GLASS_RED",
+					"X":	11,
+					"Y":	67,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"BG_GLASS_RED",
+					"X":	6,
+					"Y":	68,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"FG_GLASS_RED",
+					"X":	6,
+					"Y":	70,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"FG_GLASS_RED",
+					"X":	11,
+					"Y":	69,
+					"W":	1,
+					"H":	1
 				}]
 		}, {
 			"Name":	"Sprites",

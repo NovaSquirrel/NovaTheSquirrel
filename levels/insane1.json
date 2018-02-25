@@ -11,6 +11,9 @@
 		"ExportFormat":	"PrincessNES",
 		"FormatVersion":	1
 	},
+	"Config":	{
+		"StartDialog":	"NovaLiaLWSS"
+	},
 	"Header":	{
 		"Music":	"NONE",
 		"SpriteGFX":	["SP_WALKER", "SP_MINES", "SP_CANNON", "SP_HANNAH"],

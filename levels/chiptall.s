@@ -21,6 +21,7 @@ chiptall:
   .byt $07, $80 ; link
 
 chiptallData:
+  .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <LiaChat2, >LiaChat2
   .byt LSpecialCmd, LevelSpecialConfig::PUZZLE_MODE, AbilityType::NONE, InventoryItem::BLOCK, 128|98, InventoryItem::SPRING, 128|98, InventoryItem::HEALTH_RESTORE, 128|9, $00
   LObjN LO::R_SOLID_ROCK,     0, 0, 1, 14
   LObjN LO::R_SOLID_ROCK,     2, 0, 13, 1

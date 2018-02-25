@@ -12,7 +12,7 @@
 		"FormatVersion":	1
 	},
 	"Config":	{
-		"StartDialog":	"Intro"
+		"StartDialog":	"MeetRemy"
 	},
 	"Header":	{
 		"Music":	"NONE",
@@ -114,6 +114,12 @@
 					"Y":	7,
 					"W":	3,
 					"H":	8
+				}, {
+					"Id":	"SMALL_ROCK",
+					"X":	0,
+					"Y":	11,
+					"W":	1,
+					"H":	2
 				}]
 		}, {
 			"Name":	"Sprites",

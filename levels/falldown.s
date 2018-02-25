@@ -35,6 +35,7 @@ falldown:
   .byt $00, $f0 ; link
 
 falldownData:
+  .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <LiaChat3, >LiaChat3
   LObjN LO::R_GROUND,         0, 4, 4, 8
   LObjN LO::R_GROUND,         0, 13, 6, 1
   LObjN LO::WIDE_1,           5, 4, 4, LN1::SOLID_LEDGE
@@ -81,14 +82,12 @@ falldownData:
   LObj  LO::S_SPRING,         0, 9
   LObj  LO::S_CUSTOM,         0, 10, Metatiles::FORCE_UP
   LObj  LO::S_SPRING,         0, 11
-  LObjN LO::WIDE_1,           0, 14, 0, LN1::SOLID_LEDGE
   LObj  LO::R_CUSTOM,         1, 4, Metatiles::SPRING, (4<<4)|0
   LObj  LO::S_SPRING,         0, 8
   LObj  LO::S_SOLID_BLOCK,    0, 9
   LObj  LO::R_CUSTOM,         0, 11, Metatiles::FORCE_LEFT, (8<<4)|0
+  LObjN LO::WIDE_1,           1, 12, 0, LN1::FALLTHROUGH_LEDGE
   LObjN LO::TALL_1,           0, 13, 1, LN1::LADDER
-  LObjN LO::WIDE_1,           1, 12, 0, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_1,           0, 14, 0, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           1, 10, 1, LN1::SOLID_LEDGE
   LObjN LO::R_SOLID_ROCK,     0, 13, 3, 0
   LObjN LO::R_SOLID_ROCK,     0, 14, 6, 0
@@ -102,14 +101,16 @@ falldownData:
   LObjN LO::R_COIN,           1, 3, 0, 1
   LObjN LO::R_SOLID_ROCK,     1, 0, 1, 14
   LObjN LO::R_FG_GLASS_BLUE,  2, 0, 1, 14
-  LObjN LO::R_SOLID_BLOCK,    2, 4, 4, 0
+  LObj  LO::R_CUSTOM,         2, 1, Metatiles::FORCE_DOWN, (2<<4)|0
+  LObjN LO::R_SOLID_BLOCK,    0, 4, 4, 0
   LObj  LO::S_DOOR,           1, 2
   LWriteCol 8, 93
   LObjN LO::TALL_1,           0, 13, 1, LN1::LADDER
   LObj  LO::R_CUSTOM,         1, 12, Metatiles::SPRING, (1<<4)|0
   LObjN LO::R_SOLID_BLOCK,    0, 13, 1, 0
-  LObjN LO::TALL_1,           1, 0, 3, LN1::LADDER
-  LObjN LO::R_SOLID_BLOCK,    1, 2, 3, 0
+  LObj  LO::R_CUSTOM,         1, 2, Metatiles::FORCE_LEFT, (0<<4)|1
+  LObjN LO::TALL_1,           1, 0, 1, LN1::LADDER
+  LObjN LO::R_SOLID_BLOCK,    0, 2, 3, 0
   LObj  LO::S_SOLID_BLOCK,    0, 3
   LObj  LO::S_SPRING,         0, 11
   LObjN LO::R_SOLID_BLOCK,    0, 12, 1, 0
@@ -145,6 +146,9 @@ falldownData:
   LObjN LO::WIDE_2,           0, 13, 5, LN2::PATH_LINE
   LObj  LO::S_PRIZE,          2, 7
   LWriteCol InventoryItem::SPRING | 128
+  LObjN LO::R_BG_GLASS_RED,   0, 8, 0, 1
+  LObj  LO::S_FG_GLASS_RED,   0, 10
+  LObjN LO::R_BG_GLASS_RED,   0, 11, 5, 0
   LObjN LO::R_SOLID_BLOCK,    1, 0, 0, 1
   LObj  LO::S_CUSTOM,         0, 2, Metatiles::LOCK_RED
   LObjN LO::R_SOLID_BLOCK,    0, 4, 0, 5
@@ -154,7 +158,10 @@ falldownData:
   LObjN LO::WIDE_1,           0, 14, 5, LN1::SPIKES
   LObjN LO::R_SOLID_BLOCK,    1, 1, 0, 6
   LObjN LO::TALL_2,           1, 12, 1, LN2::PATH_LINE
-  LObjN LO::WIDE_2,           1, 12, 1, LN2::PATH_LINE
+  LObjN LO::R_BG_GLASS_RED,   1, 7, 0, 1
+  LObj  LO::S_FG_GLASS_RED,   0, 9
+  LObj  LO::S_BG_GLASS_RED,   0, 10
+  LObjN LO::WIDE_2,           0, 12, 1, LN2::PATH_LINE
   LObjN LO::R_SOLID_BLOCK,    1, 3, 0, 6
   LObjN LO::TALL_2,           0, 10, 1, LN2::PATH_LINE
   LObjN LO::R_COIN,           1, 4, 0, 2

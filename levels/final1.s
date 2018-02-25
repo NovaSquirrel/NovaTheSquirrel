@@ -19,6 +19,7 @@ final1:
 
 final1Data:
   .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <Intro, >Intro
+  LObjN LO::R_SOLID_ROCK,     0, 11, 0, 1
   LObjN LO::R_GROUND,         0, 13, 13, 1
   LObjN LO::WIDE_1,           5, 5, 2, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           0, 9, 4, LN1::SOLID_LEDGE

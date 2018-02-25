@@ -11,6 +11,9 @@
 		"ExportFormat":	"PrincessNES",
 		"FormatVersion":	1
 	},
+	"Config":	{
+		"StartDialog":	"JustGotMirror"
+	},
 	"Header":	{
 		"Music":	"NONE",
 		"SpriteGFX":	["SP_KING", "SP_CANNON", "SP_FIRE", "SP_MINES"],

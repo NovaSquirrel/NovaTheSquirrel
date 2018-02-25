@@ -68,7 +68,7 @@
 `scene NOVA_SIGN_KEE
 <1 SIGN>Some enemies can have their abilities copied. Try stunning this enemy with B and then press Up+B while facing it to copy its ability.
 <1 SIGN>Hold Select to get rid of the ability you have. If an enemy throws projectiles, it is usually copyable.
-<0 NOVA_YAY>Oooo, I should see if copying this enemy will let me shoot fireballs!
+<0 NOVA_YAY>Oooo, I should see if copying this enemy (to the right) will let me shoot fireballs!
 `end
 
 :Tutorial3:
@@ -96,7 +96,7 @@
 <0 NOVA>Oh, finally some other people! Could you tell me where I am?
 <1 S_TEAM>No, but you'd make great target practice before we take off with this cat here.
 <3 IKE>Actually, you're going to leave this cat right here. I need to get back to my shop!
-<0 NOVA_MAD>Oh you want a fight? I'll give you a fight...
+>0 NOVA_AW<I'd better help him!
 `end
 
 :FirstSchemeTeamEncounterAfter:
@@ -114,7 +114,7 @@
 <0 NOVA>The Scheme Team? Are there more of those guys?
 <1 IKE>Yeah, tons. They recently broke out of prison and everyone's in a panic.
 <0 NOVA>I'll see what I can do to help. By the way, how do I get to your shop?
-<1 IKE>Just press Start on the level select screen. You can exit a level and go to it via the pause menu.
+<1 IKE>It's a menu option on the screen between levels.
 <1 IKE>By the way, since you asked, this world is named Latte. Good luck, dude.
 `end
 
@@ -125,14 +125,14 @@
 [KOREY]That could help. Are you saying you've got something to share?
 [SHERWIN]Yes! I heard there was a fight with some weird green squirrel? She totally kicked some Scheme Team members' butts.
 [KOREY]Oh good! Do you know where she is? Or where -you- are?
-[SHERWIN]I got taken to Atomic Videoclip Zone so I'll assume that's their base. The squirrel seemed to be heading to Bummer Club.
+[SHERWIN]I got taken to Atomic Videoclip Zone so I'll assume that's their base. The squirrel's near the end of the forest.
 [KOREY]I'll meet up with her there.
 []Korey rushes to the scene, introduces himself and explains Latte's situation to Nova. They chat a bit.
 `scene NOVA_AND_KOREY
 <1 KOREY>... and this is the Scheme Team's second try at taking over, but this time they're prepared for anything any Latte residents can throw at them.
 <0 NOVA>Point being that I have a chance because I'm not from here?
 <1 KOREY>Exactly. I know it's dangerous, but are you willing to help us? I don't know how you and Kee got here, but once this is over I'll try and get you two home.
-<0 NOVA>I'll have to try. I was able to save Ike, maybe I can save the rest of you.
+<0 NOVA_AW>Well I can't just let the bad guys win if I'm the one who can stop them!
 <1 KOREY>Great. Latte has its own forum, and we've been keeping track of the situation on it. You should look at it.
 <0 NOVA>Alright. What should I do next?
 <1 KOREY>You should go through this clubhouse up ahead. It's named Bummer Club, and it's got a prize locked up at the very end.
@@ -144,6 +144,20 @@
 <1 LIA>Das me! I was teleported here while looking for yous.
 <0 NOVA_YAY>Maybe you can help me out on these puzzles.
 <1 LIA>Okies! I'd be happy to!
+`end
+
+:LiaChat2:
+`scene NOVA_AND_LIA
+<1 LIA>I fink you need to build a pathway up to those computer chips, and get all of 'em to progress.
+<0 NOVA>Build? With what?
+<1 LIA>Springs! For dis level you've got a bunch of 'em in your inventory. Blocks too, but springs are betters!
+`end
+
+:LiaChat3:
+`scene NOVA_AND_LIA
+<0 NOVA>Do you think we'll ever get home?
+<1 LIA>I fink so! We'll figure it outs. I dunno about yous but but I fink this is pretty fun!
+<0 NOVA_YAY>I suppose it is! Maybe we should stick around anyway...
 `end
 
 :FHBGAtBummerClub:
@@ -164,27 +178,30 @@
 
 :NovaAndEclipse:
 `scene NOVA_AND_ECLIPSE
-<0 NOVA>Wow, Eclipse is here too? Why am I running into all my old friends here?
-<1 LIA>I guess everyone's just ending up here?
-<2 ECLIPSE>Oh wow. Hi, sis!
-<0 NOVA>Hiii! So, what do I get for completing Bummer Club?
-<2 ECLIPSE>Oh, it's pretty rad! I'm awarding you some cool pants.
-<0 NOVA_STRAIGHT>...What?
-<2 ECLIPSE>Specifically, Nuclear Power Pants. They'll come in handy later on, and make you more powerful. I'm not making this up.
+<0 NOVA_YAY>Wow, I didn't know I'd be running into Eclipse here too!
+<2 ECLIPSE>Mhm! I was asked to guard the prize for whoever gets through the puzzles, and it seems like you have?
+<0 NOVA_WOW>Yeah, what do I get?
+<1 LIA>It'll probably be like, some sort of cool pants or something.
+<0 NOVA>Or "essence of forehead block".
+<2 ECLIPSE>Uh, no! Actually I'm awarding you this mysterious Mirror Scepter.
+<0 NOVA_YAY>Whoa, what's it do?
+<2 ECLIPSE>It can reflect things. I heard the leader of the Scheme Team was originally defeated by reflecting his own projectiles into himself!
 <0 NOVA>Alright, thank you, Eclipse.
+<1 LIA>I'm gonna go off and work on some mad science... I've got some ideas. Seeya Nova!
 `end
 
-:JustGotPants:
+:JustGotMirror:
 `scene FORUMS
 []-halp I've been taken-
-[NOVA_SILLY]Hey guys. I just got through Bummer Club and all I have to show for it are these new pants, hahaha. Where should I go next?
-[KOREY]Hey, Nuclear Power Pants are NOT a laughing matter.
-[SHERWIN]I dunno I'm kind of laughing right now.
-[KOREY]Anyway, head over to Frozen Volcano. Just trust me on this - I thnk it's really important that you get some Fa-a-ancy cola.
+[NOVA]Alright, I got through Bummer Club, what else should I get? I wanna make sure I've got as much of a chance as I can.
+[SHERWIN]Probably the cola?
+[KOREY]Yeah, head over to Frozen Volcano. Just trust me on this - I think it's really important that you get some Fa-a-ancy cola.
 [NOVA]What's so fancy about it?
-[KOREY]No, it's fa-a-ancy. Completely different. Anyway, in Frozen Volcano, there's this dude named MolSno. He has a real problem so he bought every single can of fa-a-ancy cola there is and you'll just have to get some from him.
+[KOREY]No, it's fa-a-ancy. Completely different. Anyway, in Frozen Volcano, there's this dude named MolSno, short for "Molten Snow". He has a real problem so he bought every single can of fa-a-ancy cola there is and you'll just have to get some from him.
 [NOVA]Sure, I guess I'll try that. But why cola?
 [KOREY]I'll let you in on a little secret - the name Latte comes from the latte caffeinated drink, and in this world caffeine is a really powerful thing, especially in the hands of a squirrel.
+[SHERWIN]Haha yeah, squirrels already tend to be pretty hyper even without any help from coffie!
+[]Nova travels to Frozen Volcano, the land of lava and ice.
 `end
 
 :ColaSigns:
@@ -221,6 +238,7 @@
 <0 NOVA>Uhh, are you sure it's safe?
 <1 LIA>Should be!
 []Nova hops onto the spaceship and it takes off! It flies a pretty long distance, seemingly without any problems...
+<0 NOVA>Weee, I'm going so fast. Wait, what's that?
 []... but eventually gets hit by a stray glider, causing the ship to disintegrate and causing the squirrel to fall into a rather strange place.
 `scene NOVA_ALONE
 >0 NOVA_STRAIGHT<Aaaaa, okay, I had no idea it was that fragile! I'll go see what the forums think I should do.
@@ -252,28 +270,30 @@
 `scene NOVA_AND_REMY
 <0 NOVA>Hi, I'm Nova. Whatcha doing here?
 <1 REMY>Ay, I'mma bounty huntin' space squirrel, an' I've been lookin' for work 'ere.
+>0 NOVA_WOW<Four squirrels in one game? Amazing.
 <0 NOVA_WOW>SPACE squirrel? So I imagine you have a cool ship?
 <1 REMY>Ya, d'ya need ta' get somewhere?
 <0 NOVA>Yes actually. Do you think you could get me to Atomic Videoclip Zone?
 <1 REMY>Sure. Nothin' betta ta' do.
-[]The two of them get into Remy's spaceship, which is much more stable than a LWSS, and fly to Atomic Videoclip Zone safely. Remy slips off to do whatever.
-<0 NOVA>Okay, now this is the right place. Alright, Remy, wanna go with me to go save the world?
+>0 NOVA<Fingers crossed!
+[]The two of them get into Remy's spaceship, which is much more stable than a LWSS, and fly to Atomic Videoclip Zone safely. Remy slips off to do whatever once they arrive.
+<0 NOVA>Hey, I bet a cool bounty hunter squirrel could be a big help in saving this world.
 `scene NOVA_ALONE
 <0 NOVA_AW>... Remy?
-<1 REMY>Oh, my bad, I juss met dis genie guy, an' he promised ta' grant "butt wishes" an' I dunno what he means, buuuut dat sounds more fun, so seeya!
+<1 REMY>Oh, my bad, I juss met dis genie guy, an' he sounds more fun than this 'saving the world' thing, so seeya.
 `scene NOVA_REMY_JAFGUAR
-<2 JAFGUAR>Yeah Remy let's go!!
-<0 NOVA>Remy! Fine, I'll go by myself.
+<2 JAFGUAR>Yeah who cares?
+<0 NOVA>Well then, maybe I really am supposed to do it alone.
 `end
 
 `scene NOVA_ALONE
 >0 NOVA_AW<Here it is, the final battle. I've got to give it my best shot.
-[]Nova drinks the F-a-ancy cola and equips the Nuclear Power Pants in preparation for the battle, then nervously walks through the door...
+[]Nova drinks the F-a-ancy cola and equips the Mirror Scepter in preparation for the battle, then nervously walks through the door...
 `transition
 <1 BILL>So, you managed to get all the way here? Looks like I'm going to have to take you down myself!
 `scene NOVA_AND_BILL
-<0 NOVA_MAD>Not a chance, giant floating head guy!
-<1 BILL>What did you just call me?? You're toast, squirrel!
+<0 NOVA_MAD>Nope! I didn't come all the way here for nothing. I'm going to take you down and save this world!
+<1 BILL>You're toast.
 `end
 
 `scene NOVA_ALONE
@@ -292,7 +312,7 @@
 [KOREY]Nova, this is the MV Explorer. It can take you to other worlds.
 [NOVA_WOW]Wow, was this what you were going to use to take me home?
 [KOREY]Yeah, but I'm giving it to you. There are a bunch of worlds in need of help.
-[NOVA]Well thank you Korey! I'll get right on it!
+[NOVA]Well thank you Korey! I can't wait to see what kind of adventures I have...
 `end
 
 `#---MISC STUFF---
@@ -324,7 +344,7 @@
 
 :LineFollowingAbout:
 `scene NOVA_AND_SIGN
-<1 SIGN>This is a line following platform. Wait for it to come around.
+<1 SIGN>This (to the right) is a line following platform. Wait for it to come around.
 `end
 
 :SignPuzzleAbout:
@@ -369,11 +389,6 @@
 
 :ItiCameo:
 `scene NOVA_AND_ITI
-`end
-
-:EmptyRoom:
-`scene NOVA_ALONE
->0 NOVA<There will probably be something really cool here later on.
 `end
 
 :NekoEdCameo:

@@ -142,6 +142,11 @@ PUZ = 128 ; puzzle
   .byt LevelId::Burgers
   .byt LevelId::Boss2
   .byt LevelId::Boss3
+  .byt LevelId::ChipTall
+  .byt LevelId::Tall
+  .byt LevelId::Frozen
+  .byt LevelId::Insane1
+  .byt LevelId::Final1
   .byt 255
 .endproc
 .popseg

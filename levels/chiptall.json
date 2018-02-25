@@ -18,6 +18,7 @@
 		"BGColor":	15
 	},
 	"Config":	{
+		"StartDialog":	"LiaChat2",
 		"PuzzleMode":	"AbilityType::NONE, InventoryItem::BLOCK, 128|98, InventoryItem::SPRING, 128|98, InventoryItem::HEALTH_RESTORE, 128|9"
 	},
 	"Layers":	[{

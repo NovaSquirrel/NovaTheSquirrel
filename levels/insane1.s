@@ -20,6 +20,7 @@ insane1:
   .byt $00, $02 ; boundaries
 
 insane1Data:
+  .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <NovaLiaLWSS, >NovaLiaLWSS
   LObjN LO::R_GROUND,         0, 13, 11, 1
   LObjN LO::TALL_2,           3, 10, 2, LN2::PALM_TREE
   LObjN LO::TALL_2,           4, 10, 2, LN2::PALM_TREE
