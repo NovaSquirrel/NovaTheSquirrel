@@ -2,378 +2,454 @@ E Enemy
 L ObjGraphics
 L ObjBehaviors
 L ObjFlags
+L ObjectTable
 
 R NONE
 C .byt 0
 C .byt 0
 C .byt ObjFlag::SECONDARY
+C .raddr ObjectNone
 
 R GOOMBA
 C .byt GraphicsUpload::SP_WALKER
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET | ObjBehavior::WAIT_UNTIL_NEAR
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectGoomba
 
 R SNEAKER
 C .byt GraphicsUpload::SP_WALKER
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectSneaker
 
 R SPINNER
 C .byt GraphicsUpload::SP_WALKER
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET | ObjBehavior::WAIT_UNTIL_NEAR
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectSpinner
 
 R OWL
 C .byt GraphicsUpload::SP_WALKER
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectOwl
 
 R KING
 C .byt GraphicsUpload::SP_KING
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::AUTO_RESET | ObjBehavior::GET_SHOT
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectKing
 
 R TOASTBOT
 C .byt GraphicsUpload::SP_KING
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectToastBot
 
 R BALL
 C .byt GraphicsUpload::SP_CANNON
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectBall
 
 R POTION
 C .byt GraphicsUpload::SP_KING
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectPotion
 
 R GEORGE
 C .byt GraphicsUpload::SP_KING
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectGeorge
 
 R BIG_GEORGE
 C .byt GraphicsUpload::SP_GEORGE
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectBigGeorge
 
 R ALAN
 C .byt GraphicsUpload::SP_GEORGE
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectAlan
 
 R ICE_1
 C .byt GraphicsUpload::SP_MINES
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectIce1
 
 R ICE_2
 C .byt GraphicsUpload::SP_MINES
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectIce2
 
 R BALL_GUY
 C .byt GraphicsUpload::SP_CANNON
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectBallGuy
 
 R THWOMP
 C .byt GraphicsUpload::SP_CANNON
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectThwomp
 
 R CANNON_1
 C .byt GraphicsUpload::SP_CANNON
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectCannon1
 
 R CANNON_2
 C .byt GraphicsUpload::SP_CANNON
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectCannon2
 
 R BURGER
 C .byt GraphicsUpload::SP_CANNON
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectBurger
 
 R FIRE_WALK
 C .byt GraphicsUpload::SP_FIRE
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectFireWalk
 
 R FIRE_JUMP
 C .byt GraphicsUpload::SP_FIRE
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectFireJump
 
 R MINE
 C .byt GraphicsUpload::SP_CANNON
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectMine
 
 R ROCKET
 C .byt GraphicsUpload::SP_EXPLODE
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectRocket
 
 R ROCKET_LAUNCHER
 C .byt GraphicsUpload::SP_EXPLODE
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectRocketLauncher
 
 R FIREWORK_SHOOTER
 C .byt GraphicsUpload::SP_EXPLODE
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectFireworkShooter
 
 R TORNADO
 C .byt GraphicsUpload::SP_WIND
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectTornado
 
 R ELECTRIC_FAN
 C .byt GraphicsUpload::SP_WIND
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectElectricFan
 
 R CLOUD
 C .byt GraphicsUpload::SP_WIND
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectCloud
 
 R BOUNCER
 C .byt GraphicsUpload::SP_FACEBALL
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectBouncer
 
 R GREMLIN
 C .byt GraphicsUpload::SP_FACEBALL
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectGremlin
 
 R ROVER
 C .byt GraphicsUpload::SP_FACEBALL
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectRover
 
 R TURKEY
 C .byt GraphicsUpload::SP_FACEBALL
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectTurkey
 
 R BOMB_GUY
 C .byt GraphicsUpload::SP_EXPLODE
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectBombGuy
 
 R POOF
 C .byt 0
 C .byt 0
 C .byt ObjFlag::SECONDARY
+C .raddr ObjectPoof
 
 R PLAYER_PROJECTILE
 C .byt 0
 C .byt 0
 C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectPlayerProjectile
 
 R BLASTER_SHOT
 C .byt GraphicsUpload::SP_SCHEME_TEAM
 C .byt 0
 C .byt ObjFlag::SECONDARY
+C .raddr ObjectBlasterShot
 
 R FACEBALL_SHOT
 C .byt GraphicsUpload::SP_FACEBALL
 C .byt 0
 C .byt ObjFlag::SECONDARY
+C .raddr ObjectFaceballShot
 
 R SMALL_GLIDER
 C .byt 0
 C .byt 0
 C .byt ObjFlag::SECONDARY
+C .raddr ObjectSmallGlider
 
 R BOOMERANG
 C .byt GraphicsUpload::SP_BOOMERANG
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::SECONDARY
+C .raddr ObjectBoomerang
 
 R FIREBALL
 C .byt GraphicsUpload::SP_FIRE
 C .byt 0
 C .byt ObjFlag::SECONDARY
+C .raddr ObjectFireball
 
 R FLAMES
 C .byt GraphicsUpload::SP_FIRE
 C .byt 0
 C .byt ObjFlag::SECONDARY
+C .raddr ObjectFlames
 
 R WATER_BOTTLE
 C .byt GraphicsUpload::SP_KING
 C .byt 0
 C .byt ObjFlag::SECONDARY
+C .raddr ObjectWaterBottle
 
 R ICE_BLOCK
 C .byt GraphicsUpload::SP_MINES
 C .byt 0
 C .byt ObjFlag::SECONDARY
+C .raddr ObjectIceBlock
 
 R RONALD
 C .byt GraphicsUpload::SP_RONALD
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectRonald
 
 R RONALD_BURGER
 C .byt GraphicsUpload::SP_RONALD
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::AUTO_RESET | ObjBehavior::WAIT_UNTIL_NEAR
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectRonaldBurger
 
 R FRIES
 C .byt GraphicsUpload::SP_RONALD
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::SECONDARY
+C .raddr ObjectFries
 
 R FRY
 C .byt GraphicsUpload::SP_RONALD
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::SECONDARY
+C .raddr ObjectFry
 
 R SUN
 C .byt GraphicsUpload::SP_SUN
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET | ObjBehavior::WAIT_UNTIL_NEAR
 C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectSun
 
 R SUN_KEY
 C .byt GraphicsUpload::SP_SUN
 C .byt 0
 C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectSunKey
 
 R MOVING_PLATFORM_HORIZ
 C .byt 0
 C .byt 0
 C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectMovingPlatformH
 
 R MOVING_PLATFORM_LINE
 C .byt 0
 C .byt 0
 C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectMovingPlatformLine
 
 R FIREBAR
 C .byt GraphicsUpload::SP_FIRE
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectFirebar
 
 R BOSS_FIGHT
 C .byt 0
 C .byt 0
 C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectBossFight
 
 R SCHEME_TEAM
 C .byt GraphicsUpload::SP_SCHEME_TEAM
 C .byt ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectSchemeTeam
 
 R FLYING_ARROW
 C .byt GraphicsUpload::SP_HANNAH
 C .byt 0
 C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectFlyingArrow
 
 R FALLING_BOMB
 C .byt GraphicsUpload::SP_HANNAH
 C .byt 0
 C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectFallingBomb
 
 R BOULDER
 C .byt GraphicsUpload::SP_HANNAH
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectBoulder
 
 R CHECKPOINT
 C .byt 0
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectCheckpoint
 
 R BIG_GLIDER
 C .byt GraphicsUpload::SP_LIFE
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectBigGlider
 
 R BIG_LWSS
 C .byt GraphicsUpload::SP_LIFE
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectBigLWSS
 
 R EXPLOSION
 C .byt 0
 C .byt 0
 C .byt ObjFlag::SECONDARY
+C .raddr ObjectExplosion
 
 R MINECART
 C .byt GraphicsUpload::SP_MINES
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectMinecart
 
 R BOOMERANG_GUY
 C .byt GraphicsUpload::SP_BOOMERANG
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectBoomerangGuy
 
 R GRABBY_HAND
 C .byt GraphicsUpload::SP_BOOMERANG
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectGrabbyHand
 
 R FALLING_SPIKE
 C .byt GraphicsUpload::SP_MINES
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectFallingSpike
 
 R CLOUD_SWORD
 C .byt GraphicsUpload::SP_WIND
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::SECONDARY
+C .raddr ObjectCloudSword
 
 R FIREWORK_SHOT
 C .byt GraphicsUpload::SP_EXPLODE
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::SECONDARY
+C .raddr ObjectFireworkShot
 
 R COLLECTIBLE
 C .byt 0
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectCollectible
 
 R MOLSNO
 C .byt GraphicsUpload::SP_MOLSNO
 C .byt 0
 C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectMolSno
 
 R MOLSNO_NOTE
 C .byt GraphicsUpload::SP_MOLSNO
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectMolSnoNote
 
 R BUDDY
 C .byt GraphicsUpload::SP_BOOMERANG
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectBuddy
 
 R BEAM_EMITTER
 C .byt 0
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::PRIMARY
+C .raddr ObjectBeamEmitter
 
 R LASER_BEAM
 C .byt 0
 C .byt 0
 C .byt ObjFlag::SECONDARY
+C .raddr ObjectLaserBeam
 
 R FOREHEAD_BLOCK_GUY
 C .byt GraphicsUpload::SP_FHBG
 C .byt 0
 C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectFHBG
 
 R FOREHEAD_BLOCK
 C .byt GraphicsUpload::SP_FHBG
 C .byt 0
 C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectFHBGBlock

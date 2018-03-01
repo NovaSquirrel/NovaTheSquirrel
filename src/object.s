@@ -118,86 +118,7 @@ Exit:
   rts
 .endproc
 
-; pointers to all the enemy routines
-.proc ObjectTable
-  .raddr ObjectNone
-  .raddr ObjectGoomba
-  .raddr ObjectSneaker
-  .raddr ObjectSpinner
-  .raddr ObjectOwl
-  .raddr ObjectKing
-  .raddr ObjectToastBot
-  .raddr ObjectBall
-  .raddr ObjectPotion
-  .raddr ObjectGeorge
-  .raddr ObjectBigGeorge
-  .raddr ObjectAlan
-  .raddr ObjectIce1
-  .raddr ObjectIce2
-  .raddr ObjectBallGuy
-  .raddr ObjectThwomp
-  .raddr ObjectCannon1
-  .raddr ObjectCannon2
-  .raddr ObjectBurger
-  .raddr ObjectFireWalk
-  .raddr ObjectFireJump
-  .raddr ObjectMine
-  .raddr ObjectRocket
-  .raddr ObjectRocketLauncher
-  .raddr ObjectFireworkShooter
-  .raddr ObjectTornado
-  .raddr ObjectElectricFan
-  .raddr ObjectCloud
-  .raddr ObjectBouncer
-  .raddr ObjectGremlin
-  .raddr ObjectRover
-  .raddr ObjectTurkey
-  .raddr ObjectBombGuy
-  .raddr ObjectPoof
-  .raddr ObjectPlayerProjectile
-  .raddr ObjectBlasterShot
-  .raddr ObjectFaceballShot
-  .raddr ObjectSmallGlider
-  .raddr ObjectBoomerang
-  .raddr ObjectFireball
-  .raddr ObjectFlames
-  .raddr ObjectWaterBottle
-  .raddr ObjectIceBlock
-  .raddr ObjectRonald
-  .raddr ObjectRonaldBurger
-  .raddr ObjectFries
-  .raddr ObjectFry
-  .raddr ObjectSun
-  .raddr ObjectSunKey
-  .raddr ObjectMovingPlatformH
-  .raddr ObjectMovingPlatformLine
-  .raddr ObjectFirebar
-  .raddr ObjectBossFight
-  .raddr ObjectSchemeTeam
-  .raddr ObjectFlyingArrow
-  .raddr ObjectFallingBomb
-  .raddr ObjectBoulder
-  .raddr ObjectCheckpoint
-  .raddr ObjectBigGlider
-  .raddr ObjectBigLWSS
-  .raddr ObjectExplosion
-  .raddr ObjectMinecart
-  .raddr ObjectBoomerangGuy
-  .raddr ObjectGrabbyHand
-  .raddr ObjectFallingSpike ; falling spike
-  .raddr ObjectCloudSword
-  .raddr ObjectFireworkShot
-  .raddr ObjectCollectible
-  .raddr ObjectMolSno
-  .raddr ObjectMolSnoNote
-  .raddr ObjectBuddy
-  .raddr ObjectBeamEmitter
-  .raddr ObjectLaserBeam
-  .raddr ObjectFHBG
-  .raddr ObjectFHBGBlock
-.endproc
-
-; other enemy attributes
+; enemy attributes
 .include "../tools/objectlist.s"
 
 ObjectNone = DoNothing
@@ -1230,6 +1151,7 @@ NewXH = 2
   beq Yes
   lda ObjectF1,x
   ; Projectiles can always walk
+  ; todo: just use the EnemyWalkEvenIfStunned instead of extra logic here
   and #<~1
   cmp #Enemy::PLAYER_PROJECTILE*2
   beq Yes
