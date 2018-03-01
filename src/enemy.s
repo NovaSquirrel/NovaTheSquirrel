@@ -2059,16 +2059,96 @@ Direction: .byt 1, <-1
 
 .proc ObjectRover
   jsr EnemyFall
-  bcc :+
+  bcc Falling
+
+  ; Run even if not close enough to start chasing
+  lda ObjectF2,x
+  cmp #ENEMY_STATE_ACTIVE
+  beq RunForChase
+  cmp #ENEMY_STATE_STUNNED
+  beq Falling
+
+  ; Get enemy direction
+  lda ObjectF1,x
+  and #1
+  tay
+  ; Close enough to start chasing?
+  lda ObjectPXH,x
+  add EnemyDirOffset,y
+  sub PlayerPXH
+  abs
+  cmp #4
+  bcc GiveChase
+
   lda #$10
   jsr EnemyWalk
-:
+  jsr EnemyAutoBump
+Falling:
 
   lda #$08
   ldy #OAM_COLOR_2
   jsr DispEnemyWide
+DrawDone:
+
+  ; Shoot
+  lda retraces
+  and #63
+  bne NoShoot
+  lda ObjectF1,x
+  and #1
+  tay
+  lda ShootSpeed,y
+  sta 0
+  sex
+  sta 1
+  jsr FindFreeObjectY
+  bcc NoShoot
+    jsr ObjectClearY
+    jsr ObjectCopyPosXYOffset
+
+    lda 0
+    sta ObjectVXL,y
+    lda 1
+    sta ObjectVXH,y
+    lda #30
+    sta ObjectTimer,y
+
+    lda #Enemy::FACEBALL_SHOT*2
+    sta ObjectF1,y
+NoShoot:
+
   jsr EnemyPlayerTouchHurt
   rts
+
+ShootSpeed:
+  .byt $30, <-$30
+
+GiveChase:
+  lda #50
+  sta ObjectTimer,x
+  lda #ENEMY_STATE_ACTIVE
+  sta ObjectF2,x
+RunForChase:
+  lda retraces
+  and #15
+  bne :+
+  jsr EnemyLookAtPlayer
+: lda #$30
+  jsr EnemyWalkEvenIfStunned
+  bcc :+
+    lda #<(-$40)
+    sta ObjectVYL,x
+    lda #>(-$40)
+    sta ObjectVYH,x
+:
+
+  lda #$0c
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  jmp DrawDone
+
+EnemyDirOffset:
+  .byt 1, <-1
 .endproc
 
 .proc ObjectBombGuy

@@ -566,7 +566,8 @@ ClearNameRightCustom = ClearNameRight::Custom
  .byt %10000000
 .endproc
 
-; AND BitCancel,x to turn on bit x
+; AND BitCancel,x to turn off bit x
+; might actually be unused
 .proc BitCancel
  .byt %11111110
  .byt %11111101
