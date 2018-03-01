@@ -18,8 +18,7 @@
 		"BGColor":	15
 	},
 	"Config":	{
-		"StartDialog":	"MeetLia",
-		"PuzzleMode":	"AbilityType::NONE"
+		"StartDialog":	"MeetLia"
 	},
 	"Layers":	[{
 			"Name":	"Foreground",
@@ -477,7 +476,7 @@
 					"Y":	8,
 					"W":	1,
 					"H":	1,
-					"Extra":	"HEALTH_RESTORE"
+					"Extra":	"HEALTH_RESTORE | 128"
 				}, {
 					"Id":	"SOLID_LEDGE",
 					"X":	116,
@@ -508,7 +507,7 @@
 					"Y":	8,
 					"W":	1,
 					"H":	1,
-					"Extra":	"BIG_HEALTH_RESTORE"
+					"Extra":	"BIG_HEALTH_RESTORE | 128"
 				}, {
 					"Id":	"COIN",
 					"X":	80,

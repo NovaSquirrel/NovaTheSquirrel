@@ -68,21 +68,21 @@ arrowsData:
   LObj  LO::S_CEILING_BARRIER,1, 0
   LObjN LO::R_FG_GLASS_BLUE,  1, 0, 0, 8
   LObjN LO::R_FG_GLASS_BLUE,  0, 9, 15, 0
-  LObj  LO::S_W_ARROW_DOWN,   1, 2
-  LObj  LO::S_W_ARROW_RIGHT,  0, 5
+  LObj  LO::S_M_ARROW_DOWN,   1, 2
+  LObj  LO::S_M_ARROW_RIGHT,  0, 5
   LObj  LO::S_W_ARROW_RIGHT,  1, 4
   LObj  LO::S_FG_GLASS_RED,   0, 8
   LObj  LO::S_W_ARROW_UP,     0, 9
-  LObj  LO::S_W_ARROW_UP,     2, 5
+  LObj  LO::S_M_ARROW_UP,     2, 5
   LObj  LO::S_W_ARROW_RIGHT,  1, 1
   LObj  LO::S_W_ARROW_UP,     0, 6
-  LObj  LO::S_W_ARROW_LEFT,   2, 2
+  LObj  LO::S_M_ARROW_LEFT,   2, 2
   LObj  LO::S_FG_GLASS_RED,   0, 8
   LObj  LO::S_W_ARROW_UP,     0, 9
   LObj  LO::S_W_ARROW_RIGHT,  2, 1
   LObj  LO::S_W_ARROW_DOWN,   0, 4
   LObj  LO::S_W_ARROW_LEFT,   0, 6
-  LObj  LO::S_W_ARROW_LEFT,   3, 2
+  LObj  LO::S_M_ARROW_LEFT,   3, 2
   LObj  LO::S_FG_GLASS_RED,   0, 8
   LObj  LO::S_W_ARROW_UP,     0, 9
   LObj  LO::S_W_ARROW_DOWN,   2, 1

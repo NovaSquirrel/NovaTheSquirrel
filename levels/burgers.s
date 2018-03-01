@@ -20,7 +20,6 @@ burgers:
 
 burgersData:
   .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <MeetLia, >MeetLia
-  .byt LSpecialCmd, LevelSpecialConfig::PUZZLE_MODE, AbilityType::NONE, $00
   LObjN LO::R_GROUND,         0, 8, 4, 4
   LObjN LO::R_GROUND,         0, 13, 11, 1
   LObj  LO::S_BG_GLASS_BLUE,  4, 5
@@ -81,7 +80,7 @@ burgersData:
   LWriteCol 7, 24
   LObjN LO::R_GROUND,         0, 11, 5, 3
   LObj  LO::S_PRIZE,          2, 8
-  LWriteCol InventoryItem::BIG_HEALTH_RESTORE
+  LWriteCol InventoryItem::BIG_HEALTH_RESTORE | 128
   LObjN LO::R_FG_GLASS_BLUE,  3, 8, 6, 0
   LObjN LO::R_FG_GLASS_BLUE,  0, 9, 0, 1
   LObjN LO::R_BG_GLASS_RED,   1, 4, 0, 3
@@ -132,7 +131,7 @@ burgersData:
   LObjN LO::WIDE_1,           2, 11, 3, LN1::SOLID_LEDGE
   LObj  LO::S_BIGHEART,       1, 10
   LObj  LO::S_PRIZE,          1, 8
-  LWriteCol InventoryItem::HEALTH_RESTORE
+  LWriteCol InventoryItem::HEALTH_RESTORE | 128
   LObjN LO::R_COIN,           3, 8, 3, 0
   LObjN LO::WIDE_1,           0, 9, 4, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           3, 6, 3, LN1::SOLID_LEDGE

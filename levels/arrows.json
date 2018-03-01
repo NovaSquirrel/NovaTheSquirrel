@@ -371,36 +371,6 @@
 					"W":	1,
 					"H":	1
 				}, {
-					"Id":	"WOOD_ARROW_LEFT",
-					"X":	64,
-					"Y":	2,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"WOOD_ARROW_DOWN",
-					"X":	58,
-					"Y":	2,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"WOOD_ARROW_RIGHT",
-					"X":	58,
-					"Y":	5,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"WOOD_ARROW_UP",
-					"X":	61,
-					"Y":	5,
-					"W":	1,
-					"H":	1
-				}, {
-					"Id":	"WOOD_ARROW_LEFT",
-					"X":	69,
-					"Y":	2,
-					"W":	1,
-					"H":	1
-				}, {
 					"Id":	"WOOD_ARROW_RIGHT",
 					"X":	66,
 					"Y":	1,
@@ -1408,6 +1378,36 @@
 					"Id":	"BG_GLASS_GRAY",
 					"X":	177,
 					"Y":	14,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"METAL_ARROW_LEFT",
+					"X":	64,
+					"Y":	2,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"METAL_ARROW_DOWN",
+					"X":	58,
+					"Y":	2,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"METAL_ARROW_RIGHT",
+					"X":	58,
+					"Y":	5,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"METAL_ARROW_UP",
+					"X":	61,
+					"Y":	5,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"METAL_ARROW_LEFT",
+					"X":	69,
+					"Y":	2,
 					"W":	1,
 					"H":	1
 				}]
