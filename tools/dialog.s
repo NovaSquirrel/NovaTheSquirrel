@@ -321,9 +321,9 @@ NovaLiaLWSS:
 .byt SCR::NARRATE, CHAR::NONE, $a1, " ", "h", "o", "p", $fb, $c2, $bb, $a2, SCR::NEWLINE, $dd, "a", "c", "e", $df, "i", "p", " ", $a4, $c1, $90, $fb, "o", "f", "f", $fd, "I", "t", SCR::NEWLINE, "f", "l", $e3, $fb, $be, "p", "r", "e", "t", "t", $fe, "l", $c2, "g", " ", "d", $b9, "t", $ca, "c", "e", ",", SCR::NEWLINE, $b3, "m", $b1, $d2, $9d, $ae, " ", $ab, SCR::NEWLINE, $81, "s", ".", ".", "."
 ; <0 NOVA>Weee, I'm going so fast. Wait, what's that?
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "W", $d7, "e", $f5, $d4, $cf, $b1, " ", $cc, " ", "f", $c4, "t", $f6, "W", "a", "i", "t", ",", SCR::NEWLINE, $8b, $e9, $e0, $c6, "?"
+.byt SCR::SCENE, SCENES::NOVA_ALONE
 ; []... but eventually gets hit by a stray glider, causing the ship to disintegrate and causing the squirrel to fall into a rather strange place.
 .byt SCR::NARRATE, CHAR::NONE, ".", ".", $f6, $a7, " ", $9f, "t", "u", $ad, $fe, $af, $fb, "h", $c1, "b", "y", SCR::NEWLINE, $be, $de, "r", "a", $fe, "g", "l", "i", "d", $ed, $f5, "c", "a", "u", "s", $b1, " ", $a2, SCR::NEWLINE, $df, "i", "p", " ", $bb, "d", $b9, $d8, $eb, "g", "r", $c6, $e7, $ca, "d", SCR::NEWLINE, "c", "a", "u", "s", $b1, " ", $a2, " ", $80, " ", $bb, "f", $ad, SCR::NEWLINE, $d8, $bb, $be, "r", $c6, $a9, " ", $de, "r", $ca, "g", $e7, "p", "l", "a", "c", "e", "."
-.byt SCR::SCENE, SCENES::NOVA_ALONE
 ; >0 NOVA_STRAIGHT<Aaaaa, okay, I had no idea it was that fragile! I'll go see what the forums think I should do.
 .byt SCR::THINK, SCR::SPEAKER_0|CHAR::NOVA_STRAIGHT, "A", "a", "a", "a", "a", $f5, "o", "k", "a", "y", $f5, $c0, "h", $f7, " ", $d1, " ", "i", "d", $ec, " ", "i", "t", SCR::NEWLINE, "w", $c4, " ", $9a, "f", "r", "a", "g", $dc, "e", $fd, $d5, " ", $cf, " ", $b3, SCR::NEWLINE, $8b, " ", $a2, " ", $a5, "u", "m", $fb, $82, " ", "I", SCR::NEWLINE, $df, $a0, " ", $c5, "."
 ; []-halp I've been taken-
@@ -460,8 +460,8 @@ SignMeltIceAbout:
 .byt SCR::END_SCRIPT
 SignPushableAbout:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
-; <1 SIGN>This block ahead can be pushed forward, and will climb other blocks if pushed onto them.
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f8, $b8, "b", "l", "o", $f3, " ", "a", $c3, $f7, " ", $b0, " ", "b", "e", SCR::NEWLINE, "p", "u", $aa, $ff, $a5, "w", "a", "r", "d", $f5, $a4, $9e, " ", "c", "l", "i", "m", "b", SCR::NEWLINE, "o", $a2, $ea, "b", "l", "o", $f3, $fb, $ce, " ", "p", "u", $aa, $ff, $c2, $bc, SCR::NEWLINE, $92, "."
+; <1 SIGN>This block ahead can be pushed forward, and will climb other blocks if pushed onto them. It treats anything that isn't air as solid.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f8, $b8, "b", "l", "o", $f3, " ", "a", $c3, $f7, " ", $b0, " ", "b", "e", SCR::NEWLINE, "p", "u", $aa, $ff, $a5, "w", "a", "r", "d", $f5, $a4, $9e, " ", "c", "l", "i", "m", "b", SCR::NEWLINE, "o", $a2, $ea, "b", "l", "o", $f3, $fb, $ce, " ", "p", "u", $aa, $ff, $c2, $bc, SCR::NEWLINE, $92, $f6, "I", $d3, $fa, $ec, "t", $fb, $ab, $e0, $b1, " ", $e0, $c6, SCR::NEWLINE, $b9, "n", $e8, "a", "i", $ea, $c4, " ", $cc, "l", "i", "d", "."
 .byt SCR::END_SCRIPT
 LineFollowingAbout:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
@@ -586,8 +586,10 @@ AboutGeorgeReminder:
 .byt SCR::END_SCRIPT
 AboutLaser:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
-; <1 SIGN>Don't touch the deadly laser beam.
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "D", $c2, $e8, $bc, "u", $e2, " ", $a2, " ", "d", $ec, "d", $d2, "l", $c4, $ed, SCR::NEWLINE, "b", $ec, "m", "."
+; <1 SIGN>Squirrel defense lasers, guaranteed to keep squirrels out of your stuff!
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "S", "q", "u", "i", $d9, "e", "l", " ", "d", "e", "f", $e6, $e5, " ", "l", $c4, $ed, "s", ",", SCR::NEWLINE, "g", "u", "a", "r", $ca, $eb, $d6, $bb, "k", $d7, "p", " ", $80, "s", SCR::NEWLINE, $ae, " ", $bd, $91, " ", $de, "u", "f", "f", "!"
+; >0 NOVA<Someone's going to be wanting their money back very soon.
+.byt SCR::THINK, SCR::SPEAKER_0|CHAR::NOVA, "S", "o", $d0, $ac, $e9, $cf, $b1, " ", $bb, "b", "e", SCR::NEWLINE, "w", $ca, "t", $b1, " ", $a2, "i", $ea, "m", $ac, $fe, "b", "a", $f3, SCR::NEWLINE, "v", $ed, $fe, $cc, $c2, "."
 .byt SCR::END_SCRIPT
 SignAboutInsane2b:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
@@ -675,11 +677,11 @@ PreLevelBurgers:
 .byt " ", $92, $d6, $e6, "e", "m", $e3, "s", "."
 .byt SCR::END_SCRIPT
 PreLevelChipTall:
-;   "Nova, this level looks
-.byt " ", " ", '"', $a1, $f5, $99, " ", "l", "e", "v", "e", "l", " ", $95, "s"
+; Collect all of the chips by
+.byt "C", "o", "l", "l", "e", $c7, " ", $ad, " ", $bd, $a2, " ", $e2, "i", "p", $fb, "b", "y"
 .byt SCR::NEWLINE
-;   unfinished!"
-.byt " ", " ", $f2, "f", $d8, $b9, $c3, "d", "!", '"'
+; building platforms to them.
+.byt "b", "u", $dc, "d", $b1, " ", "p", "l", $c6, $a5, "m", $fb, $bb, $92, "."
 .byt SCR::NEWLINE
 ;   (Check your inventory)
 .byt " ", " ", "(", "C", $c3, $f3, " ", $91, " ", $d8, "v", $e6, $bc, "r", "y", ")"

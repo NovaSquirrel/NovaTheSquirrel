@@ -239,8 +239,8 @@
 <1 LIA>Should be!
 []Nova hops onto the spaceship and it takes off! It flies a pretty long distance, seemingly without any problems...
 <0 NOVA>Weee, I'm going so fast. Wait, what's that?
-[]... but eventually gets hit by a stray glider, causing the ship to disintegrate and causing the squirrel to fall into a rather strange place.
 `scene NOVA_ALONE
+[]... but eventually gets hit by a stray glider, causing the ship to disintegrate and causing the squirrel to fall into a rather strange place.
 >0 NOVA_STRAIGHT<Aaaaa, okay, I had no idea it was that fragile! I'll go see what the forums think I should do.
 []-halp I've been taken-
 `scene FORUMS
@@ -284,6 +284,7 @@
 `scene NOVA_REMY_JAFGUAR
 <2 JAFGUAR>Yeah who cares?
 <0 NOVA>Well then, maybe I really am supposed to do it alone.
+<0 NOVA>You know, for an evil headquarters, I was expecting something... darker?
 `end
 
 `scene NOVA_ALONE
@@ -339,7 +340,7 @@
 
 :SignPushableAbout:
 `scene NOVA_AND_SIGN
-<1 SIGN>This block ahead can be pushed forward, and will climb other blocks if pushed onto them.
+<1 SIGN>This block ahead can be pushed forward, and will climb other blocks if pushed onto them. It treats anything that isn't air as solid.
 `end
 
 :LineFollowingAbout:
@@ -462,7 +463,8 @@
 
 :AboutLaser:
 `scene NOVA_AND_SIGN
-<1 SIGN>Don't touch the deadly laser beam.
+<1 SIGN>Squirrel defense lasers, guaranteed to keep squirrels out of your stuff!
+>0 NOVA<Someone's going to be wanting their money back very soon.
 `end
 
 
@@ -542,9 +544,9 @@ them then touch them to win.
 `end
 
 :PreLevelChipTall:
-  "Nova, this level looks
+Collect all of the chips by
 `nl
-  unfinished!"
+building platforms to them.
 `nl
   (Check your inventory)
 `end

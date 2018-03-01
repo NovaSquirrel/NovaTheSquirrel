@@ -18,7 +18,7 @@ final1:
   .byt $08, $00 ; boundaries
 
 final1Data:
-  .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <Intro, >Intro
+  .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <MeetRemy, >MeetRemy
   LObjN LO::R_SOLID_ROCK,     0, 11, 0, 1
   LObjN LO::R_GROUND,         0, 13, 13, 1
   LObjN LO::WIDE_1,           5, 5, 2, LN1::SOLID_LEDGE
