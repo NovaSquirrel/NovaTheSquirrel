@@ -433,21 +433,11 @@ DoNametable:
   cmp #14
   bne :-
 
-; Write "-PAUSED-" if paused, or another string if on the level select
-  lda LevelSelectInventory
-  bne :+
+; Write "-PAUSED-"
   ldy #<PausedString
   lda #>PausedString
   ldx #2
   jsr vwfPutsAtRow
-:
-  lda LevelSelectInventory
-  beq :+
-  ldy #<LevelSelectString
-  lda #>LevelSelectString
-  ldx #2
-  jsr vwfPutsAtRow
-:
 
 ; Put the "more options" choice
   lda PauseScreenPage
@@ -512,8 +502,6 @@ WasTossMode:
 ;  beq NotSelect2
   jmp NotSelect2
 GoBackToLevelSelect:
-  lda LevelSelectInventory
-  bne :+
   pla
   pla
   lda PuzzleMode
@@ -577,8 +565,6 @@ KeysAreSame:
     jmp DrawAgain
 :
 
-  lda LevelSelectInventory ; don't allow using items on the level select
-  bne :+
   lda PauseScreenPage
   bne :+
   lda TossMode
@@ -830,9 +816,6 @@ DoInventoryCode:
 :
 
 CleanupAfterInventory:
-  lda LevelSelectInventory
-  jne ShowLevelSelect
-
   ; Restore old background tiles and palette
   jsr WaitVblank
   lda #0
@@ -1129,7 +1112,5 @@ InfiniteProjectiles:
 
 PausedString:
   .byt "P A U S E D",0
-LevelSelectString:
-  .byt "Nova the Squirrel",0
 CheaterString:
   .byt "Cheater!!",0

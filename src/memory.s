@@ -353,15 +353,16 @@ GameStateLen = 2+10*4 ; update if more stuff is added. Just coins and inventory.
   PlayerJumpCancel: .res 1
   PlayerSwimming:   .res 1
 
+; Pointer for IRQ, mostly only used for a very specific use of BRK in cutscenes
   IRQAddress:       .res 2
 
   CurWorld:         .res 1 ; current world for level select
-  LevelSelectInventory: .res 1 ; flag, set to 1 if accessing the inventory via the level select. probably unused now!
   OptionsViaInventory: .res 1 ; if 1, accessing options via inventory screen
 
   ; the sprite list from the ROM has to be copied here so we can access it in gameplay banks
   SpriteListRAM:      .res 256
   ; For speeding up enemy spawning
+  ; (keeps track of which sprite index is the first one on a particular screen)
   FirstSpriteOnScreen:     .res 16
 
   PlaceBlockInLevel:    .res 1 ; if nonzero, place a block in the level instead of running the engine

@@ -134,7 +134,6 @@ WorldTimes8 = 15
   lda #0
   sta NovaDirection
   sta IsSpinning
-  sta LevelSelectInventory
   lda #255
   sta IntroShownAlready
 
