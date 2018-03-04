@@ -1184,6 +1184,33 @@ ObjectCannonCommon1NoHover = ObjectCannonCommon1::NoHover
 
 ; Display an indicator when the cannon is about to fire
 .proc ObjectCannonCommon2
+.if 1 ; use a less confusing numeric countdown instead
+  lda O_RAM::ON_SCREEN
+  beq :+
+  lda ObjectTimer,x
+  cmp #8*6
+  bcs :+
+    ldy OamPtr
+
+    lda ObjectTimer,x
+    lsr
+    lsr
+    lsr
+    ora #$40
+    sta OAM_TILE,y
+    lda #OAM_COLOR_1
+    sta OAM_ATTR,y
+    lda O_RAM::OBJ_DRAWX
+    add #4
+    sta OAM_XPOS,y
+    lda O_RAM::OBJ_DRAWY
+    sub #12
+    sta OAM_YPOS,y
+    tya
+    add #4
+    sta OamPtr
+  :
+.else ; use stars
   lda O_RAM::ON_SCREEN
   beq :+
   lda ObjectTimer,x
@@ -1204,6 +1231,7 @@ ObjectCannonCommon1NoHover = ObjectCannonCommon1::NoHover
     add #4
     sta OamPtr
   :
+.endif
   rts
 .endproc
 
