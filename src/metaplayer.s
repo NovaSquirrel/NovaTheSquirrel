@@ -295,20 +295,19 @@ SpecialGroundHi:
 .endproc
 
 .proc TouchedChipSocket
-  sty TempY
-  jsr GetBlockX
-  tay
-  lda ChipCount
-  cmp ColumnBytes,y
-  bcs Delete
+  lda ChipsNeeded
+  beq Delete
+;  sty TempY
+;  jsr GetBlockX
+;  tay
+;  lda ChipCount
+;  cmp ColumnBytes,y
+;  bcs Delete
   rts
 Delete:
-  lda #0
-  sta ChipCount
   lda #SFX::UNLOCK
   jsr PlaySound
   lda BackgroundMetatile
-  ldy TempY
   jmp ChangeBlockFar
 .endproc
 
@@ -658,8 +657,6 @@ ExitDoor:
   ora LevelAvailable,y
   sta LevelAvailable,y
 
-  ; Copy some state back to the savefile
-  jsr ConfiscateItems
   jsr CopyToSavedInventory
 
   jmp ShowLevelEnd
@@ -667,6 +664,8 @@ ExitDoor:
 .endproc
 
 ; Remove items that the player shouldn't exit the level with
+; (obsoleted by using a second page for these)
+.if 0
 .proc ConfiscateItems
   ldx #InventoryLen
 Loop:
@@ -684,16 +683,8 @@ ItemIsGood:
   dex
   bpl Loop
   rts
-BadItems:
-  .byt InventoryItem::RED_KEY, InventoryItem::GREEN_KEY, InventoryItem::BLUE_KEY
-  .byt InventoryItem::FIRE_BOOTS, InventoryItem::SUCTION_BOOTS, InventoryItem::ICE_SKATES, InventoryItem::FLIPPERS
-  .byt InventoryItem::BLOCK, InventoryItem::SPRING
-  .byt InventoryItem::ARROW_LEFT, InventoryItem::ARROW_DOWN, InventoryItem::ARROW_RIGHT, InventoryItem::ARROW_UP
-  .byt InventoryItem::ARROW_LEFT_METAL, InventoryItem::ARROW_DOWN_METAL, InventoryItem::ARROW_RIGHT_METAL, InventoryItem::ARROW_UP_METAL
-  .byt InventoryItem::WOOD_BOX, InventoryItem::METAL_BOX
-  .byt InventoryItem::MINE_TRACK, InventoryItem::MINE_TRACK_JUMP, InventoryItem::MINE_TRACK_BUMP
-  .byt 0
 .endproc
+.endif
 
 .proc TouchedSpringDown
   rts
@@ -875,6 +866,7 @@ Align:
   lda #SFX::COIN
   jsr PlaySound
   inc ChipCount
+  countdown ChipsNeeded
   rts
 .endproc
 

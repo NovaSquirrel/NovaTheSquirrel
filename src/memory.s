@@ -300,10 +300,12 @@ LevelZeroWhenLoad_Start:
   ToggleBlockEnabled:     .res 1 ; 64 if enabled, 0 if not
   ToggleBlockUpload:      .res 1 ; 1 or 2 if it needs uploading
 .endif
+  PuzzleMode:             .res 1
+  ChipCount:              .res 1
+  ChipsNeeded:            .res 1
 LevelZeroWhenLoad_End:
   IsNormalDoor:           .res 1 ; 1 if the level is loading due to a door
 
-  PuzzleMode:             .res 1
   PuzzleModeAbilityBackup: .res 1  
 
   LevelMap = $6000            ; lasts until $6fff
@@ -370,7 +372,6 @@ GameStateLen = 2+10*4 ; update if more stuff is added. Just coins and inventory.
   PlaceBlockY:          .res 1
   PlaceBlockAutorepeat: .res 1 ; Autorepeat timer
   PlaceBlockItemIndex:  .res 1
-  ChipCount:            .res 1
   SNESController:       .res 1 ; 1 if SNES controller, 0 if NES
 
   AttackKeyDownSnapshot: .res 2 ; snapshot of what keys were down when the attack started

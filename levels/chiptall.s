@@ -30,12 +30,12 @@ chiptallData:
   LObjN LO::WIDE_1,           0, 9, 2, LN1::SOLID_LEDGE
   LObj  LO::S_SOLID_ROCK,     2, 8
   LObj  LO::S_PRIZE,          3, 11
-  LWriteCol InventoryItem::ABILITY_WATER
+  LWriteCol InventoryItem::ABILITY_WATER | 128
   LObj  LO::R_CUSTOM,         0, 13, Metatiles::CHIP, (2<<4)|0
   LObjN LO::WIDE_1,           0, 14, 2, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           4, 6, 2, LN1::SOLID_LEDGE
-  LObj  LO::S_PRIZE,          2, 3
-  LWriteCol InventoryItem::ABILITY_WATER
+  LObj  LO::S_PRIZE,          2, 4
+  LWriteCol InventoryItem::HEALTH_RESTORE | 128
   LObj  LO::S_CUSTOM,         2, 8, Metatiles::CHIP
   LObjN LO::WIDE_1,           0, 13, 15, LN1::SPIKES
   LObjN LO::R_SOLID_ROCK,     0, 14, 15, 0
@@ -48,7 +48,7 @@ chiptallData:
   LObj  LO::R_CUSTOM,         5, 5, Metatiles::TOGGLE_BLOCK_OFF, (2<<4)|2
   LObj  LO::S_CUSTOM,         1, 6, Metatiles::CHIP
   LObj  LO::S_PRIZE,          0, 9
-  LWriteCol InventoryItem::ABILITY_BURGER
+  LWriteCol InventoryItem::ABILITY_BURGER | 128
   LObjN LO::R_COIN,           3, 8, 1, 1
   LObj  LO::S_CUSTOM,         2, 2, Metatiles::CHIP
   LObjN LO::WIDE_1,           1, 7, 2, LN1::SOLID_LEDGE
@@ -156,7 +156,7 @@ chiptallData:
   LObj  LO::S_CUSTOM,         1, 3, Metatiles::CHIP
   LObj  LO::S_HEART,          1, 6
   LObj  LO::S_PRIZE,          0, 10
-  LWriteCol InventoryItem::BIG_HEALTH_RESTORE
+  LWriteCol InventoryItem::BIG_HEALTH_RESTORE | 128
   LObjN LO::WIDE_1,           2, 8, 2, LN1::SOLID_LEDGE
   LObj  LO::S_CUSTOM,         1, 11, Metatiles::CHIP
   LObjN LO::WIDE_1,           0, 12, 2, LN1::SOLID_LEDGE
@@ -164,7 +164,7 @@ chiptallData:
   LObj  LO::S_CUSTOM,         1, 4, Metatiles::CHIP
   LObj  LO::S_CUSTOM,         0, 11, Metatiles::TOGGLE_SWITCH
   LObj  LO::S_PRIZE,          1, 9
-  LWriteCol InventoryItem::ABILITY_WATER
+  LWriteCol InventoryItem::ABILITY_WATER | 128
   LObjN LO::R_SOLID_ROCK,     2, 2, 1, 12
   LObjN LO::WIDE_1,           2, 14, 15, LN1::SPIKES
   LObj  LO::R_CUSTOM,         2, 2, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|7
@@ -180,7 +180,9 @@ chiptallData:
   LObj  LO::R_CUSTOM,         0, 5, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|3
   LObj  LO::S_CUSTOM,         2, 6, Metatiles::CHIP
   LObjN LO::WIDE_1,           0, 11, 2, LN1::SOLID_LEDGE
-  LObj  LO::R_CUSTOM,         4, 8, Metatiles::TOGGLE_BLOCK_OFF, (6<<4)|0
+  LObj  LO::S_PRIZE,          4, 5
+  LWriteCol InventoryItem::BIG_HEALTH_RESTORE | 128
+  LObj  LO::R_CUSTOM,         0, 8, Metatiles::TOGGLE_BLOCK_OFF, (6<<4)|0
   LObjN LO::WIDE_1,           1, 14, 15, LN1::SPIKES
   LObjN LO::WIDE_1,           1, 7, 2, LN1::SOLID_LEDGE
   LObj  LO::S_CUSTOM,         1, 6, Metatiles::TOGGLE_SWITCH

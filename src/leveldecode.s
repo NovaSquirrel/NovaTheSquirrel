@@ -91,8 +91,8 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
     inc NeedAbilityChangeNoSound
     lda #0
     sta PuzzleMode
-    jsr CopyFromSavedInventory
   :
+  jsr CopyFromSavedInventory
 
 .ifdef NEW_TOGGLE_BEHAVIOR
   ; Copy the metatile flags
@@ -671,13 +671,7 @@ SpecialConfigEnablePuzzle:
   lda #1
   sta PuzzleMode
 
-  ; Clear the current inventory
-  ldx #InventoryEnd-InventoryType-1
-  lda #0
-: sta InventoryType,x
-  dex
-  bpl :-
-
+  ; todo: really save this?
   lda PlayerAbility
   sta PuzzleModeAbilityBackup
 
@@ -690,7 +684,7 @@ SpecialConfigEnablePuzzle:
   inc NeedAbilityChangeNoSound
 : jsr IncreasePointerBy1
 
-  ; Write a new inventory specifically for this level
+  ; Put items into the second inventory page
   ldx #0
 @Loop:
   ; if most significant bit clear, it's an item
@@ -699,12 +693,12 @@ SpecialConfigEnablePuzzle:
   beq IncreasePointerBy1
   bpl @NormalInventoryItem
   and #127
-  sta InventoryAmount-1,x ; -1, because x is the next free item slot, not the item we just added
+  sta InventoryPerLevelAmount-1,x ; -1, because x is the next free item slot, not the item we just added
   bpl @WasInventoryAmount ; unconditional since we just cleared the high bit
 @NormalInventoryItem:
-  sta InventoryType,x
+  sta InventoryPerLevelType,x
   lda #0
-  sta InventoryAmount,x
+  sta InventoryPerLevelAmount,x
   inx
 @WasInventoryAmount:
   jsr IncreasePointerBy1

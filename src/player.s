@@ -55,19 +55,42 @@ HealthCount = 1
   add #4*4
   tay
 
-; Draw the chip for puzzle mode if needed
-  lda PuzzleMode
+; Draw the chip for a chip collecting level if needed
+  lda ChipsNeeded
   beq :+
   lda #$5f
   sta OAM_TILE,y
   lda #OAM_COLOR_1
-  sta OAM_ATTR,y
+  sta OAM_ATTR+(4*0),y
+  sta OAM_ATTR+(4*1),y
+  sta OAM_ATTR+(4*2),y
   lda #15
-  sta OAM_YPOS,y
+  sta OAM_YPOS+(4*0),y
+  sta OAM_YPOS+(4*1),y
+  sta OAM_YPOS+(4*2),y
   lda #15+16
-  sta OAM_XPOS,y
+  sta OAM_XPOS+(4*0),y
+  lda #15+24
+  sta OAM_XPOS+(4*1),y
+  lda #15+32
+  sta OAM_XPOS+(4*2),y
+
+  ldx ChipsNeeded
+  lda BCD99,x
+  pha
+  .repeat 4
+    lsr
+  .endrep
+  add #$40
+  sta OAM_TILE+(4*1),y
+  pla
+  and #$0f
+  add #$40
+  sta OAM_TILE+(4*2),y
+
+; Move OAM pointer forward
   tya
-  add #4
+  add #12
   tay
 :
 
@@ -737,7 +760,8 @@ DoneCheckMiddle:
   tax
   lda MetatileFlags,x
   cmp #$80
-  rol FourCorners
+  rol FourCorners ; rotate in the solidity bit
+  and #<~M_POST_PROCESS ; erase the postprocess bit
   cmp #M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL
   bne :+
     lda BlockUL
@@ -755,7 +779,8 @@ DoneCheckMiddle:
   tax
   lda MetatileFlags,x
   cmp #$80
-  rol FourCorners
+  rol FourCorners ; rotate in the solidity bit
+  and #<~M_POST_PROCESS ; erase the postprocess bit
   cmp #M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL
   bne :+
     lda BlockUR

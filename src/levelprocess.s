@@ -147,6 +147,7 @@ ListOfProcessTiles:
   .byt Metatiles::MINE_TRACK_GRADUAL_RIGHT_R
   .byt Metatiles::FROZEN_CRACK
   .byt Metatiles::SNOWMAN_TOP
+  .byt Metatiles::CHIP_SOCKET
 ListOfProcessAddrLo:
   .byt <(ProcessGround-1)
   .byt <(ProcessRock-1)
@@ -180,6 +181,7 @@ ListOfProcessAddrLo:
   .byt <(ProcessTrackGradualR-1)
   .byt <(ProcessFrozenCrack-1)
   .byt <(ProcessSnowman-1)
+  .byt <(ProcessChipSocket-1)
 ListOfProcessAddrHi:
   .byt >(ProcessGround-1)
   .byt >(ProcessRock-1)
@@ -213,6 +215,25 @@ ListOfProcessAddrHi:
   .byt >(ProcessTrackGradualR-1)
   .byt >(ProcessFrozenCrack-1)
   .byt >(ProcessSnowman-1)
+  .byt >(ProcessChipSocket-1)
+
+ProcessChipSocket:
+  ; Calculate the column for this block
+  lda Pointer+1
+  sta Temp1
+
+  tya ; Y is the low byte
+  .repeat 4
+    lsr Temp1
+    ror
+  .endrep
+  tay
+
+  ; Store the number of chips needed
+  lda ColumnBytes,y
+  sta ChipsNeeded
+  rts
+
 ProcessFrozenCrack:
   jsr huge_rand
   lsr

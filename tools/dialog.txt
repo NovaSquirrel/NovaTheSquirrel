@@ -150,7 +150,7 @@
 `scene NOVA_AND_LIA
 <1 LIA>I fink you need to build a pathway up to those computer chips, and get all of 'em to progress.
 <0 NOVA>Build? With what?
-<1 LIA>Springs! For dis level you've got a bunch of 'em in your inventory. Blocks too, but springs are betters!
+<1 LIA>Springs! For dis level you've got a bunch of 'em in your inventory. Blocks too, but springs are betters! They're on a second page in yer inventory!
 `end
 
 :LiaChat3:

@@ -188,8 +188,8 @@ LiaChat2:
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::LIA, $c0, "f", $d8, "k", " ", $a6, " ", $f9, $d6, $bb, "b", "u", $dc, $ff, "a", SCR::NEWLINE, "p", $c6, "h", $b7, " ", $cd, " ", $bb, $e0, "o", $e5, SCR::NEWLINE, "c", "o", "m", "p", "u", $eb, $ea, $e2, "i", "p", "s", $f5, $a4, $af, " ", $ad, " ", "o", "f", SCR::NEWLINE, "'", "e", "m", " ", $bb, "p", "r", "o", "g", "r", "e", $f1, "."
 ; <0 NOVA>Build? With what?
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "B", "u", $dc, "d", "?", " ", "W", "i", $e0, " ", $8b, "?"
-; <1 LIA>Springs! For dis level you've got a bunch of 'em in your inventory. Blocks too, but springs are betters!
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::LIA, "S", "p", $fc, "n", "g", "s", $fd, "F", $c9, " ", "d", $b8, "l", "e", "v", "e", "l", " ", $a6, "'", "v", "e", SCR::NEWLINE, $cf, $d3, $be, "b", $f2, $e2, " ", $bd, "'", "e", "m", " ", $bf, $91, SCR::NEWLINE, $d8, "v", $e6, $bc, "r", "y", $f6, "B", "l", "o", $f3, $fb, $bc, "o", $f5, $a7, SCR::NEWLINE, $dd, $fc, "n", "g", $fb, "a", "r", $e7, "b", "e", "t", $eb, "r", "s", "!"
+; <1 LIA>Springs! For dis level you've got a bunch of 'em in your inventory. Blocks too, but springs are betters! They're on a second page in yer inventory!
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::LIA, "S", "p", $fc, "n", "g", "s", $fd, "F", $c9, " ", "d", $b8, "l", "e", "v", "e", "l", " ", $a6, "'", "v", "e", SCR::NEWLINE, $cf, $d3, $be, "b", $f2, $e2, " ", $bd, "'", "e", "m", " ", $bf, $91, SCR::NEWLINE, $d8, "v", $e6, $bc, "r", "y", $f6, "B", "l", "o", $f3, $fb, $bc, "o", $f5, $a7, SCR::NEWLINE, $dd, $fc, "n", "g", $fb, "a", "r", $e7, "b", "e", "t", $eb, "r", "s", $fd, $f8, "e", "y", "'", "r", "e", SCR::NEWLINE, $c2, " ", $be, $e5, "c", $c2, $ff, "p", "a", "g", $e7, $bf, "y", $ed, SCR::NEWLINE, $d8, "v", $e6, $bc, "r", "y", "!"
 .byt SCR::END_SCRIPT
 LiaChat3:
 .byt SCR::SCENE, SCENES::NOVA_AND_LIA
@@ -392,6 +392,8 @@ MeetRemy:
 .byt SCR::SAY, SCR::SPEAKER_2|CHAR::JAFGUAR, "Y", $ec, "h", " ", $da, "o", " ", "c", "a", "r", "e", "s", "?"
 ; <0 NOVA>Well then, maybe I really am supposed to do it alone.
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "W", "e", "l", "l", " ", $94, $f5, "m", "a", "y", $ba, $c0, "r", $ec, "l", $d2, "a", "m", SCR::NEWLINE, "s", $cd, "p", "o", $e5, $ff, $bb, $c5, " ", $c1, "a", "l", $ac, "."
+; <0 NOVA>You know, for an evil headquarters, I was expecting something... darker?
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "Y", $f4, " ", $8f, $f5, $a5, " ", $ca, " ", "e", "v", $dc, SCR::NEWLINE, $c3, $f7, "q", "u", "a", $ee, $ed, "s", $f5, $c0, "w", $c4, " ", "e", "x", "p", "e", $c7, $b1, SCR::NEWLINE, $9c, $e0, $b1, ".", ".", $f6, "d", "a", "r", "k", $ed, "?"
 .byt SCR::END_SCRIPT
 .byt SCR::SCENE, SCENES::NOVA_ALONE
 ; >0 NOVA_AW<Here it is, the final battle. I've got to give it my best shot.

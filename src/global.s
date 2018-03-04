@@ -1103,8 +1103,14 @@ Exit:
   sta Coins+1
 
   jsr CopyFromSavedInventory
+
+  ; Erase per-level inventory
   lda #0
-  sta PuzzleMode
+  ldx #InventoryLen-1
+: sta InventoryPerLevelType,x
+  sta InventoryPerLevelAmount,x
+  dex
+  bpl :-
 
   ; Copy the level select number to the checkpoint number
   lda StartedLevelNumber
@@ -1202,7 +1208,7 @@ WriteIncreasing16:
 ; output: carry (set if item found), X (item index)
 ; preserves A
 .proc InventoryHasItem
-  ldx #InventoryLen-1
+  ldx #InventoryLenFull-1
 : cmp InventoryType,x
   beq :+
   dex
@@ -1237,12 +1243,30 @@ WriteIncreasing16:
 ; Puts an item into a blank slot
 ; inputs: A (item to give)
 ; outputs: carry (item was given)
+; locals: TempVal+2, TempVal+3
 .proc InventoryGiveItem
-  sta TempVal+2
+ItemType = TempVal+2
+SecondPageItem = TempVal+3
+  sta ItemType
+
+; Does this item go in the second page?
+  ldx #0
+  stx SecondPageItem
+: lda SecondPageItems,x
+  beq NoRegular
+  inx
+  cmp ItemType
+  bne :-
+; Yes
+  inc SecondPageItem
+  ldx #InventoryLenFull-1
+  bne :+ ; skip setting it to InventoryLen-1
+NoRegular:
+
 ; See if the item is already in the list
   ldx #InventoryLen-1
 : ldy InventoryType,x
-  cpy TempVal+2
+  cpy ItemType
   bne :+
   ; Item found
   lda InventoryAmount,x
@@ -1255,6 +1279,9 @@ WriteIncreasing16:
   dex
   bpl :--
 
+; (If it's a per-level item, put it on the second inventory page)
+  ldx SecondPageItem
+  bne FindBlankSecondarySlot
 ; If item isn't in the list, put it in the first blank slot
   ldx #0
 : ldy InventoryType,x
@@ -1266,12 +1293,32 @@ Fail:
   clc ; No free slots
   rts
 
+FindBlankSecondarySlot: ; Find a slot on the second page
+  ldx #InventoryLen
+: ldy InventoryType,x
+  beq Empty
+  inx
+  cpx #InventoryLenFull
+  bne :-
+  clc ; No free slots
+  rts
+
 Empty: ; Empty slot, put in item
   sta InventoryType,x
   lda #0
   sta InventoryAmount,x
   sec
   rts
+
+SecondPageItems:
+  .byt InventoryItem::RED_KEY, InventoryItem::GREEN_KEY, InventoryItem::BLUE_KEY
+  .byt InventoryItem::FIRE_BOOTS, InventoryItem::SUCTION_BOOTS, InventoryItem::ICE_SKATES, InventoryItem::FLIPPERS
+  .byt InventoryItem::BLOCK, InventoryItem::SPRING
+  .byt InventoryItem::ARROW_LEFT, InventoryItem::ARROW_DOWN, InventoryItem::ARROW_RIGHT, InventoryItem::ARROW_UP
+  .byt InventoryItem::ARROW_LEFT_METAL, InventoryItem::ARROW_DOWN_METAL, InventoryItem::ARROW_RIGHT_METAL, InventoryItem::ARROW_UP_METAL
+  .byt InventoryItem::WOOD_BOX, InventoryItem::METAL_BOX
+  .byt InventoryItem::MINE_TRACK, InventoryItem::MINE_TRACK_JUMP, InventoryItem::MINE_TRACK_BUMP
+  .byt 0
 .endproc
 
 ; Writes a zero terminated string to the screen

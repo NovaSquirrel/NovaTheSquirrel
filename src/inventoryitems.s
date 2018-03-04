@@ -266,6 +266,7 @@ SwapList = ScratchPage ; to help with avoiding screen blanking when swapping two
 PauseScreenPage = ScratchPage + 20 ; 0 for inventory, 1 for more options
 TossMode = ScratchPage + 21
 LastMenuOption = ScratchPage + 22
+PerLevelPageHasItems = ScratchPage + 23
 ExtraOptionsCount = 4 ; constant
 AutoRepeatCount = 5
 
@@ -278,8 +279,23 @@ AutoRepeatCount = 5
   sta PauseScreenPage
   sta TossMode
   sta AutoRepeatCount
+  sta PerLevelPageHasItems
   lda #InventoryLen
   sta LastMenuOption
+
+  ; Check if there is a second inventory page at all
+  ldx #InventoryLen-1
+: lda InventoryPerLevelType,x
+  bne HasPerLevelInventory
+  dex
+  bpl :-
+HasNoPerLevelInventory:
+  lda #0
+  sta InventoryPage
+  beq :+ ; skip
+HasPerLevelInventory:
+  inc PerLevelPageHasItems
+:
 
 DrawAgain:
   ; Clear icon list
@@ -335,10 +351,15 @@ DrawAgain:
   lda PauseScreenPage
   bne NoDrawInventoryList
   ldy #0
-: ldx InventoryType,y
+  sty TouchTemp
+: ; Write the names of all inventory items
+  lda TouchTemp
+  add InventoryPage
+  tay
+  ldx InventoryType,y
+  ldy TouchTemp
   lda InventoryIIcon,x
   sta IconListOffset,y
-  sty TouchTemp
 
   ; Write item name
   lda InventoryINameH,x
@@ -356,12 +377,13 @@ DrawAgain:
   ldy #0
   jsr copyLineImg
 
+  inc TouchTemp
   ldy TouchTemp
-  iny
   cpy #InventoryLen
   bne :-
 NoDrawInventoryList:
 
+; Write the list of "more options" if on that page
   lda PauseScreenPage
   beq NoDrawExtraOptionsList
   ldy #0
@@ -439,15 +461,35 @@ DoNametable:
   ldx #2
   jsr vwfPutsAtRow
 
+; Offer to swap inventory pages
+  lda PerLevelPageHasItems
+  beq :+
+  ldy #<SwapPagesString
+  lda #>SwapPagesString
+  ldx #3
+  jsr vwfPutsAtRow
+:
+
 ; Put the "more options" choice
   lda PauseScreenPage
   bne :+
-  ldy #<OtherOptionsString2
-  lda #>OtherOptionsString2
+  ldy #<OtherOptionsStringMenuItem
+  lda #>OtherOptionsStringMenuItem
   ldx #15
   jsr vwfPutsAtRow
+; Display the -Inventory- at the top, but write -Level stock- if displaying page 2
+  lda InventoryPage
+  bne DisplayPage2AtTop
+  ; Inventory page 1
   ldy #<InventoryString
   lda #>InventoryString
+  ldx #4
+  jsr vwfPutsAtRow
+  jmp :+
+DisplayPage2AtTop:
+  ; Inventory Page 2
+  ldy #<InventoryStringPage2
+  lda #>InventoryStringPage2
   ldx #4
   jsr vwfPutsAtRow
 :
@@ -456,8 +498,8 @@ DoNametable:
   bne WasTossMode
   lda PauseScreenPage
   beq :+
-  ldy #<InventoryString2
-  lda #>InventoryString2
+  ldy #<InventoryStringMenuItem
+  lda #>InventoryStringMenuItem
   ldx #15
   jsr vwfPutsAtRow
   ldy #<OtherOptionsString
@@ -565,6 +607,24 @@ KeysAreSame:
     jmp DrawAgain
 :
 
+  ; Allow switching between inventory page and per-level page
+  lda keynew
+  and #KEY_B
+  beq :+
+  lda PauseScreenPage
+  bne :+
+  lda PerLevelPageHasItems
+  beq :+
+    ; No swap
+    lda #128
+    sta InventoryCursorYSwap
+
+    lda InventoryPage
+    eor #InventoryLen
+    sta InventoryPage
+    jmp DrawAgain
+:
+
   lda PauseScreenPage
   bne :+
   lda TossMode
@@ -605,7 +665,7 @@ TossOutItem:
 
   lda keynew
   and #KEY_SELECT
-  beq NotSelect
+  jeq NotSelect
     lda PauseScreenPage  ; Don't allow swapping when on page 2
     bne NotSelect
     lda InventoryCursorY ; \ if it's on the "other options" item, don't allow swapping with it
@@ -613,10 +673,16 @@ TossOutItem:
     beq NotSelect
     lda InventoryCursorYSwap
     bmi @SetSwap
-    ldx InventoryCursorYSwap
-    ldy InventoryCursorY
+    lda InventoryCursorYSwap
+    add InventoryPage
+    tax
+    lda InventoryCursorY
+    add InventoryPage
+    tay
     swaparray InventoryType
     swaparray InventoryAmount
+    ldx InventoryCursorYSwap
+    ldy InventoryCursorY
     swaparray IconListOffset
     swaparray SwapList
 
@@ -832,7 +898,9 @@ CallInventoryCode:
   jsr WaitVblank
   lda #0
   sta PPUMASK
-  ldx InventoryCursorY
+  lda InventoryCursorY
+  add InventoryPage
+  tax
   ldy InventoryType,x
 CallInventoryCode2:
   lda InventoryICodeH,y
@@ -896,10 +964,16 @@ UpdateItemQuantity:
 ; Write item quantities as sprites
   ldy #4*8
   ldx #0   ; slot 0
+  stx TouchTemp
 ItemQuantityLoop:
+  lda TouchTemp
+  add InventoryPage
+  tax
   lda InventoryAmount,x
+
   beq @Skip
-  txa
+  ; Calculate Y position from index
+  lda TouchTemp
   asl
   asl
   asl
@@ -940,7 +1014,8 @@ ItemQuantityLoop:
   add #8
   tay
 @Skip:
-  inx
+  inc TouchTemp
+  ldx TouchTemp
   cpx #InventoryLen
   bne ItemQuantityLoop
   rts
@@ -950,12 +1025,17 @@ InventoryPalette:
 
 InventoryString:
   .byt " - Inventory - ",0
-InventoryString2:
+InventoryStringPage2:
+  .byt " - Level stock - ",0
+InventoryStringMenuItem: ; "go back to the inventory"
   .byt "(Inventory)",0
 OtherOptionsString:
   .byt " - Other options - ",0
-OtherOptionsString2:
+OtherOptionsStringMenuItem: ; "go display more items"
   .byt "(More options)",0
+SwapPagesString:
+  .byt "B: swap pages",0
+
 TossModeString:
   .byt " - Toss out items - ",0
 TossModeString2:
@@ -998,6 +1078,8 @@ ExitLevelCode:
   jmp PauseScreen::GoBackToLevelSelect
 TossItemsCode:
   inc TossMode
+  lda #0
+  sta InventoryPage
   lsr PauseScreenPage
   dec LastMenuOption
   jmp DrawAgain

@@ -182,14 +182,7 @@
 					"Y":	11,
 					"W":	1,
 					"H":	1,
-					"Extra":	"ABILITY_WATER"
-				}, {
-					"Id":	"PRIZE",
-					"X":	14,
-					"Y":	3,
-					"W":	1,
-					"H":	1,
-					"Extra":	"ABILITY_WATER"
+					"Extra":	"ABILITY_WATER | 128"
 				}, {
 					"Id":	"CHIP",
 					"X":	24,
@@ -292,7 +285,7 @@
 					"Y":	9,
 					"W":	1,
 					"H":	1,
-					"Extra":	"ABILITY_BURGER"
+					"Extra":	"ABILITY_BURGER | 128"
 				}, {
 					"Id":	"SMALL_ROCK",
 					"X":	16,
@@ -323,7 +316,7 @@
 					"Y":	25,
 					"W":	1,
 					"H":	1,
-					"Extra":	"BIG_HEALTH_RESTORE"
+					"Extra":	"BIG_HEALTH_RESTORE | 128"
 				}, {
 					"Id":	"SOLID_LEDGE",
 					"X":	24,
@@ -354,7 +347,7 @@
 					"Y":	24,
 					"W":	1,
 					"H":	1,
-					"Extra":	"ABILITY_WATER"
+					"Extra":	"ABILITY_WATER | 128"
 				}, {
 					"Id":	"TOGGLE_SWITCH",
 					"X":	37,
@@ -1040,6 +1033,20 @@
 					"Y":	15,
 					"W":	2,
 					"H":	1
+				}, {
+					"Id":	"PRIZE",
+					"X":	14,
+					"Y":	4,
+					"W":	1,
+					"H":	1,
+					"Extra":	"HEALTH_RESTORE | 128"
+				}, {
+					"Id":	"PRIZE",
+					"X":	47,
+					"Y":	20,
+					"W":	1,
+					"H":	1,
+					"Extra":	"BIG_HEALTH_RESTORE | 128"
 				}]
 		}, {
 			"Name":	"Sprites",
