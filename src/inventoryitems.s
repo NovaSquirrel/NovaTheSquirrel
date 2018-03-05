@@ -546,16 +546,11 @@ WasTossMode:
 GoBackToLevelSelect:
   pla
   pla
-  lda PuzzleMode
-  beq :+
-  lda PuzzleModeAbilityBackup
-  sta PlayerAbility
-:
   jmp ShowLevelSelect
 NotSelect2:
   lda keydown
   and #KEY_START
-  bne :--
+  bne :-
 
 ; Start the menu control loop
 Loop:

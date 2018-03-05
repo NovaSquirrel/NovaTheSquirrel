@@ -306,8 +306,6 @@ LevelZeroWhenLoad_Start:
 LevelZeroWhenLoad_End:
   IsNormalDoor:           .res 1 ; 1 if the level is loading due to a door
 
-  PuzzleModeAbilityBackup: .res 1  
-
   LevelMap = $6000            ; lasts until $6fff
 
 .segment "BSS2"  ; SRAM

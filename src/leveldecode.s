@@ -82,16 +82,16 @@ LevelBank = 15 ; figure out what to put in here later; for now it's just gonna b
   jsr SetPRG
   jsr pently_init
 
-  lda PuzzleMode
-  beq :+
-    lda PuzzleModeAbilityBackup
-    sta PlayerAbility
-    ora #128
-    sta NeedAbilityChange
-    inc NeedAbilityChangeNoSound
-    lda #0
-    sta PuzzleMode
-  :
+;  lda PuzzleMode
+;  beq :+
+;    lda PuzzleModeAbilityBackup
+;    sta PlayerAbility
+;    ora #128
+;    sta NeedAbilityChange
+;    inc NeedAbilityChangeNoSound
+;    lda #0
+;    sta PuzzleMode
+;  :
   jsr CopyFromSavedInventory
 
 .ifdef NEW_TOGGLE_BEHAVIOR
@@ -670,7 +670,7 @@ SkipDialog:
 SpecialConfigEnablePuzzle:
   lda #1
   sta PuzzleMode
-
+.if 0
   ; todo: really save this?
   lda PlayerAbility
   sta PuzzleModeAbilityBackup
@@ -682,7 +682,10 @@ SpecialConfigEnablePuzzle:
   ora #128
   sta NeedAbilityChange
   inc NeedAbilityChangeNoSound
-: jsr IncreasePointerBy1
+:
+.endif
+  ; Skip the ability byte
+  jsr IncreasePointerBy1
 
   ; Put items into the second inventory page
   ldx #0
