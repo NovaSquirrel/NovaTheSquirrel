@@ -1079,10 +1079,16 @@ FC___LR:
   :
 
   ; Fall through a platform
+  ; (do the left and right floors have the same flags?)
   ldx BlockLL
   lda MetatileFlags,x
+  and #<~M_POST_PROCESS
+  sta Temp
+
   ldx BlockLR
-  cmp MetatileFlags,x
+  lda MetatileFlags,x
+  and #<~M_POST_PROCESS
+  cmp Temp
   bne NotFallthrough
     and #<~M_POST_PROCESS
     cmp #M_SOLID_TOP|M_FALLABLE_LEDGE
