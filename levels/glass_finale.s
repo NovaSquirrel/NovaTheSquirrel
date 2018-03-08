@@ -28,7 +28,7 @@ glass_finaleData:
   LObjN LO::R_BG_GLASS_GREEN, 1, 6, 6, 0
   LObjN LO::R_COIN,           0, 11, 2, 0
   LObj  LO::S_PRIZE,          1, 5
-  LWriteCol InventoryItem::BIG_HEALTH_RESTORE
+  LWriteCol InventoryItem::HEALTH_RESTORE
   LObjN LO::WIDE_1,           0, 9, 0, LN1::SOLID_LEDGE
   LObjN LO::R_COIN,           2, 4, 2, 0
   LObjN LO::WIDE_1,           0, 5, 2, LN1::SOLID_LEDGE
@@ -57,13 +57,17 @@ glass_finaleData:
   LObjN LO::R_FG_GLASS_RED,   0, 3, 2, 0
   LObjN LO::R_FG_GLASS_RED,   0, 8, 2, 0
   LObj  LO::S_M_CRATE,        0, 9
-  LObj  LO::S_M_ARROW_DOWN,   2, 2
+  LObj  LO::S_BG_GLASS_GREEN, 1, 7
+  LObj  LO::S_M_ARROW_DOWN,   1, 2
   LObjN LO::R_FG_GLASS_RED,   0, 4, 0, 3
   LObj  LO::S_M_ARROW_LEFT,   0, 9
-  LObjN LO::R_FG_GLASS_RED,   4, 5, 4, 0
+  LObj  LO::S_BG_GLASS_GREEN, 1, 7
+  LObj  LO::S_BG_GLASS_GREEN, 2, 7
+  LObjN LO::R_FG_GLASS_RED,   1, 5, 4, 0
   LObjN LO::R_BG_GLASS_RED,   0, 6, 0, 8
   LObj  LO::S_PRIZE,          1, 2
   LWriteCol InventoryItem::BLOCK | 128
+  LObj  LO::S_BG_GLASS_GREEN, 0, 7
   LObj  LO::S_BG_GLASS_GREEN, 0, 12
   LObj  LO::S_BG_GLASS_GREEN, 1, 11
   LObj  LO::S_BG_GLASS_GREEN, 0, 13
@@ -89,7 +93,7 @@ glass_finaleData:
   LObjN LO::R_SOLID_ROCK,     1, 0, 0, 2
   LObjN LO::R_SOLID_ROCK,     1, 5, 0, 2
   LObj  LO::S_PRIZE,          0, 10
-  LWriteCol InventoryItem::HEALTH_RESTORE
+  LWriteCol InventoryItem::BIG_HEALTH_RESTORE | 128
   LObjN LO::WIDE_1,           1, 6, 2, LN1::SOLID_LEDGE
   LObj  LO::S_PRIZE,          1, 3
   LWriteCol InventoryItem::ABILITY_BURGER|128
@@ -148,10 +152,12 @@ glass_finaleData:
   LObjN LO::R_FG_GLASS_BLUE,  2, 1, 0, 6
   LObj  LO::S_M_CRATE,        0, 11
   LObjN LO::R_AIR,            0, 12, 0, 1
-  LObj  LO::S_SPRING,         1, 10
+  LObjN LO::WIDE_1,           1, 3, 0, LN1::SOLID_LEDGE
+  LObj  LO::S_SPRING,         0, 10
   LObj  LO::S_M_ARROW_DOWN,   1, 7
   LObj  LO::S_M_ARROW_LEFT,   0, 11
-  LObjN LO::R_FG_GLASS_RED,   1, 7, 8, 0
+  LObj  LO::S_SPRING,         1, 6
+  LObjN LO::R_FG_GLASS_RED,   0, 7, 8, 0
   LObjN LO::R_FG_GLASS_RED,   0, 8, 0, 3
   LObj  LO::S_HEART,          1, 6
   LObjN LO::R_BG_GLASS_RED,   1, 8, 0, 6

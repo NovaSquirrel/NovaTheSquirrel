@@ -192,7 +192,7 @@ C .raddr ObjectRover
 
 R TURKEY
 C .byt GraphicsUpload::SP_FACEBALL
-C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET | ObjBehavior::WAIT_UNTIL_NEAR
 C .byt ObjFlag::PRIMARY
 C .raddr ObjectTurkey
 

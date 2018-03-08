@@ -2045,12 +2045,88 @@ HorizontalLeft:
 Direction: .byt 1, <-1
 .endproc
 
+.proc SmiloidMoveAndJump
+  ; Don't move when stunned
+  lda ObjectF2,x
+  bne NotMoving
+    jsr EnemyFall
+    bcc :+
+    ; jump if the distance 
+    lda PlayerPYH
+    sub ObjectPYH,x
+    abs                ; get coarse distance difference
+    cmp #2
+    bcc :+
+      lda ObjectF2,x
+      bne :+
+      lda PlayerPYH    ; player above smiloid?
+      cmp ObjectPYH,x
+      bcs :+
+        ; Jump!
+        lda #<(-$50)
+        sta ObjectVYL,x
+        lda #>(-$50)	
+        sta ObjectVYH,x
+  :
+
+  lda #$10
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+NotMoving:
+  rts
+.endproc
+
 .proc ObjectBouncer
+  jsr SmiloidMoveAndJump
+
   lda #$10
   ldy #OAM_COLOR_3
   jsr DispEnemyWide
   jsr EnemyPlayerTouchHurt
+
+  ; Look at the player if distance is too much
+  lda PlayerPXH
+  sub ObjectPXH,x
+  abs
+  cmp #3
+  bcc :+
+    jsr EnemyLookAtPlayer
+  :
+
+  ; Shoot
+  lda ObjectF2,x
+  bne :+
+  lda retraces
+  and #63
+  bne NoShoot
+  lda ObjectF1,x
+  and #1
+  tay
+  lda ShootSpeed,y
+  sta 0
+  sex
+  sta 1
+  jsr FindFreeObjectY
+  bcc NoShoot
+    jsr ObjectClearY
+    jsr ObjectCopyPosXYOffset
+
+    lda 0
+    sta ObjectVXL,y
+    lda 1
+    sta ObjectVXH,y
+    lda #5
+    sta ObjectTimer,y
+
+    lda #Enemy::FACEBALL_SHOT*2
+    sta ObjectF1,y
+NoShoot:
+
+  jsr EnemyPlayerTouchHurt
   rts
+
+ShootSpeed:
+  .byt $60, <-$60
 .endproc
 
 .proc ObjectGremlin
@@ -2078,47 +2154,97 @@ Direction: .byt 1, <-1
 .endproc
 
 .proc ObjectTurkey
+  lda #$10
+  jsr EnemyWalkOnPlatform
+
   lda #$04
   ldy #OAM_COLOR_2
   jsr DispEnemyWide
   jsr EnemyPlayerTouchHurt
+
+  ; Don't shoot if variant that doesn't do that
+  lda ObjectF3,x
+  bne :+
+  ; Shoot sometimes when not stunned
+  lda ObjectF2,x
+  bne :+
+  lda retraces
+  and #127
+  cmp #10
+  beq YesShoot
+  cmp #20
+  beq YesShoot
+  cmp #30
+  beq YesShoot
+: rts
+
+YesShoot:
+  jsr FindFreeObjectY
+  bcc NoShoot
+    jsr ObjectClearY
+    jsr ObjectCopyPosXYOffset
+
+    sty TempY
+    jsr AimAtPlayer
+    lda #1
+    jsr SpeedAngle2OffsetHalf
+    ldy TempY
+    lda 0
+    sta ObjectVXL,y
+    lda 1
+    sta ObjectVXH,y
+    lda 2
+    sta ObjectVYL,y
+    lda 3
+    sta ObjectVYH,y
+
+    lda #30
+    sta ObjectTimer,y
+
+    lda #Enemy::FACEBALL_SHOT*2
+    sta ObjectF1,y
+NoShoot:
   rts
+
+ShootSpeed:
+  .byt $20, <-$20
 .endproc
 
 .proc ObjectRover
   jsr EnemyFall
-  bcc Falling
 
-  ; Run even if not close enough to start chasing
-  lda ObjectF2,x
-  cmp #ENEMY_STATE_ACTIVE
-  beq RunForChase
-  cmp #ENEMY_STATE_STUNNED
-  beq Falling
-
-  ; Get enemy direction
-  lda ObjectF1,x
-  and #1
-  tay
-  ; Close enough to start chasing?
   lda ObjectPXH,x
-  add EnemyDirOffset,y
   sub PlayerPXH
   abs
-  cmp #4
-  bcc GiveChase
-
-  lda #$10
+  ; Face the player if too far away
+  cmp #5
+  bcc :+
+  pha
+  jsr EnemyLookAtPlayer
+  pla
+: ; Run faster when farther away
+  asl
+  asl
   jsr EnemyWalk
   jsr EnemyAutoBump
-Falling:
 
-  lda #$08
+  ; Pick the mouth-open frame if shooting
+  ldy #$08
+  lda retraces
+  and #63
+  cmp #10
+  bcs :+
+    ldy #$0c
+  :
+  tya
+
   ldy #OAM_COLOR_2
   jsr DispEnemyWide
 DrawDone:
 
   ; Shoot
+  lda ObjectF2,x
+  bne NoShoot
   lda retraces
   and #63
   bne NoShoot
@@ -2150,30 +2276,6 @@ NoShoot:
 
 ShootSpeed:
   .byt $30, <-$30
-
-GiveChase:
-  lda #50
-  sta ObjectTimer,x
-  lda #ENEMY_STATE_ACTIVE
-  sta ObjectF2,x
-RunForChase:
-  lda retraces
-  and #15
-  bne :+
-  jsr EnemyLookAtPlayer
-: lda #$30
-  jsr EnemyWalkEvenIfStunned
-  bcc :+
-    lda #<(-$40)
-    sta ObjectVYL,x
-    lda #>(-$40)
-    sta ObjectVYH,x
-:
-
-  lda #$0c
-  ldy #OAM_COLOR_2
-  jsr DispEnemyWide
-  jmp DrawDone
 
 EnemyDirOffset:
   .byt 1, <-1
@@ -2980,35 +3082,11 @@ WrapVertically:
   rts
 
 ; ------------------ smiloid-only stuff ---------------
-
 DoSmiloid:
-  lda ObjectF2,x ; float over to player while the smiloid is stunned
-  bne NotMoving
-    jsr EnemyFall
-    bcc :+
-    ; smiloid jumping
-    lda PlayerPYH
-    sub ObjectPYH,x
-    abs                ; get coarse distance difference
-    cmp #2
-    bcc :+
-      lda ObjectF2,x
-      bne :+
-      lda PlayerPYH    ; player above smiloid?
-      cmp ObjectPYH,x
-      bcs :+
-        ; Jump!
-        lda #<(-$50)
-        sta ObjectVYL,x
-        lda #>(-$50)
-        sta ObjectVYH,x
-  :
-  lda #$10
-  jsr EnemyWalk
-  jsr EnemyAutoBump
+  jsr SmiloidMoveAndJump
   jsr WrapVertically
-NotMoving:
 
+  ; rise when stunned
   lda ObjectF2,x
   beq :+
     lda ObjectPYH,x
