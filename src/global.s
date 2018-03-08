@@ -1262,6 +1262,8 @@ SecondPageItem = TempVal+3
   ldx #InventoryLenFull-1
   bne :+ ; skip setting it to InventoryLen-1
 NoRegular:
+  ; Reload the item type
+  lda ItemType
 
 ; See if the item is already in the list
   ldx #InventoryLen-1
