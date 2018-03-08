@@ -246,7 +246,6 @@ final1Sprite:
   LSpr Enemy::SNEAKER,             1,  85,   2
   LSpr Enemy::ROVER,               1,  95,   8
   LSpr Enemy::TURKEY,              1,  95,  12
-  LSpr Enemy::OWL,                 0,  96,   4
   LSpr Enemy::COLLECTIBLE,         0,  97,  11
   LSpr Enemy::SNEAKER,             1, 104,   4
   LSpr Enemy::MOVING_PLATFORM_LINE, 0, 104,   9

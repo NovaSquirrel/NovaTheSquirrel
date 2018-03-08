@@ -2242,6 +2242,8 @@ ShootSpeed:
   jsr DispEnemyWide
 DrawDone:
 
+  lda O_RAM::ON_SCREEN
+  beq NoShoot
   ; Shoot
   lda ObjectF2,x
   bne NoShoot
