@@ -8,65 +8,8 @@ IS_PALETTE =        %10000000 ; palette colors
 IS_DIRECT_PALETTE = %01000000
 ;banks available: GRAPHICS_BANK1, GRAPHICS_BANK2, GRAPHICS_BANK3
 
-GraphicsList:
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGCommon,     >BGCommon
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGGrassy,     >BGGrassy
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPWalker,     >SPWalker
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPCannon,     >SPCannon
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPFire,       >SPFire
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPKing,       >SPKing
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPGeorge,     >SPGeorge
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPExplode,    >SPExplode
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalGrassy,    >PalGrassy
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalBummer,    >PalBummer
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalFrozen,    >PalFrozen
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGCutscene,   >BGCutscene
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGGrassyBG,   >BGGrassyBG
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGChip,       >BGChip
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <TitleCHR,     >TitleCHR
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <TitleNAM,     >TitleNAM
-  .byt GRAPHICS_BANK1|IS_DIRECT_PALETTE, <PalTitle,     >PalTitle
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <InventoryCHR, >InventoryCHR
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPSun,        >SPSun
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <NPCCHR,       >NPCCHR
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy1,    >PalEnemy1
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGFrozenFG,   >BGFrozenFG
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGFrozenBG,   >BGFrozenBG
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy2,    >PalEnemy2
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <BGBummer,     >BGBummer
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <LevelSelCHR,  >LevelSelCHR
-  .byt GRAPHICS_BANK1|IS_DIRECT_PALETTE, <PalLevelSel,  >PalLevelSel
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPRonald,     >SPRonald
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <SPMines,      >SPMines
-  .byt GRAPHICS_BANK1|IS_GRAPHIC, <CHRFont,      >CHRFont
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGTropical,   >BGTropical
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGSuburbs,    >BGSuburbs
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGHannah,     >BGHannah
-  .byt GRAPHICS_BANK1|IS_PALETTE, <AltGrassy1,   >AltGrassy1
-  .byt GRAPHICS_BANK1|IS_PALETTE, <AltGrassy2,   >AltGrassy2
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPSchemeTeam, >SPSchemeTeam
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPHannah,     >SPHannah
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPLife,       >SPLife
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy3,    >PalEnemy3
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGMines,      >BGMines
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy4,    >PalEnemy4
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGShopIcons,  >BGShopIcons
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPWind,       >SPWind
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPBoomerang,  >SPBoomerang
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGExposition, >BGExposition
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPMolSno,     >SPMolSno
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemyMolSno, >PalEnemyMolSno
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy5,    >PalEnemy5
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGJungle,     >BGJungle
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGCloudsGfx,  >BGCloudsGfx
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGJack,       >BGJack
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGDABG,       >BGDABG
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalDABG,      >PalDABG
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGDABGCommon, >BGDABGCommon
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPFaceball,   >SPFaceball
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy6,    >PalEnemy6
-  .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPFHBG,       >SPFHBG
-  .byt GRAPHICS_BANK1|IS_PALETTE, <PalDABGGray,  >PalDABGGray
+.include "../tools/graphicslist2.s"
+  
 ; input: A (graphic number)
 DoGraphicUpload:
   pha
