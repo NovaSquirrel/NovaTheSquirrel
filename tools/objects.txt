@@ -453,3 +453,10 @@ C .byt GraphicsUpload::SP_FHBG
 C .byt 0
 C .byt ObjFlag::ESSENTIAL
 C .raddr ObjectFHBGBlock
+
+R FIGHTER_MAKER
+C .byt GraphicsUpload::SP_FREAK
+C .byt 0
+C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectFighterMaker
+

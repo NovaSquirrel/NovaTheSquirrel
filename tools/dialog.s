@@ -360,6 +360,23 @@ AfterSmiloidAtWOI:
 ; <2 S_TEAM>You're still going down, even if Bill has to be the one to do it!! We will succeed!
 .byt SCR::SAY, SCR::SPEAKER_2|CHAR::S_TEAM, "Y", $f4, "'", "r", $e7, $de, $dc, "l", " ", $cf, $b1, " ", $c5, "w", "n", $f5, $9f, SCR::NEWLINE, $ce, " ", "B", $dc, "l", " ", "h", $c4, " ", $bb, $ba, $a2, " ", $ac, " ", $bb, $c5, SCR::NEWLINE, "i", "t", "!", $fd, "W", $e7, $9e, " ", "s", "u", "c", "c", $d7, "d", "!"
 .byt SCR::END_SCRIPT
+BeforeFighterMaker:
+.byt SCR::SCENE, SCENES::BAD_GUYS_AND_LEADER
+; <2 BILL>Okay we need to bring out the big guns if we want to stop this squirrel. Maybe this fighter I just made will do the trick?
+.byt SCR::SAY, SCR::SPEAKER_2|CHAR::BILL, "O", "k", "a", $fe, $c8, " ", $f9, $d6, $bb, "b", $fc, "n", "g", " ", $ae, SCR::NEWLINE, $a2, " ", "b", "i", "g", " ", "g", $f2, $fb, $ce, " ", $c8, " ", "w", $ca, $d3, $bc, SCR::NEWLINE, $de, "o", "p", " ", $99, " ", $80, $f6, "M", "a", "y", $ba, $99, SCR::NEWLINE, "f", "i", $db, $eb, $ea, $c0, $8e, "m", $f7, $e7, $9e, " ", $c5, " ", $a2, SCR::NEWLINE, $fa, "i", $f3, "?"
+; <0 S_TEAM>You just made a fighter out of thin air?
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::S_TEAM, "Y", $f4, " ", $8e, "m", $f7, $e7, $be, "f", "i", $db, $eb, $ea, $ae, SCR::NEWLINE, $bd, $e0, $bf, "a", "i", "r", "?"
+; <2 BILL>Yes, thanks to this software I just found!
+.byt SCR::SAY, SCR::SPEAKER_2|CHAR::BILL, "Y", "e", "s", $f5, $93, "k", $fb, $bb, $99, " ", $cc, "f", "t", "w", "a", "r", $e7, "I", SCR::NEWLINE, $8e, "f", $f4, $f0, "!"
+; <0 NOVA_WOW>... What is that thing? Why's it coming after me? ... Oh, it must be another boss.
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA_WOW, ".", ".", $f6, "W", "h", $c6, " ", $b8, $9a, $e0, $b1, "?", " ", "W", "h", "y", $e9, "i", "t", SCR::NEWLINE, "c", "o", "m", $b1, " ", $83, " ", $d0, "?", " ", ".", ".", $f6, "O", "h", $f5, "i", "t", SCR::NEWLINE, "m", "u", $de, " ", $ba, $ca, "o", $a2, $ea, "b", "o", $f1, "."
+.byt SCR::SCENE, SCENES::NOVA_ALONE
+.byt SCR::END_SCRIPT
+AfterFighterMaker:
+.byt SCR::SCENE, SCENES::NOVA_ALONE
+; <0 NOVA>That was a strange fight.
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, $f8, $c6, " ", "w", $c4, " ", $be, $de, "r", $ca, "g", $e7, "f", "i", $db, "t", "."
+.byt SCR::END_SCRIPT
 MeetRemy:
 .byt SCR::SCENE, SCENES::NOVA_AND_REMY
 ; <0 NOVA>Hi, I'm Nova. Whatcha doing here?
@@ -703,8 +720,8 @@ PreLevelBoss2:
 ;  Nova runs into the Scheme
 .byt " ", $a1, " ", "r", $f2, $fb, $d8, $bb, $a2, " ", "S", $e2, "e", $d0
 .byt SCR::NEWLINE
-;  Team again and has you
-.byt " ", "T", $ec, "m", " ", "a", "g", "a", $bf, $a4, "h", $c4, " ", $a6
+;  Team again and has her
+.byt " ", "T", $ec, "m", " ", "a", "g", "a", $bf, $a4, "h", $c4, " ", $a9
 .byt SCR::NEWLINE
 ;  fight Forehead Block Guy.
 .byt " ", "f", "i", $db, $d3, "F", $c9, "e", $c3, $f7, " ", "B", "l", "o", $f3, " ", "G", "u", "y", "."

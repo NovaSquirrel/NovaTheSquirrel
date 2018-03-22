@@ -2149,7 +2149,13 @@ ShootSpeed:
   lda #$00
   ldy #OAM_COLOR_3
   jsr DispEnemyWide
-  jsr EnemyPlayerTouchHurt
+
+  jsr EnemyPlayerTouch
+  bcc :+
+    jsr HurtPlayer
+    lda #0
+    sta ObjectF1,x
+  :
   rts
 .endproc
 
@@ -4500,4 +4506,114 @@ TossVL:
   .lobytes $20, -$20
 TossVH:
   .hibytes $20, -$20
+.endproc
+
+.proc ObjectFighterMaker
+; Here is a good use of InObjectBank2 because the routine is like 670 bytes
+; and the main object bank is already pretty packed.
+  lda #0
+  sta O_RAM::ON_SCREEN
+
+  lda #<ObjectFighterMaker_Run
+  ldy #>ObjectFighterMaker_Run
+  jsr InObjectBank2
+;Our return values:
+;O_RAM::OBJ_DRAWX - screen X in pixels (not offsetted)
+;O_RAM::OBJ_DRAWY - screen Y in pixels (not offsetted)
+;TempY            - frame number
+
+; Regular size is 16x40, horizontal size is 40x16
+; But for right now, just use 16x16 anyway?
+; It's easier and should make the fight a tiiiiny bit easier
+; TODO: for horizontal frame, use horizontal size!
+  lda O_RAM::ON_SCREEN
+  beq DontHurtPlayer
+
+  lda O_RAM::OBJ_DRAWY
+  add #12
+  sta O_RAM::OBJ_DRAWY
+
+  ; If it's the horizontal frame, move the hurt rectangle down more
+  ldy TempY
+  cpy #3
+  bne :+
+  add #12
+  sta O_RAM::OBJ_DRAWY
+:
+  jsr EnemyPlayerTouchHurt
+DontHurtPlayer:
+
+  lda ObjectVXL,x ; used unused X velocity byte for invincibility counter
+  beq GetShot
+  dec ObjectVXL,x
+  bne DontGetShot
+GetShot:
+; But for checking for getting shot use the full size
+  lda #0
+  sta TouchWidthA
+  lda #1
+  sta TouchWidthA2
+  lda #<(40*16)
+  sta TouchHeightA
+  lda #>(40*16)
+  sta TouchHeightA2
+  jsr EnemyGetShotTestCustomSize
+  bcc :+
+ProjectileIndex = TempVal+2
+    ; remove the projectile
+    ldy ProjectileIndex
+    lda #0
+    sta ObjectF1,y
+
+    lda #SFX::ENEMY_HURT
+    sta NeedSFX
+
+    ; Become invincible for a bit
+    lda #120
+    sta ObjectVXL,x
+
+    inc ObjectF4,x ; get hurt
+    lda ObjectF4,x
+    cmp #5
+    bne :+
+
+    lda ObjectF3,x ; move onto the next phase when health is run out
+    cmp #3         ; but don't allow moving past the last one
+    beq :+
+    inc ObjectF3,x
+    lda #0
+    sta ObjectF4,x ; reset health to zero
+  :
+DontGetShot:
+
+; If the boss is out of hitpoints, wait a bit and then teleport
+  lda ObjectF3,x
+  cmp #3
+  bcc :+
+    inc LevelVariable
+    lda LevelVariable
+    cmp #30
+    bcc :+
+    lda #16
+    jmp DoTeleport
+  :
+
+; Write health indicator
+  ldy OamPtr
+  lda #$45
+  sub ObjectF4,x
+  sta OAM_TILE,y
+  lda #OAM_COLOR_1
+  sta OAM_ATTR,y
+  lda #24
+  sta OAM_YPOS,y
+  lda #256-32
+  sta OAM_XPOS,y
+  iny
+  iny
+  iny
+  iny
+  sty OamPtr
+
+  rts
 .endproc

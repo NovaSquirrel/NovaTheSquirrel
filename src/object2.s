@@ -330,6 +330,376 @@ NoRide:
 
 ObjectMinecart_Ride = ObjectMinecart_Track::Ride
 
+.proc ObjectFighterMaker_Run
+XOffset = LevelDecodePointer+0
+YOffset = LevelDecodePointer+1
+; attacks:
+; 1. kick
+; 2. vertical bodyslam
+; 3. stomp from above
+; 4. swoop from above (or not)
+
+  ; Countdown the timer
+  lda ObjectTimer,x
+  beq :+
+    dec ObjectTimer,x
+  :
+
+  ldy ObjectF3,x ; phase number
+  jeq Phase0
+  dey
+  jeq Phase1
+  dey
+  jeq Phase2
+  jmp Phase3
+
+Draw:
+  lda YOffsets,y
+  sta YOffset
+
+  lda ObjectVXL,x ; reuse unused X velocity byte for invincibility
+  and #1
+  bne _rts
+
+  ; Look up pointer for the specified frame
+  lda ObjectF1,x
+  lsr
+  bcc :+
+    tya
+    eor #4
+    tay
+  :
+  sty TempY ; return frame number in Y
+  lda MetaspritePointersL,y
+  sta 0
+  lda MetaspritePointersH,y
+  sta 1
+  lda XOffsets,y
+  sta XOffset
+  jsr DispEnemyMetasprite_2
+_rts:
+  rts
+
+Phase0: ; kick
+  jsr Fall
+  bcc @InAir
+
+  lda ObjectTimer,x ; don't move if kicking
+  bne @InAir
+
+  lda ObjectPXH,x ; kick if close
+  sub PlayerPXH
+  abs
+  cmp #4
+  bcs :+
+     lda retraces
+     and #31
+     bne :+
+       ; Find X offset for direction first
+       lda ObjectF1,x
+       and #1
+       tay
+       lda KickOffsetXL,y
+       sta 0
+       lda KickOffsetXH,y
+       sta 1
+       lda #20
+       sta ObjectTimer,x
+
+       jsr Kicksplosion
+       jsr Kicksplosion
+  :
+
+  jsr DriftOverToYou
+@InAir:
+
+  lda ObjectTimer, x
+  cmp #1
+  lda #0
+  adc #0
+  tay
+  jmp Draw
+KickOffsetXL: .lobytes (16*16), -(8*16)
+KickOffsetXH: .hibytes (16*16), -(8*16)
+
+; ----------------------
+
+Phase1: ; vertical bodyslam
+  jsr Fall
+  php
+  bcc @InAir
+
+  lda ObjectPXH,x ; BODYSLAM if close
+  sub PlayerPXH
+  abs
+  cmp #4
+  bcs :+
+    lda ObjectTimer,x
+    bne :+
+    lda ObjectVYL,x
+    ora ObjectVYH,x
+    bne :+
+      lda #<(-$60)
+      sta ObjectVYL,x
+      lda #>(-$60)
+      sta ObjectVYH,x
+
+      ; Store old player position in unused X velocity byte
+      lda PlayerPXH
+      sta ObjectVXH,x
+
+      ; Don't bodyslam again for a bit
+      lda #90
+      sta ObjectTimer,x
+  :
+  jsr DriftOverToYou
+
+  jmp NotInAir
+@InAir:
+  lda ObjectVXH,x
+  jsr FastDriftOverToYou
+NotInAir:
+
+  plp
+  bcs @Standing
+  ldy #3
+  jmp Draw
+@Standing:
+  ldy #0
+  jmp Draw
+
+; ----------------------
+
+Phase2: ; stomp
+  lda ObjectVYH,x ; only stomp if not moving vertically
+  ora ObjectVYL,x
+  bne @NoStomp
+  lda ObjectPXH,x ; stomp if close
+  sub PlayerPXH
+  abs
+  cmp #2
+  bcs :+
+    lda #<(-20)
+    sta ObjectVYL,x
+    lda #>($20)
+    sta ObjectVYH,x
+  :
+
+  lda PlayerPXH
+  jsr FastDriftOverToYou
+  jsr EnemyLookAtPlayer_2
+@NoStomp:
+  jsr EnemyApplyYVelocity_2
+
+  ; Past the ground?
+  lda ObjectPYH,x
+  cmp #10
+  bcc :+
+  lda ObjectPYL,x
+  cmp #$80
+  bcc :+
+    lda #10
+    sta ObjectPYH,x
+    lda #$80
+    sta ObjectPYL,x
+    lda #<(-$10)
+    sta ObjectVYL,x
+    lda #>(-$10)
+    sta ObjectVYH,x
+
+    lda #$40
+    sta 0
+    lda #$00
+    sta 1
+    jsr Kicksplosion
+    jsr Kicksplosion
+  :
+
+  ; Past the "ceiling"?
+  lda ObjectPYH,x
+  cmp #3
+  bcs :+
+  lda ObjectPYL,x
+  cmp #$80
+  bcs :+
+    lda #0
+    sta ObjectVYL,x
+    sta ObjectVYH,x
+  :
+
+  ldy #2
+  jmp Draw
+
+; ----------------------
+
+Phase3: ; swoop from above
+; or just stand still I guess
+  ldy #0
+  jmp Draw
+
+; ----------------------
+
+DriftOverToYou:
+  ; Face the player every 16 frames
+  lda retraces
+  and #15
+  bne :+
+  jsr EnemyLookAtPlayer_2
+:
+
+  ; Slide over to the player
+  lda PlayerPXH
+  sub ObjectPXH,x
+  asl
+  asl
+  sta 0
+  sex
+  sta 1
+
+  lda ObjectPXL,x
+  add 0
+  sta ObjectPXL,x
+  lda ObjectPXH,x
+  adc 1
+  sta ObjectPXH,x
+  rts
+
+; input: A (column to seek out)
+FastDriftOverToYou:
+  ; Slide over to the player
+  sub ObjectPXH,x
+  pha
+  sex
+  sta 1
+  pla
+  ; shift separately to account for integer overflow
+  .repeat 4
+    asl
+    rol 1
+  .endrep
+  sta 0  
+
+  lda ObjectPXL,x
+  add 0
+  sta ObjectPXL,x
+  lda ObjectPXH,x
+  adc 1
+  sta ObjectPXH,x
+  rts
+
+Kicksplosion:
+  ; KICK, and make a small explosion
+  jsr FindFreeObjectY
+  bcc :+ ; no slots free
+  lda #Enemy::EXPLOSION*2
+  sta ObjectF1,y
+
+  lda #$8
+  sta ObjectTimer,y
+
+  lda #SFX::BOOM1
+  sta NeedSFX
+
+  ; Offset the kick sidewards
+  lda ObjectPXL,x
+  add 0
+  sta ObjectVXL,y
+  lda ObjectPXH,x
+  adc 1
+  sta ObjectPXH,y
+  sta ObjectVXH,y
+
+  ; Offset the kick downwards
+  lda ObjectPYL,x
+  add #$02
+  sta ObjectVYL,y
+  lda ObjectPYH,x
+  adc #$02
+  sta ObjectPYH,y
+  sta ObjectVYH,y
+
+  lda #0
+  sta ObjectF3,y
+  sta ObjectF4,y
+: rts
+
+Fall:
+  jsr EnemyGravity_2
+
+  ; Is the enemy past the ground?
+  lda ObjectPYH,x
+  cmp #10
+  bcc :+
+  lda ObjectPYL,x
+  cmp #$80
+  bcc :+
+  lda #10
+  sta ObjectPYH,x
+  lda #$80
+  sta ObjectPYL,x
+  lda #0
+  sta ObjectVYH,x
+  sta ObjectVYL,x
+  sec
+  rts
+:
+  clc
+  rts
+
+MetaspritePointersL:
+  .lobytes MetaspriteR, MetaspriteKickR, MetaspriteFlyVertR, MetaspriteFlyHorizR
+  .lobytes MetaspriteL, MetaspriteKickL, MetaspriteFlyVertL, MetaspriteFlyHorizL
+MetaspritePointersH:
+  .hibytes MetaspriteR, MetaspriteKickR, MetaspriteFlyVertR, MetaspriteFlyHorizR
+  .hibytes MetaspriteL, MetaspriteKickL, MetaspriteFlyVertL, MetaspriteFlyHorizL
+XOffsets:
+  .byt 0, 0,   0, <-(12)
+  .byt 0, <-8, 0, <-(12)
+YOffsets:
+  .byt 0, 0,   0,    24 ;12
+
+MetaspriteR:
+  MetaspriteHeader 2, 5, 2
+  .byt $00, $10, $02, $12, $08
+  .byt $01, $11, $03, $13, $09
+MetaspriteKickR:
+  MetaspriteHeader 3, 5, 2
+  .byt $00, $10, $02, $12, $08
+  .byt $01, $11, $03, $0f, $18
+  .byt $20, $20, $20, $20, $19
+MetaspriteFlyVertR:
+  MetaspriteHeader 2, 5, 2
+  .byt $04, $14, $06, $16, $08
+  .byt $05, $15, $07, $17, $09
+MetaspriteFlyHorizR:
+  MetaspriteHeader 5, 2, 2
+  .byt $0a, $1a
+  .byt $0b, $1b
+  .byt $0c, $1c
+  .byt $0d, $1d
+  .byt $0e, $1e
+MetaspriteL:
+  MetaspriteHeader 2, 5, 2
+  .byt $01|OAM_XFLIP, $11|OAM_XFLIP, $03|OAM_XFLIP, $13|OAM_XFLIP, $09|OAM_XFLIP
+  .byt $00|OAM_XFLIP, $10|OAM_XFLIP, $02|OAM_XFLIP, $12|OAM_XFLIP, $08|OAM_XFLIP
+MetaspriteKickL:
+  MetaspriteHeader 3, 5, 2
+  .byt $20, $20, $20, $20, $19|OAM_XFLIP
+  .byt $01|OAM_XFLIP, $11|OAM_XFLIP, $03|OAM_XFLIP, $0f|OAM_XFLIP, $18|OAM_XFLIP
+  .byt $00|OAM_XFLIP, $10|OAM_XFLIP, $02|OAM_XFLIP, $12|OAM_XFLIP, $08|OAM_XFLIP
+MetaspriteFlyVertL:
+  MetaspriteHeader 2, 5, 2
+  .byt $05|OAM_XFLIP, $15|OAM_XFLIP, $07|OAM_XFLIP, $17|OAM_XFLIP, $09|OAM_XFLIP
+  .byt $04|OAM_XFLIP, $14|OAM_XFLIP, $06|OAM_XFLIP, $16|OAM_XFLIP, $08|OAM_XFLIP
+MetaspriteFlyHorizL:
+  MetaspriteHeader 5, 2, 2
+  .byt $0e|OAM_XFLIP, $1e|OAM_XFLIP
+  .byt $0d|OAM_XFLIP, $1d|OAM_XFLIP
+  .byt $0c|OAM_XFLIP, $1c|OAM_XFLIP
+  .byt $0b|OAM_XFLIP, $1b|OAM_XFLIP
+  .byt $0a|OAM_XFLIP, $1a|OAM_XFLIP
+.endproc
+
 ; Randomly swaps two object slots, because the NES can only display 8 sprites per scanline
 ; and any past that aren't drawn. This way sprites are don't just drop out of visibility.
 .proc FlickerEnemies
@@ -427,5 +797,251 @@ ObjectMinecart_Ride = ObjectMinecart_Track::Ride
   sta ObjectIndexInLevel,y
   lda 13
   sta ObjectTimer,y
+  rts
+.endproc
+
+; Draws a metasprite object
+; Different from the regular code in that it has an offset (in pixels)
+; and takes the pointer in 0, 1
+; inputs: 0,1 (metasprite definition), X (object slot), X and Y offsets (LevelDecodePointer and +1)
+.proc DispEnemyMetasprite_2
+Temp = TouchTemp
+Data        = 0
+Width       = 2
+Height      = 3
+CurHeight   = 4
+Attribute   = 5
+CurX        = Temp+0
+CurY        = Temp+1
+OldWidth    = Temp+2
+StartIndex  = Temp+3
+ColumnX     = Temp+4
+XOffset     = LevelDecodePointer+0
+YOffset     = LevelDecodePointer+1
+  stx TempX
+
+  ldy #1
+  sty StartIndex
+  ; not on-screen until it's confirmed to be
+  dey ; Y = 0
+  sty O_RAM::ON_SCREEN
+  
+  ; read the header byte and separate it out into width, height and palette
+  ; costs like ~6 more cycles than reading 3 separate bytes
+  ; ldy #0 - Y still = 0
+  lda (Data),y
+  tax
+  and #7
+  sta Height
+  txa
+  lsr
+  lsr
+  lsr
+  tax
+  and #7
+  sta Width
+  sta OldWidth
+  txa
+  lsr
+  lsr
+  lsr
+  sta Attribute
+
+  ; width and height go from 1-8, not 0-7
+  inc Width
+  inc Height
+
+  ldx TempX ; we need the object slot index again to read the object's X position
+
+; --- compute the X and Y positions ---
+  RealXPosToScreenPosByX ObjectPXL, ObjectPXH, O_RAM::OBJ_DRAWX
+;  sta HighX
+
+  ; divide the columns by 3
+  ; to do: optimize
+  ldy O_RAM::OBJ_DRAWX
+  sty ColumnX
+  .repeat 3
+    lsr
+    ror ColumnX
+  .endrep
+
+  ; init CurX
+  lda O_RAM::OBJ_DRAWX
+  add XOffset
+  sta CurX
+
+  RealYPosToScreenPosByX ObjectPYL, ObjectPYH, O_RAM::OBJ_DRAWY
+
+; --- do any clipping necessary ---
+LeftClip:
+  lda ColumnX
+  bpl NoLeftClip
+    add Width ; make sure the sprite is on the screen at all
+    bpl :+
+_rts1: rts
+  : beq _rts1
+
+    sta Width
+
+    ; inefficient lame code, but shouldn't have to run many iterations
+    ldy ColumnX
+  : lda StartIndex
+    add Height
+    sta StartIndex
+    lda CurX
+    add #8
+    sta CurX
+    iny
+    bne :-
+    jmp NoRightClip
+  NoLeftClip:
+RightClip:
+  lda ColumnX
+  cmp #32
+  bcs _rts1
+  add Width
+  cmp #32
+  bcc NoRightClip
+  sub #32
+
+  ; width = width - the number of offscreen tiles
+  eor #$FF
+  sec
+  adc Width
+  sta Width
+
+  NoRightClip:
+
+  inc O_RAM::ON_SCREEN
+
+;  ; draw the tiles horizontally flipped if needed
+;  lda ObjectF1,x
+  ; We no longer need X since we already have the object's positions,
+  ; so it's free for use here.
+  ldx OamPtr
+;  lsr
+;  jcs DispEnemyMetaspriteLeft
+
+; --- draw the tiles ---
+  ; start Y at the position where it'll start reading tile data
+  ldy StartIndex
+  dey
+@ColumnLoopStart:
+  lda O_RAM::OBJ_DRAWY
+  add YOffset
+  sta CurY
+  lda Height
+  sta CurHeight
+@ColumnLoop:
+  iny           ; next sprite will use the next tile
+  lda (Data),y  ; read a tile
+  and #%00100000
+  bne @SkipTile
+  lda (Data),y
+  pha
+  and #%00011111
+  ora O_RAM::TILEBASE
+  sta OAM_TILE,x
+  pla
+  and #OAM_XFLIP | OAM_YFLIP
+  eor Attribute
+  sta OAM_ATTR,x
+
+  ; X and Y
+  lda CurX
+  sta OAM_XPOS,x
+  lda CurY
+  sta OAM_YPOS,x
+  add #8   ; move the next Y position down a tile
+  sta CurY
+
+  ; next tile in OAM
+  inx
+  inx
+  inx
+  inx
+@SkipTileGoBack:
+  ; see if there's more tiles for this column or not
+  dec CurHeight
+  bne @ColumnLoop
+
+  ; no? is this the last column?
+  dec Width
+  beq Exit
+
+  ; no? then next column
+  lda CurX
+  add #8
+  sta CurX
+  jmp @ColumnLoopStart
+
+@SkipTile:
+  lda CurY
+  add #8
+  sta CurY
+  jmp @SkipTileGoBack
+Exit:
+  stx OamPtr
+  ldx TempX
+  rts
+.endproc
+
+.proc EnemyGravity_2
+  lda ObjectVYH,x
+  bmi GravityAddOK
+  lda ObjectVYL,x
+  cmp #$60
+  bcs SkipGravity
+GravityAddOK:
+  lda ObjectVYL,x
+  add #4
+  sta ObjectVYL,x
+  bcc SkipGravity
+    inc ObjectVYH,x
+SkipGravity:
+
+  ; apply gravity
+  jmp EnemyApplyYVelocity_2
+.endproc
+
+.proc EnemyApplyVelocity_2
+; apply X
+  lda ObjectPXL,x
+  add ObjectVXL,x
+  sta ObjectPXL,x
+  lda ObjectPXH,x
+  adc ObjectVXH,x
+  sta ObjectPXH,x
+YOnly:
+; apply Y
+  lda ObjectPYL,x
+  add ObjectVYL,x
+  sta ObjectPYL,x
+  lda ObjectPYH,x
+  adc ObjectVYH,x
+  sta ObjectPYH,x
+  rts
+.endproc
+EnemyApplyYVelocity_2 = EnemyApplyVelocity_2::YOnly
+
+.proc EnemyApplyXVelocity_2
+  lda ObjectPXL,x
+  add ObjectVXL,x
+  sta ObjectPXL,x
+  lda ObjectPXH,x
+  adc ObjectVXH,x
+  sta ObjectPXH,x
+  rts
+.endproc
+
+.proc EnemyLookAtPlayer_2
+  ; Look at player  
+  lda ObjectPXH,x
+  cmp PlayerPXH
+  lda ObjectF1,x
+  and #<~1
+  adc #0
+  sta ObjectF1,x
   rts
 .endproc

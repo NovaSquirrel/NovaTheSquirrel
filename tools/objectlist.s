@@ -74,6 +74,7 @@
   .byt 0 ;LASER_BEAM
   .byt GraphicsUpload::SP_FHBG ;FOREHEAD_BLOCK_GUY
   .byt GraphicsUpload::SP_FHBG ;FOREHEAD_BLOCK
+  .byt GraphicsUpload::SP_FREAK ;FIGHTER_MAKER
 .endproc
 
 .proc ObjBehaviors
@@ -152,6 +153,7 @@
   .byt 0 ;LASER_BEAM
   .byt 0 ;FOREHEAD_BLOCK_GUY
   .byt 0 ;FOREHEAD_BLOCK
+  .byt 0 ;FIGHTER_MAKER
 .endproc
 
 .proc ObjFlags
@@ -230,6 +232,7 @@
   .byt ObjFlag::SECONDARY ;LASER_BEAM
   .byt ObjFlag::ESSENTIAL ;FOREHEAD_BLOCK_GUY
   .byt ObjFlag::ESSENTIAL ;FOREHEAD_BLOCK
+  .byt ObjFlag::ESSENTIAL ;FIGHTER_MAKER
 .endproc
 
 .proc ObjectTable
@@ -308,5 +311,6 @@
   .raddr ObjectLaserBeam ;LASER_BEAM
   .raddr ObjectFHBG ;FOREHEAD_BLOCK_GUY
   .raddr ObjectFHBGBlock ;FOREHEAD_BLOCK
+  .raddr ObjectFighterMaker ;FIGHTER_MAKER
 .endproc
 

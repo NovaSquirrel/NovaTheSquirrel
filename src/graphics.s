@@ -84,6 +84,9 @@ PalEnemy6:  .byt $61
 PalEnemyMolSno:
             .byt $60
             .byt $0f, $16, $30
+PalFighterMaker:
+            .byt $60
+            .byt $0a, $2a, $2c
 
 PalLevelSel: .byt $07
              .byt $30, $30, $30

@@ -17,6 +17,7 @@ BGDABG:        ChrFile "../chr/bgdabg.pb53",      768,   $0500
 BGDABGCommon:  ChrFile "../chr/bgdabgcommon.pb53",1024,  $0000
 SPFaceball:    ChrFile "../chr/spfaceball.pb53",  512,   $1800
 SPFHBG:        ChrFile "../chr/spfhbg.pb53",      512,   $1800
+SPFreak:       ChrFile "../chr/spfreak.pb53",     512,   $1800
 
 AnimWaterGfx:  .incbin "../chr/animwater.chr"
 ToggleBlockGFX: .incbin "../chr/toggleblock.chr"

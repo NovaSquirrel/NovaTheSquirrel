@@ -266,6 +266,20 @@
 <2 S_TEAM>You're still going down, even if Bill has to be the one to do it!! We will succeed!
 `end
 
+:BeforeFighterMaker:
+`scene BAD_GUYS_AND_LEADER
+<2 BILL>Okay we need to bring out the big guns if we want to stop this squirrel. Maybe this fighter I just made will do the trick?
+<0 S_TEAM>You just made a fighter out of thin air?
+<2 BILL>Yes, thanks to this software I just found!
+<0 NOVA_WOW>... What is that thing? Why's it coming after me? ... Oh, it must be another boss.
+`scene NOVA_ALONE
+`end
+
+:AfterFighterMaker:
+`scene NOVA_ALONE
+<0 NOVA>That was a strange fight.
+`end
+
 :MeetRemy:
 `scene NOVA_AND_REMY
 <0 NOVA>Hi, I'm Nova. Whatcha doing here?
@@ -564,7 +578,7 @@ building platforms to them.
 :PreLevelBoss2:
  Nova runs into the Scheme
 `nl
- Team again and has you
+ Team again and has her
 `nl
  fight Forehead Block Guy.
 `end
