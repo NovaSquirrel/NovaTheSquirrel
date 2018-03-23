@@ -59,5 +59,6 @@
   PAL_DABG_GRAY
   SP_FREAK
   PAL_FREAK
+  BG_CHIP_DABG
 .endenum
 

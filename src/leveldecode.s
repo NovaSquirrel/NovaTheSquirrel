@@ -482,11 +482,25 @@ DoLevelUploadListAndSprites:
   lda #<$0800
   sta PPUADDR
   ldy #0
+
+  ; World 5 uses different tiles
+  ; because the palette would look lame otherwise.
+  ; Instead maybe detect the level theme specifically?
+  lda StartedLevelNumber
+  and #%111000
+  cmp #4*8
+  bne :+
+    ldy #128
+  :
+
 : lda ToggleBlockGFX,y
   sta PPUDATA
   iny
+  cpy #255 ; exit for either 255 or 127
+  beq :+
   cpy #127
   bne :-
+:
   jsr SetPRG_Restore
 NoToggle:
 .endif

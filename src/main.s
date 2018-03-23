@@ -430,6 +430,18 @@ DidntSkipPlayerAndEnemies:
   eor ToggleBlockEnabled
   tay
 
+  ; World 5 uses different tiles
+  ; because the palette would look lame otherwise.
+  ; Instead maybe detect the level theme specifically?
+  lda StartedLevelNumber
+  and #%111000
+  cmp #4*8
+  bne :+
+    tya
+    eor #128
+    tay
+  :
+
   ; Copy the tiles into the buffer
   ldx #0
 : lda ToggleBlockGFX,y
