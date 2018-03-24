@@ -849,18 +849,7 @@ NotOnGrid:
   bne :+
   ; Move the platform forward
   ldy ObjectF2,x
-  lda ObjectPXL,x
-  add XOffsetLo,y
-  sta ObjectPXL,x
-  lda ObjectPXH,x
-  adc XOffsetHi,y
-  sta ObjectPXH,x
-  lda ObjectPYL,x
-  add YOffsetLo,y
-  sta ObjectPYL,x
-  lda ObjectPYH,x
-  adc YOffsetHi,y
-  sta ObjectPYH,x
+  jsr GoForward
 :
 
   jsr DrawPlatformAndCollide
@@ -883,19 +872,7 @@ NotOnGrid:
 
     ; (this part fixes the 1 frame delay there would otherwise be vertically)
     ldy ObjectF2,x
-    lda PlayerPYL
-    add YOffsetLo,y
-    sta PlayerPYL
-    lda PlayerPYH
-    adc YOffsetHi,y
-    sta PlayerPYH
-
-    lda PlayerPXL
-    add XOffsetLo,y
-    sta PlayerPXL
-    lda PlayerPXH
-    adc XOffsetHi,y
-    sta PlayerPXH
+    jsr AdjustPlayer
 :
   rts
 
@@ -914,6 +891,67 @@ LeftIndex:
   .byt UP,    RIGHT, DOWN, LEFT
 RightIndex:
   .byt DOWN,  LEFT,  UP,   RIGHT
+
+; Move the platform one frame ahead
+GoForward:
+  lda ObjectPXL,x
+  add XOffsetLo,y
+  sta ObjectPXL,x
+  lda ObjectPXH,x
+  adc XOffsetHi,y
+  sta ObjectPXH,x
+  lda ObjectPYL,x
+  add YOffsetLo,y
+  sta ObjectPYL,x
+  lda ObjectPYH,x
+  adc YOffsetHi,y
+  sta ObjectPYH,x
+  rts
+
+; Move the player with the platform so they aren't one frame behind
+AdjustPlayer:
+  lda PlayerPYL
+  add YOffsetLo,y
+  sta PlayerPYL
+  lda PlayerPYH
+  adc YOffsetHi,y
+  sta PlayerPYH
+
+  lda PlayerPXL
+  add XOffsetLo,y
+  sta PlayerPXL
+  lda PlayerPXH
+  adc XOffsetHi,y
+  sta PlayerPXH
+  rts
+.endproc
+
+.proc ObjectMovingPlatformPush
+  jsr DrawPlatformAndCollide
+  bcc :+
+    lda #2
+    sta PlayerRidingSomething
+    lda #0
+    sta PlayerNeedsGround
+    sta PlayerVYL
+    sta PlayerVYH
+
+    ldy ObjectF3,x
+    jsr ObjectMovingPlatformLine::GoForward
+
+    ; Move the player with the platform
+    lda ObjectPYL,x
+    sub #$80
+    sta PlayerPYL
+    lda ObjectPYH,x
+    sbc #1
+    sta PlayerPYH
+
+    ; (this part fixes the 1 frame delay there would otherwise be vertically)
+    ldy ObjectF3,x
+    jsr ObjectMovingPlatformLine::AdjustPlayer
+:
+  rts
 .endproc
 
 .proc ObjectMovingPlatformH

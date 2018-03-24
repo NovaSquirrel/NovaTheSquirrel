@@ -75,6 +75,7 @@
   .byt GraphicsUpload::SP_FHBG ;FOREHEAD_BLOCK_GUY
   .byt GraphicsUpload::SP_FHBG ;FOREHEAD_BLOCK
   .byt GraphicsUpload::SP_FREAK ;FIGHTER_MAKER
+  .byt 0 ;MOVING_PLATFORM_PUSH
 .endproc
 
 .proc ObjBehaviors
@@ -154,6 +155,7 @@
   .byt 0 ;FOREHEAD_BLOCK_GUY
   .byt 0 ;FOREHEAD_BLOCK
   .byt 0 ;FIGHTER_MAKER
+  .byt ObjBehavior::AUTO_REMOVE ;MOVING_PLATFORM_PUSH
 .endproc
 
 .proc ObjFlags
@@ -233,6 +235,7 @@
   .byt ObjFlag::ESSENTIAL ;FOREHEAD_BLOCK_GUY
   .byt ObjFlag::ESSENTIAL ;FOREHEAD_BLOCK
   .byt ObjFlag::ESSENTIAL ;FIGHTER_MAKER
+  .byt ObjFlag::ESSENTIAL ;MOVING_PLATFORM_PUSH
 .endproc
 
 .proc ObjectTable
@@ -312,5 +315,6 @@
   .raddr ObjectFHBG ;FOREHEAD_BLOCK_GUY
   .raddr ObjectFHBGBlock ;FOREHEAD_BLOCK
   .raddr ObjectFighterMaker ;FIGHTER_MAKER
+  .raddr ObjectMovingPlatformPush ;MOVING_PLATFORM_PUSH
 .endproc
 
