@@ -255,7 +255,9 @@ AfterAmount:
   jsr WaitVblank
   pla
   sub #InventoryItem::ABILITY_BLASTER-1
-  jmp ChangePlayerAbility
+  ora #128
+  sta NeedAbilityChange
+  rts
 .endproc
 
 .proc PauseScreen
