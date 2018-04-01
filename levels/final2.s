@@ -242,8 +242,8 @@ final2Data:
   LObj  LO::S_CUSTOM,         0, 9, Metatiles::LOCK_BLUE
   LObj  LO::S_PRIZE,          1, 6
   LWriteCol InventoryItem::HEALTH_RESTORE
-  LObjN LO::R_COIN,           0, 7, 0, 2
-  LObjN LO::R_SOLID_ROCK,     1, 6, 0, 3
+  LObjN LO::R_COIN,           0, 7, 2, 2
+  LObjN LO::R_SOLID_ROCK,     1, 6, 1, 0
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LFinished
 

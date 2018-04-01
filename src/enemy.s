@@ -2150,11 +2150,18 @@ ShootSpeed:
   ldy #OAM_COLOR_3
   jsr DispEnemyWide
 
+  lda ObjectF3,x ; timer for non-cannon versions
+  bne :+
+    inc ObjectF4,x
+    lda ObjectF4,x
+    bne :+
+      jsr EnemyBecomePoof
+  :
+
   jsr EnemyPlayerTouch
   bcc :+
     jsr HurtPlayer
-    lda #0
-    sta ObjectF1,x
+    jsr EnemyBecomePoof
   :
   rts
 .endproc
@@ -3188,14 +3195,7 @@ NoShoot2:
     lda ObjectF4,x
     cmp #4         ; die if shot too much
     bcc :+
-      lda #Enemy::POOF * 2
-      sta ObjectF1,x
-      lda #0
-      sta ObjectTimer,x
-      sta ObjectF2,x
-      sta ObjectF3,x
-      sta ObjectF4,x
-      sta O_RAM::OBJ_TYPE ; fixes a bug where after changing to the poof, it still checks for projectiles
+      jsr EnemyBecomePoof
 
       lda #SFX::ENEMY_SMOOSH
       sta NeedSFX
