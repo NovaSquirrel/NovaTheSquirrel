@@ -75,7 +75,7 @@
 ;    7 run special command S:
 
 .proc DecompressLevel ; A = level number
-LevelBank = 15 ; figure out what to put in here later; for now it's just gonna be LEVELS_BANK1
+LevelBank = 15
   sta LevelNumber
   tax
   lda #SOUND_BANK
@@ -599,6 +599,7 @@ SpecialConfigTable:
   .raddr MakeFrozenBackground
   .raddr SetBGStars
   .raddr SetAnimatedWater
+  .raddr SetJackStone
 
 SpecialConfigMakeBackgrounds:
   lda (LevelDecodePointer),y
@@ -625,6 +626,10 @@ SpecialConfigMakeBackgrounds:
 BackgroundRoutines:
   .raddr BGClouds
   .raddr BGCloudsEverywhere
+
+SetJackStone:
+  inc BackgroundBoss
+  rts
 
 SetBGStars:
   lda #<StarryBackground

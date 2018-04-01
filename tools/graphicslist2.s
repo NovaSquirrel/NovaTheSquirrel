@@ -60,5 +60,7 @@
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPFreak,      >SPFreak ;SP_FREAK
   .byt GRAPHICS_BANK1|IS_PALETTE, <PalFighterMaker,  >PalFighterMaker ;PAL_FREAK
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <BGChipDABG,   >BGChipDABG ;BG_CHIP_DABG
+  .byt GRAPHICS_BANK1|IS_PALETTE, <PalJack,      >PalJack ;PAL_JACK
+  .byt GRAPHICS_BANK1|IS_PALETTE, <PalDABGBlue,  >PalDABGBlue ;PAL_DABG_BLUE
 .endproc
 

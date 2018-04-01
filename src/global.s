@@ -266,6 +266,8 @@ ChangePlayerAbilityWithoutSFX = ChangePlayerAbility::WithoutSFX
 ; Updates PPUSCROLL and PPUCTRL to account for ScrollX
 ; locals: 0
 .proc UpdateScrollRegister
+  lda BackgroundBoss
+  bne OverrideScroll
   lda ScrollX+1
   sta 0
   lda ScrollX
@@ -288,6 +290,14 @@ BGSprites:
   lda 0
   and #1 ; bit 0 is most significant bit of scroll
   ora #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_0000
+  sta PPUCTRL
+  rts
+OverrideScroll:
+  lda BackgroundBossScrollX
+  sta PPUSCROLL
+  lda BackgroundBossScrollY
+  sta PPUSCROLL
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
   rts
 .endproc
@@ -1373,6 +1383,8 @@ PSIX2:
 .proc DoTeleport
   stx TempX
   tax
+  lsr BackgroundBoss ; change if there's more than one
+
   ; 0Y XX    - X and Y only
   ; 1Y XX LL - X and Y with level number
   ; 20 AA AA - start dialog

@@ -44,9 +44,9 @@
 
   lda NeedDialog
   bne :+
-  jsr RenderLevelScreens ; Render the screen the player's on
-  jsr WaitVblank
-:
+    jsr RenderLevelScreens ; Render the screen the player's on
+    jsr WaitVblank
+  :
 
   ; Make sure NMI is on
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
@@ -317,7 +317,6 @@ DidntSkipPlayerAndEnemies:
   beq :+
 ;    lda #MAINLOOP_BANK
 ;    jsr SetPRG
-    jsr WaitVblank
     jsr RenderLevelScreens
     lda #0
     sta NeedLevelRerender
@@ -459,6 +458,15 @@ NoToggleUpload:
     jmp (LevelRoutine)
   :
 LevelRoutineDone:
+
+
+
+  lda retraces
+  sta BackgroundBossScrollX
+  lda #20
+  sta BackgroundBossScrollY
+
+
 
 .ifdef CPU_METER
   lda #OBJ_ON | BG_ON
@@ -832,3 +840,4 @@ StarYPos:
 Nope:
   jmp MainLoop::LevelRoutineDone
 .endproc
+

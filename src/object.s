@@ -928,7 +928,7 @@ AdjustPlayer:
 
 .proc ObjectMovingPlatformPush
   jsr DrawPlatformAndCollide
-  bcc :+
+  bcc No
     lda #2
     sta PlayerRidingSomething
     lda #0
@@ -937,7 +937,10 @@ AdjustPlayer:
     sta PlayerVYH
 
     ldy ObjectF3,x
+    cpy #4 ; type 4 is just a motionless platform
+    beq :+
     jsr ObjectMovingPlatformLine::GoForward
+  :
 
     ; Move the player with the platform
     lda ObjectPYL,x
@@ -947,10 +950,12 @@ AdjustPlayer:
     sbc #1
     sta PlayerPYH
 
+    cpy #4
+    beq No
     ; (this part fixes the 1 frame delay there would otherwise be vertically)
     ldy ObjectF3,x
     jsr ObjectMovingPlatformLine::AdjustPlayer
-:
+No:
   rts
 .endproc
 
@@ -1757,3 +1762,15 @@ DontDraw:
   jmp GetLevelColumnPtr
 .endproc
 
+
+.proc EnemyBecomePoof
+  lda #Enemy::POOF * 2
+  sta ObjectF1,x
+  lda #0
+  sta ObjectTimer,x
+  sta ObjectF2,x
+  sta ObjectF3,x
+  sta ObjectF4,x
+  sta O_RAM::OBJ_TYPE ; fixes a bug where after changing to the poof, it still checks for projectiles
+  rts
+.endproc

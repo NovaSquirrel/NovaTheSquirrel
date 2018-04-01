@@ -524,6 +524,7 @@ LSpecialCmd = $f7
   FROZEN_CAVE
   STARS
   ANIMATED_WATER  
+  JACK_STONE
 .endenum
 
 .enum LevelBackgroundId

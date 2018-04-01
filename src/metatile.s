@@ -58,6 +58,7 @@ M_BEHAVIOR =       %00011111 ; mask for the block's behavior only
   lda #0
   sta PPUMASK
   sta IsScrollUpdate
+
   ; Clear block updates
   ldx #4
 : sta TileUpdateA1,x
@@ -182,6 +183,9 @@ Nope:
 Exit:
 .endscope
 DidntTeleport:
+
+  lda BackgroundBoss
+  jne RenderBackgroundBoss
 
   ; Start writing chunks
   lda ScrollX+1
@@ -345,4 +349,72 @@ Write30:
   rts
 AttributeAddrsLo:
   .byt $c0, $c8, $d0, $d8
+.endproc
+
+.proc RenderBackgroundBoss
+  lda #0
+  sta PPUMASK
+  sta IsScrollUpdate
+
+  bit PPUSTATUS
+  jsr ClearName
+  jsr ClearNameRight
+
+  ; Go through the list of strips
+  ; to draw Jack Stone onscreen
+  ldy #0
+Loop:
+  lda Strips+0,y
+  beq Done
+  sta PPUADDR
+  lda Strips+1,y
+  sta PPUADDR
+  ldx Strips+3,y
+  lda Strips+2,y
+  ; Push to the next strip
+  iny
+  iny
+  iny
+  iny
+  sty 0 ; save Y for the next loop iteration
+  tay
+
+  jsr WriteIncreasing
+
+  ldy 0
+  bne Loop
+Done:
+  rts
+
+Strips:
+  .dbyt $2000+(20*32+28)
+  .byt $80, 3
+  .dbyt $2000+(21*32+28)
+  .byt $90, 3
+  .dbyt $2000+(22*32+28)
+  .byt $a0, 3
+  .dbyt $2000+(23*32+28)
+  .byt $b0, 3
+  .dbyt $2000+(24*32+27)
+  .byt $83, 5
+  .dbyt $2000+(25*32+27)
+  .byt $93, 5
+  .dbyt $2000+(26*32+27)
+  .byt $a3, 5
+  .dbyt $2000+(27*32+27)
+  .byt $b3, 5
+  .dbyt $2000+(28*32+28)
+  .byt $88, 3
+  .dbyt $2000+(29*32+28)
+  .byt $98, 3
+  ; attribute bytes
+  .dbyt $23ef
+  .byt %10101010, 1
+  .dbyt $23f6
+  .byt %11111111, 1
+  .dbyt $23f7
+  .byt %11111111, 1
+  .dbyt $23ff
+  .byt %11111111, 1
+  .byt 0
 .endproc

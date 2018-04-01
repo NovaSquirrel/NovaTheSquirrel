@@ -48,6 +48,11 @@ PalDABGGray: .byt $03
              .byt $0f, $00, $30
              .byt $0f, $27, $37
              .byt $0f, $01, $12
+PalDABGBlue: .byt $03
+             .byt $0f, $29, $17
+             .byt $0f, $12, $30
+             .byt $0f, $27, $37
+             .byt $0f, $01, $12
 
 
 AltGrassy1: .byt $00
@@ -97,6 +102,10 @@ PalLevelSel: .byt $07
              .byt $15, $25, $35
              .byt $1a, $2a, $3a
              .byt $00, $10, $30
+PalJack:
+			.byt $21
+            .byt $17, $38, $30
+            .byt $01, $12, $30
 
 PalExpositionForum:
              .byt $21
