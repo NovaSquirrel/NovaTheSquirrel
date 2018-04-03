@@ -655,8 +655,10 @@ Slot3:
   rts
 .endproc
 
+.if 0
 ; Same as DetectSpriteSlot, but the input is in Y
-; and if it fails then it tries the input in A
+; and if it fails then it tries the input in A.
+; From when there used to be two graphic slots per sprite type.
 DetectSpriteSlot2:
   cpy SpriteTileSlots+0
   beq DetectSpriteSlot::Slot0
@@ -667,6 +669,7 @@ DetectSpriteSlot2:
   cpy SpriteTileSlots+3
   beq DetectSpriteSlot::Slot3
   bne DetectSpriteSlot
+.endif
 
 ; Sets LevelBlockPtr to the start of a given column in the level, then reads a specific row
 ; input: A (column), Y (row)

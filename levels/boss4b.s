@@ -19,7 +19,7 @@ boss4b:
 
 boss4bData:
   .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <BeforeFighterMaker, >BeforeFighterMaker
-  LObjN LO::WIDE_2,           4, 9, 6, LN2::PATH_LINE
+  LXPlus16
   LSetX 16
   LWriteCol 9, 33
   LXPlus16
@@ -36,11 +36,6 @@ boss4bData:
   LFinished
 
 boss4bSprite:
-  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,   2,   8, 4
-  LSpr Enemy::MOVING_PLATFORM_LINE, 0,   4,   9
-  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,   6,   4, 4
-  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,   8,   5, 4
-  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  10,   6, 4
-  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  12,   7, 4
+  LSpr Enemy::BOSS_FIGHT,          0,   0,   1, 2
   LSpr Enemy::COLLECTIBLE,         0,  41,   3
   .byt 255 ; end

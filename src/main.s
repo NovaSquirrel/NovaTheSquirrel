@@ -460,14 +460,6 @@ NoToggleUpload:
 LevelRoutineDone:
 
 
-
-  lda retraces
-  sta BackgroundBossScrollX
-  lda #20
-  sta BackgroundBossScrollY
-
-
-
 .ifdef CPU_METER
   lda #OBJ_ON | BG_ON
   sta PPUMASK
@@ -840,4 +832,3 @@ StarYPos:
 Nope:
   jmp MainLoop::LevelRoutineDone
 .endproc
-

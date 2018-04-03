@@ -2781,14 +2781,16 @@ SMILOID = 4
   pha
   rts
 
-NumRoutines = 2
+NumRoutines = 3 ; update if you add more
 
 RunBossRoutine:
   .raddr DABGFight
   .raddr DABGFight
+  .raddr JackFight
 InitBossRoutine:
   .raddr DABGInit
   .raddr DABGInit
+  .raddr JackInit
 MaxOnScreen:
   .byt 6, 3
 AmountToKill:
@@ -2805,6 +2807,15 @@ EnemyList:
   .byt SMILOID, WALKER, SMILOID, WALKER
   .byt WALKER,  WALKER, WALKER,  WALKER
   .byt SMILOID, SMILOID
+
+JackInit:
+  lda #<JackStone_Init
+  ldy #>JackStone_Init
+  jmp InObjectBank2
+JackFight:
+  lda #<JackStone_Fight
+  ldy #>JackStone_Fight
+  jmp InObjectBank2
 
 DABGInit:
   ldy ObjectF3,x

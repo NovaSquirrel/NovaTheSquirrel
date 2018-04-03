@@ -700,10 +700,86 @@ MetaspriteFlyHorizL:
   .byt $0a|OAM_XFLIP, $1a|OAM_XFLIP
 .endproc
 
+.proc JackStone_Init
+  jsr JackMakePlatforms
+  rts
+
+JackMakePlatforms:
+  ; Erase all platforms
+  ldy #ObjectLen-1
+: lda ObjectF1,y
+  and #<~1
+  cmp #Enemy::MOVING_PLATFORM_PUSH*2
+  bne :+
+  lda #0
+  sta ObjectF1,y
+: dey
+  bpl :--
+
+@Loop:
+  ldy ObjectF4,x ; platform index
+  inc ObjectF4,x ; next index
+  lda JackPlatformsX,y
+  sta 0
+  lda JackPlatformsY,y
+  sta 1
+
+  jsr FindFreeObjectY
+  bcc :+
+    jsr ObjectClearY
+    lda 0
+    and #15
+    sta ObjectPXH,y
+    lda 1
+    sta ObjectPYH,y
+    lda #0
+    sta ObjectPXL,y
+    sta ObjectPYL,y
+    lda #Enemy::MOVING_PLATFORM_PUSH*2
+    sta ObjectF1,y
+    lda #4
+    sta ObjectF3,y
+  :
+
+  lda 0
+  bpl @Loop
+  rts
+JackPlatformsX:
+  .byt 2, 5, 7, 10, 13|128
+  .byt 13, 3, 6, 10, 4, 7|128
+
+JackPlatformsY:
+  .byt 8, 9, 7,  5, 4
+  .byt 4, 5, 6,  7, 9, 10
+.endproc
+
+.proc JackStone_Fight
+  lda ObjectPXL,x
+  sub ScrollX+0
+  sta BackgroundBossScrollX
+
+  lda ObjectPXH,x
+  sbc ScrollX+1
+  .repeat 4
+    lsr
+    ror BackgroundBossScrollX
+  .endrep
+
+  lda #<-(32-4)
+  sub BackgroundBossScrollX
+  sta BackgroundBossScrollX
+  
+  lda #16
+  sta BackgroundBossScrollY
+
+
+  jsr ObjectFighterMaker_Run::DriftOverToYou
+  rts
+.endproc
+
 ; Randomly swaps two object slots, because the NES can only display 8 sprites per scanline
 ; and any past that aren't drawn. This way sprites are don't just drop out of visibility.
 .proc FlickerEnemies
-;  rts
   lda retraces
   and #15
   tax
