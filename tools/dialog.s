@@ -512,6 +512,11 @@ SignPrize:
 ; <1 SIGN>Congratulations for completing the puzzle challenge! Your prize awaits in the next room.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "C", $c2, "g", "r", $c6, "u", "l", $c6, "i", $c2, $fb, $a5, SCR::NEWLINE, "c", "o", "m", "p", $a8, $b1, " ", $a2, " ", "p", "u", "z", "z", "l", "e", SCR::NEWLINE, $e2, $ad, $e6, "g", "e", $fd, "Y", $b6, " ", "p", $fc, "z", $e7, "a", "w", "a", "i", "t", "s", SCR::NEWLINE, $bf, $a2, " ", $f9, "x", $d3, "r", $e4, "m", "."
 .byt SCR::END_SCRIPT
+AboutWarpArrows:
+.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
+; <1 SIGN>Those arrows at the top of the screen indicate that there is another screen above this one. Downward pointing arrows serve the same kind of purpose.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f8, "o", $e5, " ", "a", $d9, "o", "w", $fb, $c6, " ", $a2, " ", $bc, "p", " ", "o", "f", SCR::NEWLINE, $a2, " ", "s", "c", "r", $d7, "n", " ", $d8, "d", "i", "c", $c6, $e7, $e0, $c6, SCR::NEWLINE, $88, " ", $b8, $ca, "o", $a2, $ea, "s", "c", "r", $d7, "n", SCR::NEWLINE, "a", "b", "o", "v", $e7, $99, " ", $ac, $f6, "D", "o", "w", "n", "w", "a", "r", "d", SCR::NEWLINE, "p", "o", $d8, "t", $b1, " ", "a", $d9, "o", "w", $fb, $e5, "r", "v", $e7, $a2, SCR::NEWLINE, "s", "a", $d0, " ", "k", $d8, $ff, $bd, "p", "u", "r", "p", "o", $e5, "."
+.byt SCR::END_SCRIPT
 AboutBombs:
 .byt SCR::SCENE, SCENES::NOVA_LIA_SIGN
 ; <2 SIGN>You can copy these bomb enemies, but be quick. Up+B throws and Down+B drops bombs, and B alone will put one in midair. Try standing on a placed bomb.

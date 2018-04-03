@@ -387,6 +387,11 @@
 <1 SIGN>Congratulations for completing the puzzle challenge! Your prize awaits in the next room.
 `end
 
+:AboutWarpArrows:
+`scene NOVA_AND_SIGN
+<1 SIGN>Those arrows at the top of the screen indicate that there is another screen above this one. Downward pointing arrows serve the same kind of purpose.
+`end
+
 :AboutBombs:
 `scene NOVA_LIA_SIGN
 <2 SIGN>You can copy these bomb enemies, but be quick. Up+B throws and Down+B drops bombs, and B alone will put one in midair. Try standing on a placed bomb.

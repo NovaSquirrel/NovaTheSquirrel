@@ -73,7 +73,9 @@ grassy_aData:
   LObjN LO::R_GROUND,         3, 11, 13, 1
   LObjN LO::R_GROUND,         1, 3, 12, 7
   LObjN LO::RECT_1,           13, 13, 1, LN1::GROUND, 26
-  LObjN LO::R_BRICK,          8, 9, 7, 0
+  LObj  LO::S_SIGNPOST,       2, 12
+  LWriteCol <AboutWarpArrows, >AboutWarpArrows
+  LObjN LO::R_BRICK,          6, 9, 7, 0
   LObjN LO::WIDE_2,           0, 12, 8, LN2::BUSH
   LObjN LO::R_GROUND,         2, 0, 10, 0
   LObj  LO::S_SOLID_BLOCK,    0, 4
