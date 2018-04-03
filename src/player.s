@@ -680,9 +680,7 @@ NoFixWalkSpeed:
     bne TopWasSkipped
   :
   lda PlayerPYH
-  bpl :+
-    inc SkipFourCorners
-  :
+  jmi SkipFourCornersEntirely
 TopWasSkipped:
 
   lda #M_SOLID_ALL
@@ -847,6 +845,7 @@ SkipTheTop:
 :
  
   ; Don't react to collision if told not to
+  ; Currently only used by the spring?
   lda SkipFourCorners
   rtsne
 
@@ -871,6 +870,7 @@ SkipTheTop:
   pha
   lda FourCornersL,x
   pha
+SkipFourCornersEntirely:
   rts
 
 HSpeedDirectionOffset:

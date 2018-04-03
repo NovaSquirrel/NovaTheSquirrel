@@ -215,13 +215,13 @@ final2Data:
   LObjN LO::R_GROUND,         0, 2, 3, 3
   LObjN LO::R_GROUND,         1, 6, 2, 4
   LObjN LO::WIDE_1,           3, 12, 3, LN1::TALLGRASS
-  LObjN LO::WIDE_1,           4, 1, 7, LN1::SPIKES
+  LObj  LO::R_CUSTOM,         4, 1, Metatiles::FORCE_LEFT, (7<<4)|0
   LObjN LO::R_ROCK,           0, 2, 7, 4
   LObjN LO::TALL_2,           0, 7, 4, LN2::TRUNK
   LObj  LO::S_SOLID_BLOCK,    0, 12
   LObjN LO::TALL_2,           7, 7, 7, LN2::TRUNK
   LObjN LO::WIDE_1,           2, 6, 5, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_1,           7, 1, 7, LN1::SPIKES
+  LObj  LO::R_CUSTOM,         7, 1, Metatiles::FORCE_LEFT, (7<<4)|0
   LObjN LO::R_ROCK,           0, 2, 7, 4
   LObjN LO::TALL_2,           0, 7, 7, LN2::TRUNK
   LObjN LO::TALL_2,           7, 7, 4, LN2::TRUNK
