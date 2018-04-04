@@ -326,7 +326,7 @@ OverrideScroll:
   sub #1
   sta TouchTemp
   add TouchWidthA
-  sta TouchTemp2  ; carry now set
+  sta TouchTemp2  ; carry now clear
 
   lda TouchLeftA
   sbc TouchLeftB ; Note will subtract n-1
@@ -339,7 +339,7 @@ OverrideScroll:
   sub #1
   sta TouchTemp
   add TouchHeightA
-  sta TouchTemp2   ; carry now set
+  sta TouchTemp2   ; carry now clear
 
   lda TouchTopA
   sbc TouchTopB  ; Note will subtract n-1

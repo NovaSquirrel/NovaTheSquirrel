@@ -169,14 +169,6 @@ C .byt $3c
 C .byt $3c
 C .byt $3c
 
-R SPRING_DOWN
-C .byt M_PAL_0
-C .byt M_SPECIAL_MISC
-C .byt $2c
-C .byt $3f
-C .byt $2d
-C .byt $3f
-
 R TOGGLE_SWITCH
 C .byt M_PAL_0
 C .byt M_SPECIAL_MISC
@@ -758,14 +750,6 @@ C .byt $3c
 C .byt $23
 C .byt $3c
 
-R DOWN_SPRING_PRESSED
-C .byt M_PAL_2
-C .byt M_EMPTY
-C .byt $2e
-C .byt $3f
-C .byt $2f
-C .byt $3f
-
 R TOGGLE_BLOCK_OFF
 C .byt M_PAL_0
 C .byt M_EMPTY
@@ -849,14 +833,6 @@ C .byt $5c
 C .byt $5e
 C .byt $5d
 C .byt $5f
-
-R PATH_MARKER
-C .byt M_PAL_0
-C .byt M_EMPTY
-C .byt $3f
-C .byt $3f
-C .byt $3f
-C .byt $3f
 
 ##### background stuff starts here #####
 R CLOUD_L

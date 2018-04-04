@@ -195,7 +195,6 @@ SpecialMiscLo:
   .byt <(TouchedSpring-1)
   .byt <(TouchedSignpost-1)
   .byt <(TouchedDoorBottom-1)
-  .byt <(TouchedSpringDown-1)
   .byt <(TouchedToggleSwitch-1)
   .byt <(TouchedTeleporter-1)
   .byt <(TouchedCloneSwitch-1)
@@ -215,7 +214,6 @@ SpecialMiscHi:
   .byt >(TouchedSpring-1)
   .byt >(TouchedSignpost-1)
   .byt >(TouchedDoorBottom-1)
-  .byt >(TouchedSpringDown-1)
   .byt >(TouchedToggleSwitch-1)
   .byt >(TouchedTeleporter-1)
   .byt >(TouchedCloneSwitch-1)
@@ -685,10 +683,6 @@ ItemIsGood:
   rts
 .endproc
 .endif
-
-.proc TouchedSpringDown
-  rts
-.endproc
 
 .proc TouchedKey
   sty TempY
