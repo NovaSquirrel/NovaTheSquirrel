@@ -383,6 +383,19 @@ GameStateLen = 2+10*4 ; update if more stuff is added. Just coins and inventory.
   InfiniteProjectileCheat: .res 1
   DownLockFromRideable: .res 1 ; set to 1 when riding on a burger or ice. unset when it's unpressed
 
+  SandboxMode:         .res 1
+  SandboxTerrain:      .res 1
+  SandboxExtra:        .res 1
+  SandboxDecoration:   .res 1
+  SandboxSpPalette:    .res 1
+  SandboxSpSlot1:      .res 1
+  SandboxSpSlot2:      .res 1
+  SandboxSpSlot3:      .res 1
+  SandboxSpSlot4:      .res 1
+  SandboxCursorX:      .res 1
+  SandboxBrushes:      .res 7
+  SandboxCurrentBlock: .res 1
+
 .segment "SAVE"
 SaveStart:
   SaveTag:            .res 9

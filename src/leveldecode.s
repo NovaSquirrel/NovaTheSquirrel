@@ -133,6 +133,8 @@ LevelBank = 15
   lda MasterLevelListH,x
   sta LevelHeaderPointer+1
 
+  lda SandboxMode
+  bne @DontClear
 ; clear out the level buffer ($6000-$6fff)
   lda #<$6000
   sta 0
@@ -148,6 +150,7 @@ LevelBank = 15
   stx 1
   cpx #$70
   bne :-
+@DontClear:
 
 ; Reset the column bytes
   ldx #0
@@ -600,6 +603,7 @@ SpecialConfigTable:
   .raddr SetBGStars
   .raddr SetAnimatedWater
   .raddr SetJackStone
+  .raddr IsSandbox
 
 SpecialConfigMakeBackgrounds:
   lda (LevelDecodePointer),y
@@ -626,6 +630,23 @@ SpecialConfigMakeBackgrounds:
 BackgroundRoutines:
   .raddr BGClouds
   .raddr BGCloudsEverywhere
+
+IsSandbox:
+  inc SandboxMode
+  ldx #6
+: lda SandboxPresetBrushes,x
+  sta SandboxBrushes,x
+  dex
+  bpl :-
+  rts
+SandboxPresetBrushes:
+  .byt Metatiles::GROUND_MIDDLE_M
+  .byt Metatiles::SOLID_LEDGE_M
+  .byt Metatiles::ROCK_MID_M
+  .byt Metatiles::BRICKS
+  .byt Metatiles::SPRING
+  .byt Metatiles::COIN
+  .byt Metatiles::SOLID_BLOCK
 
 SetJackStone:
   inc BackgroundBoss

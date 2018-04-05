@@ -303,6 +303,25 @@ DidntSkipPlayerAndEnemies:
 .ifdef NMI_MUSIC
     lsr LagFrame
 .endif
+    lda SandboxMode
+    beq :+
+SandboxGotTile:
+      ; Stop sound
+      lda #SOUND_BANK
+      jsr _SetPRG
+      jsr pently_init
+
+      jsr WaitVblank
+      lda #0
+      sta PPUMASK
+      lda #GraphicsUpload::CHR_MINI_FONT
+      jsr DoGraphicUpload
+      ; Edit the level in the sandbox menu
+      lda #SANDBOX_BANK
+      jsr SetPRG
+      jsr OpenSandboxMenu
+      jmp NoPause
+    :
 
     lda #VWF_BANK
     jsr SetPRG
@@ -537,10 +556,12 @@ SkipNoAutorepeat:
   and #KEY_DOWN
   beq :+
     lda PlaceBlockY
+    sub SandboxMode
     cmp #13
     beq :+
     inc PlaceBlockY
   :
+@SkipNormalDown:
   lda keynew
   and #KEY_UP
   beq :+
@@ -645,16 +666,13 @@ SkipNoAutorepeat:
     ; Can only cancel if you're actually using an inventory item
     lda PlaceBlockItemIndex
     cmp #255
-    beq :+
-      lda #0
-      sta PlaceBlockInLevel
-      jmp ClearOAM
+    jne End
   :
 
 ; Place down the block
   lda keynew
   and #KEY_A
-  beq :+
+  jeq NoPlace
     ; Is the block being placed a solid one?
     ldx Type
     lda PlaceableMetatiles,x
@@ -679,21 +697,64 @@ SkipNoAutorepeat:
     sta TouchHeightA
     sta TouchHeightB
     jsr ChkTouchGeneric
-    bcs :+
+    bcs NoPlace
 NotSolid:
 
     ldy PlaceBlockY
     lda ScrollX+1
     add PlaceBlockX
     jsr GetLevelColumnPtr
+
+    ; Sandbox mode's "get tile" mode
+    ldx SandboxMode
+    beq :+
+      ldx SandboxCurrentBlock
+      cpx #255 ; code for "get tile" instead of place
+      bne :+
+        cmp BackgroundMetatile ; Can't copy the background
+        bne @SkipNoCopy
+          rts
+        @SkipNoCopy:
+        ldx SandboxCursorX
+        sta SandboxBrushes,x
+        lda #0
+        sta PlaceBlockInLevel
+        pla
+        pla
+        jmp MainLoop::SandboxGotTile
+    :
+
+    ; If it's sandbox mode and the block you're writing matches the one you're putting down
+    ; then erase it
+    ldx SandboxMode
+    beq :+
+      cmp SandboxCurrentBlock
+      bne :+
+        lda BackgroundMetatile
+        jmp WriteIt
+    :
+
+    ldx SandboxMode
+    bne OverwriteOkay
+    ; Accumulator is the block at that tile
     cmp BackgroundMetatile ; Don't overwrite blocks
-    bne :+
+    bne NoPlace
+    OverwriteOkay:
+      lda SandboxMode
+      beq :+
+        lda SandboxCurrentBlock
+        bne WriteIt
+      :
       ldx Type
       lda PlaceableMetatiles,x
+    WriteIt:
       jsr ChangeBlock
       lda #SFX::PLACE_BLOCK
       jsr PlaySound
 
+      ; If in sandbox mode, don't decrement item amounts
+      lda SandboxMode
+      bne NoPlace
       ; Stop if it's not an actual inventory item
       ldx PlaceBlockItemIndex
       cpx #255
@@ -703,7 +764,7 @@ NotSolid:
       lda InventoryAmount,x
       beq LastOne
       dec InventoryAmount,x
-  :
+NoPlace:
   rts
 
 LastOne:
@@ -712,24 +773,35 @@ LastOne:
 End:
   lda #0
   sta PlaceBlockInLevel
+
+  lda SandboxMode
+  beq :+
+    ; Post-process the level again
+    lda #LEVELPROCESS_BANK
+    jsr SetPRG
+    jsr PostProcessLevel
+    inc NeedLevelRerender
+  :
   jmp ClearOAM
 
 PlayerSymbolXOffset:
   .byt <-8, 0
 
 ; block, spring, arrow left/down/up/right, arrow metal left/down/up/right, wood box, metal box
+; Very last tile is for the sandbox mode.
+; If you add more you will need to change the $0f mask.
 PlaceableTiles0:
   .byt $0c, $3f, $c0, $c4, $c8, $cc, $c0, $c4, $c8, $cc, $d4, $d4
-  .byt $3f, $3f, $3f
+  .byt $3f, $3f, $3f, $3b
 PlaceableTiles1:
   .byt $0d, $18, $c1, $c5, $c9, $cd, $c1, $c5, $c9, $cd, $d5, $d5
-  .byt $e1, $f2, $ef
+  .byt $e1, $f2, $ef, $3b
 PlaceableTiles2:
   .byt $0e, $3f, $c2, $c6, $ca, $ce, $c2, $c6, $ca, $ce, $d6, $d6
-  .byt $3f, $3f, $3f
+  .byt $3f, $3f, $3f, $3b
 PlaceableTiles3:
   .byt $0f, $19, $c3, $c7, $cb, $cf, $c3, $c7, $cb, $cf, $d7, $d7
-  .byt $e1, $f4, $f1
+  .byt $e1, $f4, $f1, $3b
 PlaceableMetatiles:
   .byt Metatiles::SOLID_BLOCK, Metatiles::SPRING
   .byt Metatiles::WOOD_ARROW_LEFT, Metatiles::WOOD_ARROW_DOWN, Metatiles::WOOD_ARROW_UP, Metatiles::WOOD_ARROW_RIGHT

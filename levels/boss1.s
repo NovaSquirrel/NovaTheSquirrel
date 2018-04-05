@@ -20,7 +20,6 @@ boss1:
 
 boss1Data:
   .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <FirstSchemeTeamEncounter, >FirstSchemeTeamEncounter
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $02, LevelBackgroundId::CLOUDS
   LSetX 0
   LWriteCol 11, 33
   LObjN LO::WIDE_1,           2, 10, 2, LN1::FALLTHROUGH_LEDGE
@@ -73,8 +72,10 @@ boss1Data:
   LObjN LO::WIDE_1,           2, 5, 2, LN1::SOLID_LEDGE
   LObjN LO::R_BRICKWALL,      0, 10, 4, 2
   LObj  LO::S_SPRING,         1, 9
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $02, LevelBackgroundId::CLOUDS
   LFinished
 
 boss1Sprite:
   LSpr Enemy::BOSS_FIGHT,          0,   0,   0
+  LSpr Enemy::COLLECTIBLE,         0,  39,   9
   .byt 255 ; end

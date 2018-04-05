@@ -18,6 +18,7 @@ emptylevel:
 
 emptylevelData:
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 19
+  .byt LSpecialCmd, LevelSpecialConfig::IS_SANDBOX
   LFinished
 
 emptylevelSprite:

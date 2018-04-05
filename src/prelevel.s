@@ -28,6 +28,7 @@ OptionCount = 13
 
   lda #0
   sta Cursor
+  sta SandboxMode
   lda #3
   sta OptionCount
 

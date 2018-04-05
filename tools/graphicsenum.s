@@ -62,5 +62,6 @@
   BG_CHIP_DABG
   PAL_JACK
   PAL_DABG_BLUE
+  CHR_MINI_FONT
 .endenum
 

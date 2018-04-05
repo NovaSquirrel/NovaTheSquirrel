@@ -38,6 +38,7 @@ VWF_BANK = $e
 INVENTORY_BANK = $e
 THINFONT_BANK = $d
 OPTIONS_BANK = $e
+SANDBOX_BANK = $d
 
 .segment "PRG8" ; object bank
 .include "object.s"
@@ -64,6 +65,7 @@ OPTIONS_BANK = $e
 .include "quadpcm.s"
 .include "thinfont.s"
 .include "object2.s"
+.include "sandbox.s"
 
 .segment "PRGe" ; dialogs, inventory, VWF engine
 .include "vwf_draw.s"

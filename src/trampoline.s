@@ -105,6 +105,30 @@
   jmp _SetPRG
 .endproc
 
+.proc ExitToLevelSelectFar
+  lda #VWF_BANK
+  jsr SetPRG
+  jmp ShowLevelSelect
+.endproc
+
+; Gets block information
+.proc GetBlockInfoFar
+  lda #MAINLOOP_BANK
+  jsr _SetPRG
+  lda MetatileUL,x
+  sta 0
+  lda MetatileLL,x
+  sta 1
+  lda MetatileUR,x
+  sta 2
+  lda MetatileLR,x
+  sta 3
+  lda MetatilePalettes,x
+  sta 4
+  lda #SANDBOX_BANK
+  jmp _SetPRG
+.endproc
+
 ; Allows an object bank routine to break bricks
 .proc DoBreakBricksFar
   pha

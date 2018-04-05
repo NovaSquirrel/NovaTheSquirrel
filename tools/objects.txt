@@ -226,12 +226,6 @@ C .byt 0
 C .byt ObjFlag::SECONDARY
 C .raddr ObjectFaceballShot
 
-R SMALL_GLIDER
-C .byt 0
-C .byt 0
-C .byt ObjFlag::SECONDARY
-C .raddr ObjectSmallGlider
-
 R BOOMERANG
 C .byt GraphicsUpload::SP_BOOMERANG
 C .byt ObjBehavior::AUTO_REMOVE
