@@ -791,7 +791,23 @@ ProjExplosion:
   lda retraces
   and #1
   add #$53
-  jmp DispObject8x8_Attr
+  jsr DispObject8x8_Attr
+
+  ; Don't destroy ice offscreen
+  lda ObjectPYH,x
+  cmp #15
+  bcs :+
+  ; Also destroy ice!
+  jsr GetPointerForMiddle
+  cmp #Metatiles::ICE2
+  beq @YesIce
+  cmp #Metatiles::ICE
+  bne :+
+@YesIce:
+  lda BackgroundMetatile
+  jsr ChangeBlockFar
+:
+  rts
 
 ProjIceBlock:
   jsr EnemyFallIce
