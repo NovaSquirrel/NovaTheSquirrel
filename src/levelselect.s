@@ -156,6 +156,10 @@ Loop:
   lda IsSpinning
   jne NoKeyCheck
   lda keynew
+  and #KEY_B
+  jne ShowMainMenu
+
+  lda keynew
   and #KEY_A
   beq :+
     .ifndef DEBUG

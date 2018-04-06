@@ -62,12 +62,12 @@
   beq HaveExtraRAM
   lda #>NoRAMError
   ldy #<NoRAMError
-HaveExtraRAM:
-  ldx #15
-  lda #>SelectForOptions
-  ldy #<SelectForOptions
-DontHaveExtraRAM:
   jsr vwfPutsAtRow
+HaveExtraRAM:
+;  ldx #15
+;  lda #>SelectForOptions
+;  ldy #<SelectForOptions
+;DontHaveExtraRAM:
 
 ; Turn on the display and get it ready
   jsr WaitVblank
@@ -105,16 +105,16 @@ DisplayLoop:
   jsr ReadJoy
   jsr ReseedRandomizer
   lda keynew
-  and #KEY_SELECT
+  and #KEY_START
   beq :+
   pla
   pla
   lda #OPTIONS_BANK
   jsr SetPRG
-  jmp ShowOptions
+  jmp ShowMainMenu ;ShowOptions
 :
   lda keydown
-  and #KEY_START
+  and #KEY_SELECT
   bne Exit
   jmp DisplayLoop
 

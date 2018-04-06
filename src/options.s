@@ -265,6 +265,13 @@ NoOptionChange:
   :
 
   lda keynew
+  and #KEY_B
+  beq :+
+    lda OptionsViaInventory
+    jeq ShowMainMenu
+  :
+
+  lda keynew
   and #KEY_A
   beq NoA
   ; If Cursor is at the top or at the bottom, A does stuff
@@ -400,3 +407,124 @@ DontResetSave:
 
 OptionsBackground:
   .incbin "../chr/options.chr"
+
+.proc ShowMainMenu
+Cursor = 13
+
+  jsr OptionsScreenSetup
+
+  lda #0
+  sta Cursor
+
+; Write the options
+  PositionXY 0, 11, 4
+  jsr PutStringImmediate
+  .byt "-Main menu-",0
+
+  PositionXY 0, 3, 10
+  jsr PutStringImmediate
+  .byt "Level Select (",0
+
+  ; Calculate completion percentage
+  ldy #0 ; percentage
+  ldx #4 ; index
+CountClearedLoop:
+  lda LevelCleared,x
+  ; Increment Y for ever bit
+: lsr
+  bcc :+
+    iny
+  :
+  cmp #0
+  bne :--
+  dex
+  bpl CountClearedLoop
+  ; Draw percentage
+  lda BCD99,y
+  pha
+  lsr
+  lsr
+  lsr
+  lsr
+  ora #'0'
+  sta PPUDATA
+  pla
+  and #15
+  ora #'0'
+  sta PPUDATA
+
+  lda #'%'
+  sta PPUDATA
+  lda #')'
+  sta PPUDATA
+
+
+  PositionXY 0, 3, 12
+  jsr PutStringImmediate
+  .byt "Game options",0
+  PositionXY 0, 3, 14
+  jsr PutStringImmediate
+  .byt "Extra features",0
+
+  ; This will make the colors change on the first loop iteration
+  lda #255
+  sta retraces
+
+Loop:
+  jsr WaitVblank
+  lda #OBJ_ON|BG_ON
+  sta PPUMASK
+
+  jsr OptionsScreenCommonLoop
+
+  lda keynew
+  and #KEY_START
+  beq :+
+    jmp JumpToLevelSelect
+  :
+
+  lda keynew
+  and #KEY_A
+  beq NoA
+  ldy Cursor
+  jeq JumpToLevelSelect
+  dey
+  jeq ShowOptions
+  dey
+  ; jump to bonus features
+NoA:
+
+  ; Move the cursor
+  lda keynew
+  and #KEY_UP
+  beq :+
+    lda Cursor
+    beq :+
+    dec Cursor
+  :
+
+  lda keynew
+  and #KEY_DOWN
+  beq :+
+    lda Cursor
+    cmp #2
+    beq :+
+    inc Cursor
+  :
+
+  lda #OAM_COLOR_0
+  sta OAM_ATTR
+  lda #$51
+  sta OAM_TILE
+  lda #2*8
+  sta OAM_XPOS
+  lda Cursor
+  asl
+  asl
+  asl
+  asl
+  add #10*8-1
+  sta OAM_YPOS
+
+  jmp Loop
+.endproc

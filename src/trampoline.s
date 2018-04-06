@@ -105,11 +105,7 @@
   jmp _SetPRG
 .endproc
 
-.proc ExitToLevelSelectFar
-  lda #VWF_BANK
-  jsr SetPRG
-  jmp ShowLevelSelect
-.endproc
+ExitToLevelSelectFar = JumpToLevelSelect
 
 ; Gets block information
 .proc GetBlockInfoFar
