@@ -680,7 +680,10 @@ NoFixWalkSpeed:
     bne TopWasSkipped
   :
   lda PlayerPYH
-  jmi SkipFourCornersEntirely
+  bpl :+
+    jsr CheckMiddle ; most of this is unused except for checking for ceiling barriers
+    jmp SkipFourCornersEntirely
+  :
 TopWasSkipped:
 
   lda #M_SOLID_ALL
@@ -693,38 +696,7 @@ TopWasSkipped:
     sta BottomCMP
   :
 
-  ; check blocks in the middle
-  lda PlayerPYL
-  add #<(16*16)
-  lda PlayerPYH
-  adc #>(16*16)
-  tay
-  sta TempSpace
-  lda #$40
-  add PlayerPXL
-  lda PlayerPXH
-  adc #0
-  sta XForMiddle
-  jsr GetLevelColumnPtr
-  sta BlockMiddle
-
-  pha
-  ; also check for a ceiling barrier
-  ldy #0
-  lda (LevelBlockPtr),y
-  cmp #Metatiles::CEILING_BARRIER
-  bne :+
-  lda PlayerPYH
-  bpl :+
-  lda #0
-  sta PlayerPYH
-  sta PlayerPYL
-  sta PlayerVYH
-  lda #$40
-  sta PlayerVYL
-:
-  pla
-  tay
+  jsr CheckMiddle
 
   ; A is going to get overwritten now so take this opportunity to update PlayerLocationNow/Last
   lda PlayerLocationNow
@@ -871,6 +843,41 @@ SkipTheTop:
   lda FourCornersL,x
   pha
 SkipFourCornersEntirely:
+  rts
+
+CheckMiddle:
+  ; check blocks in the middle
+  lda PlayerPYL
+  add #<(16*16)
+  lda PlayerPYH
+  adc #>(16*16)
+  tay
+  sta TempSpace
+  lda #$40
+  add PlayerPXL
+  lda PlayerPXH
+  adc #0
+  sta XForMiddle
+  jsr GetLevelColumnPtr
+  sta BlockMiddle
+
+  pha
+  ; also check for a ceiling barrier
+  ldy #0
+  lda (LevelBlockPtr),y
+  cmp #Metatiles::CEILING_BARRIER
+  bne :+
+  lda PlayerPYH
+  bpl :+
+  lda #0
+  sta PlayerPYH
+  sta PlayerPYL
+  sta PlayerVYH
+  lda #$40
+  sta PlayerVYL
+:
+  pla
+  tay
   rts
 
 HSpeedDirectionOffset:
