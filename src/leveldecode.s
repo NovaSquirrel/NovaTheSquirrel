@@ -167,7 +167,7 @@ LevelBank = 15
   ldy #0
   lda (LevelHeaderPointer),y
   pha
-  pha
+;  pha
   and #31
   sta LevelMusic
   pla
@@ -176,9 +176,9 @@ LevelBank = 15
   lda #0
   adc #0
   sta PlayerDir
-  pla
-  and #%10000000
-  sta CollectedBitsIndex
+;  pla
+;  and #%10000000
+;  sta CollectedBitsIndex
 
 ; read starting player X position
   iny

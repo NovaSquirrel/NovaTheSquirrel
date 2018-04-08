@@ -22,6 +22,14 @@
 
 .segment "ZEROPAGE"
   retraces:	        .res 1 ; incremented every frame
+.ifdef NMI_MUSIC
+  LagFrame:     .res 1 ; used to detect lag frames
+  RealPRGBank:  .res 1 ; set even if _SetPRG is used
+.ifdef NeedNMIInterrupted
+  NMIInterrupted: .res 1
+.endif
+.endif
+
   slowtimer:        .res 1 ; incremented every 4 frames
   keydown:	        .res 2 ; currently pressed buttons
   keylast: 	        .res 2 ; buttons that were pressed last frame
@@ -173,15 +181,6 @@
 
   LevelHeaderPointer = TouchTemp ; pointer to the level header, for reading it
   LevelDecodeXPos = TouchTemp+2  ; current X position
-  CollectedBitsIndex: .res 1 ; 0 or 128, for alternate or current collectedbits
-
-.ifdef NMI_MUSIC
-  LagFrame:     .res 1 ; used to detect lag frames
-  RealPRGBank:  .res 1 ; set even if _SetPRG is used
-.ifdef NeedNMIInterrupted
-  NMIInterrupted: .res 1
-.endif
-.endif
 
 .segment "BSS"
   .res 12 ; buffer
