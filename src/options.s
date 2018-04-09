@@ -491,7 +491,7 @@ Loop:
   dey
   jeq ShowOptions
   dey
-  ; jump to bonus features
+  jeq LaunchDABG ; jump to bonus features
 NoA:
 
   ; Move the cursor

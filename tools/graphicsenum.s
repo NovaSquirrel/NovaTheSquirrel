@@ -63,5 +63,6 @@
   PAL_JACK
   PAL_DABG_BLUE
   CHR_MINI_FONT
+  DABG_GAME_CHR
 .endenum
 

@@ -105,7 +105,12 @@
   jmp _SetPRG
 .endproc
 
-ExitToLevelSelectFar = JumpToLevelSelect
+.proc ExitToLevelSelectFar
+; different from JumpToLevelSelect in that it doesn't change the level select number
+  lda #VWF_BANK
+  jsr SetPRG
+  jmp ShowLevelSelect
+.endproc
 
 ; Gets block information
 .proc GetBlockInfoFar
@@ -234,4 +239,59 @@ ExitToLevelSelectFar = JumpToLevelSelect
 
 Call:
   jmp (0)
+.endproc
+
+.proc LaunchDABG
+  jsr WaitVblank
+  lda #0
+  sta PPUMASK
+
+  lda #GraphicsUpload::DABG_GAME_CHR
+  jsr DoGraphicUpload
+
+  lda #EXTRAS_BANK
+  jsr SetPRG
+
+  ; Set up pointers for the copy
+  lda #$60
+  sta 1
+  lda #$80
+  sta 3
+  lda #0
+  sta 0
+  sta 2
+  ; Do the copy
+  ldx #(DABG_WRAM_END - DABG_WRAM) / 256 + 1
+  ldy #0
+CopyLoop:
+  lda (2),y
+  sta (0),y
+  iny
+  bne CopyLoop
+  inc 1
+  inc 3
+  dex
+  bne CopyLoop
+
+  ; Also change the mirroring. DABG uses horizontal, Nova uses vertical
+  .ifdef MAPPER_MMC1
+    lda #%01111 ; horizontal mirroring, UNROM style
+    jsr SetControl
+  .endif
+  .ifdef MAPPER_MMC3
+    lda #1
+    sta $a000 ; vertical mirroring
+  .endif
+  .ifdef MAPPER_ACTION53
+    lda #$80 ; mapper mode
+    sta $5000
+    lda #%00111111 ; 256KB game, horizontal mirroring, UNROM-style switching
+    sta $8000
+  .endif
+
+  ; Launch the game!
+  lda #DABG_BANK
+  jsr SetPRG
+
+  jmp $8000
 .endproc

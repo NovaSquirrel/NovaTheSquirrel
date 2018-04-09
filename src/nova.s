@@ -39,13 +39,15 @@ INVENTORY_BANK = $e
 THINFONT_BANK = $d
 OPTIONS_BANK = $e
 SANDBOX_BANK = $d
+DABG_BANK = $5
+EXTRAS_BANK = $4 ; DABG resources, other games I can fit!
 
 .segment "PRG8" ; object bank
 .include "object.s"
 .include "enemy.s"
 .include "drawsprite.s"
 .include "projectiles.s"
-.segment "PRG6"
+.segment "PRG6" ; music bank
 .include "pentlysound.s"
 .include "pentlymusic.s"
 .include "musicseq.s"
@@ -100,4 +102,8 @@ SANDBOX_BANK = $d
 .segment "PRG2" ; levels (though let's be honest here, we're not gonna fill up PRG1)
 .segment "PRG3" ; levels
 .segment "PRG4" ; levels
-.segment "PRG5" ; levels
+
+.segment "PRG4" ; extras
+.include "extras.s"
+.segment "PRG5" ; DABG
+.incbin "DABG_MAIN.bin"
