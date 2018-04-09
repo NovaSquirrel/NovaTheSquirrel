@@ -1631,8 +1631,8 @@ NotFound:
   ldx #ObjectLen-1
 : lda ObjectF1,x
   lsr
-  tax
-  lda ObjFlags,x
+  tay
+  lda ObjFlags,y
   and #ObjFlag::PRIORITY_BITS
   cmp #ObjFlag::ESSENTIAL
   bne Success
