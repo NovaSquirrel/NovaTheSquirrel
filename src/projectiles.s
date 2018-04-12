@@ -799,6 +799,10 @@ ProjExplosion:
   bcs :+
   ; Also destroy ice!
   jsr GetPointerForMiddle
+  cmp #Metatiles::GRAY_BRICKS ; Destroy bricks too
+  beq @YesIce
+  cmp #Metatiles::BRICKS ; Destroy bricks too
+  beq @YesIce
   cmp #Metatiles::ICE2
   beq @YesIce
   cmp #Metatiles::ICE

@@ -12,3 +12,4 @@
 .include "../levels/final1.s"
 .include "../levels/final2.s"
 .include "../levels/final3.s"
+.include "../levels/final4.s"

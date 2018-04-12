@@ -221,8 +221,10 @@ AfterFHBGAtBummerClub:
 .byt SCR::SAY, SCR::SPEAKER_2|CHAR::S_TEAM, "O", "h", $f5, $a6, " ", $cf, $d3, "p", $c4, $d3, $b2, "?", " ", "W", "-", $c8, "'", "l", "l", SCR::NEWLINE, "f", "i", "g", "u", "r", $e7, $ae, " ", $b5, " ", $bb, $90, " ", $a6, SCR::NEWLINE, $c5, "w", "n", $f5, $8e, $a6, " ", "w", "a", "i", "t", "!"
 ; <0 NOVA_SILLY>Yeah, we'll see about that.
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA_SILLY, "Y", $ec, "h", $f5, $c8, "'", "l", "l", " ", $b3, " ", $8a, $e0, $c6, "."
+; <0 NOVA>Wonder where that prize is. I guess it's past that door?
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "W", $c2, "d", $ed, " ", $da, $ed, $e7, $9a, "p", $fc, "z", $e7, $b9, $f6, "I", SCR::NEWLINE, "g", "u", "e", $f1, " ", "i", "t", $e9, "p", $c4, $d3, $9a, $c5, $c9, "?"
 .byt SCR::END_SCRIPT
-NovaAndEclipse:
+JustGotMirror:
 .byt SCR::SCENE, SCENES::NOVA_AND_ECLIPSE
 ; <0 NOVA_YAY>Wow, I didn't know I'd be running into Eclipse here too!
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA_YAY, "W", "o", "w", $f5, $c0, "d", "i", "d", "n", $e8, $8f, " ", "I", "'", $ff, "b", "e", SCR::NEWLINE, "r", $f2, "n", $b1, " ", $d8, $bb, "E", "c", "l", "i", "p", $e5, " ", $a9, $e7, $bc, "o", "!"
@@ -244,11 +246,9 @@ NovaAndEclipse:
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "A", "l", $fc, $db, "t", $f5, $93, "k", " ", $a6, $f5, "E", "c", "l", "i", "p", $e5, "."
 ; <1 LIA>I'm gonna go off and work on some mad science... I've got some ideas. Seeya Nova!
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::LIA, $d4, $cf, "n", "n", $be, $cf, " ", "o", "f", "f", " ", $a4, "w", $c9, "k", " ", $c2, SCR::NEWLINE, $9c, " ", "m", $f7, " ", "s", "c", $e3, "n", "c", "e", ".", ".", $f6, "I", "'", "v", $e7, $cf, "t", SCR::NEWLINE, $9c, " ", "i", "d", $ec, "s", $f6, "S", $d7, "y", $be, $a1, "!"
-.byt SCR::END_SCRIPT
-JustGotMirror:
-.byt SCR::SCENE, SCENES::FORUMS
 ; []-halp I've been taken-
 .byt SCR::NARRATE, CHAR::NONE, $86
+.byt SCR::SCENE, SCENES::FORUMS
 ; [NOVA]Alright, I got through Bummer Club, what else should I get? I wanna make sure I've got as much of a chance as I can.
 .byt SCR::NARRATE, CHAR::NOVA, "A", "l", $fc, $db, "t", $f5, $c0, $cf, $d3, $e0, "r", $f4, $db, " ", "B", "u", "m", $d0, "r", SCR::NEWLINE, "C", "l", "u", "b", $f5, $8b, " ", "e", "l", $e5, " ", $df, $a0, " ", $c0, $af, "?", SCR::NEWLINE, $c0, "w", $ca, "n", $be, "m", "a", "k", $e7, "s", "u", "r", $e7, "I", "'", "v", $e7, $cf, $d3, $c4, SCR::NEWLINE, "m", "u", $e2, " ", $bd, $be, $e2, $ca, "c", $e7, $c4, " ", $c0, $b0, "."
 ; [SHERWIN]Probably the cola?
@@ -521,6 +521,11 @@ AboutBombs:
 .byt SCR::SCENE, SCENES::NOVA_LIA_SIGN
 ; <2 SIGN>You can copy these bomb enemies, but be quick. Up+B throws and Down+B drops bombs, and B alone will put one in midair. Try standing on a placed bomb.
 .byt SCR::SAY, SCR::SPEAKER_2|CHAR::SIGN, "Y", $f4, " ", $b0, " ", "c", "o", "p", $fe, $89, "b", "o", "m", "b", SCR::NEWLINE, $e6, "e", "m", $e3, "s", $f5, $a7, " ", $ba, "q", "u", "i", $f3, $f6, "U", "p", "+", "B", SCR::NEWLINE, $e0, "r", "o", "w", $fb, $a4, "D", "o", "w", "n", "+", "B", " ", "d", "r", "o", "p", "s", SCR::NEWLINE, "b", "o", "m", "b", "s", $f5, $a4, "B", " ", "a", "l", $ac, " ", $9e, " ", "p", "u", "t", SCR::NEWLINE, $ac, " ", $bf, "m", "i", "d", "a", "i", "r", $f6, "T", "r", $fe, $de, $ca, "d", $b1, " ", $c2, SCR::NEWLINE, $be, "p", "l", "a", "c", $d6, "b", "o", "m", "b", "."
+.byt SCR::END_SCRIPT
+AboutBombs2:
+.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
+; <1 SIGN>Explosions can destroy both colors of bricks, as well as ice. Remember that bombs can act as platforms, and thrown/dropped with Up/Down+B!
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "E", "x", "p", "l", "o", "s", "i", $c2, $fb, $b0, " ", "d", "e", $de, "r", "o", $fe, "b", "o", $e0, SCR::NEWLINE, "c", "o", "l", $c9, $fb, $bd, "b", $fc, $f3, "s", $f5, $c4, " ", $c8, "l", "l", " ", $c4, SCR::NEWLINE, "i", "c", "e", $f6, "R", "e", $d0, "m", "b", $ed, " ", $9a, "b", "o", "m", "b", $fb, $b0, SCR::NEWLINE, "a", $c7, " ", $c4, " ", "p", "l", $c6, $a5, "m", "s", $f5, $ca, "d", SCR::NEWLINE, $e0, "r", "o", "w", "n", "/", "d", "r", "o", "p", "p", $d6, $9d, SCR::NEWLINE, "U", "p", "/", "D", "o", "w", "n", "+", "B", "!"
 .byt SCR::END_SCRIPT
 AboutMinecarts:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN

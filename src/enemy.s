@@ -612,10 +612,15 @@ FlyingOwl:
 .endproc
 
 .proc ObjectKing
+ToThrow = 3
   jsr LakituMovement
 
+  ldy ObjectF3,x
+  lda EnemiesToThrow,y
+  sta ToThrow
+
   ; Drop toast bots sometimes
-  lda #Enemy::TOASTBOT*2
+  ;lda #Enemy::TOASTBOT*2
   jsr CountObjectAmount
   cpy #2
   bcs :+
@@ -629,7 +634,8 @@ FlyingOwl:
         jsr ObjectClearY
         lda ObjectF1,x
         and #1
-        ora #Enemy::TOASTBOT*2
+;        ora #Enemy::TOASTBOT*2
+        ora ToThrow
         sta ObjectF1,y
   :
 
@@ -655,6 +661,9 @@ MetaspriteL:
   MetaspriteHeader 2, 4, 2
   .byt $02|OAM_XFLIP, $03|OAM_XFLIP, $0a|OAM_XFLIP, $0b|OAM_XFLIP
   .byt $00|OAM_XFLIP, $01|OAM_XFLIP, $08|OAM_XFLIP, $09|OAM_XFLIP
+
+EnemiesToThrow:
+  .byt Enemy::TOASTBOT*2, Enemy::BOMB_GUY*2
 .endproc
 
 .proc ObjectToastBot

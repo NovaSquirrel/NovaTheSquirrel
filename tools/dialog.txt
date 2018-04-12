@@ -174,9 +174,10 @@
 `scene NOVA_AND_SMILOID
 <2 S_TEAM>Oh, you got past him? W-we'll figure out how to take you down, just you wait!
 <0 NOVA_SILLY>Yeah, we'll see about that.
+<0 NOVA>Wonder where that prize is. I guess it's past that door?
 `end
 
-:NovaAndEclipse:
+:JustGotMirror:
 `scene NOVA_AND_ECLIPSE
 <0 NOVA_YAY>Wow, I didn't know I'd be running into Eclipse here too!
 <2 ECLIPSE>Mhm! I was asked to guard the prize for whoever gets through the puzzles, and it seems like you have?
@@ -188,11 +189,8 @@
 <2 ECLIPSE>It can reflect things. I heard the leader of the Scheme Team was originally defeated by reflecting his own projectiles into himself!
 <0 NOVA>Alright, thank you, Eclipse.
 <1 LIA>I'm gonna go off and work on some mad science... I've got some ideas. Seeya Nova!
-`end
-
-:JustGotMirror:
-`scene FORUMS
 []-halp I've been taken-
+`scene FORUMS
 [NOVA]Alright, I got through Bummer Club, what else should I get? I wanna make sure I've got as much of a chance as I can.
 [SHERWIN]Probably the cola?
 [KOREY]Yeah, head over to Frozen Volcano. Just trust me on this - I think it's really important that you get some Fa-a-ancy cola.
@@ -395,6 +393,11 @@
 :AboutBombs:
 `scene NOVA_LIA_SIGN
 <2 SIGN>You can copy these bomb enemies, but be quick. Up+B throws and Down+B drops bombs, and B alone will put one in midair. Try standing on a placed bomb.
+`end
+
+:AboutBombs2:
+`scene NOVA_AND_SIGN
+<1 SIGN>Explosions can destroy both colors of bricks, as well as ice. Remember that bombs can act as platforms, and thrown/dropped with Up/Down+B!
 `end
 
 :AboutMinecarts:
