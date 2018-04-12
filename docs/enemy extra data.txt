@@ -1,5 +1,9 @@
 Each sprite in the level has four bits of extra data that gets copied into the sprite's ObjectF3 variable when the sprite is initialized.
 
+-OWL-
+0: walk back and forth on a platform
+1: fly after the player
+
 -SPINNER-
 ..xy
   |+- move back and forth horizontally sine movement
@@ -63,6 +67,12 @@ direction bit specifies left/right as usual
 1: shoot long range
 2: shoot short range
 
+-BEAM_EMITTER-
+0: right
+1: left
+2: down
+3: up
+
 -MOVING_PLATFORM_HORIZ-
 specifies the number of blocks to move forward before turning around
 
@@ -70,5 +80,16 @@ specifies the number of blocks to move forward before turning around
 0: automatically start moving
 1: wait until the player steps on the platform
 
+-MOVING_PLATFORM_PUSH-
+0: move right
+1: move down
+2: move left
+3: move up
+4: don't move at all when stood on
+
 -FIREBAR-
 specifies the radius
+
+-KING-
+0: throw toast bots
+1: throw bomb guys
