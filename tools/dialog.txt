@@ -397,7 +397,9 @@
 
 :AboutBombs2:
 `scene NOVA_AND_SIGN
-<1 SIGN>Explosions can destroy both colors of bricks, as well as ice. Remember that bombs can act as platforms, and thrown/dropped with Up/Down+B!
+<1 SIGN>Explosions can destroy both colors of bricks, as well as ice. Remember that bombs can act as platforms.
+Up+B: Throw bomb
+Down+B: Drop bomb
 `end
 
 :AboutMinecarts:

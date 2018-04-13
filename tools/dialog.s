@@ -524,8 +524,12 @@ AboutBombs:
 .byt SCR::END_SCRIPT
 AboutBombs2:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
-; <1 SIGN>Explosions can destroy both colors of bricks, as well as ice. Remember that bombs can act as platforms, and thrown/dropped with Up/Down+B!
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "E", "x", "p", "l", "o", "s", "i", $c2, $fb, $b0, " ", "d", "e", $de, "r", "o", $fe, "b", "o", $e0, SCR::NEWLINE, "c", "o", "l", $c9, $fb, $bd, "b", $fc, $f3, "s", $f5, $c4, " ", $c8, "l", "l", " ", $c4, SCR::NEWLINE, "i", "c", "e", $f6, "R", "e", $d0, "m", "b", $ed, " ", $9a, "b", "o", "m", "b", $fb, $b0, SCR::NEWLINE, "a", $c7, " ", $c4, " ", "p", "l", $c6, $a5, "m", "s", $f5, $ca, "d", SCR::NEWLINE, $e0, "r", "o", "w", "n", "/", "d", "r", "o", "p", "p", $d6, $9d, SCR::NEWLINE, "U", "p", "/", "D", "o", "w", "n", "+", "B", "!"
+; <1 SIGN>Explosions can destroy both colors of bricks, as well as ice. Remember that bombs can act as platforms.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "E", "x", "p", "l", "o", "s", "i", $c2, $fb, $b0, " ", "d", "e", $de, "r", "o", $fe, "b", "o", $e0, SCR::NEWLINE, "c", "o", "l", $c9, $fb, $bd, "b", $fc, $f3, "s", $f5, $c4, " ", $c8, "l", "l", " ", $c4, SCR::NEWLINE, "i", "c", "e", $f6, "R", "e", $d0, "m", "b", $ed, " ", $9a, "b", "o", "m", "b", $fb, $b0, SCR::NEWLINE, "a", $c7, " ", $c4, " ", "p", "l", $c6, $a5, "m", "s", "."
+; Up+B: Throw bomb
+.byt SCR::NEWLINE, "U", "p", "+", "B", ":", " ", $f8, "r", "o", "w", " ", "b", "o", "m", "b"
+; Down+B: Drop bomb
+.byt SCR::NEWLINE, "D", "o", "w", "n", "+", "B", ":", " ", "D", "r", "o", "p", " ", "b", "o", "m", "b"
 .byt SCR::END_SCRIPT
 AboutMinecarts:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN

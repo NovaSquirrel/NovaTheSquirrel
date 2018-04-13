@@ -448,6 +448,7 @@ EnemyAbilityTable:
   .byt Enemy::TURKEY,           AbilityType::BLASTER
   .byt Enemy::ROVER,            AbilityType::BLASTER
   .byt Enemy::BOMB_GUY,         AbilityType::BOMB
+  .byt Enemy::DROPPED_BOMB_GUY, AbilityType::BOMB
   .byt Enemy::RONALD,           AbilityType::BURGER
   .byt Enemy::SUN,              AbilityType::FIRE
   .byt Enemy::BIG_GLIDER,       AbilityType::GLIDER

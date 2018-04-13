@@ -36,7 +36,6 @@
   .byt 0 ;PLAYER_PROJECTILE
   .byt GraphicsUpload::SP_SCHEME_TEAM ;BLASTER_SHOT
   .byt GraphicsUpload::SP_FACEBALL ;FACEBALL_SHOT
-  .byt 0 ;SMALL_GLIDER
   .byt GraphicsUpload::SP_BOOMERANG ;BOOMERANG
   .byt GraphicsUpload::SP_FIRE ;FIREBALL
   .byt GraphicsUpload::SP_FIRE ;FLAMES
@@ -76,6 +75,7 @@
   .byt GraphicsUpload::SP_FHBG ;FOREHEAD_BLOCK
   .byt GraphicsUpload::SP_FREAK ;FIGHTER_MAKER
   .byt 0 ;MOVING_PLATFORM_PUSH
+  .byt GraphicsUpload::SP_EXPLODE ;DROPPED_BOMB_GUY
 .endproc
 
 .proc ObjBehaviors
@@ -116,7 +116,6 @@
   .byt 0 ;PLAYER_PROJECTILE
   .byt 0 ;BLASTER_SHOT
   .byt 0 ;FACEBALL_SHOT
-  .byt 0 ;SMALL_GLIDER
   .byt ObjBehavior::AUTO_REMOVE ;BOOMERANG
   .byt 0 ;FIREBALL
   .byt 0 ;FLAMES
@@ -156,6 +155,7 @@
   .byt 0 ;FOREHEAD_BLOCK
   .byt 0 ;FIGHTER_MAKER
   .byt ObjBehavior::AUTO_REMOVE ;MOVING_PLATFORM_PUSH
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;DROPPED_BOMB_GUY
 .endproc
 
 .proc ObjFlags
@@ -196,7 +196,6 @@
   .byt ObjFlag::ESSENTIAL ;PLAYER_PROJECTILE
   .byt ObjFlag::SECONDARY ;BLASTER_SHOT
   .byt ObjFlag::SECONDARY ;FACEBALL_SHOT
-  .byt ObjFlag::SECONDARY ;SMALL_GLIDER
   .byt ObjFlag::SECONDARY ;BOOMERANG
   .byt ObjFlag::SECONDARY ;FIREBALL
   .byt ObjFlag::SECONDARY ;FLAMES
@@ -236,6 +235,7 @@
   .byt ObjFlag::ESSENTIAL ;FOREHEAD_BLOCK
   .byt ObjFlag::ESSENTIAL ;FIGHTER_MAKER
   .byt ObjFlag::ESSENTIAL ;MOVING_PLATFORM_PUSH
+  .byt ObjFlag::PRIMARY ;DROPPED_BOMB_GUY
 .endproc
 
 .proc ObjectTable
@@ -276,7 +276,6 @@
   .raddr ObjectPlayerProjectile ;PLAYER_PROJECTILE
   .raddr ObjectBlasterShot ;BLASTER_SHOT
   .raddr ObjectFaceballShot ;FACEBALL_SHOT
-  .raddr ObjectSmallGlider ;SMALL_GLIDER
   .raddr ObjectBoomerang ;BOOMERANG
   .raddr ObjectFireball ;FIREBALL
   .raddr ObjectFlames ;FLAMES
@@ -316,5 +315,6 @@
   .raddr ObjectFHBGBlock ;FOREHEAD_BLOCK
   .raddr ObjectFighterMaker ;FIGHTER_MAKER
   .raddr ObjectMovingPlatformPush ;MOVING_PLATFORM_PUSH
+  .raddr ObjectDroppedBombGuy ;DROPPED_BOMB_GUY
 .endproc
 

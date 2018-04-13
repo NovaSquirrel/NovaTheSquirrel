@@ -459,3 +459,9 @@ C .byt 0
 C .byt ObjBehavior::AUTO_REMOVE
 C .byt ObjFlag::ESSENTIAL
 C .raddr ObjectMovingPlatformPush
+
+R DROPPED_BOMB_GUY
+C .byt GraphicsUpload::SP_EXPLODE
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
+C .byt ObjFlag::PRIMARY
+C .raddr ObjectDroppedBombGuy

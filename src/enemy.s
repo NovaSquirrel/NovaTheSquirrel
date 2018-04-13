@@ -663,7 +663,7 @@ MetaspriteL:
   .byt $00|OAM_XFLIP, $01|OAM_XFLIP, $08|OAM_XFLIP, $09|OAM_XFLIP
 
 EnemiesToThrow:
-  .byt Enemy::TOASTBOT*2, Enemy::BOMB_GUY*2
+  .byt Enemy::TOASTBOT*2, Enemy::DROPPED_BOMB_GUY*2
 .endproc
 
 .proc ObjectToastBot
@@ -2304,6 +2304,48 @@ ShootSpeed:
 EnemyDirOffset:
   .byt 1, <-1
 .endproc
+
+.proc ObjectDroppedBombGuy
+  jsr EnemyFall
+
+  lda ObjectF2,x
+  bne WasStunned
+  lda PlayerPXH
+  sub ObjectPXH,x
+  abs
+  cmp #3
+  bcc TooClose
+NotClose:
+  lda #$10
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+  jmp WasNotClose
+WasStunned:
+  lda #0
+  sta ObjectF4,x
+  jmp WasNotClose
+TooClose:
+  jsr EnemyLookAtPlayer
+WasNotClose:
+
+  inc ObjectF4,x
+  lda ObjectF4,x
+  cmp #120 ; Explode after a set timer
+  bne :+
+  lda #18
+  jsr EnemyExplode
+:
+
+  lda retraces
+  lsr
+  and #4
+  add #$10
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouchHurt
+  rts
+.endproc
+
 
 .proc ObjectBombGuy
   jsr EnemyFall

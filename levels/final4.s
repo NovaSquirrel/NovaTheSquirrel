@@ -17,7 +17,7 @@ final4:
   .byt GraphicsUpload::BG_JUNGLE
   .byt GraphicsUpload::BG_MINES
   .byt 255 ; end
-  .byt $00, $00 ; boundaries
+  .byt $00, $08 ; boundaries
 
 final4Data:
   LObjN LO::R_GROUND,         0, 13, 7, 1
@@ -235,7 +235,10 @@ final4Data:
   LObjN LO::R_COIN,           1, 4, 3, 0
   LObjN LO::WIDE_2,           6, 5, 2, LN2::FLOWER
   LObjN LO::R_GROUND,         0, 6, 7, 8
-  LObjN LO::WIDE_2,           3, 5, 4, LN2::BUSH
+  LObj  LO::S_BIGHEART,       1, 4
+  LObjN LO::WIDE_2,           2, 5, 4, LN2::BUSH
+  LObj  LO::S_DOOR,           1, 4
+  LWriteCol $21, LevelId::Final4B
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LFinished
 
@@ -254,8 +257,8 @@ final4Sprite:
   LSpr Enemy::ICE_1,               1,  80,   2, 2
   LSpr Enemy::ROCKET_LAUNCHER,     0,  93,   5
   LSpr Enemy::BOMB_GUY,            0,  99,   7
+  LSpr Enemy::ICE_1,               0, 100,  12, 2
   LSpr Enemy::BOMB_GUY,            1, 102,   7
-  LSpr Enemy::ROVER,               0, 102,  12
   LSpr Enemy::ROCKET_LAUNCHER,     0, 105,   8
   LSpr Enemy::ICE_1,               0, 114,   2, 2
   LSpr Enemy::BOMB_GUY,            1, 115,  10
@@ -265,11 +268,9 @@ final4Sprite:
   LSpr Enemy::OWL,                 0, 128,   6
   LSpr Enemy::MINECART,            0, 138,   4
   LSpr Enemy::ROCKET_LAUNCHER,     0, 139,  10
-  LSpr Enemy::COLLECTIBLE,         0, 143,   2
   LSpr Enemy::ROCKET_LAUNCHER,     0, 154,  13
   LSpr Enemy::BOUNCER,             1, 171,   2
   LSpr Enemy::BOUNCER,             1, 172,  10
   LSpr Enemy::BOUNCER,             1, 180,   7
   LSpr Enemy::OWL,                 0, 187,   6
-  LSpr Enemy::BOUNCER,             1, 198,   5
   .byt 255 ; end
