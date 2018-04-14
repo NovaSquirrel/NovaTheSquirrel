@@ -135,8 +135,17 @@ PUZ = 128 ; puzzle
   .byt LevelId::Insane6
   .addr PreLevelInsane6
 
+  .byt LevelId::Final1
+  .addr PreLevelFinal1
+  .byt LevelId::Final4
+  .addr PreLevelFinal4
+
   .byt LevelId::Boss3
   .addr PreLevelBoss3
+  .byt LevelId::Boss4a
+  .addr PreLevelBoss4a
+  .byt LevelId::Boss4b
+  .addr PreLevelBoss4b
   .byt 255
 .endproc
 
@@ -153,6 +162,7 @@ PUZ = 128 ; puzzle
   .byt LevelId::Insane1
   .byt LevelId::Final1
   .byt LevelId::Boss4a
+  .byt LevelId::Boss4b
   .byt 255
 .endproc
 .popseg

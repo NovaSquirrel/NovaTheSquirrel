@@ -252,18 +252,6 @@
 [KOREY]Uh oh, that's probably the World of Insanity. Yeahhh, you'll want to get out of there as soon as you can.
 `end
 
-:SmiloidAtWOI:
-`scene NOVA_AND_SMILOID
-<2 S_TEAM>We made the Smiloids better and stronger and now we're pretty sure we'll win.
-<1 SMILOID>Have a nice day! Or maybe a bad one hahaha.
-<0 NOVA>Nope! I'm still going to win.
-`end
-
-:AfterSmiloidAtWOI:
-`scene NOVA_AND_SMILOID
-<2 S_TEAM>You're still going down, even if Bill has to be the one to do it!! We will succeed!
-`end
-
 :BeforeFighterMaker:
 `scene BAD_GUYS_AND_LEADER
 <2 BILL>Okay we need to bring out the big guns if we want to stop this squirrel. Maybe this fighter I just made will do the trick?
@@ -276,6 +264,20 @@
 :AfterFighterMaker:
 `scene NOVA_ALONE
 <0 NOVA>That was a strange fight.
+[BILL]Crap, she got past the freak! I remember what Jack told me, when there's a problem there IS a solution.
+[BILL]CAN DO, WILL DO!
+`end
+
+:BeforeJack:
+`scene NOVA_ALONE
+[]A large plastic man appears, calling himself Jack. He raises himself and Nova into the air for a battle in the sky!
+<0 NOVA_AW>What the heck?
+`end
+
+:AfterJack:
+`scene NOVA_ALONE
+<0 NOVA>Oof, I'm back on solid ground again.
+[BILL]Ugh, more like Can't Do, Won't Do.
 `end
 
 :MeetRemy:
@@ -296,21 +298,21 @@
 `scene NOVA_REMY_JAFGUAR
 <2 JAFGUAR>Yeah who cares?
 <0 NOVA>Well then, maybe I really am supposed to do it alone.
-<0 NOVA>You know, for an evil headquarters, I was expecting something... darker?
+<0 NOVA>You know, for an evil headquarters, I was expecting something... darker? Aaaa, these enemies sure are shooty though!
 `end
 
 `scene NOVA_ALONE
->0 NOVA_AW<Here it is, the final battle. I've got to give it my best shot.
+>0 NOVA_AW<Here it is, the final battle. I've gotta give my best shot.
 []Nova drinks the F-a-ancy cola and equips the Mirror Scepter in preparation for the battle, then nervously walks through the door...
 `transition
-<1 BILL>So, you managed to get all the way here? Looks like I'm going to have to take you down myself!
+<1 BILL>You know, you've become a real pain in the butt. I'm going to destroy you.
 `scene NOVA_AND_BILL
-<0 NOVA_MAD>Nope! I didn't come all the way here for nothing. I'm going to take you down and save this world!
+<0 NOVA_MAD>I care about the people here and I'm going to save their world. I'm not going to let you ruin it!
 <1 BILL>You're toast.
 `end
 
 `scene NOVA_ALONE
-<0 NOVA_WOW>W-wow, did I really just win?
+<0 NOVA_YAY>W-wow, did I really just win?
 []Having defeated Bill and the Scheme Team, Nova then finally frees Sherwin.
 `scene NOVA_AND_SHERWIN
 <1 SHERWIN>Thank you for rescuing me! I always believed in you, Nova.
@@ -322,10 +324,10 @@
 `transition
 `scene NOTHING
 []Korey takes Nova to a room with a small space ship in the middle
-[KOREY]Nova, this is the MV Explorer. It can take you to other worlds.
+[KOREY]Nova, this is the MV Explorer. It can take you to other worlds. You can forge your own destiny and decide what you want to do with your ability.
 [NOVA_WOW]Wow, was this what you were going to use to take me home?
 [KOREY]Yeah, but I'm giving it to you. There are a bunch of worlds in need of help.
-[NOVA]Well thank you Korey! I can't wait to see what kind of adventures I have...
+[NOVA]Well thank you Korey! I can't wait to see what kind of adventures I have in the future...
 `end
 
 `#---MISC STUFF---
@@ -601,6 +603,24 @@ for access to the F-a-ancy
 Cola.
 `end
 
+:PreLevelBoss4a:
+It's Nova against a new foe
+`nl
+with a rather strange
+`nl
+fighting style!
+`end
+
+:PreLevelBoss4b:
+ A fight in the sky atop 
+`nl
+ changing platforms. Don't
+`nl
+ fall off!
+`end
+
+
+
 :PreLevelFrozen:
 Nova enters the icy and
 `nl
@@ -660,6 +680,18 @@ Puzzles with laser beams!
 Trees in the depths of the
 `nl
 earth. With minecarts!
+`end
+
+:PreLevelFinal1:
+Nova enters the territory
+`nl
+the Scheme Team, finding it
+`nl
+heavily guarded.
+`end
+
+:PreLevelFinal4:
+This level is da bomb.
 `end
 
 

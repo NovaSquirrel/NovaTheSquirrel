@@ -136,25 +136,25 @@ final4bData:
   LObjN LO::R_BRICK,          0, 7, 4, 0
   LObjN LO::R_BRICK,          0, 10, 4, 0
   LObjN LO::R_WOOD_PLATFORM,  1, 13, 0, 1
-  LObjN LO::R_BRICK,          1, 4, 7, 0
+  LObj  LO::S_BRICK,          1, 4
   LObjN LO::R_GROUND,         1, 5, 8, 1
-  LObj  LO::S_PRIZE,          1, 2
+  LObj  LO::S_PRIZE,          1, 3
   LWriteCol InventoryItem::BLOCK | 128
   LObjN LO::R_BRICK,          0, 9, 5, 0
   LObjN LO::R_BRICK,          0, 11, 4, 0
   LObj  LO::S_PRIZE,          1, 2
   LWriteCol InventoryItem::BLOCK | 128
-  LObj  LO::S_PRIZE,          1, 2
+  LObj  LO::S_PRIZE,          1, 3
   LWriteCol InventoryItem::BLOCK | 128
   LObjN LO::R_BRICK,          0, 8, 5, 0
   LObj  LO::S_PRIZE,          1, 2
   LWriteCol InventoryItem::BLOCK | 128
-  LObj  LO::S_PRIZE,          1, 2
+  LObj  LO::S_PRIZE,          1, 3
   LWriteCol InventoryItem::BLOCK | 128
   LObjN LO::WIDE_1,           0, 13, 3, LN1::SOLID_LEDGE
   LObj  LO::S_PRIZE,          1, 2
   LWriteCol InventoryItem::BLOCK | 128
-  LObj  LO::S_PRIZE,          1, 2
+  LObj  LO::S_PRIZE,          1, 3
   LWriteCol InventoryItem::BLOCK | 128
   LObjN LO::R_CEILING_BARRIER,1, 0, 0, 3
   LObjN LO::R_GROUND,         1, 0, 3, 14

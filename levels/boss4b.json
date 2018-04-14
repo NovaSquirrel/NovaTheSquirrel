@@ -12,7 +12,7 @@
 		"FormatVersion":	1
 	},
 	"Config":	{
-		"StartDialog":	"BeforeFighterMaker"
+		"StartDialog":	"BeforeJack"
 	},
 	"Header":	{
 		"Music":	"NONE",
@@ -42,7 +42,7 @@
 					"Y":	4,
 					"W":	1,
 					"H":	1,
-					"Extra":	"AfterFighterMaker"
+					"Extra":	"AfterJack"
 				}, {
 					"Id":	"SOLID_LEDGE",
 					"X":	36,
