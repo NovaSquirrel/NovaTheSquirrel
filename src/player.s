@@ -1035,7 +1035,7 @@ FC_LR__:
   jsr BumpBlocksAbove
   lda PlayerSwimming
   bne :+
-  lda #SFX::BUMP
+  lda #SFX::PLAYER_BUMP
   jmp PlaySoundDebounce
 :
   rts

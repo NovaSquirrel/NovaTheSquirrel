@@ -40,6 +40,7 @@ pently_sfx_table:
   .byt 0, 10
   .addr bump_snd
   .byt 0, 5
+
   .addr tailattack_snd
   .byt 13, 5
   .addr smash_snd
@@ -54,6 +55,8 @@ pently_sfx_table:
   .byte $3c,$05
   .addr placeblock_snd
   .byte $20,$03
+  .addr player_bump_snd ; player bump sound
+  .byte $00,$04
 
 ; alternating duty/volume and pitch bytes
 itemget_snd:
@@ -152,6 +155,8 @@ money_snd:
   .dbyt $4026, $4026
   .dbyt $4f26, $4f27
 
+player_bump_snd:
+  .byte $8f,$0f,$8f,$08,$8f,$05,$8f,$00
 bump_snd:
   .byt $0f, $24, $0f, $23
   .byt $0f, $22, $0f, $21

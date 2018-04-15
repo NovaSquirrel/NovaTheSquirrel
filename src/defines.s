@@ -92,6 +92,7 @@ NEW_TOGGLE_BEHAVIOR = 1 ; don't blank the screen for toggle block changing
   UNLOCK
   ARROW_SHOOT
   PLACE_BLOCK
+  PLAYER_BUMP
 .endenum
 
 .enum InventoryIcon
