@@ -171,7 +171,7 @@ glass_finaleData:
   LObjN LO::R_CEILING_BARRIER,1, 0, 0, 2
   LObjN LO::R_FG_GLASS_BLUE,  1, 2, 13, 0
   LObj  LO::S_FG_GLASS_BLUE,  0, 3
-  LObjN LO::R_FG_GLASS_BLUE,  0, 4, 13, 0
+  LObjN LO::R_FG_GLASS_BLUE,  0, 4, 12, 0
   LObjN LO::R_BG_GLASS_BLUE,  0, 5, 0, 3
   LObjN LO::R_FG_GLASS_BLUE,  0, 9, 13, 0
   LObj  LO::S_M_ARROW_RIGHT,  1, 3
@@ -181,15 +181,16 @@ glass_finaleData:
   LObj  LO::S_M_CRATE,        1, 3
   LObjN LO::R_COIN,           1, 5, 0, 2
   LObj  LO::S_M_CRATE,        1, 3
-  LObj  LO::R_CUSTOM,         3, 3, Metatiles::FORK_ARROW_DOWN, (1<<4)|0
+  LObj  LO::R_CUSTOM,         2, 3, Metatiles::FORK_ARROW_DOWN, (1<<4)|0
   LObj  LO::S_M_ARROW_RIGHT,  0, 6
-  LObjN LO::R_BG_GLASS_BLUE,  0, 10, 0, 4
   LObj  LO::S_M_ARROW_RIGHT,  1, 7
+  LObjN LO::R_BG_GLASS_BLUE,  0, 10, 0, 4
+  LObjN LO::R_FG_GLASS_RED,   1, 7, 0, 1
   LObj  LO::S_M_ARROW_DOWN,   1, 3
   LObj  LO::S_SOLID_BLOCK,    0, 5
   LObj  LO::R_CUSTOM,         0, 6, Metatiles::METAL_CRATE, (0<<4)|2
-  LObj  LO::S_FG_GLASS_BLUE,  1, 3
-  LObjN LO::R_BG_GLASS_BLUE,  0, 5, 0, 3
+  LObjN LO::R_FG_GLASS_BLUE,  1, 3, 0, 1
+  LObjN LO::R_FG_GLASS_RED,   0, 5, 0, 2
   LObjN LO::R_GROUND,         0, 11, 12, 3
   LObjN LO::R_CEILING_BARRIER,1, 0, 0, 2
   LObj  LO::S_PRIZE,          3, 4
