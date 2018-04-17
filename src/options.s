@@ -15,6 +15,8 @@
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;
 
+; Can probably be moved into another bank, and far called into
+
 .proc OptionsScreenCommonLoop
 Color1 = 10
 Color2 = 11
@@ -491,7 +493,93 @@ Loop:
   dey
   jeq ShowOptions
   dey
-  jeq LaunchDABG ; jump to bonus features
+  jeq ShowExtraFeatures
+NoA:
+
+  ; Move the cursor
+  lda keynew
+  and #KEY_UP
+  beq :+
+    lda Cursor
+    beq :+
+    dec Cursor
+  :
+
+  lda keynew
+  and #KEY_DOWN
+  beq :+
+    lda Cursor
+    cmp #2
+    beq :+
+    inc Cursor
+  :
+
+  lda #OAM_COLOR_0
+  sta OAM_ATTR
+  lda #$51
+  sta OAM_TILE
+  lda #2*8
+  sta OAM_XPOS
+  lda Cursor
+  asl
+  asl
+  asl
+  asl
+  add #10*8-1
+  sta OAM_YPOS
+
+  jmp Loop
+.endproc
+
+.proc ShowExtraFeatures
+Cursor = 13
+
+  jsr OptionsScreenSetup
+
+  lda #0
+  sta Cursor
+
+; Write the options
+  PositionXY 0, 11, 4
+  jsr PutStringImmediate
+  .byt "-Extras!-",0
+
+  PositionXY 0, 3, 10
+  jsr PutStringImmediate
+  .byt "Back",0
+  PositionXY 0, 3, 12
+  jsr PutStringImmediate
+  .byt "Double Action Blaster Guys",0
+  PositionXY 0, 3, 14
+  jsr PutStringImmediate
+  .byt "Sound Test",0
+
+  ; This will make the colors change on the first loop iteration
+  lda #255
+  sta retraces
+
+Loop:
+  jsr WaitVblank
+  lda #OBJ_ON|BG_ON
+  sta PPUMASK
+
+  jsr OptionsScreenCommonLoop
+
+  lda keynew
+  and #KEY_B
+  beq :+
+    jmp ShowMainMenu
+  :
+
+  lda keynew
+  and #KEY_A
+  beq NoA
+  ldy Cursor
+  jeq ShowMainMenu
+  dey
+  jeq LaunchDABG
+  dey
+  jeq LaunchDABG
 NoA:
 
   ; Move the cursor
