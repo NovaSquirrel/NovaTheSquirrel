@@ -757,7 +757,7 @@ JackPlatformsY:
 ScreenX = 4
 ScreenY = 5
 
-  lda #18
+  lda #16
   sub ObjectVXH,x
   tay
   lda BCD99,y
@@ -826,7 +826,7 @@ PauseState:
     lda #0
     sta ObjectF2,x
   :
-  rts
+  jmp DoCollision
 NormalState:
   jsr EnemyGravity_2
 
@@ -851,6 +851,11 @@ NormalState:
       sta ObjectTimer,x
   :
 
+  jsr DoCollision
+
+  jmp ObjectFighterMaker_Run::DriftOverToYou
+
+DoCollision:
   ; Calculate collision position
   ldy OamPtr
   lda #<-32
@@ -887,7 +892,7 @@ NormalState:
     jsr HurtPlayer
   :
 
-.if 0 ; visualizr for collision boxes
+.if 0 ; visualizer for collision boxes
   ldy OamPtr
   lda #$53
   sta OAM_TILE+(4*0),y
@@ -919,7 +924,6 @@ NormalState:
   iny
   sty OamPtr
 .endif
-
 ; ------------ Check collision with player projectiles ----------
 ProjectileIndex = TempVal+2
   ldy #ObjectLen-1
@@ -975,10 +979,7 @@ NotPlayerProjectile:
   ldy ProjectileIndex
   dey
   jne CheckProjectileLoop
-
-
-  jmp ObjectFighterMaker_Run::DriftOverToYou
-
+  rts
 .endproc
 
 ; Randomly swaps two object slots, because the NES can only display 8 sprites per scanline

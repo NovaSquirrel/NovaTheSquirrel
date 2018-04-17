@@ -2877,7 +2877,7 @@ JackInit:
   jmp InObjectBank2
 JackFight:
   lda ObjectVXH,x
-  cmp #18
+  cmp #16
   bcc :+
     inc LevelVariable
     lda LevelVariable

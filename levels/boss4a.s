@@ -41,7 +41,9 @@ boss4aData:
   LObjN LO::R_GROUND,         0, 13, 15, 1
   LObj  LO::S_STORY_TRIGGER,         1, 4
   LWriteCol <AfterFighterMaker, >AfterFighterMaker
-  LObjN LO::R_COIN,           3, 8, 6, 0
+  LObj  LO::S_PRIZE,          2, 10
+  LWriteCol InventoryItem::BIG_HEALTH_RESTORE
+  LObjN LO::R_COIN,           1, 8, 6, 0
   LObjN LO::WIDE_1,           0, 9, 6, LN1::SOLID_LEDGE
   LObjN LO::R_COIN,           2, 5, 6, 0
   LObjN LO::WIDE_1,           0, 6, 6, LN1::SOLID_LEDGE
