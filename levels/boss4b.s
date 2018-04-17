@@ -11,6 +11,7 @@ boss4b:
   .byt $31 ; background
   .byt GraphicsUpload::PAL_GRASSY
   .byt GraphicsUpload::PAL_JACK
+  .byt GraphicsUpload::PAL_ENEMY1
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_JACK
   .byt GraphicsUpload::BG_GRASSY
@@ -26,16 +27,12 @@ boss4bData:
   LObjN LO::R_GROUND,         0, 13, 15, 1
   LObj  LO::S_STORY_TRIGGER,         1, 4
   LWriteCol <AfterJack, >AfterJack
-  LObjN LO::R_COIN,           3, 8, 6, 0
-  LObjN LO::WIDE_1,           0, 9, 6, LN1::SOLID_LEDGE
-  LObjN LO::R_COIN,           2, 5, 6, 0
-  LObjN LO::WIDE_1,           0, 6, 6, LN1::SOLID_LEDGE
-  LObj  LO::S_SPRING,         0, 12
-  LObj  LO::S_EXIT_DOOR,      7, 11
+  LObj  LO::S_EXIT_DOOR,      12, 11
   .byt LSpecialCmd, LevelSpecialConfig::JACK_STONE
   LFinished
 
 boss4bSprite:
   LSpr Enemy::BOSS_FIGHT,          0,   0,   1, 2
-  LSpr Enemy::COLLECTIBLE,         0,  41,   3
+  LSpr Enemy::CANNON_1,            1,  14,   7
+  LSpr Enemy::COLLECTIBLE,         0,  37,  11
   .byt 255 ; end

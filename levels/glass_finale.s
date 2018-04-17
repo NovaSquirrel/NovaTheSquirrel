@@ -185,12 +185,11 @@ glass_finaleData:
   LObj  LO::S_M_ARROW_RIGHT,  0, 6
   LObj  LO::S_M_ARROW_RIGHT,  1, 7
   LObjN LO::R_BG_GLASS_BLUE,  0, 10, 0, 4
-  LObjN LO::R_FG_GLASS_RED,   1, 7, 0, 1
+  LObjN LO::R_FG_GLASS_BLUE,  1, 7, 0, 1
   LObj  LO::S_M_ARROW_DOWN,   1, 3
   LObj  LO::S_SOLID_BLOCK,    0, 5
   LObj  LO::R_CUSTOM,         0, 6, Metatiles::METAL_CRATE, (0<<4)|2
-  LObjN LO::R_FG_GLASS_BLUE,  1, 3, 0, 1
-  LObjN LO::R_FG_GLASS_RED,   0, 5, 0, 2
+  LObjN LO::R_FG_GLASS_BLUE,  1, 3, 0, 4
   LObjN LO::R_GROUND,         0, 11, 12, 3
   LObjN LO::R_CEILING_BARRIER,1, 0, 0, 2
   LObj  LO::S_PRIZE,          3, 4

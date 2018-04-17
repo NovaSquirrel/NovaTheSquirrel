@@ -754,27 +754,231 @@ JackPlatformsY:
 .endproc
 
 .proc JackStone_Fight
-  lda ObjectPXL,x
-  sub ScrollX+0
-  sta BackgroundBossScrollX
+ScreenX = 4
+ScreenY = 5
 
+  lda #18
+  sub ObjectVXH,x
+  tay
+  lda BCD99,y
+  unpack 0, 1
+; Write health indicator
+  ldy OamPtr
+  ; First digit
+  lda #$40
+  ora 1
+  sta OAM_TILE+(4*0),y
+  ; Second digit
+  lda #$40
+  ora 0
+  sta OAM_TILE+(4*1),y
+  ; Other attributes
+  lda #OAM_COLOR_1
+  sta OAM_ATTR+(4*0),y
+  sta OAM_ATTR+(4*1),y
+  lda #24
+  sta OAM_YPOS+(4*0),y
+  sta OAM_YPOS+(4*1),y
+  lda #256-32-8
+  sta OAM_XPOS+(4*0),y
+  lda #256-32
+  sta OAM_XPOS+(4*1),y
+  tya
+  add #4*2
+  sta OamPtr
+
+  ; Convert X object position to a screen scroll position
+  lda ObjectPXL,x
+  sta BackgroundBossScrollX
   lda ObjectPXH,x
-  sbc ScrollX+1
   .repeat 4
     lsr
     ror BackgroundBossScrollX
   .endrep
-
+  ; (Adjust for width of the boss, and scroll moving in an opposite direction)
   lda #<-(32-4)
   sub BackgroundBossScrollX
   sta BackgroundBossScrollX
-  
-  lda #16
+  ; Convert Y object position to a screen scroll position
+  lda ObjectPYL,x
   sta BackgroundBossScrollY
+  lda ObjectPYH,x
+  .repeat 4
+    lsr
+    ror BackgroundBossScrollY
+  .endrep
+  ; (Adjust for width of the boss, and scroll moving in an opposite direction)
+  lda #<-(10*8)
+  sub BackgroundBossScrollY
+  sta BackgroundBossScrollY
+  ;  lda #16
+;  sta BackgroundBossScrollY
 
-
-  jsr ObjectFighterMaker_Run::DriftOverToYou
+  lda ObjectF2,x
+  beq NormalState
+PauseState:
+  dec ObjectTimer,x
+  bne :+
+    lda #<(-$80)
+    sta ObjectVYL,x
+    lda #>(-$80)
+    sta ObjectVYH,x
+    lda #0
+    sta ObjectF2,x
+  :
   rts
+NormalState:
+  jsr EnemyGravity_2
+
+  lda ObjectPYH,x
+  cmp #10
+  bcc :+
+    lda #10
+    sta ObjectPYH,x
+    lda #0
+    sta ObjectPYL,x
+    sta ObjectVYL,x
+    sta ObjectVYH,x
+
+    lda ObjectPXH,x
+    sub PlayerPXH
+    abs
+    cmp #2
+    bcs :+
+      lda #1
+      sta ObjectF2,x
+      lda #45
+      sta ObjectTimer,x
+  :
+
+  ; Calculate collision position
+  ldy OamPtr
+  lda #<-32
+  sub BackgroundBossScrollX
+  sta ScreenX
+  lda #<-(90)
+  sub BackgroundBossScrollY
+  sta ScreenY
+
+; ------------ Check collision with player ----------
+  ; Enemy collision coordinate
+  lda ScreenX
+  sta TouchLeftA
+  lda ScreenY
+  sta TouchTopA
+  ; Player collision coordinate
+  lda PlayerDrawX
+  sta TouchLeftB
+  lda PlayerDrawY
+  sta TouchTopB
+
+  ; 8x24 player collision
+  lda #8
+  sta TouchWidthB
+  lda #24
+  sta TouchHeightB
+  ; 22x64 enemy collision
+  lda #22
+  sta TouchWidthA
+  lda #64
+  sta TouchHeightA
+  jsr ChkTouchGeneric
+  bcc :+
+    jsr HurtPlayer
+  :
+
+.if 0 ; visualizr for collision boxes
+  ldy OamPtr
+  lda #$53
+  sta OAM_TILE+(4*0),y
+  lda #1
+  sta OAM_ATTR+(4*0),y
+  lda ScreenX
+  sta OAM_XPOS+(4*0),y
+  lda ScreenY
+  sta OAM_YPOS+(4*0),y
+  iny
+  iny
+  iny
+  iny
+  sty OamPtr
+  ldy OamPtr
+  lda #$53
+  sta OAM_TILE+(4*0),y
+  lda #1
+  sta OAM_ATTR+(4*0),y
+  lda ScreenX
+  add #22
+  sta OAM_XPOS+(4*0),y
+  lda ScreenY
+  add #64
+  sta OAM_YPOS+(4*0),y
+  iny
+  iny
+  iny
+  iny
+  sty OamPtr
+.endif
+
+; ------------ Check collision with player projectiles ----------
+ProjectileIndex = TempVal+2
+  ldy #ObjectLen-1
+CheckProjectileLoop:
+  sty ProjectileIndex
+
+  lda ObjectF1,y
+  lsr
+  cmp #Enemy::PLAYER_PROJECTILE
+  bne NotPlayerProjectile
+    RealXPosToScreenPosByY ObjectPXL, ObjectPXH, TouchLeftB
+    RealYPosToScreenPosByY ObjectPYL, ObjectPYH, TouchTopB
+    ; Look up the projectile's size
+    lda ObjectF2,y
+    tay
+    lda PlayerProjectileSizeTable2,y
+    sta TouchWidthB
+    sta TouchHeightB
+    jsr ChkTouchGeneric
+    bcc NotPlayerProjectile ; no collision
+      ldy ProjectileIndex
+      lda #0
+      sta ObjectF1,y
+      inc ObjectVXH,x
+      lda #SFX::ENEMY_HURT
+      sta NeedSFX
+
+      ; Move cannon to player's Y position
+      ldy #ObjectLen-1
+    CannonReplaceLoop:
+      lda ObjectF1,y
+      lsr
+      cmp #Enemy::CANNON_1
+      bne :+
+      lda PlayerPYH
+      sta ObjectPYH,y
+
+      ; Also move to the opposite side of the screen as the player
+      lda #$e
+      sta ObjectPXH,y
+      lda #Enemy::CANNON_1 * 2 + 1
+      sta ObjectF1,y
+      lda PlayerDrawX
+      bpl :+
+        lda #$1
+        sta ObjectPXH,y
+        lda #Enemy::CANNON_1 * 2
+        sta ObjectF1,y
+    : dey
+      bpl CannonReplaceLoop
+
+NotPlayerProjectile:
+  ldy ProjectileIndex
+  dey
+  jne CheckProjectileLoop
+
+
+  jmp ObjectFighterMaker_Run::DriftOverToYou
+
 .endproc
 
 ; Randomly swaps two object slots, because the NES can only display 8 sprites per scanline
@@ -1121,3 +1325,39 @@ EnemyApplyYVelocity_2 = EnemyApplyVelocity_2::YOnly
   sta ObjectF1,x
   rts
 .endproc
+
+.proc PlayerProjectileSizeTable2 ; always screen pixels
+  ; Stun
+  .byt 8
+  ; Copy
+  .byt 8
+  ; Blaster
+  .byt 8
+  ; Glider
+  .byt 8
+  ; Boomerang
+  .byt 8
+  ; Fireball
+  .byt 8
+  ; Flame
+  .byt 16 ; was 8, should be 16?
+  ; Water bottle
+  .byt 8
+  ; Fireworks cursor
+  .byt 8
+  ; Bomb
+  .byt 16
+  ; Explosion
+  .byt 8
+  ; Ice block
+  .byt 16
+  ; Lamp flame
+  .byt 16
+  ; Tornado
+  .byt 16
+  ; Burger
+  .byt 16
+  ; Mirror?
+  .byt 16
+.endproc
+

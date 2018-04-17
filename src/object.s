@@ -954,7 +954,7 @@ AdjustPlayer:
     cpy #4
     beq No
     ; (this part fixes the 1 frame delay there would otherwise be vertically)
-    ldy ObjectF3,x
+;    ldy ObjectF3,x
     jsr ObjectMovingPlatformLine::AdjustPlayer
 No:
   rts

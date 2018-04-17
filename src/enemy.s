@@ -1260,7 +1260,9 @@ ObjectCannonCommon1NoHover = ObjectCannonCommon1::NoHover
       sta ObjectVYL,y
       sta ObjectVYH,y
 
-      lda #15
+      lda #25
+      sta ObjectF4,y ; replacement timer 
+      lda #0
       sta ObjectTimer,y
 
       lda #Enemy::BURGER*2
@@ -1345,7 +1347,17 @@ CannonFrame:
     jsr EnemyFall
   :
 
-  jsr EnemyDespawnTimer
+  ; Replacement timer
+  ; instead of EnemyDespawnTimer
+  lda retraces
+  and #3
+  bne :+
+    dec ObjectF4,x
+    bne :+
+      lda #0
+      sta ObjectF1,x
+  :
+
   lda ObjectF2,x
   bne :+
   jsr EnemyApplyVelocity
@@ -2864,6 +2876,19 @@ JackInit:
   ldy #>JackStone_Init
   jmp InObjectBank2
 JackFight:
+  lda ObjectVXH,x
+  cmp #18
+  bcc :+
+    inc LevelVariable
+    lda LevelVariable
+    cmp #30
+    bcc :+
+    lda #0
+    sta BackgroundBoss
+    lda #16
+    jmp DoTeleport
+  :
+
   lda #<JackStone_Fight
   ldy #>JackStone_Fight
   jmp InObjectBank2
