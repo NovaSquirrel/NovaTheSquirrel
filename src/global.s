@@ -638,8 +638,9 @@ IndexAToBitmap = IndexToBitmap::UseA
   beq Slot2
   cmp SpriteTileSlots+3
   beq Slot3
-  ; not present, so the graphics are gonna be wrong anyway
-  ; and there's little point in trying to do error detection
+  ; Not present, but at least make it easily detectable so the enemy
+  ; can use a global graphic instead
+  lda #$00
   rts
 Slot0:
   lda #$80

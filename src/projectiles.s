@@ -1300,12 +1300,18 @@ NoGravity:
   :
   lda #OAM_COLOR_3
   sta 1
+  lda O_RAM::TILEBASE
+  beq NoFire
   lda retraces
   lsr
   lsr
   and #3
   ora #$18
   ora O_RAM::TILEBASE
+  jsr DispObject8x8_Attr
+  jmp SmallEnemyPlayerTouchHurt
+NoFire:
+  lda #$40 ; use a zero instead
   jsr DispObject8x8_Attr
   jmp SmallEnemyPlayerTouchHurt
 .endproc
