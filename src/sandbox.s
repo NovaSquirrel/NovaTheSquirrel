@@ -205,7 +205,7 @@ Loop:
     :
     dey
     bne :+ ; Select new graphics
-
+      jmp OpenSandboxGFXPicker
     :
     dey
     bne :+ ; Select ability
@@ -396,8 +396,12 @@ AbilityTypes:
 .endproc
 
 .proc OpenSandboxGFXPicker
+CursorY = 5
+NamePointer = 1
+Temp = 0
   jsr ScreenOff
   jsr ClearName
+  jsr ClearOAM
 
   PositionXY 0, 8, 4
   jsr PutStringImmediate
@@ -412,40 +416,128 @@ AbilityTypes:
   PositionXY 0, 3, 10
   jsr PutStringImmediate
   MiniFontText "TERRAIN:"
-  PositionXY 0, 18, 10
-  jsr PutStringImmediate
-  MiniFontText "GRASSLAND"
   PositionXY 0, 3, 12
   jsr PutStringImmediate
   MiniFontText "EXTRA:"
-  PositionXY 0, 18, 12
-  jsr PutStringImmediate
-  MiniFontText "TROPICAL"
   PositionXY 0, 3, 14
   jsr PutStringImmediate
   MiniFontText "DECOR:"
-  PositionXY 0, 18, 14
-  jsr PutStringImmediate
-  MiniFontText "ARROWS"
 
   PositionXY 0, 3, 16
   jsr PutStringImmediate
-  MiniFontText "SPRITE COLORS: A"
+  MiniFontText "SPRITE COLORS:"
   PositionXY 0, 3, 18
   jsr PutStringImmediate
-  MiniFontText "SPRITE SLOT A: WALKER"
+  MiniFontText "SPRITE SLOT A:"
   PositionXY 0, 3, 20
   jsr PutStringImmediate
-  MiniFontText "SPRITE SLOT B: WALKER"
+  MiniFontText "SPRITE SLOT B:"
   PositionXY 0, 3, 22
   jsr PutStringImmediate
-  MiniFontText "SPRITE SLOT C: WALKER"
+  MiniFontText "SPRITE SLOT C:"
   PositionXY 0, 3, 24
   jsr PutStringImmediate
-  MiniFontText "SPRITE SLOT D: WALKER"
+  MiniFontText "SPRITE SLOT D:"
 
+  ldx #7
+: jsr FindOption
+  jsr PrintOption
+  dex
+  bpl :-
 
+  lda #0
+  sta CursorY
+  jsr ScreenOn
 
+Loop:
+  jsr WaitVblank
+  lda #2
+  sta OAM_DMA
+
+  jsr ReadJoy
+
+  lda keynew
+  and #KEY_DOWN
+  beq :+
+    inc CursorY
+    lda CursorY
+    cmp #9
+    bne :+
+      lda #0
+      sta CursorY
+  :
+  lda keynew
+  and #KEY_UP
+  beq :+
+    dec CursorY
+    bpl :+
+      lda #8
+      sta CursorY
+  :
+
+  lda keynew
+  and #KEY_LEFT
+  beq :+
+    ldx CursorY
+    beq :+
+      dex
+      dec SandboxTerrain,x
+      bpl :+
+        lda OptionCount,x
+        sub #1
+        sta SandboxTerrain,x
+  :
+  lda keynew
+  and #KEY_RIGHT
+  beq :+
+    ldx CursorY
+    beq :+
+      dex
+      inc SandboxTerrain,x
+      lda SandboxTerrain,x
+      cmp OptionCount,x
+      bcc :+
+        lda #0
+        sta SandboxTerrain,x
+  :
+  lda keynew
+  and #KEY_LEFT | KEY_RIGHT
+  beq :+
+    ldx CursorY
+    beq :+
+      dex
+      jsr FindOption
+      jsr WaitVblank
+      jsr PrintOption
+  :
+
+  lda keynew
+  and #KEY_A
+  beq :+
+    lda CursorY
+    jeq Exit
+  :
+
+  lda #0
+  sta OAM_ATTR+(4*0)
+  lda #$52
+  sta OAM_TILE+(4*0)
+  lda CursorY
+  asl
+  asl
+  asl
+  asl
+  add #8*8-1
+  sta OAM_YPOS+(4*0)
+
+  lda #2*8
+  sta OAM_XPOS+(4*0)
+
+  lda keynew
+  and #KEY_B
+  jeq Loop
+
+Exit:
 ; Write level graphic slot information
   lda #GraphicsUpload::BG_COMMON
   sta LevelUploadList+0
@@ -463,7 +555,7 @@ AbilityTypes:
   sta LevelUploadList+3
 
   ldx SandboxDecoration
-  lda Extras,x
+  lda Decorations,x
   sta LevelUploadList+4
 
   ldx SandboxSpPalette
@@ -495,8 +587,87 @@ AbilityTypes:
       lda #GraphicsUpload::BG_CHIP_DABG
       sta LevelUploadList+3
   :
+  inc NeedLevelRerender
+  jsr ScreenOff
+  jsr DoLevelUploadListAndSprites
+  jmp OpenSandboxMenu
 
-  jmp ScreenOff
+FindOption:
+  lda NameListL,x
+  sta NamePointer+0
+  lda NameListH,x
+  sta NamePointer+1
+
+  ; Find the string
+  ldy #0
+  lda SandboxTerrain,x
+  beq @Skip ; already zero
+  sta Temp
+
+: lda (NamePointer),y
+  beq @Found
+  iny
+  bne :-
+@Found:
+  iny
+  dec Temp
+  bne :-
+  
+@Skip:
+  rts
+
+PrintOption:
+  lda NametableH,x
+  sta PPUADDR
+  lda NametableL,x
+  sta PPUADDR
+
+  ; Write the name
+: lda (NamePointer),y
+  beq :+
+  sta PPUDATA
+  iny
+  bne :-
+:
+  ; Clear out extra bits at the end of the name
+  lda #$3f
+  sta PPUDATA
+  sta PPUDATA
+  sta PPUDATA
+  sta PPUDATA
+  sta PPUDATA
+  lda #0
+  sta PPUSCROLL
+  sta PPUSCROLL
+  rts
+
+NametableH:
+  .hibytes ($2000+18+10*32), ($2000+18+12*32)
+  .hibytes ($2000+18+14*32), ($2000+18+16*32)
+  .hibytes ($2000+18+18*32), ($2000+18+20*32)
+  .hibytes ($2000+18+22*32), ($2000+18+24*32)
+NametableL:
+  .lobytes ($2000+18+10*32), ($2000+18+12*32)
+  .lobytes ($2000+18+14*32), ($2000+18+16*32)
+  .lobytes ($2000+18+18*32), ($2000+18+20*32)
+  .lobytes ($2000+18+22*32), ($2000+18+24*32)
+
+NameListH:
+  .hibytes TerrainsNames, ExtrasNames, DecorationsNames, SpPalettesNames
+  .hibytes SpritesNames, SpritesNames, SpritesNames, SpritesNames
+NameListL:
+  .lobytes TerrainsNames, ExtrasNames, DecorationsNames, SpPalettesNames
+  .lobytes SpritesNames, SpritesNames, SpritesNames, SpritesNames
+
+OptionCount:
+  .byt 7  ; terrain
+  .byt 4  ; extras
+  .byt 3  ; decorations
+  .byt 5  ; sprite palettes
+  .byt 13 ; sprite tileset
+  .byt 13 ; sprite tileset
+  .byt 13 ; sprite tileset
+  .byt 13 ; sprite tileset
 
 Terrains:
   .byt GraphicsUpload::BG_GRASSY
@@ -506,7 +677,7 @@ Terrains:
   .byt GraphicsUpload::BG_DABG ; automatically sets BG_CHIP_DABG and BG_DABGCOMMON
   .byt GraphicsUpload::BG_DABG
   .byt GraphicsUpload::BG_DABG
-TerrainssNames:
+TerrainsNames:
   MiniFontText "GRASSLAND"
   MiniFontText "PUZZLE"
   MiniFontText "FROZEN"
@@ -586,6 +757,12 @@ SpPalettes:
   .byt GraphicsUpload::PAL_ENEMY3
   .byt GraphicsUpload::PAL_ENEMY4
   .byt GraphicsUpload::PAL_ENEMY5
+SpPalettesNames:
+  MiniFontText "A"
+  MiniFontText "B"
+  MiniFontText "C"
+  MiniFontText "D"
+  MiniFontText "E"
 .endproc
 
 ; Reverses most of the LevelPostProcess effects
