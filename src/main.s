@@ -509,6 +509,18 @@ PlayerDrawY = 5
   lda #OBJ_ON | BG_ON
   sta PPUMASK
 
+; Keep cursor within range
+  lda PlaceBlockY
+  bpl :+
+    lda #0
+    sta PlaceBlockY
+  :
+  cmp #15
+  bcc :+
+    lda #14
+    sta PlaceBlockY
+  :
+
 ; Figure out the offset
   lda ScrollX
   lsr

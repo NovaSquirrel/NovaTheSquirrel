@@ -138,6 +138,7 @@ grassy2_bData:
   LObjN LO::R_GROUND,         1, 1, 0, 4
   LObjN LO::R_SOLID_BLOCK,    1, 8, 0, 1
   LObj  LO::S_SOLID_BLOCK,    1, 11
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LFinished
 
 grassy2_bSprite:
