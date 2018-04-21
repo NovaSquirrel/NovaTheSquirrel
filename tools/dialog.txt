@@ -205,7 +205,7 @@
 :ColaSigns:
 []-halp I've been taken-
 `scene FORUMS
-[NOVA]You know maybe the reason MolSno went crazy and bought all the cola is because the volcano he lives in is covered with cola advertisements.
+[NOVA_SILLY]You know maybe the reason MolSno went crazy and bought all the cola is because the volcano he lives in is covered with cola advertisements.
 [SHERWIN]You think so?
 [NOVA]I think I'm about to see him... hopefully he cooperates?
 [SHERWIN]"Molten Snow", eh? That's just a fancy name for water isn't it?
@@ -223,6 +223,13 @@
 `scene NOVA_AND_MOLSNO
 <1 MOLSNO>Okay, sure, I guess you can have some cola.
 <0 NOVA>Thank you.
+[]-halp I've been taken-
+`scene FORUMS
+[NOVA]Okay, so now I've got the cola and the sceptor. Am I all set?
+[KOREY]Yeah, now you've just gotta figure out how to get to the Scheme Team headquarters.
+[SHERWIN]I don't think you'll be able to JUST walk here. You'll need something better.
+[LIA]Oh I know! I've got an idea and I'm gonna meet up with Nova and help her!
+[KOREY]Er, well, okay, if you're sure!
 `end
 
 :NovaLiaLWSS:
@@ -236,20 +243,20 @@
 <0 NOVA>Uhh, are you sure it's safe?
 <1 LIA>Should be!
 []Nova hops onto the spaceship and it takes off! It flies a pretty long distance, seemingly without any problems...
-<0 NOVA>Weee, I'm going so fast. Wait, what's that?
 `scene NOVA_ALONE
+<0 NOVA_YAY>Weee, I'm going so fast. Wait, what's that?
 []... but eventually gets hit by a stray glider, causing the ship to disintegrate and causing the squirrel to fall into a rather strange place.
->0 NOVA_STRAIGHT<Aaaaa, okay, I had no idea it was that fragile! I'll go see what the forums think I should do.
+>0 NOVA_WOW<Aaaaa, okay, I had no idea it was that fragile! I'll go see what the forums think I should do.
 []-halp I've been taken-
 `scene FORUMS
-[NOVA]The ship I was taking into the Scheme Team's headquarters broke. Now I'm stranded in some weird place.
-[KOREY]Broke? Nova, remember when I said they were prepared for anything that Latte could throw at them? I meant it.
-[NOVA]So they were already expecting that and sent out that glider? Figures.
+[NOVA]Er, the ship Lia made for me broke.
+[KOREY]Made? Uh oh. Nova, those ships aren't very stable.
+[NOVA_SILLY]Well I can see that -now-. Guess I'll have to find another ride around here.
 [SHERWIN]Well, hopefully you can get to Atomic Videoclip Zone soon! The Scheme Team are doing some really strange things.
 [SHERWIN]They have one of those spinner things that make animal noises, but I think it's some sort of secret doomsday device. OR maybe they're just trying to throw us off. That sounds likely too.
 [KOREY]Are you hurt from the fall, Nova?
-[NOVA]Nah, but now I need to find a way out. The landscape here is really strange.
-[KOREY]Uh oh, that's probably the World of Insanity. Yeahhh, you'll want to get out of there as soon as you can.
+[NOVA]Nah, I don't take fall damage, but I've still gotta get to my destination! This place is pretty weird...
+[KOREY]Uh oh, that's probably the World of Insanity. Definitely try to find a ride out of there!
 `end
 
 :BeforeFighterMaker:
@@ -291,7 +298,7 @@
 <1 REMY>Sure. Nothin' betta ta' do.
 >0 NOVA<Fingers crossed!
 []The two of them get into Remy's spaceship, which is much more stable than a LWSS, and fly to Atomic Videoclip Zone safely. Remy slips off to do whatever once they arrive.
-<0 NOVA>Hey, I bet a cool bounty hunter squirrel could be a big help in saving this world.
+<0 NOVA>Hey, we made it! And I bet a cool bounty hunter squirrel could be a big help in saving this world.
 `scene NOVA_ALONE
 <0 NOVA_AW>... Remy?
 <1 REMY>Oh, my bad, I juss met dis genie guy, an' he sounds more fun than this 'saving the world' thing, so seeya.
@@ -299,6 +306,7 @@
 <2 JAFGUAR>Yeah who cares?
 <0 NOVA>Well then, maybe I really am supposed to do it alone.
 <0 NOVA>You know, for an evil headquarters, I was expecting something... darker? Aaaa, these enemies sure are shooty though!
+[NOVA]Going in! Wish me luck!
 `end
 
 `scene NOVA_ALONE
@@ -418,11 +426,6 @@ Down+B: Drop bomb
 `scene NOVA_AND_ITI
 `end
 
-:NekoEdCameo:
-`scene NOVA_AND_NEKOED
-<1 NEKOED>I wanted to be in this game, so here I am! I should probably give you something cool.
-`end
-
 :AboutIceJump:
 `scene NOVA_AND_SIGN
 <1 SIGN>With the ice enemy's ability, use Down+B to start sliding on ice, and hold Down for as long as you want to slide. You can abuse it to get another jump in mid-air.
@@ -514,6 +517,11 @@ Down+B: Drop bomb
 :brk
 `end
 
+
+:SignAboutRun:
+`scene NOVA_AND_SIGN
+<1 SIGN>GOTTA GO FAST!
+`end
 
 
 `manualwrap

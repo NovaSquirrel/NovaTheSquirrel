@@ -31,18 +31,18 @@ Raoul:    .byt "Raoul",0
 Jafguar:  .byt "Jafguar",0
 Lia:      .byt "Lia",0
 Iti:      .byt "Itimar",0
-NekoEd:   .byt "NekoEd",0
 Bill:     .byt "Science Guy",0
 .endproc
 
 .proc CharacterInfoTable
-  .byt CharacterNameData::None - CharacterNameData,    $00, $00, $00
+  ; Name offset, and then three colors
+  .byt CharacterNameData::None - CharacterNameData,    $00, $00, $00 ; nothing
   .byt CharacterNameData::None - CharacterNameData,    $17, $27, $37 ; sign
   .byt CharacterNameData::Nova - CharacterNameData,    $12, $2a, $30
   .byt CharacterNameData::Kee - CharacterNameData,     $07, $00, $27
   .byt CharacterNameData::Sherwin - CharacterNameData, $17, $27, $37
   .byt CharacterNameData::None - CharacterNameData,    $0f, $27, $2c ; forum
-  .byt CharacterNameData::Korey - CharacterNameData,  $12, $21, $31
+  .byt CharacterNameData::Korey - CharacterNameData,   $12, $21, $31
   .byt CharacterNameData::Remy - CharacterNameData,    $0f, $2a, $30
   .byt CharacterNameData::Eclipse - CharacterNameData, $15, $25, $38
   .byt CharacterNameData::MolSno - CharacterNameData,  $0f, $16, $30
@@ -53,8 +53,8 @@ Bill:     .byt "Science Guy",0
   .byt CharacterNameData::Jafguar - CharacterNameData, $17, $27, $38
   .byt CharacterNameData::Lia - CharacterNameData,     $00, $10, $28
   .byt CharacterNameData::Iti - CharacterNameData,     $0f, $21, $30
-  .byt CharacterNameData::NekoEd - CharacterNameData,  $0f, $27, $30
-  .byt CharacterNameData::NekoEd - CharacterNameData,  $31, $17, $16
+  .byt CharacterNameData::None - CharacterNameData,    $00, $00, $00
+  .byt CharacterNameData::None - CharacterNameData,    $00, $00, $00
   .byt CharacterNameData::Bill - CharacterNameData,    $0f, $16, $30
   .byt CharacterNameData::None - CharacterNameData,    $00, $00, $00
   .byt CharacterNameData::None - CharacterNameData,    $00, $00, $00
@@ -86,7 +86,6 @@ Bill:     .byt "Science Guy",0
   .byt CHAR::NOVA|(1<<5), CHAR::REMY|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::REMY|(2<<5)|FLIP, CHAR::JAFGUAR|(3<<5)|FLIP, 0
   .byt CHAR::NOVA|(1<<5), CHAR::RAOUL|(2<<5)|FLIP, 0, 0
-  .byt CHAR::NOVA|(1<<5), CHAR::NEKOED|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), 0, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::S_TEAM|(0<<5), CHAR::S_TEAM|(3<<5)|FLIP, 0
   .byt CHAR::NOVA|(1<<5), CHAR::KOREY|(2<<5)|FLIP, 0, 0
@@ -117,7 +116,6 @@ Bill:     .byt "Science Guy",0
   NOVA_AND_REMY
   NOVA_REMY_JAFGUAR
   NOVA_AND_RAOUL
-  NOVA_AND_NEKOED
   NOVA_ALONE
   NOVA_AND_BAD_GUYS
   NOVA_AND_KOREY
