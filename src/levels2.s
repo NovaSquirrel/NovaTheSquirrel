@@ -14,3 +14,5 @@
 .include "../levels/final3.s"
 .include "../levels/final4.s"
 .include "../levels/final4b.s"
+.include "../levels/final5.s"
+.include "../levels/final5b.s"

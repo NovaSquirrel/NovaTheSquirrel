@@ -3341,6 +3341,8 @@ Up:
 ArrowHit:
   cpy #12
   bcs ForkArrow
+  cpy #10
+  bcs WasBomb
   cpy #8
   bcs WasNotArrow
 
@@ -3386,6 +3388,14 @@ ForkArrow:
   ldx TempX
   jmp EraseBlock
 
+WasBomb:
+  lda #SFX::SMASH
+  jsr PlaySound
+
+  lda #Enemy::FALLING_BOMB * 2
+  sta ObjectF1,x
+  jmp EraseBlock
+
 WasNotArrow: ; Hit a block that didn't result in a new arrow coming out
   lda #SFX::SMASH
   jsr PlaySound
@@ -3402,8 +3412,8 @@ ReactWithTypes:
   .byt Metatiles::METAL_ARROW_UP,    Metatiles::METAL_ARROW_RIGHT
   .byt Metatiles::WOOD_ARROW_LEFT,   Metatiles::WOOD_ARROW_DOWN
   .byt Metatiles::WOOD_ARROW_UP,     Metatiles::WOOD_ARROW_RIGHT
-  .byt Metatiles::METAL_BOMB,        Metatiles::METAL_CRATE
-  .byt Metatiles::WOOD_BOMB,         Metatiles::WOOD_CRATE
+  .byt Metatiles::WOOD_CRATE,        Metatiles::METAL_CRATE
+  .byt Metatiles::WOOD_BOMB,         Metatiles::METAL_BOMB
   .byt Metatiles::FORK_ARROW_DOWN,   Metatiles::FORK_ARROW_UP
 .endproc
 
@@ -3412,9 +3422,8 @@ ReactWithTypes:
 
   jsr EnemyCheckOverlappingOnSolid
   bcc :+
-    ; No explosion yet
-    lda #0
-    sta ObjectF1,x
+    lda #8
+    jmp EnemyExplode
   :
 
   lda #8
