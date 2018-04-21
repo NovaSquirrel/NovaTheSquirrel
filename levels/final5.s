@@ -298,6 +298,7 @@ final5Data:
   LObj  LO::S_BIG_SPIKY_BUSH, 2, 8
   LObj  LO::S_DOOR,           2, 7
   LWriteCol $21, LevelId::Final5B
+  LObjN LO::R_SAND,           2, 0, 12, 14
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   .byt LSpecialCmd, LevelSpecialConfig::STARS
   LFinished
