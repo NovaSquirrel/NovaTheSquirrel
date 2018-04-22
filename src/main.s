@@ -749,6 +749,14 @@ NotSolid:
     ldx SandboxMode
     bne OverwriteOkay
     ; Accumulator is the block at that tile
+
+    sta TempVal
+    tax
+    lda MetatileFlags,x ; Check to see if this block is explicitly replaceable
+    cmp #M_REPLACEABLE  ; if it is, ignore that it's not a background tile
+    beq OverwriteOkay
+    lda TempVal
+
     cmp BackgroundMetatile ; Don't overwrite blocks
     bne NoPlace
     OverwriteOkay:

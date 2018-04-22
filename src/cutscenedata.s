@@ -81,7 +81,7 @@ Bill:     .byt "Science Guy",0
   .byt CHAR::SHERWIN|(1<<5), CHAR::S_TEAM|(0<<5), CHAR::S_TEAM|(2<<5)|FLIP, 0
   .byt CHAR::SHERWIN|(1<<5), 0, 0, 0
   .byt CHAR::S_TEAM|(1<<5), CHAR::S_TEAM|(2<<5), CHAR::BILL|(3<<5)|FLIP, 0
-  .byt CHAR::NOVA|(1<<5), CHAR::ECLIPSE|(2<<5)|FLIP, 0, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::LIA|(0<<5), CHAR::ECLIPSE|(2<<5)|FLIP, 0
   .byt CHAR::NOVA|(1<<5), CHAR::MOLSNO|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::REMY|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::REMY|(2<<5)|FLIP, CHAR::JAFGUAR|(3<<5)|FLIP, 0

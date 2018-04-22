@@ -837,7 +837,7 @@ C .byt $5f
 ##### background stuff starts here #####
 R CLOUD_L
 C .byt M_PAL_1
-C .byt M_EMPTY
+C .byt M_REPLACEABLE
 C .byt $5b
 C .byt $6b
 C .byt $5c
@@ -845,7 +845,7 @@ C .byt $6c
 
 R CLOUD_M
 C .byt M_PAL_1
-C .byt M_EMPTY
+C .byt M_REPLACEABLE
 C .byt $5d
 C .byt $6c
 C .byt $5e
@@ -853,7 +853,7 @@ C .byt $6c
 
 R CLOUD_R
 C .byt M_PAL_1
-C .byt M_EMPTY
+C .byt M_REPLACEABLE
 C .byt $5f
 C .byt $6f
 C .byt $3f

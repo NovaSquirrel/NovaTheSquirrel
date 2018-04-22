@@ -107,7 +107,6 @@ M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
   .byt M_PAL_1 ;PUSHABLE_BLOCK
   .byt M_PAL_2 ;CAMPFIRE_OUT
   .byt M_PAL_1 ;ICE
-  .byt M_PAL_0 ;PATH_MARKER
   .byt M_PAL_1 ;CLOUD_L
   .byt M_PAL_1 ;CLOUD_M
   .byt M_PAL_1 ;CLOUD_R
@@ -313,10 +312,9 @@ M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
   .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL ;PUSHABLE_BLOCK
   .byt M_EMPTY ;CAMPFIRE_OUT
   .byt M_ICE|M_SOLID_ALL|M_SOLID_TOP ;ICE
-  .byt M_EMPTY ;PATH_MARKER
-  .byt M_EMPTY ;CLOUD_L
-  .byt M_EMPTY ;CLOUD_M
-  .byt M_EMPTY ;CLOUD_R
+  .byt M_REPLACEABLE ;CLOUD_L
+  .byt M_REPLACEABLE ;CLOUD_M
+  .byt M_REPLACEABLE ;CLOUD_R
   .byt M_EMPTY ;BG_FENCE
   .byt M_EMPTY ;BG_TALL_GRASS
   .byt M_EMPTY|M_POST_PROCESS ;BG_FLOWER_1
@@ -519,7 +517,6 @@ M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
   .byt $0c ;PUSHABLE_BLOCK
   .byt $3f ;CAMPFIRE_OUT
   .byt $5c ;ICE
-  .byt $3f ;PATH_MARKER
   .byt $5b ;CLOUD_L
   .byt $5d ;CLOUD_M
   .byt $5f ;CLOUD_R
@@ -725,7 +722,6 @@ M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
   .byt $29 ;PUSHABLE_BLOCK
   .byt $b8 ;CAMPFIRE_OUT
   .byt $5e ;ICE
-  .byt $3f ;PATH_MARKER
   .byt $6b ;CLOUD_L
   .byt $6c ;CLOUD_M
   .byt $6f ;CLOUD_R
@@ -931,7 +927,6 @@ M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
   .byt $0e ;PUSHABLE_BLOCK
   .byt $3f ;CAMPFIRE_OUT
   .byt $5d ;ICE
-  .byt $3f ;PATH_MARKER
   .byt $5c ;CLOUD_L
   .byt $5e ;CLOUD_M
   .byt $3f ;CLOUD_R
@@ -1137,7 +1132,6 @@ M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
   .byt $2b ;PUSHABLE_BLOCK
   .byt $ba ;CAMPFIRE_OUT
   .byt $5f ;ICE
-  .byt $3f ;PATH_MARKER
   .byt $6c ;CLOUD_L
   .byt $6c ;CLOUD_M
   .byt $3f ;CLOUD_R

@@ -34,6 +34,7 @@ M_BRICKS          ; breakable bricks
 M_LAVA            ;
 M_COLLECTIBLE     ; coins
 M_MINETRACK       ; regular horizontal track
+M_REPLACEABLE     ; can place over this
 ; must not have more than 32 entries
 .endenum
 
