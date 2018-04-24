@@ -87,8 +87,9 @@ PalEnemy6:  .byt $61
             .byt $0f, $16, $30
             .byt $0f, $12, $30
 PalEnemyMolSno:
-            .byt $60
-            .byt $0f, $16, $30
+            .byt $61
+            .byt $0f, $16, $30 ; MolSno
+            .byt $0f, $21, $30 ; John
 PalFighterMaker:
             .byt $60
             .byt $0a, $2a, $2c

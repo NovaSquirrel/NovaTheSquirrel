@@ -232,6 +232,21 @@
 [KOREY]Er, well, okay, if you're sure!
 `end
 
+:JohnMeet:
+`scene NOVA_AND_JOHN
+<1 JOHN>I'll be honest here, I just wanted to be a boss so badly that I didn't care WHICH team I was on.
+<0 NOVA_SILLY>Well congratulations, you're on the losing one.
+<1 JOHN>Just give me this fight, okay?
+<0 NOVA>Ha, sure thing.
+`end
+
+:JohnAfterFight:
+`scene NOVA_AND_JOHN
+<0 NOVA>Where'd you learn to do THAT?
+<1 JOHN>Oh, I have a whale friend who fights like that.
+`end
+
+
 :NovaLiaLWSS:
 `scene NOVA_AND_LIA
 <0 NOVA>Oh hey, it's Lia again!
@@ -627,6 +642,23 @@ fighting style!
  fall off!
 `end
 
+:PreLevelBoss5a:
+A panda challenges Nova to
+`nl
+a fight!
+`end
+
+:PreLevelBoss5b:
+ The final battle against
+`nl
+ the leader of the Scheme
+`nl
+ Team. Good luck!
+`end
+
+:PreLevelSandbox:
+Make your own level!
+`end
 
 
 :PreLevelFrozen:
@@ -702,6 +734,11 @@ heavily guarded.
 This level is da bomb.
 `end
 
+:PreLevelFinal5:
+Run across a path of arrow
+`nl
+blocks!
+`end
 
 
 

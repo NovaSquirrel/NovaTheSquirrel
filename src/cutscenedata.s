@@ -32,6 +32,7 @@ Jafguar:  .byt "Jafguar",0
 Lia:      .byt "Lia",0
 Iti:      .byt "Itimar",0
 Bill:     .byt "Science Guy",0
+John:     .byt "John",0
 .endproc
 
 .proc CharacterInfoTable
@@ -53,7 +54,7 @@ Bill:     .byt "Science Guy",0
   .byt CharacterNameData::Jafguar - CharacterNameData, $17, $27, $38
   .byt CharacterNameData::Lia - CharacterNameData,     $00, $10, $28
   .byt CharacterNameData::Iti - CharacterNameData,     $0f, $21, $30
-  .byt CharacterNameData::None - CharacterNameData,    $00, $00, $00
+  .byt CharacterNameData::John - CharacterNameData,    $0f, $21, $30
   .byt CharacterNameData::None - CharacterNameData,    $00, $00, $00
   .byt CharacterNameData::Bill - CharacterNameData,    $0f, $16, $30
   .byt CharacterNameData::None - CharacterNameData,    $00, $00, $00
@@ -98,6 +99,7 @@ Bill:     .byt "Science Guy",0
   .byt CHAR::NOVA|(1<<5), CHAR::IKE|(2<<5)|FLIP, 0, 0
   .byt CHAR::NOVA|(1<<5), CHAR::S_TEAM|(0<<5), CHAR::S_TEAM|(2<<5)|FLIP, CHAR::IKE|(3<<5)|FLIP
   .byt CHAR::NOVA|(2<<5), CHAR::LIA|(1<<5), CHAR::SIGN|(3<<5)|FLIP, 0
+  .byt CHAR::NOVA|(1<<5), CHAR::JOHN|(2<<5)|FLIP, 0, 0
 .endproc
 
 .enum SCENES
@@ -128,6 +130,7 @@ Bill:     .byt "Science Guy",0
   NOVA_AND_IKE
   NOVA_AND_BAD_GUYS_AND_IKE
   NOVA_LIA_SIGN
+  NOVA_AND_JOHN
 .endenum
 
 FaceData:

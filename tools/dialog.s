@@ -312,6 +312,24 @@ MolSnoAfterFight:
 ; [KOREY]Er, well, okay, if you're sure!
 .byt SCR::NARRATE, CHAR::KOREY, "E", "r", $f4, $c7, "l", "l", $f4, "o", "k", "a", "y", $f4, $cd, " ", $a5, "'", $fa, " ", "s", "u", $fa, "!"
 .byt SCR::END_SCRIPT
+JohnMeet:
+.byt SCR::SCENE, SCENES::NOVA_AND_JOHN
+; <1 JOHN>I'll be honest here, I just wanted to be a boss so badly that I didn't care WHICH team I was on.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::JOHN, $d4, " ", $b9, "h", $ab, $dd, " ", $a8, "e", $f4, $bf, "j", "u", $dd, SCR::NEWLINE, "w", $c9, $ea, $ff, $ba, $b9, $bd, "b", "o", $f0, " ", $cb, " ", "b", $f6, "l", "y", SCR::NEWLINE, $99, $bf, "d", "i", "d", "n", $e7, "c", "a", $fa, " ", "W", "H", "I", "C", "H", " ", $ea, "a", "m", SCR::NEWLINE, $bf, "w", $c3, " ", $c1, "."
+; <0 NOVA_SILLY>Well congratulations, you're on the losing one.
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA_SILLY, "W", "e", "l", "l", " ", "c", $c1, "g", "r", $c5, "u", "l", $c5, "i", $c1, "s", $f4, $a5, "'", $fa, SCR::NEWLINE, $c1, " ", $a1, " ", "l", "o", "s", $b0, " ", $ab, "."
+; <1 JOHN>Just give me this fight, okay?
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::JOHN, "J", "u", $dd, " ", "g", "i", "v", $e6, $cf, " ", $98, " ", "f", "i", $da, "t", $f4, "o", "k", "a", "y", "?"
+; <0 NOVA>Ha, sure thing.
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "H", "a", $f4, "s", "u", $fa, " ", $df, $b0, "."
+.byt SCR::END_SCRIPT
+JohnAfterFight:
+.byt SCR::SCENE, SCENES::NOVA_AND_JOHN
+; <0 NOVA>Where'd you learn to do THAT?
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "W", $a8, "e", "'", $ff, $a5, " ", "l", $eb, "r", "n", " ", $ba, $c4, SCR::NEWLINE, "T", "H", "A", "T", "?"
+; <1 JOHN>Oh, I have a whale friend who fights like that.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::JOHN, "O", "h", $f4, $bf, $9a, $bd, $d9, "a", "l", $e6, "f", $fc, $e5, $ff, $d9, "o", SCR::NEWLINE, "f", "i", $da, "t", $fb, $8c, " ", $df, $c5, "."
+.byt SCR::END_SCRIPT
 NovaLiaLWSS:
 .byt SCR::SCENE, SCENES::NOVA_AND_LIA
 ; <0 NOVA>Oh hey, it's Lia again!
@@ -789,6 +807,27 @@ PreLevelBoss4b:
 ;  fall off!
 .byt " ", "f", $ac, " ", "o", "f", "f", "!"
 .byt SCR::END_SCRIPT
+PreLevelBoss5a:
+; A panda challenges Nova to
+.byt "A", " ", "p", $c9, "d", $bd, $e1, $ac, $e5, "g", "e", $fb, $a0, " ", $bb
+.byt SCR::NEWLINE
+; a fight!
+.byt $bd, "f", "i", $da, "t", "!"
+.byt SCR::END_SCRIPT
+PreLevelBoss5b:
+;  The final battle against
+.byt " ", $f7, $e6, "f", $d7, "a", "l", " ", "b", $c5, "t", "l", $e6, "a", "g", "a", $d7, $dd
+.byt SCR::NEWLINE
+;  the leader of the Scheme
+.byt " ", $a1, " ", "l", $eb, "d", $ec, " ", $bc, $a1, " ", "S", $e1, "e", $cf
+.byt SCR::NEWLINE
+;  Team. Good luck!
+.byt " ", "T", $eb, "m", $f5, "G", $e3, $ff, "l", "u", $f2, "!"
+.byt SCR::END_SCRIPT
+PreLevelSandbox:
+; Make your own level!
+.byt "M", "a", "k", $e6, $90, " ", "o", "w", "n", " ", "l", "e", "v", "e", "l", "!"
+.byt SCR::END_SCRIPT
 PreLevelFrozen:
 ; Nova enters the icy and
 .byt $a0, " ", $e5, $ea, "r", $fb, $a1, " ", "i", "c", $fe, $c9, "d"
@@ -870,6 +909,13 @@ PreLevelFinal1:
 PreLevelFinal4:
 ; This level is da bomb.
 .byt $f7, $b7, "l", "e", "v", "e", "l", " ", $b7, "d", $bd, "b", "o", "m", "b", "."
+.byt SCR::END_SCRIPT
+PreLevelFinal5:
+; Run across a path of arrow
+.byt "R", $f1, " ", "a", "c", "r", "o", $f0, " ", $bd, "p", $c5, "h", " ", $bc, "a", $d8, "o", "w"
+.byt SCR::NEWLINE
+; blocks!
+.byt "b", "l", "o", $f2, "s", "!"
 .byt SCR::END_SCRIPT
 ; INTRO CUTSCENE TEXT
 ExpositionText1:
