@@ -4555,6 +4555,16 @@ Shirt2:
   sta ObjectVXL,x
   lda TossVH,y
   sta ObjectVXH,x
+
+  ; If you're standing too close, shoot a block straight up instead
+  lda ObjectPXH,x
+  sub PlayerPXH
+  abs
+  cmp #2
+  bcs DidntReachZero
+  lda #0
+  sta ObjectVXH,x
+  sta ObjectVXL,x
 DidntReachZero:
 
   ; Find FHBG
