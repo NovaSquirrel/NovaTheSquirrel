@@ -193,7 +193,7 @@ Loop:
     :
     dey
     bne :+ ; Select a new block type
-
+      jmp OpenSandboxBlockPicker
     :
     dey 
     bne :+ ; Copy block from level
@@ -763,6 +763,304 @@ SpPalettesNames:
   MiniFontText "C"
   MiniFontText "D"
   MiniFontText "E"
+.endproc
+
+.proc OpenSandboxBlockPicker
+CursorX = 4
+CursorY = 5
+Temp = 6
+PPUPtr = 6
+ColumnCounter = 8
+  jsr ScreenOff
+  jsr ClearName
+  jsr ClearOAM
+
+  PositionXY 0, 8, 4
+  jsr PutStringImmediate
+  MiniFontText "- SANDBOX MODE -"
+  PositionXY 0, 10, 5
+  jsr PutStringImmediate
+  MiniFontText "SELECT BLOCK"
+
+  ; Draw all the blocks you can pick
+  ldy #0 ; First metatile type
+  bit PPUSTATUS
+  lda #>$2104
+  sta PPUADDR
+  lda #<$2104
+  sta PPUADDR
+DrawBlockLoopInit:
+  lda #12
+  sta ColumnCounter
+DrawBlockLoop: ; Top row
+  ldx MetatileList,y
+  jsr GetBlockInfoFar
+  lda 0
+  sta PPUDATA
+  lda 2
+  sta PPUDATA
+  iny
+  dec ColumnCounter
+  bne DrawBlockLoop
+  jsr SpaceBetweenRows
+DrawBlockLoopInit2:
+  lda #12
+  sta ColumnCounter
+  tya
+  sub #12
+  tay
+DrawBlockLoop2: ; Bottom row
+  ldx MetatileList,y
+  jsr GetBlockInfoFar
+  lda 1
+  sta PPUDATA
+  lda 3
+  sta PPUDATA
+  iny
+  dec ColumnCounter
+  bne DrawBlockLoop2
+  jsr SpaceBetweenRows
+  cpy #12*6
+  bne DrawBlockLoopInit
+
+; Now write the attribute table
+; It would probably actually be less bytes to just hardcode this but eh
+  lda #$23
+  sta PPUADDR
+  lda #$d1
+  sta PPUADDR
+  ldy #0 ; First metatile type
+AttributeLoopInit:
+  lda #6
+  sta ColumnCounter
+AttributeLoop:
+  ; A lot of cycles are being wasted here with the far calls
+  ; especially when I only want the palette data but whatever.
+  ; Take four blocks' palette bytes and combine them.
+  ldx MetatileList+0,y
+  jsr GetBlockInfoFar
+  lda 4
+  and #%00000011
+  sta Temp
+
+  ldx MetatileList+1,y
+  jsr GetBlockInfoFar
+  lda 4
+  and #%00001100
+  ora Temp
+  sta Temp
+
+  ldx MetatileList+12,y
+  jsr GetBlockInfoFar
+  lda 4
+  and #%00110000
+  ora Temp
+  sta Temp
+
+  ldx MetatileList+13,y
+  jsr GetBlockInfoFar
+  lda 4
+  and #%11000000
+  ora Temp
+  sta PPUDATA
+
+  iny
+  iny
+  dec ColumnCounter
+  bne AttributeLoop
+  tya
+  add #12
+  tay
+
+  lda #0
+  sta PPUDATA
+  sta PPUDATA
+  cpy #12*6
+  bne AttributeLoopInit
+
+
+
+; Now actually run the menu
+  lda #0
+  sta CursorX
+  sta CursorY
+  jsr ScreenOn
+
+Loop:
+  jsr WaitVblank
+  lda #2
+  sta OAM_DMA
+
+  jsr ReadJoy
+
+  lda keynew
+  and #KEY_DOWN
+  beq :+
+    inc CursorY
+    lda CursorY
+    cmp #6
+    bne :+
+      lda #0
+      sta CursorY
+  :
+  lda keynew
+  and #KEY_UP
+  beq :+
+    dec CursorY
+    bpl :+
+      lda #5
+      sta CursorY
+  :
+  lda keynew
+  and #KEY_LEFT
+  beq :+
+    dec CursorX
+    bpl :+
+      lda #11
+      sta CursorX
+  :
+  lda keynew
+  and #KEY_RIGHT
+  beq :+
+    inc CursorX
+    lda CursorX
+    cmp #12
+    bne :+
+      lda #0
+      sta CursorX
+  :
+
+  lda keynew
+  and #KEY_A
+  beq :+
+    ; *12
+    asl CursorY
+    asl CursorY
+    lda CursorY
+    add CursorY
+    add CursorY
+    add CursorX
+    tax
+    lda MetatileList,x
+    ldx SandboxCursorX
+    sta SandboxBrushes,x
+    jmp Exit
+  :
+
+  lda #0
+  sta OAM_ATTR+(4*0)
+  lda #$52
+  sta OAM_TILE+(4*0)
+  lda CursorY
+  asl
+  asl
+  asl
+  asl
+  add #8*8-1+4
+  sta OAM_YPOS+(4*0)
+
+  lda CursorX
+  asl
+  asl
+  asl
+  asl
+  add #4*8+4
+  sta OAM_XPOS+(4*0)
+
+  lda keynew
+  and #KEY_B
+  jeq Loop
+
+Exit:
+  jsr ScreenOff
+  jmp OpenSandboxMenu
+
+SpaceBetweenRows:
+  lda #$3f
+  sta PPUDATA
+  sta PPUDATA
+  sta PPUDATA
+  sta PPUDATA
+  sta PPUDATA
+  sta PPUDATA
+  sta PPUDATA
+  sta PPUDATA
+  rts
+
+MetatileList:
+  .byt Metatiles::BRICKS
+  .byt Metatiles::GRAY_BRICKS
+  .byt Metatiles::PRIZE
+  .byt Metatiles::USED_PRIZE
+  .byt Metatiles::SOLID_BLOCK
+  .byt Metatiles::SPIKES
+  .byt Metatiles::PICKUP_BLOCK
+  .byt Metatiles::PUSHABLE_BLOCK
+  .byt Metatiles::LADDER
+  .byt Metatiles::ROPE
+  .byt Metatiles::SPRING
+  .byt Metatiles::CEILING_BARRIER
+  .byt Metatiles::COIN
+  .byt Metatiles::BIG_HEART
+  .byt Metatiles::HEART
+  .byt Metatiles::SOLID_ROCK
+  .byt Metatiles::WATER_MAIN
+  .byt Metatiles::PATH_LINE
+  .byt Metatiles::GROUND_MIDDLE_M
+  .byt Metatiles::GROUND_CLIMB_L
+  .byt Metatiles::GROUND_CLIMB_R
+  .byt Metatiles::SOLID_LEDGE_M
+  .byt Metatiles::FALLTHROUGH_LEDGE_M
+  .byt Metatiles::ROCK_MID_M
+  .byt Metatiles::BG_BLACK
+  .byt Metatiles::LAVA_MAIN
+  .byt Metatiles::ICE
+  .byt Metatiles::ICE2
+  .byt Metatiles::SAND
+  .byt Metatiles::STRIPED_LOG_HORIZ
+  .byt Metatiles::STONE_BRIDGE
+  .byt Metatiles::LOG_HORIZ
+  .byt Metatiles::BRICKWALL_MIDDLE
+  .byt Metatiles::MOAI_RIGHT
+  .byt Metatiles::MOAI_LEFT
+  .byt Metatiles::WOOD_PLATFORM_TOP
+  .byt Metatiles::WOOD_PLATFORM
+  .byt Metatiles::SQUIRREL_BUSH
+  .byt Metatiles::WHITEFENCE_MIDDLE
+  .byt Metatiles::TOGGLE_SWITCH
+  .byt Metatiles::CHERRY_BOMB
+  .byt Metatiles::CAMPFIRE
+  .byt Metatiles::FORCE_LEFT
+  .byt Metatiles::FORCE_RIGHT
+  .byt Metatiles::FORCE_UP
+  .byt Metatiles::FORCE_DOWN
+  .byt Metatiles::KEY_RED
+  .byt Metatiles::KEY_GREEN
+  .byt Metatiles::KEY_BLUE
+  .byt Metatiles::LOCK_RED
+  .byt Metatiles::LOCK_GREEN
+  .byt Metatiles::LOCK_BLUE
+  .byt Metatiles::RED_BOOTS
+  .byt Metatiles::GREEN_BOOTS
+  .byt Metatiles::TOGGLE_BLOCK_OFF
+  .byt Metatiles::TOGGLE_BLOCK_ON
+  .byt Metatiles::GLIDER_BLOCK
+  .byt Metatiles::WOOD_CRATE
+  .byt Metatiles::WOOD_ARROW_LEFT
+  .byt Metatiles::WOOD_ARROW_DOWN
+  .byt Metatiles::WOOD_ARROW_UP
+  .byt Metatiles::WOOD_ARROW_RIGHT
+  .byt Metatiles::METAL_CRATE
+  .byt Metatiles::METAL_ARROW_LEFT
+  .byt Metatiles::METAL_ARROW_DOWN
+  .byt Metatiles::METAL_ARROW_UP
+  .byt Metatiles::METAL_ARROW_RIGHT
+  .byt Metatiles::METAL_BOMB
+  .byt Metatiles::FORK_ARROW_DOWN
+  .byt Metatiles::FORK_ARROW_UP
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
+  .byt Metatiles::EMPTY
 .endproc
 
 ; Reverses most of the LevelPostProcess effects

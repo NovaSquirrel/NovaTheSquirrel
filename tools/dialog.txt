@@ -115,7 +115,8 @@
 <1 IKE>Yeah, tons. They recently broke out of prison and everyone's in a panic.
 <0 NOVA>I'll see what I can do to help. By the way, how do I get to your shop?
 <1 IKE>It's a menu option on the screen between levels.
-<1 IKE>By the way, since you asked, this world is named Latte. Good luck, dude.
+<1 IKE>By the way, since you asked, this place is named Latte. Good luck, dude.
+[]Completing this level will open up world 2. Press up/down on the level select screen to swap between worlds.
 `end
 
 :AfterFirstBattle:

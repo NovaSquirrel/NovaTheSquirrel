@@ -1353,6 +1353,8 @@ CustomFrameBase:
   lda CarryingSunKey
   ora CarryingPickupBlock
   beq :+
+    lda PlayerOnLadder
+    bne :+
     lda #$1f
     sta PlayerTiles+1
     lda #$2f

@@ -19,9 +19,10 @@ MasterLevelListH:
   .byt >final5b
 
 .proc LevelBanks
+; Array of what bank each level belongs to. Can also put other data in its upper bits.
 B1 = LEVELS_BANK1
 B2 = LEVELS_BANK2
-PUZ = 128 ; puzzle
+PUZ = 128 ; puzzle, no longer used
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B1
   .byt B1,     B1,     B1|PUZ, B1,     B1|PUZ, B1,     B2|PUZ, B1
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B2

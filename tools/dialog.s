@@ -134,8 +134,10 @@ FirstSchemeTeamEncounterAfter:
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, $d4, " ", $b2, " ", $8a, " ", $bf, $af, " ", $c4, " ", $ba, $c2, "l", "p", ".", SCR::NEWLINE, "B", $fe, $a1, " ", $b6, $f4, $b4, " ", $c4, " ", $bf, $ae, " ", $bb, SCR::NEWLINE, $90, " ", $de, "o", "p", "?"
 ; <1 IKE>It's a menu option on the screen between levels.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::IKE, "I", "t", $e8, $bd, $cf, "n", "u", " ", "o", "p", "t", "i", $c1, " ", $c1, " ", $a1, SCR::NEWLINE, "s", "c", $fa, $e5, " ", "b", "e", "t", $c7, $e5, " ", "l", "e", "v", "e", "l", "s", "."
-; <1 IKE>By the way, since you asked, this world is named Latte. Good luck, dude.
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::IKE, "B", $fe, $a1, " ", $b6, $f4, "s", $d7, "c", $e6, $a5, " ", $c3, "k", "e", "d", ",", SCR::NEWLINE, $98, " ", "w", $c8, $ee, " ", $b7, "n", "a", $cf, $ff, $84, ".", SCR::NEWLINE, "G", $e3, $ff, "l", "u", $f2, $f4, "d", "u", "d", "e", "."
+; <1 IKE>By the way, since you asked, this place is named Latte. Good luck, dude.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::IKE, "B", $fe, $a1, " ", $b6, $f4, "s", $d7, "c", $e6, $a5, " ", $c3, "k", "e", "d", ",", SCR::NEWLINE, $98, " ", "p", "l", "a", "c", $e6, $b7, "n", "a", $cf, $ff, $84, ".", SCR::NEWLINE, "G", $e3, $ff, "l", "u", $f2, $f4, "d", "u", "d", "e", "."
+; []Completing this level will open up world 2. Press up/down on the level select screen to swap between worlds.
+.byt SCR::NARRATE, CHAR::NONE, "C", "o", "m", "p", $a7, $b0, " ", $98, " ", "l", "e", "v", "e", "l", " ", $9d, SCR::NEWLINE, "o", "p", $e5, " ", $cc, " ", "w", $c8, $ee, " ", "2", $f5, "P", $fa, $f0, SCR::NEWLINE, $cc, "/", $c4, "w", "n", " ", $c1, " ", $a1, " ", "l", "e", "v", "e", "l", " ", $e4, "l", "e", $c6, SCR::NEWLINE, "s", "c", $fa, $e5, " ", $ba, "s", "w", "a", "p", " ", "b", "e", "t", $c7, $e5, SCR::NEWLINE, "w", $c8, $ee, "s", "."
 .byt SCR::END_SCRIPT
 AfterFirstBattle:
 .byt SCR::SCENE, SCENES::FORUMS

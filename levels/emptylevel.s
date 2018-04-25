@@ -13,6 +13,8 @@ emptylevel:
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_GRASSY
   .byt GraphicsUpload::PAL_ENEMY1
+  .byt GraphicsUpload::BG_TROPICAL
+  .byt GraphicsUpload::BG_GRASSYBG
   .byt 255 ; end
   .byt $00, $00 ; boundaries
 
