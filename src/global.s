@@ -850,7 +850,8 @@ RightPointer = LevelSpritePointer
 
   ; OKAY so the block is actually on the screen, so update nametable
 
-  ; find a slot for the block update
+  ; Find a slot for the block update,
+  ; starting from the end
   ldy #MaxNumBlockUpdates-1
 : lda BlockUpdateA1,y
   beq :+          ; empty slot found

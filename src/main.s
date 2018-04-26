@@ -124,8 +124,8 @@
     :
   .endrep
 
-  ; Queue for up to three changes the size of a block
-  .repeat 3, I
+  ; Queue for up to four changes the size of a block
+  .repeat 4, I
     lda BlockUpdateA1+I
     beq :+
       sta PPUADDR

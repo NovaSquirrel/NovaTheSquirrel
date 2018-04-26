@@ -465,3 +465,15 @@ C .byt GraphicsUpload::SP_EXPLODE
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
 C .raddr ObjectDroppedBombGuy
+
+R JOHN
+C .byt GraphicsUpload::SP_FHBG
+C .byt 0
+C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectJohn
+
+R JOHN_ICE
+C .byt GraphicsUpload::SP_MINES
+C .byt 0
+C .byt ObjFlag::PRIMARY
+C .raddr ObjectJohnIce

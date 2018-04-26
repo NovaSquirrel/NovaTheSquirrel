@@ -76,6 +76,8 @@
   .byt GraphicsUpload::SP_FREAK ;FIGHTER_MAKER
   .byt 0 ;MOVING_PLATFORM_PUSH
   .byt GraphicsUpload::SP_EXPLODE ;DROPPED_BOMB_GUY
+  .byt GraphicsUpload::SP_FHBG ;JOHN
+  .byt GraphicsUpload::SP_MINES ;JOHN_ICE
 .endproc
 
 .proc ObjBehaviors
@@ -156,6 +158,8 @@
   .byt 0 ;FIGHTER_MAKER
   .byt ObjBehavior::AUTO_REMOVE ;MOVING_PLATFORM_PUSH
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;DROPPED_BOMB_GUY
+  .byt 0 ;JOHN
+  .byt 0 ;JOHN_ICE
 .endproc
 
 .proc ObjFlags
@@ -236,6 +240,8 @@
   .byt ObjFlag::ESSENTIAL ;FIGHTER_MAKER
   .byt ObjFlag::ESSENTIAL ;MOVING_PLATFORM_PUSH
   .byt ObjFlag::PRIMARY ;DROPPED_BOMB_GUY
+  .byt ObjFlag::ESSENTIAL ;JOHN
+  .byt ObjFlag::PRIMARY ;JOHN_ICE
 .endproc
 
 .proc ObjectTable
@@ -316,5 +322,7 @@
   .raddr ObjectFighterMaker ;FIGHTER_MAKER
   .raddr ObjectMovingPlatformPush ;MOVING_PLATFORM_PUSH
   .raddr ObjectDroppedBombGuy ;DROPPED_BOMB_GUY
+  .raddr ObjectJohn ;JOHN
+  .raddr ObjectJohnIce ;JOHN_ICE
 .endproc
 

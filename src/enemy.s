@@ -3957,10 +3957,7 @@ NoRetarget:
   :
 
 ; Move position up temporarily
-  lda ObjectPYL,x
-  sub #$80
-  sta ObjectPYL,x
-  subcarryx ObjectPYH
+  jsr BossShiftUp
 
   lda ObjectF3,x ; invincibility
   beq :+
@@ -4057,10 +4054,7 @@ DontDraw:
   :
 
 ; Move position back down
-  lda ObjectPYL,x
-  add #$80
-  sta ObjectPYL,x
-  addcarryx ObjectPYH
+  jsr BossShiftDown
 
 DisplayHealth:
 ; Write health indicator
@@ -4377,6 +4371,21 @@ ReactWithTypes:
   .byt Metatiles::WOOD_ARROW_UP,     Metatiles::WOOD_ARROW_RIGHT
 .endproc
 
+.proc BossShiftUp
+  lda ObjectPYL,x
+  sub #$80
+  sta ObjectPYL,x
+  subcarryx ObjectPYH
+  rts
+.endproc
+
+.proc BossShiftDown
+  lda ObjectPYL,x
+  add #$80
+  sta ObjectPYL,x
+  addcarryx ObjectPYH
+  rts
+.endproc
 
 .proc ObjectFHBG
   jsr EnemyFall
@@ -4420,10 +4429,7 @@ ReactWithTypes:
 :
 
 ; Move position up temporarily
-  lda ObjectPYL,x
-  sub #$80
-  sta ObjectPYL,x
-  subcarryx ObjectPYH
+  jsr BossShiftUp
 
 ; Pick the right animation frame
   lda ObjectF1,x
@@ -4449,10 +4455,7 @@ ReactWithTypes:
   jsr DispEnemyMetasprite
 
 ; Move position back down
-  lda ObjectPYL,x
-  add #$80
-  sta ObjectPYL,x
-  addcarryx ObjectPYH
+  jsr BossShiftDown
 DontDraw:
 
   jmp ObjectMolSno::DisplayHealth
@@ -4723,3 +4726,196 @@ DontGetShot:
 
   rts
 .endproc
+
+.proc ObjectJohn
+  lda #$10
+  add ObjectF4,x ; speed up with damage
+  jsr EnemyWalk
+  jsr EnemyAutoBump
+
+  jsr EnemyFall
+  bcc :+
+    lda retraces
+    and #$31
+    bne :+
+    lda ObjectF2,x
+    bne :+
+      lda #<(-$40)
+      sta ObjectVYL,x
+      lda #>(-$40)
+      sta ObjectVYH,x
+
+      ; Do a high jump if player way above the enemy
+      lda ObjectPYH,x
+      sub PlayerPYH
+      bmi :+
+      cmp #3
+      bcc :+
+        lda #<(-$60)
+        sta ObjectVYL,x
+        lda #>(-$60)
+        sta ObjectVYH,x
+  :
+
+  lda retraces
+  and #63
+  bne :+
+  jsr EnemyLookAtPlayer
+:
+  ; If heading towards the edge of the stage, move in the opposite direction
+  lda ObjectPXH,x
+  bne :+
+    lda ObjectF1,x
+    and #<~1
+    sta ObjectF1,x
+  :
+  lda ObjectPXH,x
+  cmp #15
+  bne :+
+    lda ObjectF1,x
+    ora #1
+    sta ObjectF1,x
+  :
+
+  ; Shoot ice blocks occasionally
+  lda retraces
+  and #15
+  bne :+
+    lda ObjectPYH,x
+    sub PlayerPYH
+    abs
+    cmp #2
+    bcs :+
+      lda ObjectF1,x
+      and #1
+      tay
+      lda Speeds,y
+      sta 0
+      jsr FindFreeObjectY
+      bcc :+
+      jsr ObjectCopyPosXY
+      jsr ObjectClearY
+
+      lda ObjectF1,x
+      and #1
+      ora #Enemy::JOHN_ICE*2
+      sta ObjectF1,y
+
+      lda 0
+      sta ObjectVXL,y
+      sex
+      sta ObjectVXH,y
+        
+      lda #10
+      sta ObjectTimer,y
+  :
+
+  jsr BossShiftUp
+
+  lda ObjectF3,x
+  beq :+
+  dec ObjectF3,x
+  lda retraces
+  and #1
+  beq DontDraw
+: ; Display
+  lda retraces
+  lsr
+  lsr
+  lsr
+  and #1
+  sta 0
+  lda ObjectF1,x
+  and #1
+  asl
+  ora 0
+  tay
+  lda FramesLo,y
+  pha
+  lda FramesHi,y
+  tay
+  pla
+  jsr DispEnemyMetasprite
+DontDraw:
+
+  jsr BossShiftDown
+
+  jmp ObjectMolSno::DisplayHealth
+Speeds:
+  .lobytes $30, -$30
+
+FramesLo:
+  .lobytes MetaspriteR, MetaspriteRWalk
+  .lobytes MetaspriteL, MetaspriteLWalk
+FramesHi:
+  .hibytes MetaspriteR, MetaspriteRWalk
+  .hibytes MetaspriteL, MetaspriteLWalk
+
+MetaspriteR:
+  MetaspriteHeader 2, 3, 3
+  .byt $08, $09, $0c
+  .byt $0a, $0b, $0e
+MetaspriteRWalk:
+  MetaspriteHeader 2, 3, 3
+  .byt $08, $09, $0d
+  .byt $0a, $0b, $0f
+MetaspriteL:
+  MetaspriteHeader 2, 3, 3
+  .byt $0a|OAM_XFLIP, $0b|OAM_XFLIP, $0e|OAM_XFLIP
+  .byt $08|OAM_XFLIP, $09|OAM_XFLIP, $0c|OAM_XFLIP
+MetaspriteLWalk:
+  MetaspriteHeader 2, 3, 3
+  .byt $0a|OAM_XFLIP, $0b|OAM_XFLIP, $0f|OAM_XFLIP
+  .byt $08|OAM_XFLIP, $09|OAM_XFLIP, $0d|OAM_XFLIP
+.endproc
+
+.proc ObjectJohnIce
+  jsr EnemyDespawnTimer
+
+  lda ObjectPXH,x
+  pha
+
+  jsr EnemyApplyXVelocity
+
+  pla
+  cmp ObjectPXH,x
+  beq :+
+    ; Paint down a line of ice
+    jsr GetPointerForMiddleWide
+    cmp #Metatiles::CAMPFIRE
+    bne NotCampFire
+    lda #0
+    sta ObjectF1,x
+    rts
+NotCampFire:
+    cmp BackgroundMetatile
+    bne :+
+    lda #Metatiles::ICE2
+    jsr ChangeBlockFar
+  :
+
+  ldy #$04
+  lda #OAM_COLOR_3 << 2
+  jsr DispEnemyWideFlipped
+
+  jsr EnemyPlayerTouch
+  bcc :+
+    jsr HurtPlayer
+    lda ObjectF1,x
+    and #1
+    tay
+
+    lda ObjectPXL,x
+    add OffsetL,y
+    sta PlayerPXL
+    lda ObjectPXH,x
+    adc OffsetH,y
+    sta PlayerPXH
+  :
+  rts
+OffsetL:
+  .lobytes ($40 + $100), ($40 - $100)
+OffsetH:
+  .hibytes ($40 + $100), ($40 - $100)
+.endproc
+

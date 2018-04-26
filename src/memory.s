@@ -86,7 +86,7 @@
 
   ; the NES CPU can't access VRAM outside of vblank, so this is a queue
   ; of metatile and byte updates that wait until vblank to trigger
-  MaxNumBlockUpdates = 3
+  MaxNumBlockUpdates = 4
   MaxNumTileUpdates  = 4
   BlockUpdateA1:   .res MaxNumBlockUpdates ; \ address of the top two tiles
   BlockUpdateA2:   .res MaxNumBlockUpdates ; /

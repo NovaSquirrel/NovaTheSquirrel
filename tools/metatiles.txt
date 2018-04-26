@@ -16,7 +16,7 @@ L MetatileUR
 L MetatileLR
 
 R EMPTY
-C .byt M_PAL_1
+C .byt M_PAL_0
 C .byt M_EMPTY
 C .byt $3f
 C .byt $3f

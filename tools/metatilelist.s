@@ -6,7 +6,7 @@ M_FIRST_SPECIAL_CEILING = Metatiles::PRIZE
 M_FIRST_SPECIAL_GROUND = Metatiles::SPIKES
 M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
 .proc MetatilePalettes
-  .byt M_PAL_1 ;EMPTY
+  .byt M_PAL_0 ;EMPTY
   .byt M_PAL_2 ;BRICKS
   .byt M_PAL_2 ;BRICKPRIZE
   .byt M_PAL_2 ;REPLACE_BRICK
