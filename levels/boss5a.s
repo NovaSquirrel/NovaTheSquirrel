@@ -24,7 +24,7 @@ boss5aData:
   LObjN LO::R_GROUND,         0, 13, 15, 1
   LObj  LO::R_CUSTOM,         2, 0, Metatiles::CAMPFIRE, (11<<4)|1
   LObjN LO::R_CEILING_BARRIER,0, 2, 11, 2
-  LObj  LO::S_HEART,          0, 5
+  LObj  LO::S_BIGHEART,       0, 5
   LObj  LO::S_SPRING,         0, 8
   LObj  LO::S_SPRING,         0, 11
   LObj  LO::S_PRIZE,          3, 10

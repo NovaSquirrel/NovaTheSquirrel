@@ -813,8 +813,11 @@ PreLevelBoss5a:
 ; A panda challenges Nova to
 .byt "A", " ", "p", $c9, "d", $bd, $e1, $ac, $e5, "g", "e", $fb, $a0, " ", $bb
 .byt SCR::NEWLINE
-; a fight!
-.byt $bd, "f", "i", $da, "t", "!"
+; a fight! (Remember, toss
+.byt $bd, "f", "i", $da, "t", $fd, "(", "R", "e", $cf, "m", "b", $ec, $f4, $bb, $f0
+.byt SCR::NEWLINE
+; fireballs with Up+B!)
+.byt "f", "i", $fa, "b", $ac, $fb, $9c, " ", "U", "p", "+", "B", "!", ")"
 .byt SCR::END_SCRIPT
 PreLevelBoss5b:
 ;  The final battle against

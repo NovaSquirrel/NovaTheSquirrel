@@ -4731,7 +4731,7 @@ DontGetShot:
   lda #$10
   add ObjectF4,x ; speed up with damage
   jsr EnemyWalk
-  jsr EnemyAutoBump
+;  jsr EnemyAutoBump
 
   jsr EnemyFall
   bcc :+

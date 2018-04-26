@@ -646,7 +646,9 @@ fighting style!
 :PreLevelBoss5a:
 A panda challenges Nova to
 `nl
-a fight!
+a fight! (Remember, toss
+`nl
+fireballs with Up+B!)
 `end
 
 :PreLevelBoss5b:
