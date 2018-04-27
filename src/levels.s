@@ -3,7 +3,7 @@ MasterLevelListL:
   .byt <glass_intro, <arrows, <burgers, <glasscave, <chiptall, <falldown, <glass_finale, <boss2
   .byt <frozen, <frozen2, <frozen3, <frozen4, <frozen5, <frozen6, <frozen7, <boss3
   .byt <insane1, <insane2, <insane3, <insane4, <insane5, <insane6, <boss4a, <boss4b
-  .byt <final1, <final2, <final3, <final4, <final5, <boss5a, <emptylevel
+  .byt <final1, <final2, <final3, <final4, <final5, <boss5a, <final6, <emptylevel
 ; sub-levels
   .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden, <puzzle2, <insane1b, <final4b
   .byt <final5b
@@ -13,7 +13,7 @@ MasterLevelListH:
   .byt >glass_intro, >arrows, >burgers, >glasscave, >chiptall, >falldown, >glass_finale, >boss2
   .byt >frozen, >frozen2, >frozen3, >frozen4, >frozen5, >frozen6, >frozen7, >boss3
   .byt >insane1, >insane2, >insane3, >insane4, >insane5, >insane6, >boss4a, >boss4b
-  .byt >final1, >final2, >final3, >final4, >final5, >boss5a, >emptylevel
+  .byt >final1, >final2, >final3, >final4, >final5, >boss5a, >final6, >emptylevel
 ; sub-levels
   .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden, >puzzle2, >insane1b, >final4b
   .byt >final5b
@@ -27,7 +27,7 @@ PUZ = 128 ; puzzle, no longer used
   .byt B1,     B1,     B1|PUZ, B1,     B1|PUZ, B1,     B2|PUZ, B1
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B2
   .byt B2,     B2,     B2,     B2,     B2,     B2,     B2,     B2
-  .byt B2,     B2,     B2,     B2,     B2,     B2,     B1
+  .byt B2,     B2,     B2,     B2,     B2,     B2,     B2,     B1
 ; sub-levels
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B2,     B2
   .byt B2
@@ -80,6 +80,7 @@ PUZ = 128 ; puzzle, no longer used
   Final4
   Final5
   Boss5a
+  Final6
   EmptyLevel
 
 ; sublevels
