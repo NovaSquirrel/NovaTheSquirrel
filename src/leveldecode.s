@@ -273,6 +273,15 @@ NoLinks:
 
 ; decompress background graphics
 ; and sprites
+  ; If in sandbox mode, load in the 
+  lda SandboxMode
+  beq :+
+    lda #SANDBOX_BANK
+    jsr SetPRG
+    jsr ApplySandboxGFXPicker
+    lda #LevelBank
+    jsr SetPRG
+  :
   jsr DoLevelUploadListAndSprites
 
   ; display a "now loading" or whatever
@@ -632,12 +641,15 @@ BackgroundRoutines:
   .raddr BGCloudsEverywhere
 
 IsSandbox:
+  lda SandboxMode
+  bne @_rts
   inc SandboxMode
   ldx #6
 : lda SandboxPresetBrushes,x
   sta SandboxBrushes,x
   dex
   bpl :-
+@_rts:
   rts
 SandboxPresetBrushes:
   .byt Metatiles::GROUND_MIDDLE_M

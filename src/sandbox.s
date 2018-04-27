@@ -538,55 +538,8 @@ Loop:
   jeq Loop
 
 Exit:
-; Write level graphic slot information
-  lda #GraphicsUpload::BG_COMMON
-  sta LevelUploadList+0
+  jsr ApplySandboxGFXPicker
 
-  ldx SandboxTerrain
-  lda Terrains,x
-  sta LevelUploadList+1
-  lda BGPalettes,x
-  sta LevelUploadList+2
-  lda BGColors,x
-  sta LevelBackgroundColor
-
-  ldx SandboxExtra
-  lda Extras,x
-  sta LevelUploadList+3
-
-  ldx SandboxDecoration
-  lda Decorations,x
-  sta LevelUploadList+4
-
-  ldx SandboxSpPalette
-  lda SpPalettes,x
-  sta LevelUploadList+5
-
-  lda #255
-  sta LevelUploadList+6
-
-  ldx #3
-: lda SandboxSpSlot1,x
-  tay
-  lda Sprites,y
-  sta SpriteTileSlots,x
-  dex
-  bpl :-
-
-  ; If using DABG terrain, adjust the common and maybe the puzzle tilesets
-  lda SandboxTerrain
-  cmp #4
-  bcc :+
-    lda #GraphicsUpload::BG_DABGCOMMON
-    sta LevelUploadList+0
-
-    ; Replace puzzle graphics too
-    lda LevelUploadList+3
-    cmp #GraphicsUpload::BG_CHIP
-    bne :+
-      lda #GraphicsUpload::BG_CHIP_DABG
-      sta LevelUploadList+3
-  :
   inc NeedLevelRerender
   jsr ScreenOff
   jsr DoLevelUploadListAndSprites
@@ -669,14 +622,6 @@ OptionCount:
   .byt 13 ; sprite tileset
   .byt 13 ; sprite tileset
 
-Terrains:
-  .byt GraphicsUpload::BG_GRASSY
-  .byt GraphicsUpload::BG_BUMMER
-  .byt GraphicsUpload::BG_FROZEN_FG
-  .byt GraphicsUpload::BG_CLOUDS
-  .byt GraphicsUpload::BG_DABG ; automatically sets BG_CHIP_DABG and BG_DABGCOMMON
-  .byt GraphicsUpload::BG_DABG
-  .byt GraphicsUpload::BG_DABG
 TerrainsNames:
   MiniFontText "GRASSLAND"
   MiniFontText "PUZZLE"
@@ -685,6 +630,101 @@ TerrainsNames:
   MiniFontText "DABG RED"
   MiniFontText "DABG GRAY"
   MiniFontText "DABG BLUE"
+
+ExtrasNames:
+  MiniFontText "TROPICAL"
+  MiniFontText "SUBURBS"
+  MiniFontText "JUNGLE"
+  MiniFontText "PUZZLE"
+
+DecorationsNames:
+  MiniFontText "GRASSY"
+  MiniFontText "ARROW BOX"
+  MiniFontText "FROZEN"
+
+SpritesNames:
+  MiniFontText "WALKER"
+  MiniFontText "CANNON"
+  MiniFontText "FIRE"
+  MiniFontText "KING"
+  MiniFontText "EXPLODE"
+  MiniFontText "SUN"
+  MiniFontText "RONALD"
+  MiniFontText "MINES"
+  MiniFontText "ARROW BOX"
+  MiniFontText "LIFE"
+  MiniFontText "WIND"
+  MiniFontText "BOOMERANG"
+  MiniFontText "SMILOIDS"
+
+SpPalettesNames:
+  MiniFontText "A"
+  MiniFontText "B"
+  MiniFontText "C"
+  MiniFontText "D"
+  MiniFontText "E"
+.endproc
+
+.proc ApplySandboxGFXPicker
+; Write level graphic slot information
+  lda #GraphicsUpload::BG_COMMON
+  sta LevelUploadList+0
+
+  ldx SandboxTerrain
+  lda Terrains,x
+  sta LevelUploadList+1
+  lda BGPalettes,x
+  sta LevelUploadList+2
+  lda BGColors,x
+  sta LevelBackgroundColor
+
+  ldx SandboxExtra
+  lda Extras,x
+  sta LevelUploadList+3
+
+  ldx SandboxDecoration
+  lda Decorations,x
+  sta LevelUploadList+4
+
+  ldx SandboxSpPalette
+  lda SpPalettes,x
+  sta LevelUploadList+5
+
+  lda #255
+  sta LevelUploadList+6
+
+  ldx #3
+: lda SandboxSpSlot1,x
+  tay
+  lda Sprites,y
+  sta SpriteTileSlots,x
+  dex
+  bpl :-
+
+  ; If using DABG terrain, adjust the common and maybe the puzzle tilesets
+  lda SandboxTerrain
+  cmp #4
+  bcc :+
+    lda #GraphicsUpload::BG_DABGCOMMON
+    sta LevelUploadList+0
+
+    ; Replace puzzle graphics too
+    lda LevelUploadList+3
+    cmp #GraphicsUpload::BG_CHIP
+    bne :+
+      lda #GraphicsUpload::BG_CHIP_DABG
+      sta LevelUploadList+3
+  :
+  rts
+
+Terrains:
+  .byt GraphicsUpload::BG_GRASSY
+  .byt GraphicsUpload::BG_BUMMER
+  .byt GraphicsUpload::BG_FROZEN_FG
+  .byt GraphicsUpload::BG_CLOUDS
+  .byt GraphicsUpload::BG_DABG ; automatically sets BG_CHIP_DABG and BG_DABGCOMMON
+  .byt GraphicsUpload::BG_DABG
+  .byt GraphicsUpload::BG_DABG
 BGPalettes:
   .byt GraphicsUpload::PAL_GRASSY
   .byt GraphicsUpload::PAL_BUMMER
@@ -701,27 +741,15 @@ BGColors:
   .byt 49
   .byt 49
   .byt 49
-
 Extras:
   .byt GraphicsUpload::BG_TROPICAL
   .byt GraphicsUpload::BG_SUBURBS
   .byt GraphicsUpload::BG_JUNGLE
   .byt GraphicsUpload::BG_CHIP
-ExtrasNames:
-  MiniFontText "TROPICAL"
-  MiniFontText "SUBURBS"
-  MiniFontText "JUNGLE"
-  MiniFontText "PUZZLE"
-
 Decorations:
   .byt GraphicsUpload::BG_GRASSYBG
   .byt GraphicsUpload::BG_HANNAH
   .byt GraphicsUpload::BG_FROZEN_BG
-DecorationsNames:
-  MiniFontText "GRASSY"
-  MiniFontText "ARROW BOX"
-  MiniFontText "FROZEN"
-
 Sprites:
   .byt GraphicsUpload::SP_WALKER
   .byt GraphicsUpload::SP_CANNON
@@ -736,33 +764,12 @@ Sprites:
   .byt GraphicsUpload::SP_WIND
   .byt GraphicsUpload::SP_BOOMERANG
   .byt GraphicsUpload::SP_FACEBALL
-SpritesNames:
-  MiniFontText "WALKER"
-  MiniFontText "CANNON"
-  MiniFontText "FIRE"
-  MiniFontText "KING"
-  MiniFontText "EXPLODE"
-  MiniFontText "SUN"
-  MiniFontText "RONALD"
-  MiniFontText "MINES"
-  MiniFontText "ARROW BOX"
-  MiniFontText "LIFE"
-  MiniFontText "WIND"
-  MiniFontText "BOOMERANG"
-  MiniFontText "SMILOIDS"
-
 SpPalettes:
   .byt GraphicsUpload::PAL_ENEMY1
   .byt GraphicsUpload::PAL_ENEMY2
   .byt GraphicsUpload::PAL_ENEMY3
   .byt GraphicsUpload::PAL_ENEMY4
   .byt GraphicsUpload::PAL_ENEMY5
-SpPalettesNames:
-  MiniFontText "A"
-  MiniFontText "B"
-  MiniFontText "C"
-  MiniFontText "D"
-  MiniFontText "E"
 .endproc
 
 .proc OpenSandboxBlockPicker

@@ -329,8 +329,8 @@ JohnAfterFight:
 .byt SCR::SCENE, SCENES::NOVA_AND_JOHN
 ; <0 NOVA>Where'd you learn to do THAT?
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "W", $a8, "e", "'", $ff, $a5, " ", "l", $eb, "r", "n", " ", $ba, $c4, SCR::NEWLINE, "T", "H", "A", "T", "?"
-; <1 JOHN>Oh, I have a whale friend who fights like that.
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::JOHN, "O", "h", $f4, $bf, $9a, $bd, $d9, "a", "l", $e6, "f", $fc, $e5, $ff, $d9, "o", SCR::NEWLINE, "f", "i", $da, "t", $fb, $8c, " ", $df, $c5, "."
+; <1 JOHN>Oh, I have a whale friend who does something sort of like that.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::JOHN, "O", "h", $f4, $bf, $9a, $bd, $d9, "a", "l", $e6, "f", $fc, $e5, $ff, $d9, "o", SCR::NEWLINE, $c4, "e", $fb, $9b, $df, $b0, " ", $cb, $ed, " ", $bc, $8c, SCR::NEWLINE, $df, $c5, "."
 .byt SCR::END_SCRIPT
 NovaLiaLWSS:
 .byt SCR::SCENE, SCENES::NOVA_AND_LIA

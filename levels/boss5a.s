@@ -24,17 +24,17 @@ boss5aData:
   LObjN LO::R_GROUND,         0, 13, 15, 1
   LObj  LO::R_CUSTOM,         2, 0, Metatiles::CAMPFIRE, (11<<4)|1
   LObjN LO::R_CEILING_BARRIER,0, 2, 11, 2
-  LObj  LO::S_BIGHEART,       0, 5
   LObj  LO::S_SPRING,         0, 8
   LObj  LO::S_SPRING,         0, 11
+  LObj  LO::S_BIGHEART,       0, 12
   LObj  LO::S_PRIZE,          3, 10
   LWriteCol InventoryItem::ABILITY_FIRE | 128
   LObjN LO::R_ICE2,            1, 10, 3, 0
   LObj  LO::S_PRIZE,          4, 10
   LWriteCol InventoryItem::ABILITY_FIRE | 128
-  LObj  LO::S_HEART,          3, 5
-  LObj  LO::S_SPRING,         0, 8
+  LObj  LO::S_SPRING,         3, 8
   LObj  LO::S_SPRING,         0, 11
+  LObj  LO::S_BIGHEART,       0, 12
   LObj  LO::R_CUSTOM,         1, 0, Metatiles::CAMPFIRE, (1<<4)|12
   LSetX 16
   LWriteCol 8, 33
