@@ -103,7 +103,7 @@
 `scene TWO_BAD_GUYS
 []The Scheme Team members flee.
 <0 S_TEAM>Ouch. That squirrel isn't as weak as she seemed. We need to tell the boss so we can take care of this.
-<0 S_TEAM>Hey Science Guy???
+<0 S_TEAM>Hey William???
 `scene BAD_GUYS_AND_LEADER
 <2 BILL>What? Why do you guys look beat-up?
 <0 S_TEAM>There's this weird green squirrel that totally kicked our butts, without even having a gun. Is that going to pose a threat to the plans?

@@ -31,7 +31,7 @@ Raoul:    .byt "Raoul",0
 Jafguar:  .byt "Jafguar",0
 Lia:      .byt "Lia",0
 Iti:      .byt "Itimar",0
-Bill:     .byt "Science Guy",0
+Bill:     .byt "William",0
 John:     .byt "John",0
 .endproc
 

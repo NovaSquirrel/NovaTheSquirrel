@@ -112,8 +112,8 @@ FirstSchemeTeamEncounterAfter:
 .byt SCR::NARRATE, CHAR::NONE, $f7, $e6, "S", $e1, "e", $cf, " ", "T", $eb, "m", " ", $cf, "m", "b", $ec, "s", SCR::NEWLINE, "f", "l", $d6, "."
 ; <0 S_TEAM>Ouch. That squirrel isn't as weak as she seemed. We need to tell the boss so we can take care of this.
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::S_TEAM, "O", "u", $e1, $f5, $f7, $c5, " ", $80, " ", $b8, "n", $e7, $c3, SCR::NEWLINE, $c7, "a", "k", " ", $c3, " ", $a9, " ", $b2, $cf, "d", $f5, "W", $e6, $f8, "e", "d", SCR::NEWLINE, $ba, $ea, "l", "l", " ", $a1, " ", "b", "o", $f0, " ", $cb, " ", $c7, " ", $af, SCR::NEWLINE, $8f, " ", "c", "a", $fa, " ", $bc, $98, "."
-; <0 S_TEAM>Hey Science Guy???
-.byt SCR::SAY, SCR::SPEAKER_0|CHAR::S_TEAM, "H", "e", $fe, "S", "c", $e2, "n", "c", $e6, "G", "u", "y", "?", "?", "?"
+; <0 S_TEAM>Hey William???
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::S_TEAM, "H", "e", $fe, "W", $db, "l", "i", "a", "m", "?", "?", "?"
 .byt SCR::SCENE, SCENES::BAD_GUYS_AND_LEADER
 ; <2 BILL>What? Why do you guys look beat-up?
 .byt SCR::SAY, SCR::SPEAKER_2|CHAR::BILL, "W", "h", $c5, "?", " ", "W", "h", $fe, $c4, " ", $a5, " ", "g", "u", "y", $fb, $94, SCR::NEWLINE, "b", $eb, "t", "-", $cc, "?"
