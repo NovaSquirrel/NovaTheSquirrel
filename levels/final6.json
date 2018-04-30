@@ -14,7 +14,7 @@
 	"Header":	{
 		"Music":	"NONE",
 		"SpriteGFX":	["SP_WALKER", "SP_KING", "SP_EXPLODE", "SP_FACEBALL"],
-		"GFXUpload":	["PAL_GRASSY", "PAL_ENEMY1", "BG_COMMON", "BG_GRASSY", "BG_GRASSYBG", "BG_JUNGLE"],
+		"GFXUpload":	["PAL_GRASSY", "PAL_ENEMY2", "BG_COMMON", "BG_GRASSY", "BG_GRASSYBG", "BG_JUNGLE"],
 		"BGColor":	49
 	},
 	"Layers":	[{
@@ -25,7 +25,7 @@
 					"Id":	"GROUND",
 					"X":	0,
 					"Y":	13,
-					"W":	29,
+					"W":	36,
 					"H":	2
 				}, {
 					"Id":	"BRICKS",
@@ -126,19 +126,19 @@
 					"H":	2
 				}, {
 					"Id":	"STRIPED_LOG_HORIZ",
-					"X":	25,
+					"X":	32,
 					"Y":	10,
 					"W":	2,
 					"H":	1
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	27,
+					"X":	34,
 					"Y":	7,
 					"W":	1,
 					"H":	6
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	25,
+					"X":	32,
 					"Y":	5,
 					"W":	5,
 					"H":	2
@@ -150,25 +150,25 @@
 					"H":	1
 				}, {
 					"Id":	"SAND",
-					"X":	29,
+					"X":	36,
 					"Y":	8,
 					"W":	3,
 					"H":	7
 				}, {
 					"Id":	"SAND",
-					"X":	32,
+					"X":	39,
 					"Y":	6,
 					"W":	6,
 					"H":	9
 				}, {
 					"Id":	"PALM_TREE",
-					"X":	33,
+					"X":	40,
 					"Y":	2,
 					"W":	1,
 					"H":	4
 				}, {
 					"Id":	"PALM_TREE",
-					"X":	36,
+					"X":	43,
 					"Y":	2,
 					"W":	1,
 					"H":	4
@@ -186,260 +186,260 @@
 					"H":	8
 				}, {
 					"Id":	"SAND",
-					"X":	52,
+					"X":	60,
 					"Y":	6,
 					"W":	6,
 					"H":	9
 				}, {
 					"Id":	"GROUND",
-					"X":	58,
+					"X":	66,
 					"Y":	13,
 					"W":	3,
 					"H":	2
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	38,
+					"X":	45,
 					"Y":	9,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	40,
+					"X":	47,
 					"Y":	11,
 					"W":	1,
 					"H":	4
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	42,
+					"X":	49,
 					"Y":	6,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	44,
+					"X":	51,
 					"Y":	8,
 					"W":	1,
 					"H":	7
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	44,
+					"X":	51,
 					"Y":	3,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	46,
+					"X":	53,
 					"Y":	5,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	46,
+					"X":	53,
 					"Y":	8,
 					"W":	1,
 					"H":	7
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	47,
+					"X":	54,
 					"Y":	9,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	49,
+					"X":	56,
 					"Y":	11,
 					"W":	1,
 					"H":	4
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	41,
+					"X":	48,
 					"Y":	12,
 					"W":	3,
 					"H":	2
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	42,
+					"X":	49,
 					"Y":	14,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"PALM_TREE",
-					"X":	53,
+					"X":	61,
 					"Y":	2,
 					"W":	1,
 					"H":	4
 				}, {
 					"Id":	"PALM_TREE",
-					"X":	56,
+					"X":	64,
 					"Y":	2,
 					"W":	1,
 					"H":	4
 				}, {
 					"Id":	"STONE_BRIDGE",
-					"X":	58,
+					"X":	66,
 					"Y":	6,
 					"W":	5,
 					"H":	1
 				}, {
 					"Id":	"PRIZE",
-					"X":	58,
+					"X":	66,
 					"Y":	9,
 					"W":	1,
 					"H":	1,
 					"Extra":	"BIG_HEALTH_RESTORE"
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	66,
+					"X":	74,
 					"Y":	9,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	68,
+					"X":	76,
 					"Y":	11,
 					"W":	1,
 					"H":	4
 				}, {
 					"Id":	"STRIPED_LOG_HORIZ",
-					"X":	65,
+					"X":	73,
 					"Y":	12,
 					"W":	3,
 					"H":	1
 				}, {
 					"Id":	"COIN",
-					"X":	58,
+					"X":	66,
 					"Y":	11,
 					"W":	2,
 					"H":	2
 				}, {
 					"Id":	"FALLTHROUGH_LEDGE",
-					"X":	58,
+					"X":	66,
 					"Y":	10,
 					"W":	2,
 					"H":	1
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	60,
+					"X":	68,
 					"Y":	7,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	62,
+					"X":	70,
 					"Y":	9,
 					"W":	1,
 					"H":	6
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	76,
+					"X":	84,
 					"Y":	0,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	78,
+					"X":	86,
 					"Y":	2,
 					"W":	1,
 					"H":	13
 				}, {
 					"Id":	"STRIPED_LOG_HORIZ",
-					"X":	79,
+					"X":	87,
 					"Y":	4,
 					"W":	3,
 					"H":	1
 				}, {
 					"Id":	"STRIPED_LOG_HORIZ",
-					"X":	79,
+					"X":	87,
 					"Y":	8,
 					"W":	3,
 					"H":	1
 				}, {
 					"Id":	"STRIPED_LOG_HORIZ",
-					"X":	85,
+					"X":	93,
 					"Y":	7,
 					"W":	2,
 					"H":	1
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	87,
+					"X":	95,
 					"Y":	3,
 					"W":	1,
 					"H":	12
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	85,
+					"X":	93,
 					"Y":	1,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	92,
+					"X":	100,
 					"Y":	6,
 					"W":	1,
 					"H":	9
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	90,
+					"X":	98,
 					"Y":	4,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	81,
+					"X":	89,
 					"Y":	9,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	83,
+					"X":	91,
 					"Y":	11,
 					"W":	1,
 					"H":	4
 				}, {
 					"Id":	"STRIPED_LOG_HORIZ",
-					"X":	88,
+					"X":	96,
 					"Y":	9,
 					"W":	3,
 					"H":	1
 				}, {
 					"Id":	"SPRING",
-					"X":	79,
+					"X":	87,
 					"Y":	7,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"PRIZE",
-					"X":	86,
+					"X":	94,
 					"Y":	4,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"STRIPED_LOG_HORIZ",
-					"X":	93,
+					"X":	101,
 					"Y":	7,
 					"W":	3,
 					"H":	1
 				}, {
 					"Id":	"GROUND",
-					"X":	97,
+					"X":	105,
 					"Y":	7,
 					"W":	5,
 					"H":	8
 				}, {
 					"Id":	"GROUND",
-					"X":	102,
+					"X":	110,
 					"Y":	10,
 					"W":	13,
 					"H":	5
 				}, {
 					"Id":	"BIG_HEART",
-					"X":	94,
+					"X":	102,
 					"Y":	6,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"BIG_HEART",
-					"X":	59,
+					"X":	67,
 					"Y":	9,
 					"W":	1,
 					"H":	1
@@ -452,145 +452,145 @@
 					"Extra":	"ABILITY_BLASTER | 128"
 				}, {
 					"Id":	"COIN",
-					"X":	58,
+					"X":	66,
 					"Y":	4,
 					"W":	5,
 					"H":	1
 				}, {
 					"Id":	"BG_TRUNK",
-					"X":	97,
+					"X":	105,
 					"Y":	4,
 					"W":	1,
 					"H":	3
 				}, {
 					"Id":	"BG_TRUNK",
-					"X":	114,
+					"X":	122,
 					"Y":	4,
 					"W":	1,
 					"H":	6
 				}, {
 					"Id":	"GROUND",
-					"X":	97,
+					"X":	105,
 					"Y":	0,
 					"W":	18,
 					"H":	4
 				}, {
 					"Id":	"BG_BUSH_BOT",
-					"X":	102,
+					"X":	110,
 					"Y":	9,
 					"W":	6,
 					"H":	1
 				}, {
 					"Id":	"BG_TRUNK_L",
-					"X":	110,
+					"X":	118,
 					"Y":	7,
 					"W":	1,
 					"H":	3
 				}, {
 					"Id":	"BG_TRUNK_L",
-					"X":	112,
+					"X":	120,
 					"Y":	7,
 					"W":	1,
 					"H":	3
 				}, {
 					"Id":	"SAND",
-					"X":	118,
+					"X":	126,
 					"Y":	10,
 					"W":	5,
 					"H":	5
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	124,
+					"X":	132,
 					"Y":	8,
 					"W":	1,
 					"H":	7
 				}, {
 					"Id":	"BG_FENCE",
-					"X":	119,
+					"X":	127,
 					"Y":	9,
 					"W":	3,
 					"H":	1
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	122,
+					"X":	130,
 					"Y":	6,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"SAND",
-					"X":	127,
+					"X":	135,
 					"Y":	6,
 					"W":	4,
 					"H":	9
 				}, {
 					"Id":	"SPRING",
-					"X":	122,
+					"X":	130,
 					"Y":	9,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"SOLID_LEDGE",
-					"X":	120,
+					"X":	128,
 					"Y":	6,
 					"W":	2,
 					"H":	1
 				}, {
 					"Id":	"SOLID_LEDGE",
-					"X":	124,
+					"X":	132,
 					"Y":	5,
 					"W":	2,
 					"H":	1
 				}, {
 					"Id":	"BG_FENCE",
-					"X":	127,
+					"X":	135,
 					"Y":	5,
 					"W":	4,
 					"H":	1
 				}, {
 					"Id":	"STONE_BRIDGE",
-					"X":	131,
+					"X":	139,
 					"Y":	6,
 					"W":	8,
 					"H":	1
 				}, {
 					"Id":	"SAND",
-					"X":	139,
+					"X":	147,
 					"Y":	6,
 					"W":	4,
 					"H":	7
 				}, {
 					"Id":	"WATER",
-					"X":	131,
+					"X":	139,
 					"Y":	12,
 					"W":	8,
 					"H":	3
 				}, {
 					"Id":	"WATER",
-					"X":	143,
+					"X":	151,
 					"Y":	12,
 					"W":	8,
 					"H":	3
 				}, {
 					"Id":	"SAND",
-					"X":	151,
+					"X":	159,
 					"Y":	0,
 					"W":	4,
 					"H":	13
 				}, {
 					"Id":	"STONE_BRIDGE",
-					"X":	143,
+					"X":	151,
 					"Y":	6,
 					"W":	4,
 					"H":	1
 				}, {
 					"Id":	"GROUND",
-					"X":	155,
+					"X":	163,
 					"Y":	6,
 					"W":	2,
 					"H":	7
 				}, {
 					"Id":	"BG_TALL_GRASS",
-					"X":	60,
+					"X":	68,
 					"Y":	12,
 					"W":	1,
 					"H":	1
@@ -626,329 +626,408 @@
 					"H":	1
 				}, {
 					"Id":	"BG_FENCE",
-					"X":	99,
+					"X":	107,
 					"Y":	6,
 					"W":	3,
 					"H":	1
 				}, {
 					"Id":	"SOLID_LEDGE",
-					"X":	115,
+					"X":	123,
 					"Y":	3,
 					"W":	2,
 					"H":	1
 				}, {
 					"Id":	"WATER",
-					"X":	151,
+					"X":	159,
 					"Y":	13,
 					"W":	9,
 					"H":	2
 				}, {
 					"Id":	"WATER",
-					"X":	157,
+					"X":	165,
 					"Y":	7,
 					"W":	3,
 					"H":	6
 				}, {
 					"Id":	"CEILING_BARRIER",
-					"X":	150,
+					"X":	158,
 					"Y":	0,
 					"W":	1,
 					"H":	3
 				}, {
 					"Id":	"GROUND",
-					"X":	160,
+					"X":	168,
 					"Y":	7,
 					"W":	6,
 					"H":	8
 				}, {
 					"Id":	"WATER",
-					"X":	139,
+					"X":	147,
 					"Y":	13,
 					"W":	4,
 					"H":	2
 				}, {
 					"Id":	"REPLACE_BRICK",
-					"X":	139,
+					"X":	147,
 					"Y":	13,
 					"W":	4,
 					"H":	2
 				}, {
 					"Id":	"COIN",
-					"X":	133,
+					"X":	141,
 					"Y":	8,
 					"W":	4,
 					"H":	2
 				}, {
 					"Id":	"SOLID_LEDGE",
-					"X":	135,
+					"X":	143,
 					"Y":	10,
 					"W":	4,
 					"H":	1
 				}, {
 					"Id":	"PRIZE",
-					"X":	131,
+					"X":	139,
 					"Y":	10,
 					"W":	1,
 					"H":	1,
 					"Extra":	"HEALTH_RESTORE"
 				}, {
 					"Id":	"COIN",
-					"X":	25,
+					"X":	32,
 					"Y":	7,
 					"W":	1,
 					"H":	3
 				}, {
 					"Id":	"GRAY_BRICKS",
-					"X":	164,
+					"X":	172,
 					"Y":	1,
-					"W":	2,
+					"W":	1,
 					"H":	6
 				}, {
 					"Id":	"SAND",
-					"X":	155,
+					"X":	163,
 					"Y":	0,
-					"W":	11,
+					"W":	10,
 					"H":	1
 				}, {
 					"Id":	"STONE_BRIDGE",
-					"X":	167,
+					"X":	175,
 					"Y":	6,
 					"W":	6,
 					"H":	1
 				}, {
 					"Id":	"COIN",
-					"X":	160,
+					"X":	168,
 					"Y":	3,
 					"W":	3,
 					"H":	2
 				}, {
 					"Id":	"BG_TALL_GRASS",
-					"X":	160,
+					"X":	168,
 					"Y":	6,
 					"W":	3,
 					"H":	1
 				}, {
 					"Id":	"BG_TALL_GRASS",
-					"X":	139,
+					"X":	147,
 					"Y":	5,
 					"W":	4,
 					"H":	1
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	116,
+					"X":	124,
 					"Y":	4,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	118,
+					"X":	126,
 					"Y":	6,
 					"W":	1,
 					"H":	4
 				}, {
 					"Id":	"GROUND",
-					"X":	173,
+					"X":	181,
 					"Y":	9,
 					"W":	7,
 					"H":	6
 				}, {
 					"Id":	"BG_BUSH_BOT",
-					"X":	173,
+					"X":	181,
 					"Y":	8,
 					"W":	4,
 					"H":	1
 				}, {
 					"Id":	"BG_TRUNK_L",
-					"X":	178,
+					"X":	186,
 					"Y":	5,
 					"W":	1,
 					"H":	4
 				}, {
 					"Id":	"STONE_BRIDGE",
-					"X":	180,
+					"X":	188,
 					"Y":	9,
 					"W":	4,
 					"H":	1
 				}, {
 					"Id":	"HEART",
-					"X":	182,
+					"X":	190,
 					"Y":	7,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"SPRING",
-					"X":	26,
+					"X":	33,
 					"Y":	9,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"GROUND",
-					"X":	71,
+					"X":	79,
 					"Y":	3,
 					"W":	5,
 					"H":	12
 				}, {
 					"Id":	"BG_FENCE",
-					"X":	71,
+					"X":	79,
 					"Y":	2,
 					"W":	5,
 					"H":	1
 				}, {
 					"Id":	"HEART",
-					"X":	124,
+					"X":	132,
 					"Y":	4,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	166,
+					"X":	174,
 					"Y":	8,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	168,
+					"X":	176,
 					"Y":	11,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	168,
+					"X":	176,
 					"Y":	10,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	168,
+					"X":	176,
 					"Y":	13,
 					"W":	1,
 					"H":	2
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	170,
+					"X":	178,
 					"Y":	13,
 					"W":	1,
 					"H":	2
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	185,
+					"X":	193,
 					"Y":	0,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	187,
+					"X":	195,
 					"Y":	2,
 					"W":	1,
 					"H":	9
 				}, {
 					"Id":	"STRIPED_LOG_HORIZ",
-					"X":	184,
+					"X":	192,
 					"Y":	7,
 					"W":	3,
 					"H":	1
 				}, {
 					"Id":	"STRIPED_LOG_HORIZ",
-					"X":	188,
+					"X":	196,
 					"Y":	4,
 					"W":	3,
 					"H":	1
 				}, {
 					"Id":	"GROUND",
-					"X":	184,
+					"X":	192,
 					"Y":	11,
 					"W":	8,
 					"H":	4
 				}, {
 					"Id":	"COIN",
-					"X":	184,
+					"X":	192,
 					"Y":	5,
 					"W":	3,
 					"H":	2
 				}, {
 					"Id":	"COIN",
-					"X":	188,
+					"X":	196,
 					"Y":	2,
 					"W":	3,
 					"H":	2
 				}, {
 					"Id":	"BRICKS",
-					"X":	188,
+					"X":	196,
 					"Y":	7,
 					"W":	4,
 					"H":	1
 				}, {
 					"Id":	"PRIZE",
-					"X":	189,
+					"X":	197,
 					"Y":	7,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"BIG_HEART",
-					"X":	197,
+					"X":	205,
 					"Y":	2,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"STONE_BRIDGE",
-					"X":	194,
+					"X":	202,
 					"Y":	4,
-					"W":	14,
+					"W":	16,
 					"H":	1
 				}, {
 					"Id":	"GROUND",
-					"X":	192,
+					"X":	200,
 					"Y":	4,
 					"W":	2,
 					"H":	11
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	194,
+					"X":	202,
 					"Y":	6,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	197,
+					"X":	205,
 					"Y":	10,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	200,
+					"X":	208,
 					"Y":	5,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"SQUIRREL_BUSH",
-					"X":	203,
+					"X":	211,
 					"Y":	8,
 					"W":	5,
 					"H":	2
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	196,
+					"X":	204,
 					"Y":	8,
 					"W":	1,
 					"H":	7
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	202,
+					"X":	210,
 					"Y":	7,
 					"W":	1,
 					"H":	8
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	205,
+					"X":	213,
 					"Y":	10,
 					"W":	1,
 					"H":	5
 				}, {
 					"Id":	"WOOD_PLATFORM",
-					"X":	199,
+					"X":	207,
 					"Y":	12,
 					"W":	1,
 					"H":	3
+				}, {
+					"Id":	"SQUIRREL_BUSH",
+					"X":	216,
+					"Y":	6,
+					"W":	5,
+					"H":	2
+				}, {
+					"Id":	"WOOD_PLATFORM",
+					"X":	218,
+					"Y":	8,
+					"W":	1,
+					"H":	7
+				}, {
+					"Id":	"SQUIRREL_BUSH",
+					"X":	219,
+					"Y":	9,
+					"W":	5,
+					"H":	2
+				}, {
+					"Id":	"WOOD_PLATFORM",
+					"X":	221,
+					"Y":	11,
+					"W":	1,
+					"H":	4
+				}, {
+					"Id":	"SQUIRREL_BUSH",
+					"X":	215,
+					"Y":	11,
+					"W":	3,
+					"H":	2
+				}, {
+					"Id":	"WOOD_PLATFORM",
+					"X":	216,
+					"Y":	13,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"STONE_BRIDGE",
+					"X":	218,
+					"Y":	4,
+					"W":	6,
+					"H":	1
+				}, {
+					"Id":	"SQUIRREL_BUSH",
+					"X":	26,
+					"Y":	1,
+					"W":	5,
+					"H":	2
+				}, {
+					"Id":	"SQUIRREL_BUSH",
+					"X":	23,
+					"Y":	6,
+					"W":	5,
+					"H":	2
+				}, {
+					"Id":	"WOOD_PLATFORM",
+					"X":	25,
+					"Y":	8,
+					"W":	1,
+					"H":	5
+				}, {
+					"Id":	"BG_BUSH_BOT",
+					"X":	26,
+					"Y":	12,
+					"W":	4,
+					"H":	1
+				}, {
+					"Id":	"WOOD_PLATFORM",
+					"X":	28,
+					"Y":	3,
+					"W":	1,
+					"H":	10
+				}, {
+					"Id":	"DOOR",
+					"X":	222,
+					"Y":	2,
+					"W":	1,
+					"H":	1,
+					"Extra":	"Final6B"
 				}]
 		}, {
 			"Name":	"Sprites",
@@ -970,248 +1049,255 @@
 					"XFlip":	true
 				}, {
 					"Id":	"BOUNCER",
-					"X":	23,
+					"X":	33,
 					"Y":	12,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
 				}, {
 					"Id":	"BOUNCER",
-					"X":	26,
+					"X":	31,
 					"Y":	9,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
 				}, {
 					"Id":	"MOVING_PLATFORM_PUSH",
-					"X":	38,
+					"X":	45,
 					"Y":	6,
-					"W":	1,
-					"H":	1,
-					"Extra":	"1"
-				}, {
-					"Id":	"MOVING_PLATFORM_PUSH",
-					"X":	40,
-					"Y":	7,
-					"W":	1,
-					"H":	1,
-					"Extra":	"1"
-				}, {
-					"Id":	"MOVING_PLATFORM_PUSH",
-					"X":	42,
-					"Y":	5,
-					"W":	1,
-					"H":	1,
-					"Extra":	"1"
-				}, {
-					"Id":	"MOVING_PLATFORM_PUSH",
-					"X":	44,
-					"Y":	4,
 					"W":	1,
 					"H":	1,
 					"Extra":	"1"
 				}, {
 					"Id":	"MOVING_PLATFORM_PUSH",
 					"X":	47,
-					"Y":	6,
+					"Y":	7,
 					"W":	1,
 					"H":	1,
 					"Extra":	"1"
 				}, {
 					"Id":	"MOVING_PLATFORM_PUSH",
 					"X":	49,
-					"Y":	7,
+					"Y":	5,
 					"W":	1,
 					"H":	1,
 					"Extra":	"1"
 				}, {
 					"Id":	"MOVING_PLATFORM_PUSH",
 					"X":	51,
-					"Y":	5,
-					"W":	1,
-					"H":	1,
-					"Extra":	"1"
-				}, {
-					"Id":	"MOVING_PLATFORM_PUSH",
-					"X":	63,
-					"Y":	6,
-					"W":	1,
-					"H":	1,
-					"Extra":	"1"
-				}, {
-					"Id":	"MOVING_PLATFORM_PUSH",
-					"X":	65,
-					"Y":	5,
-					"W":	1,
-					"H":	1,
-					"Extra":	"1"
-				}, {
-					"Id":	"MOVING_PLATFORM_PUSH",
-					"X":	67,
 					"Y":	4,
 					"W":	1,
 					"H":	1,
 					"Extra":	"1"
 				}, {
 					"Id":	"MOVING_PLATFORM_PUSH",
-					"X":	69,
+					"X":	54,
+					"Y":	6,
+					"W":	1,
+					"H":	1,
+					"Extra":	"1"
+				}, {
+					"Id":	"MOVING_PLATFORM_PUSH",
+					"X":	56,
+					"Y":	7,
+					"W":	1,
+					"H":	1,
+					"Extra":	"1"
+				}, {
+					"Id":	"MOVING_PLATFORM_PUSH",
+					"X":	58,
+					"Y":	5,
+					"W":	1,
+					"H":	1,
+					"Extra":	"1"
+				}, {
+					"Id":	"MOVING_PLATFORM_PUSH",
+					"X":	71,
+					"Y":	6,
+					"W":	1,
+					"H":	1,
+					"Extra":	"1"
+				}, {
+					"Id":	"MOVING_PLATFORM_PUSH",
+					"X":	73,
+					"Y":	5,
+					"W":	1,
+					"H":	1,
+					"Extra":	"1"
+				}, {
+					"Id":	"MOVING_PLATFORM_PUSH",
+					"X":	75,
+					"Y":	4,
+					"W":	1,
+					"H":	1,
+					"Extra":	"1"
+				}, {
+					"Id":	"MOVING_PLATFORM_PUSH",
+					"X":	77,
 					"Y":	3,
 					"W":	1,
 					"H":	1,
 					"Extra":	"1"
 				}, {
 					"Id":	"CHECKPOINT",
-					"X":	72,
+					"X":	80,
 					"Y":	2,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"TURKEY",
-					"X":	66,
+					"X":	74,
 					"Y":	11,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
 				}, {
 					"Id":	"ROVER",
-					"X":	62,
+					"X":	70,
 					"Y":	5,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
 				}, {
 					"Id":	"ROCKET_LAUNCHER",
-					"X":	84,
+					"X":	92,
 					"Y":	12,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"SNEAKER",
-					"X":	86,
+					"X":	94,
 					"Y":	3,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
 				}, {
 					"Id":	"TURKEY",
-					"X":	90,
+					"X":	98,
 					"Y":	8,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
 				}, {
 					"Id":	"BOUNCER",
-					"X":	105,
+					"X":	113,
 					"Y":	9,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
 				}, {
 					"Id":	"BOUNCER",
-					"X":	108,
+					"X":	116,
 					"Y":	9,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
 				}, {
 					"Id":	"OWL",
-					"X":	35,
+					"X":	42,
 					"Y":	5,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
 				}, {
 					"Id":	"ROCKET_LAUNCHER",
-					"X":	125,
+					"X":	133,
 					"Y":	12,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"GOOMBA",
-					"X":	135,
+					"X":	143,
 					"Y":	5,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
 				}, {
 					"Id":	"SNEAKER",
-					"X":	121,
+					"X":	129,
 					"Y":	5,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
 				}, {
 					"Id":	"SNEAKER",
-					"X":	115,
+					"X":	123,
 					"Y":	2,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"CHECKPOINT",
-					"X":	118,
+					"X":	126,
 					"Y":	9,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"GEORGE",
-					"X":	137,
+					"X":	145,
 					"Y":	9,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
 				}, {
 					"Id":	"GEORGE",
-					"X":	30,
+					"X":	37,
 					"Y":	7,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
 				}, {
 					"Id":	"ROCKET_LAUNCHER",
-					"X":	156,
+					"X":	164,
 					"Y":	4,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"SPINNER",
-					"X":	157,
+					"X":	165,
 					"Y":	9,
 					"W":	1,
 					"H":	1,
 					"Extra":	"3"
 				}, {
 					"Id":	"CHECKPOINT",
-					"X":	169,
+					"X":	177,
 					"Y":	5,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"BOUNCER",
-					"X":	183,
+					"X":	191,
 					"Y":	8,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
 				}, {
 					"Id":	"CHECKPOINT",
-					"X":	60,
+					"X":	68,
 					"Y":	12,
 					"W":	1,
 					"H":	1
 				}, {
 					"Id":	"SPINNER",
-					"X":	147,
+					"X":	155,
 					"Y":	9,
 					"W":	1,
 					"H":	1,
 					"Extra":	"3"
 				}, {
 					"Id":	"GEORGE",
-					"X":	191,
+					"X":	199,
 					"Y":	6,
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
+				}, {
+					"Id":	"MOVING_PLATFORM_PUSH",
+					"X":	91,
+					"Y":	7,
+					"W":	1,
+					"H":	1,
+					"Extra":	"1"
 				}]
 		}, {
 			"Name":	"Control",
@@ -1260,7 +1346,7 @@
 					"Extra":	"Metatiles::WATER_MAIN"
 				}, {
 					"Id":	"SCROLL_LOCK",
-					"X":	207,
+					"X":	223,
 					"Y":	0,
 					"W":	1,
 					"H":	1

@@ -161,12 +161,12 @@ InitSave:
   ; for demo purposes
   lda #255
   sta LevelAvailable
-  lda #255
   sta LevelAvailable+1
-  lda #255
   sta LevelAvailable+2
-  lda #255
   sta LevelAvailable+3
+  sta LevelAvailable+4
+;  lda #1
+;  sta LevelAvailable+4
 
   ; Write tag to SRAM
   ldx #8
@@ -191,6 +191,9 @@ NoInitSave:
   jmp JumpToLevelSelect
 .endproc
 
+; If SaveTagString is not in WRAM, then WRAM needs initializing.
+; When the save section changes in an incompatible way, increment
+; the counter on the end and that will invalidate any old saves.
 SaveTagString: .byt "squirrel", 2
 
 .proc InitMapper

@@ -6,7 +6,7 @@ MasterLevelListL:
   .byt <final1, <final2, <final3, <final4, <final5, <boss5a, <final6, <emptylevel
 ; sub-levels
   .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden, <puzzle2, <insane1b, <final4b
-  .byt <final5b
+  .byt <final5b, <final6b, <final6c, <final6d
 
 MasterLevelListH:
   .byt >intro_a, >grassy_a, >funkunderground, >sky, >water, >grassy2_a, >underground_2, >boss1
@@ -16,7 +16,7 @@ MasterLevelListH:
   .byt >final1, >final2, >final3, >final4, >final5, >boss5a, >final6, >emptylevel
 ; sub-levels
   .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden, >puzzle2, >insane1b, >final4b
-  .byt >final5b
+  .byt >final5b, >final6b, >final6c, >final6d
 
 .proc LevelBanks
 ; Array of what bank each level belongs to. Can also put other data in its upper bits.
@@ -30,7 +30,7 @@ PUZ = 128 ; puzzle, no longer used
   .byt B2,     B2,     B2,     B2,     B2,     B2,     B2,     B1
 ; sub-levels
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B2,     B2
-  .byt B2
+  .byt B2,     B2,     B2,     B2
 .endproc
 
 .enum LevelId
@@ -93,6 +93,9 @@ PUZ = 128 ; puzzle, no longer used
   Insane1B
   Final4B
   Final5B
+  Final6B
+  Final6C
+  Final6D
 .endenum
 
 .pushseg

@@ -19,10 +19,7 @@ If x and y are both unset, the spinner has its normal homing movement
 -ICE_1-
 0: walk forward
 1: hop forward
-
--ICE_2-
-0: weird stuff
-1: just walk forward without gravity
+2: kick ice blocks forward
 
 -CANNON_1-
 specifies type of burger, but it doesn't do anything yet

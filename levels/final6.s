@@ -10,16 +10,16 @@ final6:
   .addr final6Sprite
   .byt $31 ; background
   .byt GraphicsUpload::PAL_GRASSY
-  .byt GraphicsUpload::PAL_ENEMY1
+  .byt GraphicsUpload::PAL_ENEMY2
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_GRASSY
   .byt GraphicsUpload::BG_GRASSYBG
   .byt GraphicsUpload::BG_JUNGLE
   .byt 255 ; end
-  .byt $00, $08 ; boundaries
+  .byt $00, $04 ; boundaries
 
 final6Data:
-  LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 28
+  LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 35
   LObjN LO::R_SKWIRLBUSH,     1, 2, 6, 1
   LObj  LO::S_FLOWER,         0, 12
   LObjN LO::R_SKWIRLBUSH,     1, 1, 4, 0
@@ -47,7 +47,12 @@ final6Data:
   LObj  LO::S_SPRING,         1, 12
   LObjN LO::R_WOOD_PLATFORM,  1, 5, 0, 7
   LObjN LO::WIDE_2,           1, 12, 3, LN2::BUSH
-  LObjN LO::R_SKWIRLBUSH,     3, 5, 4, 1
+  LObjN LO::R_SKWIRLBUSH,     1, 6, 4, 1
+  LObjN LO::R_WOOD_PLATFORM,  2, 8, 0, 4
+  LObjN LO::R_SKWIRLBUSH,     1, 1, 4, 1
+  LObjN LO::WIDE_2,           0, 12, 3, LN2::BUSH
+  LObjN LO::R_WOOD_PLATFORM,  2, 3, 0, 9
+  LObjN LO::R_SKWIRLBUSH,     4, 5, 4, 1
   LObjN LO::R_COIN,           0, 7, 0, 2
   LObjN LO::WIDE_2,           0, 10, 1, LN2::STRIPED_LOG_HORIZ
   LObj  LO::S_SPRING,         1, 9
@@ -67,7 +72,7 @@ final6Data:
   LObjN LO::R_WOOD_PLATFORM,  0, 8, 0, 6
   LObjN LO::R_SKWIRLBUSH,     1, 9, 4, 1
   LObjN LO::R_WOOD_PLATFORM,  2, 11, 0, 3
-  LObjN LO::R_SAND,           3, 6, 5, 8
+  LObjN LO::R_SAND,           4, 6, 5, 8
   LObjN LO::TALL_2,           1, 2, 3, LN2::PALM_TREE
   LObjN LO::TALL_2,           3, 2, 3, LN2::PALM_TREE
   LObjN LO::R_COIN,           2, 4, 4, 0
@@ -127,33 +132,33 @@ final6Data:
   LObjN LO::WIDE_2,           4, 6, 7, LN2::STONE_BRIDGE
   LObj  LO::S_PRIZE,          0, 10
   LWriteCol InventoryItem::HEALTH_RESTORE
-  LObjN LO::R_WATER,          0, 12, 7, 2
-  LObjN LO::R_COIN,           2, 8, 3, 1
-  LObjN LO::WIDE_1,           2, 10, 3, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_1,           4, 5, 3, LN1::TALLGRASS
-  LObjN LO::R_SAND,           0, 6, 3, 6
   LSetX 139
   LWriteCol Metatiles::WATER_MAIN
-  LObjN LO::R_WATER,          0, 13, 3, 1
-  LObj  LO::R_CUSTOM,         0, 13, Metatiles::REPLACE_BRICK, (3<<4)|1
+  LObjN LO::R_WATER,          0, 12, 7, 2
   LSetX 140
   LWriteCol Metatiles::WATER_MAIN
+  LObjN LO::R_COIN,           1, 8, 3, 1
   LSetX 141
   LWriteCol Metatiles::WATER_MAIN
   LSetX 142
   LWriteCol Metatiles::WATER_MAIN
-  LObjN LO::WIDE_2,           1, 6, 3, LN2::STONE_BRIDGE
+  LObjN LO::WIDE_1,           1, 10, 3, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_1,           4, 5, 3, LN1::TALLGRASS
+  LObjN LO::R_SAND,           0, 6, 3, 6
+  LObjN LO::R_WATER,          0, 13, 3, 1
+  LObj  LO::R_CUSTOM,         0, 13, Metatiles::REPLACE_BRICK, (3<<4)|1
+  LObjN LO::WIDE_2,           4, 6, 3, LN2::STONE_BRIDGE
   LObjN LO::R_WATER,          0, 12, 7, 2
   LObjN LO::R_CEILING_BARRIER,7, 0, 0, 2
   LObjN LO::R_SAND,           1, 0, 3, 12
   LObjN LO::R_WATER,          0, 13, 8, 1
-  LObjN LO::R_SAND,           4, 0, 10, 0
+  LObjN LO::R_SAND,           4, 0, 9, 0
   LObjN LO::R_GROUND,         0, 6, 1, 6
   LObjN LO::R_WATER,          2, 7, 2, 5
   LObjN LO::R_COIN,           3, 3, 2, 1
   LObjN LO::WIDE_1,           0, 6, 2, LN1::TALLGRASS
   LObjN LO::R_GROUND,         0, 7, 5, 7
-  LObjN LO::R_GRAYBRICKS,     4, 1, 1, 5
+  LObjN LO::TALL_2,           4, 1, 5, LN2::GRAY_BRICKS
   LObjN LO::R_SKWIRLBUSH,     2, 8, 4, 1
   LObjN LO::WIDE_2,           1, 6, 5, LN2::STONE_BRIDGE
   LObj  LO::S_WOOD_PLATFORM,  1, 10
@@ -175,7 +180,7 @@ final6Data:
   LObjN LO::R_BRICK,          0, 7, 3, 0
   LObj  LO::S_PRIZE,          1, 7
   LObjN LO::R_GROUND,         3, 4, 1, 10
-  LObjN LO::WIDE_2,           2, 4, 13, LN2::STONE_BRIDGE
+  LObjN LO::WIDE_2,           2, 4, 15, LN2::STONE_BRIDGE
   LObjN LO::R_SKWIRLBUSH,     0, 6, 4, 1
   LObjN LO::R_WOOD_PLATFORM,  2, 8, 0, 6
   LObj  LO::S_BIGHEART,       1, 2
@@ -185,46 +190,56 @@ final6Data:
   LObjN LO::R_WOOD_PLATFORM,  2, 7, 0, 7
   LObjN LO::R_SKWIRLBUSH,     1, 8, 4, 1
   LObjN LO::R_WOOD_PLATFORM,  2, 10, 0, 4
+  LObjN LO::R_SKWIRLBUSH,     2, 11, 2, 1
+  LObjN LO::R_SKWIRLBUSH,     1, 6, 4, 1
+  LObjN LO::R_WOOD_PLATFORM,  0, 13, 0, 1
+  LObjN LO::WIDE_2,           2, 4, 5, LN2::STONE_BRIDGE
+  LObjN LO::R_WOOD_PLATFORM,  0, 8, 0, 6
+  LObjN LO::R_SKWIRLBUSH,     1, 9, 4, 1
+  LObjN LO::R_WOOD_PLATFORM,  2, 11, 0, 3
+  LObj  LO::S_DOOR,           1, 2
+  LWriteCol $21, LevelId::Final6B
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LFinished
 
 final6Sprite:
   LSpr Enemy::TURKEY,              1,  17,   5
   LSpr Enemy::TURKEY,              1,  18,   8
-  LSpr Enemy::BOUNCER,             1,  23,  12
-  LSpr Enemy::BOUNCER,             1,  26,   9
-  LSpr Enemy::GEORGE,              1,  30,   7
-  LSpr Enemy::OWL,                 1,  35,   5
-  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  38,   6, 1
-  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  40,   7, 1
-  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  42,   5, 1
-  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  44,   4, 1
-  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  47,   6, 1
-  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  49,   7, 1
-  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  51,   5, 1
-  LSpr Enemy::CHECKPOINT,          0,  60,  12
-  LSpr Enemy::ROVER,               1,  62,   5
-  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  63,   6, 1
-  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  65,   5, 1
-  LSpr Enemy::TURKEY,              1,  66,  11
-  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  67,   4, 1
-  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  69,   3, 1
-  LSpr Enemy::CHECKPOINT,          0,  72,   2
-  LSpr Enemy::ROCKET_LAUNCHER,     0,  84,  12
-  LSpr Enemy::SNEAKER,             1,  86,   3
-  LSpr Enemy::TURKEY,              1,  90,   8
-  LSpr Enemy::BOUNCER,             1, 105,   9
-  LSpr Enemy::BOUNCER,             1, 108,   9
-  LSpr Enemy::SNEAKER,             0, 115,   2
-  LSpr Enemy::CHECKPOINT,          0, 118,   9
-  LSpr Enemy::SNEAKER,             1, 121,   5
-  LSpr Enemy::ROCKET_LAUNCHER,     0, 125,  12
-  LSpr Enemy::GOOMBA,              1, 135,   5
-  LSpr Enemy::GEORGE,              1, 137,   9
-  LSpr Enemy::SPINNER,             0, 147,   9, 3
-  LSpr Enemy::ROCKET_LAUNCHER,     0, 156,   4
-  LSpr Enemy::SPINNER,             0, 157,   9, 3
-  LSpr Enemy::CHECKPOINT,          0, 169,   5
-  LSpr Enemy::BOUNCER,             1, 183,   8
-  LSpr Enemy::GEORGE,              1, 191,   6
+  LSpr Enemy::BOUNCER,             1,  31,   9
+  LSpr Enemy::BOUNCER,             1,  33,  12
+  LSpr Enemy::GEORGE,              1,  37,   7
+  LSpr Enemy::OWL,                 1,  42,   5
+  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  45,   6, 1
+  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  47,   7, 1
+  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  49,   5, 1
+  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  51,   4, 1
+  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  54,   6, 1
+  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  56,   7, 1
+  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  58,   5, 1
+  LSpr Enemy::CHECKPOINT,          0,  68,  12
+  LSpr Enemy::ROVER,               1,  70,   5
+  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  71,   6, 1
+  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  73,   5, 1
+  LSpr Enemy::TURKEY,              1,  74,  11
+  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  75,   4, 1
+  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  77,   3, 1
+  LSpr Enemy::CHECKPOINT,          0,  80,   2
+  LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  91,   7, 1
+  LSpr Enemy::ROCKET_LAUNCHER,     0,  92,  12
+  LSpr Enemy::SNEAKER,             1,  94,   3
+  LSpr Enemy::TURKEY,              1,  98,   8
+  LSpr Enemy::BOUNCER,             1, 113,   9
+  LSpr Enemy::BOUNCER,             1, 116,   9
+  LSpr Enemy::SNEAKER,             0, 123,   2
+  LSpr Enemy::CHECKPOINT,          0, 126,   9
+  LSpr Enemy::SNEAKER,             1, 129,   5
+  LSpr Enemy::ROCKET_LAUNCHER,     0, 133,  12
+  LSpr Enemy::GOOMBA,              1, 143,   5
+  LSpr Enemy::GEORGE,              1, 145,   9
+  LSpr Enemy::SPINNER,             0, 155,   9, 3
+  LSpr Enemy::ROCKET_LAUNCHER,     0, 164,   4
+  LSpr Enemy::SPINNER,             0, 165,   9, 3
+  LSpr Enemy::CHECKPOINT,          0, 177,   5
+  LSpr Enemy::BOUNCER,             1, 191,   8
+  LSpr Enemy::GEORGE,              1, 199,   6
   .byt 255 ; end
