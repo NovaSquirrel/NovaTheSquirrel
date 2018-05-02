@@ -448,12 +448,10 @@ SandboxGotTile:
   eor ToggleBlockEnabled
   tay
 
-  ; World 5 uses different tiles
-  ; because the palette would look lame otherwise.
-  ; Instead maybe detect the level theme specifically?
-  lda StartedLevelNumber
-  and #%111000
-  cmp #4*8
+  ; DABG themed levels use different tiles
+  ; because the palette would look pretty bad otherwise.
+  lda LevelUploadList+0
+  cmp #GraphicsUpload::BG_DABGCOMMON
   bne :+
     tya
     eor #128
