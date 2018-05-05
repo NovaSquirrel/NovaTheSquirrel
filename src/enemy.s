@@ -4206,7 +4206,7 @@ Attr:
   :
   cmp #Metatiles::TOGGLE_SWITCH
   bne :+
-    jsr SwitchCooldown
+    jsr ToggleSwitchCooldown
     bcc DoneInteract
     jsr HitToggleSwitch
     jmp DoneInteract

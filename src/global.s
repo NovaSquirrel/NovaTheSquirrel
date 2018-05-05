@@ -1958,6 +1958,22 @@ Exit:
   rts
 .endproc
 
+; Checks if the toggle switch cooldown timer is nonzero
+; and allows a switch if so, resetting the timer to 60.
+.proc ToggleSwitchCooldown
+  lda ToggleSwitchCooldownTimer
+  beq :+
+    clc
+    rts
+  :
+  lda #60
+  sta ToggleSwitchCooldownTimer
+  sec
+  rts
+.endproc
+
+; Checks if the non-toggle switch (cloner, teleporter) cooldown timer is nonzero
+; and allows a switch if so, resetting the timer to 60.
 .proc SwitchCooldown
   lda SwitchCooldownTimer
   beq :+

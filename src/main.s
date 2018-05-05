@@ -293,6 +293,8 @@ DidntSkipPlayerAndEnemies:
     sta NeedSFX
   :
   countdown SoundDebounce
+  countdown SwitchCooldownTimer
+  countdown ToggleSwitchCooldownTimer
 
   ; Still need sound bank since the pause screen mutes the sound
   lda PlaceBlockInLevel

@@ -701,7 +701,7 @@ Failed:
 .endproc
 
 .proc TouchedToggleSwitch
-  jsr SwitchCooldown
+  jsr ToggleSwitchCooldown
   bcc :+
   jmp HitToggleSwitch
 : rts

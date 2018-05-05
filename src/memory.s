@@ -208,6 +208,7 @@
   InventoryCursorYSwap: .res 1
   PlayerRidingSomething: .res 1 ; if 1, player is treated to be standing on a solid and can jump
   SwitchCooldownTimer: .res 1
+  ToggleSwitchCooldownTimer: .res 1
 
   CutsceneOldBank: .res 1   ; Old bank, so it can restore to it
   CutsceneOldSP:   .res 1   ; Old stack pointer
