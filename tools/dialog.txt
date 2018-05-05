@@ -493,7 +493,7 @@ Down+B: Drop bomb
 
 :AboutGliderToggle:
 `scene NOVA_AND_SIGN
-<1 SIGN>Gliders can trigger the green toggle switches, and destroy boxes with glider emblems on them as well as normal bricks.
+<1 SIGN>Gliders can trigger the green toggle switches, and destroy boxes with glider emblems on them as well as normal bricks. Up+B will shoot an upwards traveling glider.
 `end
 
 :AboutCloner:
@@ -503,7 +503,7 @@ Down+B: Drop bomb
 
 :AboutGeorgeReminder:
 `scene NOVA_AND_SIGN
-<1 SIGN>This volcano can be copied too. Hold Select to get rid of your Fire ability if you have it, then stun and copy the volcano.
+<1 SIGN>This volcano can be copied too. If you want to, hold Select to get rid of your Fire ability if you have it, then stun and copy the volcano.
 `end
 
 :AboutLaser:

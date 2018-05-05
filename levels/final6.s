@@ -132,22 +132,22 @@ final6Data:
   LObjN LO::WIDE_2,           4, 6, 7, LN2::STONE_BRIDGE
   LObj  LO::S_PRIZE,          0, 10
   LWriteCol InventoryItem::HEALTH_RESTORE
-  LSetX 139
-  LWriteCol Metatiles::WATER_MAIN
   LObjN LO::R_WATER,          0, 12, 7, 2
-  LSetX 140
-  LWriteCol Metatiles::WATER_MAIN
-  LObjN LO::R_COIN,           1, 8, 3, 1
-  LSetX 141
-  LWriteCol Metatiles::WATER_MAIN
-  LSetX 142
-  LWriteCol Metatiles::WATER_MAIN
-  LObjN LO::WIDE_1,           1, 10, 3, LN1::SOLID_LEDGE
+  LObjN LO::R_COIN,           2, 8, 3, 1
+  LObjN LO::WIDE_1,           2, 10, 3, LN1::SOLID_LEDGE
   LObjN LO::WIDE_1,           4, 5, 3, LN1::TALLGRASS
   LObjN LO::R_SAND,           0, 6, 3, 6
+  LSetX 147
+  LWriteCol Metatiles::WATER_MAIN
   LObjN LO::R_WATER,          0, 13, 3, 1
   LObj  LO::R_CUSTOM,         0, 13, Metatiles::REPLACE_BRICK, (3<<4)|1
-  LObjN LO::WIDE_2,           4, 6, 3, LN2::STONE_BRIDGE
+  LSetX 148
+  LWriteCol Metatiles::WATER_MAIN
+  LSetX 149
+  LWriteCol Metatiles::WATER_MAIN
+  LSetX 150
+  LWriteCol Metatiles::WATER_MAIN
+  LObjN LO::WIDE_2,           1, 6, 3, LN2::STONE_BRIDGE
   LObjN LO::R_WATER,          0, 12, 7, 2
   LObjN LO::R_CEILING_BARRIER,7, 0, 0, 2
   LObjN LO::R_SAND,           1, 0, 3, 12

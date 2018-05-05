@@ -638,8 +638,8 @@ AboutFireWind:
 .byt SCR::END_SCRIPT
 AboutGliderToggle:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
-; <1 SIGN>Gliders can trigger the green toggle switches, and destroy boxes with glider emblems on them as well as normal bricks.
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "G", "l", "i", "d", $ec, $fb, $af, " ", $f9, "i", "g", "g", $ec, " ", $a1, " ", "g", $fa, $e5, SCR::NEWLINE, $bb, "g", "g", "l", $e6, "s", "w", "i", "t", $e1, "e", "s", $f4, $a3, "d", "e", $dd, "r", "o", "y", SCR::NEWLINE, "b", "o", "x", "e", $fb, $9c, " ", "g", "l", "i", "d", $ec, " ", "e", "m", "b", "l", "e", "m", $fb, $c1, SCR::NEWLINE, $91, " ", $c3, " ", $c7, "l", "l", " ", $c3, " ", $d0, "r", "m", "a", "l", SCR::NEWLINE, "b", $fc, $f2, "s", "."
+; <1 SIGN>Gliders can trigger the green toggle switches, and destroy boxes with glider emblems on them as well as normal bricks. Up+B will shoot an upwards traveling glider.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "G", "l", "i", "d", $ec, $fb, $af, " ", $f9, "i", "g", "g", $ec, " ", $a1, " ", "g", $fa, $e5, SCR::NEWLINE, $bb, "g", "g", "l", $e6, "s", "w", "i", "t", $e1, "e", "s", $f4, $a3, "d", "e", $dd, "r", "o", "y", SCR::NEWLINE, "b", "o", "x", "e", $fb, $9c, " ", "g", "l", "i", "d", $ec, " ", "e", "m", "b", "l", "e", "m", $fb, $c1, SCR::NEWLINE, $91, " ", $c3, " ", $c7, "l", "l", " ", $c3, " ", $d0, "r", "m", "a", "l", SCR::NEWLINE, "b", $fc, $f2, "s", $f5, "U", "p", "+", "B", " ", $9d, " ", $de, $e3, $d2, $c9, SCR::NEWLINE, $cc, "w", "a", "r", "d", $fb, $f9, "a", "v", "e", "l", $b0, " ", "g", "l", "i", "d", $ec, "."
 .byt SCR::END_SCRIPT
 AboutCloner:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
@@ -648,8 +648,8 @@ AboutCloner:
 .byt SCR::END_SCRIPT
 AboutGeorgeReminder:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
-; <1 SIGN>This volcano can be copied too. Hold Select to get rid of your Fire ability if you have it, then stun and copy the volcano.
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f7, $b7, "v", "o", "l", $af, "o", " ", $af, " ", $b9, "c", "o", "p", $e2, "d", SCR::NEWLINE, $bb, "o", $f5, "H", "o", $ee, " ", "S", "e", "l", "e", $c6, " ", $ba, $ae, " ", $fc, $ff, "o", "f", SCR::NEWLINE, $90, " ", "F", "i", $fa, " ", "a", "b", $db, "i", "t", $fe, $cd, " ", $a5, " ", "h", "a", "v", "e", SCR::NEWLINE, "i", "t", $f4, $93, " ", $dd, $f1, " ", $a3, "c", "o", "p", $fe, $a1, SCR::NEWLINE, "v", "o", "l", $af, "o", "."
+; <1 SIGN>This volcano can be copied too. If you want to, hold Select to get rid of your Fire ability if you have it, then stun and copy the volcano.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f7, $b7, "v", "o", "l", $af, "o", " ", $af, " ", $b9, "c", "o", "p", $e2, "d", SCR::NEWLINE, $bb, "o", $f5, "I", "f", " ", $a5, " ", "w", $c9, $d2, $bb, $f4, "h", "o", $ee, SCR::NEWLINE, "S", "e", "l", "e", $c6, " ", $ba, $ae, " ", $fc, $ff, $bc, $90, " ", "F", "i", $fa, SCR::NEWLINE, "a", "b", $db, "i", "t", $fe, $cd, " ", $a5, " ", $9a, "i", "t", $f4, $93, SCR::NEWLINE, $dd, $f1, " ", $a3, "c", "o", "p", $fe, $a1, " ", "v", "o", "l", $af, "o", "."
 .byt SCR::END_SCRIPT
 AboutLaser:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN

@@ -9,9 +9,9 @@ final2:
   .addr final2Data
   .addr final2Sprite
   .byt $31 ; background
+  .byt GraphicsUpload::BG_DABGCOMMON
   .byt GraphicsUpload::PAL_DABG_GRAY
   .byt GraphicsUpload::PAL_ENEMY6
-  .byt GraphicsUpload::BG_DABGCOMMON
   .byt GraphicsUpload::BG_DABG
   .byt GraphicsUpload::BG_GRASSYBG
   .byt GraphicsUpload::BG_CHIP_DABG
