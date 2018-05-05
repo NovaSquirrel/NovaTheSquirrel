@@ -1145,6 +1145,9 @@ Rich:
   lda #99
   sta Coins+0
   sta Coins+1
+  lda LevelCleared ; unlock shop
+  ora #$80
+  sta LevelCleared
   rts
 Boomerang:
   lda #AbilityType::BOOMERANG
@@ -1172,6 +1175,13 @@ Health:
   sta PlayerHealth
   rts
 NextAbility:
+  ; Unlock all levels
+  lda #255
+  sta LevelAvailable+0
+  sta LevelAvailable+1
+  sta LevelAvailable+2
+  sta LevelAvailable+3
+
   ldx PlayerAbility
   inx
   cpx #AbilityType::LAST
