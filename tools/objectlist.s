@@ -82,6 +82,7 @@
   .byt GraphicsUpload::SP_CASTLE ;GRILLBERT
   .byt GraphicsUpload::SP_CASTLE ;BOMB_POP
   .byt GraphicsUpload::SP_CASTLE ;MAMA_LUIGI
+  .byt GraphicsUpload::SP_CASTLE ;BOMB_POP_GENERATOR
 .endproc
 
 .proc ObjBehaviors
@@ -168,6 +169,7 @@
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;GRILLBERT
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BOMB_POP
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;MAMA_LUIGI
+  .byt 0 ;BOMB_POP_GENERATOR
 .endproc
 
 .proc ObjFlags
@@ -254,6 +256,7 @@
   .byt ObjFlag::PRIMARY ;GRILLBERT
   .byt ObjFlag::PRIMARY ;BOMB_POP
   .byt ObjFlag::PRIMARY ;MAMA_LUIGI
+  .byt ObjFlag::PRIMARY ;BOMB_POP_GENERATOR
 .endproc
 
 .proc ObjectTable
@@ -340,5 +343,6 @@
   .raddr ObjectGrillbert ;GRILLBERT
   .raddr ObjectBombPop ;BOMB_POP
   .raddr ObjectMamaLuigi ;MAMA_LUIGI
+  .raddr ObjectBombPopGenerator ;BOMB_POP_GENERATOR
 .endproc
 

@@ -451,6 +451,7 @@ EnemyAbilityTable:
   .byt Enemy::MAMA_LUIGI,       AbilityType::BLASTER
   .byt Enemy::BOMB_GUY,         AbilityType::BOMB
   .byt Enemy::DROPPED_BOMB_GUY, AbilityType::BOMB
+  .byt Enemy::BOMB_POP,         AbilityType::BOMB
   .byt Enemy::RONALD,           AbilityType::BURGER
   .byt Enemy::SUN,              AbilityType::FIRE
   .byt Enemy::BIG_GLIDER,       AbilityType::GLIDER

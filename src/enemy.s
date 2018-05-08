@@ -4937,9 +4937,9 @@ OffsetH:
   bne :+
     lda #ENEMY_STATE_ACTIVE
     sta ObjectF2,x
-    lda #<(-$60)
+    lda #<(-$80)
     sta ObjectVYL,x
-    lda #>(-$60)
+    lda #>(-$80)
     sta ObjectVYH,x
   :
 
@@ -5004,6 +5004,57 @@ Frame:
 .endproc
 
 .proc ObjectBombPop
+  inc ObjectTimer,x
+  inc ObjectTimer,x
+;  inc ObjectTimer,x
+
+  lda ObjectTimer,x
+  jsr EnemyWalk
+  bcs DoExplode
+
+  lda #<Metasprite
+  ldy #>Metasprite
+  jsr DispEnemyMetasprite
+  jsr EnemyPlayerTouch
+  bcs DoExplode
+  rts
+
+DoExplode:
+  lda #7
+  jmp EnemyExplode
+
+Metasprite:
+  MetaspriteHeader 4, 2, 3
+  .byt $0e, $0f
+  .byt $10, $11
+  .byt $12, $13
+  .byt $14, $15
+  rts
+.endproc
+
+.proc ObjectBombPopGenerator
+  lda retraces
+  and #31
+  bne NoShoot
+
+  jsr FindFreeObjectY
+  bcc NoShoot
+    jsr ObjectClearY
+    lda ScrollX+0
+    sta ObjectPXL,y
+    lda ScrollX+1
+    add #15
+    sta ObjectPXH,y
+    jsr huge_rand
+    sta ObjectPYL,y
+    jsr huge_rand
+    and #7
+    add #5
+    sta ObjectPYH,y
+
+    lda #Enemy::BOMB_POP*2|1
+    sta ObjectF1,y
+NoShoot:
   rts
 .endproc
 

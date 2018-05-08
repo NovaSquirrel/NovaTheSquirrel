@@ -501,3 +501,9 @@ C .byt GraphicsUpload::SP_CASTLE
 C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
 C .byt ObjFlag::PRIMARY
 C .raddr ObjectMamaLuigi
+
+R BOMB_POP_GENERATOR
+C .byt GraphicsUpload::SP_CASTLE
+C .byt 0
+C .byt ObjFlag::PRIMARY
+C .raddr ObjectBombPopGenerator
