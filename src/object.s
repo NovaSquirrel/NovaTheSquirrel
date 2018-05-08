@@ -436,6 +436,7 @@ EnemyAbilityTable:
   .byt Enemy::ICE_2,            AbilityType::NICE
   .byt Enemy::BURGER,           AbilityType::BURGER
   .byt Enemy::FIRE_WALK,        AbilityType::FIRE
+  .byt Enemy::GRILLBERT,        AbilityType::FIRE
   .byt Enemy::FIRE_JUMP,        AbilityType::FIRE
   .byt Enemy::FLAMES,           AbilityType::FIRE
   .byt Enemy::ROCKET,           AbilityType::BOMB
@@ -447,6 +448,7 @@ EnemyAbilityTable:
   .byt Enemy::GREMLIN,          AbilityType::BLASTER
   .byt Enemy::TURKEY,           AbilityType::BLASTER
   .byt Enemy::ROVER,            AbilityType::BLASTER
+  .byt Enemy::MAMA_LUIGI,       AbilityType::BLASTER
   .byt Enemy::BOMB_GUY,         AbilityType::BOMB
   .byt Enemy::DROPPED_BOMB_GUY, AbilityType::BOMB
   .byt Enemy::RONALD,           AbilityType::BURGER
@@ -1069,7 +1071,9 @@ EnemyApplyYVelocity = EnemyApplyVelocity::YOnly
 .proc EnemyWalkOnPlatform
   jsr EnemyWalk
   jsr EnemyAutoBump
-
+.endproc
+; fallthrough
+.proc EnemyStayOnPlatform
   lda ObjectPYH,x
   add #1
   tay

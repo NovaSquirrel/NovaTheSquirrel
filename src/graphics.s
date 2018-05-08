@@ -86,6 +86,10 @@ PalEnemy5:  .byt $61
 PalEnemy6:  .byt $61
             .byt $0f, $16, $30
             .byt $0f, $12, $30
+PalEnemy7:  .byt $61
+            .byt $0f, $16, $30
+            .byt $02, $16, $30
+
 PalEnemyMolSno:
             .byt $61
             .byt $0f, $16, $30 ; MolSno

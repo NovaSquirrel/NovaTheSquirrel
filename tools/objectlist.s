@@ -78,6 +78,10 @@
   .byt GraphicsUpload::SP_EXPLODE ;DROPPED_BOMB_GUY
   .byt GraphicsUpload::SP_FHBG ;JOHN
   .byt GraphicsUpload::SP_MINES ;JOHN_ICE
+  .byt GraphicsUpload::SP_CASTLE ;TOAST
+  .byt GraphicsUpload::SP_CASTLE ;GRILLBERT
+  .byt GraphicsUpload::SP_CASTLE ;BOMB_POP
+  .byt GraphicsUpload::SP_CASTLE ;MAMA_LUIGI
 .endproc
 
 .proc ObjBehaviors
@@ -160,6 +164,10 @@
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;DROPPED_BOMB_GUY
   .byt 0 ;JOHN
   .byt 0 ;JOHN_ICE
+  .byt ObjBehavior::AUTO_REMOVE ;TOAST
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;GRILLBERT
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BOMB_POP
+  .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;MAMA_LUIGI
 .endproc
 
 .proc ObjFlags
@@ -242,6 +250,10 @@
   .byt ObjFlag::PRIMARY ;DROPPED_BOMB_GUY
   .byt ObjFlag::ESSENTIAL ;JOHN
   .byt ObjFlag::PRIMARY ;JOHN_ICE
+  .byt ObjFlag::PRIMARY ;TOAST
+  .byt ObjFlag::PRIMARY ;GRILLBERT
+  .byt ObjFlag::PRIMARY ;BOMB_POP
+  .byt ObjFlag::PRIMARY ;MAMA_LUIGI
 .endproc
 
 .proc ObjectTable
@@ -324,5 +336,9 @@
   .raddr ObjectDroppedBombGuy ;DROPPED_BOMB_GUY
   .raddr ObjectJohn ;JOHN
   .raddr ObjectJohnIce ;JOHN_ICE
+  .raddr ObjectToast ;TOAST
+  .raddr ObjectGrillbert ;GRILLBERT
+  .raddr ObjectBombPop ;BOMB_POP
+  .raddr ObjectMamaLuigi ;MAMA_LUIGI
 .endproc
 

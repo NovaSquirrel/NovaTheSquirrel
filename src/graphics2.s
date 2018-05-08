@@ -20,6 +20,7 @@ SPFHBG:        ChrFile "../chr/spfhbg.pb53",      512,   $1800
 SPFreak:       ChrFile "../chr/spfreak.pb53",     512,   $1800
 BGChipDABG:    ChrFile "../chr/bgchipdabg.pb53",  1024,  $0800
 CHRMiniFont:   ChrFile "../chr/minifont.pb53",    512,   $0e00
+SPCastle:      ChrFile "../chr/spcastle.pb53",    512,   $1800
 
 AnimWaterGfx:
   .incbin "../chr/animwater.chr"

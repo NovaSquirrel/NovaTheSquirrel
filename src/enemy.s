@@ -2116,7 +2116,7 @@ NotMoving:
 
   ; Shoot
   lda ObjectF2,x
-  bne :+
+  bne NoShoot
   lda retraces
   and #63
   bne NoShoot
@@ -2244,9 +2244,8 @@ ShootSpeed:
   .byt $20, <-$20
 .endproc
 
-.proc ObjectRover
-  jsr EnemyFall
 
+.proc RoverMovement
   lda ObjectPXH,x
   sub PlayerPXH
   abs
@@ -2260,7 +2259,13 @@ ShootSpeed:
   asl
   asl
   jsr EnemyWalk
-  jsr EnemyAutoBump
+  jmp EnemyAutoBump
+.endproc
+
+.proc ObjectRover
+  jsr EnemyFall
+
+  jsr RoverMovement
 
   ; Pick the mouth-open frame if shooting
   ldy #$08
@@ -4919,3 +4924,148 @@ OffsetH:
   .hibytes ($40 + $100), ($40 - $100)
 .endproc
 
+.proc ObjectToast
+  lda ObjectF2,x
+  cmp #ENEMY_STATE_ACTIVE
+  beq FlyingState
+
+  jsr EnemyHover
+
+  inc ObjectTimer,x
+  lda ObjectTimer,x
+  cmp #60
+  bne :+
+    lda #ENEMY_STATE_ACTIVE
+    sta ObjectF2,x
+    lda #<(-$60)
+    sta ObjectVYL,x
+    lda #>(-$60)
+    sta ObjectVYH,x
+  :
+
+  lda ObjectTimer,x
+  cmp #30
+  bcs DisplayCooked
+  lda #$00
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouchHurt
+  rts
+
+FlyingState:
+  jsr EnemyGravity
+
+  ; If it reaches lava, re-settle
+  lda ObjectVYH,x
+  bmi IsNotLava
+  jsr GetPointerForMiddleWide
+  cmp #Metatiles::LAVA_TOP
+  beq IsLava
+  cmp #Metatiles::LAVA_MAIN
+  bne IsNotLava
+  IsLava:
+    lda #0
+    sta ObjectF2,x
+    sta ObjectTimer,x
+IsNotLava:
+
+DisplayCooked:
+  lda #$04
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouchHurt
+  rts
+.endproc
+
+.proc ObjectGrillbert
+;  lda #$10
+;  jsr EnemyWalk
+;  jsr EnemyAutoBump
+  jsr EnemyHover
+  jsr RoverMovement
+
+  ; Alternate between two frames
+  lda retraces
+  and #8
+  bne AltFrame
+  lda #$08
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouchHurt
+  rts
+AltFrame:
+  lda #<Frame
+  ldy #>Frame
+  jsr DispEnemyWideNonsequential
+  jsr EnemyPlayerTouchHurt
+  rts
+Frame:
+  .byt $0c, $09, $0d, $0b, OAM_COLOR_2, OAM_COLOR_2, OAM_COLOR_2, OAM_COLOR_2
+.endproc
+
+.proc ObjectBombPop
+  rts
+.endproc
+
+.proc ObjectMamaLuigi
+  jsr EnemyFall
+
+  lda #$08
+  jsr EnemyWalk
+  jsr EnemyStayOnPlatform
+
+  lda retraces
+  and #63
+  bne :+
+    jsr EnemyLookAtPlayer
+  :
+
+  ; Shoot
+  lda ObjectF2,x
+  bne NoShoot
+  lda retraces
+  and #63
+  cmp #32
+  bne NoShoot
+  lda ObjectF1,x
+  and #1
+  tay
+  lda ShootSpeed,y
+  sta 0
+  sex
+  sta 1
+  jsr FindFreeObjectY
+  bcc NoShoot
+    jsr ObjectClearY
+    jsr ObjectCopyPosXYOffset
+
+    lda 0
+    sta ObjectVXL,y
+    lda 1
+    sta ObjectVXH,y
+    lda #5
+    sta ObjectTimer,y
+
+    lda #Enemy::FACEBALL_SHOT*2
+    sta ObjectF1,y
+NoShoot:
+
+  lda retraces
+  and #32
+  bne AltFrame
+  lda #$1a
+  ldy #OAM_COLOR_3
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouchHurt
+  rts
+AltFrame:
+  lda #<Frame
+  ldy #>Frame
+  jsr DispEnemyWideNonsequential
+  jsr EnemyPlayerTouchHurt
+  rts
+Frame:
+  .byt $1a, $1b, $1e, $1f, OAM_COLOR_3, OAM_COLOR_3, OAM_COLOR_3, OAM_COLOR_3
+ShootSpeed:
+  .byt $30, <-$30
+.endproc

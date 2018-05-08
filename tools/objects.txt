@@ -477,3 +477,27 @@ C .byt GraphicsUpload::SP_MINES
 C .byt 0
 C .byt ObjFlag::PRIMARY
 C .raddr ObjectJohnIce
+
+R TOAST
+C .byt GraphicsUpload::SP_CASTLE
+C .byt ObjBehavior::AUTO_REMOVE
+C .byt ObjFlag::PRIMARY
+C .raddr ObjectToast
+
+R GRILLBERT
+C .byt GraphicsUpload::SP_CASTLE
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
+C .byt ObjFlag::PRIMARY
+C .raddr ObjectGrillbert
+
+R BOMB_POP
+C .byt GraphicsUpload::SP_CASTLE
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
+C .byt ObjFlag::PRIMARY
+C .raddr ObjectBombPop
+
+R MAMA_LUIGI
+C .byt GraphicsUpload::SP_CASTLE
+C .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET
+C .byt ObjFlag::PRIMARY
+C .raddr ObjectMamaLuigi
