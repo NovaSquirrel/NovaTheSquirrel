@@ -62,6 +62,8 @@
 :Tutorial1:
 `scene NOVA_SIGN_KEE
 <1 SIGN>Hold B to run, or press B to attack. From the pause menu you can choose to run with a double-tap instead, allowing you to attack while moving.
+<2 KEE>Okay Nova, I have no idea where we are. Everything's so weird, and WE'RE so different now...
+<0 NOVA>We'll figure it out. There's bound to be other people here who can get us home, at least? I hope.
 `end
 
 :Tutorial2:
@@ -325,8 +327,18 @@
 [NOVA]Going in! Wish me luck!
 `end
 
-`scene NOVA_ALONE
+:BeforeBill:
+`scene FORUMS
+[NOVA]Alright, I'm just about to face off with the final boss! When I take him down, this'll all be over, right?
+[KOREY]Yup! And then I can take you home. Sorry for making you go through all of this for us...
+[SHERWIN]You can do it! I wanna get out of here so badly!
+[IKE]Good luck!
+[NOVA]Thank you everyone! I'll do my best!
+[LIA]'kay Nova! I think he's gonna go all out, and he might be too strong... BUT remember the legend of how he was defeated last time?
+[NOVA]By reflecting his projectiles back into himself?
+[LIA]Yus! I fink dat's the key to victory. Take dat mirror scepter and show him not to mess with a squirrel!
 >0 NOVA_AW<Here it is, the final battle. I've gotta give my best shot.
+`scene NOVA_ALONE
 []Nova drinks the F-a-ancy cola and equips the Mirror Scepter in preparation for the battle, then nervously walks through the door...
 `transition
 <1 BILL>You know, you've become a real pain in the butt. I'm going to destroy you.
@@ -335,6 +347,7 @@
 <1 BILL>You're toast.
 `end
 
+:AfterBill:
 `scene NOVA_ALONE
 <0 NOVA_YAY>W-wow, did I really just win?
 []Having defeated Bill and the Scheme Team, Nova then finally frees Sherwin.
@@ -440,6 +453,7 @@ Down+B: Drop bomb
 
 :ItiCameo:
 `scene NOVA_AND_ITI
+<1 ITI>Hullo.
 `end
 
 :AboutIceJump:
@@ -538,6 +552,20 @@ Down+B: Drop bomb
 `scene NOVA_AND_SIGN
 <1 SIGN>GOTTA GO FAST!
 `end
+
+
+:MeetKeeAgain:
+`scene NOVA_AND_KEE
+<1 KEE>Hey Nova, congrats! I went off on my own adventure while I was gone.
+<0 NOVA>Hi Kee! Nice to see you again. What's up?
+<1 KEE>Turns out I'd been gifted the ability to use fire magic, but after a lot of scorched fur and minor burns I realized I needed a teacher. I found a wizard in a broken-down hut.
+<0 NOVA>And he taught you?
+<1 KEE>Yes, he helped me learn how to use my magic. He was very elderly and he passed away before he could finish, but he left me his books and supplies and I finished by myself.
+<0 NOVA>Still eager to go home?
+<1 KEE>Eh, who cares at this point? Everything seems a lot more interesting here, but I'd love to go on an adventure with you later!
+`end
+
+
 
 
 `manualwrap
@@ -741,6 +769,12 @@ This level is da bomb.
 Run across a path of arrow
 `nl
 blocks!
+`end
+
+:PreLevelFinal7:
+A pretty long final level,
+`nl
+using all of the themes.
 `end
 
 
