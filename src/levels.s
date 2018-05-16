@@ -3,7 +3,8 @@ MasterLevelListL:
   .byt <glass_intro, <arrows, <burgers, <glasscave, <chiptall, <falldown, <glass_finale, <boss2
   .byt <frozen, <frozen2, <frozen3, <frozen4, <frozen5, <frozen6, <frozen7, <boss3
   .byt <insane1, <insane2, <insane3, <insane4, <insane5, <insane6, <boss4a, <boss4b
-  .byt <final1, <final2, <final3, <final4, <final5, <boss5a, <final6, <emptylevel
+  .byt <final1, <final2, <final3, <final4, <final5, <boss5a, <final6, <boss5b
+  .byt <emptylevel
 ; sub-levels
   .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden, <puzzle2, <insane1b, <final4b
   .byt <final5b, <final6b, <final6c, <final6d
@@ -13,7 +14,8 @@ MasterLevelListH:
   .byt >glass_intro, >arrows, >burgers, >glasscave, >chiptall, >falldown, >glass_finale, >boss2
   .byt >frozen, >frozen2, >frozen3, >frozen4, >frozen5, >frozen6, >frozen7, >boss3
   .byt >insane1, >insane2, >insane3, >insane4, >insane5, >insane6, >boss4a, >boss4b
-  .byt >final1, >final2, >final3, >final4, >final5, >boss5a, >final6, >emptylevel
+  .byt >final1, >final2, >final3, >final4, >final5, >boss5a, >final6, >boss5b
+  .byt >emptylevel
 ; sub-levels
   .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden, >puzzle2, >insane1b, >final4b
   .byt >final5b, >final6b, >final6c, >final6d
@@ -27,7 +29,8 @@ PUZ = 128 ; puzzle, no longer used
   .byt B1,     B1,     B1|PUZ, B1,     B1|PUZ, B1,     B2|PUZ, B1
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B2
   .byt B2,     B2,     B2,     B2,     B2,     B2,     B2,     B2
-  .byt B2,     B2,     B2,     B2,     B2,     B2,     B2,     B1
+  .byt B2,     B2,     B2,     B2,     B2,     B2,     B2,     B2
+  .byt B1
 ; sub-levels
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B2,     B2
   .byt B2,     B2,     B2,     B2
@@ -80,7 +83,10 @@ PUZ = 128 ; puzzle, no longer used
   Final4
   Final5
   Boss5a
-  Final6
+  Final7
+  Boss5b
+
+; world 6
   EmptyLevel
 
 ; sublevels
@@ -152,6 +158,8 @@ PUZ = 128 ; puzzle, no longer used
   .addr PreLevelFinal4
   .byt LevelId::Final5
   .addr PreLevelFinal5
+  .byt LevelId::Final7
+  .addr PreLevelFinal7
 
   .byt LevelId::EmptyLevel
   .addr PreLevelSandbox
@@ -165,6 +173,8 @@ PUZ = 128 ; puzzle, no longer used
   .addr PreLevelBoss4b
   .byt LevelId::Boss5a
   .addr PreLevelBoss5a
+  .byt LevelId::Boss5b
+  .addr PreLevelBoss5b
   .byt 255
 .endproc
 
@@ -183,6 +193,7 @@ PUZ = 128 ; puzzle, no longer used
   .byt LevelId::Boss4a
   .byt LevelId::Boss4b
   .byt LevelId::Boss5a
+  .byt LevelId::Boss5b
   .byt 255
 .endproc
 .popseg

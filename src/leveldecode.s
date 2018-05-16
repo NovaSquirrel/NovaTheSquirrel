@@ -611,6 +611,7 @@ SpecialConfigTable:
   .raddr SetAnimatedWater
   .raddr SetJackStone
   .raddr IsSandbox
+  .raddr ForceMirror
 
 SpecialConfigMakeBackgrounds:
   lda (LevelDecodePointer),y
@@ -660,6 +661,11 @@ SandboxPresetBrushes:
 
 SetJackStone:
   inc BackgroundBoss
+  rts
+ForceMirror:
+  lda #AbilityType::MIRROR|128
+  sta NeedAbilityChange
+  sta NeedAbilityChangeNoSound
   rts
 
 SetBGStars:

@@ -396,6 +396,8 @@ GameStateLen = 2+10*4 ; update if more stuff is added. Just coins and inventory.
   SandboxBrushes:      .res 7
   SandboxCurrentBlock: .res 1
 
+  FinalBossScreenX:   .res 1 ; pixel position of final boss
+  FinalBossScreenY:   .res 1
 .segment "SAVE"
 SaveStart:
   SaveTag:            .res 9

@@ -507,3 +507,15 @@ C .byt GraphicsUpload::SP_CASTLE
 C .byt 0
 C .byt ObjFlag::PRIMARY
 C .raddr ObjectBombPopGenerator
+
+R FINAL_BOSS
+C .byt GraphicsUpload::SP_FINALBOSS
+C .byt 0
+C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectFinalBoss
+
+R FINAL_PROJECTILE
+C .byt GraphicsUpload::SP_FINALPROJECTILE
+C .byt ObjBehavior::AUTO_REMOVE
+C .byt ObjFlag::ESSENTIAL
+C .raddr ObjectFinalProjectile

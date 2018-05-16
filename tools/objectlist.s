@@ -83,6 +83,8 @@
   .byt GraphicsUpload::SP_CASTLE ;BOMB_POP
   .byt GraphicsUpload::SP_CASTLE ;MAMA_LUIGI
   .byt GraphicsUpload::SP_CASTLE ;BOMB_POP_GENERATOR
+  .byt GraphicsUpload::SP_FINALBOSS ;FINAL_BOSS
+  .byt GraphicsUpload::SP_FINALPROJECTILE ;FINAL_PROJECTILE
 .endproc
 
 .proc ObjBehaviors
@@ -170,6 +172,8 @@
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;BOMB_POP
   .byt ObjBehavior::AUTO_REMOVE | ObjBehavior::GET_SHOT | ObjBehavior::AUTO_RESET ;MAMA_LUIGI
   .byt 0 ;BOMB_POP_GENERATOR
+  .byt 0 ;FINAL_BOSS
+  .byt ObjBehavior::AUTO_REMOVE ;FINAL_PROJECTILE
 .endproc
 
 .proc ObjFlags
@@ -257,6 +261,8 @@
   .byt ObjFlag::PRIMARY ;BOMB_POP
   .byt ObjFlag::PRIMARY ;MAMA_LUIGI
   .byt ObjFlag::PRIMARY ;BOMB_POP_GENERATOR
+  .byt ObjFlag::ESSENTIAL ;FINAL_BOSS
+  .byt ObjFlag::ESSENTIAL ;FINAL_PROJECTILE
 .endproc
 
 .proc ObjectTable
@@ -344,5 +350,7 @@
   .raddr ObjectBombPop ;BOMB_POP
   .raddr ObjectMamaLuigi ;MAMA_LUIGI
   .raddr ObjectBombPopGenerator ;BOMB_POP_GENERATOR
+  .raddr ObjectFinalBoss ;FINAL_BOSS
+  .raddr ObjectFinalProjectile ;FINAL_PROJECTILE
 .endproc
 

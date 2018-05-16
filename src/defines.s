@@ -527,6 +527,7 @@ LSpecialCmd = $f7
   ANIMATED_WATER  
   JACK_STONE
   IS_SANDBOX
+  FORCE_MIRROR
 .endenum
 
 .enum LevelBackgroundId

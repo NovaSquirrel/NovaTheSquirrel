@@ -5120,3 +5120,251 @@ Frame:
 ShootSpeed:
   .byt $30, <-$30
 .endproc
+
+.proc ObjectFinalBoss
+  ; Win if the boss is out of HP
+  lda ObjectVXH,x
+  cmp #20
+  bcc :+
+    lda #255 ; Put enemy into dying state
+    sta ObjectF2,x
+
+    lda ObjectPYH,x
+    cmp #15
+    bcc :+
+    ; No ability
+    lda #128
+    sta NeedAbilityChange
+    sta NeedAbilityChangeNoSound
+    ; Teleport
+    lda #16
+    jmp DoTeleport
+  :
+
+  lda #<ObjectFinalBoss_2
+  ldy #>ObjectFinalBoss_2
+  jmp InObjectBank2
+.endproc
+
+.proc ObjectFinalProjectile
+TYPE_BLOCK = 0
+TYPE_MINE  = 1
+TYPE_BLADE = 2
+TYPE_BOMB  = 3
+TYPE_SEED  = 4
+TYPE_R_BLADE = 5 ; blade that's been reflected
+TYPE_R_BLOCK = 6 ; block that's been reflected
+
+  inc ObjectTimer,x
+  bne :+
+    lda #0
+    sta ObjectF1,x
+    rts
+  :
+
+  ldy ObjectF2,x
+  lda SubtypesH,y
+  pha
+  lda SubtypesL,y
+  pha
+  rts
+
+SubtypesH:
+  .hibytes Block-1, Mine-1, Blade-1, Bomb-1, Seed-1, ReflectedBlade-1, ReflectedBlock-1
+SubtypesL:
+  .lobytes Block-1, Mine-1, Blade-1, Bomb-1, Seed-1, ReflectedBlade-1, ReflectedBlock-1
+
+
+Block:
+  jsr EnemyApplyVelocity
+
+  lda #0*4
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  jsr HurtAndDeflect
+  bcc :+
+    lda #TYPE_R_BLOCK
+    sta ObjectF2,x
+  :
+  rts
+
+ReflectedBlock:
+  jsr EnemyApplyVelocity
+  lda #0*4
+  ldy #OAM_COLOR_2
+  jmp DispEnemyWide
+
+ReflectedBlade:
+  jsr EnemyApplyVelocity
+  jmp DrawBlade
+
+Blade:
+  jsr ReflectedBlade
+
+.if 0
+  ; Old behavior: Just immediately launch at the player
+  lda ObjectVXL,x
+  ora ObjectVYL,x
+  bne @SetAlready
+    jsr AimAtPlayer
+    lda #1
+    jsr SpeedAngle2Offset
+    lda 0
+    sta ObjectVXL,x
+    lda 1
+    sta ObjectVXH,x
+    lda 2
+    sta ObjectVYL,x
+    lda 3
+    sta ObjectVYH,x
+@SetAlready:
+.endif
+
+  ; Rotate position-wise in the air in an arc
+  ldy ObjectF3,x
+  lda #1
+  jsr SpeedAngle2Offset
+  lda 0
+  sta ObjectVXL,x
+  lda 1
+  sta ObjectVXH,x
+  lda 2
+  sta ObjectVYL,x
+  lda 3
+  sta ObjectVYH,x
+
+  ; Step the actual angle every other frame
+  lda retraces
+  lsr
+  bcc :+
+    lda ObjectF3,x
+    add ObjectF4,x
+    and #31
+    sta ObjectF3,x
+  :
+  jsr HurtAndDeflect
+  bcc :+
+    lda #TYPE_R_BLADE
+    sta ObjectF2,x
+  :
+  rts
+
+DrawBlade:
+  lda retraces
+  lsr
+  lsr
+  and #3
+  tay  
+  lda BladeAttributes,y
+  ldy #2*4
+  jmp DispEnemyWideFlipped
+
+BladeAttributes: ; Spinning blade
+  .byt %00|OAM_COLOR_2*4
+  .byt %01|OAM_COLOR_2*4
+  .byt %11|OAM_COLOR_2*4
+  .byt %10|OAM_COLOR_2*4
+
+Mine:
+  lda #1*4
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouch
+  bcc :+
+    lda #7
+    jmp EnemyExplode
+  :
+  rts
+
+Bomb:
+  jsr EnemyFall
+  bcc :+
+@DoExplode:
+    lda #TYPE_BLOCK
+    sta ObjectF2,x
+    ; Change the speeds
+    lda #0
+    sta ObjectVYL,x
+    sta ObjectVYH,x
+
+    lda #<($40)
+    sta ObjectVXL,x
+    lda #>($40)
+    sta ObjectVXH,x
+    jsr CloneObjectX
+    lda #<-($40)
+    sta ObjectVXL,x
+    lda #>-($40)
+    sta ObjectVXH,x
+    rts
+  :
+
+  lda #3*4
+  ldy #OAM_COLOR_2
+  jsr DispEnemyWide
+  jsr EnemyPlayerTouch
+  bcs @DoExplode
+  rts
+
+Seed:
+  jsr ObjectFallSmall
+  bcc :+
+    lda #TYPE_MINE
+    sta ObjectF2,x
+    lda #$40
+    jsr ObjectOffsetXYNegative
+
+    jsr CloneObjectX
+    dec ObjectPYH,x
+    jsr CloneObjectX
+    dec ObjectPYH,x
+    jsr CloneObjectX
+    dec ObjectPYH,x
+    rts
+  :
+  lda #OAM_COLOR_3
+  sta 1
+  lda #$40 ; use a zero
+  jmp DispObject8x8_Attr
+
+HurtAndDeflect:
+ProjectileIndex = TempVal+2
+  jsr EnemyPlayerTouchHurt
+  jsr EnemyGetShotTest
+  bcc @_rts
+  ; Destroy the mirror projectile
+  ldy ProjectileIndex
+  lda #0
+  sta ObjectF1,y
+
+  ; Aim at the boss
+  lda O_RAM::OBJ_DRAWX
+  sta 0
+  lda O_RAM::OBJ_DRAWY
+  sta 1
+  lda FinalBossScreenX
+  add #4
+  sta 2
+  lda FinalBossScreenY
+  add #4
+  sta 3
+  jsr getAngle
+  tay
+
+  lda #0
+  sta ObjectTimer,x
+  ; Launch towards the boss
+  lda #1
+  jsr SpeedAngle2Offset
+  lda 0
+  sta ObjectVXL,x
+  lda 1
+  sta ObjectVXH,x
+  lda 2
+  sta ObjectVYL,x
+  lda 3
+  sta ObjectVYH,x
+  sec
+@_rts:
+  rts
+.endproc

@@ -701,8 +701,9 @@ MetaspriteFlyHorizL:
 .endproc
 
 .proc JackStone_Init
-  jsr JackMakePlatforms
-  rts
+  ; This was from old plans where Jack would change the platforms as you fight him
+  ; but they could honestly just be hardcoded into the level at this point.
+  jmp JackMakePlatforms
 
 JackMakePlatforms:
   ; Erase all platforms
@@ -746,19 +747,14 @@ JackMakePlatforms:
   rts
 JackPlatformsX:
   .byt 2, 5, 7, 10, 13|128
-  .byt 13, 3, 6, 10, 4, 7|128
+;  .byt 13, 3, 6, 10, 4, 7|128
 
 JackPlatformsY:
   .byt 8, 9, 7,  5, 4
-  .byt 4, 5, 6,  7, 9, 10
+;  .byt 4, 5, 6,  7, 9, 10
 .endproc
 
-.proc JackStone_Fight
-ScreenX = 4
-ScreenY = 5
-
-  lda #16
-  sub ObjectVXH,x
+.proc TwoDigitHealthLeft
   tay
   lda BCD99,y
   unpack 0, 1
@@ -786,6 +782,16 @@ ScreenY = 5
   tya
   add #4*2
   sta OamPtr
+  rts
+.endproc
+
+.proc JackStone_Fight
+ScreenX = 4
+ScreenY = 5
+
+  lda #16
+  sub ObjectVXH,x
+  jsr TwoDigitHealthLeft
 
   ; Convert X object position to a screen scroll position
   lda ObjectPXL,x
@@ -1149,6 +1155,7 @@ YOffset     = LevelDecodePointer+1
 
   ; init CurX
   lda O_RAM::OBJ_DRAWX
+  sta FinalBossScreenX
   add XOffset
   sta CurX
 
@@ -1210,6 +1217,7 @@ RightClip:
   dey
 @ColumnLoopStart:
   lda O_RAM::OBJ_DRAWY
+  sta FinalBossScreenY
   add YOffset
   sta CurY
   lda Height
@@ -1362,3 +1370,415 @@ EnemyApplyYVelocity_2 = EnemyApplyVelocity_2::YOnly
   .byt 16
 .endproc
 
+.proc ObjectFinalBoss_2
+; Attacks:
+;   four rotating blades that move in a circle
+;   drop the seeds that make stacks of mines
+;   picking an area to fly in from below, drifting to follow the player for a bit, then locking and flying up
+;   come in from left/right, shoot out arrows after a delay?
+;   drop a bomb that hits the ground and becomes two horizontal projectiles
+;   giant laser (canceled)
+XOffset     = LevelDecodePointer+0
+YOffset     = LevelDecodePointer+1
+MouthTimer = 10
+
+  ; In dying state, fall down
+  lda ObjectF2,x
+  cmp #255
+  bne :+
+    jsr EnemyGravity_2
+  :
+
+  jsr EnemyLookAtPlayer_2
+  jsr DoAttackPattern
+
+  inc ObjectTimer,x
+  bne :+
+    inc ObjectF2,x
+    lda ObjectF2,x
+    cmp #5
+    bne :+
+      lda #0
+      sta ObjectF2,x
+  :
+
+  ; Draw the enemy
+  ; (Use ObjectVXL to pick an animation frame)
+  lda #<MetaspriteRMouth2
+  sta 0
+  lda #>MetaspriteRMouth2
+  sta 1
+  lda ObjectVXL,x
+  cmp #5
+  bcs :+
+    lda #<MetaspriteRMouth1
+    sta 0
+    lda #>MetaspriteRMouth1
+    sta 1
+  :
+  lda ObjectVXL,x
+  bne :+
+    lda #<MetaspriteR
+    sta 0
+    lda #>MetaspriteR
+    sta 1
+  :
+
+  ; Countdown the animation counter
+  lda ObjectVXL,x
+  beq :+
+    dec ObjectVXL,x
+  :
+
+  ; If facing left, use the left-facing metasprites
+  lda ObjectF1,x
+  lsr
+  bcc :+
+    lda 0
+    add #MetaspriteL-MetaspriteR
+    sta 0
+    addcarry 1
+  :
+  lda #0
+  sta XOffset
+  sta YOffset
+  jsr DispEnemyMetasprite_2
+
+  ; --------------------------------------------
+  ; Collide with the player
+  lda FinalBossScreenX
+  add #2
+  sta TouchLeftA
+  lda FinalBossScreenY
+  add #2
+  sta TouchTopA
+  ; Player collision coordinate
+  lda PlayerDrawX
+  sta TouchLeftB
+  lda PlayerDrawY
+  sta TouchTopB
+  ; 8x24 player collision
+  lda #8
+  sta TouchWidthB
+  lda #24
+  sta TouchHeightB
+  ; 20x20 enemy collision
+  lda #22
+  sta TouchWidthA
+  sta TouchHeightA
+  jsr ChkTouchGeneric
+  bcc :+
+    jsr HurtPlayer
+  :
+
+  ; Display health remaining
+  lda #20
+  sub ObjectVXH,x
+  jsr TwoDigitHealthLeft
+
+  ; --------------------------------------------
+  ; Collide with reflected shots
+ProjectileIndex = TempVal+2
+  ldy #ObjectLen-1
+CheckProjectileLoop:
+  sty ProjectileIndex
+
+  lda ObjectF1,y
+  lsr
+  cmp #Enemy::FINAL_PROJECTILE
+  bne NotPlayerProjectile
+  lda ObjectF2,y
+  cmp #5 ; first reflected Final Projectile type
+  bcc NotPlayerProjectile
+    RealXPosToScreenPosByY ObjectPXL, ObjectPXH, TouchLeftB
+    RealYPosToScreenPosByY ObjectPYL, ObjectPYH, TouchTopB
+    ; Look up the projectile's size
+    lda ObjectF2,y
+    tay
+    lda PlayerProjectileSizeTable2,y
+    sta TouchWidthB
+    sta TouchHeightB
+    jsr ChkTouchGeneric
+    bcc NotPlayerProjectile ; no collision
+      ldy ProjectileIndex
+      lda #0
+      sta ObjectF1,y
+      inc ObjectVXH,x
+      lda #SFX::ENEMY_HURT
+      sta NeedSFX
+NotPlayerProjectile:
+  ldy ProjectileIndex
+  dey
+  jne CheckProjectileLoop
+  rts
+
+; Call the routine for the boss's current state
+DoAttackPattern:
+  ldy ObjectF2,x
+  bmi :+ ; Skip the init state
+  lda AttackPatternsH,y
+  pha
+  lda AttackPatternsL,y
+  pha
+: rts
+
+AttackPatternsH:
+  .hibytes Blades-1, Seeds-1, FlyUp-1, FromSide-1, DropBomb-1;, GiantLaser-1
+AttackPatternsL:
+  .lobytes Blades-1, Seeds-1, FlyUp-1, FromSide-1, DropBomb-1;, GiantLaser-1
+
+; Shoot two blades in a circle
+Blades:
+  jsr ObjectFighterMaker_Run::DriftOverToYou
+
+  lda #4
+  jsr FastDriftOverToRowY
+
+  lda retraces
+  and #63
+  bne @NoShoot
+    lda #1
+    jsr ShootABlade
+    lda #<-1
+    jsr ShootABlade
+    lda #MouthTimer
+    sta ObjectVXL,x
+@NoShoot:
+  rts
+
+ShootABlade:
+  pha
+  jsr FindFreeObjectY
+  bcc @ShootABladeFail
+    jsr CopyPositionWithOffset
+    jsr ObjectClearY
+    lda #Enemy::FINAL_PROJECTILE*2
+    sta ObjectF1,y
+    lda #2 ; blade
+    sta ObjectF2,y
+    pla
+    sta ObjectF4,y ; start facing left
+    bpl :+
+      lda #16
+      sta ObjectF3,y
+    :
+    lda #200
+    sta ObjectTimer,y
+    rts
+@ShootABladeFail:
+  pla ; Blade failed to spawn
+  rts
+
+Seeds:
+  lda #2
+  jsr FastDriftOverToRowY
+
+  lda retraces
+  and #15
+  bne :+
+    jsr huge_rand
+    lsr
+    lsr
+    and #15
+    sta ObjectF4,x
+  :
+
+  lda ObjectF4,x
+  jsr ObjectFighterMaker_Run::FastDriftOverToYou
+
+  lda retraces
+  and #63
+  bne @NoShoot
+    jsr FindFreeObjectY
+    bcc @NoShoot
+    jsr CopyPositionWithOffset
+    jsr ObjectClearY
+    lda #Enemy::FINAL_PROJECTILE*2
+    sta ObjectF1,y
+    lda #4 ; seeds
+    sta ObjectF2,y
+    lda #100
+    sta ObjectTimer,y
+    lda #MouthTimer
+    sta ObjectVXL,x
+    rts
+@NoShoot:
+  rts
+
+FlyUp:
+  lda ObjectTimer,x
+  and #32
+  beq :+
+  lda #2
+  jsr FastDriftOverToRowY
+
+  lda PlayerPXH
+  jsr ObjectFighterMaker_Run::FastDriftOverToYou
+:
+
+  lda ObjectTimer,x
+  and #32
+  bne :+
+  lda #12
+  jsr FastDriftOverToRowY
+:
+  rts
+
+MoveToASide:
+  lda ObjectTimer,x
+  bne @Nope
+  jsr huge_rand
+  and #1
+  tay
+  lda Sides,y
+  sta ObjectF4,x
+@Nope:
+  lda ObjectF4,x
+  jmp ObjectFighterMaker_Run::FastDriftOverToYou
+Sides:
+  .byt 0, 14
+
+FromSide:
+  jsr MoveToASide
+
+  lda PlayerPYH
+  jsr FastDriftOverToRowY
+
+  ; Get the speeds from the table
+  lda ObjectF1,x
+  and #1
+  tay
+  lda @ShootSpeedsL,y
+  sta 0
+  lda @ShootSpeedsH,y
+  sta 1
+
+  lda retraces
+  and #63
+  bne @NoShoot
+    jsr FindFreeObjectY
+    bcc @NoShoot
+    jsr CopyPositionWithOffset
+    jsr ObjectClearY
+    lda #Enemy::FINAL_PROJECTILE*2
+    sta ObjectF1,y
+    lda #0 ; block
+    sta ObjectF2,y
+    lda 0
+    sta ObjectVXL,y
+    lda 1
+    sta ObjectVXH,y
+    lda #100
+    sta ObjectTimer,y
+    lda #MouthTimer
+    sta ObjectVXL,x
+@NoShoot:
+  rts
+@ShootSpeedsL:
+  .lobytes $40, -$40
+@ShootSpeedsH:
+  .hibytes $40, -$40
+
+DropBomb:
+  lda #4
+  jsr FastDriftOverToRowY
+  jsr ObjectFighterMaker_Run::DriftOverToYou
+
+  lda retraces
+  and #63
+  bne @NoShoot
+    jsr FindFreeObjectY
+    bcc @NoShoot
+    jsr CopyPositionWithOffset
+    jsr ObjectClearY
+    lda #Enemy::FINAL_PROJECTILE*2
+    sta ObjectF1,y
+    lda #3 ; bomb
+    sta ObjectF2,y
+    lda #100
+    sta ObjectTimer,y
+    lda #MouthTimer
+    sta ObjectVXL,x
+    rts
+@NoShoot:
+
+  rts
+
+;GiantLaser:
+;  jsr MoveToASide
+;
+;  lda PlayerPYH
+;  jsr FastDriftOverToRowY
+;  rts
+
+CopyPositionWithOffset:
+  lda ObjectPXL,x
+  add #$40
+  sta ObjectPXL,y
+  lda ObjectPXH,x
+  adc #0
+  sta ObjectPXH,y
+  lda ObjectPYL,x
+  add #$40
+  sta ObjectPYL,y
+  lda ObjectPYH,x
+  adc #0
+  sta ObjectPYH,y
+  rts
+
+; input: A (row to seek out)
+FastDriftOverToRowY:
+  ; Slide over to the player
+  sub ObjectPYH,x
+  pha
+  sex
+  sta 1
+  pla
+  ; shift separately to account for integer overflow
+  .repeat 4
+    asl
+    rol 1
+  .endrep
+  sta 0  
+
+  lda ObjectPYL,x
+  add 0
+  sta ObjectPYL,x
+  lda ObjectPYH,x
+  adc 1
+  sta ObjectPYH,x
+  rts
+
+;---------------------------------------------------
+MetaspriteR:
+  MetaspriteHeader 3, 3, 2
+  .byt $00, $10, $03
+  .byt $01, $11, $04
+  .byt $02, $12, $05
+MetaspriteRMouth1:
+  MetaspriteHeader 3, 3, 2
+  .byt $00, $10, $03
+  .byt $01, $06, $16
+  .byt $02, $07, $17
+MetaspriteRMouth2:
+  MetaspriteHeader 3, 3, 2
+  .byt $00, $10, $03
+  .byt $01, $08, $18
+  .byt $02, $09, $19
+MetaspriteL:
+  MetaspriteHeader 3, 3, 2
+  .byt $02|OAM_XFLIP, $12|OAM_XFLIP, $05|OAM_XFLIP
+  .byt $01|OAM_XFLIP, $11|OAM_XFLIP, $04|OAM_XFLIP
+  .byt $00|OAM_XFLIP, $10|OAM_XFLIP, $03|OAM_XFLIP
+MetaspriteLMouth1:
+  MetaspriteHeader 3, 3, 2
+  .byt $02|OAM_XFLIP, $07|OAM_XFLIP, $17|OAM_XFLIP
+  .byt $01|OAM_XFLIP, $06|OAM_XFLIP, $16|OAM_XFLIP
+  .byt $00|OAM_XFLIP, $10|OAM_XFLIP, $03|OAM_XFLIP
+MetaspriteLMouth2:
+  MetaspriteHeader 3, 3, 2
+  .byt $02|OAM_XFLIP, $09|OAM_XFLIP, $19|OAM_XFLIP
+  .byt $01|OAM_XFLIP, $08|OAM_XFLIP, $18|OAM_XFLIP
+  .byt $00|OAM_XFLIP, $10|OAM_XFLIP, $03|OAM_XFLIP
+
+.endproc

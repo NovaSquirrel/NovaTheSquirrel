@@ -66,5 +66,7 @@
   .byt EXTRAS_BANK|IS_GRAPHIC, <DABG_Game_CHR,  >DABG_Game_CHR ;DABG_GAME_CHR
   .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy7,    >PalEnemy7 ;PAL_ENEMY7
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPCastle,      >SPCastle ;SP_CASTLE
+  .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPFinalBoss,    >SPFinalBoss ;SP_FINALBOSS
+  .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPFinalProjectile, >SPFinalProjectile ;SP_FINALPROJECTILE
 .endproc
 

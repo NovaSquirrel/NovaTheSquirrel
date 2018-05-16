@@ -201,3 +201,9 @@ C .byt GRAPHICS_BANK1|IS_PALETTE, <PalEnemy7,    >PalEnemy7
 
 R SP_CASTLE
 C .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPCastle,      >SPCastle
+
+R SP_FINALBOSS
+C .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPFinalBoss,    >SPFinalBoss
+
+R SP_FINALPROJECTILE
+C .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPFinalProjectile, >SPFinalProjectile

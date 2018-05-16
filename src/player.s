@@ -422,6 +422,19 @@ NotOffTopBottom:
     dec PlayerLeftRightLock
   :
 
+  ; Mirror ability automatically rapid-fires if you hold down the button
+  lda PlayerAbility
+  cmp #AbilityType::MIRROR
+  bne :+
+    lda keydown
+    and #KEY_B
+    ora keynew
+    sta keynew
+    lda keylast
+    and #<~KEY_B
+    sta keylast
+  :
+
   lda PlayerTailAttack
   beq NoTail
     inc PlayerTailAttack
@@ -449,7 +462,6 @@ NoTail:
   and #KEY_B|KEY_LEFT|KEY_RIGHT
   bne :+
 OkayIfLeftRight:
-
   lda keynew+1
   and #KEY_SNES_X | KEY_SNES_A
   bne PressedAOrX
@@ -1924,17 +1936,19 @@ AbilityMirror:
   lda #3
   jsr LimitObjectAmount
   lda #PlayerProjectileType::MIRROR
-  jsr MakeShotWide
+  jsr MakeShot
   bcc @Exit
-  lda #40/4
+  lda #20/4 ;40/4
   sta ObjectTimer,x
-  jsr huge_rand
-  and #$0f
-  sub #$08
-  sta ObjectVYL,x
-  sex
-  sta ObjectVYH,x
-  lda #$18
+; Look like the mirror ability in Kirby. Unused because you can't really aim it?
+;  jsr huge_rand
+;  and #$0f
+;  sub #$08
+;  sta ObjectVYL,x
+;  sex
+;  sta ObjectVYH,x
+
+  lda #$30 ;18
   jsr SetXVelocity
 @Exit:
   rts
