@@ -37,7 +37,9 @@ boss5bData:
   LObjN LO::R_SOLID_BLOCK,    0, 11, 1, 1
   LObjN LO::R_COIN,           2, 5, 6, 0
   LObjN LO::WIDE_1,           0, 6, 6, LN1::SOLID_LEDGE
-  LObj  LO::S_EXIT_DOOR,      7, 11
+  LObj  LO::S_SIGNPOST,       1, 12
+  LWriteCol <SignAboutEpilogue, >SignAboutEpilogue
+  LObj  LO::S_EXIT_DOOR,      6, 11
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   .byt LSpecialCmd, LevelSpecialConfig::FORCE_MIRROR
   LFinished

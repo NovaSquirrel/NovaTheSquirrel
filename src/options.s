@@ -553,6 +553,9 @@ Cursor = 13
   PositionXY 0, 3, 14
   jsr PutStringImmediate
   .byt "Sound Test",0
+  PositionXY 0, 3, 16
+  jsr PutStringImmediate
+  .byt "Credits",0
 
   ; This will make the colors change on the first loop iteration
   lda #255
@@ -580,6 +583,8 @@ Loop:
   jeq LaunchDABG
   dey
   jeq LaunchDABG
+  dey
+  jeq LaunchCredits
 NoA:
 
   ; Move the cursor
@@ -595,7 +600,7 @@ NoA:
   and #KEY_DOWN
   beq :+
     lda Cursor
-    cmp #2
+    cmp #3
     beq :+
     inc Cursor
   :
@@ -615,4 +620,10 @@ NoA:
   sta OAM_YPOS
 
   jmp Loop
+.endproc
+
+.proc LaunchCredits
+  lda #OPTIONS_BANK
+  jsr StartCredits
+  jmp ShowExtraFeatures
 .endproc

@@ -358,13 +358,18 @@
 <2 KOREY>Latte will be eternally grateful. Are you ready to go home?
 <0 NOVA>Actually, I'm not. I want to keep having adventures, and all of my friends are here with me.
 <2 KOREY>I figured you'd say that. Well in that case I have something to show you~
-`transition
-`scene NOTHING
 []Korey takes Nova to a room with a small space ship in the middle
+`scene NOTHING
 [KOREY]Nova, this is the MV Explorer. It can take you to other worlds. You can forge your own destiny and decide what you want to do with your ability.
 [NOVA_WOW]Wow, was this what you were going to use to take me home?
 [KOREY]Yeah, but I'm giving it to you. There are a bunch of worlds in need of help.
 [NOVA]Well thank you Korey! I can't wait to see what kind of adventures I have in the future...
+[NOVA]a
+`asm
+:;dummy text above, never gets displayed
+:lda #DIALOG_BANK
+:jsr StartCredits
+:brk
 `end
 
 `#---MISC STUFF---
@@ -551,6 +556,11 @@ Down+B: Drop bomb
 :SignAboutRun:
 `scene NOVA_AND_SIGN
 <1 SIGN>GOTTA GO FAST!
+`end
+
+:SignAboutEpilogue:
+`scene NOVA_AND_SIGN
+<1 SIGN>There's an extra world after this for the epilogue!
 `end
 
 

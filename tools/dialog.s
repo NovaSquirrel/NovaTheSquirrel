@@ -505,10 +505,9 @@ AfterBill:
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "A", $c6, "u", $ac, "y", $f4, $d3, $a2, $f5, $bf, "w", $c9, $d2, $bb, SCR::NEWLINE, "k", $d6, "p", " ", "h", "a", "v", $b0, " ", $f6, "v", $e5, "t", "u", $fa, "s", $f4, $c9, "d", SCR::NEWLINE, $ac, " ", $bc, $ca, " ", "f", $fc, $e5, "d", $fb, "a", $fa, " ", $a8, "e", SCR::NEWLINE, $9c, " ", $cf, "."
 ; <2 KOREY>I figured you'd say that. Well in that case I have something to show you~
 .byt SCR::SAY, SCR::SPEAKER_2|CHAR::KOREY, $bf, "f", "i", "g", "u", $fa, $ff, $a5, "'", $ff, "s", "a", $fe, $df, $c5, $f5, "W", "e", "l", "l", SCR::NEWLINE, $be, $99, "c", $c3, $e6, $bf, $9a, $9b, $df, $b0, SCR::NEWLINE, $ba, $de, "o", "w", " ", $a5, "~"
-.byt SCR::TRANSITION
-.byt SCR::SCENE, SCENES::NOTHING
 ; []Korey takes Nova to a room with a small space ship in the middle
 .byt SCR::NARRATE, CHAR::NONE, "K", $c8, "e", $fe, $8f, $fb, $a0, " ", $ba, $bd, "r", $e3, "m", SCR::NEWLINE, $9c, " ", $bd, "s", "m", $ac, " ", $dc, "a", "c", $e6, $de, "i", "p", " ", $be, $a1, SCR::NEWLINE, "m", "i", "d", "d", "l", "e"
+.byt SCR::SCENE, SCENES::NOTHING
 ; [KOREY]Nova, this is the MV Explorer. It can take you to other worlds. You can forge your own destiny and decide what you want to do with your ability.
 .byt SCR::NARRATE, CHAR::KOREY, $a0, $f4, $98, " ", $b7, $a1, " ", "M", "V", " ", "E", "x", "p", "l", $c8, $ec, ".", SCR::NEWLINE, "I", $d2, $af, " ", $8f, " ", $a5, " ", $ba, "o", $a1, "r", SCR::NEWLINE, "w", $c8, $ee, "s", $f5, "Y", $f3, " ", $af, " ", $a4, "g", $e6, $90, SCR::NEWLINE, "o", "w", "n", " ", "d", "e", $dd, $d7, $fe, $a3, "d", "e", "c", "i", "d", $e6, $8a, SCR::NEWLINE, $a5, " ", "w", $c9, $d2, $ba, $c4, " ", $9c, " ", $90, SCR::NEWLINE, "a", "b", $db, "i", "t", "y", "."
 ; [NOVA_WOW]Wow, was this what you were going to use to take me home?
@@ -517,6 +516,13 @@ AfterBill:
 .byt SCR::NARRATE, CHAR::KOREY, "Y", $eb, "h", $f4, $a6, " ", $d3, "g", "i", "v", $b0, " ", $c0, $ba, $a5, ".", SCR::NEWLINE, $f7, $ec, $e6, "a", $fa, " ", $bd, "b", $f1, $e1, " ", $bc, "w", $c8, $ee, "s", SCR::NEWLINE, $be, $f8, $d5, $bc, $c2, "l", "p", "."
 ; [NOVA]Well thank you Korey! I can't wait to see what kind of adventures I have in the future...
 .byt SCR::NARRATE, CHAR::NOVA, "W", "e", "l", "l", " ", $92, "k", " ", $a5, " ", "K", $c8, "e", "y", $fd, $bf, $af, "'", "t", SCR::NEWLINE, "w", "a", $c0, $ba, $b2, " ", $8a, " ", "k", $d7, $ff, "o", "f", SCR::NEWLINE, $f6, "v", $e5, "t", "u", $fa, $fb, $bf, $9a, $be, $a1, SCR::NEWLINE, "f", "u", "t", "u", $fa, ".", ".", "."
+; [NOVA]a
+.byt SCR::NARRATE, CHAR::NOVA, "a"
+.byt SCR::RUN_ASM
+;dummy text above, never gets displayed
+lda #DIALOG_BANK
+jsr StartCredits
+brk
 .byt SCR::END_SCRIPT
 
 WaterAbout:
@@ -707,6 +713,11 @@ SignAboutRun:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
 ; <1 SIGN>GOTTA GO FAST!
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "G", "O", "T", "T", "A", " ", "G", "O", " ", "F", "A", "S", "T", "!"
+.byt SCR::END_SCRIPT
+SignAboutEpilogue:
+.byt SCR::SCENE, SCENES::NOVA_AND_SIGN
+; <1 SIGN>There's an extra world after this for the epilogue!
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f7, $ec, "e", $e8, $c9, " ", "e", "x", $f9, $bd, "w", $c8, $ee, " ", $83, SCR::NEWLINE, $98, " ", $a4, " ", $a1, " ", "e", "p", $db, "o", "g", "u", "e", "!"
 .byt SCR::END_SCRIPT
 MeetKeeAgain:
 .byt SCR::SCENE, SCENES::NOVA_AND_KEE

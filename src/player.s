@@ -422,6 +422,7 @@ NotOffTopBottom:
     dec PlayerLeftRightLock
   :
 
+.if 0
   ; Mirror ability automatically rapid-fires if you hold down the button
   lda PlayerAbility
   cmp #AbilityType::MIRROR
@@ -434,6 +435,7 @@ NotOffTopBottom:
     and #<~KEY_B
     sta keylast
   :
+.endif
 
   lda PlayerTailAttack
   beq NoTail

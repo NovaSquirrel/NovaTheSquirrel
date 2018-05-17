@@ -39,6 +39,7 @@ INVENTORY_BANK = $e
 THINFONT_BANK = $d
 OPTIONS_BANK = $e
 SANDBOX_BANK = $d
+CREDITS_BANK = $d
 DABG_BANK = $5
 EXTRAS_BANK = $4 ; DABG resources, other games I can fit!
 
@@ -68,6 +69,7 @@ EXTRAS_BANK = $4 ; DABG resources, other games I can fit!
 .include "thinfont.s"
 .include "object2.s"
 .include "sandbox.s"
+.include "credits.s"
 
 .segment "PRGe" ; dialogs, inventory, VWF engine
 .include "vwf_draw.s"

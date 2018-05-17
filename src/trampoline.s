@@ -295,3 +295,12 @@ CopyLoop:
 
   jmp $8000
 .endproc
+
+.proc StartCredits
+  pha
+  lda #CREDITS_BANK
+  jsr SetPRG
+  jsr ShowCredits
+  pla
+  jmp SetPRG
+.endproc
