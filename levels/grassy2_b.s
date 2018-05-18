@@ -152,6 +152,7 @@ grassy2_bSprite:
   LSpr Enemy::GEORGE,              0,  76,   8
   LSpr Enemy::MOVING_PLATFORM_HORIZ, 0,  78,   4, 8
   LSpr Enemy::SNEAKER,             1,  92,   3
+  LSpr Enemy::CHECKPOINT,          0,  94,   6
   LSpr Enemy::MOVING_PLATFORM_HORIZ, 0, 107,   6, 9
   LSpr Enemy::MOVING_PLATFORM_LINE, 0, 110,  12
   LSpr Enemy::OWL,                 0, 119,   5

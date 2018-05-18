@@ -20,7 +20,6 @@ grassy2_a:
   .byt $00, $00 ; boundaries
 
 grassy2_aData:
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LObjN LO::RECT_1,           0, 13, 1, LN1::GROUND, 16
   LObjN LO::TALL_2,           4, 10, 2, LN2::TRUNK_L
   LObjN LO::TALL_2,           2, 10, 2, LN2::TRUNK_L
@@ -199,6 +198,7 @@ grassy2_aData:
   LObjN LO::R_GROUND,         3, 11, 11, 3
   LObj  LO::S_DOOR,           8, 9
   LWriteCol $21, LevelId::Grassy2B
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
   LFinished
 
 grassy2_aSprite:
@@ -206,11 +206,13 @@ grassy2_aSprite:
   LSpr Enemy::THWOMP,              0,  23,   7
   LSpr Enemy::THWOMP,              0,  27,   9
   LSpr Enemy::THWOMP,              0,  35,   4
+  LSpr Enemy::CHECKPOINT,          0,  49,  12
   LSpr Enemy::OWL,                 0,  64,  11
   LSpr Enemy::SNEAKER,             1,  86,   6
   LSpr Enemy::OWL,                 1,  90,   6
   LSpr Enemy::GEORGE,              0,  99,   3
   LSpr Enemy::SNEAKER,             1, 139,   5
+  LSpr Enemy::CHECKPOINT,          0, 162,   6
   LSpr Enemy::GOOMBA,              1, 177,   8
   LSpr Enemy::GOOMBA,              1, 179,   8
   LSpr Enemy::GOOMBA,              0, 194,   7
