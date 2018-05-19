@@ -194,10 +194,6 @@ BummerInstead:
   jmp StartLevel_FromCheckpoint
 .endproc
 
-.proc ShowCredits
-  rts
-.endproc
-
 .proc JumpToLevelSelect
   lda LevelAvailable
   cmp #1
