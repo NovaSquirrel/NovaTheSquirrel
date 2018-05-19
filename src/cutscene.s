@@ -27,6 +27,7 @@
   lda #$30
   sta LevelBackgroundColor
 
+  ; Stop any sound but allow music to keep playing when the cutscene ends
   lda #SOUND_BANK
   jsr SetPRG
   jsr pently_init
@@ -34,7 +35,7 @@
 
   jsr WaitVblank
   ldx #0
-  stx NeedDialog
+  stx NeedDialog ; Clear the flag for needing a cutscene
   stx PPUMASK
   jsr ClearOAM
   lda #2
@@ -108,7 +109,7 @@ CutsceneDictionaryTable = ScratchPage
   jsr CutsceneInit
 
 ; Run script
-  jsr ScriptLoopInit
+  jsr ScriptLoopInit ; Runs the cutscene, doesn't return until the cutscene is over
 SkipTheScript:
   jsr ClearOAM
   lda LevelBackgroundColorSave
@@ -141,17 +142,15 @@ SkipTheScript:
 .endproc
 
 .proc ScriptBRK ; BRK handler
-  pla ; discard flags
-  pla ; low
+  ; BRKs in inline assembly in cutscenes transfer control back to the script interpreter
+  pla ; Discard flags
+  pla ; Low
   sta ScriptPtr+0
-  pla ; high
+  pla ; High
   sta ScriptPtr+1
 
-  ; decrement the return handler
-  lda ScriptPtr+0
-  bne :+
-  dec ScriptPtr+1
-: dec ScriptPtr+0
+  ; Return address we got is the address we need +1, so fix it
+  dec16 ScriptPtr
   jmp ScriptLoop
 .endproc
 
@@ -179,13 +178,14 @@ SkipTheScript:
   sta IRQAddress+0
   lda #>ScriptBRK
   sta IRQAddress+1
+  lda #DIALOG_BANK
+  jsr SetPRG
 .endproc
 ; this space needs to be empty
 .proc ScriptLoop
-  lda #DIALOG_BANK
-  jsr _SetPRG
-  ldy #0
+  ; Loop that reads a character from the script one-by-one, responding to each
 
+  ldy #0
   ; Get script byte
   lda (ScriptPtr),y
   ; Increment script pointer
@@ -204,7 +204,6 @@ SkipTheScript:
   beq ScriptLoop
 
 IsDictionaryWord:
-  sta $5555
   ; Get table index
   sub #$80
   tax
@@ -280,7 +279,10 @@ NopeNothingToDraw:
   sta ScriptPtr+0
   bcc :+
     inc ScriptPtr+1
-: jmp ScriptLoop
+:
+  lda #DIALOG_BANK ; switch back to dialog bank
+  jsr _SetPRG
+  jmp ScriptLoop
 .endproc
 
 .proc ScriptCommands
@@ -348,8 +350,6 @@ EndScript:
 : rts
 
 DoEndPage:
-  lda #VWF_BANK
-  jsr SetPRG
   lda #2
   sta OAM_DMA
   jsr ScriptRenderOn
@@ -387,6 +387,8 @@ DoEndPage:
   cmp #10
   bne :-
 
+  lda #DIALOG_BANK
+  jsr SetPRG
   lda #0
   sta CutsceneRenderCol
   sta CutsceneRenderRow
