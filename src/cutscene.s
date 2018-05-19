@@ -60,7 +60,6 @@
 
   ldy #0
   ldx #1 ; 1st word
-  stx CutsceneIsBlank
 MoreDictionary:
   lda (0),y
   bmi DictionaryWordFound
@@ -199,9 +198,7 @@ SkipTheScript:
   ldx CutsceneBufIndex
   inc CutsceneBufIndex
   sta StringBuffer,x
-  lda #0
-  sta CutsceneIsBlank
-  beq ScriptLoop
+  bne ScriptLoop
 
 IsDictionaryWord:
   ; Get table index
@@ -211,9 +208,6 @@ IsDictionaryWord:
   sta 0
   lda CutsceneDictionaryTable+128,x
   sta 1
-
-  lda #0
-  sta CutsceneIsBlank
 
   ; Write word to buffer
   ldx CutsceneBufIndex
@@ -350,6 +344,23 @@ EndScript:
 : rts
 
 DoEndPage:
+  ; READ FROM CHR RAM to determine if the page is blank or not.
+  ; The only "easy" solution that seems to actually fully work, even if absurd.
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
+  sta PPUCTRL
+  lda #$04    ; Set PPU address to $0400, where VWF tiles go
+  sta PPUADDR
+  lda #$00
+  sta PPUADDR
+  lda PPUDATA ; Throw away the first read
+  ldx #8
+: lda PPUDATA
+  bne @NotBlank
+  dex
+  bne :-
+  jmp @Done   ; First character is entirely blank, skip
+@NotBlank:
+
   lda #2
   sta OAM_DMA
   jsr ScriptRenderOn
@@ -378,7 +389,6 @@ DoEndPage:
   ; Clear VWF space
   jsr clearLineImg
   lda #4
-  sta CutsceneIsBlank
 : ldy #0
   pha
   jsr copyLineImg
@@ -401,16 +411,13 @@ NewLine:
   inc CutsceneRenderRow
   lda CutsceneRenderRow
   cmp #6
-  beq EndPage
+  jeq EndPage
   jmp ScriptLoop
 
 ; Command, switch to a different scene
 ShowScene:
   pha
-  lda CutsceneIsBlank
-  beq :+
-    jsr DoEndPage
-  :
+  jsr DoEndPage
   pla
   asl
   asl

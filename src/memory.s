@@ -118,16 +118,15 @@
   ; variables for controlling cutscenes
   ; (safe because cutscenes discard the scrolling buffer anyway)
   ; also see ScriptPtr and such
-  CutsceneRenderRow  = TempSpace
-  CutsceneRenderCol  = CutsceneRenderRow+1
-  CutsceneCharacter  = CutsceneRenderCol+1 ;4
-  CutsceneCharPos    = CutsceneCharacter+4 ;4
-  CutsceneCurSpeaker = CutsceneCharPos+4
-  CutsceneBufIndex   = CutsceneCurSpeaker+1
-  CutsceneScriptBank = CutsceneBufIndex+1
-  CutsceneCurFace    = CutsceneScriptBank+1
-  CutsceneNoSkip     = CutsceneCurFace+1
-  CutsceneIsBlank    = CutsceneNoSkip+1
+  CutsceneRenderRow  = TempSpace                ; Current VWF render row
+  CutsceneRenderCol  = CutsceneRenderRow+1      ; Current VWF render column (pixels)
+  CutsceneCharacter  = CutsceneRenderCol+1 ;4   ; The four character IDs present
+  CutsceneCharPos    = CutsceneCharacter+4 ;4   ; Position (0-3) of the four characters
+  CutsceneCurSpeaker = CutsceneCharPos+4        ; Index of the current speaker (uses CutsceneCharPos to look up actual position)
+  CutsceneBufIndex   = CutsceneCurSpeaker+1     ; Index into current row's string buffer (text)
+  CutsceneScriptBank = CutsceneBufIndex+1       ; Unused? Same bank is always used
+  CutsceneCurFace    = CutsceneScriptBank+1     ; Current name and face
+  CutsceneNoSkip     = CutsceneCurFace+1        ; Disallow skipping the cutscene. Unused but functional.
 
   LevelNumber:           .res 1 ; Current level number (actual map number from the game)
   StartedLevelNumber:    .res 1 ; Level number that was picked from the level select (level select number)
