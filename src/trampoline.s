@@ -304,3 +304,11 @@ CopyLoop:
   pla
   jmp SetPRG
 .endproc
+
+.proc AbilityHelpTrampoline
+  lda #ABILITY_HELP_BANK
+  jsr SetPRG
+  jsr ShowAbilityHelp
+  lda #INVENTORY_BANK
+  jmp SetPRG
+.endproc

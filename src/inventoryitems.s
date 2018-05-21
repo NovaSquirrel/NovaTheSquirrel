@@ -269,7 +269,7 @@ PauseScreenPage = ScratchPage + 20 ; 0 for inventory, 1 for more options
 TossMode = ScratchPage + 21
 LastMenuOption = ScratchPage + 22
 PerLevelPageHasItems = ScratchPage + 23
-ExtraOptionsCount = 4 ; constant
+ExtraOptionsCount = 6 ; constant
 AutoRepeatCount = 5
 
   lda #VWF_BANK
@@ -1040,34 +1040,52 @@ TossModeString2:
 
 ; More options list
 MoreItemsListNameL:
-.byt <ResetCheckpointString
-.byt <TossItemsString
-.byt <GameOptionsString
-.byt <ExitLevelString
+  .byt <ResetCheckpointString
+  .byt <TossItemsString
+  .byt <GameOptionsString
+  .byt <ExplainAbilityString
+  .byt <MuteMusicString
+  .byt <ExitLevelString
 MoreItemsListNameH:
-.byt >ResetCheckpointString
-.byt >TossItemsString
-.byt >GameOptionsString
-.byt >ExitLevelString
+  .byt >ResetCheckpointString
+  .byt >TossItemsString
+  .byt >GameOptionsString
+  .byt >ExplainAbilityString
+  .byt >MuteMusicString
+  .byt >ExitLevelString
 MoreItemsListCodeL:
-.byt <(ResetCheckpointCode-1)
-.byt <(TossItemsCode-1)
-.byt <(GameOptionsCode-1)
-.byt <(ExitLevelCode-1)
+  .byt <(ResetCheckpointCode-1)
+  .byt <(TossItemsCode-1)
+  .byt <(GameOptionsCode-1)
+  .byt <(ExplainAbilityCode-1)
+  .byt <(MuteMusicCode-1)
+  .byt <(ExitLevelCode-1)
 MoreItemsListCodeH:
-.byt >(ResetCheckpointCode-1)
-.byt >(TossItemsCode-1)
-.byt >(GameOptionsCode-1)
-.byt >(ExitLevelCode-1)
+  .byt >(ResetCheckpointCode-1)
+  .byt >(TossItemsCode-1)
+  .byt >(GameOptionsCode-1)
+  .byt >(ExplainAbilityCode-1)
+  .byt >(MuteMusicCode-1)
+  .byt >(ExitLevelCode-1)
 
 ExitLevelString:
-.byt "Exit level",0
+  .byt "Exit level",0
 TossItemsString:
-.byt "Toss items",0
+  .byt "Toss items",0
 GameOptionsString:
-.byt "Game options",0
+  .byt "Game options",0
+ExplainAbilityString:
+  .byt "Ability help",0
+MuteMusicString:
+  .byt "Mute music",0
 ResetCheckpointString:
-.byt "Reset to checkpoint",0
+  .byt "Reset to checkpoint",0
+
+MuteMusicCode:
+  jmp CleanupAfterInventory
+ExplainAbilityCode:
+  jsr AbilityHelpTrampoline
+  jmp CleanupAfterInventory
 
 ExitLevelCode:
   lda #0

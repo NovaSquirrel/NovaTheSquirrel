@@ -22,11 +22,11 @@ NAME    = 3
 
 PPUPointer = 2
 Already    = 4
-  ; Load the font in, clear the screen
-  bit PPUSTATUS
+  ; Load the font in
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
   jsr WaitVblank
+  bit PPUSTATUS
   lda #0
   sta PPUMASK
   sta Already
