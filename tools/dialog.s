@@ -448,12 +448,13 @@ MeetRemy:
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::REMY, "O", "h", $f4, $ca, " ", "b", $f6, $f4, $bf, "j", "u", $f0, " ", $cf, $d2, "d", $b8, SCR::NEWLINE, "g", $e5, $e2, " ", "g", "u", "y", $f4, $c9, "'", " ", $c2, " ", $cb, $f1, "d", $fb, "m", $c8, "e", SCR::NEWLINE, "f", $f1, " ", $92, " ", $98, " ", "'", "s", "a", "v", $b0, " ", $a1, SCR::NEWLINE, "w", $c8, $ee, "'", " ", $df, $b0, $f4, $cb, " ", $b2, "y", "a", "."
 ; <2 JAFGUAR>Yeah who cares?
 .byt SCR::SAY, SCR::SPEAKER_2|CHAR::JAFGUAR, "Y", $eb, "h", " ", $d9, "o", " ", "c", "a", $fa, "s", "?"
-; <0 NOVA>Well then, maybe I really am supposed to do it alone.
-.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "W", "e", "l", "l", " ", $93, $f4, "m", "a", "y", $b9, $bf, $fa, $ac, $fe, "a", "m", SCR::NEWLINE, "s", $cc, "p", "o", $e4, $ff, $ba, $c4, " ", $c0, "a", "l", $ab, "."
-; <0 NOVA>You know, for an evil headquarters, I was expecting something... darker? Aaaa, these enemies sure are shooty though!
-.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "Y", $f3, " ", $8e, $f4, $a4, " ", $c9, " ", "e", "v", $db, SCR::NEWLINE, $c2, $f6, "q", "u", "a", $ed, $ec, "s", $f4, $bf, "w", $c3, " ", "e", "x", "p", "e", $c6, $b0, SCR::NEWLINE, $9b, $df, $b0, ".", ".", $f5, "d", "a", "r", "k", $ec, "?", " ", "A", "a", "a", "a", ",", SCR::NEWLINE, $88, $e5, "e", "m", $e2, $fb, "s", "u", $fa, " ", "a", $fa, SCR::NEWLINE, $de, $e3, "t", $fe, $df, $f3, $da, "!"
-; [NOVA]Going in! Wish me luck!
-.byt SCR::NARRATE, CHAR::NOVA, "G", "o", $b0, " ", $d7, $fd, "W", $b8, "h", " ", $cf, " ", "l", "u", $f2, "!"
+; <0 NOVA>Well then, maybe I really am supposed to do it alone. Bye, I guess?
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "W", "e", "l", "l", " ", $93, $f4, "m", "a", "y", $b9, $bf, $fa, $ac, $fe, "a", "m", SCR::NEWLINE, "s", $cc, "p", "o", $e4, $ff, $ba, $c4, " ", $c0, "a", "l", $ab, $f5, "B", "y", "e", ",", SCR::NEWLINE, $bf, "g", "u", "e", $f0, "?"
+.byt SCR::SCENE, SCENES::FORUMS
+; [NOVA]Going in! Wish me luck! You know, for an evil headquarters, I was expecting something... darker? These enemies sure are shooty though!
+.byt SCR::NARRATE, CHAR::NOVA, "G", "o", $b0, " ", $d7, $fd, "W", $b8, "h", " ", $cf, " ", "l", "u", $f2, $fd, "Y", $f3, SCR::NEWLINE, $8e, $f4, $a4, " ", $c9, " ", "e", "v", $db, SCR::NEWLINE, $c2, $f6, "q", "u", "a", $ed, $ec, "s", $f4, $bf, "w", $c3, " ", "e", "x", "p", "e", $c6, $b0, SCR::NEWLINE, $9b, $df, $b0, ".", ".", $f5, "d", "a", "r", "k", $ec, "?", " ", $f7, "e", $e4, SCR::NEWLINE, $e5, "e", "m", $e2, $fb, "s", "u", $fa, " ", "a", $fa, " ", $de, $e3, "t", "y", SCR::NEWLINE, $df, $f3, $da, "!"
+; [KOREY]Yeah, but if you copy them, YOU can be the shooty one!
+.byt SCR::NARRATE, CHAR::KOREY, "Y", $eb, "h", $f4, $a6, " ", $cd, " ", $a5, " ", "c", "o", "p", $fe, $91, ",", SCR::NEWLINE, "Y", "O", "U", " ", $af, " ", $b9, $a1, " ", $de, $e3, "t", $fe, $ab, "!"
 .byt SCR::END_SCRIPT
 BeforeBill:
 .byt SCR::SCENE, SCENES::FORUMS
@@ -981,6 +982,13 @@ PreLevelFinal7:
 .byt SCR::NEWLINE
 ; using all of the themes.
 .byt "u", "s", $b0, " ", $ac, " ", $bc, $a1, " ", $91, "e", "s", "."
+.byt SCR::END_SCRIPT
+PreLevelExtra:
+; An extra level for a tricky
+.byt "A", "n", " ", "e", "x", $f9, $bd, "l", "e", "v", "e", "l", " ", $a4, " ", $bd, $f9, "i", $f2, "y"
+.byt SCR::NEWLINE
+; challenge!
+.byt $e1, $ac, $e5, "g", "e", "!"
 .byt SCR::END_SCRIPT
 ; INTRO CUTSCENE TEXT
 ExpositionText1:

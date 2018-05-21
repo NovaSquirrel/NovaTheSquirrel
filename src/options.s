@@ -432,7 +432,7 @@ Cursor = 13
   ldx #4 ; index
 CountClearedLoop:
   lda LevelCleared,x
-  ; Increment Y for ever bit
+  ; Increment Y for every bit
 : lsr
   bcc :+
     iny
@@ -441,7 +441,31 @@ CountClearedLoop:
   bne :--
   dex
   bpl CountClearedLoop
+
+  ; Make bosses count for more
+  ldx #4
+CountBossesLoop:
+  lda LevelCleared,x
+  bpl :+
+    tya
+    add #4
+    tay
+  :
+  dex
+  bpl CountBossesLoop
+
   ; Draw percentage
+  cpy #100
+  bcc :+
+    ; Write the hundreds digit
+    lda #'1'
+    sta PPUDATA
+    ; Subtract 100 from the percentage
+    tya
+    sub #100
+    tay
+  :
+
   lda BCD99,y
   pha
   lsr

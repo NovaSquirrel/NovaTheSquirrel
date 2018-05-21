@@ -5009,6 +5009,10 @@ Frame:
 ;  inc ObjectTimer,x
 
   lda ObjectTimer,x
+  cmp #150
+  bcs Remove
+
+  lda ObjectTimer,x
   jsr EnemyWalk
   bcs DoExplode
 
@@ -5017,6 +5021,11 @@ Frame:
   jsr DispEnemyMetasprite
   jsr EnemyPlayerTouch
   bcs DoExplode
+  rts
+
+Remove:
+  lda #0
+  sta ObjectF1,x
   rts
 
 DoExplode:
@@ -5033,8 +5042,11 @@ Metasprite:
 .endproc
 
 .proc ObjectBombPopGenerator
+  ldy ObjectF3,x
+  cpy #15      ; Parameter = 15 means erase all bomb pop generators
+  beq EraseAll
   lda retraces
-  and #31
+  and Rates,y
   bne NoShoot
 
   jsr FindFreeObjectY
@@ -5055,6 +5067,20 @@ Metasprite:
     lda #Enemy::BOMB_POP*2|1
     sta ObjectF1,y
 NoShoot:
+  rts
+Rates:
+  .byt 31, 63
+
+EraseAll:
+  ldy #ObjectLen-1
+: lda ObjectF1,y
+  cmp #Enemy::BOMB_POP_GENERATOR*2
+  bne :+
+    lda #0
+    sta ObjectF1,y
+  :
+  dey
+  bpl :--
   rts
 .endproc
 
@@ -5107,14 +5133,12 @@ NoShoot:
   lda #$1a
   ldy #OAM_COLOR_3
   jsr DispEnemyWide
-  jsr EnemyPlayerTouchHurt
-  rts
+  jmp EnemyPlayerTouchHurt
 AltFrame:
   lda #<Frame
   ldy #>Frame
   jsr DispEnemyWideNonsequential
-  jsr EnemyPlayerTouchHurt
-  rts
+  jmp EnemyPlayerTouchHurt
 Frame:
   .byt $1a, $1b, $1e, $1f, OAM_COLOR_3, OAM_COLOR_3, OAM_COLOR_3, OAM_COLOR_3
 ShootSpeed:

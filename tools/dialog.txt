@@ -322,9 +322,10 @@
 `scene NOVA_REMY_JAFGUAR
 <1 REMY>Oh, my bad, I juss met dis genie guy, an' he sounds more fun than this 'saving the world' thing, so seeya.
 <2 JAFGUAR>Yeah who cares?
-<0 NOVA>Well then, maybe I really am supposed to do it alone.
-<0 NOVA>You know, for an evil headquarters, I was expecting something... darker? Aaaa, these enemies sure are shooty though!
-[NOVA]Going in! Wish me luck!
+<0 NOVA>Well then, maybe I really am supposed to do it alone. Bye, I guess?
+`scene FORUMS
+[NOVA]Going in! Wish me luck! You know, for an evil headquarters, I was expecting something... darker? These enemies sure are shooty though!
+[KOREY]Yeah, but if you copy them, YOU can be the shooty one!
 `end
 
 :BeforeBill:
@@ -787,6 +788,11 @@ A pretty long final level,
 using all of the themes.
 `end
 
+:PreLevelExtra:
+An extra level for a tricky
+`nl
+challenge!
+`end
 
 
 :; INTRO CUTSCENE TEXT

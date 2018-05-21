@@ -616,11 +616,11 @@ OptionCount:
   .byt 7  ; terrain
   .byt 4  ; extras
   .byt 3  ; decorations
-  .byt 5  ; sprite palettes
-  .byt 13 ; sprite tileset
-  .byt 13 ; sprite tileset
-  .byt 13 ; sprite tileset
-  .byt 13 ; sprite tileset
+  .byt 7  ; sprite palettes
+  .byt 14 ; sprite tileset
+  .byt 14 ; sprite tileset
+  .byt 14 ; sprite tileset
+  .byt 14 ; sprite tileset
 
 TerrainsNames:
   MiniFontText "GRASSLAND"
@@ -656,6 +656,7 @@ SpritesNames:
   MiniFontText "WIND"
   MiniFontText "BOOMERANG"
   MiniFontText "SMILOIDS"
+  MiniFontText "CASTLE"
 
 SpPalettesNames:
   MiniFontText "A"
@@ -663,6 +664,8 @@ SpPalettesNames:
   MiniFontText "C"
   MiniFontText "D"
   MiniFontText "E"
+  MiniFontText "F"
+  MiniFontText "G"
 .endproc
 
 .proc ApplySandboxGFXPicker
@@ -764,12 +767,15 @@ Sprites:
   .byt GraphicsUpload::SP_WIND
   .byt GraphicsUpload::SP_BOOMERANG
   .byt GraphicsUpload::SP_FACEBALL
+  .byt GraphicsUpload::SP_CASTLE
 SpPalettes:
   .byt GraphicsUpload::PAL_ENEMY1
   .byt GraphicsUpload::PAL_ENEMY2
   .byt GraphicsUpload::PAL_ENEMY3
   .byt GraphicsUpload::PAL_ENEMY4
   .byt GraphicsUpload::PAL_ENEMY5
+  .byt GraphicsUpload::PAL_ENEMY6
+  .byt GraphicsUpload::PAL_ENEMY7
 .endproc
 
 .proc OpenSandboxBlockPicker
