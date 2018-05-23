@@ -17,7 +17,7 @@
 	"Header":	{
 		"Music":	"NONE",
 		"SpriteGFX":	["SP_HANNAH", "SP_EXPLODE", "SP_CASTLE", "SP_WIND"],
-		"GFXUpload":	["PAL_DABG", "PAL_ENEMY7", "BG_DABGCOMMON", "BG_DABG", "BG_HANNAH", "BG_JUNGLE"],
+		"GFXUpload":	["PAL_DABG_GRAY2", "PAL_ENEMY7", "BG_DABGCOMMON", "BG_DABG", "BG_HANNAH", "BG_JUNGLE"],
 		"BGColor":	49
 	},
 	"Layers":	[{

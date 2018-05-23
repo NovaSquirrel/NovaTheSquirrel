@@ -23,3 +23,4 @@
 .include "../levels/boss5a.s"
 .include "../levels/boss5b.s"
 .include "../levels/extra1.s"
+.include "../levels/extra2.s"

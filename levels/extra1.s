@@ -9,7 +9,7 @@ extra1:
   .addr extra1Data
   .addr extra1Sprite
   .byt $31 ; background
-  .byt GraphicsUpload::PAL_DABG
+  .byt GraphicsUpload::PAL_DABG_GRAY2
   .byt GraphicsUpload::PAL_ENEMY7
   .byt GraphicsUpload::BG_DABGCOMMON
   .byt GraphicsUpload::BG_DABG

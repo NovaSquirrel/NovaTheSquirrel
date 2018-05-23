@@ -53,7 +53,11 @@ PalDABGBlue: .byt $03
              .byt $0f, $12, $30
              .byt $0f, $27, $37
              .byt $0f, $01, $12
-
+PalDABGGray2:.byt $03
+             .byt $0f, $29, $17
+             .byt $0f, $00, $30
+             .byt $0f, $27, $37
+             .byt $0f, $16, $26 ; lava
 
 AltGrassy1: .byt $00
             .byt $1b, $2b, $37
@@ -112,6 +116,7 @@ PalJack:
             .byt $17, $38, $30
             .byt $01, $12, $30
 
+; Unused because the exposition uses grayscale
 PalExpositionForum:
              .byt $21
 

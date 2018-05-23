@@ -610,10 +610,10 @@ AboutSpinnerEnemy:
 ; <1 SIGN>The spinner enemy homes in on your position. If you don't have a weapon to kill it with, run away. It will stop chasing you once it's off-screen.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f7, $e6, $dc, $d7, $f8, $e9, $e5, "e", $ca, " ", "h", "o", $cf, $fb, $d7, SCR::NEWLINE, $c1, " ", $90, " ", "p", "o", "s", "i", "t", "i", $c1, $f5, "I", "f", " ", $a5, " ", $c4, "n", "'", "t", SCR::NEWLINE, $9a, $bd, $c7, "a", "p", $c1, " ", $ba, "k", $db, "l", " ", $c0, $9c, ",", SCR::NEWLINE, "r", $f1, " ", "a", $b6, $f5, "I", $d2, $9d, " ", $dd, "o", "p", " ", $e1, $c3, $b0, SCR::NEWLINE, $a5, " ", $c1, "c", $e6, "i", "t", $e8, "o", "f", "f", "-", "s", "c", $fa, $e5, "."
 .byt SCR::END_SCRIPT
-ItiCameo:
+AboutIceAbuse:
 .byt SCR::SCENE, SCENES::NOVA_AND_ITI
-; <1 ITI>Hullo.
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::ITI, "H", "u", "l", "l", "o", "."
+; <1 ITI>Hullo. You can use ice blocks to cross a bottomless pit, if you have good timing. Once your ice block falls off the bottom, you can use Down+B again.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::ITI, "H", "u", "l", "l", "o", $f5, "Y", $f3, " ", $af, " ", "u", $e4, " ", "i", "c", $e6, "b", "l", "o", $f2, "s", SCR::NEWLINE, $ba, "c", "r", "o", $f0, " ", $bd, "b", "o", "t", $bb, "m", "l", "e", $f0, " ", "p", "i", "t", $f4, $cd, SCR::NEWLINE, $a5, " ", $9a, $ce, "o", $ff, "t", "i", "m", $b0, $f5, "O", "n", "c", "e", SCR::NEWLINE, $90, " ", "i", "c", $e6, "b", "l", "o", $f2, " ", "f", $ac, $fb, "o", "f", "f", " ", $a1, SCR::NEWLINE, "b", "o", "t", $bb, "m", $f4, $a5, " ", $af, " ", "u", $e4, " ", "D", "o", "w", "n", "+", "B", SCR::NEWLINE, "a", "g", "a", $d7, "."
 .byt SCR::END_SCRIPT
 AboutIceJump:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN

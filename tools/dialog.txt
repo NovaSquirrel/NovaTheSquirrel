@@ -457,9 +457,9 @@ Down+B: Drop bomb
 <1 SIGN>The spinner enemy homes in on your position. If you don't have a weapon to kill it with, run away. It will stop chasing you once it's off-screen.
 `end
 
-:ItiCameo:
+:AboutIceAbuse:
 `scene NOVA_AND_ITI
-<1 ITI>Hullo.
+<1 ITI>Hullo. You can use ice blocks to cross a bottomless pit, if you have good timing. Once your ice block falls off the bottom, you can use Down+B again.
 `end
 
 :AboutIceJump:

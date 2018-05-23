@@ -68,5 +68,6 @@
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPCastle,      >SPCastle ;SP_CASTLE
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPFinalBoss,    >SPFinalBoss ;SP_FINALBOSS
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <SPFinalProjectile, >SPFinalProjectile ;SP_FINALPROJECTILE
+  .byt GRAPHICS_BANK1|IS_PALETTE, <PalDABGGray2,  >PalDABGGray2 ;PAL_DABG_GRAY2
 .endproc
 
