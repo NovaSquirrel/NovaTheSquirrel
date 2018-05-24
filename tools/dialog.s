@@ -717,8 +717,8 @@ SignAboutRun:
 .byt SCR::END_SCRIPT
 SignAboutEpilogue:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
-; <1 SIGN>There's an extra world after this for the epilogue!
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f7, $ec, "e", $e8, $c9, " ", "e", "x", $f9, $bd, "w", $c8, $ee, " ", $83, SCR::NEWLINE, $98, " ", $a4, " ", $a1, " ", "e", "p", $db, "o", "g", "u", "e", "!"
+; <1 SIGN>There's an extra world after this! Get ready for some really tough/weird levels!
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f7, $ec, "e", $e8, $c9, " ", "e", "x", $f9, $bd, "w", $c8, $ee, " ", $83, SCR::NEWLINE, $98, $fd, "G", "e", $d2, $fa, $f6, $fe, $a4, " ", $9b, SCR::NEWLINE, $fa, $ac, $fe, $bb, "u", $da, "/", $c7, "i", "r", $ff, "l", "e", "v", "e", "l", "s", "!"
 .byt SCR::END_SCRIPT
 MeetKeeAgain:
 .byt SCR::SCENE, SCENES::NOVA_AND_KEE
@@ -989,6 +989,13 @@ PreLevelExtra:
 .byt SCR::NEWLINE
 ; challenge!
 .byt $e1, $ac, $e5, "g", "e", "!"
+.byt SCR::END_SCRIPT
+PreLevelIce:
+; Ice block exploits in the
+.byt "I", "c", $e6, "b", "l", "o", $f2, " ", "e", "x", "p", "l", "o", "i", "t", $fb, $be, $a1
+.byt SCR::NEWLINE
+; clouds.
+.byt "c", "l", $f3, "d", "s", "."
 .byt SCR::END_SCRIPT
 ; INTRO CUTSCENE TEXT
 ExpositionText1:

@@ -561,7 +561,7 @@ Down+B: Drop bomb
 
 :SignAboutEpilogue:
 `scene NOVA_AND_SIGN
-<1 SIGN>There's an extra world after this for the epilogue!
+<1 SIGN>But wait, there's more! Get ready for a few extra bonus levels!
 `end
 
 
@@ -792,6 +792,12 @@ using all of the themes.
 An extra level for a tricky
 `nl
 challenge!
+`end
+
+:PreLevelIce:
+Ice block exploits in the
+`nl
+clouds.
 `end
 
 
