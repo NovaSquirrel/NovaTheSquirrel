@@ -33,11 +33,11 @@
   jsr pently_init
   inc pently_music_playing
 
+  jsr ClearOAM
   jsr WaitVblank
   ldx #0
   stx NeedDialog ; Clear the flag for needing a cutscene
   stx PPUMASK
-  jsr ClearOAM
   lda #2
   sta ScriptPageEnded
   sta OAM_DMA
@@ -117,8 +117,6 @@ SkipTheScript:
 ; Clean up and restore gameplay graphics
   lda #0
   sta PPUMASK
-  lda #2
-  sta OAM_DMA
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
   jsr ClearName
@@ -127,6 +125,8 @@ SkipTheScript:
   inc NeedLevelRerender
   jsr UpdateScrollRegister
   jsr WaitVblank
+  lda #2
+  sta OAM_DMA
 
   lda CutsceneOldBank
   jsr SetPRG
@@ -361,10 +361,10 @@ DoEndPage:
   jmp @Done   ; First character is entirely blank, skip
 @NotBlank:
 
-  lda #2
-  sta OAM_DMA
   jsr ScriptRenderOn
 : jsr WaitVblank
+  lda #2
+  sta OAM_DMA
   jsr ReadJoy
 
   lda CutsceneNoSkip

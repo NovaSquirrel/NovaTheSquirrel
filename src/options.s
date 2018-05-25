@@ -429,6 +429,7 @@ Cursor = 13
 
   ; Calculate completion percentage
   ldy #0 ; percentage
+; --------------------------
   ldx #4 ; index
 CountClearedLoop:
   lda LevelCleared,x
@@ -441,7 +442,20 @@ CountClearedLoop:
   bne :--
   dex
   bpl CountClearedLoop
-
+; --------------------------
+  ldx #4 ; index
+CountCollectLoop:
+  lda CollectibleBits,x
+  ; Increment Y for every bit
+: lsr
+  bcc :+
+    iny
+  :
+  cmp #0
+  bne :--
+  dex
+  bpl CountCollectLoop
+; --------------------------
   ; Make bosses count for more
   ldx #4
 CountBossesLoop:

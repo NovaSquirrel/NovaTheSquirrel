@@ -196,21 +196,21 @@ DidntTeleport:
   dec 14
   bne :-
 
+  jsr ClearOAM
   lda NeedDialog
   beq :+
     jmp UpdateScrollRegister
   :
-  jsr ClearOAM
-; Make sure this is in the same bank as the player bank
-;  jsr UpdateStatus
-;  jsr DisplayPlayer
-  lda #2
-  sta OAM_DMA
+  jsr UpdateStatus
+  jsr DisplayPlayer
   jsr UpdateScrollRegister
   jsr WaitVblank
-  lda #BG_ON
+  lda #2
+  sta OAM_DMA
+  lda #BG_ON|OBJ_ON
   sta PPUMASK
-  jmp WaitVblank
+  rts
+;  jmp WaitVblank
 .endproc
 
 ; Render a 32 pixel wide chunk

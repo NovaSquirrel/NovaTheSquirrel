@@ -199,6 +199,7 @@ final3Sprite:
   LSpr Enemy::TURKEY,              0,  49,   5
   LSpr Enemy::TURKEY,              0,  61,   6
   LSpr Enemy::MOVING_PLATFORM_PUSH, 0,  63,  13
+  LSpr Enemy::COLLECTIBLE,         0,  68,  12
   LSpr Enemy::BOOMERANG_GUY,       1,  70,   3, 1
   LSpr Enemy::BOOMERANG_GUY,       1,  72,   3, 1
   LSpr Enemy::CANNON_2,            1,  79,   3, 10

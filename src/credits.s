@@ -32,6 +32,17 @@ Already    = 4
   sta Already
   lda #GraphicsUpload::CHR_FONT
   jsr DoGraphicUpload
+  ; Erase the first tile
+  ; (should "fix" a problem I saw in the credits
+  ; where it shifted the scroll for a frame,
+  ; showing "garbage". Now it'll just be blank)
+  lda #$00
+  sta PPUADDR
+  sta PPUADDR
+  ldx #16
+: sta PPUDATA
+  dex
+  bne :-
 
   ; Copy the palette
   ldx #0
