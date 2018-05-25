@@ -196,6 +196,10 @@ DidntTeleport:
   dec 14
   bne :-
 
+  lda NeedDialog
+  beq :+
+    jmp UpdateScrollRegister
+  :
   jsr ClearOAM
 ; Make sure this is in the same bank as the player bank
 ;  jsr UpdateStatus
