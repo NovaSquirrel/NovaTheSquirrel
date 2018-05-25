@@ -87,9 +87,9 @@ chiptallData:
   LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
   LObj  LO::R_CUSTOM,         1, 0, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|12
   LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
-  LObjN LO::WIDE_1,           0, 13, 15, LN1::SPIKES
   LObjN LO::RECT_1,           0, 14, 0, LN1::GROUND, 39
   LObj  LO::R_CUSTOM,         4, 6, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|4
+  LObj  LO::R_CUSTOM,         0, 13, Metatiles::FORCE_LEFT, (12<<4)|0
   LObjN LO::WIDE_1,           1, 6, 2, LN1::SOLID_LEDGE
   LObjN LO::R_COIN,           0, 9, 2, 0
   LObj  LO::R_CUSTOM,         0, 10, Metatiles::TOGGLE_BLOCK_ON, (4<<4)|0
@@ -103,9 +103,9 @@ chiptallData:
   LObj  LO::R_CUSTOM,         0, 7, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|3
   LObj  LO::R_CUSTOM,         2, 5, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|5
   LObj  LO::R_CUSTOM,         1, 4, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|4
-  LObjN LO::WIDE_1,           1, 13, 15, LN1::SPIKES
-  LObj  LO::R_CUSTOM,         1, 5, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|4
+  LObj  LO::R_CUSTOM,         2, 5, Metatiles::TOGGLE_BLOCK_OFF, (0<<4)|4
   LObj  LO::R_CUSTOM,         0, 10, Metatiles::TOGGLE_BLOCK_OFF, (5<<4)|0
+  LObj  LO::R_CUSTOM,         0, 13, Metatiles::FORCE_LEFT, (15<<4)|0
   LObjN LO::R_COIN,           1, 5, 0, 2
   LObj  LO::R_CUSTOM,         1, 3, Metatiles::TOGGLE_BLOCK_ON, (3<<4)|0
   LObjN LO::WIDE_1,           0, 7, 2, LN1::SOLID_LEDGE
@@ -120,8 +120,8 @@ chiptallData:
   LObjN LO::R_COIN,           1, 6, 0, 2
   LObj  LO::R_CUSTOM,         2, 3, Metatiles::TOGGLE_BLOCK_ON, (0<<4)|6
   LObjN LO::WIDE_1,           1, 10, 2, LN1::SOLID_LEDGE
-  LObjN LO::WIDE_1,           0, 13, 2, LN1::SPIKES
   LObj  LO::S_CUSTOM,         1, 9, Metatiles::TOGGLE_SWITCH
+  LObj  LO::R_CUSTOM,         0, 13, Metatiles::FORCE_LEFT, (1<<4)|0
   LObjN LO::R_COIN,           2, 10, 0, 2
   LObjN LO::R_GROUND,         0, 13, 4, 0
   LObjN LO::R_CEILING_BARRIER,3, 0, 0, 1
