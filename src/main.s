@@ -49,11 +49,13 @@
   :
 
   ; Make sure NMI is on
-  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
-  sta PPUCTRL
+;  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
+;  sta PPUCTRL
+  jsr UpdateScrollRegister ; writes to PPUCTRL too, but also sets high bit of scroll correctly
+
   jsr ClearOAM
 
-  jmp VBlankUpdates
+  jmp VBlankUpdates ; Unnecessary probably
 .endproc
 
 .proc VBlankUpdates
