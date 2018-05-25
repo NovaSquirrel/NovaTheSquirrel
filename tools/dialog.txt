@@ -653,7 +653,7 @@ building platforms to them.
 :PreLevelBoss2:
  Nova runs into the Scheme
 `nl
- Team again and has her
+ Team again. They have her
 `nl
  fight Forehead Block Guy.
 `end

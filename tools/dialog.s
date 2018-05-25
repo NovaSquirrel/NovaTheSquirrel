@@ -717,8 +717,8 @@ SignAboutRun:
 .byt SCR::END_SCRIPT
 SignAboutEpilogue:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
-; <1 SIGN>There's an extra world after this! Get ready for some really tough/weird levels!
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, $f7, $ec, "e", $e8, $c9, " ", "e", "x", $f9, $bd, "w", $c8, $ee, " ", $83, SCR::NEWLINE, $98, $fd, "G", "e", $d2, $fa, $f6, $fe, $a4, " ", $9b, SCR::NEWLINE, $fa, $ac, $fe, $bb, "u", $da, "/", $c7, "i", "r", $ff, "l", "e", "v", "e", "l", "s", "!"
+; <1 SIGN>But wait, there's more! Get ready for a few extra bonus levels!
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "B", "u", $d2, "w", "a", "i", "t", $f4, $87, $e8, "m", $c8, "e", $fd, "G", "e", "t", SCR::NEWLINE, $fa, $f6, $fe, $a4, " ", $bd, "f", "e", "w", " ", "e", "x", $f9, $bd, "b", $c1, "u", "s", SCR::NEWLINE, "l", "e", "v", "e", "l", "s", "!"
 .byt SCR::END_SCRIPT
 MeetKeeAgain:
 .byt SCR::SCENE, SCENES::NOVA_AND_KEE
@@ -827,8 +827,8 @@ PreLevelBoss2:
 ;  Nova runs into the Scheme
 .byt " ", $a0, " ", "r", $f1, $fb, $d7, $ba, $a1, " ", "S", $e1, "e", $cf
 .byt SCR::NEWLINE
-;  Team again and has her
-.byt " ", "T", $eb, "m", " ", "a", "g", "a", $be, $a3, "h", $c3, " ", $a8
+;  Team again. They have her
+.byt " ", "T", $eb, "m", " ", "a", "g", "a", $d7, $f5, $f7, "e", $fe, $9a, $a8
 .byt SCR::NEWLINE
 ;  fight Forehead Block Guy.
 .byt " ", "f", "i", $da, $d2, "F", $c8, "e", $c2, $f6, " ", "B", "l", "o", $f2, " ", "G", "u", "y", "."
