@@ -4,7 +4,7 @@ MasterLevelListL:
   .byt <frozen, <frozen2, <frozen3, <frozen4, <frozen5, <frozen6, <frozen7, <boss3
   .byt <insane1, <insane2, <insane3, <insane4, <insane5, <insane6, <boss4a, <boss4b
   .byt <final1, <final2, <final3, <final4, <final5, <boss5a, <final6, <boss5b
-  .byt <extra1, <extra2, <extra3, <emptylevel
+  .byt <extra1, <extra2, <extra3, <extra4, <emptylevel
 ; sub-levels
   .byt <intro_b, <grassy_b, <grassy2_b, <underground, <garden, <puzzle2, <insane1b, <final4b
   .byt <final5b, <final6b, <final6c, <final6d
@@ -15,7 +15,7 @@ MasterLevelListH:
   .byt >frozen, >frozen2, >frozen3, >frozen4, >frozen5, >frozen6, >frozen7, >boss3
   .byt >insane1, >insane2, >insane3, >insane4, >insane5, >insane6, >boss4a, >boss4b
   .byt >final1, >final2, >final3, >final4, >final5, >boss5a, >final6, >boss5b
-  .byt >extra1, >extra2, >extra3, >emptylevel
+  .byt >extra1, >extra2, >extra3, >extra4, >emptylevel
 ; sub-levels
   .byt >intro_b, >grassy_b, >grassy2_b, >underground, >garden, >puzzle2, >insane1b, >final4b
   .byt >final5b, >final6b, >final6c, >final6d
@@ -24,13 +24,14 @@ MasterLevelListH:
 ; Array of what bank each level belongs to. Can also put other data in its upper bits.
 B1 = LEVELS_BANK1
 B2 = LEVELS_BANK2
+B3 = LEVELS_BANK3
 PUZ = 128 ; puzzle, no longer used
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B1
   .byt B1,     B1,     B1|PUZ, B1,     B1|PUZ, B1,     B2|PUZ, B1
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B1,     B2
   .byt B2,     B2,     B2,     B2,     B2,     B2,     B2,     B2
   .byt B2,     B2,     B2,     B2,     B2,     B2,     B2,     B2
-  .byt B2,     B2,     B2,     B1
+  .byt B2,     B2,     B2,     B3,     B1
 ; sub-levels
   .byt B1,     B1,     B1,     B1,     B1,     B1,     B2,     B2
   .byt B2,     B2,     B2,     B2
@@ -90,6 +91,7 @@ PUZ = 128 ; puzzle, no longer used
   Extra1
   Extra2
   Extra3
+  Extra4
   EmptyLevel
 
 ; sublevels

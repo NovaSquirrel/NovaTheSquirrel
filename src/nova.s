@@ -22,8 +22,7 @@ Mapper_MMC1 16
 
 LEVELS_BANK1 = $0
 LEVELS_BANK2 = $1
-LEVELS_BANK3 = $2
-LEVELS_BANK4 = $3
+LEVELS_BANK3 = $d
 OBJECT_BANK2 = $d
 DIALOG_BANK = $7
 MAINLOOP_BANK = $9
@@ -72,6 +71,7 @@ EXTRAS_BANK = $4 ; DABG resources, other games I can fit!
 .include "sandbox.s"
 .include "credits.s"
 .include "abilityhelp.s"
+.include "levels3.s"
 
 .segment "PRGe" ; dialogs, inventory, VWF engine
 .include "vwf_draw.s"
@@ -103,9 +103,9 @@ EXTRAS_BANK = $4 ; DABG resources, other games I can fit!
 .include "levels.s"
 .segment "PRG1" ; levels
 .include "levels2.s"
-.segment "PRG2" ; levels (though let's be honest here, we're not gonna fill up PRG1)
-.segment "PRG3" ; levels
-.segment "PRG4" ; levels
+.segment "PRG2" ; ???
+.segment "PRG3" ; ???
+.segment "PRG4" ; ???
 
 .segment "PRG4" ; extras
 .include "extras.s"
