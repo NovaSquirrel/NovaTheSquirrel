@@ -45,7 +45,7 @@
   lda NeedDialog
   bne :+
     jsr RenderLevelScreens ; Render the screen the player's on
-    jsr WaitVblank
+;    jsr WaitVblank
   :
 
   ; Make sure NMI is on
@@ -341,7 +341,7 @@ SandboxGotTile:
     jsr RenderLevelScreens
     lda #0
     sta NeedLevelRerender
-    jsr WaitVblank
+;    jsr WaitVblank
   :
 
   ; Change ability if needed

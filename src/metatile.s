@@ -66,11 +66,6 @@ M_BEHAVIOR =       %00011111 ; mask for the block's behavior only
   sta BlockUpdateA1,x ; overruns a little but it's OK
   dex
   bpl :-
-
-  ; Clear sprites
-  jsr ClearOAM
-  lda #2
-  sta OAM_DMA
  
   ; Immediately set the correct scroll value
   lda PlayerPXL
@@ -201,7 +196,17 @@ DidntTeleport:
   dec 14
   bne :-
 
-  jmp UpdateScrollRegister
+  jsr ClearOAM
+; Make sure this is in the same bank as the player bank
+;  jsr UpdateStatus
+;  jsr DisplayPlayer
+  lda #2
+  sta OAM_DMA
+  jsr UpdateScrollRegister
+  jsr WaitVblank
+  lda #BG_ON
+  sta PPUMASK
+  jmp WaitVblank
 .endproc
 
 ; Render a 32 pixel wide chunk
