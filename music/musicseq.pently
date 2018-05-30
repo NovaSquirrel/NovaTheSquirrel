@@ -1,0 +1,1426 @@
+durations stick
+notenames english
+
+song World_1A
+  time 4/4
+  scale 16
+  tempo 112.50
+
+  pattern pat_2_0_0 with Tribal_Background on pulse1
+    absolute
+    d'8 a'8 d''8 d'16 a'8 d''8 d'16 a'8 d''8 b8 g'8 b'8 b16 g'8 b'8 b16 g'8 e'8 d'8 a'8 d''8 d'16 a'8 d''8 d'16 a'8 d''8 e'8 a'8 e''8 e'16 a'8 e''8 e'16 e''8 d''8 
+  pattern pat_2_0_1 with Tribal_Background on pulse1
+    absolute
+    d'8 a'8 d''8 w16 d'16 a'8 d''16 d'16 a'8 f#'8 e'8 a'8 e''8 w16 a'16 e''8 a'16 e'16 e''8 a'8 d'8 a'8 d''8 d'16 a'8 d''8 d'16 a'8 d''8 f#'8 b'8 d''8 b'16 f#'8 b'8 f#'16 a'8 b'8 
+  pattern pat_2_0_4 with Horn on pulse1
+    absolute
+    mp MP3 d'2 mf w4 ff w4 mp e'2 mf w4 ff w4 g'2 mf w4 mp w4 f#'2 mf e'4 ff w4 
+  pattern pat_2_0_5 with Horn on pulse1
+    absolute
+    mp MP3 d'2 mf w4 ff w4 mp e'2 mf w4 ff w4 g'2 mf w4 mp w4 a'2 mf b'4 mp a'4 
+  pattern pat_2_0_6 with Horn on pulse1
+    absolute
+    mp MP3 d'2 mf w4 ff w4 mp e'2 mf w4 ff w4 g'2 mf w8 a'8 mp w8 g'8 a'4 b'4 mf d''4 mp c#''4 
+  pattern pat_2_0_7 with Tribal_Hit on pulse1
+    absolute
+    ff MP0 d''8 @Tribal_Background a'8 d''8 d'16 a'8 d''8 d'16 a'8 d''8 b8 g'8 b'8 b16 g'8 b'8 b16 g'8 e'8 d'8 a'8 d''8 d'16 a'8 d''8 d'16 a'8 d''8 e'8 a'8 e''8 e'16 a'8 e''8 e'16 e''8 d''8 
+  pattern pat_2_1_0 with Tribal_Bass on pulse2
+    absolute
+    d,2 w8 d,4 b,,8 d,2 w4 b,,8 b,,8 d,2 w8 d,4 b,,8 d,2 w4 a,,8 b,,8 
+  pattern pat_2_1_1 with Tribal_Bass on pulse2
+    absolute
+    d,8 w16 @Tribal_Hit d''8 w16 a'4 @Tribal_Bass d,4 b,,8 d,8 w16 @Tribal_Hit a'8 w16 a'4 f#'8 @Tribal_Bass a,,8 b,,8 d,8 w16 @Tribal_Hit d''8 w16 a'4 a'8 f#'8 @Tribal_Bass d,8 e,4 @Tribal_Hit e'8 w16 e'8 w16 e'8 d'8 @Tribal_Bass c#,8 
+  pattern pat_2_1_2 with Tribal_Bass on pulse2
+    absolute
+    d,8 w16 @Tribal_Hit d''8 w16 a'8 e'8 f#'8 e'8 d'8 @Tribal_Bass e,8 w16 @Tribal_Hit e''8 w16 d''8 e''8 d''8 e''8 f#''8 @Tribal_Bass d,8 w16 @Tribal_Hit d''8 w16 a'8 e'8 f#'8 e'8 d'8 @Tribal_Bass f#,8 w16 @Tribal_Hit f#'8 w16 e'8 g'8 f#'8 e'8 d'8 
+  pattern pat_2_1_3 with Tribal_Bass on pulse2
+    absolute
+    d,8 w16 @Tribal_Hit d''8 w16 a'8 e'8 f#'8 e'8 d'8 @Tribal_Bass e,8 w16 @Tribal_Hit e''8 w16 d''8 e''8 d''8 g''8 a''8 @Tribal_Bass d,8 w16 @Tribal_Hit a''8 w16 g''8 a''8 g''8 b''8 f#''8 @Tribal_Bass f#,8 w16 @Tribal_Hit b''8 w16 g''8 b''8 g''8 b''8 d'''8 
+  pattern pat_2_1_4 with Tribal_Bass on pulse2
+    absolute
+    d,8 w16 b,,16 c#,8 d,4 b,,8 f#,8 d,8 e,8 w16 e,16 d,8 e,8 e,4 f#,4 g,8 w16 g,8 w16 g,4 g,8 g8 g,8 f#,8 f#,8 f#8 f#,8 e,8 c#,8 e8 e,8 
+  pattern pat_2_1_7 with Tribal_Bass on pulse2
+    absolute
+    d,8 @Tribal_Hit d'16 @Tribal_Bass b,,16 c#,8 d,8 @Tribal_Hit d'8 @Tribal_Bass b,,8 f#,8 @Tribal_Hit d'8 @Tribal_Bass e,8 @Tribal_Hit e'16 @Tribal_Bass e,16 d,8 e,8 @Tribal_Hit e'16 @Tribal_Bass e,8 w16 f#,8 @Tribal_Hit g'8 @Tribal_Bass g,8 @Tribal_Hit f#'16 @Tribal_Bass g,8 w16 g,8 @Tribal_Hit f#'8 @Tribal_Bass g,8 g8 @Tribal_Hit f#'8 @Tribal_Bass f#,8 @Tribal_Hit f#'8 @Tribal_Bass f#8 @Tribal_Hit f#'8 @Tribal_Bass e,8 @Tribal_Hit d'8 e'8 @Tribal_Bass e,8 
+  pattern pat_2_1_8 with Tribal_Bass on pulse2
+    absolute
+    d,8 @Tribal_Hit d'16 @Tribal_Bass b,,16 c#,8 d,8 @Tribal_Hit d'8 @Tribal_Bass b,,8 @Tribal_Hit f#'8 d'8 @Tribal_Bass e,8 @Tribal_Hit e'16 @Tribal_Bass e,16 d,8 e,8 @Tribal_Hit e'16 @Tribal_Bass e,8 @Tribal_Hit e'16 @Tribal_Bass f#,8 @Tribal_Hit e'8 @Tribal_Bass g,8 @Tribal_Hit g'16 @Tribal_Bass g,8 w16 g,8 @Tribal_Hit g'8 @Tribal_Bass g,8 @Tribal_Hit g'8 f#'8 @Tribal_Bass f#,8 @Tribal_Hit a'8 @Tribal_Bass f#8 @Tribal_Hit a'8 @Tribal_Bass a,8 @Tribal_Hit d''8 @Tribal_Bass g,8 @Tribal_Hit c#''8 
+  pattern pat_2_1_9 with Horn on pulse2
+    absolute
+    mf MP3 d''8 w16 mp w4 w8 w16 @Tribal_Bass ff MP0 d,4 b,,8 d,2 w4 b,,8 b,,8 d,2 w8 d,4 b,,8 d,2 w4 a,,8 b,,8 
+  pattern pat_2_3_0
+    autodrum0_16 autodrum1_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum1_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum2_16 autodrum1_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum1_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum4_16 autodrum4_16 autodrum0_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum1_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum2_16 autodrum1_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum1_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum4_16 autodrum4_16 autodrum0_16 autodrum2_16 
+  pattern pat_2_3_1
+    autodrum0_16 autodrum1_16 autodrum2_16 autodrum2_16 autodrum5_16 autodrum1_16 autodrum2_16 autodrum5_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum2_16 autodrum5_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum2_16 autodrum5_16 autodrum1_16 autodrum2_16 autodrum5_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum4_16 autodrum4_16 autodrum5_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum2_16 autodrum5_16 autodrum1_16 autodrum2_16 autodrum5_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum2_16 autodrum5_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum2_16 autodrum5_16 autodrum1_16 autodrum2_16 autodrum5_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum4_16 autodrum4_16 autodrum5_16 autodrum2_16 
+  pattern pat_2_3_2
+    autodrum0_16 autodrum1_16 autodrum2_16 autodrum2_16 autodrum4_16 autodrum0_16 autodrum0_16 autodrum1_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum2_16 autodrum4_16 autodrum0_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum2_16 autodrum4_16 autodrum0_16 autodrum0_16 autodrum1_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum2_16 autodrum4_16 autodrum0_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum2_16 autodrum4_16 autodrum0_16 autodrum0_16 autodrum1_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum2_16 autodrum4_16 autodrum0_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum2_16 autodrum4_16 autodrum0_16 autodrum0_16 autodrum1_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum2_16 autodrum4_16 autodrum0_16 
+  pattern pat_2_3_3
+    autodrum0_8 autodrum2_8 autodrum4_16 autodrum2_8 autodrum1_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum4_8 autodrum3_8 autodrum0_8 autodrum2_8 autodrum4_16 autodrum2_8 autodrum1_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum4_8 autodrum3_8 autodrum0_8 autodrum2_8 autodrum4_16 autodrum2_8 autodrum1_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum4_8 autodrum3_8 autodrum0_8 autodrum2_8 autodrum4_16 autodrum2_8 autodrum1_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum4_8 autodrum3_8 
+  pattern pat_2_3_4
+    autodrum0_8 autodrum2_16 autodrum2_16 autodrum0_8 autodrum2_8 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum2_8 autodrum2_16 autodrum0_8 autodrum2_16 autodrum2_16 autodrum0_8 autodrum2_8 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum4_16 autodrum4_16 autodrum0_16 autodrum2_16 autodrum0_8 autodrum2_16 autodrum2_16 autodrum0_8 autodrum2_8 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum2_8 autodrum2_16 autodrum0_8 autodrum2_16 autodrum2_16 autodrum0_8 autodrum2_8 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum4_16 autodrum4_16 autodrum0_16 autodrum2_16 
+  at 1
+  play pat_2_0_0
+  play pat_2_1_0
+  play pat_2_3_0
+  at 5
+  play pat_2_0_0
+  play pat_2_1_1
+  play pat_2_3_0
+  at 9
+  play pat_2_0_1
+  play pat_2_1_2
+  play pat_2_3_1
+  at 13
+  play pat_2_0_1
+  play pat_2_1_3
+  play pat_2_3_1
+  at 17
+  play pat_2_0_4
+  play pat_2_1_4
+  play pat_2_3_3
+  at 21
+  play pat_2_0_5
+  play pat_2_1_4
+  play pat_2_3_3
+  at 25
+  play pat_2_0_4
+  play pat_2_1_7
+  play pat_2_3_2
+  at 29
+  play pat_2_0_6
+  play pat_2_1_8
+  play pat_2_3_2
+  at 33
+  play pat_2_0_7
+  play pat_2_1_9
+  play pat_2_3_4
+  at 37
+  dal segno
+song World_1B
+  time 4/4
+  scale 16
+  tempo 128.57
+
+  pattern pat_3_0_0 with Miniboss_Flute on pulse1
+    absolute
+    EN00 f8 g8 w16 a16 c'8 c'16 a#8 w16 a8 e8 w16 d8 w16 e16 g8 w16 f8 g8 w16 a16 c'8 c'16 a#8 a16 e'8 c'8 w16 c'8 w16 c'16 d'8 w16 
+  pattern pat_3_0_1 with Miniboss_Flute on pulse1
+    absolute
+    f8 g8 w16 a16 c'8 c'16 a#16 g16 a#16 a8 e8 w16 d8 w16 e16 g8 e16 f8 g8 w16 a16 c'8 c'16 a#8 a16 f'8 g'8 w16 g'8 w16 e'16 f'8 w16 
+  pattern pat_3_0_2 with Select_Orc_Hit on pulse1
+    absolute
+    f'4 w8 g'8 w16 d'8 w16 @Miniboss_Flute g'8 f'16 e'8 d'16 c'8 w16 g8 w16 @Select_Orc_Hit f'4 w8 g'8 w16 d'8 w16 @Miniboss_Flute c''8 c''16 c''8 a#'8 w16 g'8 w16 f'16 
+  pattern pat_3_0_3 with Select_Orc_Hit on pulse1
+    absolute
+    ff f'16 mp w16 ff f'16 mp w16 ff f'8 g'8 mp w16 ff a#'8 mp w16 @Miniboss_Flute ff g'8 f'16 g'8 a'8 w16 a#'16 d'8 w16 @Select_Orc_Hit f'16 mp w16 ff e'16 mp w16 ff c'16 mp w16 ff a#8 mp w16 ff f8 mp w16 @Miniboss_Flute ff g'8 a'16 a#'8 c''8 w16 g''16 f''8 w16 
+  pattern pat_3_0_4 with Puzzle_Pulsate on pulse1
+    absolute
+    ENcc f'8 g'8 w16 a'16 c''8 c''16 a#'8 w16 e'8 f'8 w16 f'16 f'8 g'16 f'8 w16 ENcc g'8 a'8 w16 a#'16 c''8 c''16 a#'8 e''16 f''8 f''16 e''8 d''16 c''16 a#'8 a'8 g'16 
+  pattern pat_3_0_5 with Puzzle_Pulsate on pulse1
+    absolute
+    ENcc f'8 g'8 w16 a'16 c''8 c''16 a#'8 w16 e'8 f'8 w16 f'16 f'8 g'16 f'8 w16 f'8 g'8 w16 a'16 c''8 c''16 a#'8 g'16 e'8 e'16 e'8 e'8 w16 e'16 f'8 w16 
+  pattern pat_3_0_6 with Puzzle_Pulsate on pulse1
+    absolute
+    ENcc f'8 g'8 w16 a'16 c''8 c''16 a#'8 w16 e'8 f'8 w16 f'16 f'8 g'16 f'8 w16 g'8 a'8 w16 a#'16 c''8 c''16 a#'8 e''16 f''8 f''16 f''8 f''16 f''8 f''16 f''8 w16 
+  pattern pat_3_1_0 with Puzzle_Mellow_Crazy on pulse2
+    absolute
+    mf EN00 f'''8 w16 EN47 c'8 w16 EN00 g'''8 w16 EN47 a#8 w16 EN00 f'''8 c8 w16 a#,8 w16 c16 e8 w16 EN00 f'''8 w16 EN47 c'8 w16 EN00 g'''8 w16 EN47 a#8 w16 EN00 a'''8 a8 w16 a8 w16 a16 a#8 w16 
+  pattern pat_3_1_1 with Puzzle_Mellow_Crazy on pulse2
+    absolute
+    EN00 f'''8 w16 EN47 c'8 w16 EN00 g'''8 w16 EN47 a#8 w16 EN00 e'''8 c8 w16 a#,8 w16 c16 e8 w16 EN00 f'''8 w16 EN47 c'8 w16 EN00 e'''8 w16 EN47 a#8 w16 EN00 f'''8 e'8 w16 e'8 w16 c'16 d'8 w16 
+  pattern pat_3_1_2 with Puzzle_Mellow_Crazy on pulse2
+    absolute
+    EN00 f,8 w16 EN47 c'8 w16 EN00 a#,8 w16 EN47 a#8 w16 EN00 e,8 EN37 a16 EN00 e,8 EN37 a16 EN00 e,8 w16 EN47 a#8 w16 EN00 f,8 w16 EN47 c'8 w16 EN00 a#,8 w16 EN47 a#8 w16 EN00 g,8 EN47 c'16 EN00 g,8 EN47 c'16 EN00 g,8 w16 EN37 d'8 w16 
+  pattern pat_3_1_4 with Banjo on pulse2
+    absolute
+    f8 f'16 f''8 f'16 c8 c'16 c''8 c'16 e,8 f16 f'8 f16 f,8 f16 f'8 f16 g'8 e'16 c'8 f'16 g'8 f'16 g'8 b'16 c''8 a#'16 a'8 g'16 f'16 e'8 d'8 c'16 
+  pattern pat_3_1_5 with Banjo on pulse2
+    absolute
+    mf EN00 f8 f'16 f''8 f'16 c8 c'16 c''8 c'16 e,8 f16 f'8 f16 f,8 f16 f'8 f16 f8 f'16 f''8 f'16 c8 c'16 c''8 c'16 e8 e'16 e''8 e'16 e8 e'16 f''8 c''16 
+  pattern pat_3_1_6 with Banjo on pulse2
+    absolute
+    f8 f'16 f''8 f'16 c8 c'16 c''8 c'16 e,8 f16 f'8 f16 f,8 f16 f'8 f16 g'8 e'16 c'8 f'16 g'8 f'16 g'8 b'16 f'8 f'16 f'8 f'16 f'8 f'16 f'8 w16 
+  pattern pat_3_2_0 with Blank on triangle
+    absolute
+    f8 r4 g8 r4 f8 r4 f'16 r16 e'16 c'8 a#16 f8 r4 g8 r4 e8 r16 a'16 r8 a'16 r16 a16 f'8 d'16 
+  pattern pat_3_2_1 with Blank on triangle
+    absolute
+    f8 r4 g8 r4 f8 r4 f'16 r16 e'16 c'8 a#16 f8 r4 g8 r4 f'8 r16 g'16 r8 g'16 r16 g'16 f'8 r16 
+  pattern pat_3_2_2 with Blank on triangle
+    absolute
+    f8 w16 f'16 r8 g8 r16 a#8 r16 e8 w16 e'16 r8 c'16 r8 g8 w16 f8 w16 f'16 r8 g8 r16 a#8 r16 g8 w16 g'16 r8 a#16 r8 g8 w16 
+  pattern pat_3_2_3 with Blank on triangle
+    absolute
+    f8 w16 f'16 r8 g8 r16 a#8 r16 e8 w16 e'16 r8 c'16 r8 g8 w16 f8 w16 f'16 r8 g8 r16 a#8 r2 w4 w16 
+  pattern pat_3_2_4 with Blank on triangle
+    absolute
+    f8 w16 r2 a,16 e8 f16 r4 w8 c8 w16 g8 w16 r2 b16 c'8 r16 c'8 r16 c'16 r8 a8 g16 
+  pattern pat_3_2_5 with Blank on triangle
+    absolute
+    f8 w16 r2 a,16 e8 f16 r4 w8 c8 w16 f8 w16 r2 a,16 e8 c16 r2 w16 
+  pattern pat_3_2_6 with Blank on triangle
+    absolute
+    f2 w4 e8 f4 w8 w16 c'8 w16 f2 w4 c2 w4 
+  pattern pat_3_2_7 with Blank on triangle
+    absolute
+    f4 w8 f4 w8 e8 f4 f8 w16 c'8 w16 g4 w8 g4 w8 f'8 f16 f'8 f16 f'8 f16 f'8 f16 
+  pattern pat_3_3_0
+    autodrum6_8 autodrum7_16 autodrum8_8 autodrum7_16 autodrum9_8 autodrum7_16 autodrum8_8 autodrum7_16 autodrum6_8 autodrum7_16 autodrum8_8 autodrum7_16 autodrum9_8 autodrum7_16 autodrum8_16 autodrum7_16 autodrum7_16 autodrum6_8 autodrum7_16 autodrum8_8 autodrum7_16 autodrum9_8 autodrum7_16 autodrum8_8 autodrum7_16 autodrum6_8 autodrum7_16 autodrum8_8 autodrum7_16 autodrum9_8 autodrum7_16 autodrum8_16 autodrum7_16 autodrum7_16 
+  pattern pat_3_3_1
+    autodrum6_8 autodrum7_16 autodrum8_8 autodrum7_16 autodrum9_8 autodrum7_16 autodrum8_8 autodrum7_16 autodrum6_8 autodrum7_16 autodrum8_8 autodrum7_16 autodrum9_8 autodrum7_16 autodrum8_16 autodrum7_16 autodrum7_16 autodrum6_8 autodrum7_16 autodrum8_8 autodrum7_16 autodrum9_8 autodrum7_16 autodrum8_8 autodrum7_16 autodrum4_8 w16 autodrum4_8 w16 autodrum0_8 w16 autodrum0_8 w16 
+  pattern pat_3_3_2
+    autodrum6_8 autodrum7_16 autodrum8_8 w16 autodrum8_16 autodrum7_16 autodrum7_16 autodrum8_8 w16 autodrum6_8 autodrum7_16 autodrum8_8 w16 autodrum8_16 autodrum7_16 autodrum7_16 autodrum8_8 w16 autodrum6_8 autodrum7_16 autodrum8_8 w16 autodrum8_16 autodrum7_16 autodrum7_16 autodrum8_8 w16 autodrum6_8 autodrum7_16 autodrum8_8 w16 autodrum9_8 autodrum7_16 autodrum8_8 w16 
+  pattern pat_3_3_5
+    autodrum6_8 w16 autodrum10_8 w16 autodrum9_8 w16 autodrum10_8 w16 autodrum6_8 w16 autodrum10_8 w16 autodrum9_8 w16 autodrum10_8 autodrum9_16 autodrum6_8 w16 autodrum10_8 w16 autodrum9_8 w16 autodrum10_8 w16 autodrum6_8 w16 autodrum10_8 w16 autodrum9_8 autodrum9_16 autodrum6_8 autodrum6_16 
+  at 1
+  play pat_3_0_0
+  play pat_3_1_0
+  play pat_3_2_0
+  play pat_3_3_0
+  at 4
+  play pat_3_0_1
+  play pat_3_1_1
+  play pat_3_2_1
+  play pat_3_3_0
+  at 7
+  play pat_3_0_2
+  play pat_3_1_2
+  play pat_3_2_2
+  play pat_3_3_0
+  at 10
+  play pat_3_0_2
+  play pat_3_1_2
+  play pat_3_2_2
+  play pat_3_3_0
+  at 13
+  play pat_3_0_3
+  play pat_3_1_2
+  play pat_3_2_3
+  play pat_3_3_1
+  at 16
+  play pat_3_0_5
+  play pat_3_1_5
+  play pat_3_2_5
+  play pat_3_3_2
+  at 19
+  play pat_3_0_4
+  play pat_3_1_4
+  play pat_3_2_4
+  play pat_3_3_2
+  at 22
+  play pat_3_0_5
+  play pat_3_1_5
+  play pat_3_2_6
+  play pat_3_3_5
+  at 25
+  play pat_3_0_6
+  play pat_3_1_6
+  play pat_3_2_7
+  play pat_3_3_5
+  at 28
+  dal segno
+song World_3
+  time 4/4
+  scale 16
+  tempo 112.50
+
+  pattern pat_4_0_0 with Cave_Bass on pulse1
+    absolute
+    MP1 e,4 e,8 e8 e,4 e,4 e,4 e,8 e8 e,8 e8 e,8 b,8 e,4 e,8 e8 e,4 e,4 e,4 e,8 e8 e,8 e8 a,8 b,8 
+  pattern pat_4_0_1 with Cave_Bass on pulse1
+    absolute
+    e,4 e,8 e8 e,4 e,4 e,4 e,8 e8 e,8 e8 a,8 b,8 e,4 e,8 e8 e,4 e,4 a,4 a,8 a8 a,8 a8 a,8 g,8 
+  pattern pat_4_0_2 with Cave_Bass on pulse1
+    absolute
+    e,4 e,8 e8 e,4 e,4 d,4 d,8 d8 e,8 e8 a,8 b,8 e,4 e,8 e8 e,4 e,4 d,4 d,8 d8 e,8 e8 a,8 b,8 
+  pattern pat_4_0_3 with Cave_Bass on pulse1
+    absolute
+    e,4 e,8 e8 e,4 e,4 d,4 d,8 d8 e,8 e8 a,8 b,8 b,,4 b,,8 b,8 b,,4 b,,4 c,4 e,8 g,8 a,8 g8 e,8 g,8 
+  pattern pat_4_0_4 with Cave_Bass on pulse1
+    absolute
+    e,4 e4 e,8 e8 b,8 d8 d,4 d4 b,8 a8 b,8 a,8 e,4 e4 e,8 e8 b,8 d8 b,8 a,8 b,8 a,8 g,8 e,8 g,8 e,8 
+  pattern pat_4_1_1 with Distant_Square_Echo on pulse2
+    absolute
+    r8 ff e'16 r16 b'16 r16 g'16 r16 a'16 r16 e'16 r16 g'16 r16 e'16 r16 d'16 r16 e'16 r2 w4 w8 w16 e'16 r16 b'16 r16 g'16 r16 a'16 r16 e'16 r16 d'16 r16 e'16 r16 g'16 r16 a'16 r2 w4 w16 
+  pattern pat_4_1_2 with Distant_Square_Echo on pulse2
+    absolute
+    r8 ff e'16 r16 b'16 r16 g'16 r16 a'16 r16 e'16 r16 g'16 r16 e'16 r16 d'16 r16 e'16 r2 w4 w8 w16 e'16 r16 b'16 r16 g'16 r16 e'16 r16 g'16 r16 a'16 r16 b'16 r16 g'16 r16 e''16 r16 g'16 r16 c''16 r16 g'16 r16 a'16 r16 e'16 r16 g'16 r16 
+  pattern pat_4_1_3 with Cave_Lead on pulse2
+    absolute
+    ff e''8 mp e''16 ff d''8 mp d''16 ff e''8 mp e''8 ff d''8 e''16 mp e''16 ff d''16 mp d''16 ff a'8 mp a'16 ff a'8 mp a'16 ff b'8 mp b'8 ff d''8 mp d''4 ff e''8 mp e''16 ff d''8 mp d''16 ff e''8 mp e''8 ff d''8 e''16 mp e''16 ff d''16 mp d''16 ff e''16 mp e''16 ff d''16 mp d''16 ff e''16 mp e''16 ff d''16 mp d''16 ff b'16 mp b'16 ff a'16 mp a'16 ff b'16 mp b'16 ff d''16 mp d''16 
+  pattern pat_4_1_4 with Cave_Lead on pulse2
+    absolute
+    ff e''8 mp e''16 ff d''8 mp d''16 ff e''8 mp e''8 ff d''8 e''16 mp e''16 ff d''16 mp d''16 ff a'8 mp a'16 ff a'8 mp a'16 ff b'8 mp b'8 ff d''8 mp d''4 ff d''8 mp d''16 ff b'8 mp b'16 ff d''8 mp d''8 ff b'8 d''16 mp d''16 ff b'16 mp b'16 ff a'8 mp a'16 ff a'8 mp a'16 ff g'8 mp g'8 ff e'8 mp e'4 
+  pattern pat_4_1_5 with Pizzicato_Strings on pulse2
+    absolute
+    ff e'''8 d'''8 b''8 d'''4 @Horn mf a'8 b'8 d''16 mp w16 @Pizzicato_Strings ff e'''8 d'''8 b''8 d'''4 @Horn mf a'8 b'8 g'16 mp w16 @Pizzicato_Strings ff e'''8 d'''8 b''8 a''4 @Horn mf a'8 b'8 d''16 mp w16 @Pizzicato_Strings ff e'''8 d'''8 b''8 e''8 e''8 g''8 a''8 b''8 
+  pattern pat_4_1_6 with Pizzicato_Strings on pulse2
+    absolute
+    ff e'''8 d'''8 b''8 d'''4 @Horn mf a'8 b'8 d''16 mp d''16 @Pizzicato_Strings ff e'''8 d'''8 b''8 d'''4 @Horn mf a'8 d''8 b'16 mp w16 @Pizzicato_Strings ff e'''8 d'''8 b''8 e'''4 @Horn mf e''8 d''8 b'16 mp w16 @Pizzicato_Strings ff e'''8 d'''8 e'''8 d'''8 g''8 b''8 d'''8 e'''8 
+  pattern pat_4_2_1 with Blank on triangle
+    absolute
+    e''16 r16 b''16 r16 g''16 r16 a''16 r16 e''16 r16 g''16 r16 e''16 r16 d''16 r16 e''16 r2 w4 w8 w16 e''16 r16 b''16 r16 g''16 r16 a''16 r16 e''16 r16 d''16 r16 @Distant_Square_Echo e''16 r16 g''16 r16 @Blank a''16 r2 w4 w8 w16 
+  pattern pat_4_2_2 with Blank on triangle
+    absolute
+    e''16 r16 b''16 r16 g''16 r16 a''16 r16 e''16 r16 g''16 r16 e''16 r16 d''16 r16 e''16 r2 w4 w8 w16 e''16 r16 b''16 r16 g''16 r16 e''16 r16 g''16 r16 a''16 r16 b''16 r16 g''16 r16 e'''16 r16 g''16 r16 b''16 r16 g''16 r16 a''16 r16 e''16 r16 g''16 r16 a''16 r16 
+  pattern pat_4_2_3 with Blank on triangle
+    absolute
+    MP1 e''2 e''4 e''4 d''8 w16 r16 d''16 r16 e''8 e''4 e''8 r8 e''2 e''4 e''8 r8 d''8 w16 r16 d''16 r16 b'8 b'8 a'8 a'8 e'8 
+  pattern pat_4_2_4 with Blank on triangle
+    absolute
+    e''1 d''8 w16 r16 d''16 r16 e''2 r8 d''2 w4 w8 r8 c''8 w16 r16 c''16 r16 a'4 g'4 e'8 
+  pattern pat_4_2_5 with Cave_Triangle on triangle
+    absolute
+    MP0 e'8 e''8 e'''8 e''8 e'8 e''8 e'''8 e''8 d'8 d''8 d'''8 d''8 b8 a'8 b''8 a''8 e''8 w16 e''8 w16 e'''8 e''8 e''8 e'''8 e''8 b'8 w16 b'8 w16 b''8 a'8 a''8 g''8 b''8 
+  pattern pat_4_2_6 with Cave_Triangle on triangle
+    absolute
+    e'8 e''8 e'''8 e''8 e'8 e''8 e'''8 e''8 d'8 d''8 d'''8 d''8 b8 a'8 b''8 a''8 e''8 w16 e''8 w16 e'''8 e''8 e''8 e'''8 e''8 b'8 w16 b'8 w16 b''8 g'16 b'16 e''16 g''16 b''16 d'''16 b''16 e'''16 
+  pattern pat_4_3_0
+    autodrum11_8 autodrum10_8 autodrum11_8 autodrum11_8 autodrum10_8 autodrum11_8 autodrum12_4 autodrum11_8 autodrum10_8 autodrum11_8 autodrum11_8 autodrum10_8 autodrum11_8 autodrum12_8 autodrum11_8 autodrum11_8 autodrum10_8 autodrum11_8 autodrum11_8 autodrum10_8 autodrum11_8 autodrum12_4 autodrum11_8 autodrum10_8 autodrum11_8 autodrum11_8 autodrum10_8 autodrum11_8 autodrum12_8 autodrum13_8 
+  pattern pat_4_3_3
+    autodrum6_8 autodrum10_8 autodrum7_16 autodrum7_16 autodrum10_8 autodrum6_8 autodrum7_16 autodrum7_16 autodrum9_8 autodrum13_8 autodrum6_8 autodrum10_8 autodrum7_16 autodrum7_16 autodrum10_8 autodrum6_8 autodrum12_8 autodrum9_8 autodrum9_8 autodrum6_8 autodrum10_8 autodrum7_16 autodrum7_16 autodrum10_8 autodrum6_8 autodrum7_16 autodrum7_16 autodrum9_8 autodrum11_8 autodrum6_8 autodrum10_8 autodrum7_16 autodrum7_16 autodrum10_8 autodrum6_8 autodrum12_8 autodrum9_8 autodrum9_8 
+  pattern pat_4_3_5
+    autodrum14_4 autodrum15_16 autodrum16_16 autodrum16_8 autodrum15_16 autodrum16_16 autodrum15_16 autodrum16_16 autodrum15_8 autodrum16_8 autodrum14_4 autodrum15_16 autodrum16_16 autodrum16_8 autodrum15_16 autodrum16_16 autodrum15_16 autodrum16_16 autodrum15_8 autodrum16_8 autodrum14_4 autodrum15_16 autodrum16_16 autodrum16_8 autodrum15_16 autodrum16_16 autodrum15_16 autodrum16_16 autodrum15_8 autodrum16_8 autodrum14_4 autodrum15_16 autodrum16_16 autodrum16_8 autodrum15_16 autodrum16_16 autodrum15_16 autodrum16_16 autodrum15_8 autodrum16_8 
+  pattern pat_4_3_6
+    autodrum14_4 autodrum15_16 autodrum16_16 autodrum16_8 autodrum15_16 autodrum16_16 autodrum15_16 autodrum16_16 autodrum15_8 autodrum16_8 autodrum14_4 autodrum15_16 autodrum16_16 autodrum16_8 autodrum15_16 autodrum16_16 autodrum15_16 autodrum16_16 autodrum15_8 autodrum16_8 autodrum14_4 autodrum15_16 autodrum16_16 autodrum16_8 autodrum15_16 autodrum16_16 autodrum15_16 autodrum16_16 autodrum15_8 autodrum16_8 autodrum14_4 autodrum15_16 autodrum16_16 autodrum16_8 autodrum12_16 autodrum12_16 autodrum12_16 autodrum12_16 autodrum11_16 autodrum11_16 autodrum13_16 autodrum13_16 
+  at 1
+  play pat_4_0_0
+  play pat_4_3_0
+  stop triangle pulse2
+  at 5
+  play pat_4_0_1
+  play pat_4_1_1
+  play pat_4_2_1
+  play pat_4_3_0
+  at 9
+  play pat_4_0_1
+  play pat_4_1_2
+  play pat_4_2_2
+  play pat_4_3_0
+  at 13
+  play pat_4_0_2
+  play pat_4_1_3
+  play pat_4_2_3
+  play pat_4_3_3
+  at 17
+  play pat_4_0_3
+  play pat_4_1_4
+  play pat_4_2_4
+  play pat_4_3_3
+  at 21
+  play pat_4_0_4
+  play pat_4_1_5
+  play pat_4_2_5
+  play pat_4_3_5
+  at 25
+  play pat_4_0_4
+  play pat_4_1_6
+  play pat_4_2_6
+  play pat_4_3_6
+  at 29
+  dal segno
+song World_2
+  time 4/4
+  scale 16
+  tempo 180.00
+
+  pattern pat_5_0_1 with Blank on pulse1
+    absolute
+    mp EN00 EN00 f'''8 d'''8 @Distant_Square_Echo ff f'''8 d'''8 @Blank mp a''8 f''8 @Distant_Square_Echo ff a''8 f''8 @Blank mp g#''8 f''8 @Distant_Square_Echo ff g#''8 f''8 @Blank mp f''8 d''8 @Distant_Square_Echo ff f''8 d''8 @Blank mp f'''8 d'''8 @Distant_Square_Echo ff f'''8 d'''8 @Blank mp g''8 d''8 @Distant_Square_Echo ff g''8 d''8 @Blank mp g#''8 d''8 @Distant_Square_Echo ff g#''8 d''8 @Blank mp a''8 c'''8 @Distant_Square_Echo ff d'''8 c'''8 
+  pattern pat_5_0_2 with Puzzle_Mellow_Crazy on pulse1
+    absolute
+    ff MP2 MP2 f'4 d'4 c'4 c#'8 w16 d'16 f'8 d'8 f'8 d'8 c'4 d'4 f'4 d'4 c'4 c#'8 d'8 f'8 d'8 f'8 d'8 g#'4 g'4 
+  pattern pat_5_0_4 with Puzzle_Mellow_Crazy on pulse1
+    absolute
+    f'4 d'4 c'4 a8 w16 c'16 f'8 d'8 f'8 d'16 mp d'16 @Puzzle_Pulsate ff MP0 MP0 f'''8 d'''8 c'''8 d'''16 mp d'''16 @Puzzle_Mellow_Crazy ff MP2 MP2 f'4 d'4 c'4 c#'8 d'16 mp d'16 @Puzzle_Pulsate ff MP0 MP0 f'''8 d'''8 f'''8 d'''8 g#'''8 g'''8 f'''8 d'''16 mp d'''16 
+  pattern pat_5_0_6 with Horn on pulse1
+    absolute
+    ff EN00 EN00 f'8 mp f'8 ff c'8 mp c'8 ff d'8 mp d'8 ff f'16 mp f'16 ff d'8 mp d'8 r8 @Puzzle_Pulsate ff ENcc ENcc g#''4 g''4 f''4 @Horn EN00 EN00 f'8 mp f'8 ff c'8 mp c'8 ff d'8 mp d'8 ff f'16 mp f'16 ff d'8 mp d'8 r8 @Puzzle_Pulsate ff ENcc ENcc c''4 c''4 d''4 
+  pattern pat_5_0_7 with Horn on pulse1
+    absolute
+    ff EN00 EN00 f'8 mp f'8 ff c'8 mp c'8 ff d'8 mp d'8 ff f'16 mp f'16 ff d'8 mp d'8 r8 @Puzzle_Pulsate ff ENcc ENcc g#''4 g''4 f''4 @Horn EN00 EN00 f'8 mp f'8 ff c'8 mp c'8 ff d'8 mp d'8 ff c''16 mp c''16 ff d''8 mp d''8 r8 @Puzzle_Pulsate ff ENcc ENcc c''4 c''4 d''4 
+  pattern pat_5_1_0 with Distant_Square_Echo on pulse2
+    absolute
+    r16 ff d8 w16 r16 d8 w16 r16 a,8 w16 r16 a,8 w16 r16 g#,8 w16 r16 g#,8 g,4 w16 r16 f,8 w16 r16 d8 w16 r16 d8 w16 r16 a,8 w16 r16 a,8 w16 r16 g#,8 w16 r16 g#,8 g,4 w16 r16 f,8 w16 
+  pattern pat_5_1_3 with Distant_Square_Echo on pulse2
+    absolute
+    r16 d8 w16 r16 d8 w16 r16 a,8 w16 r16 a,8 w16 r16 g#,8 w16 r16 g#,8 g,4 w16 r16 f,8 w16 r16 d8 w16 r16 d8 w16 r16 a,8 w16 r16 a,8 w16 r16 d8 w16 r16 a,8 c4 w16 r16 d8 w16 
+  pattern pat_5_1_5 with Puzzle_Fill on pulse2
+    absolute
+    EN0c d'''8 d''8 d'''8 d''8 c'''8 d'''8 a''8 f''8 d''8 f''8 d''8 f''8 d''8 f''8 g''8 a''8 d'''8 c'''8 d'''8 c'''8 d'''8 c'''8 c#'''8 d'''8 c'''8 d'''8 c'''8 d'''8 g#''8 a''8 g''8 f''8 
+  pattern pat_5_1_6 with Puzzle_Fill on pulse2
+    absolute
+    d'''8 d''8 d'''8 d''8 c'''8 c'''8 d'''8 c'''8 d''8 f''8 d''8 f''8 a''8 a''8 c'''8 a''8 d'''8 c'''8 d'''8 c'''8 d'''8 c'''8 c#'''8 d'''8 f'''8 d'''8 f'''8 d'''8 g#''8 g''8 f''8 d''8 
+  pattern pat_5_1_7 with Puzzle_Effects on pulse2
+    absolute
+    EN00 d''8 d'8 d''8 d'8 a'8 c''8 a'8 f'8 g#'8 g'8 g#'8 g'8 g''8 g'8 f''8 f'8 d''8 d'8 d''8 d'8 a'8 c''8 a'8 f'8 g#'8 g'8 g#'8 g'8 g''8 g'8 a''8 c'''8 
+  pattern pat_5_1_8 with Puzzle_Effects on pulse2
+    absolute
+    d''8 d'8 d''8 d'8 a'8 c''8 a'8 f'8 g#'8 g'8 g#'8 g'8 g''8 g'8 f''8 f'8 d''8 d'8 d''8 d'8 a'8 c''8 a'8 f'8 g#'8 g'8 g#'8 g'8 g''8 g'8 a''8 c'''8 
+  pattern pat_5_1_9 with Distant_Square_Echo on pulse2
+    absolute
+    w16 ff d'8 c'16 r16 d'8 c'16 r16 a8 g16 r16 a8 g16 r16 g#8 f16 r16 g#8 g4 w16 r16 f8 d16 r16 d'8 w16 r16 d'8 w16 r16 a8 w16 r16 a8 w16 r16 g#8 f16 r16 g#8 a4 w16 r16 c'8 w16 
+  pattern pat_5_1_10 with Distant_Square_Echo on pulse2
+    absolute
+    w16 d'8 c'16 r16 d'8 c'16 r16 a8 g16 r16 a8 g16 r16 g#8 f16 r16 g#8 g4 w16 r16 f8 d16 r16 d'8 w16 r16 d'8 w16 r16 a8 w16 r16 a8 w16 r16 g#8 f16 r16 g#8 a4 w16 r16 c'8 w16 
+  pattern pat_5_2_0 with Blank on triangle
+    absolute
+    d'8 w16 r16 d'8 w16 r16 a8 w16 r16 a8 w16 r16 g#8 w16 r16 g#8 g16 r16 g8 w16 r16 f8 w16 r16 d'8 w16 r16 d'8 w16 r16 a8 w16 r16 a8 w16 r16 g#8 w16 r16 g#8 g16 r16 g16 r16 g16 r16 f8 w16 r16 
+  pattern pat_5_2_1 with Blank on triangle
+    absolute
+    d'8 w16 r16 d'8 w16 r16 a8 w16 r16 a8 w16 r16 g#8 w16 r16 g#8 g16 r16 g8 w16 r16 f8 w16 r16 d'8 w16 r16 d'8 w16 r16 a8 w16 r16 a8 w16 r16 g#8 w16 r16 g#8 g16 r16 g16 r16 g16 r16 f8 w16 r16 
+  pattern pat_5_2_3 with Blank on triangle
+    absolute
+    d'8 w16 r16 d'8 w16 r16 a8 w16 r16 a8 w16 r16 g#8 w16 r16 g#8 g16 r16 g8 w16 r16 f8 w16 r16 d'8 w16 r16 d'8 w16 r16 a8 w16 r16 a8 w16 r16 d'8 w16 r16 a8 c'16 r16 c'8 w16 r16 d'8 w16 r16 
+  pattern pat_5_2_4 with Blank on triangle
+    absolute
+    d'8 w16 r16 d'8 w16 r16 a8 w16 r16 a8 w16 r16 g#8 w16 r16 g#8 g16 r16 g8 w16 r16 f8 w16 r16 d'8 w16 r16 d'8 w16 r16 a8 w16 r16 a8 w16 r16 d'8 w16 r16 a8 c'16 r16 c'16 r16 c'16 r16 d'8 w16 r16 
+  pattern pat_5_2_6 with Blank on triangle
+    absolute
+    d'8 w16 r16 d'8 w16 r16 a8 w16 r16 a8 w16 r16 g#8 w16 r16 g#8 g16 r16 g8 w16 r16 f8 w16 r16 d'8 w16 r16 d'8 w16 r16 a8 w16 r16 a8 w16 r16 d'8 d'16 r16 a8 c'16 r16 c'16 r16 c'16 r16 d'8 d'16 r16 
+  pattern pat_5_2_7 with Blank on triangle
+    absolute
+    d''8 c''16 r16 d''8 c''16 r16 a'8 g'16 r16 a'8 g'16 r16 g#'8 f'16 r16 g#'8 g'4 w16 r16 f'8 d'16 r16 d''8 w16 r16 d''8 w16 r16 a'8 w16 r16 a'8 w16 r16 g#'8 f'16 r16 g#'8 a'4 w16 r16 c''4 
+  pattern pat_5_2_8 with Blank on triangle
+    absolute
+    d''8 c''16 r16 d''8 c''16 r16 a'8 g'16 r16 a'8 g'16 r16 g#'8 f'16 r16 g#'8 g'4 w16 r16 f'8 d'16 r16 d''8 w16 r16 d''8 w16 r16 a'8 w16 r16 a'8 w16 r16 g#'8 f'16 r16 g#'8 a'4 w16 r16 c''4 
+  pattern pat_5_3_0
+    autodrum6_8 autodrum7_8 autodrum1_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum1_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum1_8 autodrum7_8 autodrum9_8 autodrum1_8 autodrum6_8 autodrum10_8 autodrum1_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum1_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum1_8 autodrum7_8 autodrum6_8 autodrum1_8 autodrum9_8 autodrum1_8 
+  pattern pat_5_3_1
+    autodrum17_1 w1 w1 w1 
+  pattern pat_5_3_2
+    autodrum6_4 autodrum1_4 autodrum6_4 autodrum1_4 autodrum6_4 autodrum1_4 w8 autodrum1_8 autodrum6_4 autodrum1_4 autodrum6_4 autodrum6_4 autodrum1_4 autodrum6_4 autodrum1_4 autodrum6_8 autodrum1_4 autodrum1_8 
+  pattern pat_5_3_3
+    autodrum17_2 autodrum6_2 autodrum6_2 autodrum6_2 autodrum6_2 autodrum6_2 autodrum6_8 autodrum6_4 w8 autodrum6_4 autodrum10_4 
+  pattern pat_5_3_4
+    autodrum6_8 autodrum7_8 autodrum1_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum1_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum1_8 autodrum7_8 autodrum7_8 autodrum1_8 autodrum6_8 autodrum10_8 autodrum1_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum1_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum1_8 autodrum7_8 autodrum6_8 autodrum1_8 autodrum10_8 autodrum1_8 
+  pattern pat_5_3_6
+    autodrum6_8 autodrum7_8 autodrum1_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum1_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum1_8 autodrum7_8 autodrum9_8 autodrum1_8 autodrum6_8 autodrum10_8 autodrum1_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum1_8 autodrum7_8 autodrum9_8 autodrum6_8 autodrum9_8 autodrum6_8 autodrum9_8 autodrum9_8 autodrum9_8 autodrum9_8 
+  at 1
+  play pat_5_0_1
+  play pat_5_3_2
+  at 5
+  play pat_5_0_1
+  play pat_5_3_2
+  at 9
+  segno
+  play pat_5_0_1
+  play pat_5_1_0
+  play pat_5_2_0
+  play pat_5_3_4
+  at 13
+  play pat_5_0_1
+  play pat_5_1_3
+  play pat_5_2_3
+  play pat_5_3_4
+  at 17
+  play pat_5_0_2
+  play pat_5_1_0
+  play pat_5_2_0
+  play pat_5_3_0
+  at 21
+  play pat_5_0_4
+  play pat_5_1_3
+  play pat_5_2_4
+  play pat_5_3_0
+  at 25
+  play pat_5_0_2
+  play pat_5_1_5
+  play pat_5_2_0
+  play pat_5_3_0
+  at 29
+  play pat_5_0_4
+  play pat_5_1_6
+  play pat_5_2_4
+  play pat_5_3_0
+  at 33
+  play pat_5_0_6
+  play pat_5_1_7
+  play pat_5_2_0
+  play pat_5_3_0
+  at 37
+  play pat_5_0_7
+  play pat_5_1_8
+  play pat_5_2_6
+  play pat_5_3_6
+  at 41
+  play pat_5_0_1
+  play pat_5_1_9
+  play pat_5_2_7
+  play pat_5_3_1
+  at 45
+  play pat_5_0_1
+  play pat_5_1_10
+  play pat_5_2_7
+  play pat_5_3_3
+  at 49
+  dal segno
+song World_5
+  time 4/4
+  scale 16
+  tempo 225.00
+
+  pattern pat_6_0_0 with Harp on pulse1
+    absolute
+    mf MP1 a4 e'4 c#'4 g#'4 a4 e'4 c#'4 f#'4 a4 e'4 c#'4 g#'4 a4 e'4 c#'4 f#'4 
+  pattern pat_6_0_1 with Harp on pulse1
+    absolute
+    a4 e'4 c#'4 g#'4 a4 e'4 c#'4 f#'4 a4 e'4 c#'4 g#'4 a4 e'4 c#'4 c#'4 
+  pattern pat_6_0_2 with Harp on pulse1
+    absolute
+    f4 c'4 a4 e'4 f4 c'4 a4 d'4 f4 c'4 a4 e'4 f4 c'4 a4 a4 
+  pattern pat_6_0_3 with Harp on pulse1
+    absolute
+    g4 d'4 b4 f#'4 g4 d'4 b4 e'4 g4 d'4 b4 f#'4 g4 d'4 b4 b4 
+  pattern pat_6_0_10 with Harp on pulse1
+    absolute
+    a4 e'4 c#'4 g#'4 a4 e'4 c#'4 f#'4 a4 e'4 c#'4 g#'4 c#''4 g#'4 c#'4 f#4 
+  pattern pat_6_0_11 with Banjo on pulse1
+    absolute
+    mf MP0 a16 mp a16 mf c#'16 mp a16 mf e'16 mp c#'16 mf a16 mp e'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf g#'16 mp e'16 mf a'16 mp g#'16 mf a16 mp a'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf a16 mp e'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf f#'16 mp e'16 mf c#'16 mp f#'16 mf a16 mp c#'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf a16 mp e'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf g#'16 mp e'16 mf a'16 mp g#'16 mf a16 mp a'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf a16 mp e'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf c#'16 mp e'16 mf a16 mp c#'16 
+  pattern pat_6_0_12 with Banjo on pulse1
+    absolute
+    mf f16 mp f16 mf a16 mp f16 mf c'16 mp a16 mf f16 mp c'16 mf a16 mp f16 mf c'16 mp a16 mf e'16 mp c'16 mf f'16 mp e'16 mf f16 mp f'16 mf a16 mp f16 mf c'16 mp a16 mf f16 mp c'16 mf a16 mp f16 mf c'16 mp a16 mf d'16 mp c'16 mf a16 mp d'16 mf f16 mp a16 mf a16 mp f16 mf c'16 mp a16 mf f16 mp c'16 mf a16 mp f16 mf c'16 mp a16 mf e'16 mp c'16 mf f'16 mp e'16 mf f16 mp f'16 mf a16 mp f16 mf c'16 mp a16 mf f16 mp c'16 mf a16 mp f16 mf c'16 mp a16 mf a16 mp c'16 mf f16 mp a16 
+  pattern pat_6_0_13 with Banjo on pulse1
+    absolute
+    mf f16 mp f16 mf a16 mp f16 mf c'16 mp a16 mf f16 mp c'16 mf a16 mp f16 mf c'16 mp a16 mf e'16 mp c'16 mf f'16 mp e'16 mf f16 mp f'16 mf a16 mp f16 mf c'16 mp a16 mf f16 mp c'16 mf a16 mp f16 mf c'16 mp a16 mf d'16 mp c'16 mf a16 mp d'16 mf g16 mp b16 mf b16 mp g16 mf d'16 mp b16 mf g16 mp d'16 mf b16 mp g16 mf d'16 mp b16 mf f#'16 mp d'16 mf g'16 mp f#'16 mf a16 mp a'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf a16 mp e'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf c#'16 mp e'16 mf a16 mp c#'16 
+  pattern pat_6_0_14 with Distant_Square_Echo on pulse1
+    absolute
+    r16 mf a16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 g#'16 r16 a'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 f#'16 r16 c#'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 g#'16 r16 a'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 c#'16 
+  pattern pat_6_0_15 with Distant_Square_Echo on pulse1
+    absolute
+    r16 c'16 r16 c'16 r16 e'16 r16 g'16 r16 c'16 r16 e'16 r16 g'16 r16 b'16 r16 c''16 r16 c'16 r16 e'16 r16 g'16 r16 c'16 r16 e'16 r16 g'16 r16 a'16 r16 e'16 r16 c'16 r16 e'16 r16 g'16 r16 c'16 r16 e'16 r16 g'16 r16 b'16 r16 c''16 r16 c'16 r16 e'16 r16 g'16 r16 c'16 r16 e'16 r16 g'16 r16 e'16 
+  pattern pat_6_0_16 with Distant_Square_Echo on pulse1
+    absolute
+    r16 a16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 g#'16 r16 a'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 f#'16 r16 g16 r16 g16 r16 b16 r16 d'16 r16 g16 r16 b16 r16 d'16 r16 f#'16 r16 f16 r16 f16 r16 a16 r16 c'16 @Harp mp a8 c'8 mf e'8 ff f8 
+  pattern pat_6_1_0 with Harp on pulse2
+    absolute
+    r8 mf MP1 c#'4 a4 e'4 a'4 c#'4 a4 e'4 c#'4 c#'4 a4 e'4 a'4 c#'4 a4 e'4 c#'8 
+  pattern pat_6_1_1 with Harp on pulse2
+    absolute
+    w8 c#'4 a4 e'4 a'4 c#'4 a4 e'4 c#'4 c#'4 a4 e'4 a'4 c#'4 a4 e'4 a8 
+  pattern pat_6_1_2 with Harp on pulse2
+    absolute
+    w8 a4 f4 c'4 f'4 a4 f4 c'4 a4 a4 f4 c'4 f'4 a4 f4 c'4 f8 
+  pattern pat_6_1_3 with Harp on pulse2
+    absolute
+    w8 b4 g4 d'4 g'4 b4 g4 d'4 b4 b4 g4 d'4 g'4 b4 g4 d'4 g8 
+  pattern pat_6_1_10 with Harp on pulse2
+    absolute
+    w8 c#'4 a4 e'4 a'4 c#'4 a4 e'4 c#'4 c#'4 a4 e'4 a'4 a'4 e'4 a4 e8 
+  pattern pat_6_1_11 with Miniboss_Flute on pulse2
+    absolute
+    ff MP1 f#'4 w8 e'4 w8 c#'4 a4 w8 b4 w8 a4 f#'4 w8 e'4 w8 c#'4 a4 a4 b4 c#'4 
+  pattern pat_6_1_12 with Miniboss_Flute on pulse2
+    absolute
+    d'4 w8 c'4 w8 a4 d'4 w8 c'4 w8 a4 d'4 w8 c'4 w8 a4 d'4 a4 c'4 d'4 
+  pattern pat_6_1_13 with Miniboss_Flute on pulse2
+    absolute
+    f#'4 c#'8 e'4 w8 c#'8 b8 a4 a4 b4 a4 f#'4 w8 e'4 w8 c#'4 b8 a8 c#'4 b4 c#'4 
+  pattern pat_6_1_14 with Miniboss_Flute on pulse2
+    absolute
+    d'4 w8 c'4 w8 a4 d'4 w8 c'4 w8 a4 e'4 w8 d'4 w8 b4 a8 c#'8 e'4 c#'4 a'4 
+  pattern pat_6_1_15 with Distant_Square_Echo on pulse2
+    absolute
+    r16 mp MP0 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 g#'16 r16 a'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 f#'16 r16 c#'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 g#'16 r16 a'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 c#'16 r16 a16 
+  pattern pat_6_1_16 with Super_Major_Arp on pulse2
+    absolute
+    mp c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 mf c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 mp c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 
+  pattern pat_6_1_17 with Super_Major_Arp on pulse2
+    absolute
+    mp a8 a8 a8 a8 mf a8 a8 mp a8 a8 a8 a8 a8 a8 mf a8 a8 mp a8 a8 g8 g8 g8 g8 mf g8 g8 mp g8 g8 f8 f8 f8 f8 mf f8 f8 mp f8 f8 
+  pattern pat_6_2_1 with Triangle_Choir on triangle
+    absolute
+    a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 g#'8 g'8 f#'8 
+  pattern pat_6_2_2 with Triangle_Choir on triangle
+    absolute
+    f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 f'8 
+  pattern pat_6_2_3 with Triangle_Choir on triangle
+    absolute
+    g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 g'8 
+  pattern pat_6_2_4 with Triangle_Choir on triangle
+    absolute
+    a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 e'8 c#'8 
+  pattern pat_6_2_5 with Blank on triangle
+    absolute
+    a4 a''16 r16 a''16 r16 e4 e''16 r16 e''16 r16 c#4 e''16 r16 a''16 r16 a,4 a'16 r16 a'16 r4 w16 a4 r4 e4 r4 c#4 c#8 a8 e8 c#8 
+  pattern pat_6_2_7 with Blank on triangle
+    absolute
+    a4 a''16 r16 a''16 r16 e4 e''16 r16 e''16 r16 c#4 e''16 r16 a''16 r16 a,4 a'16 r16 a'16 r4 w16 a4 r4 e4 r4 c#4 e8 a8 e8 c#8 
+  pattern pat_6_2_8 with Blank on triangle
+    absolute
+    f4 f''16 r16 f''16 r16 c4 c''16 r16 c''16 r16 a,8 f''16 r16 f''16 r16 f''16 r16 f,4 f'16 r16 f'16 r16 f4 f''16 r16 f''16 r16 c4 c''16 r16 c''16 r16 a,8 f''16 r16 f''16 r16 f''16 r16 f,4 f'16 r16 f'16 r16 
+  pattern pat_6_2_9 with Blank on triangle
+    absolute
+    g4 g''16 r16 g''16 r16 d4 d''16 r16 d''16 r16 b,8 g''16 r16 g''16 r16 g''16 r16 g,4 g'16 r16 g'16 r16 @Triangle_Short g,16 b,16 d16 g16 b,16 d16 g16 b16 d16 g16 b16 d'16 g'16 b'16 d''16 g''16 b'16 d''16 g''16 b''16 d''16 g''16 b''16 d'''16 g'''16 d'''16 b''16 g''16 d'''16 b''16 g''16 d''16 
+  pattern pat_6_2_12 with Blank on triangle
+    absolute
+    f4 f''16 r16 f''16 r16 c4 c''16 r16 c''16 r16 a,4 c''16 r16 f''16 r16 f,4 f'16 r16 f'16 r4 w16 f4 r4 c4 r4 a,4 c8 f8 c8 a,8 
+  pattern pat_6_2_13 with Blank on triangle
+    absolute
+    f4 f''16 r16 f''16 r16 c4 c''16 r16 c''16 r16 a,4 c''16 r16 f''16 r16 f,4 f'16 r16 f'16 r4 w16 g4 r4 d4 r4 c#4 e8 a8 e8 c#8 
+  pattern pat_6_2_14 with Blank on triangle
+    absolute
+    a'16 r16 c#''16 r16 e''16 r16 a'16 r16 c#''16 r16 e''16 r16 g#''16 r16 a''16 r16 a'16 r16 c#''16 r16 e''16 r16 a'16 r16 c#''16 r16 e''16 r16 f#''16 r16 c#''16 r16 a'16 r16 c#''16 r16 e''16 r16 a'16 r16 c#''16 r16 e''16 r16 g#''16 r16 a''16 r16 a'16 r16 c#''16 r16 e''16 r16 a'16 r16 c#''16 r16 e''16 r16 c#''16 r16 a'16 r16 
+  pattern pat_6_2_15 with Blank on triangle
+    absolute
+    c''16 r16 e''16 r16 g''16 r16 c''16 r16 e''16 r16 g''16 r16 b''16 r16 c'''16 r16 c''16 r16 e''16 r16 g''16 r16 c''16 r16 e''16 r16 g''16 r16 a''16 r16 e''16 r16 c''16 r16 e''16 r16 g''16 r16 c''16 r16 e''16 r16 g''16 r16 b''16 r16 c'''16 r16 c''16 r16 e''16 r16 g''16 r16 c''16 r16 e''16 r16 g''16 r16 e''16 r16 c''16 r16 
+  pattern pat_6_2_16 with Blank on triangle
+    absolute
+    a'16 r16 c#''16 r16 e''16 r16 a'16 r16 c#''16 r16 e''16 r16 g#''16 r16 a''16 r16 a'16 r16 c#''16 r16 e''16 r16 a'16 r16 c#''16 r16 e''16 r16 f#''16 r16 c#''16 r16 g'16 r16 b'16 r16 d''16 r16 g'16 r16 b'16 r16 d''16 r16 f#''16 r16 g''16 r16 f'16 r16 a'16 r16 c''16 r16 f'16 r16 a'16 r16 c''16 r16 e''16 r16 f''16 r16 
+  pattern pat_6_3_1
+    autodrum14_1 w1 w1 w1 
+  pattern pat_6_3_5
+    autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum6_8 autodrum7_8 
+  pattern pat_6_3_9
+    autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum7_8 autodrum7_8 autodrum10_4 autodrum7_8 autodrum7_8 autodrum10_4 autodrum7_8 autodrum7_8 autodrum10_4 autodrum14_4 autodrum10_8 autodrum7_8 
+  pattern pat_6_3_11
+    autodrum17_4 w8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum6_8 autodrum7_8 
+  pattern pat_6_3_15
+    autodrum17_1 w1 autodrum17_1 autodrum17_1 
+  at 1
+  play pat_6_0_0
+  play pat_6_1_0
+  stop triangle drum
+  at 5
+  play pat_6_0_1
+  play pat_6_1_1
+  play pat_6_2_1
+  play pat_6_3_1
+  at 9
+  play pat_6_0_2
+  play pat_6_1_2
+  play pat_6_2_2
+  stop drum
+  at 13
+  play pat_6_0_3
+  play pat_6_1_3
+  play pat_6_2_3
+  at 17
+  play pat_6_0_0
+  play pat_6_1_0
+  play pat_6_2_4
+  at 21
+  play pat_6_0_1
+  play pat_6_1_1
+  play pat_6_2_5
+  play pat_6_3_5
+  at 25
+  play pat_6_0_1
+  play pat_6_1_1
+  play pat_6_2_7
+  play pat_6_3_5
+  at 29
+  play pat_6_0_2
+  play pat_6_1_2
+  play pat_6_2_8
+  play pat_6_3_5
+  at 33
+  play pat_6_0_3
+  play pat_6_1_3
+  play pat_6_2_9
+  play pat_6_3_9
+  at 37
+  play pat_6_0_10
+  play pat_6_1_10
+  play pat_6_2_5
+  play pat_6_3_5
+  at 41
+  play pat_6_0_11
+  play pat_6_1_11
+  play pat_6_2_7
+  play pat_6_3_11
+  at 45
+  play pat_6_0_12
+  play pat_6_1_12
+  play pat_6_2_12
+  play pat_6_3_11
+  at 49
+  play pat_6_0_11
+  play pat_6_1_13
+  play pat_6_2_7
+  play pat_6_3_11
+  at 53
+  play pat_6_0_13
+  play pat_6_1_14
+  play pat_6_2_13
+  play pat_6_3_11
+  at 57
+  play pat_6_0_14
+  play pat_6_1_15
+  play pat_6_2_14
+  play pat_6_3_1
+  at 61
+  play pat_6_0_15
+  play pat_6_1_16
+  play pat_6_2_15
+  play pat_6_3_1
+  at 65
+  play pat_6_0_16
+  play pat_6_1_17
+  play pat_6_2_16
+  play pat_6_3_15
+  at 69
+  dal segno
+song Minor_Boss
+  time 4/4
+  scale 16
+  tempo 225.00
+
+  pattern pat_7_0_0 with Distant_Square_Echo on pulse1
+    absolute
+    mp w8 ff e,4 e8 mp w8 ff e,8 e8 mp w8 ff e,8 e8 mp w8 ff e,8 e8 e,8 mp w8 ff e8 mp w8 ff c,4 c8 mp w8 ff c,8 c8 mp w8 ff c,8 c8 mp w8 ff c,8 c8 c,4 c8 
+  pattern pat_7_0_1 with Distant_Square_Echo on pulse1
+    absolute
+    mp w8 ff d,4 d8 mp w8 ff d,8 d8 mp w8 ff d,8 d8 mp w8 ff d,8 d8 d,8 mp w8 ff d8 mp w8 ff a,,4 a,8 mp w8 ff a,,8 a,8 mp w8 ff a,,8 a,8 mp w8 ff a,,8 a,8 a,,4 a,8 
+  pattern pat_7_0_2 with Miniboss_Flute on pulse1
+    absolute
+    ff MP1 e'4 w8 g'4 w8 d'4 e'4 w8 g'4 w8 d'4 e'4 w8 g'4 w8 d'4 e'4 e'4 g'4 d'4 
+  pattern pat_7_0_3 with Miniboss_Flute on pulse1
+    absolute
+    ff MP1 d'4 w8 g'4 w8 c'4 d'4 w8 g'4 w8 c'4 d'4 w8 e'4 w8 d'4 e'4 e'4 d'4 c'8 a8 
+  pattern pat_7_0_4 with Miniboss_Flute on pulse1
+    absolute
+    ff MP1 e'4 @Tribal_Hit e'8 @Miniboss_Flute g'4 w8 d'8 @Tribal_Hit e'8 @Miniboss_Flute e'4 @Tribal_Hit e'8 @Miniboss_Flute g'4 w8 d'4 e'4 @Tribal_Hit c'8 @Miniboss_Flute g'4 w8 d'8 @Tribal_Hit c'8 @Miniboss_Flute e'4 @Tribal_Hit c'4 @Miniboss_Flute g'4 d'4 
+  pattern pat_7_0_5 with Miniboss_Flute on pulse1
+    absolute
+    ff MP1 d'4 @Tribal_Hit d'8 @Miniboss_Flute g'4 w8 c'8 @Tribal_Hit d'8 @Miniboss_Flute d'4 @Tribal_Hit d'8 @Miniboss_Flute c'4 w8 a4 c'4 @Tribal_Hit c'8 @Miniboss_Flute a4 w8 c'8 @Tribal_Hit a8 @Miniboss_Flute e'8 @Tribal_Hit e'8 @Miniboss_Flute d'4 @Tribal_Hit c'4 a4 
+  pattern pat_7_0_6 with Minor_Boss_Rhythm_Guitar on pulse1
+    absolute
+    mf MP0 a,8 a,8 a8 a,8 a,8 a8 a,8 a8 a,8 a,8 a8 a,8 a,8 a,8 a8 a,8 MP0 f,8 f,8 f8 f,8 f,8 f8 f,8 f8 f,8 f,8 f8 f,8 f,8 f,8 f8 f,8 
+  pattern pat_7_0_7 with Minor_Boss_Rhythm_Guitar on pulse1
+    absolute
+    mf MP0 g,8 g,8 g8 g,8 g,8 g8 g,8 g8 g,8 g,8 g8 g,8 g,8 g,8 g8 g,8 MP0 e,8 e,8 e8 e,8 e,8 e8 e,8 e8 e,8 e,8 e8 e,8 e,8 e,8 e8 e,8 
+  pattern pat_7_0_8 with Minor_Boss_Rhythm_Guitar on pulse1
+    absolute
+    mf MP0 a,8 a,8 a8 a,8 a,8 a,8 g8 a8 a,8 a,8 a8 a,8 a,8 a,8 c'8 a,8 MP0 f,8 f,8 f8 f,8 f,8 f,8 e8 f8 f,8 f,8 f8 f,8 f,8 f,8 d8 f,8 
+  pattern pat_7_0_9 with Minor_Boss_Rhythm_Guitar on pulse1
+    absolute
+    mf MP0 g,8 g,8 g8 g,8 g,8 g,8 f8 g8 g,8 g,8 g8 g,8 g,8 g,8 a8 g,8 MP0 g,8 g,8 f8 g8 g,8 g,8 f8 g8 e,8 e,8 g8 g,8 g,8 g,8 g8 e8 
+  pattern pat_7_0_10 with Distant_Square_Echo on pulse1
+    absolute
+    mp w8 ff a,4 a8 mp w8 ff a,8 a8 mp w8 ff a,8 a8 mp w8 ff a,8 a8 a,8 mp w8 ff a8 mp w8 ff a,,4 a,8 mp w8 ff a,,8 a,8 mp w8 ff a,,8 a,8 mp w8 ff a,,8 a,8 a,,8 mp w8 ff a,8 
+  pattern pat_7_1_0 with Boss_Arp_Hit on pulse2
+    absolute
+    w2 EN47 EN47 c'1 EN47 EN47 c'1 EN37 EN37 a1 EN37 EN37 a2 
+  pattern pat_7_1_1 with Boss_Arp_Hit on pulse2
+    absolute
+    w2 EN47 EN47 g1 EN47 EN47 g1 EN37 EN37 a1 EN59 EN59 g2 
+  pattern pat_7_1_2 with Pizzicato_Strings on pulse2
+    absolute
+    EN00 EN00 c'8 e'8 g'8 e'8 @Boss_Arp_Hit EN47 EN47 c'4 @Pizzicato_Strings EN00 EN00 g'8 e'8 c'8 e'8 g'8 e'8 @Boss_Arp_Hit EN47 EN47 c'4 @Pizzicato_Strings EN00 EN00 g'8 d'8 a8 c'8 e'8 c'8 @Boss_Arp_Hit EN37 EN37 a4 @Pizzicato_Strings EN00 EN00 e'8 c'8 a8 c'8 e'8 c'8 @Boss_Arp_Hit EN37 EN37 a4 @Pizzicato_Strings EN00 EN00 c'8 c'8 
+  pattern pat_7_1_3 with Pizzicato_Strings on pulse2
+    absolute
+    d'8 g'8 d'8 c'8 @Boss_Arp_Hit EN47 EN47 g4 @Pizzicato_Strings EN00 EN00 g'8 c'8 d'8 g'8 d'8 c'8 @Boss_Arp_Hit EN47 EN47 g4 @Pizzicato_Strings EN00 EN00 g'8 c'8 a8 c'8 e'8 a'8 @Boss_Arp_Hit EN37 EN37 a4 @Pizzicato_Strings EN00 EN00 a'8 e'8 a8 c'8 a8 g8 @Boss_Arp_Hit EN59 EN59 g4 @Pizzicato_Strings EN00 EN00 g'8 a'8 
+  pattern pat_7_1_6 with Horn on pulse2
+    absolute
+    mf MP2 MP2 e'2 w4 w1 mp e'4 mf c'2 w8 w1 mp w8 mf a8 mp w8 
+  pattern pat_7_1_7 with Horn on pulse2
+    absolute
+    mf MP2 MP2 d'2 w4 w1 mp e'4 mf c'1 a2 g8 mp w8 mf a8 mp w8 
+  pattern pat_7_1_9 with Horn on pulse2
+    absolute
+    mf MP2 MP2 d'2 w4 w1 mp d'4 mf g'2 w8 mp g'8 mf e'8 mp w8 mf g'8 mp w8 mf e'8 g'4 mp w8 mf e'8 mp w8 
+  pattern pat_7_1_10 with Horn on pulse2
+    absolute
+    mf a'4 mp w4 @Boss_Arp_Hit ff EN37 EN37 a1 EN37 EN37 a1 EN37 EN37 a1 EN59 EN59 g2 
+  pattern pat_7_2_0 with Blank on triangle
+    absolute
+    e4 @Boss_Bass e'8 r8 e8 e'8 r8 e8 e'8 r8 e8 e'8 e4 e'8 r8 @Blank c4 @Boss_Bass c'8 r8 @Blank c8 @Boss_Bass c'8 r8 c8 @Blank c'8 r8 @Boss_Bass c8 c'8 @Blank c4 @Boss_Bass c'8 r8 
+  pattern pat_7_2_1 with Blank on triangle
+    absolute
+    d4 @Boss_Bass d'8 r8 @Blank d8 @Boss_Bass d'8 r8 d8 @Blank d'8 r8 @Boss_Bass d8 d'8 @Blank d4 @Boss_Bass d'8 r8 @Blank a,4 @Boss_Bass a8 r8 @Blank a,8 @Boss_Bass a8 r8 a,8 @Blank a8 r8 a,8 @Boss_Bass a8 @Blank a,4 @Boss_Bass a8 r8 
+  pattern pat_7_2_2 with Blank on triangle
+    absolute
+    e4 @Boss_Bass e'8 r8 @Blank e8 @Boss_Bass e'8 r8 e8 @Blank e'8 r8 @Boss_Bass e8 e'8 @Blank e4 @Boss_Bass e'8 r8 @Blank c4 @Boss_Bass c'8 r8 @Blank c8 @Boss_Bass c'8 r8 c8 @Blank c'8 r8 @Boss_Bass c8 c'8 @Blank c4 @Boss_Bass c'8 r8 
+  pattern pat_7_2_3 with Blank on triangle
+    absolute
+    d4 @Boss_Bass d'8 r8 @Blank d8 @Boss_Bass d'8 r8 d8 @Blank d'8 r8 @Boss_Bass d8 d'8 @Blank d4 @Boss_Bass d'8 r8 @Blank a,4 @Boss_Bass a8 r8 @Blank a,8 @Boss_Bass a8 r8 a,8 @Blank a8 r8 @Boss_Bass a,8 a8 @Blank a,4 @Boss_Bass a8 r8 
+  pattern pat_7_2_6 with Blank on triangle
+    absolute
+    a,4 @Boss_Bass a8 r8 @Blank a,8 @Boss_Bass a8 r8 a,8 @Blank a8 r8 @Boss_Bass a,8 a8 @Blank a,4 @Boss_Bass a8 r8 @Blank c4 @Boss_Bass c'8 r8 @Blank c8 @Boss_Bass c'8 r8 c8 @Blank c'8 r8 @Boss_Bass c8 c'8 @Blank c4 @Boss_Bass c'8 r8 
+  pattern pat_7_2_7 with Blank on triangle
+    absolute
+    d4 @Boss_Bass d'8 r8 @Blank d8 @Boss_Bass d'8 r8 d8 @Blank d'8 r8 @Boss_Bass d8 d'8 @Blank d4 @Boss_Bass d'8 r8 @Blank e4 @Boss_Bass e'8 r8 @Blank e8 @Boss_Bass e'8 r8 e8 @Blank e'8 r8 @Boss_Bass e8 e'8 @Blank e4 @Boss_Bass e'8 r8 
+  pattern pat_7_2_9 with Blank on triangle
+    absolute
+    d4 @Boss_Bass d'8 r8 @Blank d8 @Boss_Bass d'8 r8 d8 @Blank d'8 r8 @Boss_Bass d8 d'8 @Blank d4 @Boss_Bass d'8 r8 @Blank e4 @Boss_Bass e'8 r8 @Blank e8 @Boss_Bass e'8 r8 e8 @Blank g4 @Boss_Bass g'8 r8 @Blank g8 @Boss_Bass g'8 r8 g8 
+  pattern pat_7_2_10 with Blank on triangle
+    absolute
+    a4 @Boss_Bass a'8 r8 @Blank a8 @Boss_Bass a'8 r8 a8 @Blank a'8 r8 @Boss_Bass a8 a'8 @Blank a4 @Boss_Bass a'8 r8 @Blank a,4 @Boss_Bass a8 r8 @Blank a,8 @Boss_Bass a8 r8 a,8 @Blank a8 r8 a,8 @Boss_Bass a8 @Blank a,4 @Boss_Bass a8 r8 
+  pattern pat_7_3_0
+    autodrum17_1 w1 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 
+  pattern pat_7_3_1
+    autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum9_8 
+  pattern pat_7_3_2
+    autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum10_8 autodrum9_8 
+  pattern pat_7_3_4
+    autodrum17_2 autodrum9_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum10_8 autodrum9_8 
+  pattern pat_7_3_6
+    autodrum17_2 autodrum9_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum10_8 autodrum7_8 
+  pattern pat_7_3_7
+    autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum10_8 autodrum7_8 
+  pattern pat_7_3_10
+    autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum9_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum9_8 
+  at 1
+  play pat_7_0_0
+  play pat_7_1_0
+  play pat_7_2_0
+  play pat_7_3_0
+  at 5
+  segno
+  play pat_7_0_1
+  play pat_7_1_1
+  play pat_7_2_1
+  play pat_7_3_1
+  at 9
+  play pat_7_0_2
+  play pat_7_1_2
+  play pat_7_2_2
+  play pat_7_3_2
+  at 13
+  play pat_7_0_3
+  play pat_7_1_3
+  play pat_7_2_3
+  play pat_7_3_2
+  at 17
+  play pat_7_0_4
+  play pat_7_1_2
+  play pat_7_2_2
+  play pat_7_3_4
+  at 21
+  play pat_7_0_5
+  play pat_7_1_3
+  play pat_7_2_3
+  play pat_7_3_2
+  at 25
+  play pat_7_0_6
+  play pat_7_1_6
+  play pat_7_2_6
+  play pat_7_3_6
+  at 29
+  play pat_7_0_7
+  play pat_7_1_7
+  play pat_7_2_7
+  play pat_7_3_7
+  at 33
+  play pat_7_0_8
+  play pat_7_1_6
+  play pat_7_2_6
+  play pat_7_3_6
+  at 37
+  play pat_7_0_9
+  play pat_7_1_9
+  play pat_7_2_9
+  play pat_7_3_6
+  at 41
+  play pat_7_0_10
+  play pat_7_1_10
+  play pat_7_2_10
+  play pat_7_3_10
+  at 45
+  dal segno
+song Major_Boss
+  time 4/4
+  scale 16
+  tempo 225.00
+
+  pattern pat_8_0_0 with Distant_Square_Echo on pulse1
+    absolute
+    w8 w16 mp c#,4 c#8 r8 c#,8 c#8 r8 c#,8 c#8 r8 c#,8 c#8 c#,4 c#8 r8 c#,4 c#8 r8 c#,8 c#8 r8 c#,8 c#8 r8 c#,8 c#8 c#,4 b,16 
+  pattern pat_8_0_1 with Boss_Arp_Hit on pulse1
+    absolute
+    mf EN7c c#'16 r16 c#'16 r16 c#'4 c#'16 r16 c#'16 r16 c#'4 c#'4 b8 c#'4 b8 c#'4 c#'16 r16 c#'16 r16 c#'4 c#'16 r16 c#'16 r16 c#'4 e'4 c#'8 e'4 b8 c#'4 
+  pattern pat_8_0_2 with Boss_Arp_Hit on pulse1
+    absolute
+    e'16 r16 e'16 r16 e'4 e'16 r16 e'16 r16 e'4 f#'4 e'8 f#'4 e'8 f#'4 g#'16 r16 g#'16 r16 g#'4 g#'16 r16 f#'16 r16 g#'4 b'4 g#'8 b'4 b'8 c#''4 
+  pattern pat_8_0_3 with Pizzicato_Strings on pulse1
+    absolute
+    ff EN00 c#'''8 g#'''8 c#'''8 f#'''8 c#'''8 e'''8 c#'''8 b''8 c#'''8 b''8 e'''8 c#'''8 f#'''8 e'''8 c#'''8 e'''8 c#'''8 g#'''8 c#'''8 f#'''8 c#'''8 e'''8 c#'''8 b''8 g#'''8 f#'''8 e'''8 f#'''8 g#'''8 f#'''8 e'''8 b''8 
+  pattern pat_8_0_4 with Pizzicato_Strings on pulse1
+    absolute
+    c#'''8 g#'''8 c#'''8 f#'''8 c#'''8 e'''8 c#'''8 b''8 c#'''8 b''8 e'''8 c#'''8 f#'''8 e'''8 c#'''8 e'''8 c#'''8 g#'''8 c#'''8 f#'''8 c#'''8 e'''8 c#'''8 b''8 g#'''8 f#'''8 e'''8 f#'''8 g#'''8 f#'''8 g#'''8 b'''8 
+  pattern pat_8_0_5 with Horn on pulse1
+    absolute
+    mp MP2 b1 w1 g#1 w1 
+  pattern pat_8_0_6 with Horn on pulse1
+    absolute
+    mp f#2 w4 w1 b4 g#1 w1 
+  pattern pat_8_0_7 with Horn on pulse1
+    absolute
+    mp MP2 c#'1 w1 e'2 w4 c#'4 e'4 c#'4 a'8 c#''8 b'8 g#'8 
+  pattern pat_8_0_8 with Horn on pulse1
+    absolute
+    c#''2 mp w2 r16 @Distant_Square_Echo MP0 c#,8 c#8 r8 c#,8 c#8 c#,4 c#8 r8 c#,4 c#8 r8 c#,8 c#8 r8 c#,8 c#8 r8 c#,8 c#8 c#,4 b,16 
+  pattern pat_8_1_0 with Distant_Square_Echo on pulse2
+    absolute
+    w16 ff EN00 MP2 c#,4 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 c#8 c#,4 c#8 mp w8 ff c#,4 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 c#8 c#,4 b,8 w16 
+  pattern pat_8_1_2 with Distant_Square_Echo on pulse2
+    absolute
+    w16 ff c#,4 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 c#8 c#,4 c#8 mp w8 ff c#,4 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 b,8 mp w8 ff g#,8 b,4 w8 c#8 w16 
+  pattern pat_8_1_4 with Horn on pulse2
+    absolute
+    mp MP3 MP3 g#1 w1 e1 w1 
+  pattern pat_8_1_5 with Horn on pulse2
+    absolute
+    mp d#1 w1 e1 w1 
+  pattern pat_8_1_6 with Boss_Arp_Hit on pulse2
+    absolute
+    mf EN7c b16 r16 b16 r16 b4 b16 r16 b16 r16 b4 b4 a8 b4 a8 b4 b16 r16 b16 r16 b4 b16 r16 b16 r16 b4 d'4 b8 d'4 a8 b4 
+  pattern pat_8_1_7 with Boss_Arp_Hit on pulse2
+    absolute
+    mf b16 r16 b16 r16 b4 b16 r16 b16 r16 b4 b4 a8 b4 a8 b4 a16 r16 a16 r16 a4 b16 r16 b16 r16 b4 c#'16 r16 c#'16 r16 c#'16 r16 c#'16 r16 e'16 r16 e'16 r16 f#'16 r16 f#'16 r16 
+  pattern pat_8_1_8 with Distant_Square_Echo on pulse2
+    absolute
+    w16 ff c#,4 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 c#8 c#,4 c#8 mp w8 ff c#,4 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,16 @Horn mp c#4 c#4 mf c#4 ff c#8 mp w8 
+  pattern pat_8_2_0 with Blank on triangle
+    absolute
+    c#4 @Boss_Bass c#'8 r8 c#8 c#'8 r8 c#8 c#'8 r8 c#8 c#'8 c#4 c#'8 r8 c#4 c#'8 r8 c#8 c#'8 r8 c#8 c#'8 r8 c#8 c#'8 c#4 b4 
+  pattern pat_8_2_1 with Blank on triangle
+    absolute
+    c#4 @Boss_Bass c#'8 r8 @Blank c#8 @Boss_Bass c#'8 r8 c#8 @Blank c#'8 r8 @Boss_Bass c#8 c#'8 @Blank c#4 @Boss_Bass c#'8 r8 @Blank c#4 @Boss_Bass c#'8 r8 @Blank c#8 @Boss_Bass c#'8 r8 c#8 @Blank c#'8 r8 @Boss_Bass c#8 c#'8 @Blank c#4 @Boss_Bass b8 r8 
+  pattern pat_8_2_3 with Blank on triangle
+    absolute
+    c#4 @Boss_Bass c#'8 r8 @Blank c#8 @Boss_Bass c#'8 r8 c#8 @Blank c#'8 r8 @Boss_Bass c#8 c#'8 @Blank c#4 @Boss_Bass c#'8 r8 @Blank c#4 @Boss_Bass c#'8 r8 @Blank c#8 @Boss_Bass c#'8 r8 c#8 @Blank b8 r8 @Boss_Bass g#8 b8 @Blank b4 @Boss_Bass c#'8 r8 
+  pattern pat_8_2_5 with Blank on triangle
+    absolute
+    b,4 @Boss_Bass b8 r8 @Blank b,8 @Boss_Bass b8 r8 b,8 @Blank b8 r8 @Boss_Bass b,8 b8 @Blank b,4 @Boss_Bass b8 r8 @Blank b,4 @Boss_Bass b8 r8 @Blank b,8 @Boss_Bass b8 r8 b,8 @Blank b8 r8 @Boss_Bass b,8 b8 @Blank b,4 @Boss_Bass g#4 
+  pattern pat_8_2_7 with Blank on triangle
+    absolute
+    b,4 @Boss_Bass b8 r8 @Blank b,8 @Boss_Bass b8 r8 b,8 @Blank b8 r8 @Boss_Bass b,8 b8 @Blank b,4 @Boss_Bass b8 r8 @Blank b,4 @Boss_Bass b8 r8 @Blank b,8 @Boss_Bass b8 r8 b,8 @Blank b8 r8 @Boss_Bass g#8 b8 @Blank b4 @Boss_Bass c#'8 r8 
+  pattern pat_8_3_0
+    autodrum17_1 w1 w1 w1 
+  pattern pat_8_3_1
+    autodrum17_2 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum7_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum7_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_16 autodrum7_16 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 
+  pattern pat_8_3_2
+    autodrum17_2 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum7_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum7_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_16 autodrum7_16 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 
+  pattern pat_8_3_5
+    autodrum17_2 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum7_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum7_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_16 autodrum7_16 autodrum10_8 autodrum7_8 
+  pattern pat_8_3_6
+    autodrum17_2 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum7_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum7_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 autodrum6_8 autodrum7_8 autodrum10_8 autodrum7_8 
+  at 1
+  play pat_8_0_0
+  play pat_8_1_0
+  play pat_8_2_0
+  play pat_8_3_0
+  at 5
+  segno
+  play pat_8_0_0
+  play pat_8_1_0
+  play pat_8_2_1
+  play pat_8_3_1
+  at 9
+  play pat_8_0_1
+  play pat_8_1_0
+  play pat_8_2_1
+  play pat_8_3_2
+  at 13
+  play pat_8_0_2
+  play pat_8_1_2
+  play pat_8_2_3
+  play pat_8_3_1
+  at 17
+  play pat_8_0_3
+  play pat_8_1_0
+  play pat_8_2_1
+  play pat_8_3_1
+  at 21
+  play pat_8_0_4
+  play pat_8_1_8
+  play pat_8_2_3
+  play pat_8_3_1
+  at 25
+  play pat_8_0_5
+  play pat_8_1_4
+  play pat_8_2_5
+  play pat_8_3_1
+  at 29
+  play pat_8_0_6
+  play pat_8_1_5
+  play pat_8_2_5
+  play pat_8_3_5
+  at 33
+  play pat_8_0_5
+  play pat_8_1_6
+  play pat_8_2_5
+  play pat_8_3_1
+  at 37
+  play pat_8_0_7
+  play pat_8_1_7
+  play pat_8_2_7
+  play pat_8_3_6
+  at 41
+  play pat_8_0_8
+  play pat_8_1_0
+  play pat_8_2_1
+  play pat_8_3_1
+  at 45
+  dal segno
+song Final_Boss
+  time 4/4
+  scale 16
+  tempo 180.00
+
+  pattern pat_9_0_0 with Boss_2_Lead on pulse1
+    absolute
+    ff MP1 a#'4 w8 a#'4 w8 a#'4 a#'8 a#'4 a#'8 c#''4 d#''4 a#'4 w8 a#'4 w8 a#'4 a#'8 a#'4 a#'8 g#'4 f'4 
+  pattern pat_9_0_1 with Boss_2_Lead on pulse1
+    absolute
+    a#'4 w8 a#'4 w8 a#'4 a#'8 a#'4 a#'8 c#''4 d#''4 f''4 w8 d#''4 w8 c#''4 c''8 c#''4 c#''8 d#''4 c#''8 c''8 
+  pattern pat_9_0_2 with Select_Lead_2 on pulse1
+    absolute
+    ff a#,4 f4 g#4 c#'4 w1 w1 w1 
+  pattern pat_9_0_3 with Boss_2_Lead on pulse1
+    absolute
+    ff MP0 c#''4 w8 c#''4 w8 c#''4 c''8 c#''4 c#''8 d#''4 c#''8 c''8 c#''4 w8 c#''4 w8 c#''4 c''8 c#''4 c#''8 @Horn mf c#'''16~ d#'''16 mp c#'''16~ d#'''16 mf c#'''16 mp c#'''16 mf c'''16 mp c'''16 
+  pattern pat_9_1_0 with Boss2Echo on pulse2
+    absolute
+    mf a#16 mp c'16 mf a#'16 mp a#16 mf f'16 mp a#'16 mf a#16 mp f'16 mf d#'16 mp a#16 mf a#16 mp d#'16 mf f'16 mp a#16 mf d#'16 mp f'16 mf a#16 mp d#'16 mf a#'16 mp a#16 mf f'16 mp a#'16 mf a#16 mp f'16 mf d#'16 mp a#16 mf f'16 mp d#'16 mf d#'16 mp f'16 mf c'16 mp d#'16 mf a#16 mp c'16 mf a#'16 mp a#16 mf f'16 mp a#'16 mf a#16 mp f'16 mf d#'16 mp a#16 mf a#16 mp d#'16 mf f'16 mp a#16 mf d#'16 mp f'16 mf a#16 mp d#'16 mf a#'16 mp a#16 mf f'16 mp a#'16 mf a#16 mp f'16 mf d#'16 mp a#16 mf f'16 mp d#'16 mf c#'16 mp f'16 mf c'16 mp c#'16 
+  pattern pat_9_1_1 with Boss2Echo on pulse2
+    absolute
+    mf a#16 mp c'16 mf a#'16 mp a#16 mf f'16 mp a#'16 mf a#16 mp f'16 mf d#'16 mp a#16 mf a#16 mp d#'16 mf f'16 mp a#16 mf d#'16 mp f'16 mf a#16 mp d#'16 mf a#'16 mp a#16 mf f'16 mp a#'16 mf a#16 mp f'16 mf d#'16 mp a#16 mf f'16 mp d#'16 mf d#'16 mp f'16 mf c'16 mp d#'16 mf a#16 mp c'16 mf a#'16 mp a#16 mf f'16 mp a#'16 mf a#16 mp f'16 mf d#'16 mp a#16 mf a#16 mp d#'16 mf f'16 mp a#16 mf d#'16 mp f'16 mf f'16 mp d#'16 mf d#'16 mp f'16 mf c#'16 mp d#'16 mf d#'16 mp c#'16 mf c#'16 mp d#'16 mf c'16 mp c#'16 mf c#'16 mp c'16 mf c'16 mp c#'16 
+  pattern pat_9_1_2 with Boss2Echo on pulse2
+    absolute
+    mp f16 f16 d#16 f16 mf f16 mp d#16 mf g#16 mp f16 mf a#16 mp g#16 mf f16 mp a#16 ff g#16 mp f16 ff c#'16 mp g#16 
+  pattern pat_9_1_3 with Boss2Echo on pulse2
+    absolute
+    mf d#'16 mp c'16 mf c#'16 mp d#'16 mf c'16 mp c#'16 mf c#'16 mp c'16 mf c#'16 mp c#'16 mf c'16 mp c#'16 mf d#'16 mp c'16 mf c#'16 mp d#'16 mf d#'16 mp c#'16 mf c#'16 mp d#'16 mf c'16 mp c#'16 mf c#'16 mp c'16 mf c#'16 mp c#'16 mf f'16 mp c#'16 mf d#'16 mp f'16 mf c#'16 mp d#'16 mf d#'16 mp c#'16 mf c#'16 mp d#'16 mf c'16 mp c#'16 mf c#'16 mp c'16 mf c#'16 mp c#'16 mf c'16 mp c#'16 mf f'16 mp c'16 mf d#'16 mp f'16 mf f'16 mp d#'16 mf d#'16 mp f'16 mf c#'16 mp d#'16 mf d#'16 mp c#'16 mf c#'16 mp d#'16 mf d#'16 mp c#'16 mf c#'16 mp d#'16 mf c'16 mp c#'16 
+  pattern pat_9_2_0 with Blank on triangle
+    absolute
+    MP1 a#8 g#16 r16 a#8 w16 r8 w16 a#16 r16 a#8 a#'16 r16 a#16 r16 @Short_Kick g#8 @Blank a#8 r8 c#'8 a#16 r16 a#8 d#''16 r16 a#16 r8 w16 a#8 r4 a#16 r16 a#8 g#'16 r16 a#16 r16 a#,8 a#8 g#8 f8 a#,8 g#8 w16 a#,16 
+  pattern pat_9_2_1 with Blank on triangle
+    absolute
+    a#8 g#16 r16 a#8 w16 r8 w16 a#16 r16 a#8 a#'16 r16 a#16 r16 g#8 a#8 r8 c#'8 a#16 r16 a#8 d#''16 r16 f8 w16 r16 f'8 f8 r8 f'16 r16 f8 g#8 g#16 r16 g#8 g#'8 g#8 a#16 r16 a#8 f8 g#16 g#16 
+  pattern pat_9_2_2 with Blank on triangle
+    absolute
+    a#8 w16 r16 f8 w16 r16 g#8 w16 r16 c#'8 w16 r16 w1 w1 
+  pattern pat_9_2_3 with Blank on triangle
+    absolute
+    c#'8 c'16 r16 c#'8 w16 r8 w16 c#'16 r16 c#'8 c#''16 r16 c#'16 r16 c'8 c#'8 r8 d#'8 c#'16 r16 c#'8 c''16 r16 c#'8 c'16 r16 c#'8 w16 r8 w16 c#'16 r16 c#'8 c#''16 r16 c#'16 r16 c'8 @Tribal_Noise_1_26_4 c#'8 r8 @Blank d#'8 c#'16 r16 c#'8 c'16 r16 
+  pattern pat_9_2_4 with Blank on triangle
+    absolute
+    c#'8 c'16 r16 c#'8 w16 r8 w16 c#'16 r16 c#'8 c#''16 r16 c#'16 r16 c'8 c#'8 r8 d#'8 c#'16 r16 c#'8 c''16 r16 c#'8 c'16 r16 c#'8 w16 r8 w16 c#'16 r16 c#'8 c#''16 r16 c#'16 r16 c'8 @Tribal_Noise_1_26_4 c#'8 r2 w8 
+  pattern pat_9_3_0
+    autodrum17_4 autodrum19_8 autodrum20_8 autodrum20_8 autodrum21_8 autodrum19_8 autodrum20_8 autodrum21_8 autodrum21_8 autodrum19_8 autodrum21_8 autodrum21_8 autodrum20_8 autodrum19_8 autodrum20_8 autodrum21_8 autodrum20_8 autodrum19_8 autodrum20_8 autodrum20_8 autodrum21_8 autodrum19_8 autodrum20_8 autodrum21_8 autodrum21_8 autodrum19_8 autodrum21_8 autodrum21_8 autodrum20_8 autodrum19_8 autodrum20_8 
+  pattern pat_9_3_1
+    autodrum17_4 autodrum19_8 autodrum20_8 autodrum20_8 autodrum21_8 autodrum19_8 autodrum20_8 autodrum21_8 autodrum21_8 autodrum19_8 autodrum21_8 autodrum21_8 autodrum20_8 autodrum19_8 autodrum20_8 autodrum21_8 autodrum20_8 autodrum19_8 autodrum20_8 autodrum20_8 autodrum21_8 autodrum19_8 autodrum20_8 autodrum21_8 autodrum21_8 autodrum19_8 autodrum21_8 autodrum21_8 autodrum20_8 autodrum19_8 autodrum9_16 autodrum9_16 
+  pattern pat_9_3_2
+    autodrum20_8 autodrum20_8 autodrum20_8 autodrum20_8 autodrum10_8 autodrum10_8 autodrum22_8 autodrum22_8 w1 w1 w1 
+  pattern pat_9_3_3
+    autodrum17_4 autodrum19_8 autodrum20_8 autodrum20_8 autodrum21_8 autodrum19_8 autodrum20_8 autodrum21_8 autodrum21_8 autodrum19_8 autodrum21_8 autodrum21_8 autodrum20_8 autodrum19_8 autodrum20_8 autodrum21_8 autodrum20_8 autodrum19_8 autodrum20_8 autodrum20_8 autodrum21_8 autodrum19_8 autodrum20_8 autodrum21_8 autodrum21_8 autodrum19_8 autodrum21_8 autodrum4_8 autodrum4_8 autodrum0_8 autodrum0_8 
+  at 1
+  play pat_9_0_2
+  play pat_9_1_2
+  play pat_9_2_2
+  play pat_9_3_2
+  at 2
+  segno
+  play pat_9_0_0
+  play pat_9_1_0
+  play pat_9_2_0
+  play pat_9_3_0
+  at 6
+  play pat_9_0_1
+  play pat_9_1_1
+  play pat_9_2_1
+  play pat_9_3_1
+  at 10
+  play pat_9_0_0
+  play pat_9_1_0
+  play pat_9_2_0
+  play pat_9_3_0
+  at 14
+  play pat_9_0_1
+  play pat_9_1_1
+  play pat_9_2_1
+  play pat_9_3_1
+  at 18
+  play pat_9_0_3
+  play pat_9_1_3
+  play pat_9_2_3
+  play pat_9_3_0
+  at 22
+  play pat_9_0_3
+  play pat_9_1_3
+  play pat_9_2_4
+  play pat_9_3_3
+  at 26
+  dal segno
+song World_Select_1
+  time 4/4
+  scale 16
+  tempo 112.50
+
+  pattern pat_10_0_0 with Select_Lead_1 on pulse1
+    absolute
+    ff c8 g8 c'16 mp c'16 r16 @Select_Lead_2 ff d''8 w16 e''8 c''4 @Select_Lead_1 c8 g8 c'16 mp c'16 r16 @Select_Lead_2 ff f''8 w16 a''8 g''8 r8 @Select_Lead_1 c8 c'8 g16 mp g16 r16 @Select_Lead_2 ff d''8 w16 e''8 f''4 @Select_Lead_1 c'8 g8 c16 mp c16 @Select_Lead_2 ff e''16 f''16 g''16 f''16 d''16 e''16 a''8 b''8 
+  pattern pat_10_1_0 with Select_Lead_1 on pulse2
+    absolute
+    w16 mp c8 g8 c'16 c'16 r16 @Select_Lead_2 d''8 w16 e''8 c''4 @Select_Lead_1 c8 g8 c'16 c'16 r16 @Select_Lead_2 f''8 w16 a''8 g''8 r8 @Select_Lead_1 c8 c'8 g16 g16 r16 @Select_Lead_2 d''8 w16 e''8 f''4 @Select_Lead_1 c'8 g8 c16 c16 @Select_Lead_2 e''16 f''16 g''16 f''16 d''16 e''16 a''8 b''16 
+  pattern pat_10_2_0 with Blank on triangle
+    absolute
+    c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 c'16 r16 c'8 @Blank c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'8 e'16 r16 e'8 @Blank c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 c'16 r16 c'8 @Short_Kick c'8 r16 @Boss_Bass c'8 r16 c'8 @Short_Kick d'8 @Boss_Bass d'8 e'16 r16 g'8 
+  pattern pat_10_3_0
+    autodrum6_8 autodrum7_4 autodrum7_8 autodrum6_4 autodrum10_4 autodrum6_8 autodrum7_4 autodrum7_8 autodrum6_4 autodrum10_4 autodrum6_8 autodrum7_4 autodrum7_8 autodrum6_4 autodrum10_4 autodrum6_8 autodrum7_4 autodrum7_8 autodrum6_8 autodrum10_8 autodrum7_8 autodrum10_8 
+  at 1
+  play pat_10_0_0
+  play pat_10_1_0
+  play pat_10_2_0
+  play pat_10_3_0
+  at 5
+  dal segno
+song World_Select_2
+  time 4/4
+  scale 16
+  tempo 112.50
+
+  pattern pat_11_0_0 with Select_Lead_1 on pulse1
+    absolute
+    ff c8 g8 c'16 mp c'16 r16 @Select_Lead_2 ff d''8 c''16 e''8 c''4 @Select_Lead_1 c8 g8 c'16 mp c'16 r16 @Select_Lead_2 ff f''8 g''16 a''8 g''8 r8 @Select_Lead_1 c8 c'8 g16 mp g16 r16 @Select_Lead_2 ff d''8 f''16 e''8 g''4 @Select_Lead_1 c'8 g8 c16 mp c16 @Select_Lead_2 ff e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''8 
+  pattern pat_11_1_0 with Select_Lead_1 on pulse2
+    absolute
+    w16 mp MP1 c8 g8 c'16 c'16 r16 @Select_Lead_2 d''8 c''16 e''8 c''4 @Select_Lead_1 c8 g8 c'16 c'16 r16 @Select_Lead_2 f''8 g''16 a''8 g''8 r8 @Select_Lead_1 c8 c'8 g16 g16 r16 @Select_Lead_2 d''8 e''16 e''8 g''4 @Select_Lead_1 c'8 g8 c16 c16 @Select_Lead_2 e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''16 
+  pattern pat_11_2_0 with Blank on triangle
+    absolute
+    c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 c'16 r16 @Blank c'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'8 e'16 r16 @Blank e'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 c'16 r16 @Blank c'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'8 @Blank e'16 r16 g'16 g'16 
+  pattern pat_11_3_0
+    autodrum6_8 autodrum7_16 autodrum7_16 autodrum9_8 autodrum7_8 autodrum6_16 autodrum7_16 autodrum7_8 autodrum10_8 autodrum9_8 autodrum6_8 autodrum7_16 autodrum7_16 autodrum9_8 autodrum7_8 autodrum6_16 autodrum7_16 autodrum7_8 autodrum10_8 autodrum9_8 autodrum6_8 autodrum7_16 autodrum7_16 autodrum9_8 autodrum7_8 autodrum6_16 autodrum7_16 autodrum7_8 autodrum10_8 autodrum9_8 autodrum6_8 autodrum7_16 autodrum7_16 autodrum9_8 autodrum7_8 autodrum6_16 autodrum7_16 autodrum7_8 autodrum9_16 autodrum7_16 autodrum9_16 autodrum9_16 
+  at 1
+  play pat_11_0_0
+  play pat_11_1_0
+  play pat_11_2_0
+  play pat_11_3_0
+  at 5
+  dal segno
+song World_Select_3
+  time 4/4
+  scale 16
+  tempo 112.50
+
+  pattern pat_12_0_0 with Select_Orc_Hit on pulse1
+    absolute
+    ff c8 @Select_Lead_1 g8 c'16 mp c'16 r16 @Select_Lead_2 ff d''8 c''16 e''8 c''4 @Select_Orc_Hit g,8 @Select_Lead_1 g8 c'16 mp c'16 r16 @Select_Lead_2 ff f''8 g''16 a''8 g''4 @Select_Orc_Hit f,8 @Select_Lead_1 c'8 g16 mp g16 r16 @Select_Lead_2 ff d''8 f''16 e''8 g''4 @Select_Orc_Hit c,8 @Select_Lead_1 g8 c16 mp c16 @Select_Lead_2 ff e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''8 
+  pattern pat_12_1_0 with Select_Orc_Hit on pulse2
+    absolute
+    ff MP0 c''8 w16 @Select_Lead_1 mp MP1 g8 c'16 c'16 r16 @Select_Lead_2 d''8 c''16 e''8 c''8 w16 @Select_Orc_Hit ff MP0 g'8 w16 @Select_Lead_1 mp MP1 g8 c'16 c'16 r16 @Select_Lead_2 f''8 g''16 a''8 g''8 w16 @Select_Orc_Hit ff MP0 f'8 w16 @Select_Lead_1 mp MP1 c'8 g16 g16 r16 @Select_Lead_2 d''8 e''16 e''8 g''8 w16 @Select_Orc_Hit ff MP0 c'8 w16 @Select_Lead_1 mp MP1 g8 c16 c16 @Select_Lead_2 e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''16 
+  pattern pat_12_2_0 with Blank on triangle
+    absolute
+    MP2 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 @Blank c'16 r16 c'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'8 @Blank e'16 r16 e'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 @Blank c'16 r16 c'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'16 r4 w16 
+  pattern pat_12_3_0
+    autodrum17_4 autodrum9_16 autodrum7_16 autodrum10_8 autodrum6_16 autodrum7_16 autodrum10_16 autodrum7_16 autodrum9_16 autodrum7_16 autodrum9_8 autodrum6_16 autodrum7_16 autodrum10_8 autodrum9_16 autodrum7_16 autodrum10_8 autodrum6_16 autodrum7_16 autodrum10_16 autodrum7_16 autodrum9_16 autodrum7_16 autodrum9_8 autodrum6_16 autodrum7_16 autodrum10_8 autodrum9_16 autodrum7_16 autodrum10_8 autodrum6_16 autodrum7_16 autodrum10_16 autodrum7_16 autodrum9_16 autodrum7_16 autodrum9_8 autodrum6_16 autodrum7_16 autodrum10_8 autodrum9_16 autodrum7_16 autodrum10_8 autodrum6_16 autodrum7_16 autodrum10_16 autodrum7_16 autodrum4_16 autodrum4_16 autodrum0_16 autodrum0_16 
+  at 1
+  play pat_12_0_0
+  play pat_12_1_0
+  play pat_12_2_0
+  play pat_12_3_0
+  at 5
+  dal segno
+song World_Select_4
+  time 4/4
+  scale 16
+  tempo 112.50
+
+  pattern pat_13_0_0 with Select_Orc_Hit on pulse1
+    absolute
+    ff c8 @Select_Lead_1 g8 c'16 mp c'16 r16 @Select_Lead_2 ff d''8 c''16 e''8 c''4 @Select_Orc_Hit g,8 @Select_Lead_1 g8 c'16 mp c'16 r16 @Select_Lead_2 ff f''8 g''16 a''8 g''4 @Select_Orc_Hit f,8 @Select_Lead_1 c'8 g16 mp g16 r16 @Select_Lead_2 ff d''8 f''16 e''8 g''4 @Select_Orc_Hit c,8 @Select_Lead_1 g8 c16 mp c16 @Select_Lead_2 ff e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''8 
+  pattern pat_13_1_0 with Select_Orc_Hit on pulse2
+    absolute
+    ff MP0 c''8 w16 @Select_Lead_1 mp MP1 g8 c'16 c'16 r16 @Select_Lead_2 d''8 c''16 e''16 @Banjo mf c'16 e'16 c'16 g16 @Select_Orc_Hit ff MP0 g'8 w16 @Select_Lead_1 mp MP1 g8 c'16 c'16 r16 @Select_Lead_2 f''8 g''16 a''16 @Banjo mf g'16 f'16 e'16 c'16 @Select_Orc_Hit ff MP0 f'8 w16 @Select_Lead_1 mp MP1 c'8 g16 g16 r16 @Banjo mf g'8 @Select_Lead_2 mp e''16 @Banjo mf f'8 w16 e'8 @Select_Orc_Hit ff MP0 c'8 w16 @Select_Lead_1 mp MP1 g8 c16 c16 @Select_Lead_2 e''16 @Banjo mf g'16 f'16 d'16 e'16 a'16 g'16 b'16 d''16 
+  pattern pat_13_2_0 with Blank on triangle
+    absolute
+    MP2 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 @Blank c'16 r16 c'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'8 @Blank e'16 r16 e'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 @Blank c'16 r16 c'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'16 r4 w16 
+  pattern pat_13_3_0
+    autodrum17_4 autodrum9_16 autodrum7_16 autodrum10_16 autodrum9_16 autodrum6_16 autodrum7_16 autodrum10_16 autodrum7_16 autodrum9_16 autodrum7_16 autodrum9_8 autodrum6_16 autodrum7_16 autodrum10_8 autodrum9_16 autodrum7_16 autodrum10_16 autodrum9_16 autodrum6_16 autodrum7_16 autodrum10_16 autodrum7_16 autodrum9_16 autodrum7_16 autodrum9_8 autodrum6_16 autodrum7_16 autodrum10_8 autodrum9_16 autodrum7_16 autodrum10_16 autodrum9_16 autodrum6_16 autodrum7_16 autodrum10_16 autodrum7_16 autodrum9_16 autodrum7_16 autodrum9_8 autodrum6_16 autodrum7_16 autodrum10_8 autodrum9_16 autodrum7_16 autodrum10_16 autodrum9_16 autodrum6_16 autodrum7_16 autodrum10_16 autodrum7_16 autodrum4_16 autodrum4_16 autodrum0_16 autodrum0_16 
+  at 1
+  play pat_13_0_0
+  play pat_13_1_0
+  play pat_13_2_0
+  play pat_13_3_0
+  at 5
+  dal segno
+drum autodrum0_ autonoise5_ autotriangle1_
+drum autodrum1_ autonoise6_
+drum autodrum2_ autonoise7_ autotriangle2_
+drum autodrum3_ autonoise7_ autotriangle3_
+drum autodrum4_ autonoise5_ autotriangle4_
+drum autodrum5_ autonoisec_ autotriangleb_
+drum autodrum6_ autonoise11_ autotriangle10_
+drum autodrum7_ autonoise13_
+drum autodrum8_ autonoise7_ autotriangle37_
+drum autodrum9_ autonoise16_ autotriangle15_
+drum autodrum10_ autonoise14_
+drum autodrum11_ autonoise1d_
+drum autodrum12_ autonoise1e_
+drum autodrum13_ autonoise1f_
+drum autodrum14_ autonoise36_
+drum autodrum15_ autonoise25_
+drum autodrum16_ autonoise24_
+drum autodrum17_ autonoise19_ autotriangle10_
+drum autodrum19_ autonoise2c_ autotriangle15_
+drum autodrum20_ autonoise2d_
+drum autodrum21_ autonoise2b_ autotriangle10_
+drum autodrum22_ autonoise19_
+sfx autotriangle1_ on triangle
+  volume 15 15 15 15 15 15 15 15 0 
+  pitch f' d#' d' c#' c' b a e 
+
+sfx autotriangle2_ on triangle
+  volume 15 15 15 0 
+  pitch f''' g' e''' e'''
+
+sfx autotriangle3_ on triangle
+  volume 15 15 15 0
+  pitch f''''' c''' c'' c' c'
+
+sfx autotriangle4_ on triangle
+  volume 15 15 15 15 15 15 15 15 0 
+  pitch c'' a#' a' g#' g' f#' e' c#' 
+
+sfx autonoise5_ on noise
+  volume 15 10 5 2 1 1 0 
+  pitch 2 4 3 | 7 
+
+sfx autonoise6_ on noise
+  volume 2 5 6 3 2 1 0 
+  pitch 5 10 | 12 
+
+sfx autonoise7_ on noise
+  volume 10 5 2 1 0 
+  pitch 8 | 3 
+
+sfx autotriangleb_ on triangle
+  volume 15 15 15 15 15 15 15 15 0 
+  timbre 1 2 
+  pitch f' d#' d' c#' c' b a e 
+
+sfx autonoisec_ on noise
+  volume 15 9 7 6 4 3 3 1 0 
+  pitch 1 7 8 | 7 
+
+sfx autotriangle10_ on triangle
+  volume 15 15 15 15
+  pitch e' c' a g 
+
+sfx autonoise11_ on noise
+  volume 10 4 2 1 0 
+  pitch 5 1 12 13 
+
+sfx autonoise13_ on noise
+  volume 9 5 2 1 0 
+  pitch 12 13 | 12 
+
+sfx autonoise14_ on noise
+  volume 9 6 5 5 5 4 4 4 3 3 2 2 1 0 
+  pitch 12 13 | 12 
+
+sfx autotriangle15_ on triangle
+  volume 15 15 15 15 15
+  pitch c'' c' g' f#' f' 
+
+sfx autonoise16_ on noise
+  volume 15 15 10 6 4 3 2 2 1 1 0 
+  pitch 4 0 7 8 8 7 | 7 
+
+sfx autonoise19_ on noise
+  volume 12 7 7 7 7 6 6 6 6 6 5 5 5 5 4 4 4 4 4 3 3 3 3 3 2 2 2 2 1 1 1 1 0 
+  pitch 10 12 | 9 
+
+sfx autonoise1d_ on noise
+  volume 9 6 3 2 4 7 6 4 2 3 4 5 4 3 2 1 2 3 2 1 0 
+  timbre 1 
+  pitch 8 4 3 2 2 1 | 1 
+
+sfx autonoise1e_ on noise
+  volume 9 6 3 2 4 7 6 4 2 3 4 5 4 3 2 1 2 3 2 1 0 
+  pitch 0 1 1 2 2 2 | 3 
+
+sfx autonoise1f_ on noise
+  volume 9 6 3 2 4 7 6 4 2 3 4 5 4 3 2 1 2 3 2 1 0 
+  pitch 5 2 1 0 | 6 
+
+sfx autonoise24_ on noise
+  volume 10 5 2 0 3 2 1 0 
+  timbre 1 
+  pitch | 14 
+
+sfx autonoise25_ on noise
+  volume 10 5 2 0 3 2 1 0 
+  timbre 1 
+  pitch | 13 
+
+sfx autonoise2b_ on noise
+  volume 10 4 2 1 0 5 2 1 1 0 
+  pitch 5 1 12 13 0 5 1 12 13 0 
+
+sfx autonoise2c_ on noise
+  volume 15 15 10 6 4 6 6 4 3 2 2 1 1 1 1 0 
+  pitch 4 0 7 8 8 4 0 7 8 8 7 7 7 7 7 7 
+
+sfx autonoise2d_ on noise
+  volume 9 5 2 1 0 3 2 1 1 0 
+  pitch 12 13 12 12 12 12 13 12 12 12 
+
+sfx autonoise36_ on noise
+  volume 12 7 7 7 7 6 6 6 6 6 5 5 5 5 4 4 4 4 4 3 3 3 3 3 2 2 2 2 1 1 1 1 0 
+  pitch 10 12 | 9 
+
+sfx autotriangle37_ on triangle
+  volume 15
+  pitch f''' 
+
+instrument Blank
+  volume 15 
+  timbre 2 
+
+instrument Tribal_Noise_1_26_4
+  volume 15 10 5 2 1 1 0 
+  pitch 2 4 3 | 7 
+
+instrument Tribal_Background
+  volume 8 7 6 4 4 4 4 3 3 3 3 2 2 2 2 1 1 1 1 0 
+  timbre 1 2 
+  pitch 0 19 1 0 
+
+instrument Tribal_Bass
+  volume 15 13 13 13 13 12 11 10 9 8 7 6 5 4 3 2 1 0 0 0 0 
+  timbre 2 2 2 3 
+  pitch 12 12 0 
+
+instrument Tribal_Hit
+  volume 15 14 12 10 8 6 5 4 3 2 1 0 
+  timbre 2 1 2 1 0 1 0 1 0 0 0 0 
+  pitch 12 12 0 0 12 12 0 0 12 12 0 0 
+
+instrument Horn
+  volume 4 8 7 
+  timbre 2 3 
+
+instrument Distant_Square_Echo
+  volume 2 
+  timbre 2 
+
+instrument Puzzle_Effects
+  volume 10 8 6 4 4 3 3 
+  timbre 2 2 2 2 2 1 1 
+  pitch 19 0 19 0 12 0 0 
+
+instrument Short_Kick
+  pitch 40 36 33 31 
+
+instrument Puzzle_Mellow_Crazy
+  volume 10 7 3 5 7 6 6 6 5 5 5 4 4 4 3 3 3 2 2 2 1 1 1 0 
+  timbre 2 2 2 2 2 3 
+
+instrument Puzzle_Pulsate
+  volume 10 7 3 5 7 5 3 4 6 3 1 2 4 2 1 1 0 
+  timbre 1 
+
+instrument Puzzle_Fill
+  volume 12 6 4 2 1 0 0 3 2 1 1 0 
+  timbre 0 0 0 0 0 
+
+instrument Cave_Bass
+  volume 15 13 13 13 12 10 10 9 9 8 8 7 7 6 6 5 5 4 4 3 3 2 2 1 1 0 
+  timbre 2 2 3 3 2 
+  pitch 12 12 0 0 
+
+instrument Cave_Lead
+  volume 13 9 8 7 6 5 5 6 7 6 5 4 3 2 1 0 
+  timbre 2 0 
+  pitch -5 0 
+
+instrument Boss_Bass
+  volume 15 15
+  pitch 19 0 
+
+instrument Boss_Arp_Hit
+  volume 12 10 8 7 6 5 5 5 4 4 4 3 3 3 2 2 2 1 1 1 0 
+  timbre 2 2 1 1 0 
+
+instrument Pizzicato_Strings
+  volume 9 6 4 2 0 1 3 2 1 1 1 0 
+  timbre 2 1 1 1 1 
+  pitch 12 0 
+
+instrument Cave_Triangle
+  volume 15 15 15 15 0 
+  pitch 12 0 0 0 
+
+instrument Select_Lead_1
+  volume 2 3 5 7 8 9 
+  timbre 0 0 0 1 1 1 
+  pitch 12 12 12 12 12 0 
+
+instrument Select_Lead_2
+  volume 9 6 4 3 2 1 2 3 5 4 3 2 2 1 1 1 0 
+  timbre 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 
+  pitch 19 0 19 0 19 0 19 0 19 0 19 0 19 0 12 0 
+
+instrument Select_Orc_Hit
+  volume 15 12 10 9 8 8 7 7 6 6 6 5 5 5 4 4 3 3 3 2 2 1 1 0 
+  timbre 2 1 0 1 2 3 2 1 0 1 2 3 2 1 0 2 3 2 1 0 2 3 2 1 
+  pitch 24 12 0 0 0 24 12 0 0 0 24 12 0 0 0 24 12 0 0 0 24 12 0 0 
+
+instrument Boss2Echo
+  volume 15 10 6 3 6 10 
+  timbre 2 2 1 2 2 2 
+
+instrument Boss_2_Lead
+  volume 15 13 11 8 4 1 3 7 6 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1 1 
+  timbre 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 3 3 3 3 1 
+  pitch 12 1 0 0 12 0 0 0 12 0 0 0 12 0 0 0 12 0 0 0 0 0 0 0 0 
+
+instrument Banjo
+  volume 12 9 9 8 7 6 5 4 3 2 1 0 
+  timbre 1 0 
+
+instrument Minor_Boss_Rhythm_Guitar
+  volume 15 13 11 10 8 7 6 5 2 2 1 1 
+  timbre 2 1 2 3 2 2 2 1 1 1 0 0 
+  pitch 0 12 0 0 0 
+
+instrument Miniboss_Flute
+  volume 5 6 7 7 8 8 7 7 6 6 5 5 4 4 3 3 2 2 1 1 0 
+  timbre 0 0 2 
+  pitch 24 12 0 
+
+instrument Harp
+  volume 13 10 10 9 8 8 7 7 6 6 5 5 4 4 3 3 2 2 1 1 0 
+  timbre 2 2 3 
+
+instrument Triangle_Choir
+  volume 15 15 15 15 15 15 15 15
+  pitch 0 0 4 4 7 7 12 12 
+
+instrument Triangle_Short
+  volume 15 15 15 0
+
+instrument Super_Major_Arp
+  volume 6 6 6 6 6 6 6 6 
+  timbre 2 2 2 1 1 1 0 0 
+  pitch 0 12 24 4 16 28 7 19 
+
+song World_Select_5
+  time 4/4
+  scale 16
+  tempo 112.50
+
+  pattern pat_13_0_0 with Select_Orc_Hit on pulse1
+    absolute
+    ff EN00 c8 @Horn g8 c'16 mp c'16 r16 @Puzzle_Pulsate ff d''8 c''16 d''16 e''16 c''4 @Select_Orc_Hit g,8 @Horn g8 c'16 mp c'16 r16 @Puzzle_Pulsate ff f''8 g''16 a''8 g''8 e''8 @Select_Orc_Hit f,8 @Horn c'8 g16 mp g16 r16 @Puzzle_Pulsate ff d''8 f''16 e''8 g''8 e''8 @Select_Orc_Hit c,8 @Horn g8 c16 mp c16 @Pizzicato_Strings ff e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''16 mp w16 
+  pattern pat_13_1_0 with Select_Orc_Hit on pulse2
+    absolute
+    ff MP0 c''8 w16 @Horn mp MP1 g8 c'16 c'16 r16 @Puzzle_Pulsate d''8 c''16 e''16 @Banjo mf c'16 e'16 c'16 g16 @Select_Orc_Hit ff MP0 g'8 w16 @Horn mp MP1 g8 c'16 c'16 r16 @Puzzle_Pulsate f''8 g''16 a''16 @Banjo mf g'16 f'16 e'16 c'16 @Select_Orc_Hit ff MP0 f'8 w16 @Horn mp MP1 c'8 g16 g16 r16 @Banjo mf g'8 @Puzzle_Pulsate mp e''16 @Banjo mf f'8 w16 e'8 @Select_Orc_Hit ff MP0 c'8 w16 @Horn mp MP1 g8 c16 c16 @Puzzle_Mellow_Crazy e''16 @Banjo mf g'16 f'16 d'16 e'16 a'16 g'16 b'16 d''16 
+  pattern pat_13_2_0 with Blank on triangle
+    absolute
+    MP2 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 @Blank c'16 r16 c'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'8 @Blank e'16 r16 e'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 @Blank c'16 r16 c'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'16 r4 w16 
+  pattern pat_13_3_0
+    autodrum17_4 autodrum19_16 autodrum7_16 autodrum10_16 autodrum19_16 autodrum6_16 autodrum7_16 autodrum10_16 autodrum7_16 autodrum19_16 autodrum7_16 autodrum19_8 autodrum6_16 autodrum7_16 autodrum10_8 autodrum19_16 autodrum7_16 autodrum10_16 autodrum19_16 autodrum6_16 autodrum7_16 autodrum10_16 autodrum7_16 autodrum19_16 autodrum7_16 autodrum19_8 autodrum6_16 autodrum7_16 autodrum10_8 autodrum19_16 autodrum7_16 autodrum10_16 autodrum19_16 autodrum6_16 autodrum7_16 autodrum10_16 autodrum7_16 autodrum19_16 autodrum7_16 autodrum19_8 autodrum6_16 autodrum7_16 autodrum10_8 autodrum19_16 autodrum7_16 autodrum10_16 autodrum19_16 autodrum6_16 autodrum7_16 autodrum10_16 autodrum7_16 autodrum4_16 autodrum4_16 autodrum0_16 autodrum0_16 
+  at 1
+  play pat_13_0_0
+  play pat_13_1_0
+  play pat_13_2_0
+  play pat_13_3_0
+  at 5
+  dal segno
+

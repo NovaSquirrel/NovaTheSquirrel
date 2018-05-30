@@ -27,6 +27,8 @@ NMI:
   pha
   lda LagFrame
   beq NoNMIMusic
+  lda InMusicCode ; No reentrancy
+  bne NoNMIMusic
   ; Save X and Y
   txa
   pha

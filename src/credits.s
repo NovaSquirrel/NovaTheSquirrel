@@ -19,6 +19,7 @@ Pointer = LevelDecodePointer
 SECTION = 1
 FOR     = 2
 NAME    = 3
+COMMAS  = 4
 
 PPUPointer = 2
 Already    = 4
@@ -73,6 +74,26 @@ Loop:
   beq DoSection
   dex
   beq DoFor
+  dex
+  beq DoName
+
+; Commas, for the accents in the composer's name
+  ldx #$21
+  stx PPUADDR
+  lda #$6c
+  sta PPUADDR
+  lda #','
+  sta PPUDATA
+
+  stx PPUADDR
+  lda #$72
+  sta PPUADDR
+  lda #','
+  sta PPUDATA
+  lda #0
+  sta PPUSCROLL
+  sta PPUSCROLL
+  jmp Loop
 
 DoName:
   lda PPUPointer
@@ -164,45 +185,50 @@ Palette:
 CreditsData:
   .byt SECTION, "Nova the Squirrel",0
   .byt FOR,     "A platformer for the NES",0
-  .byt NAME,    "by NovaSquirrel",0
+  .byt NAME,    "by Josh Hoffman",0
 
   .byt SECTION, "CODE",0
   .byt FOR,     "Princess Engine",0
   .byt FOR,     "ft2pently music tool",0
-  .byt NAME,    "NovaSquirrel",0
+  .byt NAME,    "Josh Hoffman",0
 
   .byt SECTION, "LIBRARIES",0
   .byt FOR,     "Pently music engine",0
   .byt FOR,     "pb53 compression tools",0
   .byt FOR,     "quadpcm compression",0
-  .byt NAME,    "Tepples",0
+  .byt NAME,    "Damian Yerrick",0
 
   .byt SECTION, "LIBRARIES",0
   .byt FOR,     "Variable-width font code",0
-  .byt NAME,    "Tepples",0
-  .byt NAME,    "Blargg",0
+  .byt NAME,    "Damian Yerrick",0
+  .byt NAME,    "Shay Green",0
+
+  .byt SECTION, "LIBRARIES",0
+  .byt FOR,     "Famitone2 music engine",0
+  .byt NAME,    "Shiru",0
 
   .byt SECTION, "DESIGN",0
   .byt FOR,     "General game design",0
   .byt FOR,     "Enemy design",0
   .byt FOR,     "Level design",0
   .byt FOR,     "Boss design",0
-  .byt NAME,    "NovaSquirrel",0
+  .byt NAME,    "Josh Hoffman",0
   .byt SECTION, "DESIGN",0
   .byt FOR,     "Sound effects",0
   .byt FOR,     "Pixel art",0
   .byt FOR,     "Story and writing",0
-  .byt NAME,    "NovaSquirrel",0
+  .byt NAME,    "Josh Hoffman",0
 
   .byt SECTION, "DESIGN",0
   .byt FOR,     "Music",0
-  .byt NAME,    "To be added",0
+  .byt NAME,    "Oliver Kovacs",0
+  .byt COMMAS
 
   .byt SECTION, "DESIGN",0
   .byt FOR,     "Some enemy graphics",0
   .byt FOR,     "(Plodder, Owl, Sneaker)",0
   .byt FOR,     "Explosion sound effect",0
-  .byt NAME,    "Tepples", 0
+  .byt NAME,    "Damian Yerrick", 0
 
   .byt SECTION, "DESIGN",0
   .byt FOR,     "Title screen adapted",0
@@ -211,7 +237,7 @@ CreditsData:
 
   .byt SECTION, "CHARACTERS",0
   .byt FOR,     "Most characters",0
-  .byt NAME,    "NovaSquirrel",0
+  .byt NAME,    "Josh Hoffman",0
 
   .byt FOR,     "Sherwin",0
   .byt NAME,    "FL4SHK",0

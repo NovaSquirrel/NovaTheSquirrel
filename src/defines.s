@@ -67,22 +67,14 @@ NEW_TOGGLE_BEHAVIOR = 1 ; don't blank the screen for toggle block changing
 .include "../tools/graphicsenum.s"
 
 .enum SFX
-  JUMP = 128
-  SNARE2
-  KICK2
-  HIHAT
-;  YOUSHOOT
+  JUMP = 128+26
   ENEMY_SMOOSH
   HURT
-;  PRIZE
   SPRING
-  SNARE1
-  KICK1
   BOOM1
   BOOM2
   ENEMY_HURT
   COIN
-;  YOU_DIED
   TELEPORT
   BUMP
   TAIL_WHOOSH

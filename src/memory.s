@@ -398,6 +398,7 @@ GameStateLen = 2+10*4 ; update if more stuff is added. Just coins and inventory.
   FinalBossScreenX:   .res 1 ; pixel position of final boss
   FinalBossScreenY:   .res 1
   MusicMute:          .res 1
+  InMusicCode:        .res 1
 .segment "SAVE"
 SaveStart:
   SaveTag:            .res 9

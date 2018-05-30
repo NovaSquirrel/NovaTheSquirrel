@@ -640,6 +640,7 @@ NoPressUp:
   rts
 
 ExitDoor:
+  jsr StopSoundFar
   ; Mark current level as cleared
   ldy StartedLevelNumber
   jsr IndexToBitmap

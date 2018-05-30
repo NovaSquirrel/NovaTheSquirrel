@@ -149,6 +149,9 @@ porta1x_rates_hi:
 pentlymusic_code_start = *
 
 .proc pently_start_music
+  ora MusicMute
+  cmp #128 ;edit for Nova the Squirrel
+  jcs pently_stop_music
   asl a
   tax
   lda pently_songs,x

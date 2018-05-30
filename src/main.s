@@ -30,9 +30,8 @@
   lda #SOUND_BANK
   jsr _SetPRG
   jsr pently_init
-;  lda LevelMusic
-;  jsr pently_start_music
-  jsr pently_stop_music
+  lda LevelMusic
+  jsr pently_start_music
 
   inc JustTeleported ; Cause enemies to appear
 
@@ -279,6 +278,7 @@ PlaceBlockMode:
 DidntSkipPlayerAndEnemies:
 
   ; Update music+sfx, play sounds if needed
+  inc InMusicCode
   jsr pently_update
   lda NeedSFX
   bpl :++
@@ -294,6 +294,7 @@ DidntSkipPlayerAndEnemies:
     lda #0
     sta NeedSFX
   :
+  dec InMusicCode
   countdown SoundDebounce
   countdown SwitchCooldownTimer
   countdown ToggleSwitchCooldownTimer

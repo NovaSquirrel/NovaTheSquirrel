@@ -1085,6 +1085,11 @@ MuteMusicCode:
   lda MusicMute
   eor #128
   sta MusicMute
+  ; Start or stop if it's muted or not
+  asl
+  lda #1
+  sbc #1
+  sta pently_music_playing
   jmp CleanupAfterInventory
 ExplainAbilityCode:
   jsr AbilityHelpTrampoline

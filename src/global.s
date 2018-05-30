@@ -507,6 +507,7 @@ Finish:
 
 ; delay until the next vblank by waiting for NMI to change retraces
 .proc WaitVblank
+  lsr LagFrame
   lda retraces
 : cmp retraces
   beq :-
