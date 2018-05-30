@@ -1,59 +1,74 @@
 ;
-; Pently sound effect player and "mixer"
-; Copyright 2009-2015 Damian Yerrick
-;
-; Copying and distribution of this file, with or without
-; modification, are permitted in any medium without royalty provided
-; the copyright notice and this notice are preserved in all source
-; code copies.  This file is offered as-is, without any warranty.
+; Pently audio engine
+; Sound effect player and "mixer"
+; Copyright 2009-2018 Damian Yerrick
+; 
+; This software is provided 'as-is', without any express or implied
+; warranty.  In no event will the authors be held liable for any damages
+; arising from the use of this software.
+; 
+; Permission is granted to anyone to use this software for any purpose,
+; including commercial applications, and to alter it and redistribute it
+; freely, subject to the following restrictions:
+; 
+; 1. The origin of this software must not be misrepresented; you must not
+;    claim that you wrote the original software. If you use this software
+;    in a product, an acknowledgment in the product documentation would be
+;    appreciated but is not required.
+; 2. Altered source versions must be plainly marked as such, and must not be
+;    misrepresented as being the original software.
+; 3. This notice may not be removed or altered from any source distribution.
 ;
 
-SOUND_NTSC_ONLY = 1
+; Edited to work .include'd
+.include "pentlyconfig.inc"
+.include "pently.inc"
+.include "pentlyseq.inc"
+.include "pentlybss.inc"
 
-;.import pently_update_music, pently_update_music_ch, pently_music_playing, pently_sfx_table
-;.import periodTableLo, periodTableHi
-;.export pently_zp_state, pentlyBSS
+.if PENTLY_USE_MUSIC
+;  .import pently_update_music, pently_update_music_ch
+.endif
+;.import periodTableLo, periodTableHi, pently_sfx_table
+.if PENTLY_USE_PAL_ADJUST
+  .importzp tvSystem
+.endif
+;.export pentlyBSS
+;.exportzp pently_zp_state
+
+.assert (pently_zptemp + 5) <= $100, error, "pently_zptemp must be within zero page"
 
 SNDCHN = $4015
 
-; Ordinarily, the effect engine will move a pulse sound effect from
-; $4000 to $4004 if $4004 is idle and $4000 is not, or if $4004 has
-; less sfx data left to play than $4000.  Turn this off to force all
-; pulse sfx to be played on $4000.
-SQUARE_POOLING = 1
-
-; As of 2011-03-10, a sound effect interrupts a musical instrument on
-; the same channel only if the volume of the sfx is greater than that
-; of the instrument.  Turn this off to force sound fx to interrupt
-; the music whenever sfx data remains on that channel, even if the
-; music is louder.
-KEEP_MUSIC_IF_LOUDER = 1
+.if PENTLY_USE_MUSIC = 0
+  PENTLYZP_SIZE = 16
+.elseif PENTLY_USE_ATTACK_PHASE
+  PENTLYZP_SIZE = 32
+.else
+  PENTLYZP_SIZE = 21
+.endif
 
 .pushseg
-.segment "ZEROPAGE"
-pently_zp_state: .res 36
-.segment "BSS"
-pentlyBSS: .res 88
-
+.zeropage
+pently_zp_state: .res PENTLYZP_SIZE
 sfx_datalo = pently_zp_state + 0
 sfx_datahi = pently_zp_state + 1
+.bss
+
+; The statically allocated prefix of pentlyBSS
+pentlyBSS: .res 18
+
 sfx_rate = pentlyBSS + 0
 sfx_ratecd = pentlyBSS + 1
 ch_lastfreqhi = pentlyBSS + 2
 sfx_remainlen = pentlyBSS + 3
 
-.ifndef SOUND_NTSC_ONLY
-SOUND_NTSC_ONLY = 0
-.endif
-.if (!SOUND_NTSC_ONLY)
-.importzp tvSystem
-.endif
 .popseg
-
+pentlysound_code_start = *
 ;;
 ; Initializes all sound channels.
 ; Call this at the start of a program or as a "panic button" before
-; entering a long stretch of code where you don't call update_sound.
+; entering a long stretch of code where you don't call pently_update.
 ;
 .proc pently_init
   lda #$0F
@@ -65,12 +80,12 @@ SOUND_NTSC_ONLY = 0
   sta ch_lastfreqhi+0
   sta ch_lastfreqhi+8
   sta ch_lastfreqhi+4
-  lda #$80
-  sta $4008
   lda #8
   sta $4001
   sta $4005
-  lda #0
+  lda #$80
+  sta $4008
+  asl a
   sta $4003
   sta $4007
   sta $400F
@@ -82,24 +97,26 @@ SOUND_NTSC_ONLY = 0
   sta sfx_ratecd+4
   sta sfx_ratecd+8
   sta sfx_ratecd+12
-  sta pently_music_playing
-  lda #64
+  .if ::PENTLY_USE_MUSIC
+    sta pently_music_playing
+  .endif
+  lda #PENTLY_INITIAL_4011
   sta $4011
   rts
 .endproc
 
 ;;
 ; Starts a sound effect.
-; (Trashes $0000-$0004 and X.)
+; (Trashes pently_zptemp+0 through +4 and X.)
 ;
 ; @param A sound effect number (0-63)
 ;
 .proc pently_start_sound
-snddatalo = 0
-snddatahi = 1
-sndchno = 2
-sndlen = 3
-sndrate = 4
+snddatalo = pently_zptemp + 0
+snddatahi = pently_zptemp + 1
+sndchno   = pently_zptemp + 2
+sndlen    = pently_zptemp + 3
+sndrate   = pently_zptemp + 4
 
   asl a
   asl a
@@ -117,12 +134,12 @@ sndrate = 4
   lsr a
   lsr a
   sta sndrate
-  
   lda pently_sfx_table+3,x
   sta sndlen
 
-  ; split up square wave sounds between $4000 and $4004
-  .if ::SQUARE_POOLING
+  ; Split up square wave sounds between pulse 1 ($4000) and
+  ; pulse 2 ($4004) depending on which has less data left to play
+  .if ::PENTLY_USE_SQUARE_POOLING
     lda sndchno
     bne not_ch0to4  ; if not ch 0, don't try moving it
       lda sfx_remainlen+4
@@ -133,16 +150,19 @@ sndrate = 4
     not_ch0to4:
   .endif 
 
+  ; Play only if this sound effect is no shorter than the existing
+  ; effect on the same channel
   ldx sndchno
   lda sndlen
   cmp sfx_remainlen,x
   bcc ch_full
+
+  ; Replace the current sound effect if any
+  sta sfx_remainlen,x
   lda snddatalo
   sta sfx_datalo,x
   lda snddatahi
   sta sfx_datahi,x
-  lda sndlen
-  sta sfx_remainlen,x
   lda sndrate
   sta sfx_rate,x
   lda #0
@@ -151,15 +171,18 @@ ch_full:
   rts
 .endproc
 
-
 ;;
 ; Updates sound effect channels.
 ;
 .proc pently_update
-  jsr pently_update_music
+  .if ::PENTLY_USE_MUSIC
+    jsr pently_update_music
+  .endif
   ldx #12
 loop:
-  jsr pently_update_music_ch
+  .if ::PENTLY_USE_MUSIC
+    jsr pently_update_music_ch
+  .endif
   jsr pently_update_one_ch
   dex
   dex
@@ -170,14 +193,27 @@ loop:
 .endproc
 
 .proc pently_update_one_ch
+srclo     = pently_zptemp + 0
+srchi     = pently_zptemp + 1
+tvol      = pently_zptemp + 2
+tpitch    = pently_zptemp + 3
+tpitchadd = pently_zptemp + 4
+
 
   ; At this point, the music engine should have left duty and volume
-  ; in 2 and pitch in 3.
+  ; in tvol and pitch in tpitch.
   lda sfx_remainlen,x
   ora sfx_ratecd,x
   bne ch_not_done
-  lda 2
-  bne update_channel_hw
+  
+  ; Only music is playing
+  .if ::PENTLY_USE_MUSIC
+    lda tvol
+    .if ::PENTLY_USE_VIS
+      sta pently_vis_dutyvol,x
+    .endif
+    bne update_channel_hw
+  .endif
 
   ; Turn off the channel and force a reinit of the length counter.
   cpx #8
@@ -198,59 +234,104 @@ ch_not_done:
 
   ; fetch the instruction
   lda sfx_datalo+1,x
-  sta 1
+  sta srchi
   lda sfx_datalo,x
-  sta 0
+  sta srclo
   clc
   adc #2
   sta sfx_datalo,x
   bcc :+
-  inc sfx_datahi,x
-:
+    inc sfx_datahi,x
+  :
   ldy #0
-  .if ::KEEP_MUSIC_IF_LOUDER
-    lda 2
-    and #$0F
-    sta 4
-    lda (0),y
-    and #$0F
-    
-    ; At this point: A = sfx volume; 4 = musc volume
-    cmp 4
-    bcc music_was_louder
+  .if ::PENTLY_USE_MUSIC
+    .if ::PENTLY_USE_MUSIC_IF_LOUDER
+      lda tvol
+      pha
+      and #$0F
+      sta tvol
+      lda (srclo),y
+      and #$0F
+
+      ; At this point: A = sfx volume; tvol = music volume
+      cmp tvol
+      pla
+      sta tvol
+      bcc music_was_louder
+    .endif
+    .if ::PENTLY_USE_VIBRATO || ::PENTLY_USE_PORTAMENTO
+      sty tpitchadd  ; sfx don't support fine pitch adjustment
+      .if ::PENTLY_USE_VIS
+        tya
+        sta pently_vis_pitchlo,x
+      .endif
+    .endif
   .endif
-  lda (0),y
-  sta 2
+  lda (srclo),y
+  sta tvol
   iny
-  lda (0),y
-  sta 3
+  lda (srclo),y
+  sta tpitch
 music_was_louder:
   dec sfx_remainlen,x
 
 update_channel_hw:
-  lda 2
+  ; XXX vis does not work with no-music
+  .if ::PENTLY_USE_VIS
+    lda tpitch
+    sta pently_vis_pitchhi,x
+  .endif
+  lda tvol
+  .if ::PENTLY_USE_VIS
+    sta pently_vis_dutyvol,x
+  .endif
   ora #$30
   cpx #12
   bne notnoise
   sta $400C
-  lda 3
+  lda tpitch
   sta $400E
 rate_divider_cancel:
   rts
 
 notnoise:
+  ; If triangle, keep linear counter load (bit 7) on while playing
+  ; so that envelopes don't terminate prematurely
+  .if ::PENTLY_USE_TRIANGLE_DUTY_FIX
+    cpx #8
+    bne :+
+    and #$0F
+    beq :+
+      ora #$80  ; for triangle keep bit 7 (linear counter load) on
+    :
+  .endif
+
   sta $4000,x
-  ldy 3
-.if ::SOUND_NTSC_ONLY = 0
-  lda tvSystem
-  lsr a
-  bcc :+
-  iny
-:
-.endif
+  ldy tpitch
+  .if ::PENTLY_USE_PAL_ADJUST
+    ; Correct pitch for PAL NES only, not NTSC (0) or PAL famiclone (2)
+    lda tvSystem
+    lsr a
+    bcc :+
+      iny
+  :
+  .endif
+
   lda periodTableLo,y
-  sta $4002,x
-  lda periodTableHi,y
+  .if ::PENTLY_USE_VIBRATO || ::PENTLY_USE_PORTAMENTO
+    clc
+    adc tpitchadd
+    sta $4002,x
+    lda tpitchadd
+    and #$80
+    bpl :+
+      lda #$FF
+    :
+    adc periodTableHi,y
+  .else
+    sta $4002,x
+    lda periodTableHi,y
+  .endif
   cmp ch_lastfreqhi,x
   beq no_change_to_hi_period
   sta ch_lastfreqhi,x
@@ -260,20 +341,9 @@ no_change_to_hi_period:
   rts
 .endproc
 
-periodTableLo:
-  .byt $f1,$7f,$13,$ad,$4d,$f3,$9d,$4c,$00,$b8,$74,$34
-  .byt $f8,$bf,$89,$56,$26,$f9,$ce,$a6,$80,$5c,$3a,$1a
-  .byt $fb,$df,$c4,$ab,$93,$7c,$67,$52,$3f,$2d,$1c,$0c
-  .byt $fd,$ef,$e1,$d5,$c9,$bd,$b3,$a9,$9f,$96,$8e,$86
-  .byt $7e,$77,$70,$6a,$64,$5e,$59,$54,$4f,$4b,$46,$42
-  .byt $3f,$3b,$38,$34,$31,$2f,$2c,$29,$27,$25,$23,$21
-  .byt $1f,$1d,$1b,$1a,$18,$17,$15,$14
-periodTableHi:
-  .byt $07,$07,$07,$06,$06,$05,$05,$05,$05,$04,$04,$04
-  .byt $03,$03,$03,$03,$03,$02,$02,$02,$02,$02,$02,$02
-  .byt $01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01
-  .byt $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-  .byt $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-  .byt $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-  .byt $00,$00,$00,$00,$00,$00,$00,$00
+PENTLYSOUND_SIZE = * - pentlysound_code_start
 
+; aliases for cc65
+_pently_init = pently_init
+_pently_start_sound = pently_start_sound
+_pently_update = pently_update

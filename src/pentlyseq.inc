@@ -1,21 +1,42 @@
 ;
-; Pently data macro definitions
-; Copyright 2010-2015 Damian Yerrick
+; Pently audio engine
+; Sequence data macro definitions
 ;
-; Copying and distribution of this file, with or without
-; modification, are permitted in any medium without royalty provided
-; the copyright notice and this notice are preserved in all source
-; code copies.  This file is offered as-is, without any warranty.
+; Copyright 2010-2017 Damian Yerrick
+; 
+; This software is provided 'as-is', without any express or implied
+; warranty.  In no event will the authors be held liable for any damages
+; arising from the use of this software.
+; 
+; Permission is granted to anyone to use this software for any purpose,
+; including commercial applications, and to alter it and redistribute it
+; freely, subject to the following restrictions:
+; 
+; 1. The origin of this software must not be misrepresented; you must not
+;    claim that you wrote the original software. If you use this software
+;    in a product, an acknowledgment in the product documentation would be
+;    appreciated but is not required.
+; 2. Altered source versions must be plainly marked as such, and must not be
+;    misrepresented as being the original software.
+; 3. This notice may not be removed or altered from any source distribution.
+;
+
+.ifndef PENTLYSEQ_INC
+PENTLYSEQ_INC = 1
+
+.global pently_sfx_table, pently_drums
+.global pently_instruments, pently_patterns, pently_songs
+.globalzp NUM_SONGS
 
 ; Sound effect/drum definitions
 .macro sfxdef name, baseaddr, length, period, channel
+.exportzp name
 .assert * - pently_sfx_table < 256, error, "too many sound effects"
 name = <((* - pently_sfx_table) / 4)
   .addr baseaddr
   .byt (channel<<2)|((period - 1)<<4)
   .byt length
 .endmacro
-
 
 ; each entry in sound effect frames is four nibbles, big endian:
 ; FEDC BA98 7654 3210
@@ -85,7 +106,7 @@ name = <(* - pently_songs) / 2
 
 ; Pattern definition
 .macro patdef name, pattern_addr
-name = <(* - pently_patterns) / 2
+name = (* - pently_patterns) / 2
   .addr (pattern_addr)
 .endmacro
 
@@ -221,6 +242,12 @@ LEGATO_OFF = $DA
 LEGATO_ON = $DB
 TRANSPOSE = $DC
 GRACE = $DD
+VIBRATO = $DE
+CHVOLUME = $DF
+BEND = $E0
+RESERVEDFX1 = $E1
+FASTARP = $E2
+SLOWARP = $E3
 PATEND = $FF
 
 ; The default duration is one row (a sixteenth note in the tracker).
@@ -233,3 +260,4 @@ D_2  = 5
 D_D2 = 6
 D_1  = 7
 
+.endif

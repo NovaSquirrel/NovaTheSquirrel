@@ -71,10 +71,10 @@ NEW_TOGGLE_BEHAVIOR = 1 ; don't blank the screen for toggle block changing
   SNARE2
   KICK2
   HIHAT
-  YOUSHOOT
+;  YOUSHOOT
   ENEMY_SMOOSH
   HURT
-  PRIZE
+;  PRIZE
   SPRING
   SNARE1
   KICK1
@@ -82,7 +82,7 @@ NEW_TOGGLE_BEHAVIOR = 1 ; don't blank the screen for toggle block changing
   BOOM2
   ENEMY_HURT
   COIN
-  YOU_DIED
+;  YOU_DIED
   TELEPORT
   BUMP
   TAIL_WHOOSH
@@ -240,7 +240,20 @@ MS_EMPTY = 32
 .endenum
 
 .enum MusicTracks
-  NONE
+  WORLD_1A
+  WORLD_1B
+  WORLD_3
+  WORLD_2
+  WORLD_5
+  MINOR_BOSS
+  MAJOR_BOSS
+  FINAL_BOSS
+  WORLD_1_SELECT
+  WORLD_2_SELECT
+  WORLD_3_SELECT
+  WORLD_4_SELECT
+  WORLD_5_SELECT
+  NONE            = 128
 .endenum
 
 ; -------------------- scripting stuff --------------------------------------

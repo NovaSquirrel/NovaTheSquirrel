@@ -7,15 +7,11 @@ pently_sfx_table:
   .byt 8, 4
   .addr hihat_snd
   .byt 12, 2
-  .addr youshoot_snd
-  .byt 0, 6
   .addr enemyhurt_snd
   .byt 0, 10
   .addr youhurt_snd
   .byt 0, 10
 
-  .addr collect_snd
-  .byt 0, 10
   .addr spring_snd
   .byt 0, 20
   .addr snare_snd
@@ -34,8 +30,6 @@ pently_sfx_table:
   .addr money_snd
   .byt 0, 10
 
-  .addr youdead_snd
-  .byt 0, 20
   .addr teleport_snd
   .byt 0, 10
   .addr bump_snd
@@ -96,10 +90,6 @@ spring_snd:
   .dbyt $4f28, $4f29
   .dbyt $4f28, $4f29
 
-youshoot_snd:
-  .dbyt $8f20, $8f21
-  .dbyt $8f22, $8f23
-  .dbyt $8f22, $8f21
 
 enemyhurt_snd:
   .dbyt $4f20, $4f21
@@ -115,31 +105,12 @@ youhurt_snd:
   .dbyt $4f16, $4f1f
   .dbyt $4f18, $4f1f
 
-youdead_snd:
-  .dbyt $4f10, $4f11
-  .dbyt $4f10, $4f11
-  .dbyt $4012, $4013
-  .dbyt $4012, $4013
-  .dbyt $4f14, $4f1f
-  .dbyt $4f14, $4f24
-  .dbyt $4f16, $4f1f
-  .dbyt $4f16, $4f25
-  .dbyt $4f18, $4f1f
-  .dbyt $4f18, $4f26
-
 teleport_snd:
   .dbyt $8f20, $8020
   .dbyt $8f20, $8020
   .dbyt $8f20, $8820
   .dbyt $8620, $8420
   .dbyt $8220, $8120
-
-collect_snd:
-  .dbyt $4f20, $4f21
-  .dbyt $4022, $4023
-  .dbyt $4f24, $4f2f
-  .dbyt $4026, $402f
-  .dbyt $4f28, $4f2f
 
 enemyhurt2_snd:
   .dbyt $4f20, $4f18
@@ -307,3 +278,15 @@ morning_drums:
   .byt KICK, KICK, KICK|D_8, SNARE|D_8
   .byt KICK, KICK, KICK|D_8, SNARE|D_8, SNARE|D_8, KICK|D_8
   .byt PATEND
+
+periodTableLo:
+  .byt $f1,$7f,$13,$ad,$4d,$f3,$9d,$4c,$00,$b8,$74,$34,$f8,$bf,$89,$56,$26,$f9
+  .byt $ce,$a6,$80,$5c,$3a,$1a,$fb,$df,$c4,$ab,$93,$7c,$67,$52,$3f,$2d,$1c,$0c
+  .byt $fd,$ef,$e1,$d5,$c9,$bd,$b3,$a9,$9f,$96,$8e,$86,$7e,$77,$70,$6a,$64,$5e
+  .byt $59,$54,$4f,$4b,$46,$42,$3f,$3b,$38,$34,$31,$2f,$2c,$29,$27,$25,$23,$21
+  .byt $1f,$1d,$1b,$1a
+periodTableHi:
+  .byt 7,7,7,6,6,5,5,5,5,4,4,4,3,3,3,3,3,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,0
+  .byt 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+  .byt 0,0
+

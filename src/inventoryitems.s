@@ -1082,6 +1082,9 @@ ResetCheckpointString:
   .byt "Reset to checkpoint",0
 
 MuteMusicCode:
+  lda MusicMute
+  eor #128
+  sta MusicMute
   jmp CleanupAfterInventory
 ExplainAbilityCode:
   jsr AbilityHelpTrampoline
