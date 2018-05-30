@@ -1,5 +1,5 @@
 arrows:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_2|0
   .byt 4
   .byt $f4
   .byt GraphicsUpload::SP_WALKER

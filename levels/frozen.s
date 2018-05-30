@@ -1,5 +1,5 @@
 frozen:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_3|0
   .byt 1
   .byt $f5
   .byt GraphicsUpload::SP_KING

@@ -12,7 +12,7 @@
 		"FormatVersion":	1
 	},
 	"Header":	{
-		"Music":	"NONE",
+		"Music":	"WORLD_5",
 		"SpriteGFX":	["SP_KING", "SP_CANNON", "SP_BOOMERANG", "SP_MINES"],
 		"GFXUpload":	["PAL_FROZEN", "BG_COMMON", "BG_FROZEN_FG", "BG_FROZEN_BG", "PAL_ENEMY4", "BG_MINES", "BG_CHIP"],
 		"BGColor":	15

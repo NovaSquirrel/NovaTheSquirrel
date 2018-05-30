@@ -1,5 +1,5 @@
 glass_finale:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_2|0
   .byt 2
   .byt $fb
   .byt GraphicsUpload::SP_EXPLODE

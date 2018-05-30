@@ -1,5 +1,5 @@
 insane5:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_2|0
   .byt 2
   .byt $fa
   .byt GraphicsUpload::SP_WIND

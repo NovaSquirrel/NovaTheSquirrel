@@ -1,5 +1,5 @@
 frozen3:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_3|0
   .byt 2
   .byt $f8
   .byt GraphicsUpload::SP_BOOMERANG

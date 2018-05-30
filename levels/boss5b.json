@@ -15,7 +15,7 @@
 		"StartDialog":	"BeforeBill"
 	},
 	"Header":	{
-		"Music":	"NONE",
+		"Music":	"FINAL_BOSS",
 		"SpriteGFX":	["SP_FINALBOSS", "SP_FINALPROJECTILE", "SP_CANNON", "SP_MINES"],
 		"GFXUpload":	["PAL_DABG", "PAL_ENEMY6", "BG_DABGCOMMON", "BG_DABG", "BG_GRASSYBG"],
 		"BGColor":	49

@@ -15,7 +15,7 @@
 		"StartDialog":	"BeforeFighterMaker"
 	},
 	"Header":	{
-		"Music":	"NONE",
+		"Music":	"MAJOR_BOSS",
 		"SpriteGFX":	["SP_FREAK", "SP_WALKER", "SP_CANNON", "SP_HANNAH"],
 		"GFXUpload":	["PAL_GRASSY", "PAL_FREAK", "BG_JUNGLE", "BG_GRASSYBG", "BG_COMMON", "BG_GRASSY"],
 		"BGColor":	49

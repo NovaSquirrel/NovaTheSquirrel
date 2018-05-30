@@ -1,5 +1,5 @@
 frozen6:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_3|0
   .byt 2
   .byt $fa
   .byt GraphicsUpload::SP_RONALD

@@ -1,5 +1,5 @@
 chiptall:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_2|0
   .byt 133
   .byt $7b
   .byt GraphicsUpload::SP_WALKER

@@ -1,5 +1,5 @@
 final6c:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_5|0
   .byt 1
   .byt $f6
   .byt GraphicsUpload::SP_KING

@@ -1,5 +1,5 @@
 extra3:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_3|0
   .byt 88
   .byt $3a
   .byt GraphicsUpload::SP_MINES

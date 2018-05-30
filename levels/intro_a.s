@@ -1,5 +1,5 @@
 intro_a:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_1A|0
   .byt 3
   .byt $4b
   .byt GraphicsUpload::SP_WALKER

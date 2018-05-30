@@ -1,5 +1,5 @@
 boss2:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::MINOR_BOSS|0
   .byt 7
   .byt $28
   .byt GraphicsUpload::SP_FHBG

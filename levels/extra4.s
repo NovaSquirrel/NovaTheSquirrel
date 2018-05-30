@@ -1,5 +1,5 @@
 extra4:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_1B|0
   .byt 3
   .byt $fb
   .byt GraphicsUpload::SP_WALKER

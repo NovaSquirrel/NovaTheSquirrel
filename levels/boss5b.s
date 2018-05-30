@@ -1,5 +1,5 @@
 boss5b:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::FINAL_BOSS|0
   .byt 10
   .byt $f9
   .byt GraphicsUpload::SP_FINALBOSS

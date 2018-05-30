@@ -12,7 +12,7 @@
 		"FormatVersion":	1
 	},
 	"Header":	{
-		"Music":	"NONE",
+		"Music":	"WORLD_5",
 		"SpriteGFX":	["SP_KING", "SP_EXPLODE", "SP_MINES", "SP_HANNAH"],
 		"GFXUpload":	["PAL_DABG_GRAY", "PAL_ENEMY6", "BG_DABGCOMMON", "BG_DABG", "BG_HANNAH", "BG_JUNGLE", "BG_MINES"],
 		"BGColor":	49

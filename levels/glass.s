@@ -1,5 +1,5 @@
 glass:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_2|0
   .byt 9
   .byt $fb
   .byt GraphicsUpload::SP_WALKER

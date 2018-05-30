@@ -15,7 +15,7 @@
 		"StartDialog":	"Intro"
 	},
 	"Header":	{
-		"Music":	"NONE",
+		"Music":	"WORLD_1A",
 		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_FIRE", "SP_SUN"],
 		"GFXUpload":	["PAL_GRASSY", "PAL_ENEMY1", "BG_COMMON", "BG_GRASSY", "BG_GRASSYBG", "BG_JUNGLE"],
 		"BGColor":	49

@@ -1,5 +1,5 @@
 intro_b:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_1A|0
   .byt 3
   .byt $db
   .byt GraphicsUpload::SP_WALKER

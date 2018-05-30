@@ -15,7 +15,7 @@
 		"StartDialog":	"FirstSchemeTeamEncounter"
 	},
 	"Header":	{
-		"Music":	"NONE",
+		"Music":	"MINOR_BOSS",
 		"SpriteGFX":	["SP_WALKER", "SP_SCHEME_TEAM", "SP_FIRE", "SP_KING"],
 		"GFXUpload":	["PAL_GRASSY", "PAL_ENEMY1", "BG_SUBURBS", "BG_GRASSYBG", "BG_COMMON", "BG_GRASSY"],
 		"BGColor":	49

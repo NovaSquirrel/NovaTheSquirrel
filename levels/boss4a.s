@@ -1,5 +1,5 @@
 boss4a:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::MAJOR_BOSS|0
   .byt 5
   .byt $2b
   .byt GraphicsUpload::SP_FREAK

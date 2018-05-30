@@ -1,5 +1,5 @@
 underground:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_1B|0
   .byt 2
   .byt $f8
   .byt GraphicsUpload::SP_WALKER

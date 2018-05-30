@@ -1,5 +1,5 @@
 boss5a:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::MAJOR_BOSS|0
   .byt 7
   .byt $fb
   .byt GraphicsUpload::SP_FHBG

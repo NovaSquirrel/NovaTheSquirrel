@@ -15,7 +15,7 @@
 		"StartDialog":	"MolSnoMeet"
 	},
 	"Header":	{
-		"Music":	"NONE",
+		"Music":	"MINOR_BOSS",
 		"SpriteGFX":	["SP_MOLSNO", "SP_WALKER", "SP_CANNON", "SP_HANNAH"],
 		"GFXUpload":	["PAL_FROZEN", "PAL_ENEMY_MOLSNO", "BG_SUBURBS", "BG_FROZEN_BG", "BG_COMMON", "BG_FROZEN_FG"],
 		"BGColor":	49

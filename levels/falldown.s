@@ -1,5 +1,5 @@
 falldown:
-  .byt MusicTracks::NONE|64
+  .byt MusicTracks::WORLD_2|64
   .byt 2
   .byt $2
   .byt GraphicsUpload::SP_WALKER

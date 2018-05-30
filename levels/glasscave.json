@@ -14,7 +14,7 @@
 	"Config":	{
 },
 	"Header":	{
-		"Music":	"NONE",
+		"Music":	"WORLD_2",
 		"SpriteGFX":	["SP_FIRE", "SP_RONALD", "SP_CANNON", "SP_HANNAH"],
 		"GFXUpload":	["PAL_BUMMER", "BG_COMMON", "BG_BUMMER", "BG_CHIP", "BG_HANNAH", "PAL_ENEMY3"],
 		"BGColor":	15

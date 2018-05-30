@@ -1,5 +1,5 @@
 final6b:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_5|0
   .byt 2
   .byt $fb
   .byt GraphicsUpload::SP_WIND

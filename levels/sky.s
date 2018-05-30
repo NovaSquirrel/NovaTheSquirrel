@@ -1,5 +1,5 @@
 sky:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_1B|0
   .byt 5
   .byt $f5
   .byt GraphicsUpload::SP_WALKER

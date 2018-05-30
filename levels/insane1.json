@@ -15,7 +15,7 @@
 		"StartDialog":	"NovaLiaLWSS"
 	},
 	"Header":	{
-		"Music":	"NONE",
+		"Music":	"WORLD_1B",
 		"SpriteGFX":	["SP_WALKER", "SP_MINES", "SP_CANNON", "SP_HANNAH"],
 		"GFXUpload":	["PAL_GRASSY", "PAL_ENEMY1", "BG_COMMON", "BG_GRASSY", "BG_HANNAH", "BG_MINES", "BG_TROPICAL"],
 		"BGColor":	49

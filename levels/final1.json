@@ -15,7 +15,7 @@
 		"StartDialog":	"MeetRemy"
 	},
 	"Header":	{
-		"Music":	"NONE",
+		"Music":	"WORLD_5",
 		"SpriteGFX":	["SP_WALKER", "SP_EXPLODE", "SP_FIRE", "SP_FACEBALL"],
 		"GFXUpload":	["PAL_DABG", "PAL_ENEMY6", "BG_DABGCOMMON", "BG_DABG", "BG_GRASSYBG"],
 		"BGColor":	49

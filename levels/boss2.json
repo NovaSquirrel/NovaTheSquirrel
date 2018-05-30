@@ -15,7 +15,7 @@
 		"StartDialog":	"FHBGAtBummerClub"
 	},
 	"Header":	{
-		"Music":	"NONE",
+		"Music":	"MINOR_BOSS",
 		"SpriteGFX":	["SP_FHBG", "SP_SCHEME_TEAM", "SP_CANNON", "SP_HANNAH"],
 		"GFXUpload":	["PAL_DABG_GRAY", "PAL_ENEMY6", "BG_COMMON", "BG_DABG"],
 		"BGColor":	49

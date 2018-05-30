@@ -1,5 +1,5 @@
 frozen2:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_3|0
   .byt 2
   .byt $f6
   .byt GraphicsUpload::SP_EXPLODE
