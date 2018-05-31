@@ -275,9 +275,10 @@ LevelZeroWhenLoad_Start:
   PlayerHasBalloon:       .res 1
   DelayedMetaEditIndexHi: .res MaxDelayedMetaEdits  ; high address in the level array, or 0 if unused
   IsScrollUpdate:         .res 1   ; nonzero = yes
-  PlayerOnLadder:         .res 1  ; true if player is on a ladder
+  PlayerOnLadder:         .res 1   ; true if player is on a ladder
   NeedSFX:                .res 1
-  PlayerInvincible:       .res 1     ; player invincibility timer, for when getting hurt or otherwise
+  PlayerInvincible:       .res 1   ; player invincibility timer, for when getting hurt or otherwise
+  PreserveLevel:          .res 1   ; don't reset level when player dies
 
   ; LevelLinkUp/Down are offsets for what screen to move to if you go off the top or bottom
   LevelLinkUp:            .res 16

@@ -533,6 +533,7 @@ LSpecialCmd = $f7
   JACK_STONE
   IS_SANDBOX
   FORCE_MIRROR
+  PRESERVE_LEVEL
 .endenum
 
 .enum LevelBackgroundId

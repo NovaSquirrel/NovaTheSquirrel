@@ -612,6 +612,7 @@ SpecialConfigTable:
   .raddr SetJackStone
   .raddr IsSandbox
   .raddr ForceMirror
+  .raddr DoPreserveLevel
 
 SpecialConfigMakeBackgrounds:
   lda (LevelDecodePointer),y
@@ -666,6 +667,10 @@ ForceMirror:
   lda #AbilityType::MIRROR|128
   sta NeedAbilityChange
   sta NeedAbilityChangeNoSound
+  rts
+
+DoPreserveLevel:
+  inc PreserveLevel
   rts
 
 SetBGStars:

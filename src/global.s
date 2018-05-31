@@ -1098,7 +1098,8 @@ Exit:
 .proc StartLevel
 ;  lda SavedAbility
 ;  sta PlayerAbility
-
+  ldx #255 ; reset stack pointer just in case
+  txs
   jsr ReseedRandomizer
 
   ; Copy options to physics variables

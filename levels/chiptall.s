@@ -205,12 +205,15 @@ chiptallData:
   LObjN LO::R_COIN,           5, 2, 0, 8
   LObjN LO::R_SOLID_ROCK,     3, 0, 1, 14
   .byt LSpecialCmd, LevelSpecialConfig::STARS
+  .byt LSpecialCmd, LevelSpecialConfig::PRESERVE_LEVEL
   LFinished
 
 chiptallSprite:
   LSpr Enemy::SUN,                 0,  13,   1
+  LSpr Enemy::CHECKPOINT,          0,  13,   5
   LSpr Enemy::SPINNER,             0,  18,   9, 3
   LSpr Enemy::THWOMP,              0,  24,   3
+  LSpr Enemy::CHECKPOINT,          0,  40,  11
   LSpr Enemy::FIRE_JUMP,           0,  44,  11, 1
   LSpr Enemy::THWOMP,              0,  55,   4
   LSpr Enemy::FIRE_JUMP,           0,  61,   6, 1
@@ -219,10 +222,12 @@ chiptallSprite:
   LSpr Enemy::CHECKPOINT,          0, 114,  12
   LSpr Enemy::COLLECTIBLE,         0, 123,   3
   LSpr Enemy::SUN,                 0, 131,   1
+  LSpr Enemy::CHECKPOINT,          0, 131,  12
   LSpr Enemy::CANNON_1,            1, 142,   7
   LSpr Enemy::OWL,                 0, 152,   7
   LSpr Enemy::OWL,                 0, 165,   6
   LSpr Enemy::OWL,                 0, 170,   3
   LSpr Enemy::OWL,                 0, 172,  10
+  LSpr Enemy::CHECKPOINT,          0, 175,   4
   LSpr Enemy::FIRE_JUMP,           1, 189,   4, 1
   .byt 255 ; end

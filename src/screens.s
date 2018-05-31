@@ -64,10 +64,11 @@
   ldy #<NoRAMError
   jsr vwfPutsAtRow
 HaveExtraRAM:
-;  ldx #15
-;  lda #>SelectForOptions
-;  ldy #<SelectForOptions
-;DontHaveExtraRAM:
+  ldx #15
+  lda #>BottomMessage
+  ldy #<BottomMessage
+  jsr vwfPutsAtRow
+DontHaveExtraRAM:
 
 ; Turn on the display and get it ready
   jsr WaitVblank
@@ -134,9 +135,37 @@ Exit:
 .endproc
 
 NoRAMError: .byt "No WRAM, so game won't work!",0
-SelectForOptions: .byt "          Select: options",0
+;SelectForOptions: .byt "          Select: options",0
+;BottomMessage: .byt "       Prerelease version?",0
+BottomMessage: .byt "     (c) 2018 NovaSquirrel",0
 
 .proc ShowDie
+  ; If the level is to be preserved, don't reload it
+  lda PreserveLevel
+  beq NoPreserveLevel
+    lda CheckpointX
+    sta PlayerPXH
+    lda #0
+    sta PlayerPXL
+    lda CheckpointY
+    sta PlayerPYH
+    inc NeedLevelRerender
+
+    lda #4
+    sta PlayerHealth
+
+    jsr DieSound
+
+    lda #SOUND_BANK
+    jsr SetPRG
+
+    lda #0
+    sta NeedSFX
+
+    lda LevelMusic
+    jmp pently_start_music
+  NoPreserveLevel:
+
   jsr WaitVblank
   lda #$3f
   sta PPUADDR
@@ -156,19 +185,7 @@ SelectForOptions: .byt "          Select: options",0
   bne :-
   jsr UpdateScrollRegister
 
-  ; Play the sample
-  lda #VOICE_BANK
-  jsr SetPRG
-
-  lda StartedLevelNumber
-  and #%111000
-  cmp #%001000
-  beq BummerInstead
-  jsr quadpcm_play_die
-  jmp :+
-BummerInstead:
-  jsr quadpcm_play_bummer
-:
+  jsr DieSound
 
   ; Restore checkpoint
   ldy #GameStateLen-1
@@ -191,7 +208,23 @@ BummerInstead:
   lda #$40
   sta PlayerPXL
   lda CheckpointLevelNumber
+
   jmp StartLevel_FromCheckpoint
+
+DieSound:
+  ; Play the sample
+  lda #VOICE_BANK
+  jsr SetPRG
+
+  lda StartedLevelNumber
+  and #%111000
+  cmp #%001000
+  beq BummerInstead
+  jsr quadpcm_play_die
+  jmp :+
+BummerInstead:
+  jsr quadpcm_play_bummer
+: rts
 .endproc
 
 .proc JumpToLevelSelect
