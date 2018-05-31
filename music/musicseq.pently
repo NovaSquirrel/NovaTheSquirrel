@@ -14,13 +14,13 @@ song World_1A
     d'8 a'8 d''8 w16 d'16 a'8 d''16 d'16 a'8 f#'8 e'8 a'8 e''8 w16 a'16 e''8 a'16 e'16 e''8 a'8 d'8 a'8 d''8 d'16 a'8 d''8 d'16 a'8 d''8 f#'8 b'8 d''8 b'16 f#'8 b'8 f#'16 a'8 b'8 
   pattern pat_2_0_4 with Horn on pulse1
     absolute
-    mp MP3 d'2 mf w4 ff w4 mp e'2 mf w4 ff w4 g'2 mf w4 mp w4 f#'2 mf e'4 ff w4 
+    pp MP3 d'4 mp w4 mf w4 ff w4 pp e'4 mp w4 mf w4 ff w4 g'2 mf w4 mp w4 pp f#'4 mp w4 mf e'4 ff w4 
   pattern pat_2_0_5 with Horn on pulse1
     absolute
-    mp MP3 d'2 mf w4 ff w4 mp e'2 mf w4 ff w4 g'2 mf w4 mp w4 a'2 mf b'4 mp a'4 
+    pp MP3 d'4 mp w4 mf w4 ff w4 pp e'4 mp w4 mf w4 ff w4 g'2 mf w4 mp w4 pp a'4 mp w4 mf b'4 mp a'4 
   pattern pat_2_0_6 with Horn on pulse1
     absolute
-    mp MP3 d'2 mf w4 ff w4 mp e'2 mf w4 ff w4 g'2 mf w8 a'8 mp w8 g'8 a'4 b'4 mf d''4 mp c#''4 
+    pp MP3 d'4 mp w4 mf w4 ff w4 pp e'4 mp w4 mf w4 ff w4 g'2 mf w8 a'8 mp w8 g'8 pp a'4 mp b'4 mf d''4 mp c#''4 
   pattern pat_2_0_7 with Tribal_Hit on pulse1
     absolute
     ff MP0 d''8 @Tribal_Background a'8 d''8 d'16 a'8 d''8 d'16 a'8 d''8 b8 g'8 b'8 b16 g'8 b'8 b16 g'8 e'8 d'8 a'8 d''8 d'16 a'8 d''8 d'16 a'8 d''8 e'8 a'8 e''8 e'16 a'8 e''8 e'16 e''8 d''8 
@@ -47,7 +47,7 @@ song World_1A
     d,8 @Tribal_Hit d'16 @Tribal_Bass b,,16 c#,8 d,8 @Tribal_Hit d'8 @Tribal_Bass b,,8 @Tribal_Hit f#'8 d'8 @Tribal_Bass e,8 @Tribal_Hit e'16 @Tribal_Bass e,16 d,8 e,8 @Tribal_Hit e'16 @Tribal_Bass e,8 @Tribal_Hit e'16 @Tribal_Bass f#,8 @Tribal_Hit e'8 @Tribal_Bass g,8 @Tribal_Hit g'16 @Tribal_Bass g,8 w16 g,8 @Tribal_Hit g'8 @Tribal_Bass g,8 @Tribal_Hit g'8 f#'8 @Tribal_Bass f#,8 @Tribal_Hit a'8 @Tribal_Bass f#8 @Tribal_Hit a'8 @Tribal_Bass a,8 @Tribal_Hit d''8 @Tribal_Bass g,8 @Tribal_Hit c#''8 
   pattern pat_2_1_9 with Horn on pulse2
     absolute
-    mf MP3 d''8 w16 mp w4 w8 w16 @Tribal_Bass ff MP0 d,4 b,,8 d,2 w4 b,,8 b,,8 d,2 w8 d,4 b,,8 d,2 w4 a,,8 b,,8 
+    mf MP3 d''8 w16 mp w8 w16 pp w4 @Tribal_Bass ff MP0 d,4 b,,8 d,2 w4 b,,8 b,,8 d,2 w8 d,4 b,,8 d,2 w4 a,,8 b,,8 
   pattern pat_2_3_0
     autodrum0_16 autodrum1_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum1_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum2_16 autodrum1_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum1_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum4_16 autodrum4_16 autodrum0_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum1_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum2_16 autodrum1_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum2_16 autodrum0_16 autodrum1_16 autodrum2_16 autodrum1_16 autodrum0_16 autodrum3_16 autodrum2_16 autodrum2_16 autodrum4_16 autodrum4_16 autodrum0_16 autodrum2_16 
   pattern pat_2_3_1
@@ -112,7 +112,7 @@ song World_1B
     f'4 w8 g'8 w16 d'8 w16 @Miniboss_Flute g'8 f'16 e'8 d'16 c'8 w16 g8 w16 @Select_Orc_Hit f'4 w8 g'8 w16 d'8 w16 @Miniboss_Flute c''8 c''16 c''8 a#'8 w16 g'8 w16 f'16 
   pattern pat_3_0_3 with Select_Orc_Hit on pulse1
     absolute
-    ff f'16 mp w16 ff f'16 mp w16 ff f'8 g'8 mp w16 ff a#'8 mp w16 @Miniboss_Flute ff g'8 f'16 g'8 a'8 w16 a#'16 d'8 w16 @Select_Orc_Hit f'16 mp w16 ff e'16 mp w16 ff c'16 mp w16 ff a#8 mp w16 ff f8 mp w16 @Miniboss_Flute ff g'8 a'16 a#'8 c''8 w16 g''16 f''8 w16 
+    ff f'16 pp w16 ff f'16 pp w16 ff f'8 g'8 pp w16 ff a#'8 pp w16 @Miniboss_Flute ff g'8 f'16 g'8 a'8 w16 a#'16 d'8 w16 @Select_Orc_Hit f'16 pp w16 ff e'16 pp w16 ff c'16 pp w16 ff a#8 pp w16 ff f8 pp w16 @Miniboss_Flute ff g'8 a'16 a#'8 c''8 w16 g''16 f''8 w16 
   pattern pat_3_0_4 with Puzzle_Pulsate on pulse1
     absolute
     ENcc f'8 g'8 w16 a'16 c''8 c''16 a#'8 w16 e'8 f'8 w16 f'16 f'8 g'16 f'8 w16 ENcc g'8 a'8 w16 a#'16 c''8 c''16 a#'8 e''16 f''8 f''16 e''8 d''16 c''16 a#'8 a'8 g'16 
@@ -247,16 +247,16 @@ song World_3
     r8 ff e'16 r16 b'16 r16 g'16 r16 a'16 r16 e'16 r16 g'16 r16 e'16 r16 d'16 r16 e'16 r2 w4 w8 w16 e'16 r16 b'16 r16 g'16 r16 e'16 r16 g'16 r16 a'16 r16 b'16 r16 g'16 r16 e''16 r16 g'16 r16 c''16 r16 g'16 r16 a'16 r16 e'16 r16 g'16 r16 
   pattern pat_4_1_3 with Cave_Lead on pulse2
     absolute
-    ff e''8 mp e''16 ff d''8 mp d''16 ff e''8 mp e''8 ff d''8 e''16 mp e''16 ff d''16 mp d''16 ff a'8 mp a'16 ff a'8 mp a'16 ff b'8 mp b'8 ff d''8 mp d''4 ff e''8 mp e''16 ff d''8 mp d''16 ff e''8 mp e''8 ff d''8 e''16 mp e''16 ff d''16 mp d''16 ff e''16 mp e''16 ff d''16 mp d''16 ff e''16 mp e''16 ff d''16 mp d''16 ff b'16 mp b'16 ff a'16 mp a'16 ff b'16 mp b'16 ff d''16 mp d''16 
+    ff e''8 pp e''16 ff d''8 pp d''16 ff e''8 pp e''8 ff d''8 e''16 pp e''16 ff d''16 pp d''16 ff a'8 pp a'16 ff a'8 pp a'16 ff b'8 pp b'8 ff d''8 pp d''4 ff e''8 pp e''16 ff d''8 pp d''16 ff e''8 pp e''8 ff d''8 e''16 pp e''16 ff d''16 pp d''16 ff e''16 pp e''16 ff d''16 pp d''16 ff e''16 pp e''16 ff d''16 pp d''16 ff b'16 pp b'16 ff a'16 pp a'16 ff b'16 pp b'16 ff d''16 pp d''16 
   pattern pat_4_1_4 with Cave_Lead on pulse2
     absolute
-    ff e''8 mp e''16 ff d''8 mp d''16 ff e''8 mp e''8 ff d''8 e''16 mp e''16 ff d''16 mp d''16 ff a'8 mp a'16 ff a'8 mp a'16 ff b'8 mp b'8 ff d''8 mp d''4 ff d''8 mp d''16 ff b'8 mp b'16 ff d''8 mp d''8 ff b'8 d''16 mp d''16 ff b'16 mp b'16 ff a'8 mp a'16 ff a'8 mp a'16 ff g'8 mp g'8 ff e'8 mp e'4 
+    ff e''8 pp e''16 ff d''8 pp d''16 ff e''8 pp e''8 ff d''8 e''16 pp e''16 ff d''16 pp d''16 ff a'8 pp a'16 ff a'8 pp a'16 ff b'8 pp b'8 ff d''8 pp d''4 ff d''8 pp d''16 ff b'8 pp b'16 ff d''8 pp d''8 ff b'8 d''16 pp d''16 ff b'16 pp b'16 ff a'8 pp a'16 ff a'8 pp a'16 ff g'8 pp g'8 ff e'8 pp e'4 
   pattern pat_4_1_5 with Pizzicato_Strings on pulse2
     absolute
-    ff e'''8 d'''8 b''8 d'''4 @Horn mf a'8 b'8 d''16 mp w16 @Pizzicato_Strings ff e'''8 d'''8 b''8 d'''4 @Horn mf a'8 b'8 g'16 mp w16 @Pizzicato_Strings ff e'''8 d'''8 b''8 a''4 @Horn mf a'8 b'8 d''16 mp w16 @Pizzicato_Strings ff e'''8 d'''8 b''8 e''8 e''8 g''8 a''8 b''8 
+    ff e'''8 d'''8 b''8 d'''4 @Horn mf a'8 b'8 d''16 pp w16 @Pizzicato_Strings ff e'''8 d'''8 b''8 d'''4 @Horn mf a'8 b'8 g'16 pp w16 @Pizzicato_Strings ff e'''8 d'''8 b''8 a''4 @Horn mf a'8 b'8 d''16 pp w16 @Pizzicato_Strings ff e'''8 d'''8 b''8 e''8 e''8 g''8 a''8 b''8 
   pattern pat_4_1_6 with Pizzicato_Strings on pulse2
     absolute
-    ff e'''8 d'''8 b''8 d'''4 @Horn mf a'8 b'8 d''16 mp d''16 @Pizzicato_Strings ff e'''8 d'''8 b''8 d'''4 @Horn mf a'8 d''8 b'16 mp w16 @Pizzicato_Strings ff e'''8 d'''8 b''8 e'''4 @Horn mf e''8 d''8 b'16 mp w16 @Pizzicato_Strings ff e'''8 d'''8 e'''8 d'''8 g''8 b''8 d'''8 e'''8 
+    ff e'''8 d'''8 b''8 d'''4 @Horn mf a'8 b'8 d''16 pp d''16 @Pizzicato_Strings ff e'''8 d'''8 b''8 d'''4 @Horn mf a'8 d''8 b'16 pp w16 @Pizzicato_Strings ff e'''8 d'''8 b''8 e'''4 @Horn mf e''8 d''8 b'16 pp w16 @Pizzicato_Strings ff e'''8 d'''8 e'''8 d'''8 g''8 b''8 d'''8 e'''8 
   pattern pat_4_2_1 with Blank on triangle
     absolute
     e''16 r16 b''16 r16 g''16 r16 a''16 r16 e''16 r16 g''16 r16 e''16 r16 d''16 r16 e''16 r2 w4 w8 w16 e''16 r16 b''16 r16 g''16 r16 a''16 r16 e''16 r16 d''16 r16 @Distant_Square_Echo e''16 r16 g''16 r16 @Blank a''16 r2 w4 w8 w16 
@@ -326,19 +326,19 @@ song World_2
 
   pattern pat_5_0_1 with Blank on pulse1
     absolute
-    mp EN00 EN00 f'''8 d'''8 @Distant_Square_Echo ff f'''8 d'''8 @Blank mp a''8 f''8 @Distant_Square_Echo ff a''8 f''8 @Blank mp g#''8 f''8 @Distant_Square_Echo ff g#''8 f''8 @Blank mp f''8 d''8 @Distant_Square_Echo ff f''8 d''8 @Blank mp f'''8 d'''8 @Distant_Square_Echo ff f'''8 d'''8 @Blank mp g''8 d''8 @Distant_Square_Echo ff g''8 d''8 @Blank mp g#''8 d''8 @Distant_Square_Echo ff g#''8 d''8 @Blank mp a''8 c'''8 @Distant_Square_Echo ff d'''8 c'''8 
+    pp EN00 f'''8 d'''8 @Distant_Square_Echo ff f'''8 d'''8 @Blank pp a''8 f''8 @Distant_Square_Echo ff a''8 f''8 @Blank pp g#''8 f''8 @Distant_Square_Echo ff g#''8 f''8 @Blank pp f''8 d''8 @Distant_Square_Echo ff f''8 d''8 @Blank pp f'''8 d'''8 @Distant_Square_Echo ff f'''8 d'''8 @Blank pp g''8 d''8 @Distant_Square_Echo ff g''8 d''8 @Blank pp g#''8 d''8 @Distant_Square_Echo ff g#''8 d''8 @Blank pp a''8 c'''8 @Distant_Square_Echo ff d'''8 c'''8 
   pattern pat_5_0_2 with Puzzle_Mellow_Crazy on pulse1
     absolute
-    ff MP2 MP2 f'4 d'4 c'4 c#'8 w16 d'16 f'8 d'8 f'8 d'8 c'4 d'4 f'4 d'4 c'4 c#'8 d'8 f'8 d'8 f'8 d'8 g#'4 g'4 
+    ff MP2 f'4 d'4 c'4 c#'8 w16 d'16 f'8 d'8 f'8 d'8 c'4 d'4 f'4 d'4 c'4 c#'8 d'8 f'8 d'8 f'8 d'8 g#'4 g'4 
   pattern pat_5_0_4 with Puzzle_Mellow_Crazy on pulse1
     absolute
-    f'4 d'4 c'4 a8 w16 c'16 f'8 d'8 f'8 d'16 mp d'16 @Puzzle_Pulsate ff MP0 MP0 f'''8 d'''8 c'''8 d'''16 mp d'''16 @Puzzle_Mellow_Crazy ff MP2 MP2 f'4 d'4 c'4 c#'8 d'16 mp d'16 @Puzzle_Pulsate ff MP0 MP0 f'''8 d'''8 f'''8 d'''8 g#'''8 g'''8 f'''8 d'''16 mp d'''16 
+    f'4 d'4 c'4 a8 w16 c'16 f'8 d'8 f'8 d'16 mp d'16 @Puzzle_Pulsate ff MP0 f'''8 d'''8 c'''8 d'''16 mp d'''16 @Puzzle_Mellow_Crazy ff MP2 f'4 d'4 c'4 c#'8 d'16 mp d'16 @Puzzle_Pulsate ff MP0 f'''8 d'''8 f'''8 d'''8 g#'''8 g'''8 f'''8 d'''16 mp d'''16 
   pattern pat_5_0_6 with Horn on pulse1
     absolute
-    ff EN00 EN00 f'8 mp f'8 ff c'8 mp c'8 ff d'8 mp d'8 ff f'16 mp f'16 ff d'8 mp d'8 r8 @Puzzle_Pulsate ff ENcc ENcc g#''4 g''4 f''4 @Horn EN00 EN00 f'8 mp f'8 ff c'8 mp c'8 ff d'8 mp d'8 ff f'16 mp f'16 ff d'8 mp d'8 r8 @Puzzle_Pulsate ff ENcc ENcc c''4 c''4 d''4 
+    ff EN00 f'8 pp f'8 ff c'8 pp c'8 ff d'8 pp d'8 ff f'16 pp f'16 ff d'8 pp d'8 r8 @Puzzle_Pulsate ff ENcc g#''4 g''4 f''4 @Horn EN00 f'8 pp f'8 ff c'8 pp c'8 ff d'8 pp d'8 ff f'16 pp f'16 ff d'8 pp d'8 r8 @Puzzle_Pulsate ff ENcc c''4 c''4 d''4 
   pattern pat_5_0_7 with Horn on pulse1
     absolute
-    ff EN00 EN00 f'8 mp f'8 ff c'8 mp c'8 ff d'8 mp d'8 ff f'16 mp f'16 ff d'8 mp d'8 r8 @Puzzle_Pulsate ff ENcc ENcc g#''4 g''4 f''4 @Horn EN00 EN00 f'8 mp f'8 ff c'8 mp c'8 ff d'8 mp d'8 ff c''16 mp c''16 ff d''8 mp d''8 r8 @Puzzle_Pulsate ff ENcc ENcc c''4 c''4 d''4 
+    ff EN00 f'8 pp f'8 ff c'8 pp c'8 ff d'8 pp d'8 ff f'16 pp f'16 ff d'8 pp d'8 r8 @Puzzle_Pulsate ff ENcc g#''4 g''4 f''4 @Horn EN00 f'8 pp f'8 ff c'8 pp c'8 ff d'8 pp d'8 ff c''16 pp c''16 ff d''8 pp d''8 r8 @Puzzle_Pulsate ff ENcc c''4 c''4 d''4 
   pattern pat_5_1_0 with Distant_Square_Echo on pulse2
     absolute
     r16 ff d8 w16 r16 d8 w16 r16 a,8 w16 r16 a,8 w16 r16 g#,8 w16 r16 g#,8 g,4 w16 r16 f,8 w16 r16 d8 w16 r16 d8 w16 r16 a,8 w16 r16 a,8 w16 r16 g#,8 w16 r16 g#,8 g,4 w16 r16 f,8 w16 
@@ -477,13 +477,13 @@ song World_5
     a4 e'4 c#'4 g#'4 a4 e'4 c#'4 f#'4 a4 e'4 c#'4 g#'4 c#''4 g#'4 c#'4 f#4 
   pattern pat_6_0_11 with Banjo on pulse1
     absolute
-    mf MP0 a16 mp a16 mf c#'16 mp a16 mf e'16 mp c#'16 mf a16 mp e'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf g#'16 mp e'16 mf a'16 mp g#'16 mf a16 mp a'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf a16 mp e'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf f#'16 mp e'16 mf c#'16 mp f#'16 mf a16 mp c#'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf a16 mp e'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf g#'16 mp e'16 mf a'16 mp g#'16 mf a16 mp a'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf a16 mp e'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf c#'16 mp e'16 mf a16 mp c#'16 
+    mf MP0 a16 pp a16 mf c#'16 pp a16 mf e'16 pp c#'16 mf a16 pp e'16 mf c#'16 pp a16 mf e'16 pp c#'16 mf g#'16 pp e'16 mf a'16 pp g#'16 mf a16 pp a'16 mf c#'16 pp a16 mf e'16 pp c#'16 mf a16 pp e'16 mf c#'16 pp a16 mf e'16 pp c#'16 mf f#'16 pp e'16 mf c#'16 pp f#'16 mf a16 pp c#'16 mf c#'16 pp a16 mf e'16 pp c#'16 mf a16 pp e'16 mf c#'16 pp a16 mf e'16 pp c#'16 mf g#'16 pp e'16 mf a'16 pp g#'16 mf a16 pp a'16 mf c#'16 pp a16 mf e'16 pp c#'16 mf a16 pp e'16 mf c#'16 pp a16 mf e'16 pp c#'16 mf c#'16 pp e'16 mf a16 pp c#'16 
   pattern pat_6_0_12 with Banjo on pulse1
     absolute
-    mf f16 mp f16 mf a16 mp f16 mf c'16 mp a16 mf f16 mp c'16 mf a16 mp f16 mf c'16 mp a16 mf e'16 mp c'16 mf f'16 mp e'16 mf f16 mp f'16 mf a16 mp f16 mf c'16 mp a16 mf f16 mp c'16 mf a16 mp f16 mf c'16 mp a16 mf d'16 mp c'16 mf a16 mp d'16 mf f16 mp a16 mf a16 mp f16 mf c'16 mp a16 mf f16 mp c'16 mf a16 mp f16 mf c'16 mp a16 mf e'16 mp c'16 mf f'16 mp e'16 mf f16 mp f'16 mf a16 mp f16 mf c'16 mp a16 mf f16 mp c'16 mf a16 mp f16 mf c'16 mp a16 mf a16 mp c'16 mf f16 mp a16 
+    mf f16 pp f16 mf a16 pp f16 mf c'16 pp a16 mf f16 pp c'16 mf a16 pp f16 mf c'16 pp a16 mf e'16 pp c'16 mf f'16 pp e'16 mf f16 pp f'16 mf a16 pp f16 mf c'16 pp a16 mf f16 pp c'16 mf a16 pp f16 mf c'16 pp a16 mf d'16 pp c'16 mf a16 pp d'16 mf f16 pp a16 mf a16 pp f16 mf c'16 pp a16 mf f16 pp c'16 mf a16 pp f16 mf c'16 pp a16 mf e'16 pp c'16 mf f'16 pp e'16 mf f16 pp f'16 mf a16 pp f16 mf c'16 pp a16 mf f16 pp c'16 mf a16 pp f16 mf c'16 pp a16 mf a16 pp c'16 mf f16 pp a16 
   pattern pat_6_0_13 with Banjo on pulse1
     absolute
-    mf f16 mp f16 mf a16 mp f16 mf c'16 mp a16 mf f16 mp c'16 mf a16 mp f16 mf c'16 mp a16 mf e'16 mp c'16 mf f'16 mp e'16 mf f16 mp f'16 mf a16 mp f16 mf c'16 mp a16 mf f16 mp c'16 mf a16 mp f16 mf c'16 mp a16 mf d'16 mp c'16 mf a16 mp d'16 mf g16 mp b16 mf b16 mp g16 mf d'16 mp b16 mf g16 mp d'16 mf b16 mp g16 mf d'16 mp b16 mf f#'16 mp d'16 mf g'16 mp f#'16 mf a16 mp a'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf a16 mp e'16 mf c#'16 mp a16 mf e'16 mp c#'16 mf c#'16 mp e'16 mf a16 mp c#'16 
+    mf f16 pp f16 mf a16 pp f16 mf c'16 pp a16 mf f16 pp c'16 mf a16 pp f16 mf c'16 pp a16 mf e'16 pp c'16 mf f'16 pp e'16 mf f16 pp f'16 mf a16 pp f16 mf c'16 pp a16 mf f16 pp c'16 mf a16 pp f16 mf c'16 pp a16 mf d'16 pp c'16 mf a16 pp d'16 mf g16 pp b16 mf b16 pp g16 mf d'16 pp b16 mf g16 pp d'16 mf b16 pp g16 mf d'16 pp b16 mf f#'16 pp d'16 mf g'16 pp f#'16 mf a16 pp a'16 mf c#'16 pp a16 mf e'16 pp c#'16 mf a16 pp e'16 mf c#'16 pp a16 mf e'16 pp c#'16 mf c#'16 pp e'16 mf a16 pp c#'16 
   pattern pat_6_0_14 with Distant_Square_Echo on pulse1
     absolute
     r16 mf a16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 g#'16 r16 a'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 f#'16 r16 c#'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 g#'16 r16 a'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 c#'16 
@@ -492,7 +492,7 @@ song World_5
     r16 c'16 r16 c'16 r16 e'16 r16 g'16 r16 c'16 r16 e'16 r16 g'16 r16 b'16 r16 c''16 r16 c'16 r16 e'16 r16 g'16 r16 c'16 r16 e'16 r16 g'16 r16 a'16 r16 e'16 r16 c'16 r16 e'16 r16 g'16 r16 c'16 r16 e'16 r16 g'16 r16 b'16 r16 c''16 r16 c'16 r16 e'16 r16 g'16 r16 c'16 r16 e'16 r16 g'16 r16 e'16 
   pattern pat_6_0_16 with Distant_Square_Echo on pulse1
     absolute
-    r16 a16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 g#'16 r16 a'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 f#'16 r16 g16 r16 g16 r16 b16 r16 d'16 r16 g16 r16 b16 r16 d'16 r16 f#'16 r16 f16 r16 f16 r16 a16 r16 c'16 @Harp mp a8 c'8 mf e'8 ff f8 
+    r16 a16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 g#'16 r16 a'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 f#'16 r16 g16 r16 g16 r16 b16 r16 d'16 r16 g16 r16 b16 r16 d'16 r16 f#'16 r16 f16 r16 f16 r16 a16 r16 c'16 @Harp pp a8 mp c'8 mf e'8 ff f8 
   pattern pat_6_1_0 with Harp on pulse2
     absolute
     r8 mf MP1 c#'4 a4 e'4 a'4 c#'4 a4 e'4 c#'4 c#'4 a4 e'4 a'4 c#'4 a4 e'4 c#'8 
@@ -522,13 +522,13 @@ song World_5
     d'4 w8 c'4 w8 a4 d'4 w8 c'4 w8 a4 e'4 w8 d'4 w8 b4 a8 c#'8 e'4 c#'4 a'4 
   pattern pat_6_1_15 with Distant_Square_Echo on pulse2
     absolute
-    r16 mp MP0 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 g#'16 r16 a'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 f#'16 r16 c#'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 g#'16 r16 a'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 c#'16 r16 a16 
+    r16 pp MP0 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 g#'16 r16 a'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 f#'16 r16 c#'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 g#'16 r16 a'16 r16 a16 r16 c#'16 r16 e'16 r16 a16 r16 c#'16 r16 e'16 r16 c#'16 r16 a16 
   pattern pat_6_1_16 with Super_Major_Arp on pulse2
     absolute
-    mp c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 mf c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 mp c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 
+    pp c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 mp c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 mf c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 mp c'8 c'8 c'8 c'8 pp c'8 c'8 c'8 c'8 
   pattern pat_6_1_17 with Super_Major_Arp on pulse2
     absolute
-    mp a8 a8 a8 a8 mf a8 a8 mp a8 a8 a8 a8 a8 a8 mf a8 a8 mp a8 a8 g8 g8 g8 g8 mf g8 g8 mp g8 g8 f8 f8 f8 f8 mf f8 f8 mp f8 f8 
+    pp a8 a8 mp a8 a8 mf a8 a8 mp a8 a8 pp a8 a8 mp a8 a8 mf a8 a8 mp a8 a8 pp g8 g8 mp g8 g8 mf g8 g8 mp g8 g8 pp f8 f8 mp f8 f8 mf f8 f8 mp f8 f8 
   pattern pat_6_2_1 with Triangle_Choir on triangle
     absolute
     a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 a'8 g#'8 g'8 f#'8 
@@ -669,10 +669,10 @@ song Minor_Boss
 
   pattern pat_7_0_0 with Distant_Square_Echo on pulse1
     absolute
-    mp w8 ff e,4 e8 mp w8 ff e,8 e8 mp w8 ff e,8 e8 mp w8 ff e,8 e8 e,8 mp w8 ff e8 mp w8 ff c,4 c8 mp w8 ff c,8 c8 mp w8 ff c,8 c8 mp w8 ff c,8 c8 c,4 c8 
+    pp w8 ff e,4 e8 pp w8 ff e,8 e8 pp w8 ff e,8 e8 pp w8 ff e,8 e8 e,8 pp w8 ff e8 pp w8 ff c,4 c8 pp w8 ff c,8 c8 pp w8 ff c,8 c8 pp w8 ff c,8 c8 c,4 c8 
   pattern pat_7_0_1 with Distant_Square_Echo on pulse1
     absolute
-    mp w8 ff d,4 d8 mp w8 ff d,8 d8 mp w8 ff d,8 d8 mp w8 ff d,8 d8 d,8 mp w8 ff d8 mp w8 ff a,,4 a,8 mp w8 ff a,,8 a,8 mp w8 ff a,,8 a,8 mp w8 ff a,,8 a,8 a,,4 a,8 
+    pp w8 ff d,4 d8 pp w8 ff d,8 d8 pp w8 ff d,8 d8 pp w8 ff d,8 d8 d,8 pp w8 ff d8 pp w8 ff a,,4 a,8 pp w8 ff a,,8 a,8 pp w8 ff a,,8 a,8 pp w8 ff a,,8 a,8 a,,4 a,8 
   pattern pat_7_0_2 with Miniboss_Flute on pulse1
     absolute
     ff MP1 e'4 w8 g'4 w8 d'4 e'4 w8 g'4 w8 d'4 e'4 w8 g'4 w8 d'4 e'4 e'4 g'4 d'4 
@@ -699,31 +699,31 @@ song Minor_Boss
     mf MP0 g,8 g,8 g8 g,8 g,8 g,8 f8 g8 g,8 g,8 g8 g,8 g,8 g,8 a8 g,8 MP0 g,8 g,8 f8 g8 g,8 g,8 f8 g8 e,8 e,8 g8 g,8 g,8 g,8 g8 e8 
   pattern pat_7_0_10 with Distant_Square_Echo on pulse1
     absolute
-    mp w8 ff a,4 a8 mp w8 ff a,8 a8 mp w8 ff a,8 a8 mp w8 ff a,8 a8 a,8 mp w8 ff a8 mp w8 ff a,,4 a,8 mp w8 ff a,,8 a,8 mp w8 ff a,,8 a,8 mp w8 ff a,,8 a,8 a,,8 mp w8 ff a,8 
+    pp w8 ff a,4 a8 pp w8 ff a,8 a8 pp w8 ff a,8 a8 pp w8 ff a,8 a8 a,8 pp w8 ff a8 pp w8 ff a,,4 a,8 pp w8 ff a,,8 a,8 pp w8 ff a,,8 a,8 pp w8 ff a,,8 a,8 a,,8 pp w8 ff a,8 
   pattern pat_7_1_0 with Boss_Arp_Hit on pulse2
     absolute
-    w2 EN47 EN47 c'1 EN47 EN47 c'1 EN37 EN37 a1 EN37 EN37 a2 
+    w2 EN47 c'1 EN47 c'1 EN37 a1 EN37 a2 
   pattern pat_7_1_1 with Boss_Arp_Hit on pulse2
     absolute
-    w2 EN47 EN47 g1 EN47 EN47 g1 EN37 EN37 a1 EN59 EN59 g2 
+    w2 EN47 g1 EN47 g1 EN37 a1 EN59 g2 
   pattern pat_7_1_2 with Pizzicato_Strings on pulse2
     absolute
-    EN00 EN00 c'8 e'8 g'8 e'8 @Boss_Arp_Hit EN47 EN47 c'4 @Pizzicato_Strings EN00 EN00 g'8 e'8 c'8 e'8 g'8 e'8 @Boss_Arp_Hit EN47 EN47 c'4 @Pizzicato_Strings EN00 EN00 g'8 d'8 a8 c'8 e'8 c'8 @Boss_Arp_Hit EN37 EN37 a4 @Pizzicato_Strings EN00 EN00 e'8 c'8 a8 c'8 e'8 c'8 @Boss_Arp_Hit EN37 EN37 a4 @Pizzicato_Strings EN00 EN00 c'8 c'8 
+    EN00 c'8 e'8 g'8 e'8 @Boss_Arp_Hit EN47 c'4 @Pizzicato_Strings EN00 g'8 e'8 c'8 e'8 g'8 e'8 @Boss_Arp_Hit EN47 c'4 @Pizzicato_Strings EN00 g'8 d'8 a8 c'8 e'8 c'8 @Boss_Arp_Hit EN37 a4 @Pizzicato_Strings EN00 e'8 c'8 a8 c'8 e'8 c'8 @Boss_Arp_Hit EN37 a4 @Pizzicato_Strings EN00 c'8 c'8 
   pattern pat_7_1_3 with Pizzicato_Strings on pulse2
     absolute
-    d'8 g'8 d'8 c'8 @Boss_Arp_Hit EN47 EN47 g4 @Pizzicato_Strings EN00 EN00 g'8 c'8 d'8 g'8 d'8 c'8 @Boss_Arp_Hit EN47 EN47 g4 @Pizzicato_Strings EN00 EN00 g'8 c'8 a8 c'8 e'8 a'8 @Boss_Arp_Hit EN37 EN37 a4 @Pizzicato_Strings EN00 EN00 a'8 e'8 a8 c'8 a8 g8 @Boss_Arp_Hit EN59 EN59 g4 @Pizzicato_Strings EN00 EN00 g'8 a'8 
+    d'8 g'8 d'8 c'8 @Boss_Arp_Hit EN47 g4 @Pizzicato_Strings EN00 g'8 c'8 d'8 g'8 d'8 c'8 @Boss_Arp_Hit EN47 g4 @Pizzicato_Strings EN00 g'8 c'8 a8 c'8 e'8 a'8 @Boss_Arp_Hit EN37 a4 @Pizzicato_Strings EN00 a'8 e'8 a8 c'8 a8 g8 @Boss_Arp_Hit EN59 g4 @Pizzicato_Strings EN00 g'8 a'8 
   pattern pat_7_1_6 with Horn on pulse2
     absolute
-    mf MP2 MP2 e'2 w4 w1 mp e'4 mf c'2 w8 w1 mp w8 mf a8 mp w8 
+    mf MP2 e'2 w4 w1 pp e'4 mf c'2 w8 w1 pp w8 mf a8 pp w8 
   pattern pat_7_1_7 with Horn on pulse2
     absolute
-    mf MP2 MP2 d'2 w4 w1 mp e'4 mf c'1 a2 g8 mp w8 mf a8 mp w8 
+    mf MP2 d'2 w4 w1 pp e'4 mf c'1 a2 g8 pp w8 mf a8 pp w8 
   pattern pat_7_1_9 with Horn on pulse2
     absolute
-    mf MP2 MP2 d'2 w4 w1 mp d'4 mf g'2 w8 mp g'8 mf e'8 mp w8 mf g'8 mp w8 mf e'8 g'4 mp w8 mf e'8 mp w8 
+    mf MP2 d'2 w4 w1 pp d'4 mf g'2 w8 pp g'8 mf e'8 pp w8 mf g'8 pp w8 mf e'8 g'4 pp w8 mf e'8 pp w8 
   pattern pat_7_1_10 with Horn on pulse2
     absolute
-    mf a'4 mp w4 @Boss_Arp_Hit ff EN37 EN37 a1 EN37 EN37 a1 EN37 EN37 a1 EN59 EN59 g2 
+    mf a'4 mp w8 pp w8 @Boss_Arp_Hit ff EN37 MP0 a1 EN37 a1 EN37 a1 EN59 g2 
   pattern pat_7_2_0 with Blank on triangle
     absolute
     e4 @Boss_Bass e'8 r8 e8 e'8 r8 e8 e'8 r8 e8 e'8 e4 e'8 r8 @Blank c4 @Boss_Bass c'8 r8 @Blank c8 @Boss_Bass c'8 r8 c8 @Blank c'8 r8 @Boss_Bass c8 c'8 @Blank c4 @Boss_Bass c'8 r8 
@@ -827,7 +827,7 @@ song Major_Boss
 
   pattern pat_8_0_0 with Distant_Square_Echo on pulse1
     absolute
-    w8 w16 mp c#,4 c#8 r8 c#,8 c#8 r8 c#,8 c#8 r8 c#,8 c#8 c#,4 c#8 r8 c#,4 c#8 r8 c#,8 c#8 r8 c#,8 c#8 r8 c#,8 c#8 c#,4 b,16 
+    w8 w16 pp c#,4 c#8 r8 c#,8 c#8 r8 c#,8 c#8 r8 c#,8 c#8 c#,4 c#8 r8 c#,4 c#8 r8 c#,8 c#8 r8 c#,8 c#8 r8 c#,8 c#8 c#,4 b,16 
   pattern pat_8_0_1 with Boss_Arp_Hit on pulse1
     absolute
     mf EN7c c#'16 r16 c#'16 r16 c#'4 c#'16 r16 c#'16 r16 c#'4 c#'4 b8 c#'4 b8 c#'4 c#'16 r16 c#'16 r16 c#'4 c#'16 r16 c#'16 r16 c#'4 e'4 c#'8 e'4 b8 c#'4 
@@ -842,37 +842,37 @@ song Major_Boss
     c#'''8 g#'''8 c#'''8 f#'''8 c#'''8 e'''8 c#'''8 b''8 c#'''8 b''8 e'''8 c#'''8 f#'''8 e'''8 c#'''8 e'''8 c#'''8 g#'''8 c#'''8 f#'''8 c#'''8 e'''8 c#'''8 b''8 g#'''8 f#'''8 e'''8 f#'''8 g#'''8 f#'''8 g#'''8 b'''8 
   pattern pat_8_0_5 with Horn on pulse1
     absolute
-    mp MP2 b1 w1 g#1 w1 
+    mp MP2 b2 w4 w1 pp w4 mp g#2 w4 w1 pp w4 
   pattern pat_8_0_6 with Horn on pulse1
     absolute
-    mp f#2 w4 w1 b4 g#1 w1 
+    mp f#2 w4 w1 b4 g#2 w4 w1 pp w4 
   pattern pat_8_0_7 with Horn on pulse1
     absolute
-    mp MP2 c#'1 w1 e'2 w4 c#'4 e'4 c#'4 a'8 c#''8 b'8 g#'8 
+    mp MP2 c#'2 w4 w1 pp w4 mp e'2 w4 c#'8 pp w8 mp e'8 pp w8 mp c#'8 pp w8 mp a'8 c#''8 b'8 g#'8 
   pattern pat_8_0_8 with Horn on pulse1
     absolute
-    c#''2 mp w2 r16 @Distant_Square_Echo MP0 c#,8 c#8 r8 c#,8 c#8 c#,4 c#8 r8 c#,4 c#8 r8 c#,8 c#8 r8 c#,8 c#8 r8 c#,8 c#8 c#,4 b,16 
+    c#''2 pp w2 r16 @Distant_Square_Echo MP0 c#,8 c#8 r8 c#,8 c#8 c#,4 c#8 r8 c#,4 c#8 r8 c#,8 c#8 r8 c#,8 c#8 r8 c#,8 c#8 c#,4 b,16 
   pattern pat_8_1_0 with Distant_Square_Echo on pulse2
     absolute
-    w16 ff EN00 MP2 c#,4 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 c#8 c#,4 c#8 mp w8 ff c#,4 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 c#8 c#,4 b,8 w16 
+    w16 ff MP2 EN00 c#,4 c#8 pp w8 ff c#,8 c#8 pp w8 ff c#,8 c#8 pp w8 ff c#,8 c#8 c#,4 c#8 pp w8 ff c#,4 c#8 pp w8 ff c#,8 c#8 pp w8 ff c#,8 c#8 pp w8 ff c#,8 c#8 c#,4 b,8 w16 
   pattern pat_8_1_2 with Distant_Square_Echo on pulse2
     absolute
-    w16 ff c#,4 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 c#8 c#,4 c#8 mp w8 ff c#,4 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 b,8 mp w8 ff g#,8 b,4 w8 c#8 w16 
+    w16 ff c#,4 c#8 pp w8 ff c#,8 c#8 pp w8 ff c#,8 c#8 pp w8 ff c#,8 c#8 c#,4 c#8 pp w8 ff c#,4 c#8 pp w8 ff c#,8 c#8 pp w8 ff c#,8 b,8 pp w8 ff g#,8 b,4 w8 c#8 w16 
   pattern pat_8_1_4 with Horn on pulse2
     absolute
-    mp MP3 MP3 g#1 w1 e1 w1 
+    pp MP3 g#1 w1 e1 w1 
   pattern pat_8_1_5 with Horn on pulse2
     absolute
-    mp d#1 w1 e1 w1 
+    pp d#1 w1 e1 w1 
   pattern pat_8_1_6 with Boss_Arp_Hit on pulse2
     absolute
-    mf EN7c b16 r16 b16 r16 b4 b16 r16 b16 r16 b4 b4 a8 b4 a8 b4 b16 r16 b16 r16 b4 b16 r16 b16 r16 b4 d'4 b8 d'4 a8 b4 
+    mf EN7c MP0 b16 r16 b16 r16 b4 b16 r16 b16 r16 b4 b4 a8 b4 a8 b4 b16 r16 b16 r16 b4 b16 r16 b16 r16 b4 d'4 b8 d'4 a8 b4 
   pattern pat_8_1_7 with Boss_Arp_Hit on pulse2
     absolute
     mf b16 r16 b16 r16 b4 b16 r16 b16 r16 b4 b4 a8 b4 a8 b4 a16 r16 a16 r16 a4 b16 r16 b16 r16 b4 c#'16 r16 c#'16 r16 c#'16 r16 c#'16 r16 e'16 r16 e'16 r16 f#'16 r16 f#'16 r16 
   pattern pat_8_1_8 with Distant_Square_Echo on pulse2
     absolute
-    w16 ff c#,4 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,8 c#8 c#,4 c#8 mp w8 ff c#,4 c#8 mp w8 ff c#,8 c#8 mp w8 ff c#,16 @Horn mp c#4 c#4 mf c#4 ff c#8 mp w8 
+    w16 ff c#,4 c#8 pp w8 ff c#,8 c#8 pp w8 ff c#,8 c#8 pp w8 ff c#,8 c#8 c#,4 c#8 pp w8 ff c#,4 c#8 pp w8 ff c#,8 c#8 pp w8 ff c#,16 @Horn pp c#4 mp c#4 mf c#4 ff c#8 pp w8 
   pattern pat_8_2_0 with Blank on triangle
     absolute
     c#4 @Boss_Bass c#'8 r8 c#8 c#'8 r8 c#8 c#'8 r8 c#8 c#'8 c#4 c#'8 r8 c#4 c#'8 r8 c#8 c#'8 r8 c#8 c#'8 r8 c#8 c#'8 c#4 b4 
@@ -972,19 +972,19 @@ song Final_Boss
     ff a#,4 f4 g#4 c#'4 w1 w1 w1 
   pattern pat_9_0_3 with Boss_2_Lead on pulse1
     absolute
-    ff MP0 c#''4 w8 c#''4 w8 c#''4 c''8 c#''4 c#''8 d#''4 c#''8 c''8 c#''4 w8 c#''4 w8 c#''4 c''8 c#''4 c#''8 @Horn mf c#'''16~ d#'''16 mp c#'''16~ d#'''16 mf c#'''16 mp c#'''16 mf c'''16 mp c'''16 
+    ff MP0 c#''4 w8 c#''4 w8 c#''4 c''8 c#''4 c#''8 d#''4 c#''8 c''8 c#''4 w8 c#''4 w8 c#''4 c''8 c#''4 c#''8 @Horn mf c#'''16~ d#'''16 pp c#'''16~ d#'''16 mf c#'''16 pp c#'''16 mf c'''16 pp c'''16 
   pattern pat_9_1_0 with Boss2Echo on pulse2
     absolute
-    mf a#16 mp c'16 mf a#'16 mp a#16 mf f'16 mp a#'16 mf a#16 mp f'16 mf d#'16 mp a#16 mf a#16 mp d#'16 mf f'16 mp a#16 mf d#'16 mp f'16 mf a#16 mp d#'16 mf a#'16 mp a#16 mf f'16 mp a#'16 mf a#16 mp f'16 mf d#'16 mp a#16 mf f'16 mp d#'16 mf d#'16 mp f'16 mf c'16 mp d#'16 mf a#16 mp c'16 mf a#'16 mp a#16 mf f'16 mp a#'16 mf a#16 mp f'16 mf d#'16 mp a#16 mf a#16 mp d#'16 mf f'16 mp a#16 mf d#'16 mp f'16 mf a#16 mp d#'16 mf a#'16 mp a#16 mf f'16 mp a#'16 mf a#16 mp f'16 mf d#'16 mp a#16 mf f'16 mp d#'16 mf c#'16 mp f'16 mf c'16 mp c#'16 
+    mf a#16 pp c'16 mf a#'16 pp a#16 mf f'16 pp a#'16 mf a#16 pp f'16 mf d#'16 pp a#16 mf a#16 pp d#'16 mf f'16 pp a#16 mf d#'16 pp f'16 mf a#16 pp d#'16 mf a#'16 pp a#16 mf f'16 pp a#'16 mf a#16 pp f'16 mf d#'16 pp a#16 mf f'16 pp d#'16 mf d#'16 pp f'16 mf c'16 pp d#'16 mf a#16 pp c'16 mf a#'16 pp a#16 mf f'16 pp a#'16 mf a#16 pp f'16 mf d#'16 pp a#16 mf a#16 pp d#'16 mf f'16 pp a#16 mf d#'16 pp f'16 mf a#16 pp d#'16 mf a#'16 pp a#16 mf f'16 pp a#'16 mf a#16 pp f'16 mf d#'16 pp a#16 mf f'16 pp d#'16 mf c#'16 pp f'16 mf c'16 pp c#'16 
   pattern pat_9_1_1 with Boss2Echo on pulse2
     absolute
-    mf a#16 mp c'16 mf a#'16 mp a#16 mf f'16 mp a#'16 mf a#16 mp f'16 mf d#'16 mp a#16 mf a#16 mp d#'16 mf f'16 mp a#16 mf d#'16 mp f'16 mf a#16 mp d#'16 mf a#'16 mp a#16 mf f'16 mp a#'16 mf a#16 mp f'16 mf d#'16 mp a#16 mf f'16 mp d#'16 mf d#'16 mp f'16 mf c'16 mp d#'16 mf a#16 mp c'16 mf a#'16 mp a#16 mf f'16 mp a#'16 mf a#16 mp f'16 mf d#'16 mp a#16 mf a#16 mp d#'16 mf f'16 mp a#16 mf d#'16 mp f'16 mf f'16 mp d#'16 mf d#'16 mp f'16 mf c#'16 mp d#'16 mf d#'16 mp c#'16 mf c#'16 mp d#'16 mf c'16 mp c#'16 mf c#'16 mp c'16 mf c'16 mp c#'16 
+    mf a#16 pp c'16 mf a#'16 pp a#16 mf f'16 pp a#'16 mf a#16 pp f'16 mf d#'16 pp a#16 mf a#16 pp d#'16 mf f'16 pp a#16 mf d#'16 pp f'16 mf a#16 pp d#'16 mf a#'16 pp a#16 mf f'16 pp a#'16 mf a#16 pp f'16 mf d#'16 pp a#16 mf f'16 pp d#'16 mf d#'16 pp f'16 mf c'16 pp d#'16 mf a#16 pp c'16 mf a#'16 pp a#16 mf f'16 pp a#'16 mf a#16 pp f'16 mf d#'16 pp a#16 mf a#16 pp d#'16 mf f'16 pp a#16 mf d#'16 pp f'16 mf f'16 pp d#'16 mf d#'16 pp f'16 mf c#'16 pp d#'16 mf d#'16 pp c#'16 mf c#'16 pp d#'16 mf c'16 pp c#'16 mf c#'16 pp c'16 mf c'16 pp c#'16 
   pattern pat_9_1_2 with Boss2Echo on pulse2
     absolute
-    mp f16 f16 d#16 f16 mf f16 mp d#16 mf g#16 mp f16 mf a#16 mp g#16 mf f16 mp a#16 ff g#16 mp f16 ff c#'16 mp g#16 
+    mp f16 pp f16 mp d#16 pp f16 mf f16 pp d#16 mf g#16 pp f16 mf a#16 pp g#16 mf f16 pp a#16 ff g#16 mp f16 ff c#'16 mp g#16 
   pattern pat_9_1_3 with Boss2Echo on pulse2
     absolute
-    mf d#'16 mp c'16 mf c#'16 mp d#'16 mf c'16 mp c#'16 mf c#'16 mp c'16 mf c#'16 mp c#'16 mf c'16 mp c#'16 mf d#'16 mp c'16 mf c#'16 mp d#'16 mf d#'16 mp c#'16 mf c#'16 mp d#'16 mf c'16 mp c#'16 mf c#'16 mp c'16 mf c#'16 mp c#'16 mf f'16 mp c#'16 mf d#'16 mp f'16 mf c#'16 mp d#'16 mf d#'16 mp c#'16 mf c#'16 mp d#'16 mf c'16 mp c#'16 mf c#'16 mp c'16 mf c#'16 mp c#'16 mf c'16 mp c#'16 mf f'16 mp c'16 mf d#'16 mp f'16 mf f'16 mp d#'16 mf d#'16 mp f'16 mf c#'16 mp d#'16 mf d#'16 mp c#'16 mf c#'16 mp d#'16 mf d#'16 mp c#'16 mf c#'16 mp d#'16 mf c'16 mp c#'16 
+    mf d#'16 pp c'16 mf c#'16 pp d#'16 mf c'16 pp c#'16 mf c#'16 pp c'16 mf c#'16 pp c#'16 mf c'16 pp c#'16 mf d#'16 pp c'16 mf c#'16 pp d#'16 mf d#'16 pp c#'16 mf c#'16 pp d#'16 mf c'16 pp c#'16 mf c#'16 pp c'16 mf c#'16 pp c#'16 mf f'16 pp c#'16 mf d#'16 pp f'16 mf c#'16 pp d#'16 mf d#'16 pp c#'16 mf c#'16 pp d#'16 mf c'16 pp c#'16 mf c#'16 pp c'16 mf c#'16 pp c#'16 mf c'16 pp c#'16 mf f'16 pp c'16 mf d#'16 pp f'16 mf f'16 pp d#'16 mf d#'16 pp f'16 mf c#'16 pp d#'16 mf d#'16 pp c#'16 mf c#'16 pp d#'16 mf d#'16 pp c#'16 mf c#'16 pp d#'16 mf c'16 pp c#'16 
   pattern pat_9_2_0 with Blank on triangle
     absolute
     MP1 a#8 g#16 r16 a#8 w16 r8 w16 a#16 r16 a#8 a#'16 r16 a#16 r16 @Short_Kick g#8 @Blank a#8 r8 c#'8 a#16 r16 a#8 d#''16 r16 a#16 r8 w16 a#8 r4 a#16 r16 a#8 g#'16 r16 a#16 r16 a#,8 a#8 g#8 f8 a#,8 g#8 w16 a#,16 
@@ -1053,10 +1053,10 @@ song World_Select_1
 
   pattern pat_10_0_0 with Select_Lead_1 on pulse1
     absolute
-    ff c8 g8 c'16 mp c'16 r16 @Select_Lead_2 ff d''8 w16 e''8 c''4 @Select_Lead_1 c8 g8 c'16 mp c'16 r16 @Select_Lead_2 ff f''8 w16 a''8 g''8 r8 @Select_Lead_1 c8 c'8 g16 mp g16 r16 @Select_Lead_2 ff d''8 w16 e''8 f''4 @Select_Lead_1 c'8 g8 c16 mp c16 @Select_Lead_2 ff e''16 f''16 g''16 f''16 d''16 e''16 a''8 b''8 
+    ff c8 g8 c'16 pp c'16 r16 @Select_Lead_2 ff d''8 w16 e''8 c''4 @Select_Lead_1 c8 g8 c'16 pp c'16 r16 @Select_Lead_2 ff f''8 w16 a''8 g''8 r8 @Select_Lead_1 c8 c'8 g16 pp g16 r16 @Select_Lead_2 ff d''8 w16 e''8 f''4 @Select_Lead_1 c'8 g8 c16 pp c16 @Select_Lead_2 ff e''16 f''16 g''16 f''16 d''16 e''16 a''8 b''8 
   pattern pat_10_1_0 with Select_Lead_1 on pulse2
     absolute
-    w16 mp c8 g8 c'16 c'16 r16 @Select_Lead_2 d''8 w16 e''8 c''4 @Select_Lead_1 c8 g8 c'16 c'16 r16 @Select_Lead_2 f''8 w16 a''8 g''8 r8 @Select_Lead_1 c8 c'8 g16 g16 r16 @Select_Lead_2 d''8 w16 e''8 f''4 @Select_Lead_1 c'8 g8 c16 c16 @Select_Lead_2 e''16 f''16 g''16 f''16 d''16 e''16 a''8 b''16 
+    w16 pp c8 g8 c'16 c'16 r16 @Select_Lead_2 d''8 w16 e''8 c''4 @Select_Lead_1 c8 g8 c'16 c'16 r16 @Select_Lead_2 f''8 w16 a''8 g''8 r8 @Select_Lead_1 c8 c'8 g16 g16 r16 @Select_Lead_2 d''8 w16 e''8 f''4 @Select_Lead_1 c'8 g8 c16 c16 @Select_Lead_2 e''16 f''16 g''16 f''16 d''16 e''16 a''8 b''16 
   pattern pat_10_2_0 with Blank on triangle
     absolute
     c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 c'16 r16 c'8 @Blank c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'8 e'16 r16 e'8 @Blank c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 c'16 r16 c'8 @Short_Kick c'8 r16 @Boss_Bass c'8 r16 c'8 @Short_Kick d'8 @Boss_Bass d'8 e'16 r16 g'8 
@@ -1076,10 +1076,10 @@ song World_Select_2
 
   pattern pat_11_0_0 with Select_Lead_1 on pulse1
     absolute
-    ff c8 g8 c'16 mp c'16 r16 @Select_Lead_2 ff d''8 c''16 e''8 c''4 @Select_Lead_1 c8 g8 c'16 mp c'16 r16 @Select_Lead_2 ff f''8 g''16 a''8 g''8 r8 @Select_Lead_1 c8 c'8 g16 mp g16 r16 @Select_Lead_2 ff d''8 f''16 e''8 g''4 @Select_Lead_1 c'8 g8 c16 mp c16 @Select_Lead_2 ff e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''8 
+    ff c8 g8 c'16 pp c'16 r16 @Select_Lead_2 ff d''8 c''16 e''8 c''4 @Select_Lead_1 c8 g8 c'16 pp c'16 r16 @Select_Lead_2 ff f''8 g''16 a''8 g''8 r8 @Select_Lead_1 c8 c'8 g16 pp g16 r16 @Select_Lead_2 ff d''8 f''16 e''8 g''4 @Select_Lead_1 c'8 g8 c16 pp c16 @Select_Lead_2 ff e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''8 
   pattern pat_11_1_0 with Select_Lead_1 on pulse2
     absolute
-    w16 mp MP1 c8 g8 c'16 c'16 r16 @Select_Lead_2 d''8 c''16 e''8 c''4 @Select_Lead_1 c8 g8 c'16 c'16 r16 @Select_Lead_2 f''8 g''16 a''8 g''8 r8 @Select_Lead_1 c8 c'8 g16 g16 r16 @Select_Lead_2 d''8 e''16 e''8 g''4 @Select_Lead_1 c'8 g8 c16 c16 @Select_Lead_2 e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''16 
+    w16 pp MP1 c8 g8 c'16 c'16 r16 @Select_Lead_2 d''8 c''16 e''8 c''4 @Select_Lead_1 c8 g8 c'16 c'16 r16 @Select_Lead_2 f''8 g''16 a''8 g''8 r8 @Select_Lead_1 c8 c'8 g16 g16 r16 @Select_Lead_2 d''8 e''16 e''8 g''4 @Select_Lead_1 c'8 g8 c16 c16 @Select_Lead_2 e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''16 
   pattern pat_11_2_0 with Blank on triangle
     absolute
     c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 c'16 r16 @Blank c'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'8 e'16 r16 @Blank e'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 c'16 r16 @Blank c'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'8 @Blank e'16 r16 g'16 g'16 
@@ -1099,10 +1099,10 @@ song World_Select_3
 
   pattern pat_12_0_0 with Select_Orc_Hit on pulse1
     absolute
-    ff c8 @Select_Lead_1 g8 c'16 mp c'16 r16 @Select_Lead_2 ff d''8 c''16 e''8 c''4 @Select_Orc_Hit g,8 @Select_Lead_1 g8 c'16 mp c'16 r16 @Select_Lead_2 ff f''8 g''16 a''8 g''4 @Select_Orc_Hit f,8 @Select_Lead_1 c'8 g16 mp g16 r16 @Select_Lead_2 ff d''8 f''16 e''8 g''4 @Select_Orc_Hit c,8 @Select_Lead_1 g8 c16 mp c16 @Select_Lead_2 ff e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''8 
+    ff c8 @Select_Lead_1 g8 c'16 pp c'16 r16 @Select_Lead_2 ff d''8 c''16 e''8 c''4 @Select_Orc_Hit g,8 @Select_Lead_1 g8 c'16 pp c'16 r16 @Select_Lead_2 ff f''8 g''16 a''8 g''4 @Select_Orc_Hit f,8 @Select_Lead_1 c'8 g16 pp g16 r16 @Select_Lead_2 ff d''8 f''16 e''8 g''4 @Select_Orc_Hit c,8 @Select_Lead_1 g8 c16 pp c16 @Select_Lead_2 ff e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''8 
   pattern pat_12_1_0 with Select_Orc_Hit on pulse2
     absolute
-    ff MP0 c''8 w16 @Select_Lead_1 mp MP1 g8 c'16 c'16 r16 @Select_Lead_2 d''8 c''16 e''8 c''8 w16 @Select_Orc_Hit ff MP0 g'8 w16 @Select_Lead_1 mp MP1 g8 c'16 c'16 r16 @Select_Lead_2 f''8 g''16 a''8 g''8 w16 @Select_Orc_Hit ff MP0 f'8 w16 @Select_Lead_1 mp MP1 c'8 g16 g16 r16 @Select_Lead_2 d''8 e''16 e''8 g''8 w16 @Select_Orc_Hit ff MP0 c'8 w16 @Select_Lead_1 mp MP1 g8 c16 c16 @Select_Lead_2 e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''16 
+    ff MP0 c''8 w16 @Select_Lead_1 pp MP1 g8 c'16 c'16 r16 @Select_Lead_2 d''8 c''16 e''8 c''8 w16 @Select_Orc_Hit ff MP0 g'8 w16 @Select_Lead_1 pp MP1 g8 c'16 c'16 r16 @Select_Lead_2 f''8 g''16 a''8 g''8 w16 @Select_Orc_Hit ff MP0 f'8 w16 @Select_Lead_1 pp MP1 c'8 g16 g16 r16 @Select_Lead_2 d''8 e''16 e''8 g''8 w16 @Select_Orc_Hit ff MP0 c'8 w16 @Select_Lead_1 pp MP1 g8 c16 c16 @Select_Lead_2 e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''16 
   pattern pat_12_2_0 with Blank on triangle
     absolute
     MP2 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 @Blank c'16 r16 c'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'8 @Blank e'16 r16 e'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 @Blank c'16 r16 c'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'16 r4 w16 
@@ -1122,10 +1122,10 @@ song World_Select_4
 
   pattern pat_13_0_0 with Select_Orc_Hit on pulse1
     absolute
-    ff c8 @Select_Lead_1 g8 c'16 mp c'16 r16 @Select_Lead_2 ff d''8 c''16 e''8 c''4 @Select_Orc_Hit g,8 @Select_Lead_1 g8 c'16 mp c'16 r16 @Select_Lead_2 ff f''8 g''16 a''8 g''4 @Select_Orc_Hit f,8 @Select_Lead_1 c'8 g16 mp g16 r16 @Select_Lead_2 ff d''8 f''16 e''8 g''4 @Select_Orc_Hit c,8 @Select_Lead_1 g8 c16 mp c16 @Select_Lead_2 ff e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''8 
+    ff c8 @Select_Lead_1 g8 c'16 pp c'16 r16 @Select_Lead_2 ff d''8 c''16 e''8 c''4 @Select_Orc_Hit g,8 @Select_Lead_1 g8 c'16 pp c'16 r16 @Select_Lead_2 ff f''8 g''16 a''8 g''4 @Select_Orc_Hit f,8 @Select_Lead_1 c'8 g16 pp g16 r16 @Select_Lead_2 ff d''8 f''16 e''8 g''4 @Select_Orc_Hit c,8 @Select_Lead_1 g8 c16 pp c16 @Select_Lead_2 ff e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''8 
   pattern pat_13_1_0 with Select_Orc_Hit on pulse2
     absolute
-    ff MP0 c''8 w16 @Select_Lead_1 mp MP1 g8 c'16 c'16 r16 @Select_Lead_2 d''8 c''16 e''16 @Banjo mf c'16 e'16 c'16 g16 @Select_Orc_Hit ff MP0 g'8 w16 @Select_Lead_1 mp MP1 g8 c'16 c'16 r16 @Select_Lead_2 f''8 g''16 a''16 @Banjo mf g'16 f'16 e'16 c'16 @Select_Orc_Hit ff MP0 f'8 w16 @Select_Lead_1 mp MP1 c'8 g16 g16 r16 @Banjo mf g'8 @Select_Lead_2 mp e''16 @Banjo mf f'8 w16 e'8 @Select_Orc_Hit ff MP0 c'8 w16 @Select_Lead_1 mp MP1 g8 c16 c16 @Select_Lead_2 e''16 @Banjo mf g'16 f'16 d'16 e'16 a'16 g'16 b'16 d''16 
+    ff MP0 c''8 w16 @Select_Lead_1 pp MP1 g8 c'16 c'16 r16 @Select_Lead_2 d''8 c''16 e''16 @Banjo mf c'16 e'16 c'16 g16 @Select_Orc_Hit ff MP0 g'8 w16 @Select_Lead_1 pp MP1 g8 c'16 c'16 r16 @Select_Lead_2 f''8 g''16 a''16 @Banjo mf g'16 f'16 e'16 c'16 @Select_Orc_Hit ff MP0 f'8 w16 @Select_Lead_1 pp MP1 c'8 g16 g16 r16 @Banjo mf g'8 @Select_Lead_2 pp e''16 @Banjo mf f'8 w16 e'8 @Select_Orc_Hit ff MP0 c'8 w16 @Select_Lead_1 pp MP1 g8 c16 c16 @Select_Lead_2 e''16 @Banjo mf g'16 f'16 d'16 e'16 a'16 g'16 b'16 d''16 
   pattern pat_13_2_0 with Blank on triangle
     absolute
     MP2 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 @Blank c'16 r16 c'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'8 @Blank e'16 r16 e'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 @Blank c'16 r16 c'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'16 r4 w16 
@@ -1138,6 +1138,7 @@ song World_Select_4
   play pat_13_3_0
   at 5
   dal segno
+
 drum autodrum0_ autonoise5_ autotriangle1_
 drum autodrum1_ autonoise6_
 drum autodrum2_ autonoise7_ autotriangle2_
@@ -1407,10 +1408,10 @@ song World_Select_5
 
   pattern pat_13_0_0 with Select_Orc_Hit on pulse1
     absolute
-    ff EN00 c8 @Horn g8 c'16 mp c'16 r16 @Puzzle_Pulsate ff d''8 c''16 d''16 e''16 c''4 @Select_Orc_Hit g,8 @Horn g8 c'16 mp c'16 r16 @Puzzle_Pulsate ff f''8 g''16 a''8 g''8 e''8 @Select_Orc_Hit f,8 @Horn c'8 g16 mp g16 r16 @Puzzle_Pulsate ff d''8 f''16 e''8 g''8 e''8 @Select_Orc_Hit c,8 @Horn g8 c16 mp c16 @Pizzicato_Strings ff e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''16 mp w16 
+    ff EN00 c8 @Horn g8 c'16 pp c'16 r16 @Puzzle_Pulsate ff d''8 c''16 d''16 e''16 c''4 @Select_Orc_Hit g,8 @Horn g8 c'16 pp c'16 r16 @Puzzle_Pulsate ff f''8 g''16 a''8 g''8 e''8 @Select_Orc_Hit f,8 @Horn c'8 g16 pp g16 r16 @Puzzle_Pulsate ff d''8 f''16 e''8 g''8 e''8 @Select_Orc_Hit c,8 @Horn g8 c16 pp c16 @Pizzicato_Strings ff e''16 f''16 g''16 f''16 d''16 e''16 a''16 g''16 b''16 pp w16 
   pattern pat_13_1_0 with Select_Orc_Hit on pulse2
     absolute
-    ff MP0 c''8 w16 @Horn mp MP1 g8 c'16 c'16 r16 @Puzzle_Pulsate d''8 c''16 e''16 @Banjo mf c'16 e'16 c'16 g16 @Select_Orc_Hit ff MP0 g'8 w16 @Horn mp MP1 g8 c'16 c'16 r16 @Puzzle_Pulsate f''8 g''16 a''16 @Banjo mf g'16 f'16 e'16 c'16 @Select_Orc_Hit ff MP0 f'8 w16 @Horn mp MP1 c'8 g16 g16 r16 @Banjo mf g'8 @Puzzle_Pulsate mp e''16 @Banjo mf f'8 w16 e'8 @Select_Orc_Hit ff MP0 c'8 w16 @Horn mp MP1 g8 c16 c16 @Puzzle_Mellow_Crazy e''16 @Banjo mf g'16 f'16 d'16 e'16 a'16 g'16 b'16 d''16 
+    ff MP0 c''8 w16 @Horn pp MP1 g8 c'16 c'16 r16 @Puzzle_Pulsate d''8 c''16 e''16 @Banjo mf c'16 e'16 c'16 g16 @Select_Orc_Hit ff MP0 g'8 w16 @Horn pp MP1 g8 c'16 c'16 r16 @Puzzle_Pulsate f''8 g''16 a''16 @Banjo mf g'16 f'16 e'16 c'16 @Select_Orc_Hit ff MP0 f'8 w16 @Horn pp MP1 c'8 g16 g16 r16 @Banjo mf g'8 @Puzzle_Pulsate pp e''16 @Banjo mf f'8 w16 e'8 @Select_Orc_Hit ff MP0 c'8 w16 @Horn pp MP1 g8 c16 c16 @Puzzle_Mellow_Crazy e''16 @Banjo mf g'16 f'16 d'16 e'16 a'16 g'16 b'16 d''16 
   pattern pat_13_2_0 with Blank on triangle
     absolute
     MP2 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 @Blank c'16 r16 c'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'8 @Blank e'16 r16 e'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank a8 @Boss_Bass a8 @Blank c'16 r16 c'8 c'8 r16 @Boss_Bass c'8 r16 c'8 @Blank d'8 @Boss_Bass d'16 r4 w16 
@@ -1423,4 +1424,3 @@ song World_Select_5
   play pat_13_3_0
   at 5
   dal segno
-

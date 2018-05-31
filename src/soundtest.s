@@ -53,7 +53,7 @@ IsPlaying = TempVal+2 ; 0:none, 1:pently, 2:famitone
 
   PositionXY 0, 3, 19
   jsr PutStringImmediate
-  .byt "'Old' music is a bunch of",0
+  .byt "'Old music' is a bunch of",0
   PositionXY 0, 3, 21
   jsr PutStringImmediate
   .byt "music that was originally",0
