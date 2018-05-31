@@ -88,6 +88,7 @@ glass_finaleData:
   LObj  LO::S_CUSTOM,         0, 7, Metatiles::PUSHABLE_BLOCK
   LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
   LObjN LO::R_SOLID_ROCK,     0, 4, 2, 0
+  LObjN LO::R_BG_GLASS_BLUE,  0, 7, 1, 0
   LObjN LO::R_SOLID_ROCK,     0, 8, 0, 4
   LObjN LO::WIDE_1,           0, 13, 4, LN1::SOLID_LEDGE
   LObjN LO::R_SOLID_ROCK,     1, 0, 0, 2
@@ -337,6 +338,7 @@ glass_finaleSprite:
   LSpr Enemy::FIRE_WALK,           1, 120,   8, 1
   LSpr Enemy::BIG_LWSS,            0, 122,   1
   LSpr Enemy::FIRE_WALK,           0, 124,   8, 1
+  LSpr Enemy::CHECKPOINT,          0, 130,  10
   LSpr Enemy::FIRE_JUMP,           1, 139,   6, 1
   LSpr Enemy::FIREWORK_SHOOTER,    1, 143,  10
   LSpr Enemy::FIRE_JUMP,           1, 146,   3, 1

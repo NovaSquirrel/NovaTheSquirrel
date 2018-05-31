@@ -59,6 +59,8 @@ HAS_DICTIONARY_TABLE = 1
 NEW_TOGGLE_BEHAVIOR = 1 ; don't blank the screen for toggle block changing
 ; If you unset this, you will need to rename MetatileFlagsROM to MetatileFlags and put it in the fixed bank
 
+JUMP_GRACE_PERIOD_LENGTH = 6
+
 ; -------------------------------------
 
 .include "../tools/objectenum.s"

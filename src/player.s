@@ -413,6 +413,7 @@ NotOffTopBottom:
   countdown PlayerJumpCancelLock
   countdown PlayerWalkLock
   countdown PlayerInvincible
+  countdown JumpGracePeriod
 
   lda PlayerLeftRightLock
   beq :+
@@ -916,6 +917,10 @@ FourCornersH:
   .byt >(FC_LRL_ -1), >(FC_LRLR -1)
 
 FC_____:
+  lda JumpGracePeriod
+  beq :+
+    jsr OfferJump
+  :
 SavePosition:
   lda PlayerPXL
   sta PlayerNonSolidPXL
@@ -1218,11 +1223,15 @@ RunStyleWasB:
 @SkipSnap:
 
 OfferJump:
+  lda #JUMP_GRACE_PERIOD_LENGTH
+  sta JumpGracePeriod
+
   lda keynew
   and #KEY_A
   beq :+
     lda #0
     sta PlayerOnLadder
+    sta JumpGracePeriod
     lda #<(-$50)
     sta PlayerVYL
     lda #>(-$50)

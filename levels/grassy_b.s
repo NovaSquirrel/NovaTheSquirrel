@@ -205,12 +205,14 @@ grassy_bSprite:
   LSpr Enemy::SNEAKER,             1,  73,   6
   LSpr Enemy::THWOMP,              0,  75,   8
   LSpr Enemy::THWOMP,              0,  78,   8
+  LSpr Enemy::CHECKPOINT,          0,  90,   7
   LSpr Enemy::GEORGE,              1,  98,   7
   LSpr Enemy::GEORGE,              1, 106,   8
   LSpr Enemy::THWOMP,              0, 116,   4
   LSpr Enemy::GEORGE,              1, 125,   7
   LSpr Enemy::THWOMP,              0, 136,   2
   LSpr Enemy::GEORGE,              1, 154,  10
+  LSpr Enemy::CHECKPOINT,          0, 162,   9
   LSpr Enemy::GOOMBA,              1, 174,   7
   LSpr Enemy::FIRE_WALK,           1, 190,  12
   LSpr Enemy::GEORGE,              1, 191,   6

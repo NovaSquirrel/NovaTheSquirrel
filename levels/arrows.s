@@ -228,10 +228,12 @@ arrowsData:
   LObjN LO::R_BG_GLASS_GREEN, 3, 5, 2, 0
   LObjN LO::R_BG_GLASS_GREEN, 1, 4, 0, 2
   LObjN LO::R_GROUND,         1, 9, 4, 5
-  LObjN LO::R_FG_GLASS_BLUE,  2, 3, 0, 4
-  LObj  LO::S_M_ARROW_RIGHT,  0, 4
+  LObj  LO::S_M_ARROW_RIGHT,  2, 2
+  LObjN LO::R_FG_GLASS_BLUE,  0, 3, 0, 4
   LObj  LO::S_W_ARROW_UP,     0, 8
-  LObjN LO::R_BG_GLASS_RED,   3, 1, 4, 4
+  LObj  LO::R_CUSTOM,         1, 2, Metatiles::METAL_ARROW_DOWN, (0<<4)|1
+  LObj  LO::S_M_ARROW_RIGHT,  0, 4
+  LObjN LO::R_BG_GLASS_RED,   2, 1, 4, 4
   LObjN LO::WIDE_1,           0, 9, 4, LN1::SOLID_LEDGE
   LObjN LO::R_BG_GLASS_RED,   6, 10, 4, 4
   LObjN LO::WIDE_1,           1, 8, 1, LN1::SOLID_LEDGE

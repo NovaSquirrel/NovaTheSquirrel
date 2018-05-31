@@ -211,8 +211,8 @@ glasscaveSprite:
   LSpr Enemy::CANNON_2,            1, 140,   2, 2
   LSpr Enemy::FIRE_JUMP,           1, 164,   7
   LSpr Enemy::FIRE_JUMP,           1, 167,   6
+  LSpr Enemy::CHECKPOINT,          0, 175,   9
   LSpr Enemy::BALL_GUY,            1, 181,   6
   LSpr Enemy::BALL_GUY,            1, 187,   6
-  LSpr Enemy::CHECKPOINT,          0, 194,   6
   LSpr Enemy::RONALD_BURGER,       1, 202,   1
   .byt 255 ; end

@@ -121,7 +121,8 @@ skyData:
   LObjN LO::R_COIN,           0, 7, 0, 1
   LObj  LO::S_SPRING,         0, 9
   LObjN LO::R_ENEMY_BARRIER      ,  2, 1, 0, 1
-  LObjN LO::WIDE_2,           5, 10, 1, LN2::BUSH
+  LObjN LO::WIDE_1,           4, 11, 0, LN1::SOLID_LEDGE
+  LObjN LO::WIDE_2,           1, 10, 1, LN2::BUSH
   LObjN LO::R_GROUND,         0, 11, 9, 3
   LObj  LO::S_GROUND_CLIMB_L, 3, 10
   LObjN LO::R_GROUND,         1, 10, 5, 0

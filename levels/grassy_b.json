@@ -1179,6 +1179,18 @@
 					"W":	1,
 					"H":	1,
 					"XFlip":	true
+				}, {
+					"Id":	"CHECKPOINT",
+					"X":	90,
+					"Y":	7,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"CHECKPOINT",
+					"X":	162,
+					"Y":	9,
+					"W":	1,
+					"H":	1
 				}]
 		}, {
 			"Name":	"Control",
