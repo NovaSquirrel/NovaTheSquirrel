@@ -33,6 +33,7 @@ GRAPHICS_BANK1 = $c
 VOICE_BANK = $d
 LEVELPROCESS_BANK = $e
 SOUND_BANK = $6
+FAMITONE_BANK = $3
 VWF_BANK = $e
 INVENTORY_BANK = $e
 THINFONT_BANK = $d
@@ -82,6 +83,7 @@ EXTRAS_BANK = $4 ; DABG resources, other games I can fit!
 .include "shop.s"
 .include "options.s"
 .include "prelevel.s"
+.include "soundtest.s"
 
 .segment "PRG7" ; dialog
 .include "../tools/dialog.s"
@@ -104,8 +106,10 @@ EXTRAS_BANK = $4 ; DABG resources, other games I can fit!
 .segment "PRG1" ; levels
 .include "levels2.s"
 .segment "PRG2" ; ???
-.segment "PRG3" ; ???
-.segment "PRG4" ; ???
+
+.segment "PRG3" ; Famitone and old songs
+.include "../music/famitone/Original.s"
+.include "../music/famitone/famitone2.s"
 
 .segment "PRG4" ; extras
 .include "extras.s"

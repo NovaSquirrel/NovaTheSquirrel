@@ -413,6 +413,7 @@ OptionsBackground:
 .proc ShowMainMenu
 Cursor = 13
 
+  jsr SoundTestStopMusic
   jsr OptionsScreenSetup
 
   lda #0
@@ -572,6 +573,7 @@ NoA:
 .proc ShowExtraFeatures
 Cursor = 13
 
+  jsr SoundTestStopMusic
   jsr OptionsScreenSetup
 
   lda #0
@@ -620,7 +622,7 @@ Loop:
   dey
   jeq LaunchDABG
   dey
-  jeq LaunchDABG
+  jeq ShowSoundTest
   dey
   jeq LaunchCredits
 NoA:

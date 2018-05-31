@@ -171,6 +171,52 @@
   jmp SetPRG_Restore
 .endproc
 
+.proc SoundTestStopMusic
+  lda #SOUND_BANK
+  jsr _SetPRG
+  jsr pently_init
+
+  lda #FAMITONE_BANK
+  jsr _SetPRG
+  lda #0
+  ldx #<Original_music_data
+  ldy #>Original_music_data
+  jsr FamiToneInit
+
+  jmp SetPRG_Restore
+.endproc
+
+.proc SoundTestStartPently
+  pha
+  lda #SOUND_BANK
+  jsr _SetPRG
+  pla
+  jsr pently_start_music
+  jmp SetPRG_Restore
+.endproc
+
+.proc SoundTestStartFamitone
+  pha
+  lda #FAMITONE_BANK
+  jsr _SetPRG
+  pla
+  jsr FamiToneMusicPlay
+  jmp SetPRG_Restore
+.endproc
+
+.proc SoundTestUpdatePently
+  lda #SOUND_BANK
+  jsr _SetPRG
+  jsr pently_update
+  jmp SetPRG_Restore
+.endproc
+
+.proc SoundTestUpdateFamitone
+  lda #FAMITONE_BANK
+  jsr _SetPRG
+  jsr FamiToneUpdate
+  jmp SetPRG_Restore
+.endproc
 
 .if 0
 ; Allows object bank 2 bank to change blocks

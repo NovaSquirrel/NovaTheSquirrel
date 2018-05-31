@@ -240,7 +240,8 @@ CreditsData:
   .byt NAME,    "Josh Hoffman",0
 
   .byt FOR,     "Sherwin",0
-  .byt NAME,    "FL4SHK",0
+  .byt NAME,    "Andrew Clark",0
+  .byt NAME,    "(FL4SHK)",0
 
   .byt SECTION, "CHARACTERS",0
   .byt FOR,     "Cameos",0
