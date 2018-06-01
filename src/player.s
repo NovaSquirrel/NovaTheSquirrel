@@ -919,7 +919,7 @@ FourCornersH:
 FC_____:
   lda JumpGracePeriod
   beq :+
-    jsr OfferJump
+    jsr OfferJumpFromGracePeriod
   :
 SavePosition:
   lda PlayerPXL
@@ -1225,7 +1225,7 @@ RunStyleWasB:
 OfferJump:
   lda #JUMP_GRACE_PERIOD_LENGTH
   sta JumpGracePeriod
-
+OfferJumpFromGracePeriod:
   lda keynew
   and #KEY_A
   beq :+
