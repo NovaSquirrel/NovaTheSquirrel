@@ -128,6 +128,13 @@ PalExpositionSherwins:
              .byt $17, $27, $37 ;sherwin
              .byt $0f, $27, $30 ;blaster guy
 
+PALEarlyTiles:
+             .byt $03
+             .byt $1a, $2a, $28
+             .byt $12, $10, $30
+             .byt $17, $27, $37
+             .byt $12, $16, $30
+
 AbilityIcons: .incbin "chr/sppowericons.chr"
 AbilityGfx:   .incbin "chr/sppowergfx.chr"
 AbilityOffsets:

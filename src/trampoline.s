@@ -81,17 +81,6 @@
   jmp SetPRG_Restore
 .endproc
 
-; Plays music, handles bank switching
-; input: A (music number)
-.proc PlayMusicAuto
-  pha
-  lda #SOUND_BANK
-  jsr _SetPRG
-  pla
-  jsr pently_start_music
-  jmp SetPRG_Restore
-.endproc
-
 ; Allows a projectile to collect a collectible metatile
 .proc DoCollectibleFar
   pha
@@ -186,6 +175,8 @@
   jmp SetPRG_Restore
 .endproc
 
+; Plays music, handles bank switching
+; input: A (music number)
 .proc SoundTestStartPently
   pha
   lda #SOUND_BANK
@@ -194,6 +185,7 @@
   jsr pently_start_music
   jmp SetPRG_Restore
 .endproc
+PlayMusicAuto = SoundTestStartPently
 
 .proc SoundTestStartFamitone
   pha

@@ -32,7 +32,19 @@ WorldTimes8 = 15
   jsr CopyFromSavedInventory
 
 ; Stop any music that was playing
-  jsr StopSoundFar ; uses a trampoline
+  jsr StopSoundFar
+
+; Play the right select music for the world
+  lda StartedLevelNumber
+  lsr
+  lsr
+  lsr
+  cmp #4
+  bcc :+
+    lda #4
+  :
+  add #MusicTracks::WORLD_1_SELECT
+  jsr SoundTestStartPently
 
 ; Initialize PPU stuff
   jsr WaitVblank
@@ -151,6 +163,9 @@ Loop:
   lda #2
   sta OAM_DMA
   jsr ReadJoy
+
+  jsr SoundTestUpdatePently
+
   jsr ClearOAM
 
   lda IsSpinning

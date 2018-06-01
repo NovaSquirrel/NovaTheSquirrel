@@ -156,9 +156,11 @@ InitSave:
   inx
   bne :-
 
-;  ; Mark the first level as available
-;  lda #1
-;  sta LevelAvailable
+.ifndef PLAYTESTING_BUILD
+  ; Mark the first level as available
+  lda #1
+  sta LevelAvailable
+.else
   ; Mark the first 8 levels as available
   ; for demo purposes
   lda #255
@@ -167,8 +169,7 @@ InitSave:
   sta LevelAvailable+2
   sta LevelAvailable+3
   sta LevelAvailable+4
-;  lda #1
-;  sta LevelAvailable+4
+.endif
 
   ; Write tag to SRAM
   ldx #8
