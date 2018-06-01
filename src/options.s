@@ -512,8 +512,11 @@ NoLevelsCleared:
 
   PositionXY 0, 3, 12
   jsr PutStringImmediate
-  .byt "Game options",0
+  .byt "View controls",0
   PositionXY 0, 3, 14
+  jsr PutStringImmediate
+  .byt "Game options",0
+  PositionXY 0, 3, 16
   jsr PutStringImmediate
   .byt "Extra features",0
 
@@ -540,6 +543,8 @@ Loop:
   ldy Cursor
   jeq JumpToLevelSelect
   dey
+  jeq ShowControlsTrampoline
+  dey
   jeq ShowOptions
   dey
   jeq ShowExtraFeatures
@@ -558,7 +563,7 @@ NoA:
   and #KEY_DOWN
   beq :+
     lda Cursor
-    cmp #2
+    cmp #3
     beq :+
     inc Cursor
   :

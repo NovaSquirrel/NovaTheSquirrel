@@ -350,3 +350,12 @@ CopyLoop:
   lda #INVENTORY_BANK
   jmp SetPRG
 .endproc
+
+.proc ShowControlsTrampoline
+  lda #ABILITY_HELP_BANK
+  jsr SetPRG
+  jsr ShowControls
+  lda #OPTIONS_BANK
+  jsr SetPRG
+  jmp ShowMainMenu
+.endproc

@@ -83,7 +83,7 @@ Done:
   lda PPUPointer+0
   sta PPUADDR
   jsr PutStringImmediate
-  .byt "(Press A to exit)",0
+  .byt "(Press ",$83," to exit)",0
 
   lda #0
   sta PPUSCROLL
@@ -102,14 +102,15 @@ Loop:
 
 AbilityLo:
   .lobytes Default, Blaster, Glider, Bomb, Fire
-  .lobytes Firework, Nice, Boomerang, Mirror, Water, Fan, Burger
+  .lobytes Firework, Nice, Boomerang, Mirror, Water, Fan, Burger, GeneralHelp
 AbilityHi:
   .hibytes Default, Blaster, Glider, Bomb, Fire
-  .hibytes Firework, Nice, Boomerang, Mirror, Water, Fan, Burger
+  .hibytes Firework, Nice, Boomerang, Mirror, Water, Fan, Burger, GeneralHelp
 
 DN = $80
 UP = $81
 BB = $82
+AB = $83
 
 Default:
   .byt "DEFAULT",1
@@ -200,7 +201,26 @@ Burger:
   .byt BB,  ": Shoot",1
   .byt DN,BB,": Burger Ride",0
 
+GeneralHelp:
+  .byt "NOVA THE SQUIRREL",1
+  .byt "  ",AB,":Jump",1
+  .byt "  ",BB,":Use ability (Per-ability",1
+  .byt "help is on the pause screen)",1
+  .byt "  ",UP,":Read signs, go in doors",1
+  .byt "  ",DN,":Drop from certain floors",1
+  .byt $84,$85,$86,":Pause/Inventory",1
+  .byt $87,$88,$89,":Hold to clear ability",0
+
 CHR:
   .incbin "../chr/abilityhelp.chr"
 CHR_End:
+.endproc
+
+.proc ShowControls
+  lda #AbilityType::LAST
+  sta PlayerAbility
+  jsr ShowAbilityHelp
+  lda #AbilityType::NONE
+  sta PlayerAbility
+  jmp ShowAbilityHelp
 .endproc
