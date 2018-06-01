@@ -1396,7 +1396,6 @@ PSIX2:
   ; 1Y XX LL - X and Y with level number
   ; 20 AA AA - start dialog
   ; 21 AA    - just switch to level
-  inc NeedLevelRerender
   inc JustTeleported
   lda ColumnBytes,x    ; Read the flag to check for special handling
   cmp #$21
@@ -1410,7 +1409,10 @@ PSIX2:
     inc NeedLevelReload
     inc MakeCheckpoint
     inc IsNormalDoor
+    bne WasLevelChange ; unconditional
 NoLevelChange:
+  inc NeedLevelRerender
+WasLevelChange:
   lda ColumnBytes+0,x    ; Read the Y position plus the flag
   and #15                ; (but only use the flag)
   sta PlayerPYH

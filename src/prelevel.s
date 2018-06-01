@@ -23,6 +23,7 @@ OptionCount = 13
   ldx #255 ; reinitialize stack pointer just in case
   txs
 
+  jsr StopSoundFar
   jsr OptionsScreenSetup
   jsr ClearOAM
 
