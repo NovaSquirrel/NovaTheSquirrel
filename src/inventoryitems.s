@@ -629,6 +629,12 @@ KeysAreSame:
   lda keynew
   and #KEY_A
   beq :+
+  ; Is this item slot empty? Don't use it
+  lda InventoryCursorY
+  add InventoryPage
+  tax
+  lda InventoryType,x
+  beq :+
   jmp DoInventoryCode
 TossOutItem:
   lda keynew
