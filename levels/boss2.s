@@ -13,6 +13,7 @@ boss2:
   .byt GraphicsUpload::PAL_ENEMY6
   .byt GraphicsUpload::BG_COMMON
   .byt GraphicsUpload::BG_DABG
+  .byt GraphicsUpload::BG_GRASSYBG
   .byt 255 ; end
   .byt $60, $00 ; boundaries
 
@@ -30,9 +31,10 @@ boss2Data:
   LWriteCol 10, 34
   LObjN LO::WIDE_1,           3, 6, 6, LN1::SOLID_LEDGE
   LObj  LO::R_CUSTOM,         0, 11, Metatiles::LAVA_MAIN, (2<<4)|3
-  LObjN LO::R_ROCK,           3, 10, 6, 4
-  LObjN LO::R_ROCK,           2, 8, 4, 1
-  LObjN LO::R_ROCK,           2, 6, 2, 1
+  LObj  LO::S_SPRING,         3, 9
+  LObjN LO::R_ROCK,           0, 10, 6, 4
+  LObjN LO::R_ROCK,           4, 6, 2, 1
+  LObjN LO::TALL_2,           0, 8, 1, LN2::TRUNK
   LObj  LO::S_BIGHEART,       1, 4
   LObjN LO::R_ROCK,           2, 0, 2, 14
   LObjN LO::R_ROCK,           3, 12, 15, 2

@@ -602,7 +602,7 @@ Down+B: Drop bomb
 <1 RAOUL>So Nova, any idea where you want to go after this?
 <0 NOVA>Not really. I guess I was just going to explore and see what's out there. There's a whole universe of adventures to have and worlds to see...
 <1 RAOUL>Well if you ever need a break from everything, I think you should check out Toasterland. It's a pretty peaceful world.
-<0 NOVA>Alright. You need to relax now and then, after all.
+<0 NOVA>Alright. You do need to relax now and then, after all.
 `end
 
 `manualwrap

@@ -769,8 +769,8 @@ Toasterland:
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "N", "o", $d2, $fa, $ac, "y", $f5, $bf, "g", "u", "e", $f0, " ", $bf, "w", $c3, " ", "j", "u", $dd, SCR::NEWLINE, $ce, $b0, " ", $ba, "e", "x", "p", "l", $c8, $e6, $a3, $b2, SCR::NEWLINE, $8a, $e8, $ad, " ", $87, $f5, $f7, $ec, "e", $e8, "a", SCR::NEWLINE, $d9, "o", "l", $e6, $f1, "i", "v", $ec, $e4, " ", $bc, $f6, "v", $e5, "t", "u", $fa, "s", SCR::NEWLINE, $ba, $9a, $a3, "w", $c8, $ee, $fb, $ba, $b2, ".", ".", "."
 ; <1 RAOUL>Well if you ever need a break from everything, I think you should check out Toasterland. It's a pretty peaceful world.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::RAOUL, "W", "e", "l", "l", " ", $cd, " ", $a5, " ", "e", "v", $ec, " ", $f8, $d5, $bd, "b", $fa, "a", "k", SCR::NEWLINE, $96, "e", "v", $ec, "y", $df, $b0, $f4, $bf, $82, " ", $a5, SCR::NEWLINE, $de, $9f, " ", $e1, "e", $f2, " ", $ad, SCR::NEWLINE, "T", "o", $c3, $ea, "r", "l", $c9, "d", $f5, "I", "t", $e8, $bd, "p", $fa, "t", "t", "y", SCR::NEWLINE, "p", $eb, "c", "e", "f", "u", "l", " ", "w", $c8, $ee, "."
-; <0 NOVA>Alright. You need to relax now and then, after all.
-.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "A", "l", $fc, $da, "t", $f5, "Y", $f3, " ", $f8, $d5, $ba, $fa, "l", "a", "x", SCR::NEWLINE, $b3, " ", $a3, $93, $f4, $83, " ", $ac, "."
+; <0 NOVA>Alright. You do need to relax now and then, after all.
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "A", "l", $fc, $da, "t", $f5, "Y", $f3, " ", $c4, " ", $f8, $d5, $ba, $fa, "l", "a", "x", SCR::NEWLINE, $b3, " ", $a3, $93, $f4, $83, " ", $ac, "."
 .byt SCR::END_SCRIPT
 
 PreLevelBigCave:

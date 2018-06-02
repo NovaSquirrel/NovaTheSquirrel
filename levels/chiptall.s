@@ -70,7 +70,8 @@ chiptallData:
   LObj  LO::S_CUSTOM,         2, 7, Metatiles::CHIP
   LObjN LO::TALL_1,           1, 11, 3, LN1::LADDER
   LObjN LO::WIDE_1,           3, 7, 1, LN1::SOLID_LEDGE
-  LObjN LO::R_SOLID_ROCK,     2, 0, 1, 5
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 2
+  LObjN LO::R_SOLID_ROCK,     1, 0, 1, 5
   LObj  LO::S_CUSTOM,         0, 6, Metatiles::CHIP_SOCKET
   LSetX 63
   LWriteCol 27

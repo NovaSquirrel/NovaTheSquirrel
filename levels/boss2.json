@@ -17,7 +17,7 @@
 	"Header":	{
 		"Music":	"MINOR_BOSS",
 		"SpriteGFX":	["SP_FHBG", "SP_SCHEME_TEAM", "SP_CANNON", "SP_HANNAH"],
-		"GFXUpload":	["PAL_DABG_GRAY", "PAL_ENEMY6", "BG_COMMON", "BG_DABG"],
+		"GFXUpload":	["PAL_DABG_GRAY", "PAL_ENEMY6", "BG_COMMON", "BG_DABG", "BG_GRASSYBG"],
 		"BGColor":	49
 	},
 	"Layers":	[{
@@ -154,12 +154,6 @@
 					"H":	1
 				}, {
 					"Id":	"ROCK_GROUND",
-					"X":	24,
-					"Y":	8,
-					"W":	5,
-					"H":	2
-				}, {
-					"Id":	"ROCK_GROUND",
 					"X":	26,
 					"Y":	6,
 					"W":	3,
@@ -170,6 +164,18 @@
 					"Y":	4,
 					"W":	1,
 					"H":	1
+				}, {
+					"Id":	"SPRING",
+					"X":	22,
+					"Y":	9,
+					"W":	1,
+					"H":	1
+				}, {
+					"Id":	"BG_TRUNK",
+					"X":	26,
+					"Y":	8,
+					"W":	1,
+					"H":	2
 				}]
 		}, {
 			"Name":	"Sprites",
