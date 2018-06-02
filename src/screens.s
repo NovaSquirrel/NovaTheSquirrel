@@ -228,9 +228,9 @@ BummerInstead:
 .endproc
 
 .proc JumpToLevelSelect
-  lda LevelAvailable
-  cmp #1
-  beq SkipLevelSelect
+;  lda LevelAvailable
+;  cmp #1
+;  beq SkipLevelSelect
   lda #VWF_BANK
   jsr SetPRG
 
@@ -262,9 +262,9 @@ BummerInstead:
 .endif
 
   jmp ShowLevelSelect
-SkipLevelSelect:
-  lda #0
-  jmp StartLevel
+;SkipLevelSelect:
+;  lda #0
+;  jmp StartLevel
 .endproc
 
 .proc ShowLevelEnd
