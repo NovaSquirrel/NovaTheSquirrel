@@ -238,7 +238,11 @@ WithoutSFX:
   lda #<$1700
   sta PPUADDR
   jsr UploadTilesAndUpdateScroll
+  tya
+  pha
   jsr SoundTestUpdatePently
+  pla
+  tay
 
   jsr Copy64FromPointer
   jsr WaitVblank
