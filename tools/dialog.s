@@ -523,6 +523,9 @@ AfterBill:
 ;dummy text above, never gets displayed
 lda #DIALOG_BANK
 jsr StartCredits
+ldx CutsceneOldSP
+txs
+jmp StartCutsceneSkip
 brk
 .byt SCR::END_SCRIPT
 

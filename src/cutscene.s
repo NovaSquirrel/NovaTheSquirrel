@@ -139,6 +139,7 @@ SkipTheScript:
   sta keynew
   rts
 .endproc
+StartCutsceneSkip = StartCutscene::SkipTheScript
 
 .proc ScriptBRK ; BRK handler
   ; BRKs in inline assembly in cutscenes transfer control back to the script interpreter
