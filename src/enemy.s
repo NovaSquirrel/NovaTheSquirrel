@@ -5346,9 +5346,10 @@ Seed:
     dec ObjectPYH,x
     rts
   :
-  lda #OAM_COLOR_3
+  lda #OAM_COLOR_2
   sta 1
-  lda #$40 ; use a zero
+  lda #$10
+  ora O_RAM::TILEBASE
   jmp DispObject8x8_Attr
 
 HurtAndDeflect:

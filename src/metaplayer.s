@@ -909,12 +909,6 @@ Offset = 11
   sub #Metatiles::WOOD_ARROW_LEFT
   sta Offset
 
-  pha
-  ; X and Y are preserved
-  lda BackgroundMetatile
-  jsr ChangeBlock
-  pla
-
   lda #Enemy::FLYING_ARROW*2
   jsr FindFreeObjectForTypeX
   bcc Exit
@@ -922,6 +916,12 @@ Offset = 11
   sta ObjectPXH,x
   lda SaveY
   sta ObjectPYH,x
+
+  pha
+  ; X and Y are preserved
+  lda BackgroundMetatile
+  jsr ChangeBlock
+  pla
 
   ldy Offset
   jsr ArrowChangeDirection
