@@ -577,9 +577,49 @@ Down+B: Drop bomb
 `end
 
 
+`scene NOVA_AND_RAOUL
+<1 RAOUL>Hi TCRF
+<0 NOVA>Who are you talking to?
+`end
 
+:KoreyInTheHouse:
+`scene NOVA_AND_KOREY
+<0 NOVA_SILLY>I've been meaning to ask... are you 'in the house'?
+<1 KOREY>Nope. It's K-O-R-E-Y, not C-O-R-Y.
+<0 NOVA>Oh. My bad.
+`end
+
+:SherwinEpilogue:
+`scene NOVA_AND_SHERWIN
+<0 NOVA>Since you had a front-row seat to everything, did the Scheme Team actually -do- anything dangerous? Or was it just a bunch of talk?
+<1 SHERWIN>They were definitely dangerous. They had some sort of doom machine they were working on, but I kept suggesting things that would make it 'better' while adding months to the development time. To delay them, you know?
+<0 NOVA_SILLY>They seemed kind of dumb but that's better than the alternative, I suppose.
+`end
+
+
+:Toasterland:
+`scene NOVA_AND_RAOUL
+<1 RAOUL>So Nova, any idea where you want to go after this?
+<0 NOVA>Not really. I guess I was just going to explore and see what's out there. There's a whole universe of adventures to have and worlds to see...
+<1 RAOUL>Well if you ever need a break from everything, I think you should check out Toasterland. It's a pretty peaceful world.
+<0 NOVA>Alright. You need to relax now and then, after all.
+`end
 
 `manualwrap
+:PreLevelBigCave:
+A large cave that requires
+`nl
+different abilities to get
+`nl
+through the whole thing.
+`end
+
+:PreLevelSuperPlayer:
+Wow! You are really a super
+`nl
+player! 
+`end
+
 :PreLevelIntro:
  Nova sets off on her new
 `nl

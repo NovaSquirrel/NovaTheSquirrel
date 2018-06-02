@@ -737,7 +737,59 @@ MeetKeeAgain:
 ; <1 KEE>Eh, who cares at this point? Everything seems a lot more interesting here, but I'd love to go on an adventure with you later!
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::KEE, "E", "h", $f4, $d9, "o", " ", "c", "a", $fa, $fb, $c5, " ", $98, " ", "p", "o", $d7, "t", "?", SCR::NEWLINE, "E", "v", $ec, "y", $df, $b0, " ", $b2, "m", $fb, $bd, "l", "o", $d2, "m", $c8, "e", SCR::NEWLINE, $d7, $ea, $fa, $dd, $b0, " ", $a8, "e", $f4, $a6, " ", "I", "'", $ff, "l", "o", "v", "e", SCR::NEWLINE, $ba, $ce, " ", $c1, " ", $c9, " ", $f6, "v", $e5, "t", "u", $fa, " ", $9c, SCR::NEWLINE, $a5, " ", "l", $c5, $ec, "!"
 .byt SCR::END_SCRIPT
+.byt SCR::SCENE, SCENES::NOVA_AND_RAOUL
+; <1 RAOUL>Hi TCRF
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::RAOUL, "H", "i", " ", "T", "C", "R", "F"
+; <0 NOVA>Who are you talking to?
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "W", "h", "o", " ", "a", $fa, " ", $a5, " ", "t", "a", "l", "k", $b0, " ", $bb, "?"
+.byt SCR::END_SCRIPT
+KoreyInTheHouse:
+.byt SCR::SCENE, SCENES::NOVA_AND_KOREY
+; <0 NOVA_SILLY>I've been meaning to ask... are you 'in the house'?
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA_SILLY, "I", "'", "v", $e6, "b", $d6, "n", " ", $cf, $c9, $b0, " ", $ba, $c3, "k", ".", ".", $f5, "a", $fa, SCR::NEWLINE, $a5, " ", "'", $be, $a1, " ", "h", $f3, $e4, "'", "?"
+; <1 KOREY>Nope. It's K-O-R-E-Y, not C-O-R-Y.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::KOREY, "N", "o", "p", "e", $f5, "I", "t", $e8, "K", "-", "O", "-", "R", "-", "E", "-", "Y", $f4, $a2, SCR::NEWLINE, "C", "-", "O", "-", "R", "-", "Y", "."
+; <0 NOVA>Oh. My bad.
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "O", "h", $f5, "M", $fe, "b", $f6, "."
+.byt SCR::END_SCRIPT
+SherwinEpilogue:
+.byt SCR::SCENE, SCENES::NOVA_AND_SHERWIN
+; <0 NOVA>Since you had a front-row seat to everything, did the Scheme Team actually -do- anything dangerous? Or was it just a bunch of talk?
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "S", $d7, "c", $e6, $a5, " ", "h", $f6, " ", $bd, "f", "r", $c1, "t", "-", "r", "o", "w", SCR::NEWLINE, $e4, $c5, " ", $ba, "e", "v", $ec, "y", $df, $b0, $f4, "d", "i", $ff, $a1, SCR::NEWLINE, "S", $e1, "e", $cf, " ", "T", $eb, "m", " ", "a", $c6, "u", $ac, $fe, "-", $c4, "-", SCR::NEWLINE, $aa, $df, $b0, " ", "d", $c9, "g", $ec, $f3, "s", "?", " ", "O", $e9, "w", $c3, SCR::NEWLINE, $c0, $8d, $bd, "b", $f1, $e1, " ", $bc, "t", "a", "l", "k", "?"
+; <1 SHERWIN>They were definitely dangerous. They had some sort of doom machine they were working on, but I kept suggesting things that would make it 'better' while adding months to the development time. To delay them, you know?
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SHERWIN, $f7, "e", $fe, $c7, $fa, " ", "d", "e", "f", $d7, "i", $ea, "l", "y", SCR::NEWLINE, "d", $c9, "g", $ec, $f3, "s", $f5, $f7, "e", $fe, "h", $f6, " ", $9b, SCR::NEWLINE, $cb, $ed, " ", $bc, $c4, "o", "m", " ", "m", "a", $e1, $d7, $e6, $97, SCR::NEWLINE, $c7, $fa, " ", "w", $c8, "k", $b0, " ", $c1, $f4, $a6, " ", $bf, "k", "e", "p", "t", SCR::NEWLINE, "s", "u", "g", "g", "e", $dd, $b0, " ", $df, $b0, $fb, $99, "w", $9f, SCR::NEWLINE, "m", "a", "k", $e6, $c0, "'", "b", "e", "t", $ea, "r", "'", " ", $d9, $db, $e6, $f6, "d", $b0, SCR::NEWLINE, "m", $c1, $df, $fb, $ba, $a1, " ", "d", "e", "v", "e", "l", "o", "p", $cf, $e0, SCR::NEWLINE, "t", "i", $cf, $f5, "T", "o", " ", "d", "e", "l", "a", $fe, $91, $f4, $a5, SCR::NEWLINE, $8e, "?"
+; <0 NOVA_SILLY>They seemed kind of dumb but that's better than the alternative, I suppose.
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA_SILLY, $f7, "e", $fe, $b2, $cf, $ff, "k", $d7, $ff, $bc, "d", "u", "m", "b", SCR::NEWLINE, $a6, " ", $df, $c5, $e8, "b", "e", "t", $ea, $e9, $92, " ", $a1, SCR::NEWLINE, "a", "l", $ea, "r", "n", $c5, "i", "v", "e", $f4, $bf, "s", $cc, "p", "o", $e4, "."
+.byt SCR::END_SCRIPT
+Toasterland:
+.byt SCR::SCENE, SCENES::NOVA_AND_RAOUL
+; <1 RAOUL>So Nova, any idea where you want to go after this?
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::RAOUL, "S", "o", " ", $a0, $f4, $aa, " ", "i", "d", $eb, " ", $d9, $ec, $e6, $a5, SCR::NEWLINE, "w", $c9, $d2, $ba, $ce, " ", $83, " ", $98, "?"
+; <0 NOVA>Not really. I guess I was just going to explore and see what's out there. There's a whole universe of adventures to have and worlds to see...
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "N", "o", $d2, $fa, $ac, "y", $f5, $bf, "g", "u", "e", $f0, " ", $bf, "w", $c3, " ", "j", "u", $dd, SCR::NEWLINE, $ce, $b0, " ", $ba, "e", "x", "p", "l", $c8, $e6, $a3, $b2, SCR::NEWLINE, $8a, $e8, $ad, " ", $87, $f5, $f7, $ec, "e", $e8, "a", SCR::NEWLINE, $d9, "o", "l", $e6, $f1, "i", "v", $ec, $e4, " ", $bc, $f6, "v", $e5, "t", "u", $fa, "s", SCR::NEWLINE, $ba, $9a, $a3, "w", $c8, $ee, $fb, $ba, $b2, ".", ".", "."
+; <1 RAOUL>Well if you ever need a break from everything, I think you should check out Toasterland. It's a pretty peaceful world.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::RAOUL, "W", "e", "l", "l", " ", $cd, " ", $a5, " ", "e", "v", $ec, " ", $f8, $d5, $bd, "b", $fa, "a", "k", SCR::NEWLINE, $96, "e", "v", $ec, "y", $df, $b0, $f4, $bf, $82, " ", $a5, SCR::NEWLINE, $de, $9f, " ", $e1, "e", $f2, " ", $ad, SCR::NEWLINE, "T", "o", $c3, $ea, "r", "l", $c9, "d", $f5, "I", "t", $e8, $bd, "p", $fa, "t", "t", "y", SCR::NEWLINE, "p", $eb, "c", "e", "f", "u", "l", " ", "w", $c8, $ee, "."
+; <0 NOVA>Alright. You need to relax now and then, after all.
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "A", "l", $fc, $da, "t", $f5, "Y", $f3, " ", $f8, $d5, $ba, $fa, "l", "a", "x", SCR::NEWLINE, $b3, " ", $a3, $93, $f4, $83, " ", $ac, "."
+.byt SCR::END_SCRIPT
 
+PreLevelBigCave:
+; A large cave that requires
+.byt "A", " ", "l", "a", "r", "g", $e6, "c", "a", "v", $e6, $99, $fa, "q", "u", "i", $fa, "s"
+.byt SCR::NEWLINE
+; different abilities to get
+.byt "d", $cd, "f", $ec, $e5, $d2, "a", "b", $db, "i", "t", $e2, $fb, $ba, $ae
+.byt SCR::NEWLINE
+; through the whole thing.
+.byt $df, "r", $f3, $da, " ", $a1, " ", $d9, "o", "l", $e6, $df, $b0, "."
+.byt SCR::END_SCRIPT
+PreLevelSuperPlayer:
+; Wow! You are really a super
+.byt "W", "o", "w", $fd, "Y", $f3, " ", "a", $fa, " ", $fa, $ac, $fe, $bd, "s", $cc, $ec
+.byt SCR::NEWLINE
+; player! 
+.byt "p", "l", "a", "y", $ec, $fd
+.byt SCR::END_SCRIPT
 PreLevelIntro:
 ;  Nova sets off on her new
 .byt " ", $a0, " ", $e4, "t", $fb, "o", "f", "f", " ", $c1, " ", $a8, " ", $f8, "w"

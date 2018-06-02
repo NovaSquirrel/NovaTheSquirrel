@@ -220,6 +220,9 @@ LastOptionConst = 5
   .scope
   .byt .sprintf("Project day %d", (.TIME / 86400) - 16611),0
   .endscope
+  PositionXY 0, 3, 26
+  jsr PutStringImmediate
+  .byt "http://novasquirrel.com",0
 
   ; Print current values for the options
   ldy LastOptionNum

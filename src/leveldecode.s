@@ -641,6 +641,8 @@ BackgroundRoutines:
   .raddr BGCloudsEverywhere
 
 IsSandbox:
+  lda #MusicTracks::NONE
+  sta LevelMusic
   lda SandboxMode
   bne @_rts
   inc SandboxMode

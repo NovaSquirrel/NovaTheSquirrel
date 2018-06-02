@@ -1,5 +1,5 @@
 extra2:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_1B|0
   .byt 3
   .byt $fb
   .byt GraphicsUpload::SP_WALKER
@@ -20,6 +20,7 @@ extra2:
   .byt $00, $00 ; boundaries
 
 extra2Data:
+  .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <KoreyInTheHouse, >KoreyInTheHouse
   LObjN LO::R_ROCK,           0, 0, 11, 2
   LObjN LO::R_ROCK,           0, 3, 4, 6
   LObjN LO::R_ROCK,           0, 13, 11, 1

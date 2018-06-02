@@ -11,6 +11,9 @@
 		"ExportFormat":	"PrincessNES",
 		"FormatVersion":	1
 	},
+	"Config":	{
+		"StartDialog":	"KoreyInTheHouse"
+	},
 	"Header":	{
 		"Music":	"WORLD_1B",
 		"SpriteGFX":	["SP_WALKER", "SP_EXPLODE", "SP_CASTLE", "SP_MINES"],

@@ -11,6 +11,9 @@
 		"ExportFormat":	"PrincessNES",
 		"FormatVersion":	1
 	},
+	"Config":	{
+		"StartDialog":	"Toasterland"
+	},
 	"Header":	{
 		"Music":	"WORLD_1B",
 		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_FIRE", "SP_SUN"],

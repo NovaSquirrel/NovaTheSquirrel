@@ -19,6 +19,7 @@ extra4:
   .byt $04, $00 ; boundaries
 
 extra4Data:
+  .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <Toasterland, >Toasterland
   LObjN LO::R_GROUND,         0, 13, 4, 1
   LObjN LO::R_COIN,           5, 4, 0, 2
   LObj  LO::R_CUSTOM,         0, 10, Metatiles::WOOD_CRATE, (15<<4)|0

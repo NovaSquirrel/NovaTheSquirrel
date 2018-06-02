@@ -170,6 +170,10 @@ PUZ = 128 ; puzzle, no longer used
   .addr PreLevelExtra
   .byt LevelId::Extra2
   .addr PreLevelIce
+  .byt LevelId::Extra3
+  .addr PreLevelBigCave
+  .byt LevelId::Extra4
+  .addr PreLevelSuperPlayer
   .byt LevelId::EmptyLevel
   .addr PreLevelSandbox
 
@@ -203,6 +207,9 @@ PUZ = 128 ; puzzle, no longer used
   .byt LevelId::Boss5a
   .byt LevelId::Boss5b
   .byt LevelId::Extra1
+  .byt LevelId::Extra2
+  .byt LevelId::Extra3
+  .byt LevelId::Extra4
   .byt 255
 .endproc
 .popseg

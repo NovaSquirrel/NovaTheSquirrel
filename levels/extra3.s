@@ -24,6 +24,7 @@ extra3:
   .byt $03, $c0 ; link
 
 extra3Data:
+  .byt LSpecialCmd, LevelSpecialConfig::SET_START_DIALOG, <SherwinEpilogue, >SherwinEpilogue
   LObjN LO::TALL_1,           15, 11, 3, LN1::LADDER
   LObjN LO::R_GROUND,         1, 11, 8, 3
   LObjN LO::R_GROUND,         9, 13, 9, 1
@@ -189,7 +190,8 @@ extra3Sprite:
   LSpr Enemy::CANNON_1,            1, 158,   4
   LSpr Enemy::BOOMERANG_GUY,       1, 161,   6
   LSpr Enemy::ICE_1,               1, 174,   3, 2
-  LSpr Enemy::BOOMERANG_GUY,       1, 185,   8, 1
+  LSpr Enemy::CANNON_1,            1, 188,   5, 1
+  LSpr Enemy::CANNON_1,            1, 189,   3, 1
   LSpr Enemy::MINECART,            0, 207,   3
   LSpr Enemy::COLLECTIBLE,         0, 221,  11
   .byt 255 ; end
