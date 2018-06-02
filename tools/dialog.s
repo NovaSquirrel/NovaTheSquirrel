@@ -1008,14 +1008,14 @@ PreLevelInsane6:
 .byt $eb, $ed, "h", $f5, "W", "i", $df, " ", "m", $d7, "e", "c", "a", $ed, "s", "!"
 .byt SCR::END_SCRIPT
 PreLevelFinal1:
-; Nova enters the territory
-.byt $a0, " ", $e5, $ea, "r", $fb, $a1, " ", $ea, $d8, "i", $bb, "r", "y"
+;  Nova enters the heavily
+.byt " ", $a0, " ", $e5, $ea, "r", $fb, $a1, " ", $c2, "a", "v", $db, "y"
 .byt SCR::NEWLINE
-; the Scheme Team, finding it
-.byt $a1, " ", "S", $e1, "e", $cf, " ", "T", $eb, "m", $f4, "f", $d7, "d", $b0, " ", "i", "t"
+;  guarded territory of the
+.byt " ", "g", "u", "a", "r", "d", $d5, $ea, $d8, "i", $bb, "r", $fe, $bc, $a1
 .byt SCR::NEWLINE
-; heavily guarded.
-.byt $c2, "a", "v", $db, $fe, "g", "u", "a", "r", "d", "e", "d", "."
+;  Scheme Team.
+.byt " ", "S", $e1, "e", $cf, " ", "T", $eb, "m", "."
 .byt SCR::END_SCRIPT
 PreLevelFinal4:
 ; This level is da bomb.

@@ -1213,6 +1213,7 @@ NextAbility:
   sta LevelAvailable+1
   sta LevelAvailable+2
   sta LevelAvailable+3
+  sta LevelAvailable+4
 
   ldx PlayerAbility
   inx

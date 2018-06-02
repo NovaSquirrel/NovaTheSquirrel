@@ -278,8 +278,12 @@ OptionLevel:
   jmp StartLevel
 
 OptionShop:
+  lda keydown      ; open the shop anyway
+  and #KEY_SELECT
+  bne :+
   lda LevelCleared ; Shop unlocked
   jpl Loop
+:
   jmp ShowShop
 
 OptionSelect:

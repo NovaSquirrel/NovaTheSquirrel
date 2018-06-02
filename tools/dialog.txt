@@ -805,11 +805,11 @@ earth. With minecarts!
 `end
 
 :PreLevelFinal1:
-Nova enters the territory
+ Nova enters the heavily
 `nl
-the Scheme Team, finding it
+ guarded territory of the
 `nl
-heavily guarded.
+ Scheme Team.
 `end
 
 :PreLevelFinal4:
