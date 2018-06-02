@@ -201,8 +201,11 @@ DidntTeleport:
   beq :+
     jmp UpdateScrollRegister
   :
-  jsr UpdateStatus
-  jsr DisplayPlayer
+  lda PlaceBlockInLevel
+  bne :+
+    jsr UpdateStatus
+    jsr DisplayPlayer
+  :
   jsr UpdateScrollRegister
   jsr WaitVblank
   lda #2
