@@ -541,6 +541,7 @@ LSpecialCmd = $f7
 .enum LevelBackgroundId
   CLOUDS
   CLOUDS_EVERYWHERE
+  MANY_CLOUDS
 .endenum
 
 .macro ThinFontText String

@@ -639,6 +639,7 @@ SpecialConfigMakeBackgrounds:
 BackgroundRoutines:
   .raddr BGClouds
   .raddr BGCloudsEverywhere
+  .raddr BGCloudsMany
 
 IsSandbox:
   lda #MusicTracks::NONE
@@ -1066,10 +1067,14 @@ EndPage   = 1
 Column    = 0
 RowChooseMask = 2
 AttemptsLeft = 3
-
+DoManyClouds = 4
+  lda #0
+  sta DoManyClouds
   lda #3
   bne NotCloudsEverywhere
 CloudsEverywhere:
+  lda #0
+  sta DoManyClouds
   lda #15
 NotCloudsEverywhere:
   sta RowChooseMask
@@ -1091,7 +1096,10 @@ Loop:
   ; Pick a random column relative to this one
   jsr huge_rand
   and #3
+  bit DoManyClouds
+  bmi @NotManyClouds
   add #9
+@NotManyClouds:
   add Column
   bcs Exit
   ldy EndPage
@@ -1161,3 +1169,11 @@ PrevColumn:
   rts
 .endproc
 BGCloudsEverywhere = BGClouds::CloudsEverywhere
+
+.proc BGCloudsMany
+  lda #128
+  sta 4
+  lda #3
+  jmp BGClouds::NotCloudsEverywhere
+.endproc
+

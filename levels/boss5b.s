@@ -40,7 +40,7 @@ boss5bData:
   LObj  LO::S_SIGNPOST,       1, 12
   LWriteCol <SignAboutEpilogue, >SignAboutEpilogue
   LObj  LO::S_EXIT_DOOR,      6, 11
-  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
+  .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::MANY_CLOUDS
   .byt LSpecialCmd, LevelSpecialConfig::FORCE_MIRROR
   LFinished
 

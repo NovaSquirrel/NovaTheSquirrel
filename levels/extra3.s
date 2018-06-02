@@ -130,8 +130,7 @@ extra3Data:
   LObjN LO::WIDE_1,           2, 4, 0, LN1::FALLTHROUGH_LEDGE
   LObjN LO::R_AIR,            0, 5, 0, 0
   LObjN LO::WIDE_2,           1, 3, 2, LN2::FLOWER
-  LObj  LO::S_SPRING,         3, 6
-  LObjN LO::R_SOLID_BLOCK,    0, 7, 2, 0
+  LObjN LO::R_SOLID_BLOCK,    3, 7, 2, 0
   LObj  LO::S_SOLID_BLOCK,    0, 8
   LObjN LO::R_GROUND,         0, 9, 5, 3
   LObj  LO::S_BIGHEART,       1, 6
