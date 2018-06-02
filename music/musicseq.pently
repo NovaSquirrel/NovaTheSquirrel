@@ -1171,7 +1171,7 @@ sfx autotriangle2_ on triangle
 
 sfx autotriangle3_ on triangle
   volume 15 15 15 0
-  pitch f''''' c''' c'' c' c'
+  pitch f''' c''' c'' c' c'
 
 sfx autotriangle4_ on triangle
   volume 15 15 15 15 15 15 15 15 0 

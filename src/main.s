@@ -26,12 +26,19 @@
   sta EnemyRightEdge
 
   ; Start the music.
-  ; Right now music is disabled until I get something non-annoying in there.
-  lda #SOUND_BANK
-  jsr _SetPRG
-  jsr pently_init
-  lda LevelMusic
-  jsr pently_start_music
+  lsr DontStartNewSong
+  bcs :+
+    lda #SOUND_BANK
+    jsr _SetPRG
+    jsr pently_init
+    lda LevelMusic
+    jsr pently_start_music
+    jmp DidStartMusic
+  :
+  lda #1
+  sta pently_music_playing
+  DidStartMusic:
+
 
   inc JustTeleported ; Cause enemies to appear
 

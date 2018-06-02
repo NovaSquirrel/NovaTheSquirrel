@@ -75,7 +75,7 @@ PEDAT_autotriangle1:
 PEDAT_autotriangle2:
 .byte 143,56,143,34,143,55
 PEDAT_autotriangle3:
-.byte 143,80,143,51,143,39
+.byte 143,56,143,51,143,39
 PEDAT_autotriangle4:
 .byte 143,39,143,37,143,36,143,35,143,34,143,33,143,31,143,28
 PEDAT_autonoise5:
@@ -211,6 +211,7 @@ PIDAT_Harp:
 PIDAT_Triangle_Choir:
 .byte 159,159,143,4,143,4,143,7,143,7,143,12
 PIDAT_Triangle_Short = PIDAT_Cave_Triangle + 2
+;.byte 159,143,208,143,208
 PIDAT_Super_Major_Arp:
 .byte 150,134,12,134,24,70,4,70,16,70,28,6,7
 pently_drums:  ; 22 entries, 44 bytes

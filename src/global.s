@@ -1433,9 +1433,10 @@ WasLevelChange:
   lda #0
   sta NeedLevelRerender
 :
-
   rts
 NewLevel:
+  inc DontStartNewSong
+
   lda ColumnBytes+1,x
   sta LevelNumber
   inc NeedLevelReload

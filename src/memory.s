@@ -401,6 +401,7 @@ GameStateLen = 2+10*4 ; update if more stuff is added. Just coins and inventory.
   MusicMute:          .res 1
   InMusicCode:        .res 1
   JumpGracePeriod:    .res 1
+  DontStartNewSong:   .res 1
 .segment "SAVE"
 SaveStart:
   SaveTag:            .res 9
