@@ -170,6 +170,8 @@ PauseABit:
   beq :+
     pla
     pla
+    lda #0
+    sta PPUMASK
     rts
   :
   dex

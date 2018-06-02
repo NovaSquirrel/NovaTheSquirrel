@@ -370,6 +370,9 @@
 :;dummy text above, never gets displayed
 :lda #DIALOG_BANK
 :jsr StartCredits
+:ldx CutsceneOldSP
+:txs
+:jmp StartCutsceneSkip
 :brk
 `end
 
