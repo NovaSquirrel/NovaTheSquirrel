@@ -155,13 +155,18 @@ WritePPURepeated16:
 .proc ChangePlayerAbility
 Pointer = TempVal+0
   pha
+
   lda #SOUND_BANK
   jsr _SetPRG
+
   lda #SFX::GET_ABILITY
   jsr pently_start_sound
   pla
 WithoutSFX:
   sta PlayerAbility
+
+  lda PRGBank
+  pha
 ; Because the graphics will be rewritten, erase all player projectiles.
   ldx #0
   stx PlayerAbilityVar
@@ -178,7 +183,7 @@ WithoutSFX:
 
 ; Ability graphics are in the graphics bank
   lda #GRAPHICS_BANK1
-  jsr _SetPRG
+  jsr SetPRG
 
 ; Calculate pointer to the ability icon
   lda #0
@@ -203,6 +208,7 @@ WithoutSFX:
   lda #<$14c0
   sta PPUADDR
   jsr UploadTilesAndUpdateScroll
+  jsr SoundTestUpdatePently
 
 ; Calculate pointer to ability tiles
   ldx PlayerAbility
@@ -232,6 +238,7 @@ WithoutSFX:
   lda #<$1700
   sta PPUADDR
   jsr UploadTilesAndUpdateScroll
+  jsr SoundTestUpdatePently
 
   jsr Copy64FromPointer
   jsr WaitVblank
@@ -240,9 +247,12 @@ WithoutSFX:
   lda #<$1700+64
   sta PPUADDR
   jsr UploadTilesAndUpdateScroll
+  jsr SoundTestUpdatePently
 NoExtraTiles:
 
 ; Restore the old bank
+  pla
+  sta PRGBank
   jmp SetPRG_Restore
 
 ; Copy 64 bytes (4 tiles) into the UploadTileSpace

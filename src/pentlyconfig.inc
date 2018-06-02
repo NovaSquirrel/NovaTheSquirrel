@@ -30,7 +30,7 @@ PENTLY_USE_REHEARSAL = 0
 PENTLY_USE_NSF_SOUND_FX = 0
 
 ; 0-127; higher means quieter tri/noise
-PENTLY_INITIAL_4011 = 64
+PENTLY_INITIAL_4011 = 0 ;64
 
 ; Five bytes of scratch space on zero page that need not be preserved
 ; across calls.  This needs to be either an = or an .importzp
