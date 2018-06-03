@@ -4348,6 +4348,10 @@ RightAnyway:
     jmp EnemyApplyVelocity
   Horizontal:
     ; not sure how to handle horizontal well yet
+    lda #<($80)
+    sta PlayerVYL
+    lda #>($80)
+    sta PlayerVYH
 NoTouch:
   jmp EnemyApplyVelocity
 

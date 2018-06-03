@@ -159,7 +159,7 @@ insane5Data:
   LObj  LO::R_CUSTOM,         1, 8, Metatiles::TOGGLE_BLOCK_OFF, (1<<4)|0
   LObj  LO::S_GROUND_CLIMB_L, 1, 12
   LObj  LO::S_CUSTOM,         1, 1, Metatiles::TOGGLE_BLOCK_ON
-  LObjN LO::TALL_1,           0, 4, 2, LN1::LADDER
+  LObjN LO::TALL_1,           0, 5, 1, LN1::LADDER
   LObj  LO::S_CUSTOM,         0, 7, Metatiles::PUSHABLE_BLOCK
   LObjN LO::R_FG_GLASS_RED,   0, 8, 6, 0
   LObjN LO::R_BG_GLASS_BLUE,  0, 9, 0, 2
