@@ -1183,26 +1183,33 @@ Rich:
   sta LevelCleared
   rts
 Boomerang:
-  lda #AbilityType::BOOMERANG
-  jmp ChangePlayerAbility  
+  lda #AbilityType::BOOMERANG|128
+  sta NeedAbilityChange
+  rts
 Fireball:
-  lda #AbilityType::FIRE
-  jmp ChangePlayerAbility
+  lda #AbilityType::FIRE|128
+  sta NeedAbilityChange
+  rts
 Water:
-  lda #AbilityType::WATER
-  jmp ChangePlayerAbility
+  lda #AbilityType::WATER|128
+  sta NeedAbilityChange
+  rts
 Bomb:
-  lda #AbilityType::BOMB
-  jmp ChangePlayerAbility
+  lda #AbilityType::BOMB|128
+  sta NeedAbilityChange
+  rts
 Firework:
-  lda #AbilityType::FIREWORK
-  jmp ChangePlayerAbility
+  lda #AbilityType::FIREWORK|128
+  sta NeedAbilityChange
+  rts
 Ice:
-  lda #AbilityType::NICE
-  jmp ChangePlayerAbility
+  lda #AbilityType::NICE|128
+  sta NeedAbilityChange
+  rts
 Burger:
-  lda #AbilityType::BURGER
-  jmp ChangePlayerAbility
+  lda #AbilityType::BURGER|128
+  sta NeedAbilityChange
+  rts
 Health:
   lda #4
   sta PlayerHealth
@@ -1223,7 +1230,9 @@ NextAbility:
   ldx #0
 : stx PlayerAbility
   txa
-  jmp ChangePlayerAbility
+  ora #128
+  sta NeedAbilityChange
+  rts
 Balloon:
   lda #128
   sta PlayerHasBalloon
