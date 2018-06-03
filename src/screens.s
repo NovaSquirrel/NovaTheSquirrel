@@ -212,6 +212,19 @@ BottomMessage: .byt "     (c) 2018 NovaSquirrel",0
   jmp StartLevel_FromCheckpoint
 
 DieSound:
+  ; Ramp up to $4011 = 64
+  ldx #0
+@Loop:
+  stx $4011
+  ; Delay
+  ldy #192
+: iny
+  bne :-
+  ; Loop back
+  inx
+  cpx #64
+  bne @Loop
+
   ; Play the sample
   lda #VOICE_BANK
   jsr SetPRG
@@ -224,7 +237,21 @@ DieSound:
   jmp :+
 BummerInstead:
   jsr quadpcm_play_bummer
-: rts
+:
+
+  lastSample = 4
+  ldx 4
+@Loop2:
+  stx $4011
+  ; Delay
+  ldy #192
+: iny
+  bne :-
+  ; Loop back
+  dex
+  bpl @Loop2
+
+  rts
 .endproc
 
 .proc JumpToLevelSelect
