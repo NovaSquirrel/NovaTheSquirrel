@@ -12,7 +12,7 @@
 		"FormatVersion":	1
 	},
 	"Header":	{
-		"Music":	"WORLD_1B",
+		"Music":	"WORLD_1A",
 		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_FIRE", "SP_KING"],
 		"GFXUpload":	["PAL_GRASSY", "PAL_ALTGRASS2", "PAL_ENEMY2", "BG_COMMON", "BG_GRASSY", "BG_TROPICAL", "BG_GRASSYBG"],
 		"BGColor":	49
@@ -1084,6 +1084,12 @@
 					"Y":	0,
 					"W":	1,
 					"H":	2
+				}, {
+					"Id":	"SOLID_BLOCK",
+					"X":	227,
+					"Y":	0,
+					"W":	3,
+					"H":	1
 				}]
 		}, {
 			"Name":	"Sprites",

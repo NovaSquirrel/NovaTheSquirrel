@@ -155,7 +155,8 @@
   lda #SOUND_BANK
   jsr _SetPRG
   jsr pently_init
-  inc pently_music_playing ; I forget why I inc this
+  ;inc pently_music_playing ; I forget why I inc this
+  ; inc it yourself if you need it
 
   jmp SetPRG_Restore
 .endproc

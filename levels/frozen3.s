@@ -18,7 +18,7 @@ frozen3:
   .byt GraphicsUpload::BG_CHIP
   .byt GraphicsUpload::BG_HANNAH
   .byt 255 ; end
-  .byt $00, $02 ; boundaries
+  .byt $00, $06 ; boundaries
 
 frozen3Data:
   LObjN LO::R_ROCK,           0, 0, 15, 1

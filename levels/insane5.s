@@ -356,11 +356,14 @@ insane5Data:
   LObj  LO::R_CUSTOM,         0, 9, Metatiles::FORCE_LEFT, (2<<4)|0
   LObj  LO::R_CUSTOM,         0, 11, Metatiles::FORCE_LEFT, (2<<4)|0
   LObjN LO::R_COIN,           0, 13, 2, 0
-  LObjN LO::R_FG_GLASS_RED,   1, 3, 4, 0
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 2
+  LObjN LO::R_FG_GLASS_RED,   0, 3, 4, 0
   LObjN LO::R_BG_GLASS_BLUE,  0, 4, 0, 2
-  LObjN LO::R_FG_GLASS_RED,   1, 2, 2, 0
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObjN LO::R_FG_GLASS_RED,   0, 2, 2, 0
   LObj  LO::S_COIN,           0, 5
-  LObj  LO::S_FG_GLASS_RED,   1, 1
+  LObj  LO::S_CEILING_BARRIER,1, 0
+  LObj  LO::S_FG_GLASS_RED,   0, 1
   LObjN LO::R_SOLID_ROCK,     0, 4, 0, 1
   LObj  LO::S_CUSTOM,         0, 6, Metatiles::LOCK_GREEN
   LObjN LO::R_BG_GLASS_BLUE,  0, 8, 0, 6

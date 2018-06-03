@@ -2837,6 +2837,24 @@
 					"Y":	4,
 					"W":	1,
 					"H":	3
+				}, {
+					"Id":	"CEILING_BARRIER",
+					"X":	182,
+					"Y":	0,
+					"W":	1,
+					"H":	3
+				}, {
+					"Id":	"CEILING_BARRIER",
+					"X":	183,
+					"Y":	0,
+					"W":	1,
+					"H":	2
+				}, {
+					"Id":	"CEILING_BARRIER",
+					"X":	184,
+					"Y":	0,
+					"W":	1,
+					"H":	1
 				}]
 		}, {
 			"Name":	"Sprites",

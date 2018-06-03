@@ -1,5 +1,5 @@
 grassy2_a:
-  .byt MusicTracks::NONE|0
+  .byt MusicTracks::WORLD_1A|0
   .byt 2
   .byt $fb
   .byt GraphicsUpload::SP_WALKER
@@ -186,7 +186,8 @@ grassy2_aData:
   LObj  LO::S_SOLID_BLOCK,    4, 6
   LObjN LO::R_ROCK,           1, 0, 2, 3
   LObj  LO::S_TROPICAL_FLOWER,1, 10
-  LObjN LO::R_COIN,           2, 1, 1, 2
+  LObjN LO::R_SOLID_BLOCK,    2, 0, 2, 0
+  LObjN LO::R_COIN,           0, 1, 1, 2
   LObjN LO::WIDE_1,           0, 4, 1, LN1::FALLTHROUGH_LEDGE
   LObj  LO::S_TROPICAL_FLOWER,2, 10
   LObjN LO::R_ROCK,           1, 0, 2, 3

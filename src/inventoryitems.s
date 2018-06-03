@@ -276,6 +276,7 @@ AutoRepeatCount = 5
   jsr _SetPRG
 
   jsr StopSoundFar
+  inc pently_music_playing
 
   lda #0
   sta PauseScreenPage

@@ -1,5 +1,5 @@
 grassy2_b:
-  .byt MusicTracks::WORLD_1B|0
+  .byt MusicTracks::WORLD_1A|0
   .byt 3
   .byt $fb
   .byt GraphicsUpload::SP_WALKER

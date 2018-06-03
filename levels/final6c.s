@@ -174,7 +174,8 @@ final6cData:
   LWriteCol InventoryItem::ABILITY_BOOMERANG | 128
   LObj  LO::S_FROZENCRACK,     1, 9
   LObj  LO::S_FROZENCRACK,     0, 12
-  LObjN LO::RECT_3,           2, 0, 1, LN3::ROCK, 47
+  LObjN LO::R_CEILING_BARRIER,1, 0, 0, 1
+  LObjN LO::RECT_3,           1, 0, 1, LN3::ROCK, 47
   LObjN LO::WIDE_1,           0, 7, 0, LN1::FENCE
   LObjN LO::R_GROUND,         0, 8, 5, 6
   LObjN LO::WIDE_1,           3, 7, 2, LN1::TALLGRASS
