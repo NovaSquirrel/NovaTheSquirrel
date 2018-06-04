@@ -938,6 +938,7 @@ FC_LRL_:
 FC__RL_:
 FC_L__R:
 FC_LRLR:
+  .if 0
   lda PlayerNonSolidPXL
   sta PlayerPXL
   lda PlayerNonSolidPXH
@@ -946,6 +947,47 @@ FC_LRLR:
   sta PlayerPYL
   lda PlayerNonSolidPYH
   sta PlayerPYH
+  .else
+  Difference = 0
+; -----------------------------------
+  lda PlayerNonSolidPXL
+  sbc PlayerPXL
+  sta Difference+0
+  lda PlayerNonSolidPXH
+  sbc PlayerPXH
+  ; and divide by 4 for smoothing
+  asr
+  ror Difference+0
+  asr
+  ror Difference+0
+  sta Difference+1
+
+  lda Difference+0
+  adc PlayerPXL
+  sta PlayerPXL
+  lda Difference+1
+  adc PlayerPXH
+  sta PlayerPXH
+; -----------------------------------
+  lda PlayerNonSolidPYL
+  sbc PlayerPYL
+  sta Difference+0
+  lda PlayerNonSolidPYH
+  sbc PlayerPYH
+  ; and divide by 4 for smoothing
+  asr
+  ror Difference+0
+  asr
+  ror Difference+0
+  sta Difference+1
+
+  lda Difference+0
+  adc PlayerPYL
+  sta PlayerPYL
+  lda Difference+1
+  adc PlayerPYH
+  sta PlayerPYH
+  .endif
   rts
 
 FC_L_LR:
