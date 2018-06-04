@@ -1394,7 +1394,8 @@ instrument Triangle_Choir
   pitch 0 0 4 4 7 7 12 12 
 
 instrument Triangle_Short
-  volume 15 15 15 0
+#  volume 15 15 15 0
+  volume 15 0 0 15
 
 instrument Super_Major_Arp
   volume 6 6 6 6 6 6 6 6 

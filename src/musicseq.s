@@ -150,7 +150,8 @@ instdef PI_Minor_Boss_Rhythm_Guitar, 0, 1, 0, 0, PIDAT_Minor_Boss_Rhythm_Guitar,
 instdef PI_Miniboss_Flute, 2, 0, 0, 0, PIDAT_Miniboss_Flute, 20
 instdef PI_Harp, 3, 0, 0, 0, PIDAT_Harp, 20
 instdef PI_Triangle_Choir, 2, 15, 0, 0, PIDAT_Triangle_Choir, 7
-instdef PI_Triangle_Short, 2, 0, 0, 0, PIDAT_Triangle_Short, 3
+;instdef PI_Triangle_Short, 2, 0, 0, 0, PIDAT_Triangle_Short, 3
+instdef PI_Triangle_Short, 2, 15, 0, 0, PIDAT_Triangle_Short, 3
 instdef PI_Super_Major_Arp, 0, 6, 0, 0, PIDAT_Super_Major_Arp, 7
 PIDAT_Tribal_Noise_1_26_4:
 .byte 143,2,138,4,133,3,130,7,129,7,129,7
@@ -210,8 +211,9 @@ PIDAT_Harp:
 .byte 209,209
 PIDAT_Triangle_Choir:
 .byte 159,159,143,4,143,4,143,7,143,7,143,12
-PIDAT_Triangle_Short = PIDAT_Cave_Triangle + 2
-;.byte 159,143,208,143,208
+;PIDAT_Triangle_Short = PIDAT_Cave_Triangle + 2
+PIDAT_Triangle_Short:
+.byte 159,144,144
 PIDAT_Super_Major_Arp:
 .byte 150,134,12,134,24,70,4,70,16,70,28,6,7
 pently_drums:  ; 22 entries, 44 bytes
