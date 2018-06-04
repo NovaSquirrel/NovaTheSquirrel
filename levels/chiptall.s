@@ -74,7 +74,7 @@ chiptallData:
   LObjN LO::R_SOLID_ROCK,     1, 0, 1, 5
   LObj  LO::S_CUSTOM,         0, 6, Metatiles::CHIP_SOCKET
   LSetX 63
-  LWriteCol 27
+  LWriteCol 25
   LObjN LO::R_SOLID_ROCK,     0, 7, 1, 7
   LObj  LO::R_CUSTOM,         2, 2, Metatiles::FORCE_RIGHT, (0<<4)|4
   LObjN LO::WIDE_1,           0, 7, 3, LN1::SOLID_LEDGE
