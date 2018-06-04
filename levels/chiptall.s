@@ -133,7 +133,8 @@ chiptallData:
   LObj  LO::S_COIN,           2, 10
   LObj  LO::S_COIN,           3, 11
   LObj  LO::S_COIN,           2, 14
-  LObjN LO::R_SOLID_ROCK,     3, 0, 1, 14
+  LObjN LO::R_CEILING_BARRIER,2, 0, 0, 1
+  LObjN LO::R_SOLID_ROCK,     1, 0, 1, 14
   LObjN LO::R_SOLID_ROCK,     2, 0, 1, 12
   LObjN LO::R_GROUND,         0, 13, 15, 1
   LObjN LO::R_SOLID_ROCK,     2, 0, 2, 0

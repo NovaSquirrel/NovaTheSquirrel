@@ -196,6 +196,8 @@ LiaChat2:
 .byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "B", "u", $db, "d", "?", " ", "W", "i", $df, " ", $8a, "?"
 ; <1 LIA>Springs! For dis level you've got a bunch of 'em in your inventory. Blocks too, but springs are betters! They're on a second page in yer inventory!
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::LIA, "S", "p", $fc, "n", "g", "s", $fd, "F", $c8, " ", "d", $b7, "l", "e", "v", "e", "l", " ", $a5, "'", "v", "e", SCR::NEWLINE, $ce, $d2, $bd, "b", $f1, $e1, " ", $bc, "'", "e", "m", " ", $be, $90, SCR::NEWLINE, $d7, "v", $e5, $bb, "r", "y", $f5, "B", "l", "o", $f2, $fb, $bb, "o", $f4, $a6, SCR::NEWLINE, $dc, $fc, "n", "g", $fb, "a", $fa, " ", "b", "e", "t", $ea, "r", "s", $fd, $f7, "e", "y", "'", $fa, SCR::NEWLINE, $c1, " ", $bd, $e4, "c", $c1, $ff, "p", "a", "g", $e6, $be, "y", $ec, SCR::NEWLINE, $d7, "v", $e5, $bb, "r", "y", "!"
+; []If building is too slow-paced for you, copy the burger at the start and use it to get where you need to go!
+.byt SCR::NARRATE, CHAR::NONE, "I", "f", " ", "b", "u", $db, "d", $b0, " ", $b7, $bb, "o", " ", "s", "l", "o", "w", "-", "p", "a", "c", "e", "d", SCR::NEWLINE, $a4, " ", $a5, $f4, "c", "o", "p", $fe, $a1, " ", "b", "u", "r", "g", $ec, " ", $c5, SCR::NEWLINE, $a1, " ", $dd, "a", $ed, " ", $a3, "u", $e4, " ", $c0, $ba, $ae, SCR::NEWLINE, $d9, $ec, $e6, $a5, " ", $f8, $d5, $ba, $ce, "!"
 .byt SCR::END_SCRIPT
 LiaChat3:
 .byt SCR::SCENE, SCENES::NOVA_AND_LIA
