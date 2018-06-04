@@ -665,6 +665,11 @@ SandboxPresetBrushes:
 
 SetJackStone:
   inc BackgroundBoss
+
+  lda #255
+  sta BackgroundBossScrollX
+  lda #0
+  sta BackgroundBossScrollY
   rts
 ForceMirror:
   lda #AbilityType::MIRROR|128
