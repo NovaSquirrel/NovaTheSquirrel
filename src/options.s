@@ -327,6 +327,9 @@ NoA:
   add #10*8-1
   sta OAM_YPOS
 
+  jsr StopSoundFar
+  inc pently_music_playing
+
   jmp Loop
 
 ; Print the value for choice number X
