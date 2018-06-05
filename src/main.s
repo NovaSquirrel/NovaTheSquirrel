@@ -184,6 +184,27 @@
   jsr ReadJoy
   jsr ClearOAM
 
+  lda #SOUND_BANK
+  jsr SetPRG
+  ; Update music+sfx, play sounds if needed
+  inc InMusicCode
+  jsr pently_update
+  lda NeedSFX
+  bpl :++
+    cmp #SFX::BOOM1 ; boom sound has a second sound effect that plays with it
+    php
+    and #63
+    jsr pently_start_sound
+    plp
+    bne :+
+      lda #SFX::BOOM2
+      jsr pently_start_sound
+    :
+    lda #0
+    sta NeedSFX
+  :
+  dec InMusicCode
+
   ; There's a timer that only goes up every 4 frames rather than 1
   ; and delayed metatile edits use it so that they can fit a longer
   ; delay into a byte.
@@ -267,41 +288,21 @@ NoFallingBlock:
   jsr SetPRG
   jsr FlickerEnemies
 
-  lda #SOUND_BANK
-  jsr SetPRG
 
   lda PlayerHealth
   bne NotDie
+  lda #SOUND_BANK
+  jsr SetPRG
   jsr pently_init ; Stop music and sound effects
   jsr ShowDie
 NotDie:
+
   ; If the enemies and objects are skipped, the sound bank wasn't set
   ; so it needs to be set for pently_update
   jmp DidntSkipPlayerAndEnemies
 PlaceBlockMode:
   jsr RunPlaceBlockMode
-  lda #SOUND_BANK
-  jsr SetPRG
 DidntSkipPlayerAndEnemies:
-
-  ; Update music+sfx, play sounds if needed
-  inc InMusicCode
-  jsr pently_update
-  lda NeedSFX
-  bpl :++
-    cmp #SFX::BOOM1 ; boom sound has a second sound effect that plays with it
-    php
-    and #63
-    jsr pently_start_sound
-    plp
-    bne :+
-      lda #SFX::BOOM2
-      jsr pently_start_sound
-    :
-    lda #0
-    sta NeedSFX
-  :
-  dec InMusicCode
   countdown SoundDebounce
   countdown SwitchCooldownTimer
   countdown ToggleSwitchCooldownTimer
