@@ -58,8 +58,8 @@ brk
 .byt SCR::END_SCRIPT
 Tutorial1:
 .byt SCR::SCENE, SCENES::NOVA_SIGN_KEE
-; <1 SIGN>Hold B to run, or press B to attack. From the pause menu you can choose to run with a double-tap instead, allowing you to attack while moving.
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "H", "o", $ee, " ", "B", " ", $ba, "r", $f1, $f4, $c8, " ", "p", $fa, $f0, " ", "B", " ", $bb, SCR::NEWLINE, $c5, "t", "a", $f2, $f5, "F", "r", "o", "m", " ", $a1, " ", "p", "a", "u", $e4, " ", $cf, "n", "u", SCR::NEWLINE, $a5, " ", $af, " ", $e1, $e3, $e4, " ", $ba, "r", $f1, " ", $9c, " ", "a", SCR::NEWLINE, $c4, "u", "b", "l", "e", "-", "t", "a", "p", " ", $d7, $dd, $eb, "d", $f4, $ac, "o", "w", $b0, SCR::NEWLINE, $a5, " ", $ba, $c5, "t", "a", $f2, " ", $d9, $db, $e6, "m", "o", "v", $b0, "."
+; <1 SIGN>Hold B to run, or press B to attack. From the pause menu you can choose to run with a double-tap instead, allowing you to more easily attack while moving.
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "H", "o", $ee, " ", "B", " ", $ba, "r", $f1, $f4, $c8, " ", "p", $fa, $f0, " ", "B", " ", $bb, SCR::NEWLINE, $c5, "t", "a", $f2, $f5, "F", "r", "o", "m", " ", $a1, " ", "p", "a", "u", $e4, " ", $cf, "n", "u", SCR::NEWLINE, $a5, " ", $af, " ", $e1, $e3, $e4, " ", $ba, "r", $f1, " ", $9c, " ", "a", SCR::NEWLINE, $c4, "u", "b", "l", "e", "-", "t", "a", "p", " ", $d7, $dd, $eb, "d", $f4, $ac, "o", "w", $b0, SCR::NEWLINE, $a5, " ", $ba, "m", $c8, $e6, $eb, "s", $db, $fe, $c5, "t", "a", $f2, SCR::NEWLINE, $d9, $db, $e6, "m", "o", "v", $b0, "."
 ; <2 KEE>Okay Nova, I have no idea where we are. Everything's so weird, and WE'RE so different now...
 .byt SCR::SAY, SCR::SPEAKER_2|CHAR::KEE, "O", "k", "a", $fe, $a0, $f4, $bf, $9a, $d0, " ", "i", "d", $eb, SCR::NEWLINE, $d9, $ec, $e6, $c7, " ", "a", $fa, $f5, "E", "v", $ec, "y", $df, $b0, $e8, $cb, SCR::NEWLINE, $c7, "i", "r", "d", $f4, $a3, "W", "E", "'", "R", "E", " ", $cb, " ", "d", $cd, "f", $ec, $e5, "t", SCR::NEWLINE, $b3, ".", ".", "."
 ; <0 NOVA>We'll figure it out. There's bound to be other people here who can get us home, at least? I hope.

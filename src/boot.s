@@ -160,6 +160,7 @@ InitSave:
   ; Mark the first level as available
   lda #1
   sta LevelAvailable
+  sta SavedShootWhileWalking
 .else
   ; Mark the first 8 levels as available
   ; for demo purposes

@@ -239,7 +239,7 @@ Loop:
   jne ShowLevelSelect
 
   lda keynew
-  and #KEY_A
+  and #KEY_A|KEY_START
   beq :+
     ldy Cursor
     jeq OptionLevel

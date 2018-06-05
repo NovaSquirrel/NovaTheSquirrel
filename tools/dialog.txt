@@ -61,7 +61,7 @@
 
 :Tutorial1:
 `scene NOVA_SIGN_KEE
-<1 SIGN>Hold B to run, or press B to attack. From the pause menu you can choose to run with a double-tap instead, allowing you to attack while moving.
+<1 SIGN>Hold B to run, or press B to attack. From the pause menu you can choose to run with a double-tap instead, allowing you to more easily attack while moving.
 <2 KEE>Okay Nova, I have no idea where we are. Everything's so weird, and WE'RE so different now...
 <0 NOVA>We'll figure it out. There's bound to be other people here who can get us home, at least? I hope.
 `end
