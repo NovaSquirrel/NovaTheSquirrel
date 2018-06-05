@@ -935,9 +935,61 @@ FC_LR_R:
 FC_LRL_:
   rts
 
+
+UnstuckX:
+  .lobytes -1, -1, -1,  0, 0, 1,  1, 1
+  .lobytes -2, -2, -2,  0, 0, 2,  2, 2
+  .lobytes -3, -3, -3,  0, 0, 3,  3, 3
+UnstuckY:
+  .lobytes  0, -1,  1, -1, 1, 0, -1, 1
+  .lobytes  0, -2,  2, -2, 2, 0, -2, 2
+  .lobytes  0, -3,  3, -3, 3, 0, -3, 3
 FC__RL_:
 FC_L__R:
 FC_LRLR:
+  ; Attempt to find a position near the player that isn't solid
+  ldx #0
+  stx PlayerVYL
+  stx PlayerVYH
+UnstuckLoop:
+  lda PlayerPYL
+  add #<(16*16)
+  lda PlayerPYH
+  adc #>(16*16)
+  add UnstuckY,x
+  cmp #15
+  bcs Nope
+  tay
+  lda #$40
+  add PlayerPXL
+  lda PlayerPXH
+  adc UnstuckX,x
+  jsr GetLevelColumnPtr
+  tay
+  lda MetatileFlags,y
+  bpl FoundOne
+Nope:
+  inx
+  cpx #24
+  bne UnstuckLoop
+  ; Didn't find a free spot, just push right instead as a last resort
+  lda PlayerPXL
+  add #$10
+  sta PlayerPXL
+  addcarry PlayerPXH
+FoundOne:
+  lda PlayerPYL
+  sta PlayerNonSolidPYL
+  lda PlayerPYH
+  add UnstuckY,x
+  sta PlayerNonSolidPYH
+
+  lda PlayerPXL
+  sta PlayerNonSolidPXL
+  lda PlayerPXH
+  add UnstuckX,x
+  sta PlayerNonSolidPXH
+
   .if 0
   lda PlayerNonSolidPXL
   sta PlayerPXL
@@ -947,7 +999,9 @@ FC_LRLR:
   sta PlayerPYL
   lda PlayerNonSolidPYH
   sta PlayerPYH
-  .else
+  .endif
+
+  .if 1
   Difference = 0
 ; -----------------------------------
   lda PlayerNonSolidPXL
