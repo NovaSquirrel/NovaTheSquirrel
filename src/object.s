@@ -97,7 +97,9 @@ SkipEmpty:
 Launch:
   lda ObjectF1,x
   and #%11111110
-  beq Exit ; don't launch if the slot is empty
+  beq Erase ; don't launch if the slot is empty
+  cmp #2*(Enemy::FINAL_PROJECTILE+1) ; erase out-of-range enemies
+  bcs Erase
   tay ; push the address first
   lsr
   sta O_RAM::OBJ_TYPE
@@ -115,6 +117,12 @@ Launch:
   jsr DetectSpriteSlot
   sta O_RAM::TILEBASE
 Exit:
+  rts
+Erase:
+  lda #0
+  sta ObjectF1,x
+  sta O_RAM::OBJ_TYPE
+  sta O_RAM::OBJ_FLAG
   rts
 .endproc
 
