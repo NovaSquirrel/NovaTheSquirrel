@@ -201,16 +201,19 @@ DidntTeleport:
   beq :+
     jmp UpdateScrollRegister
   :
-  lda PlaceBlockInLevel
-  bne :+
-    jsr UpdateStatus
-    jsr DisplayPlayer
-  :
+  ; Initially I tried to have the player and status display on the first frame
+  ; that the screen comes back on but I think I have to actually turn off
+  ; sprites anyway. Not sure why there's still glitchy OAM entries.
+;  lda PlaceBlockInLevel
+;  bne :+
+;    jsr UpdateStatus
+;    jsr DisplayPlayer
+;  :
   jsr UpdateScrollRegister
   jsr WaitVblank
   lda #2
   sta OAM_DMA
-  lda #BG_ON|OBJ_ON
+  lda #BG_ON;|OBJ_ON
   sta PPUMASK
   rts
 ;  jmp WaitVblank

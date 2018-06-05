@@ -939,8 +939,10 @@ FC_LRL_:
 UnstuckX:
   .lobytes -1, -1, -1,  0, 0, 1,  1, 1
   .lobytes -2, -2, -2,  0, 0, 2,  2, 2
+  .lobytes -2, -2, -2,  0, 0, 2,  2, 2
   .lobytes -3, -3, -3,  0, 0, 3,  3, 3
 UnstuckY:
+  .lobytes  0, -1,  1, -1, 1, 0, -1, 1
   .lobytes  0, -1,  1, -1, 1, 0, -1, 1
   .lobytes  0, -2,  2, -2, 2, 0, -2, 2
   .lobytes  0, -3,  3, -3, 3, 0, -3, 3
@@ -970,7 +972,7 @@ UnstuckLoop:
   bpl FoundOne
 Nope:
   inx
-  cpx #24
+  cpx #32
   bne UnstuckLoop
   ; Didn't find a free spot, just push right instead as a last resort
   lda PlayerPXL

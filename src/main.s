@@ -205,6 +205,10 @@
   :
   dec InMusicCode
 
+  ; Run the player, objects, and most other stuff
+  lda #MAINLOOP_BANK
+  jsr SetPRG
+
   ; There's a timer that only goes up every 4 frames rather than 1
   ; and delayed metatile edits use it so that they can fit a longer
   ; delay into a byte.
@@ -241,10 +245,6 @@ DelayCheck:
     dex
     bpl DelayCheck
 NotSlowTimer:
-
-  ; Run the player, objects, and most other stuff
-  lda #MAINLOOP_BANK
-  jsr SetPRG
 
   lda FallingBlockPointer+1
   beq NoFallingBlock

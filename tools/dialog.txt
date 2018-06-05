@@ -69,7 +69,7 @@
 :Tutorial2:
 `scene NOVA_SIGN_KEE
 <1 SIGN>Some enemies can have their abilities copied. Try stunning this enemy with B and then press Up+B while facing it to copy its ability.
-<1 SIGN>Hold Select to get rid of the ability you have. If an enemy throws projectiles, it is usually copyable.
+<1 SIGN>Press and hold Select to get rid of the ability you have. If an enemy throws projectiles, it is usually copyable.
 <0 NOVA_YAY>Oooo, I should see if copying this enemy (to the right) will let me shoot fireballs!
 `end
 
