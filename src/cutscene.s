@@ -167,6 +167,8 @@ StartCutsceneSkip = StartCutscene::SkipTheScript
   sta PPUCTRL
   lda #BG_ON|OBJ_ON
   sta PPUMASK
+  lda #2
+  sta OAM_DMA
   lda #0
   sta PPUSCROLL
   sta PPUSCROLL
@@ -875,7 +877,7 @@ MonoTextLoop:
   jsr WaitVblank
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
-  lda #BG_ON|OBJ_ON
+  lda #BG_ON
   sta PPUMASK
 
   lda #0
