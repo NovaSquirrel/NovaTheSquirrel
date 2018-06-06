@@ -129,6 +129,8 @@ WorldTimes8 = 15
   sta PPUSCROLL
   lda #<-5
   sta PPUSCROLL
+  lda #2
+  sta OAM_DMA
   lda #OBJ_ON|BG_ON
   sta PPUMASK
 
