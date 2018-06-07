@@ -81,7 +81,8 @@ underground_2Data:
   LObjN LO::R_COIN,           3, 7, 1, 0
   LObjN LO::R_ROCK,           0, 8, 4, 6
   LObjN LO::WIDE_1,           1, 6, 3, LN1::SOLID_LEDGE
-  LObjN LO::RECT_1,           4, 0, 3, LN1::GROUND, 20
+  LObjN LO::R_CEILING_BARRIER,3, 0, 0, 1
+  LObjN LO::RECT_1,           1, 0, 3, LN1::GROUND, 20
   LObjN LO::R_ROCK,           0, 6, 5, 8
   LObjN LO::R_COIN,           6, 6, 0, 2
   LObj  LO::S_SPRING,         0, 10
