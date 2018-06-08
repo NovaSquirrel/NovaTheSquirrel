@@ -276,7 +276,10 @@ AutoRepeatCount = 5
   jsr _SetPRG
 
   jsr StopSoundFar
-  inc pently_music_playing
+  lda MusicMute
+  bne :+
+    inc pently_music_playing
+  :
 
   lda #0
   sta PauseScreenPage
@@ -1097,6 +1100,10 @@ MuteMusicCode:
   lda #1
   sbc #1
   sta pently_music_playing
+  beq :+
+    lda LevelMusic
+    jsr SoundTestStartPently
+  :
   jmp CleanupAfterInventory
 ExplainAbilityCode:
   jsr AbilityHelpTrampoline

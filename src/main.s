@@ -35,8 +35,11 @@
     jsr pently_start_music
     jmp DidStartMusic
   :
-  lda #1
-  sta pently_music_playing
+  lda MusicMute
+  bne :+
+    lda #1
+    sta pently_music_playing
+  :
   DidStartMusic:
 
 
