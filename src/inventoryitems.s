@@ -220,9 +220,11 @@ AfterAmount:
   ; Extend to the ground
 : lda (LevelBlockPtr),y
   cmp BackgroundMetatile
-  bne :+
+  bne :+  ; not background, so exit
   iny
-  bne :-
+  cpy #15 ; extended too far
+  beq :+
+  bne :-  ; keep going
 : dey
 
   ; Place ladder
