@@ -1673,7 +1673,7 @@ WithXYOffset:
   jsr DispObject8x8_XYOffset
 
   ; Touch checkpoint
-  jsr SmallPlayerTouch
+  jsr EnemyPlayerTouch
   bcc NoTouch
   ; Store the X and Y for the checkpoint
   lda #0
