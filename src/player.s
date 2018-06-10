@@ -1366,14 +1366,6 @@ DrawX2 = 4
   lda #0
   sta PlayerRidingSomething
 
-  ; skip drawing if too far off the top of the screen
-  lda PlayerPYH
-  cmp #255
-  beq :+
-  bpl :+
-    rts
-  :
-
   ; check if the player's X is out of bounds,
   ; and fix it if it is
   lda DrawX
@@ -1396,6 +1388,14 @@ DrawX2 = 4
     sta PlayerVXH
     sta PlayerVXL
     jsr MakeDrawX
+  :
+
+  ; skip drawing if too far off the top of the screen
+  lda PlayerPYH
+  cmp #255
+  beq :+
+  bpl :+
+    rts
   :
 
   ; copy to PlayerDrawX and PlayerDrawY which are used for collision detection
