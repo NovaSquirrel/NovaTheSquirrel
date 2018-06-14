@@ -309,6 +309,20 @@ Ptr = 2
   lda #>$2000
   sta Ptr+1
 
+.ifdef FADE_TO_ONLY_WHITE
+  ; Change all of the lightest colors to white
+  ldx #3
+: lda #$3f
+  sta PPUADDR
+  lda PaletteIndexes,x
+  sta PPUADDR
+  lda #$30
+  sta PPUDATA
+  dex
+  bpl :-
+  jsr UpdateScrollRegister
+.endif
+
 Loop:
   jsr WaitVblank
   ; Left nametable
@@ -360,4 +374,9 @@ Loop:
   lda #OPTIONS_BANK
   jsr SetPRG
   jmp ShowPreLevel
+
+.ifdef FADE_TO_ONLY_WHITE
+PaletteIndexes:
+  .byt $03, $07, $0b, $0f
+.endif
 .endproc

@@ -56,6 +56,9 @@ LEVEL_INTROS = 1
 ;AUTO_CLIMB = 1
 HAS_DICTIONARY_TABLE = 1
 
+;Makes sure the post-level fadeout is pure white and nothing else
+;FADE_TO_ONLY_WHITE = 1
+
 NEW_TOGGLE_BEHAVIOR = 1 ; don't blank the screen for toggle block changing
 ; If you unset this, you will need to rename MetatileFlagsROM to MetatileFlags and put it in the fixed bank
 
