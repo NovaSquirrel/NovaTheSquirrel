@@ -523,7 +523,7 @@ SkipTail:
       bne :+
         inc PlayerJumpCancel
 
-        ; Forced jump like when climbing are handled differently
+        ; Forced jump like when climbing is handled differently
         lda ForceControllerTime
         beq @IsNotForce
         lda #0

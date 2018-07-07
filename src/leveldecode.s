@@ -273,7 +273,7 @@ NoLinks:
 
 ; decompress background graphics
 ; and sprites
-  ; If in sandbox mode, load in the 
+  ; If in sandbox mode, load in the selected tilesets
   lda SandboxMode
   beq :+
     lda #SANDBOX_BANK
