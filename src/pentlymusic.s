@@ -1281,8 +1281,11 @@ out_pitch    = pently_zptemp + 3
   sta pitch_sub
   sec
   ldy out_pitch
-  lda periodTableLo,y
-  sbc periodTableLo+1,y
+  ; Edited to use a pointer
+  lda (periodTableLo),y
+  iny
+  sbc (periodTableLo),y
+  dey
 
   ; Multiply the difference by pitch_sub.
   ; The period difference is stored in the lower bits of prodlo; the

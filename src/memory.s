@@ -182,6 +182,8 @@
   LevelDecodeXPos = TouchTemp+2  ; current X position
 
   tvSystem: .res 1
+  periodTableLo: .res 2 ; pointer
+  periodTableHi: .res 2 ; pointer
 
 .segment "BSS"
   .res 12 ; buffer

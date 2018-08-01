@@ -308,16 +308,16 @@ notnoise:
 
   sta $4000,x
   ldy tpitch
-  .if ::PENTLY_USE_PAL_ADJUST
-    ; Correct pitch for PAL NES only, not NTSC (0) or PAL famiclone (2)
-    lda tvSystem
-    lsr a
-    bcc :+
-      iny
-  :
-  .endif
+;  .if ::PENTLY_USE_PAL_ADJUST
+;    ; Correct pitch for PAL NES only, not NTSC (0) or PAL famiclone (2)
+;    lda tvSystem
+;    lsr a
+;    bcc :+
+;      iny
+;  :
+;  .endif
 
-  lda periodTableLo,y
+  lda (periodTableLo),y
   .if ::PENTLY_USE_VIBRATO || ::PENTLY_USE_PORTAMENTO
     clc
     adc tpitchadd
@@ -327,10 +327,10 @@ notnoise:
     bpl :+
       lda #$FF
     :
-    adc periodTableHi,y
+    adc (periodTableHi),y
   .else
     sta $4002,x
-    lda periodTableHi,y
+    lda (periodTableHi),y
   .endif
   cpx #8
   beq always_write_high_period

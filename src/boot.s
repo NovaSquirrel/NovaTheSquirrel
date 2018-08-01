@@ -120,7 +120,27 @@ DoNothing:
   inx
   bne :-
 
+  ; Select PAL or NTSC frequency table based on region
   sty tvSystem
+  lda #<periodTableLo_NTSC
+  sta periodTableLo+0
+  lda #>periodTableLo_NTSC
+  sta periodTableLo+1
+  lda #<periodTableHi_NTSC
+  sta periodTableHi+0
+  lda #>periodTableHi_NTSC
+  sta periodTableHi+1
+  cpy #1
+  bne :+
+    lda #<periodTableLo_PAL
+    sta periodTableLo+0
+    lda #>periodTableLo_PAL
+    sta periodTableLo+1
+    lda #<periodTableHi_PAL
+    sta periodTableHi+0
+    lda #>periodTableHi_PAL
+    sta periodTableHi+1
+  :
 
 ; Set an interrupt handler that's just an RTI
   lda #<DefaultIRQ
