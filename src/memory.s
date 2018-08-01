@@ -181,6 +181,8 @@
   LevelHeaderPointer = TouchTemp ; pointer to the level header, for reading it
   LevelDecodeXPos = TouchTemp+2  ; current X position
 
+  tvSystem: .res 1
+
 .segment "BSS"
   .res 12 ; buffer
 

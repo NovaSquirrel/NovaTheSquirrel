@@ -28,7 +28,7 @@
 ;.export pently_update_music, pently_update_music_ch
 
 .if PENTLY_USE_PAL_ADJUST
-.importzp tvSystem
+;.importzp tvSystem
 .endif
 
 .if PENTLY_USE_ROW_CALLBACK

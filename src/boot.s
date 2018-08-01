@@ -101,7 +101,8 @@ DoNothing:
   jsr InitMapper  ; run the mapper-specific init code
 
 ; Wait for PPU to stabilize
-  bit PPUSTATUS   ; see http://forums.nesdev.com/viewtopic.php?f=2&t=3958
+  jsr getTVSystem
+  tay ; Hold onto it during the memory clear
 
 : lda PPUSTATUS   ; Wait a PPU frame
   bpl :-
@@ -118,6 +119,8 @@ DoNothing:
   sta $700,x
   inx
   bne :-
+
+  sty tvSystem
 
 ; Set an interrupt handler that's just an RTI
   lda #<DefaultIRQ

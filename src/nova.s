@@ -99,6 +99,7 @@ EXTRAS_BANK = $4 ; DABG resources, other games I can fit!
 .include "trampoline.s"
 .include "cutscene.s"
 .include "screens.s"
+.include "paldetect.s"
 
 ; ---------------------
 .segment "PRG0" ; levels

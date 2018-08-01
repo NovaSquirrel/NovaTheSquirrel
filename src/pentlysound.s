@@ -31,7 +31,7 @@
 .endif
 ;.import periodTableLo, periodTableHi, pently_sfx_table
 .if PENTLY_USE_PAL_ADJUST
-  .importzp tvSystem
+;  .importzp tvSystem
 .endif
 ;.export pentlyBSS
 ;.exportzp pently_zp_state
