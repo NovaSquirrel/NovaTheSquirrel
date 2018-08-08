@@ -188,6 +188,39 @@
 .endproc
 PlayMusicAuto = SoundTestStartPently
 
+.ifdef FAST_FORWARD_LEVEL_SELECT
+; Plays music, handles bank switching
+; and also fast forwards to make the switch seamless if needed
+; input: A (music number)
+.proc SoundTestStart_ForLevelSelect
+  pha
+  lda #SOUND_BANK
+  jsr _SetPRG
+  pla
+  jsr pently_start_music
+
+  lda LevelSelectNeedFastForward
+  beq NoFastForward
+  lda MusicRows
+  and #63
+  sta MusicRowsTemp
+
+  ; Clear the old counter
+  lda #0
+  sta MusicRows
+
+: lda #0
+  sta pently_tempoCounterHi
+  sta pently_tempoCounterLo
+  jsr pently_next_row
+  dec MusicRowsTemp
+  bne :-
+
+NoFastForward:
+  jmp SetPRG_Restore
+.endproc
+.endif
+
 .proc SoundTestStartFamitone
   pha
   lda #FAMITONE_BANK

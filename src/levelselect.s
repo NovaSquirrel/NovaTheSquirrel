@@ -23,6 +23,14 @@ NovaDirection = 13
 IconNum = 14
 WorldTimes8 = 15
 
+.ifdef FAST_FORWARD_LEVEL_SELECT
+  ; Reset the fastforward-related variables
+  lda #0
+  sta MusicRows
+  sta LevelSelectNeedFastForward
+.endif
+
+ReshowLevelSelect:
   ldx #255 ; reinitialize stack pointer just in case
   txs
 
@@ -39,12 +47,19 @@ WorldTimes8 = 15
   lsr
   lsr
   lsr
-  cmp #4
+  cmp #4 ; Clamp it to world 5's music if 6+
   bcc :+
     lda #4
   :
   add #MusicTracks::WORLD_1_SELECT
+.ifdef FAST_FORWARD_LEVEL_SELECT
+  jsr SoundTestStart_ForLevelSelect
+; Next time there will need to be a fast forward
+  lda #1
+  sta LevelSelectNeedFastForward
+.else
   jsr SoundTestStartPently
+.endif
 
 ; Initialize PPU stuff
   jsr WaitVblank
@@ -229,7 +244,7 @@ Loop:
     add #8
     and #%111000
     sta StartedLevelNumber
-    jmp ShowLevelSelect
+    jmp ReshowLevelSelect
   :
   lda keynew
   and #KEY_DOWN
@@ -240,7 +255,7 @@ Loop:
     sub #8
     and #%111000
     sta StartedLevelNumber
-    jmp ShowLevelSelect
+    jmp ReshowLevelSelect
   :
   lda keynew
   and #KEY_RIGHT

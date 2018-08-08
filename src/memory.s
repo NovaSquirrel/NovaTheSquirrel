@@ -406,6 +406,13 @@ GameStateLen = 2+10*4 ; update if more stuff is added. Just coins and inventory.
   InMusicCode:        .res 1
   JumpGracePeriod:    .res 1
   DontStartNewSong:   .res 1
+
+.ifdef FAST_FORWARD_LEVEL_SELECT
+  MusicRows:          .res 1 ; incremented every music row
+  MusicRowsTemp:      .res 1 ; for fast forwarding
+  LevelSelectNeedFastForward: .res 1 ; used to make music changes on level select more seamless
+.endif
+
 .segment "SAVE"
 SaveStart:
   SaveTag:            .res 9

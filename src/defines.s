@@ -56,6 +56,9 @@ LEVEL_INTROS = 1
 ;AUTO_CLIMB = 1
 HAS_DICTIONARY_TABLE = 1
 
+;Try to make the level select music switching more seamless
+;FAST_FORWARD_LEVEL_SELECT = 1
+
 ;Makes sure the post-level fadeout is pure white and nothing else
 ;FADE_TO_ONLY_WHITE = 1
 

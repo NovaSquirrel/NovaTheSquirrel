@@ -274,6 +274,10 @@ music_not_playing:
   sbc pently_fpmHi,y
   sta pently_tempoCounterHi
 
+.ifdef FAST_FORWARD_LEVEL_SELECT
+  inc MusicRows ; EDIT: added to keep track of rows for the level select
+.endif
+
   .if ::PENTLY_USE_REHEARSAL
     inc pently_rowslo
     bne :+
