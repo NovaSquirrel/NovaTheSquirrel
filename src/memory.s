@@ -394,6 +394,7 @@ GameStateLen = 2+10*4 ; update if more stuff is added. Just coins and inventory.
   DownLockFromRideable: .res 1 ; set to 1 when riding on a burger or ice. unset when it's unpressed
 
   SandboxMode:         .res 1
+SandboxTilesets_Start:
   SandboxTerrain:      .res 1
   SandboxExtra:        .res 1
   SandboxDecoration:   .res 1
@@ -402,6 +403,7 @@ GameStateLen = 2+10*4 ; update if more stuff is added. Just coins and inventory.
   SandboxSpSlot2:      .res 1
   SandboxSpSlot3:      .res 1
   SandboxSpSlot4:      .res 1
+SandboxTilesets_End:
   SandboxCursorX:      .res 1
   SandboxBrushes:      .res 7
   SandboxCurrentBlock: .res 1
