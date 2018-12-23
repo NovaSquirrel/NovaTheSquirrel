@@ -172,7 +172,6 @@ OptionsPalette:
 Cursor = 13
 LastOptionNum = 14
 LastOptionConst = 5
-
   lda #LastOptionConst
   sub OptionsViaInventory
   sta LastOptionNum
@@ -182,6 +181,7 @@ LastOptionConst = 5
   lda #0
   sta Cursor
   sta DeleteSavePlaceholder
+  sta IsCustomLevel
 
 ; Write the options
   PositionXY 0, 11, 4
@@ -607,6 +607,7 @@ FeatureCount = TempVal
   lda LevelCleared+4
   bpl :+
     inc FeatureCount
+    inc FeatureCount
   :
   lda LevelCleared+0
   and LevelCleared+1
@@ -651,14 +652,17 @@ FeatureCount = TempVal
   beq :+
   PositionXY 0, 3, 14
   jsr PutStringImmediate
-  .byt "Credits",0
-  lda FeatureCount
-  cmp #2
-  beq :+
+  .byt "Level Studio",0
   PositionXY 0, 3, 16
   jsr PutStringImmediate
-  .byt "Sound test",0
+  .byt "Credits",0
+  lda FeatureCount
+  cmp #3
+  beq :+
   PositionXY 0, 3, 18
+  jsr PutStringImmediate
+  .byt "Sound test",0
+  PositionXY 0, 3, 20
   jsr PutStringImmediate
   .byt "Early graphics",0
 :
@@ -687,6 +691,8 @@ Loop:
   jeq ShowMainMenu
   dey
   jeq LaunchDABG
+  dey
+  jeq LaunchLevelEditor
   dey
   jeq LaunchCredits
   dey
@@ -728,6 +734,249 @@ NoA:
   sta OAM_YPOS
 
   jmp Loop
+.endproc
+
+.proc LaunchLevelEditor
+ModeNum = CustomLevelMode
+  ; Test for SXROM
+  ldx #0
+  stx IsSXROM
+  stx ModeNum
+  stx SandboxMode
+  stx SandboxFlyMode
+  stx IsCustomLevel
+
+  ; Require SXROM for the level editor
+  jsr TestForSXROM
+  beq :+
+    lda #SANDBOX_LEVEL
+    sta StartedLevelNumber
+    jmp StartLevel
+  :
+  ; X is still zero
+  inx
+  stx IsCustomLevel
+  stx IsSXROM
+
+  jsr OptionsScreenSetup
+  lda #GraphicsUpload::CHR_LEVELEDIT_ICONS
+  jsr DoGraphicUpload
+
+  PositionXY 0, 10, 4
+  jsr PutStringImmediate
+  .byt "Level Studio",0
+  PositionXY 0, 5, 10
+  jsr PutStringImmediate
+  .byt "Mode:",0
+
+  ; Draw mode icons
+  PositionXY 0, 11, 10
+  ldy #$80
+  jsr WriteIncreasing16
+  PositionXY 0, 11, 11
+  ldy #$90
+  jsr WriteIncreasing16
+  PositionXY 0, 11, 12
+  ldy #$a0
+  jsr WriteIncreasing16
+
+  PositionXY 0, 5, 15
+  jsr PutStringImmediate
+  .byt "Slot: Empty A B C D",0
+  PositionXY 0, 5, 20
+  jsr PutStringImmediate
+  .byt "Up+Select will toggle",0
+  PositionXY 0, 5, 21
+  jsr PutStringImmediate
+  .byt "physics when editing.",0
+
+  ; Force palette change
+  lda #255
+  sta retraces
+Loop1:
+  jsr WaitVblank
+  lda #OBJ_ON|BG_ON
+  sta PPUMASK
+
+  ; Write mode string
+  PositionXY 0, 5, 12
+  lda ModeNum
+  asl
+  asl
+  adc ModeNum ; carry always clear
+  tax
+  ldy #5
+: lda ModeNames,x
+  sta PPUDATA
+  inx
+  dey
+  bne :-
+
+  ; Do common menu stuff
+  jsr OptionsScreenCommonLoop
+
+  lda keynew
+  and #KEY_LEFT
+  beq :+
+    dec ModeNum
+  :
+
+  lda keynew
+  and #KEY_RIGHT
+  beq :+
+    inc ModeNum
+  :
+
+  lda keynew
+  and #KEY_B
+  jne ShowExtraFeatures
+
+  lda ModeNum
+  and #3
+  sta ModeNum
+
+  ; Draw cursor
+  lda #OAM_COLOR_0
+  sta OAM_ATTR
+  lda #$51
+  sta OAM_TILE
+  sta OAM_TILE+4
+  lda ModeNum
+  asl
+  asl
+  asl
+  asl
+  asl
+  add #12*8
+  sta OAM_XPOS
+  lda #13*8-1
+  sta OAM_YPOS
+  lda #255
+  sta OAM_YPOS+4
+
+  lda keynew
+  and #KEY_A
+  beq Loop1
+
+; -------------------------------------
+  lda #0
+  sta CustomLevelSlot
+
+Loop2:
+  jsr WaitVblank
+  lda #OBJ_ON|BG_ON
+  sta PPUMASK
+
+  ; Do common menu stuff
+  jsr OptionsScreenCommonLoop
+
+  lda keynew
+  and #KEY_B
+  jne Loop1
+
+  lda keynew
+  and #KEY_LEFT
+  beq :+
+    dec CustomLevelSlot
+    bpl :+
+      lda #4
+      sta CustomLevelSlot
+  :
+
+  lda keynew
+  and #KEY_RIGHT
+  beq :+
+    inc CustomLevelSlot
+    lda CustomLevelSlot
+    cmp #5
+    bne :+
+      lda #0
+      sta CustomLevelSlot
+  :
+
+  lda keynew
+  and #KEY_A
+  beq :+
+    ldx ModeNum
+    lda ModeH,x
+    pha
+    lda ModeL,x
+    pha
+    rts
+  :
+
+  ; Draw cursor
+  lda #OAM_COLOR_1
+  sta OAM_ATTR
+  lda #OAM_COLOR_0
+  sta OAM_ATTR+4
+  lda #$51
+  ldx CustomLevelSlot
+  lda CursorSlotXPos,x
+  sta OAM_XPOS+4
+  lda #16*8-1
+  sta OAM_YPOS+4
+
+  jmp Loop2
+
+; -------------------------------------
+
+CursorSlotXPos:
+  .byt 13*8, 17*8, 19*8, 21*8, 23*8
+
+ModeNames:
+  .byt "Play!"
+  .byt "Block"
+  .byt "Enemy"
+  .byt "Erase"
+
+ModeL:
+  .byt <(ModePlay-1), <(ModeBlock-1), <(ModeEnemy-1), <(ModeErase-1)
+ModeH:
+  .byt >(ModePlay-1), >(ModeBlock-1), >(ModeEnemy-1), >(ModeErase-1)
+
+; -------------------------------------
+
+ModePlay:
+  lda #SANDBOX_LEVEL ; should be the last level slot, modify if not
+  sta StartedLevelNumber
+  jmp StartLevel
+
+ModeBlock:
+  lda #SANDBOX_LEVEL ; should be the last level slot, modify if not
+  sta StartedLevelNumber
+  lda #1
+  sta SandboxFlyMode
+  jmp StartLevel
+
+ModeEnemy:
+  jmp LaunchLevelEditor
+
+ModeErase:
+  jsr ClearLevelMap
+  lda CustomLevelSlot
+  beq :+
+    sub #1
+    jsr SaveLevel
+  :
+  jmp LaunchLevelEditor
+
+
+ClearLevelMap:
+  ; Init pointer for $6000
+  ldx #$60
+  stx 1
+  lda #0
+  sta 0
+  tay
+: sta (0),y
+  iny
+  bne :-
+  inx
+  stx 1
+  cpx #$70
+  bne :-
+  rts
 .endproc
 
 .proc LaunchCredits

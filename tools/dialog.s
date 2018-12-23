@@ -789,8 +789,8 @@ PreLevelBigCave:
 .byt $df, "r", $f3, $da, " ", $a1, " ", $d9, "o", "l", $e6, $df, $b0, "."
 .byt SCR::END_SCRIPT
 PreLevelSuperPlayer:
-; Wow! You are really a super
-.byt "W", "o", "w", $fd, "Y", $f3, " ", "a", $fa, " ", $fa, $ac, $fe, $bd, "s", $cc, $ec
+; Wow! You really are a super
+.byt "W", "o", "w", $fd, "Y", $f3, " ", $fa, $ac, $fe, "a", $fa, " ", $bd, "s", $cc, $ec
 .byt SCR::NEWLINE
 ; player! 
 .byt "p", "l", "a", "y", $ec, $fd
@@ -914,8 +914,8 @@ PreLevelBoss4b:
 ;  A fight in the sky atop 
 .byt " ", "A", " ", "f", "i", $da, $d2, $be, $a1, " ", "s", "k", $fe, $c5, "o", "p", " "
 .byt SCR::NEWLINE
-;  changing platforms. Don't
-.byt " ", $e1, $c9, "g", $b0, " ", "p", "l", $c5, $a4, "m", "s", $f5, "D", $c1, "'", "t"
+;  floating platforms. Don't
+.byt " ", "f", "l", "o", $c5, $b0, " ", "p", "l", $c5, $a4, "m", "s", $f5, "D", $c1, "'", "t"
 .byt SCR::NEWLINE
 ;  fall off!
 .byt " ", "f", $ac, " ", "o", "f", "f", "!"

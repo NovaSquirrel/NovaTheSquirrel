@@ -641,10 +641,30 @@ BackgroundRoutines:
   .raddr BGCloudsEverywhere
   .raddr BGCloudsMany
 
-IsSandbox:
+IsSandbox: ; Happens after the initial ground is set up
   lda #MusicTracks::NONE
   sta LevelMusic
-  lda SandboxMode
+
+  lda IsCustomLevel
+  beq NotCustomLevel
+    ; Load a level unless it's set to "Empty"
+    lda SandboxMode
+    bne :+ ; Also skip reloading the level if sandbox mode is on
+    lda CustomLevelSlot
+    sub #1
+    bmi :+
+      jsr LoadLevel
+    :
+
+    ; If it's in "Play" mode, don't turn on the sandbox flag
+    lda CustomLevelMode
+    bne :+
+      rts
+    :
+    inc PreserveLevel
+  NotCustomLevel:
+
+  lda SandboxMode ; Already in sandbox mode, don't change the brushes
   bne @_rts
   inc SandboxMode
   ldx #6

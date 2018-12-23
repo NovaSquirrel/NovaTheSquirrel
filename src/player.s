@@ -184,6 +184,20 @@ MaxSpeedRight = 10
   sta MaxSpeedRight
 NotWalkSpeed:
 
+  ; Allow turning flying mode on or off
+  lda SandboxMode
+  beq :+
+    lda keynew
+    and #KEY_SELECT
+    beq :+
+    lda keydown
+    and #KEY_UP
+    beq :+
+      lda SandboxFlyMode
+      eor #1
+      sta SandboxFlyMode
+  :
+
   ; Handle holding and letting go of a balloon
   lda PlayerHasBalloon
   beq @NoBalloon
@@ -248,11 +262,14 @@ NotWalkSpeed:
 @NoBalloon:
 
 ; Water physics
+  lda SandboxFlyMode
+  bne IsWater
   ldy BlockMiddle
   lda MetatileFlags,y
   and #M_BEHAVIOR
   cmp #M_WATER
   bne NotWater
+IsWater:
     lda #0
     sta PlayerWasRunning
     inc PlayerSwimming
@@ -292,6 +309,8 @@ NotWalkSpeed:
 
   lda PlayerOnLadder       ; skip gravity if on a ladder
   bne HandleLadderClimbing
+  lda SandboxFlyMode
+  bne SkipApplyGravity
   ; add gravity
   lda PlayerVYH
   bmi GravityAddOK
@@ -832,7 +851,8 @@ SkipTheTop:
  
   ; Don't react to collision if told not to
   ; Currently only used by the spring?
-  lda SkipFourCorners
+  lda SandboxFlyMode
+  ora SkipFourCorners
   rtsne
 
   ; If the player is standing on something, clear PlayerNeedsGround

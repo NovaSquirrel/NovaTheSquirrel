@@ -23,6 +23,14 @@ NovaDirection = 13
 IconNum = 14
 WorldTimes8 = 15
 
+  .assert OPTIONS_BANK = INVENTORY_BANK, error
+  lda IsCustomLevel
+  beq @NotCustom
+    ldx #255
+    txs
+    jmp LaunchLevelEditor
+  @NotCustom:
+
 .ifdef FAST_FORWARD_LEVEL_SELECT
   ; Reset the fastforward-related variables
   lda #0

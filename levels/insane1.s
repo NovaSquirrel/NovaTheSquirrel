@@ -266,5 +266,5 @@ insane1Sprite:
   LSpr Enemy::SNEAKER,             1, 179,   7
   LSpr Enemy::OWL,                 0, 189,  11
   LSpr Enemy::OWL,                 0, 194,   8
-  LSpr Enemy::CHECKPOINT,          0, 205,   1
+  LSpr Enemy::CHECKPOINT,          0, 228,   7
   .byt 255 ; end

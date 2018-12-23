@@ -312,6 +312,12 @@ LevelZeroWhenLoad_Start:
 LevelZeroWhenLoad_End:
   IsNormalDoor:           .res 1 ; 1 if the level is loading due to a door
 
+  ; Level editing related stuff
+  IsSXROM:                .res 1 ; if 1, board is MMC1 with 32KB RAM
+  IsCustomLevel:          .res 1 ; if nonzero, is a custom level and was launched from the level editor
+  CustomLevelMode:        .res 1 ; 0:play, 1:block, 2:sprite
+  CustomLevelSlot:        .res 1 ; 0 to 3
+
   LevelMap = $6000            ; lasts until $6fff
 
 .segment "BSS2"  ; SRAM
@@ -399,6 +405,7 @@ GameStateLen = 2+10*4 ; update if more stuff is added. Just coins and inventory.
   SandboxCursorX:      .res 1
   SandboxBrushes:      .res 7
   SandboxCurrentBlock: .res 1
+  SandboxFlyMode:      .res 1 ; if nonzero, fly around and pass through objects
 
   FinalBossScreenX:   .res 1 ; pixel position of final boss
   FinalBossScreenY:   .res 1

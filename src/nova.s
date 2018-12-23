@@ -59,6 +59,7 @@ EXTRAS_BANK = $4 ; DABG resources, other games I can fit!
 .include "player.s"
 .include "scrolling.s"
 .include "metaplayer.s"
+
 .segment "PRGa" ; compressed graphics
 .segment "PRGb" ; compressed graphics
 .include "graphics2.s"

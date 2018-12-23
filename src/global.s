@@ -1108,7 +1108,7 @@ Exit:
   rts
 .endproc
 
-; A = level to start
+; StartedLevelNumber = level to start
 .proc StartLevel
 ;  lda SavedAbility
 ;  sta PlayerAbility
@@ -2002,5 +2002,96 @@ Exit:
   lda #60
   sta SwitchCooldownTimer
   sec
+  rts
+.endproc
+
+;----------------------------------------------------------
+; Level save/load stuff!
+;----------------------------------------------------------
+
+.proc SaveLoadLevel_Common
+LevelSlot = 0
+BankNum = 1
+PointerA = 2
+PointerB = 4
+  sta LevelSlot ; level slot
+
+  ; The "main" copy of the level is always $6000 in bank 0
+  ldx #$60
+  stx PointerA+1
+  lsr
+  bcs :+
+    ldx #$70
+  :
+  add #1
+  asl
+  asl
+  sta BankNum
+  ; But the "backup" copy of the level can be at $6000 or $7000
+  stx PointerB+1
+
+  ; Load the page counter
+  ldx #4*4 ; (4*256) = 1KB, * 4 = 4KB
+  ldy #0
+  sty PointerA+0 ; set low bytes of the two pointers
+  sty PointerB+0
+  rts
+.endproc
+
+.proc SaveLevel ; A = level slot (0-4)
+LevelSlot = 0
+BankNum = 1
+PointerA = 2
+PointerB = 4
+  jsr SaveLoadLevel_Common
+Loop:
+  lda #0
+  jsr SetCHRBank
+: lda (PointerA),y
+  sta ScratchPage,y
+  iny
+  bne :-
+  inc PointerA+1
+
+  lda BankNum
+  jsr SetCHRBank
+: lda ScratchPage,y
+  sta (PointerB),y
+  iny
+  bne :-
+  inc PointerB+1
+
+  dex
+  bne Loop
+  lda #0
+  jsr SetCHRBank
+  rts
+.endproc
+
+.proc LoadLevel ; A = level slot (0-4)
+LevelSlot = 0
+BankNum = 1
+PointerA = 2
+PointerB = 4
+  jsr SaveLoadLevel_Common
+Loop:
+  lda BankNum
+  jsr SetCHRBank
+: lda (PointerB),y
+  sta ScratchPage,y
+  iny
+  bne :-
+  inc PointerB+1
+
+  lda #0
+  jsr SetCHRBank
+: lda ScratchPage,y
+  sta (PointerA),y
+  iny
+  bne :-
+  inc PointerA+1
+
+  dex
+  bne Loop
   rts
 .endproc

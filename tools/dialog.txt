@@ -619,7 +619,7 @@ through the whole thing.
 `end
 
 :PreLevelSuperPlayer:
-Wow! You are really a super
+Wow! You really are a super
 `nl
 player! 
 `end
@@ -721,7 +721,7 @@ fighting style!
 :PreLevelBoss4b:
  A fight in the sky atop 
 `nl
- changing platforms. Don't
+ floating platforms. Don't
 `nl
  fall off!
 `end

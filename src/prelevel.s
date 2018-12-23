@@ -30,6 +30,7 @@ OptionCount = 13
   lda #0
   sta Cursor
   sta SandboxMode
+  sta SandboxFlyMode
   sta DontStartNewSong
   lda #3
   sta OptionCount

@@ -129,6 +129,10 @@ DrawBlockLoop:
   jsr PutStringImmediate
   MiniFontText "SELECT ABILITY"
 
+  PositionXY 0, 3, 21
+  jsr PutStringImmediate
+  MiniFontText "SAVE LEVEL"
+
   PositionXY 0, 3, 24
   jsr PutStringImmediate
   MiniFontText "EXIT TO LEVEL SELECT"
@@ -149,7 +153,7 @@ Loop:
   beq :+
     inc CursorY
     lda CursorY
-    cmp #6
+    cmp #7
     bne :+
       lda #0
       sta CursorY
@@ -159,7 +163,7 @@ Loop:
   beq :+
     dec CursorY
     bpl :+
-      lda #5
+      lda #6
       sta CursorY
   :
   lda keynew
@@ -210,6 +214,10 @@ Loop:
     dey
     bne :+ ; Select ability
       jmp OpenSandboxAbilityPicker
+    :
+    dey
+    bne :+ ; Save screen? TODO
+      jmp OpenSaveLevelPicker
     :
     dey
     bne :+ ; Exit to level select
@@ -266,7 +274,7 @@ DoPlaceBlock:
   rts
 
 MenuYPositions:
-  .byt 12*8-1, 13*8-1, 14*8-1, 18*8-1, 19*8-1, 24*8-1
+  .byt 12*8-1, 13*8-1, 14*8-1, 18*8-1, 19*8-1, 21*8-1, 24*8-1
 
 BlockLowA:
   .lobytes $2102+(4*0), $2102+(4*1), $2102+(4*2), $2102+(4*3), $2102+(4*4), $2102+(4*5), $2102+(4*6), $2102+(4*7)
@@ -274,6 +282,93 @@ BlockLowB:
   .lobytes $2122+(4*0), $2122+(4*1), $2122+(4*2), $2122+(4*3), $2122+(4*4), $2122+(4*5), $2122+(4*6), $2102+(4*7)
 ; High is always $21
 
+.endproc
+
+.proc OpenSaveLevelPicker
+CursorY = 5
+  jsr ScreenOff
+  jsr ClearName
+  jsr ClearOAM
+
+  PositionXY 0, 8, 4
+  jsr PutStringImmediate
+  MiniFontText "- SANDBOX MODE -"
+  PositionXY 0, 9, 5
+  jsr PutStringImmediate
+  MiniFontText "SAVE LEVEL"
+
+  PositionXY 0, 3, 8
+  jsr PutStringImmediate
+  MiniFontText "SLOT A"
+  PositionXY 0, 3, 10
+  jsr PutStringImmediate
+  MiniFontText "SLOT B"
+  PositionXY 0, 3, 12
+  jsr PutStringImmediate
+  MiniFontText "SLOT C"
+  PositionXY 0, 3, 14
+  jsr PutStringImmediate
+  MiniFontText "SLOT D"
+
+  lda #0
+  sta CursorY
+  jsr ScreenOn
+
+Loop:
+  jsr WaitVblank
+  lda #2
+  sta OAM_DMA
+
+  jsr ReadJoy
+
+  lda keynew
+  and #KEY_DOWN
+  beq :+
+    inc CursorY
+    lda CursorY
+    cmp #4
+    bne :+
+      lda #0
+      sta CursorY
+  :
+  lda keynew
+  and #KEY_UP
+  beq :+
+    dec CursorY
+    bpl :+
+      lda #3
+      sta CursorY
+  :
+  lda keynew
+  and #KEY_A
+  beq :+
+    lda CursorY
+    jsr SaveLevel
+    inc NeedLevelRerender
+    rts
+  :
+
+  lda #0
+  sta OAM_ATTR+(4*0)
+  lda #$52
+  sta OAM_TILE+(4*0)
+  lda CursorY
+  asl
+  asl
+  asl
+  asl
+  add #8*8-1
+  sta OAM_YPOS+(4*0)
+
+  lda #2*8
+  sta OAM_XPOS+(4*0)
+
+  lda keynew
+  and #KEY_B
+  jeq Loop
+Exit:
+  inc NeedLevelRerender
+  rts
 .endproc
 
 .proc OpenSandboxAbilityPicker
@@ -1076,7 +1171,9 @@ MetatileList:
   .byt Metatiles::EMPTY
 .endproc
 
-; Reverses most of the LevelPostProcess effects
+; Reverses most of the LevelPostProcess effects.
+; Actually should just be a lookup table since it would only be 256 bytes at most anyway
+; unlike this routine which I think is longer, oops.
 .proc UndoPostProcessLevel
   ; Level starts at $6000
   ldy #$00
@@ -1212,6 +1309,3 @@ ReplaceList:
   .byt Metatiles::WHITEFENCE_MIDDLE
   .byt Metatiles::EMPTY
 .endproc
-
-
-

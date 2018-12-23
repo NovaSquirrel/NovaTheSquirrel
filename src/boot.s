@@ -362,3 +362,36 @@ SetPRGNMI = SetPRG::NMIVersion
   rts
 .endproc
 .endif
+
+.proc SetCHRBank ; for MMC1
+  ; .rr.c
+  ;  ++-- PRG RAM bank
+
+  sta $a000
+  .repeat 4
+    lsr a
+    sta $a000
+  .endrep
+  rts
+.endproc
+
+.proc TestForSXROM
+.ifdef MAPPER_MMC1
+  lda #$65
+  sta $7fff
+  lda #3 << 2
+  jsr SetCHRBank
+
+  lda #$02
+  sta $7fff
+  lda #0 << 2
+  jsr SetCHRBank
+
+  lda $7fff
+  cmp #$65
+.else
+  lda #0
+  cmp #1
+.endif
+  rts
+.endproc

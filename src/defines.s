@@ -24,7 +24,11 @@
   .byt (MapperNum&$f0) + %1000
   .byt 0     ; extended mapper size
   .byt 0     ; extended ROM sizes
+.ifdef MAPPER_MMC1
+  .byt $90   ; 32KB battery backed RAM
+.else
   .byt $70   ; 8KB battery backed RAM
+.endif
   .byt $07   ; 8KB CHR RAM
   .byt 0     ; NTSC
   .byt 0     ; not VS System
@@ -66,6 +70,8 @@ NEW_TOGGLE_BEHAVIOR = 1 ; don't blank the screen for toggle block changing
 ; If you unset this, you will need to rename MetatileFlagsROM to MetatileFlags and put it in the fixed bank
 
 JUMP_GRACE_PERIOD_LENGTH = 6
+
+SANDBOX_LEVEL = (8*5)+4 ; level number used for the sandbox
 
 ; -------------------------------------
 
