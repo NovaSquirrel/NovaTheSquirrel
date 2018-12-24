@@ -699,8 +699,8 @@ SkipNoAutorepeat:
   lda keynew
   and #KEY_A
   jeq NoPlace
-    ; Fly mode allows placing tiles overlapping the player
-    lda SandboxFlyMode
+    ; Sandbox mode allows placing tiles overlapping the player
+    lda SandboxMode
     bne NotSolid
     ; Is the block being placed a solid one?
     ldx Type

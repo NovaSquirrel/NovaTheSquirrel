@@ -1164,6 +1164,18 @@ FromCheckpoint:
 ; Finally decompress the level and start the game engine
   lda CheckpointLevelNumber
   jsr DecompressLevel
+
+  lda IsCustomLevel
+  beq :+
+    jsr WaitVblank
+    lda #0
+    sta PPUMASK 
+    lda #SANDBOX_BANK
+    jsr SetPRG
+    jsr ApplySandboxGFXPicker
+    jsr DoLevelUploadListAndSprites
+  :
+
   jmp MainLoopInit
 
 AccelSpeeds: .byt 2,        4
@@ -2063,9 +2075,55 @@ Loop:
 
   dex
   bne Loop
+
+  ; -----------------------------------
+
+  ; Save sprite list too
   lda #0
+  tay
   jsr SetCHRBank
-  rts
+: lda SpriteListRAM,y
+  sta ScratchPage,y
+  iny
+  bne :-
+  ; ----
+  lda #<CustomLevelSprites
+  sta PointerA+0
+  lda #>CustomLevelSprites
+  add LevelSlot
+  sta PointerA+1
+  lda #3 << 2
+  jsr SetCHRBank
+  ; Copy it in
+  ; Y is still zero
+: lda ScratchPage,y
+  sta (PointerA),y
+  iny
+  bne :-
+
+  ; -----------------------------------
+  ; Last PRG RAM bank still in
+
+  ; Copy tileset information too
+  ; (Calculate index)
+  lda #<-SandboxTilesets_Length
+  ldy LevelSlot
+: add #SandboxTilesets_Length
+  dey
+  bpl :-
+  tay
+
+  ldx #0
+: lda SandboxTerrain,x
+  sta CustomLevelTilesets,y
+  iny
+  inx
+  cpx #SandboxTilesets_Length
+  bne :-
+ 
+  ; Restore bank
+  lda #0
+  jmp SetCHRBank
 .endproc
 
 .proc LoadLevel ; A = level slot (0-4)
@@ -2093,5 +2151,55 @@ Loop:
 
   dex
   bne Loop
+
+  ; -----------------------------------
+
+  ; Load sprite list too
+  lda #<CustomLevelSprites
+  sta PointerA+0
+  lda #>CustomLevelSprites
+  add LevelSlot
+  sta PointerA+1
+  lda #3 << 2
+  jsr SetCHRBank
+  ; Copy it in
+  ldy #0
+: lda (PointerA),y
+  sta ScratchPage,y
+  iny
+  bne :-
+
+  lda #0
+  jsr SetCHRBank
+  ; Y is still zero
+: lda ScratchPage,y
+  sta SpriteListRAM,y
+  iny
+  bne :-
+
+  ; -----------------------------------
+  lda #3 << 2
+  jsr SetCHRBank
+
+  ; Copy tileset information too
+  ; (Calculate index)
+  lda #<-SandboxTilesets_Length
+  ldy LevelSlot
+: add #SandboxTilesets_Length
+  dey
+  bpl :-
+  tay
+
+  ldx #0
+: lda CustomLevelTilesets,y
+  sta SandboxTerrain,x
+  iny
+  inx
+  cpx #SandboxTilesets_Length
+  bne :-
+
+  ; Restore bank
+  lda #0
+  jsr SetCHRBank
   rts
 .endproc

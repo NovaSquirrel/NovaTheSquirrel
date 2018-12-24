@@ -279,10 +279,13 @@ NoLinks:
     lda #SANDBOX_BANK
     jsr SetPRG
     jsr ApplySandboxGFXPicker
-    lda #LevelBank
+    lda LevelBank ; possibly unneeded? it was a # by mistake and it was working fine
     jsr SetPRG
   :
-  jsr DoLevelUploadListAndSprites
+  lda IsCustomLevel
+  bne :+
+    jsr DoLevelUploadListAndSprites
+  :
 
   ; display a "now loading" or whatever
   ; currently it says Loading
@@ -329,8 +332,12 @@ NoLinks:
   jsr WaitVblank
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000
   sta PPUCTRL
-  lda #BG_ON
-  sta PPUMASK
+
+  lda IsCustomLevel
+  bne :+
+    lda #BG_ON
+    sta PPUMASK
+  :
 
   lda LevelBank
   jsr SetPRG

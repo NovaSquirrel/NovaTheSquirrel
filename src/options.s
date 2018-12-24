@@ -961,7 +961,6 @@ ModeErase:
   :
   jmp LaunchLevelEditor
 
-
 ClearLevelMap:
   ; Init pointer for $6000
   ldx #$60
@@ -969,6 +968,7 @@ ClearLevelMap:
   lda #0
   sta 0
   tay
+  ; Clear loop
 : sta (0),y
   iny
   bne :-
@@ -976,6 +976,18 @@ ClearLevelMap:
   stx 1
   cpx #$70
   bne :-
+
+  ; Also delete enemy list
+  ; A and Y are still zero
+: sta SpriteListRAM,y
+  iny
+  bne :-
+
+  ; Clear the tilesets
+  ldx #SandboxTilesets_Length-1
+: sta SandboxTerrain,x
+  dex
+  bpl :-
   rts
 .endproc
 

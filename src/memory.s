@@ -318,6 +318,24 @@ LevelZeroWhenLoad_End:
   CustomLevelMode:        .res 1 ; 0:play, 1:block, 2:sprite
   CustomLevelSlot:        .res 1 ; 0 to 3
 
+  SandboxMode:         .res 1
+SandboxTilesets_Start:
+  SandboxTerrain:      .res 1
+  SandboxExtra:        .res 1
+  SandboxDecoration:   .res 1
+  SandboxSpPalette:    .res 1
+  SandboxSpSlot1:      .res 1
+  SandboxSpSlot2:      .res 1
+  SandboxSpSlot3:      .res 1
+  SandboxSpSlot4:      .res 1
+  SandboxMusic:        .res 1
+SandboxTilesets_End:
+SandboxTilesets_Length = SandboxTilesets_End - SandboxTilesets_Start
+  SandboxCursorX:      .res 1
+  SandboxBrushes:      .res 7
+  SandboxCurrentBlock: .res 1
+  SandboxFlyMode:      .res 1 ; if nonzero, fly around and pass through objects
+
   LevelMap = $6000            ; lasts until $6fff
 
 .segment "BSS2"  ; SRAM
@@ -393,22 +411,6 @@ GameStateLen = 2+10*4 ; update if more stuff is added. Just coins and inventory.
   InfiniteProjectileCheat: .res 1
   DownLockFromRideable: .res 1 ; set to 1 when riding on a burger or ice. unset when it's unpressed
 
-  SandboxMode:         .res 1
-SandboxTilesets_Start:
-  SandboxTerrain:      .res 1
-  SandboxExtra:        .res 1
-  SandboxDecoration:   .res 1
-  SandboxSpPalette:    .res 1
-  SandboxSpSlot1:      .res 1
-  SandboxSpSlot2:      .res 1
-  SandboxSpSlot3:      .res 1
-  SandboxSpSlot4:      .res 1
-SandboxTilesets_End:
-  SandboxCursorX:      .res 1
-  SandboxBrushes:      .res 7
-  SandboxCurrentBlock: .res 1
-  SandboxFlyMode:      .res 1 ; if nonzero, fly around and pass through objects
-
   FinalBossScreenX:   .res 1 ; pixel position of final boss
   FinalBossScreenY:   .res 1
   MusicMute:          .res 1
@@ -439,4 +441,12 @@ SavedOptions:
   SavedShootWhileWalking: .res 1
   DeleteSavePlaceholder: .res 1 ; "delete file" placeholder
 SaveEnd:
+
+.segment "EXWRAM" ; only on SXROM
+CustomLevelSlots = 4
+
+CustomLevelSprites:  .res 256 * CustomLevelSlots
+CustomLevelTilesets: .res SandboxTilesets_Length * CustomLevelSlots
+
+
 .code
