@@ -393,3 +393,9 @@ CopyLoop:
   jsr SetPRG
   jmp ShowMainMenu
 .endproc
+
+.proc SpriteEditTrampoline
+  lda #SPRITEEDIT_BANK
+  jsr SetPRG
+  jmp ShowSpriteEditor
+.endproc

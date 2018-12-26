@@ -950,7 +950,13 @@ ModeBlock:
   jmp StartLevel
 
 ModeEnemy:
-  jmp LaunchLevelEditor
+  ; Only allow editing enemies for non-empty level slots
+  lda CustomLevelSlot
+  jeq LaunchLevelEditor
+  sub #1
+  jsr LoadLevel
+
+  jmp SpriteEditTrampoline
 
 ModeErase:
   jsr ClearLevelMap

@@ -8,6 +8,8 @@ IS_PALETTE =        %10000000 ; palette colors
 IS_DIRECT_PALETTE = %01000000
 ;banks available: GRAPHICS_BANK1, GRAPHICS_BANK2, GRAPHICS_BANK3
 
+; Used to also include the graphics list directly here, but now it's auto-generated
+; which allows an enum to be created at the same time:
 .include "../tools/graphicslist2.s"
   
 ; input: A (graphic number)
