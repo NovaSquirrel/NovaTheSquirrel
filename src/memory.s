@@ -443,7 +443,9 @@ SavedOptions:
 SaveEnd:
 
 .segment "EXWRAM" ; only on SXROM
-CustomLevelSlots = 4
+.res 4096 ; reserve space for a level layout
+
+CustomLevelSlots = 5
 
 CustomLevelSprites:  .res 256 * CustomLevelSlots
 CustomLevelTilesets: .res SandboxTilesets_Length * CustomLevelSlots

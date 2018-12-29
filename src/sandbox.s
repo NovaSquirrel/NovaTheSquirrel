@@ -309,6 +309,9 @@ CursorY = 5
   PositionXY 0, 3, 14
   jsr PutStringImmediate
   MiniFontText "SLOT D"
+  PositionXY 0, 3, 16
+  jsr PutStringImmediate
+  MiniFontText "SLOT E"
 
   lda #0
   sta CursorY
@@ -326,7 +329,7 @@ Loop:
   beq :+
     inc CursorY
     lda CursorY
-    cmp #4
+    cmp #5
     bne :+
       lda #0
       sta CursorY
@@ -336,7 +339,7 @@ Loop:
   beq :+
     dec CursorY
     bpl :+
-      lda #3
+      lda #4
       sta CursorY
   :
   lda keynew

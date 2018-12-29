@@ -782,7 +782,7 @@ ModeNum = CustomLevelMode
 
   PositionXY 0, 5, 15
   jsr PutStringImmediate
-  .byt "Slot: Empty A B C D",0
+  .byt "Slot: Empty A B C D E",0
   PositionXY 0, 5, 20
   jsr PutStringImmediate
   .byt "Up+Select will toggle",0
@@ -879,7 +879,7 @@ Loop2:
   beq :+
     dec CustomLevelSlot
     bpl :+
-      lda #4
+      lda #5
       sta CustomLevelSlot
   :
 
@@ -888,7 +888,7 @@ Loop2:
   beq :+
     inc CustomLevelSlot
     lda CustomLevelSlot
-    cmp #5
+    cmp #6
     bne :+
       lda #0
       sta CustomLevelSlot
@@ -922,7 +922,7 @@ Loop2:
 ; -------------------------------------
 
 CursorSlotXPos:
-  .byt 13*8, 17*8, 19*8, 21*8, 23*8
+  .byt 13*8, 17*8, 19*8, 21*8, 23*8, 25*8
 
 ModeNames:
   .byt "Play!"
