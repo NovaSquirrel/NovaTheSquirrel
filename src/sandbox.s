@@ -36,23 +36,6 @@
   .byt 0
 .endmacro
 
-.proc ScreenOff
-  jsr WaitVblank
-  lda #0
-  sta PPUMASK
-  rts
-.endproc
-
-.proc ScreenOn
-  lda #0
-  sta PPUSCROLL
-  sta PPUSCROLL
-  jsr WaitVblank
-  lda #BG_ON | OBJ_ON
-  sta PPUMASK
-  rts
-.endproc
-
 .proc OpenSandboxMenu
 ; star is $51 or $52
 CursorX = SandboxCursorX

@@ -366,33 +366,8 @@ NoLinks:
   iny
   bne :-
 
-  .scope
   ; Find the first sprite on each screen
-  ldy #0
-@Loop:
-  lda SpriteListRAM,y
-  cmp #255 ; 255 marks the end of the list
-  beq @Exit
-  ; Get screen number
-  lsr
-  lsr
-  lsr
-  lsr
-  tax
-  ; Write sprite number to the list, if the
-  ; screen doesn't already have a sprite set for it
-  lda FirstSpriteOnScreen,x
-  cmp #255
-  bne :+
-  tya
-  sta FirstSpriteOnScreen,x
-:
-  iny
-  iny
-  iny
-  bne @Loop
-@Exit:
-  .endscope
+  jsr IndexSpriteList
 
   jsr LevelDecodeLoop
 
@@ -542,6 +517,38 @@ NoToggle:
 LoadingCHR:
 .incbin "chr/loading.chr"
 
+; Find the first sprite on each screen
+; and make an array to speed up spawning sprites
+.proc IndexSpriteList
+  .scope
+  ldy #0
+@Loop:
+  lda SpriteListRAM,y
+  cmp #255 ; 255 marks the end of the list
+  beq @Exit
+  ; Get screen number
+  lsr
+  lsr
+  lsr
+  lsr
+  tax
+  ; Write sprite number to the list, if the
+  ; screen doesn't already have a sprite set for it
+  lda FirstSpriteOnScreen,x
+  cmp #255
+  bne :+
+  tya
+  sta FirstSpriteOnScreen,x
+:
+  iny
+  iny
+  iny
+  bne @Loop
+@Exit:
+  .endscope
+  rts
+.endproc
+
 .proc LevelDecodeCommand
 ObjectType = DecodeObjectType
 ObjectXY = DecodeObjectXY
@@ -661,6 +668,23 @@ IsSandbox: ; Happens after the initial ground is set up
     sub #1
     bmi :+
       jsr LoadLevel
+
+      ; Be extra sure the sprite list is okay,
+      ; because if it loads one that's all zeros
+      ; it will hang because of no terminator byte.
+      ldx #0
+    FixLoop:
+     lda SpriteListRAM+2,x
+     bne @NoFix
+       lda #255
+       sta SpriteListRAM+0,x
+      @NoFix:
+      inx
+      inx
+      inx
+      cpx #255
+      bne FixLoop
+      jsr IndexSpriteList
     :
 
     ; If it's in "Play" mode, don't turn on the sandbox flag

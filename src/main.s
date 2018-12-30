@@ -549,8 +549,11 @@ PlayerDrawY = 5
   lda keynew
   and #KEY_LEFT
   beq :+
-    lda PlaceBlockX
-    cmp #1
+    ; In sandbox mode you can place on column 0
+    ; but in gameplay mode you can't
+    lda SandboxMode
+    eor #1
+    cmp PlaceBlockX
     beq :+
     dec PlaceBlockX
   :

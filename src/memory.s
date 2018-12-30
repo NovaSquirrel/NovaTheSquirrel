@@ -316,7 +316,7 @@ LevelZeroWhenLoad_End:
   IsSXROM:                .res 1 ; if 1, board is MMC1 with 32KB RAM
   IsCustomLevel:          .res 1 ; if nonzero, is a custom level and was launched from the level editor
   CustomLevelMode:        .res 1 ; 0:play, 1:block, 2:sprite
-  CustomLevelSlot:        .res 1 ; 0 to 3
+  CustomLevelSlot:        .res 1 ; 0 to 5, 0 is empty level while 1-5 are the save slots
 
   SandboxMode:         .res 1
 SandboxTilesets_Start:

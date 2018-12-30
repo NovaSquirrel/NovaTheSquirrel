@@ -399,3 +399,9 @@ CopyLoop:
   jsr SetPRG
   jmp ShowSpriteEditor
 .endproc
+
+.proc LevelEditorMenuTrampoline
+  lda #OPTIONS_BANK
+  jsr SetPRG
+  jmp LaunchLevelEditor
+.endproc

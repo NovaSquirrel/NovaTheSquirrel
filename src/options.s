@@ -378,16 +378,7 @@ ChoiceValues:
   .byt "No  Yes "
 .endproc
 
-.proc ShowDeleteSaveScreen
-  jsr WaitVblank
-  lda #0
-  sta PPUMASK
-  lda #' '
-  jsr ClearNameCustom
-
-  PositionXY 0, 10, 4
-  jsr PutStringImmediate
-  .byt "Delete save?",0
+.proc ShowDeleteSavedShared
   PositionXY 0, 3, 14
   jsr PutStringImmediate
   .byt "Push Select if you're sure",0
@@ -401,6 +392,20 @@ ChoiceValues:
   lda #0
   sta PPUSCROLL
   sta PPUSCROLL
+  rts
+.endproc
+
+.proc ShowDeleteSaveScreen
+  jsr WaitVblank
+  lda #0
+  sta PPUMASK
+  lda #' '
+  jsr ClearNameCustom
+
+  PositionXY 0, 10, 4
+  jsr PutStringImmediate
+  .byt "Delete save?",0
+  jsr ShowDeleteSavedShared
 
 : jsr ReadJoy
   lda keynew
@@ -411,6 +416,32 @@ ChoiceValues:
   sta SaveTag
 DontResetSave:
   jmp Reset
+.endproc
+
+.proc ShowDeleteLevelScreen
+  jsr WaitVblank
+  lda #0
+  sta PPUMASK
+  lda #' '
+  jsr ClearNameCustom
+
+  PositionXY 0, 10, 4
+  jsr PutStringImmediate
+  .byt "Delete level?",0
+  jsr ShowDeleteSavedShared
+
+: jsr ReadJoy
+  lda keynew
+  beq :-
+  and #KEY_SELECT
+  beq DontResetSave
+    lda CustomLevelSlot
+    beq :+
+      sub #1
+      jsr SaveLevel
+    :
+DontResetSave:
+  jmp LaunchLevelEditor
 .endproc
 
 OptionsBackground:
@@ -424,6 +455,7 @@ Cursor = 13
 
   lda #0
   sta Cursor
+  sta IsCustomLevel
 
 ; Write the options
   PositionXY 0, 11, 4
@@ -960,12 +992,7 @@ ModeEnemy:
 
 ModeErase:
   jsr ClearLevelMap
-  lda CustomLevelSlot
-  beq :+
-    sub #1
-    jsr SaveLevel
-  :
-  jmp LaunchLevelEditor
+  jmp ShowDeleteLevelScreen
 
 ClearLevelMap:
   ; Init pointer for $6000
@@ -983,17 +1010,18 @@ ClearLevelMap:
   cpx #$70
   bne :-
 
-  ; Also delete enemy list
   ; A and Y are still zero
-: sta SpriteListRAM,y
-  iny
-  bne :-
-
   ; Clear the tilesets
   ldx #SandboxTilesets_Length-1
 : sta SandboxTerrain,x
   dex
   bpl :-
+
+  ; Also delete enemy list
+  lda #255
+: sta SpriteListRAM,y
+  iny
+  bne :-
   rts
 .endproc
 

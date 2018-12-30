@@ -57,31 +57,15 @@ EnemyNamePointer = LevelSpritePointer
   C_RIGHT = $99
 .endenum
 
-.proc ShowSpriteEditor
-.if 0
-  lda #33
-  sta SpriteListRAM+0
-  sta SpriteListRAM+1
-  sta SpriteListRAM+2
-  lda #44
-  sta SpriteListRAM+3
-  sta SpriteListRAM+4
-  sta SpriteListRAM+5
-  lda #55
-  sta SpriteListRAM+6
-  sta SpriteListRAM+7
-  sta SpriteListRAM+8
-  lda #66
-  sta SpriteListRAM+9
-  sta SpriteListRAM+10
-  sta SpriteListRAM+11
-  lda #77
-  sta SpriteListRAM+12
-  sta SpriteListRAM+13
-  sta SpriteListRAM+14
-.endif
-  jsr SortEnemyList
 
+.proc ShowSpriteEditor
+  ldx #0
+  stx PlaceBlockX
+  stx PlaceBlockY
+  jsr SortEnemyList
+.endproc
+; Inline tail call
+.proc ReshowSpriteEditor
   jsr WaitVblank
   lda #0
   sta PPUMASK
@@ -147,8 +131,6 @@ EnemyNamePointer = LevelSpritePointer
   sta PPUCTRL
 
   ldx #0
-  stx PlaceBlockX
-  stx PlaceBlockY
   stx EnemyEditMove
   dex
   stx PlaceBlockItemIndex ; start out 255
@@ -323,6 +305,10 @@ DisplayedSprite:
       jsr EnemyEditScan    
   :
 
+  lda keynew
+  and #KEY_START
+  jne SpriteEditorMenu
+
   ; A = select enemies, or place down new ones
   lda keynew
   and #KEY_A
@@ -368,7 +354,7 @@ DirectionTiles:
   jsr EnemyEditScan
   jsr LocateEnemyByXY
 Fail:
-  jmp ShowSpriteEditor::Loop
+  jmp ReshowSpriteEditor::Loop
 .endproc
 
 .proc SelectedAnEnemy
@@ -495,7 +481,7 @@ EraseMenu:
   sta PPUSCROLL
   sta PPUSCROLL
 
-  jmp ShowSpriteEditor::Loop
+  jmp ReshowSpriteEditor::Loop
 
 EraseLine:
   lda #' '
@@ -880,6 +866,31 @@ Loop1:
   inx
   cpx #255
   bne Loop1
+
+  ; Also set all empty sprites to column 255
+  ; so they'll be interpreted as end of list
+  ldx #0
+FixLoop:
+  lda SpriteListRAM+2,x
+  bne :+
+    lda #255
+    sta SpriteListRAM+0,x
+  :
+
+  ; Fix unreachable Y positions
+  lda SpriteListRAM+1,x
+  and #15
+  cmp #15
+  bne :+
+    dec SpriteListRAM+1,x
+  :
+
+  inx
+  inx
+  inx
+  cpx #255
+  bne FixLoop
+
   rts
 .endproc
 
@@ -1200,3 +1211,121 @@ End:
 
 .endproc
 
+.proc SpriteEditorMenu
+CursorY = 5
+  jsr SortEnemyList
+  jsr ScreenOff
+  lda #' '
+  jsr ClearNameCustom
+  jsr ClearOAM
+
+  PositionXY 0, 8, 4
+  jsr PutStringImmediate
+  .byt "-Enemy placement:-",0
+
+  PositionXY 0, 3, 8
+  jsr PutStringImmediate
+  .byt "Save level",0
+
+  PositionXY 0, 3, 10
+  jsr PutStringImmediate
+  .byt "Save & test level",0
+
+  PositionXY 0, 3, 12
+  jsr PutStringImmediate
+  .byt "Save & edit level",0
+
+  PositionXY 0, 3, 14
+  jsr PutStringImmediate
+  .byt "Exit to menu",0
+
+  lda #0
+  sta CursorY
+  jsr ScreenOn
+
+Loop:
+  jsr WaitVblank
+  lda #2
+  sta OAM_DMA
+
+  jsr ReadJoy
+
+  lda keynew
+  and #KEY_DOWN
+  beq :+
+    inc CursorY
+    lda CursorY
+    cmp #4
+    bne :+
+      lda #0
+      sta CursorY
+  :
+  lda keynew
+  and #KEY_UP
+  beq :+
+    dec CursorY
+    bpl :+
+      lda #3
+      sta CursorY
+  :
+  lda keynew
+  and #KEY_A
+  beq :+
+    ldx CursorY
+    bne NotSave
+      jsr DoSave
+      jmp ReshowSpriteEditor
+    NotSave:
+
+    dex
+    bne NotSaveTest
+      lda #0
+      sta CustomLevelMode
+      jsr DoSave
+      lda #SANDBOX_LEVEL ; should be the last level slot, modify if not
+      sta StartedLevelNumber
+      jmp StartLevel
+    NotSaveTest:
+
+    dex
+    bne NotSaveEdit
+      lda #1
+      sta CustomLevelMode
+      jsr DoSave
+      lda #SANDBOX_LEVEL ; should be the last level slot, modify if not
+      sta StartedLevelNumber
+      lda #1
+      sta SandboxFlyMode
+      jmp StartLevel
+
+    NotSaveEdit:
+    ; Exit to menu
+      jmp LevelEditorMenuTrampoline
+  :
+
+  lda #0
+  sta OAM_ATTR+(4*0)
+  lda #$52
+  sta OAM_TILE+(4*0)
+  lda CursorY
+  asl
+  asl
+  asl
+  asl
+  add #8*8-1
+  sta OAM_YPOS+(4*0)
+
+  lda #2*8
+  sta OAM_XPOS+(4*0)
+
+  lda keynew
+  and #KEY_B
+  jeq Loop
+Exit:
+  jmp ReshowSpriteEditor
+
+DoSave:
+  lda CustomLevelSlot
+  sub #1
+  jmp SaveLevel
+.endproc
