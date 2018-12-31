@@ -62,6 +62,7 @@ EnemyNamePointer = LevelSpritePointer
   ldx #0
   stx PlaceBlockX
   stx PlaceBlockY
+  stx EnemyEditScreen
   jsr SortEnemyList
 .endproc
 ; Inline tail call
@@ -69,7 +70,6 @@ EnemyNamePointer = LevelSpritePointer
   jsr WaitVblank
   lda #0
   sta PPUMASK
-  sta EnemyEditScreen
   jsr ClearOAM
   lda #GraphicsUpload::CHR_ENEMYEDIT
   jsr DoGraphicUpload
@@ -77,16 +77,16 @@ EnemyNamePointer = LevelSpritePointer
   lda #' '
   jsr ClearNameCustom
 
-  PositionXY 0, 7, 4
+  PositionXY 0, 7, 3
   jsr PutStringImmediate
   .byt "-Enemy placement:-",0
 
   ; UI stuff
-  PositionXY 0, 7, 6
+  PositionXY 0, 7, 5
   jsr PutStringImmediate
   .byt "Screen:",0
 
-  ; Upload a smiley in the sprite CH  .byt Enemy::section (tile $63)
+  ; Upload a smiley in the sprite CHR
   lda #$16
   sta PPUADDR
   lda #$30
@@ -99,7 +99,7 @@ EnemyNamePointer = LevelSpritePointer
   bne :-
 
   ; Top edge
-  PositionXY 0, 7, 7
+  PositionXY 0, 7, 6
   lda #4
   sta PPUDATA
   lda #5
@@ -108,7 +108,7 @@ EnemyNamePointer = LevelSpritePointer
   sta PPUDATA
 
   ; Bottom edge
-  PositionXY 0, 7, 23
+  PositionXY 0, 7, 22
   lda #9
   sta PPUDATA
   lda #10
@@ -119,11 +119,11 @@ EnemyNamePointer = LevelSpritePointer
   ; Make the vertical bars on the sides sides
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
   sta PPUCTRL
-  PositionXY 0, 7, 8
+  PositionXY 0, 7, 7
   lda #7
   ldx #15
   jsr WritePPURepeated
-  PositionXY 0, 24, 8
+  PositionXY 0, 24, 7
   lda #8
   ldx #15
   jsr WritePPURepeated
@@ -169,7 +169,7 @@ DisplaySprite:
   .endrep
 
   ; Display the four flags
-  PositionXY 0, 8, 25
+  PositionXY 0, 8, 26
   lda SpriteListRAM,x ; X is now pointing to the second byte with that INX earlier
   lsr
   lsr
@@ -192,7 +192,7 @@ DisplaySprite:
 DisplayNoSprite:
   lda #' '
   jsr WritePPURepeated16
-  PositionXY 0, 8, 25
+  PositionXY 0, 8, 26
   lda #' '
   jsr WritePPURepeated16
 DisplayedSprite:
@@ -270,7 +270,7 @@ DisplayedSprite:
   asl
   asl
   asl
-  add #8*8-1
+  add #8*7-1
   sta OAM_YPOS
 
   lda keynew
@@ -342,6 +342,187 @@ DirectionTiles:
 .endproc
 
 .proc PlaceNewEnemy
+CursorY = 0
+EnemyMenuLength = 1
+EnemyMenuPointer = 2
+EnemyNamePointer = 4
+  ; Print the four sprite slot names and the always-loaded slot
+  jsr WaitVblank
+  PositionXY 0, 8, 23
+  lda SandboxSpSlot1
+  jsr PrintCategoryName
+
+  PositionXY 0, 8, 24
+  lda SandboxSpSlot2
+  jsr PrintCategoryName
+
+  PositionXY 0, 8, 25
+  lda SandboxSpSlot3
+  jsr PrintCategoryName
+
+  PositionXY 0, 8, 26
+  lda SandboxSpSlot4
+  jsr PrintCategoryName
+
+  PositionXY 0, 8, 27
+  lda #14 ; generic
+  jsr PrintCategoryName
+
+  lda #0
+  sta PPUSCROLL
+  sta PPUSCROLL
+
+  ; -----------------------------------
+
+  lda #0
+  sta CursorY
+ChooseCategoryLoop:
+  jsr WaitVblank
+
+  lda #2
+  sta OAM_DMA
+
+  jsr ReadJoy
+
+  lda keynew
+  and #KEY_DOWN
+  beq :+
+    inc CursorY
+    lda CursorY
+    cmp #5
+    bne :+
+      lda #0
+      sta CursorY
+  :
+  lda keynew
+  and #KEY_UP
+  beq :+
+    dec CursorY
+    bpl :+
+      lda #4
+      sta CursorY
+  :
+ 
+  lda keynew
+  and #KEY_B
+  beq :+
+    jsr EraseCategoryNames
+    jmp ReshowSpriteEditor::Loop
+  :
+
+  jsr DrawCursor
+
+  lda keynew
+  and #KEY_A
+  beq ChooseCategoryLoop
+
+  ; -----------------------------------
+  ; Now find the menu data for the picked category
+
+  jsr EraseCategoryNames
+
+  ; The last category is the generic slot so use a hardcoded value
+  ; but for the first four use an array
+  ldx CursorY
+  cpx #4 ; the generic slot
+  bne :+
+    lda #14 ; last entry
+    bne :++
+  :
+    lda SandboxSpSlot1,x
+  :
+
+  ; Calculate the index. *12
+  asl
+  asl
+  sta 0
+  asl
+  add 0
+  tax
+  ; Get the data
+  lda EnemyMenuSets+9,x
+  sta EnemyMenuLength
+
+
+  lda EnemyMenuSets+10,x
+  sta EnemyMenuPointer+0
+  lda EnemyMenuSets+11,x
+  sta EnemyMenuPointer+1
+
+  ; Now draw the second menu
+  ldy #0
+  ldx EnemyMenuLength
+  jsr WaitVblank
+  PositionXY 0, 8, 23
+  jsr PrintEnemyName
+  dex
+  beq :+
+  PositionXY 0, 8, 24
+  jsr PrintEnemyName
+  dex
+  beq :+
+  PositionXY 0, 8, 25
+  jsr PrintEnemyName
+  dex
+  beq :+
+  PositionXY 0, 8, 26
+  jsr PrintEnemyName
+  dex
+  beq :+
+  PositionXY 0, 8, 27
+  jsr PrintEnemyName
+:
+  lda #0
+  sta PPUSCROLL
+  sta PPUSCROLL
+
+  ; -----------------------------------
+  lda #0
+  sta CursorY
+ChooseEnemyLoop:
+  jsr WaitVblank
+
+  lda #2
+  sta OAM_DMA
+
+  jsr ReadJoy
+
+  lda keynew
+  and #KEY_DOWN
+  beq :+
+    inc CursorY
+    lda CursorY
+    cmp EnemyMenuLength
+    bne :+
+      lda #0
+      sta CursorY
+  :
+  lda keynew
+  and #KEY_UP
+  beq :+
+    dec CursorY
+    bpl :+
+      ldx EnemyMenuLength
+      dex
+      stx CursorY
+  :
+ 
+  lda keynew
+  and #KEY_B
+  beq :+
+    jsr EraseCategoryNames
+    jmp PlaceNewEnemy
+  :
+
+  jsr DrawCursor
+
+  lda keynew
+  and #KEY_A
+  beq ChooseEnemyLoop
+
+  ; -----------------------------------
+  jsr EraseCategoryNames
+
   jsr FindFreeEnemyList
   bcc Fail
   lda PlaceBlockX
@@ -349,27 +530,121 @@ DirectionTiles:
   lda PlaceBlockY
   and #15
   sta SpriteListRAM+1,x
-  lda #2
+
+  ; Set the type according to the choice earlier
+  ; *3
+  lda CursorY
+  asl
+  add CursorY
+  tay
+  lda (EnemyMenuPointer),y
+  ; Face left
+  sec
+  rol
   sta SpriteListRAM+2,x
   jsr EnemyEditScan
   jsr LocateEnemyByXY
 Fail:
   jmp ReshowSpriteEditor::Loop
+
+DrawCursor:
+  ; Draw cursor
+  lda #OAM_COLOR_1
+  sta OAM_ATTR+0
+  lda #OAM_COLOR_0
+  sta OAM_ATTR+4
+  lda #$51
+  sta OAM_TILE+4
+  lda #7*8
+  sta OAM_XPOS+4
+  lda CursorY
+  asl
+  asl
+  asl
+  add #8*23-1
+  sta OAM_YPOS+4
+  rts
+
+PrintCategoryName:
+  ; *12 to get an index to the name
+  asl
+  asl
+  sta 0
+  asl
+  add 0
+  tax
+  ; Print the actual name
+  .repeat 9, I
+    lda EnemyMenuSets+I,x
+    sta PPUDATA
+  .endrep
+  rts
+
+PrintEnemyName:
+  iny ; Skip enemy type
+
+  ; Get name
+  lda (EnemyMenuPointer),y
+  sta EnemyNamePointer+0
+  iny
+  lda (EnemyMenuPointer),y
+  sta EnemyNamePointer+1
+  iny
+
+  ; Write name
+  sty TempY
+  ldy #0
+: lda (EnemyNamePointer),y
+  beq @Exit
+  sta PPUDATA
+  iny
+  bne :-
+@Exit:
+  ldy TempY
+  rts
+
+EraseCategoryNames:
+  ; Hide the cursor sprite
+  lda #255
+  sta OAM_YPOS+4
+
+  jsr WaitVblank
+
+  PositionXY 0, 8, 23
+  lda #' '
+  jsr WritePPURepeated16
+  PositionXY 0, 8, 24
+  lda #' '
+  jsr WritePPURepeated16
+  PositionXY 0, 8, 25
+  lda #' '
+  jsr WritePPURepeated16
+  PositionXY 0, 8, 26
+  lda #' '
+  jsr WritePPURepeated16
+  PositionXY 0, 8, 27
+  lda #' '
+  jsr WritePPURepeated16
+
+  lda #0
+  sta PPUSCROLL
+  sta PPUSCROLL
+  rts
 .endproc
 
 .proc SelectedAnEnemy
 Cursor = 0
   jsr WaitVblank
-  PositionXY 0, 25, 8
+  PositionXY 0, 25, 7
   jsr PutStringImmediate
   .byt "Move",0
-  PositionXY 0, 25, 9
+  PositionXY 0, 25, 8
   jsr PutStringImmediate
   .byt "Flags",0
-  PositionXY 0, 25, 10
+  PositionXY 0, 25, 9
   jsr PutStringImmediate
   .byt "Copy",0
-  PositionXY 0, 25, 11
+  PositionXY 0, 25, 10
   jsr PutStringImmediate
   .byt "Erase",0
 
@@ -404,7 +679,7 @@ Loop:
   asl
   asl
   asl
-  add #8*8-1
+  add #8*7-1
   sta OAM_YPOS+4
   lda #24*8
   sta OAM_XPOS+4
@@ -469,13 +744,13 @@ EraseMenu:
 
   jsr WaitVblank
   ; Erase the menu
+  PositionXY 0, 25, 7
+  jsr EraseLine
   PositionXY 0, 25, 8
   jsr EraseLine
   PositionXY 0, 25, 9
   jsr EraseLine
   PositionXY 0, 25, 10
-  jsr EraseLine
-  PositionXY 0, 25, 11
   jsr EraseLine
   lda #0
   sta PPUSCROLL
@@ -565,9 +840,9 @@ Render:
 
   ; Unrolled loop to upload the whole preview in one vblank
   .repeat 16, I
-    lda #>($2000+I+(32*8+8))
+    lda #>($2000+I+(32*7+8))
     sta PPUADDR
-    lda #<($2000+I+(32*8+8))
+    lda #<($2000+I+(32*7+8))
     sta PPUADDR
 
     .repeat 15, J
@@ -579,9 +854,9 @@ Render:
   ; I also tried to do it with less loop unrolling but it ran out of vblank budget
   .if 0
     .repeat 16, I
-      lda #>($2000+I+(32*8+8))
+      lda #>($2000+I+(32*7+8))
       sta PPUADDR
-      lda #<($2000+I+(32*8+8))
+      lda #<($2000+I+(32*7+8))
       sta PPUADDR
 
       ldx #I<<4
@@ -598,7 +873,7 @@ Render:
 
   ; Update UI
   jsr WaitVblank
-  PositionXY 0, 14, 6
+  PositionXY 0, 14, 5
   ldx EnemyEditScreen
   lda Hex,x
   sta PPUDATA
@@ -740,7 +1015,7 @@ Loop:
   asl
   asl
   asl
-  add #8*8-1
+  add #8*7-1
   sta OAM_YPOS,y
   lda #OAM_COLOR_1
   sta OAM_ATTR,y
