@@ -171,14 +171,10 @@ DisplaySprite:
   ; Display the four flags
   PositionXY 0, 8, 26
   lda SpriteListRAM,x ; X is now pointing to the second byte with that INX earlier
-  lsr
-  lsr
-  lsr
-  lsr
   sta 0
   .repeat 4
     lda #'0'
-    lsr 0
+    asl 0
     adc #0
     sta PPUDATA
   .endrep
@@ -701,7 +697,7 @@ Loop:
   dex
   bne NotFlags
     ; Allow editing enemy flags
-    jmp EraseMenu
+    jmp EditFlags
   NotFlags:
 
   dex
@@ -762,6 +758,83 @@ EraseLine:
   lda #' '
   ldx #5
   jmp WritePPURepeated
+
+EditFlags:
+  lda #3
+  sta Cursor
+EditFlagsLoop:
+  jsr WaitVblank
+  lda #2
+  sta OAM_DMA
+
+  jsr ReadJoy
+
+
+  lda keynew
+  and #KEY_A
+  beq FlagsNotA
+    lda #7
+    sub Cursor
+    jsr IndexAToBitmap
+    ; Mask is in A
+
+    ldx PlaceBlockItemIndex
+    eor SpriteListRAM+1,x
+    sta SpriteListRAM+1,x
+
+    jsr WaitVblank
+    lda #>$2348
+    sta PPUADDR
+    lda #<$2348
+    add Cursor
+    sta PPUADDR
+
+    lda #7
+    sub Cursor
+    jsr IndexAToBitmap
+    and SpriteListRAM+1,x
+    cmp #1
+    lda #'0'
+    adc #0
+    sta PPUDATA
+
+    lda #0
+    sta PPUSCROLL
+    sta PPUSCROLL
+  FlagsNotA:
+
+  lda keynew
+  and #KEY_LEFT
+  beq :+
+    dec Cursor
+  :
+  lda keynew
+  and #KEY_RIGHT
+  beq :+
+    inc Cursor
+  :
+  lda Cursor
+  and #3
+  sta Cursor
+
+  lda #27*8-1
+  sta OAM_YPOS+4
+  lda Cursor
+  asl
+  asl
+  asl
+  add #8*8
+  sta OAM_XPOS+4
+  lda #0
+  sta OAM_ATTR+4
+  lda #$51
+  sta OAM_TILE+4
+
+  lda keynew
+  and #KEY_B
+  jeq EditFlagsLoop
+
+  jmp EraseMenu
 .endproc
 
 .proc EnemyEditLevelDraw
