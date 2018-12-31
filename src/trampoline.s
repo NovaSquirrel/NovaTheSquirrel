@@ -405,3 +405,16 @@ CopyLoop:
   jsr SetPRG
   jmp LaunchLevelEditor
 .endproc
+
+.ifdef NEW_TOGGLE_BEHAVIOR
+.proc CopyMetatileFlagsFar
+  lda #MAINLOOP_BANK
+  jsr _SetPRG
+  ldy #0
+: lda MetatileFlagsROM,y
+  sta MetatileFlags,y
+  iny
+  bne :-
+  jmp SetPRG_Restore
+.endproc
+.endif

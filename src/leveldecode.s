@@ -95,14 +95,7 @@ LevelBank = 15
   jsr CopyFromSavedInventory
 
 .ifdef NEW_TOGGLE_BEHAVIOR
-  ; Copy the metatile flags
-  lda #MAINLOOP_BANK
-  jsr SetPRG
-  ldy #0
-: lda MetatileFlagsROM,y
-  sta MetatileFlags,y
-  iny
-  bne :-
+  jsr CopyMetatileFlagsFar
 .endif
 
   ; Using Y for these loops because X needs to be preserved for a bit later

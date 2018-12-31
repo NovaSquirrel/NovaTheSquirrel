@@ -43,7 +43,7 @@ CREDITS_BANK = $d
 ABILITY_HELP_BANK = $d
 DABG_BANK = $5
 EXTRAS_BANK = $4 ; DABG resources, other games I can fit!
-SPRITEEDIT_BANK = $9
+SPRITEEDIT_BANK = $4
 
 .segment "PRG8" ; object bank
 .include "object.s"
@@ -60,7 +60,6 @@ SPRITEEDIT_BANK = $9
 .include "player.s"
 .include "scrolling.s"
 .include "metaplayer.s"
-.include "spriteedit.s"
 
 .segment "PRGa" ; compressed graphics
 .segment "PRGb" ; compressed graphics
@@ -117,5 +116,6 @@ SPRITEEDIT_BANK = $9
 
 .segment "PRG4" ; extras
 .include "extras.s"
+.include "spriteedit.s"
 .segment "PRG5" ; DABG
 .incbin "DABG_MAIN.bin"

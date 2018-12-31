@@ -59,6 +59,7 @@ EnemyNamePointer = LevelSpritePointer
 
 
 .proc ShowSpriteEditor
+  jsr CopyMetatileFlagsFar
   ldx #0
   stx PlaceBlockX
   stx PlaceBlockY
@@ -873,7 +874,7 @@ NoMatch:
 
   ; Use something else to determine the icon to use
   ldx 0
-  lda MetatileFlagsROM,x
+  lda MetatileFlags,x
   sta 1
 
   and #M_BEHAVIOR
