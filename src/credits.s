@@ -225,6 +225,8 @@ CreditsData:
   .byt FOR,     "Music",0
   .byt NAME,    "Oliver Kovacs",0
   .byt COMMAS
+  .byt FOR,     "Cover Art",0
+  .byt NAME,    "Kee Smith",0
 
   .byt SECTION, "DESIGN",0
   .byt FOR,     "Some enemy graphics",0
