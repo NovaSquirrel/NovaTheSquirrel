@@ -1288,7 +1288,7 @@ BallGuy:
 Thwomp:
   .byt "SMASH guy",0
 Cannon:
-  .byt "DinnerBlaster",0
+  .byt "Dinner Blaster",0
 Mine:
   .byt "Mine",0
 FireWalk:
@@ -1348,7 +1348,7 @@ Turkey:
 BombPopGen:
   .byt "Bomb pops",0
 MamaLuigi:
-  .byt "Mama Luigi",0
+  .byt "Finger gun",0
 Toast:
   .byt "Toast",0
 Grillbert:

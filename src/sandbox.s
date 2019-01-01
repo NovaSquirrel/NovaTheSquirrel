@@ -740,13 +740,13 @@ SpritesNames:
   MiniFontText "CASTLE"
 
 SpPalettesNames:
-  MiniFontText "A"
-  MiniFontText "B"
-  MiniFontText "C"
-  MiniFontText "D"
-  MiniFontText "E"
-  MiniFontText "F"
-  MiniFontText "G"
+  MiniFontText "RED ORANGE"
+  MiniFontText "RED BLUE"
+  MiniFontText "MAGENTA GREEN"
+  MiniFontText "PURPLE BLUE"
+  MiniFontText "PINK PURPLE"
+  MiniFontText "WORLD FIVE"
+  MiniFontText "CASTLE"
 .endproc
 
 .proc ApplySandboxGFXPicker
