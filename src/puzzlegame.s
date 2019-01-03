@@ -185,6 +185,37 @@ Loop:
   ldx #0
   jsr PuzzleDoPlayer
 
+  ; Pausing
+  lda keynew
+  and #KEY_START
+  beq NoPause
+    lda #BG_ON|OBJ_ON|LIGHTGRAY
+    sta PPUMASK
+
+    ; Debounce
+    ldy #15
+  : jsr WaitVblank
+    dey
+    bne :-
+
+    ; Wait
+  : jsr WaitVblank
+    jsr PuzzleReadJoy
+    lda keynew
+    and #KEY_START
+    beq :-
+
+    ; Debounce
+    ldy #15
+  : jsr WaitVblank
+    dey
+    bne :-
+
+    lda #BG_ON|OBJ_ON
+    sta PPUMASK
+  NoPause:
+
+
   jmp Loop
 
 
@@ -938,30 +969,225 @@ GravityRight:
   rts
 .endproc
 
+.proc div8 ; see also mul8
+num = 10   ; <-- also result
+denom = 11
+  stx TempX
+  sta num
+  sty denom
+  lda #$00
+  ldx #$07
+  clc
+: rol num
+  rol
+  cmp denom
+  bcc :+
+  sbc denom
+: dex
+  bpl :--
+  rol num
+  tay
+  ldx TempX
+  lda num
+  rts
+.endproc
+
 .proc PuzzleInit
+; Playfield generation logic adapted from Vitamins for GBA
 Column = 0
 Row = 1
 VirusesLeft = 2
-
+MaxY = 3
+Color = 4
+Failures = 5
+TileNum = 6
   lda #10
   sta VirusesLeft
+  lda #200
+  sta Failures
+
+  jsr PuzzleRandomColor
+  sta Color
+  jsr CalculateTileNum
+
+; Calculate maximum allowed height
+  lda #176
+  add VirusesLeft
+  ldy #20
+  jsr div8
+  sta MaxY
+
+; Clear playfield
+  lda #0
+  tay
+: sta PuzzleMap,y
+  iny
+  cpy #128
+  bne :-
+
+  ; -----------------------------------
 
 AddVirusLoop:
+  ; Bail if too many failures
+  lda Failures
+  jeq AbortAddVirus
+
   jsr huge_rand
   and #7
   sta Column
-  jsr huge_rand
+
+: jsr huge_rand
   and #15
+  cmp MaxY
+  bcs :-
+  ; Reverse subtraction, start from the bottom
+  eor #255
+  sec
+  adc #PUZZLE_HEIGHT-1
   sta Row
 
+  ; Make sure this space isn't already taken, and move to a different column if it is
+  jsr PuzzleGridRead
+  beq XOkay
 
-  dec VirsuesLeft
+  lda Column
+  eor #4
+  sta Column
+  jsr PuzzleGridRead
+  beq XOkay
+
+  lda Column
+  eor #2
+  sta Column
+  jsr PuzzleGridRead
+  beq XOkay
+
+  lda Column
+  eor #1
+  sta Column
+  jsr PuzzleGridRead
   bne AddVirusLoop
+XOkay:
 
+  ; Y is now the index of the grid square the virus is going in
+
+  ; Avoid three-in-a-rows
+  lda Column
+  cmp #2
+  bcc :+
+    lda TileNum
+    cmp PuzzleMap-PUZZLE_HEIGHT*1,y
+    bne :+
+    cmp PuzzleMap-PUZZLE_HEIGHT*2,y
+    bne :+
+      dec Failures
+      jmp AddVirusLoop
+  :
+
+  lda Column
+  cmp #PUZZLE_WIDTH-2
+  bcs :+
+    lda TileNum
+    cmp PuzzleMap+PUZZLE_HEIGHT*1,y
+    bne :+
+    cmp PuzzleMap+PUZZLE_HEIGHT*2,y
+    bne :+
+      dec Failures
+      jmp AddVirusLoop
+  :
+
+  lda Row
+  cmp #2
+  bcc :+
+    lda TileNum
+    cmp PuzzleMap-1,y
+    bne :+
+    cmp PuzzleMap-2,y
+    bne :+
+      dec Failures
+      jmp AddVirusLoop
+  :
+
+  lda Row
+  cmp #PUZZLE_HEIGHT-2
+  bcs :+
+    lda TileNum
+    cmp PuzzleMap+1,y
+    bne :+
+    cmp PuzzleMap+2,y
+    bne :+
+      dec Failures
+      jmp AddVirusLoop
+  :
+
+  ; "Allow some three-in-a-rows (oxo) for really dense virus levels."
+  lda Failures
+  cmp #150
+  bcc Under150
+    ; Vertical
+    lda Row
+    cmp #1
+    bcc :+
+    cmp #PUZZLE_HEIGHT-1
+    bcs :+
+    lda TileNum
+    cmp PuzzleMap-1,y
+    bne :+
+    cmp PuzzleMap+1,y
+    bne :+
+      dec Failures
+      jmp AddVirusLoop
+    :
+
+    ; Horizontal
+    lda Column
+    cmp #1
+    bcc :+
+    cmp #PUZZLE_WIDTH-1
+    bcs :+
+    lda TileNum
+    cmp PuzzleMap-PUZZLE_HEIGHT,y
+    bne :+
+    cmp PuzzleMap+PUZZLE_HEIGHT,y
+    bne :+
+      dec Failures
+      jmp AddVirusLoop
+    :
+  Under150:
+
+  ; Place the virus
+  ; by writing to the playfield
+  ; (Y still the index for the selected X and Y)
+  lda TileNum
+  sta PuzzleMap,y
+
+  ; Cycle colors
+  inc Color
+  lda Color
+  cmp #3
+  bne :+
+    lda #0
+    sta Color
+  :
+  jsr CalculateTileNum
+
+  dec VirusesLeft
+  jne AddVirusLoop
+AbortAddVirus:
 
   ; ---
   lda #PuzzleStates::INIT_PILL
   sta PuzzleState,x
   inc PuzzleRedraw,x
   rts
+
+CalculateTileNum:
+  lda Color
+  asl
+  asl
+  asl
+  ora #$80 | PuzzleTiles::VIRUS
+  sta TileNum
+  rts
 .endproc
+
