@@ -222,3 +222,6 @@ C .byt GRAPHICS_BANK2|IS_GRAPHIC, <CHRLevelEditIcons,      >CHRLevelEditIcons
 
 R CHR_ENEMYEDIT
 C .byt GRAPHICS_BANK2|IS_GRAPHIC, <CHREnemyEdit,           >CHREnemyEdit
+
+R CHR_PUZZLEGAME
+C .byt GRAPHICS_BANK2|IS_GRAPHIC, <CHRPuzzleGame,          >CHRPuzzleGame

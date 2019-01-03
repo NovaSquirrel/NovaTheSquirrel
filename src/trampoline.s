@@ -313,6 +313,24 @@ Call:
   jmp (0)
 .endproc
 
+.proc LaunchPuzzle
+  jsr WaitVblank
+  lda #0
+  sta PPUMASK
+
+  ; Upload graphics to BG and sprite sections
+  lda #GraphicsUpload::CHR_PUZZLEGAME
+  jsr DoGraphicUpload
+  lda #16
+  sta 0
+  lda #GraphicsUpload::CHR_PUZZLEGAME
+  jsr DoGraphicUpload_Off
+
+  lda #PUZZLEGAME_BANK
+  jsr SetPRG
+  jmp InitPuzzleGame
+.endproc
+
 .proc LaunchDABG
   jsr WaitVblank
   lda #0

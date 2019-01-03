@@ -21,6 +21,7 @@ MEMORY {
   ROMd:   start = $8000, size = $4000, type = ro, file = %O, fill=yes, fillval=$00;
   ROMe:   start = $8000, size = $4000, type = ro, file = %O, fill=yes, fillval=$00;
   ROMf:   start = $c000, size = $4000, type = ro, file = %O, fill=yes, fillval=$00;
+  PUZRAM: start = $0700, size = $0100, type = rw; # puzzle game RAM
 }
 
 SEGMENTS {
@@ -30,6 +31,7 @@ SEGMENTS {
   BSS2:     load = WRAM, type = bss, define = yes, align = $100;
   SAVE:     load = WRAM, type = bss, define = yes, start = $7f00;
   EXWRAM:   load = EXWRAM, type = bss, define = yes, align = $100;
+  PUZRAM:   load = PUZRAM, type = bss, define = yes, align = $100;
   DMC:      load = ROMf, type = ro, align = $40, optional = yes;
   PRG0:    load = ROM0, type = ro;
   PRG1:    load = ROM1, type = ro;

@@ -24,8 +24,9 @@ SPCastle:      ChrFile "../chr/spcastle.pb53",    512,   $1800
 SPFinalBoss:   ChrFile "../chr/spfinalboss.pb53", 512,   $1800
 SPFinalProjectile: ChrFile "../chr/spfinalprojectile.pb53",    512,   $1800
 CHRLevelEditIcons: ChrFile "../chr/leveleditmenu.pb53", 768, $0800
-CHREnemyEdit:  ChrFile "../chr/enemyedit.pb53",   512,   $0800
 
+CHREnemyEdit:  ChrFile "../chr/enemyedit.pb53",   512,   $0800
+CHRPuzzleGame: ChrFile "../chr/puzzlegame.pb53",  512,   $0800
 CHREarlyTiles: ChrFile "../chr/earlytiles.pb53",  2048,  $0800
 
 AnimWaterGfx:

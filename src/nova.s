@@ -34,6 +34,7 @@ VOICE_BANK = $d
 LEVELPROCESS_BANK = $e
 SOUND_BANK = $6
 FAMITONE_BANK = $3
+PUZZLEGAME_BANK = $3
 VWF_BANK = $e
 INVENTORY_BANK = $e
 THINFONT_BANK = $d
@@ -113,6 +114,7 @@ SPRITEEDIT_BANK = $4
 .segment "PRG3" ; Famitone and old songs
 .include "../music/famitone/Original.s"
 .include "../music/famitone/famitone2.s"
+.include "puzzlegame.s"
 
 .segment "PRG4" ; extras
 .include "extras.s"
