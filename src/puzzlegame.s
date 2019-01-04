@@ -44,9 +44,12 @@ PUZZLE_HEIGHT = 16
   PuzzleDir: .res 2       ; Direction
   PuzzleColor1: .res 2
   PuzzleColor2: .res 2
+
+  PuzzleNextColor1: .res 2
+  PuzzleNextColor2: .res 2
+
   PuzzleState: .res 2
   VirusLevel: .res 2
-  VirusCount: .res 2
   PuzzleRedraw: .res 2    ; Redraw entire grid
 .popseg
 
@@ -235,6 +238,44 @@ WriteColors:
 .endproc
 
 .proc PuzzleDoPlayer
+  ; -----------------------------------
+
+  ; Draw the next piece
+  ldy OamPtr
+
+  lda #(12+3)*8
+  sta OAM_XPOS+0,y
+  lda #(12+4)*8
+  sta OAM_XPOS+4,y
+
+  lda #4*8-1
+  sta OAM_YPOS+0,y
+  sta OAM_YPOS+4,y
+
+  ; Calculate the tiles for first and second pieces of the pill
+  lda PuzzleNextColor1,x
+  asl
+  asl
+  asl
+  ora #$80 | PuzzleTiles::LEFT
+  sta OAM_TILE+0,y
+
+  lda PuzzleNextColor2,x
+  asl
+  asl
+  asl
+  ora #$80 | PuzzleTiles::RIGHT
+  sta OAM_TILE+4,y
+
+  lda #OAM_COLOR_3
+  sta OAM_ATTR+0,y
+  sta OAM_ATTR+4,y
+  tya
+  add #8
+  sta OamPtr
+
+  ; -----------------------------------
+
   ldy PuzzleState,x
   lda StateHi,y
   pha
@@ -249,10 +290,17 @@ StateLo:
 .endproc
 
 .proc InitPill
-  jsr PuzzleRandomColor
+  ; Color = next color
+  lda PuzzleNextColor1,x
   sta PuzzleColor1,x
-  jsr PuzzleRandomColor
+  lda PuzzleNextColor2,x
   sta PuzzleColor2,x
+
+  ; Choose a new next color
+  jsr PuzzleRandomColor
+  sta PuzzleNextColor1,x
+  jsr PuzzleRandomColor
+  sta PuzzleNextColor2,x
   lda #3
   sta PuzzleX,x
   lda #0
@@ -283,7 +331,7 @@ SecondY = TempVal + 3 ; second tile Y
 
   ; Rotate
   lda keynew,x
-  and #KEY_A
+  and #KEY_B
   beq NotA
     inc PuzzleDir,x
     lda PuzzleDir,x
@@ -296,7 +344,7 @@ SecondY = TempVal + 3 ; second tile Y
 
   ; Rotate
   lda keynew,x
-  and #KEY_B
+  and #KEY_A
   beq NotB
     dec PuzzleDir,x
     bpl NotB
@@ -425,7 +473,7 @@ ForceFall:
 
   tya
   add #8
-  sty OamPtr
+  sta OamPtr
   rts
 
 SecondPiecePX: ; pixels
@@ -1001,8 +1049,25 @@ MaxY = 3
 Color = 4
 Failures = 5
 TileNum = 6
-  lda #10
+; Init the next color
+  jsr PuzzleRandomColor
+  sta PuzzleNextColor1,x
+  jsr PuzzleRandomColor
+  sta PuzzleNextColor2,x
+
+; Virus count is (Level*4)+4, or 84 if Level>20
+  lda VirusLevel,x
+  cmp #20
+  bcc :+
+    lda #20
+  :
+  asl ; * 4
+  asl
+  add #4
   sta VirusesLeft
+  ; Seems to crash if given >= 80? To do: look into that
+  ; 70 is okay
+
   lda #200
   sta Failures
 
