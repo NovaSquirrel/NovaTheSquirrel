@@ -44,16 +44,20 @@ PUZZLE_HEIGHT = 16
   PuzzleDir: .res 2       ; Direction
   PuzzleColor1: .res 2
   PuzzleColor2: .res 2
-
+  PuzzleSpeed:  .res 2    ; ranges 0-2
   PuzzleNextColor1: .res 2
   PuzzleNextColor2: .res 2
 
   PuzzleState: .res 2
   VirusLevel: .res 2
   PuzzleRedraw: .res 2    ; Redraw entire grid
+
+  PuzzleVersus: .res 1    ; If nonzero, versus mode
 .popseg
 
-.proc InitPuzzleGame
+.proc PuzzleGameMenu
+  CursorY = TempVal ; array of 2
+
   jsr ReseedRandomizer
 
   ; Clear RAM
@@ -64,6 +68,304 @@ PUZZLE_HEIGHT = 16
   inx
   bne :-
 
+  lda #4
+  sta VirusLevel+0
+  sta VirusLevel+1
+  lda #1
+  sta PuzzleSpeed+0
+  sta PuzzleSpeed+1
+
+  ; Turn off screen and draw the menu
+  jsr WaitVblank
+  lda #0
+  sta PPUMASK
+
+  lda #' '
+  jsr ClearNameCustom
+  jsr ClearOAM
+
+
+  ; Menu border
+  ; Top
+  PositionXY 0, 4, 7
+  lda #4
+  sta PPUDATA
+  lda #5
+  ldx #21
+  jsr WritePPURepeated
+  lda #6
+  sta PPUDATA
+  ; Bottom
+  PositionXY 0, 4, 17
+  lda #9
+  sta PPUDATA
+  lda #10
+  ldx #21
+  jsr WritePPURepeated
+  lda #11
+  sta PPUDATA
+
+  ; Make sides
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
+  sta PPUCTRL
+  PositionXY 0, 4, 8
+  lda #7
+  ldx #9
+  jsr WritePPURepeated
+  PositionXY 0, 26, 8
+  lda #8
+  ldx #9
+  jsr WritePPURepeated
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
+  sta PPUCTRL
+
+
+  ; Draw the menu options
+  PositionXY 0, 9, 4
+  jsr PutStringImmediate
+  .byt "- Vitamins -",0
+
+  ; -----------------------------------
+
+  PositionXY 0, 6, 9
+  jsr PutStringImmediate
+  .byt " Mode: Solo  Versus",0
+
+  PositionXY 0, 6, 11
+  jsr PutStringImmediate
+  .byt "Style: Classic",0
+
+  PositionXY 0, 6, 13
+  jsr PutStringImmediate
+  .byt "Count: 1P:04  2P:04",0
+
+  PositionXY 0, 6, 15
+  jsr PutStringImmediate
+  .byt "Speed: 1P:Md  2P:Md ",0
+
+  ; -----------------------------------
+
+  PositionXY 0, 3, 22
+  jsr PutStringImmediate
+  .byt "Guide ",$82,$93," to make lines of",0
+
+  PositionXY 0, 3, 23
+  jsr PutStringImmediate
+  .byt "4 or more. Clear out all ",$88,0
+
+  PositionXY 0, 3, 24
+  jsr PutStringImmediate
+  .byt "to win!",0
+
+  PositionXY 0, 5, 26
+  jsr PutStringImmediate
+  .byt "+: Move    A/B: Rotate",0
+
+  lda #0
+  sta PPUSCROLL
+  sta PPUSCROLL
+  sta CursorY
+  sta CursorY+1
+
+Loop:
+  jsr WaitVblank
+  lda #BG_ON|OBJ_ON
+  sta PPUMASK
+  lda #2
+  sta OAM_DMA
+
+  ; Print the counts and speeds chosen
+  PositionXY 0, 16, 13
+  ldy VirusLevel+0
+  jsr PutDecimal
+  PositionXY 0, 23, 13
+  ldy VirusLevel+1
+  jsr PutDecimal
+
+  PositionXY 0, 16, 15
+  lda PuzzleSpeed+0
+  jsr PutSpeedName
+  PositionXY 0, 23, 15
+  lda PuzzleSpeed+1
+  jsr PutSpeedName
+
+  lda #0
+  sta PPUSCROLL
+  sta PPUSCROLL
+
+  jsr PuzzleReadJoy
+
+  jsr ClearOAM
+  ldx #0
+  jsr RunMenu
+  inx
+  jsr RunMenu
+
+  ; Allow starting the game or returning to the menu
+  lda keynew
+  and #KEY_START
+  jne InitPuzzleGame
+
+  lda keynew
+  and #KEY_B
+  jne Reset
+
+  ; Draw the next piece
+  ldy OamPtr
+
+  lda #5*8
+  sta OAM_XPOS+0,y
+  lda #25*8
+  sta OAM_XPOS+4,y
+
+  lda CursorY+0
+  jsr ShiftCursorY
+  sta OAM_YPOS+0,y
+  lda CursorY+1
+  jsr ShiftCursorY
+  sta OAM_YPOS+4,y
+
+  ; Draw the two cursors
+  lda #$41
+  sta OAM_TILE+0,y
+  lda #$42
+  sta OAM_TILE+4,y
+
+  lda #OAM_COLOR_0
+  sta OAM_ATTR+0,y
+  sta OAM_ATTR+4,y
+  tya
+  add #8
+  sta OamPtr
+
+  jmp Loop
+
+ShiftCursorY:
+  asl
+  asl
+  asl
+  asl
+  add #9*8-1
+  rts
+
+RunMenu:
+  lda keynew,x
+  and #KEY_UP
+  beq :+
+    dec CursorY,x
+  :
+
+  lda keynew,x
+  and #KEY_DOWN
+  beq :+
+    inc CursorY,x
+  :
+
+  lda keynew
+  and #KEY_LEFT
+  beq @NotLeft
+    ldy CursorY,x
+    bne :+
+      ; Solo/Versus
+      lda PuzzleVersus
+      eor #1
+      sta PuzzleVersus
+      jmp @NotLeft
+    :
+    dey
+    bne :+
+      ; Style
+      jmp @NotLeft
+    :
+    dey
+    bne @NotLevelL
+      dec VirusLevel,x
+      bne :+
+        lda #70
+        sta VirusLevel,x
+      :
+      ; Level
+      jmp @NotLeft
+    @NotLevelL:
+    ; Speed
+    dec PuzzleSpeed,x
+    bpl :+
+      lda #2
+      sta PuzzleSpeed,x
+    :
+  @NotLeft:
+
+  lda keynew
+  and #KEY_RIGHT
+  beq @NotRight
+    ldy CursorY,x
+    bne :+
+      ; Solo/Versus
+      lda PuzzleVersus
+      eor #1
+      sta PuzzleVersus
+      jmp @NotRight
+    :
+    dey
+    bne :+
+      ; Style
+      jmp @NotRight
+    :
+    dey
+    bne @NotLevelR
+      inc VirusLevel,x
+      lda VirusLevel,x
+      cmp #71
+      bne :+
+        lda #1
+        sta VirusLevel,x
+      :
+      ; Level
+      jmp @NotRight
+    @NotLevelR:
+    ; Speed
+    inc PuzzleSpeed,x
+    lda PuzzleSpeed,x
+    cmp #3
+    bne :+
+      lda #0
+      sta PuzzleSpeed,x
+    :
+  @NotRight:
+
+  lda CursorY,x
+  and #3
+  sta CursorY,x
+  rts
+
+PutDecimal:
+  lda BCD99,y
+  pha
+  lsr
+  lsr
+  lsr
+  lsr
+  ora #$30
+  sta PPUDATA
+  pla
+  and #15
+  ora #$30
+  sta PPUDATA
+  rts
+
+PutSpeedName:
+  asl
+  tay
+  lda PuzzleSpeedNames+0,y
+  sta PPUDATA
+  lda PuzzleSpeedNames+1,y
+  sta PPUDATA
+  rts
+PuzzleSpeedNames:
+  .byt "LoMdHi"
+.endproc
+
+.proc InitPuzzleGame
   jsr WaitVblank
   lda #0
   sta PPUMASK
@@ -108,7 +410,7 @@ PUZZLE_HEIGHT = 16
   sta PPUDATA
   sta PPUDATA
 
-  ; Make the playfield
+  ; Make the playfield border
   ; Top
   PositionXY 0, 11, 5
   lda #4
@@ -309,10 +611,14 @@ StateLo:
 
   inc PuzzleState,x
 
-  lda #30
+  ldy PuzzleSpeed,x
+  lda PuzzleFallSpeeds,y
   sta PuzzleFallTimer,x
   rts
 .endproc
+
+PuzzleFallSpeeds:
+  .byt 60, 30, 15
 
 .proc FallPill
 Tile1 = TempVal + 0
@@ -410,7 +716,8 @@ SecondY = TempVal + 3 ; second tile Y
 ForceFall:
     inc PuzzleY,x
     inc SecondY
-    lda #30
+    ldy PuzzleSpeed,x
+    lda PuzzleFallSpeeds,y
     sta PuzzleFallTimer,x
 
     lda PuzzleY,x
@@ -1055,6 +1362,7 @@ TileNum = 6
   jsr PuzzleRandomColor
   sta PuzzleNextColor2,x
 
+.if 0
 ; Virus count is (Level*4)+4, or 84 if Level>20
   lda VirusLevel,x
   cmp #20
@@ -1064,9 +1372,15 @@ TileNum = 6
   asl ; * 4
   asl
   add #4
+
   sta VirusesLeft
   ; Seems to crash if given >= 80? To do: look into that
   ; 70 is okay
+.endif
+
+  ; Right now just directly use the 
+  lda VirusLevel,x
+  sta VirusesLeft
 
   lda #200
   sta Failures

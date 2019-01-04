@@ -633,12 +633,11 @@ FeatureCount = TempVal
   lda #0
   sta Cursor
 
-  lda #1
+  lda #3
   sta FeatureCount
 
-  lda LevelCleared+4
+  lda LevelCleared+4 ; Beating the game unlocks credits
   bpl :+
-    inc FeatureCount
     inc FeatureCount
   :
   lda LevelCleared+0
@@ -679,22 +678,26 @@ FeatureCount = TempVal
   PositionXY 0, 3, 12
   jsr PutStringImmediate
   .byt "Double Action Blaster Guys",0
-  lda FeatureCount
-  cmp #1
-  beq :+
   PositionXY 0, 3, 14
   jsr PutStringImmediate
-  .byt "Level Studio",0
+  .byt "Vitamins",0
   PositionXY 0, 3, 16
   jsr PutStringImmediate
-  .byt "Credits",0
+  .byt "Level Studio",0
+
   lda FeatureCount
   cmp #3
   beq :+
   PositionXY 0, 3, 18
   jsr PutStringImmediate
-  .byt "Sound test",0
+  .byt "Credits",0
+  lda FeatureCount
+  cmp #4
+  beq :+
   PositionXY 0, 3, 20
+  jsr PutStringImmediate
+  .byt "Sound test",0
+  PositionXY 0, 3, 22
   jsr PutStringImmediate
   .byt "Early graphics",0
 :
@@ -723,6 +726,8 @@ Loop:
   jeq ShowMainMenu
   dey
   jeq LaunchDABG
+  dey
+  jeq LaunchPuzzle
   dey
   jeq LaunchLevelEditor
   dey

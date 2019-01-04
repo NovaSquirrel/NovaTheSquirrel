@@ -328,7 +328,7 @@ Call:
 
   lda #PUZZLEGAME_BANK
   jsr SetPRG
-  jmp InitPuzzleGame
+  jmp PuzzleGameMenu
 .endproc
 
 .proc LaunchDABG
