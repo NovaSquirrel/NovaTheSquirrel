@@ -40,19 +40,29 @@ PUZZLE_HEIGHT = 16
 
 .pushseg
 .segment "PUZRAM"
+  PuzzleState:  .res 2    ; State each playfield is in
+
+  ; Send garbage
+  PuzzleMatchesMade: .res 2 ; matches made between dropping each piece
+  PuzzleMatchColor:  .res 2*4 ; first player's four colors, then second player's
+
+  ; Receive garbage
+  PuzzleGarbageCount: .res 2
+  PuzzleGarbageColor: .res 2*4
+
   PuzzleX: .res 2
   PuzzleY: .res 2
   PuzzleFallTimer: .res 2 ; Time until the piece falls down one row
   PuzzleDir: .res 2       ; Direction
   PuzzleColor1: .res 2
   PuzzleColor2: .res 2
-  PuzzleSpeed:  .res 2    ; ranges 0-2
   PuzzleNextColor1: .res 2
   PuzzleNextColor2: .res 2
-  PuzzleMatchesMade: .res 2 ; matches made between dropping each piece
 
-  PuzzleState: .res 2
-  VirusLevel: .res 2
+  ; Low, medium or high
+  PuzzleSpeed:  .res 2    ; ranges 0-2
+
+  VirusLevel:   .res 2    ; Number of viruses to clear, in this version
   PuzzleRedraw: .res 2    ; Redraw entire grid
 
   PuzzleVersus: .res 1    ; If nonzero, versus mode
@@ -401,6 +411,10 @@ PuzzleSpeedNames:
   jsr WaitVblank
   lda #0
   sta PPUMASK
+  sta PuzzleGarbageCount
+  sta PuzzleGarbageCount+1
+  sta PuzzleMatchesMade
+  sta PuzzleMatchesMade+1
 
   ; Set palettes
   ldx #$3f
@@ -778,6 +792,110 @@ StateLo:
 .endproc
 
 .proc InitPill
+  ; Send the other player garbage if needed
+  lda PuzzleMatchesMade,x
+  cmp #2
+  bcc NoSendGarbage
+    ; Don't send garbage if they already have some
+    jsr PuzzleOtherPlayer
+;    lda PuzzleGarbageCount,y
+;    bne NoSendGarbage
+      lda PuzzleMatchesMade,x
+      sta PuzzleGarbageCount,y
+
+      ; Preserve X, but multiply it by 4 for now
+      stx TempX
+      txa
+      asl
+      asl
+      tax
+
+      ; Multiply Y by four
+      tya
+      asl
+      asl
+      tay
+
+      ; Copy over the four colors
+      lda PuzzleMatchColor+0,x
+      sta PuzzleGarbageColor+0,y
+      lda PuzzleMatchColor+1,x
+      sta PuzzleGarbageColor+1,y
+      lda PuzzleMatchColor+2,x
+      sta PuzzleGarbageColor+2,y
+      lda PuzzleMatchColor+3,x
+      sta PuzzleGarbageColor+3,y
+
+      ldx TempX
+  NoSendGarbage:
+
+  ; Receive garbage if necessary
+  lda PuzzleGarbageCount,x
+  beq NoReceiveGarbage
+    .scope
+    Column = 0
+    Row = 1
+    Tile = 2
+    inc PuzzleRedraw,x
+
+    ; Make the new tiles start falling
+    lda #PuzzleStates::GRAVITY
+    sta PuzzleState,x
+
+    ; Get index to garbage colors
+    txa
+    asl
+    asl
+    sta TempY
+
+  PutGarbageLoop:
+    ldy TempY
+    lda PuzzleGarbageColor,y
+    sta Tile
+    iny
+    sty TempY
+
+    jsr huge_rand
+    and #7
+    sta Column
+    lda #0
+    sta Row
+    
+    ; Make sure this space isn't already taken, and move to a different column if it is
+    jsr PuzzleGridRead
+    beq XOkay
+
+    lda Column
+    eor #4
+    sta Column
+    jsr PuzzleGridRead
+    beq XOkay
+
+    lda Column
+    eor #2
+    sta Column
+    jsr PuzzleGridRead
+    beq XOkay
+
+    lda Column
+    eor #1
+    sta Column
+    jsr PuzzleGridRead
+    bne NextGarbage ; Skip if it can't.
+    ; Really this should always work though.
+
+  XOkay:
+    lda Tile
+    sta PuzzleMap,y
+
+  NextGarbage:
+    dec PuzzleGarbageCount,x
+    bne PutGarbageLoop
+
+    rts
+    .endscope
+  NoReceiveGarbage:
+
   ; Color = next color
   lda PuzzleNextColor1,x
   sta PuzzleColor1,x
@@ -1424,6 +1542,8 @@ Horizontal:
   cmp Color
   bne NextHorizontal
 
+  jsr PrepareGarbage
+
   ; Clear the tiles
   lda Color
   ora #$86
@@ -1432,7 +1552,6 @@ Horizontal:
 
   ; New slower method of clearing that
   ; will work with multiplayer
-  inc PuzzleMatchesMade,x
 .if 1
   ; Clear out the whole line
 : lda ClearTile
@@ -1510,6 +1629,8 @@ Vertical:
   cmp Color
   bne NextVertical
 
+  jsr PrepareGarbage
+
   ; Clear the tiles
   lda Color
   ora #$86
@@ -1518,7 +1639,6 @@ Vertical:
 
   ; New slower method of clearing that
   ; will work with multiplayer
-  inc PuzzleMatchesMade,x
 .if 1
   ; Clear out the whole line
 : lda ClearTile
@@ -1577,6 +1697,32 @@ NextVerticalColumn:
   lda #8
   sta PuzzleFallTimer,x
   rts
+
+PrepareGarbage:
+  sty TempY
+
+  ; Ignore everything after the first four
+  lda PuzzleMatchesMade,x
+  cmp #4
+  bcc :+
+    rts
+  :
+
+  ; Y = Player*4 + Match count
+  txa
+  asl
+  asl
+  adc PuzzleMatchesMade,x
+  tay
+
+  ; Put a single tile in the array
+  lda Color
+  ora #$80 | PuzzleTiles::SINGLE
+  sta PuzzleMatchColor,y
+
+  inc PuzzleMatchesMade,x
+  ldy TempY
+  rts
 .endproc
 
 .proc PuzzleGravity
@@ -1591,16 +1737,19 @@ NextVerticalColumn:
     rts
   :
 
-  ldy #0
-  sty DidFix
-  sty VirusCount
+  lda #0
+  sta DidFix
+  sta VirusCount
+  ldy PuzzlePlayfieldBase
 FixLoop:
   lda PuzzleMap,y
   bpl :+ ; all playfield tiles are >128, or negative
   jsr CallFix
 : iny
+  beq :+
   cpy #128
   bne FixLoop
+:
 
   lda DidFix
   beq :+
