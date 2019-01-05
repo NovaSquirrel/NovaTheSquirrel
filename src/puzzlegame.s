@@ -713,7 +713,7 @@ WriteZeroRepeated6:
   jmp WritePPURepeated
 
 WriteColors:
-  lda #$26
+  lda #$16
   sta PPUDATA
   lda #$2a
   sta PPUDATA
