@@ -24,6 +24,8 @@ PUZZLE_HEIGHT = 16
   FALL_PILL
   CHECK_MATCH
   GRAVITY
+  VICTORY
+  FAILURE
 .endenum
 
 .enum PuzzleTiles
@@ -47,12 +49,20 @@ PUZZLE_HEIGHT = 16
   PuzzleSpeed:  .res 2    ; ranges 0-2
   PuzzleNextColor1: .res 2
   PuzzleNextColor2: .res 2
+  PuzzleMatchesMade: .res 2 ; matches made between dropping each piece
 
   PuzzleState: .res 2
   VirusLevel: .res 2
   PuzzleRedraw: .res 2    ; Redraw entire grid
 
   PuzzleVersus: .res 1    ; If nonzero, versus mode
+
+  PuzzlePlayfieldBase: .res 1 ; 0 or 128 for player 1 or 2
+
+  PuzzleXSpriteOffset: .res 2 ; Distance to add to X for player 1 and 2's pills and next piece
+  PPU_UpdateLo:      .res 2   ; Low byte of a PPU update for pill placement
+  PPU_UpdateHi:      .res 2   ; High update of a PPU update for pill placement
+  Player2AutoRepeat: .res 1
 .popseg
 
 .proc PuzzleGameMenu
@@ -74,6 +84,11 @@ PUZZLE_HEIGHT = 16
   lda #1
   sta PuzzleSpeed+0
   sta PuzzleSpeed+1
+
+Reshow:
+  lda #PuzzleStates::INIT_GAME
+  sta PuzzleState+0
+  sta PuzzleState+1
 
   ; Turn off screen and draw the menu
   jsr WaitVblank
@@ -194,6 +209,8 @@ Loop:
   sta PPUSCROLL
 
   jsr PuzzleReadJoy
+  jsr KeyRepeat
+  jsr KeyRepeatP2
 
   jsr ClearOAM
   ldx #0
@@ -234,8 +251,23 @@ Loop:
   lda #OAM_COLOR_0
   sta OAM_ATTR+0,y
   sta OAM_ATTR+4,y
+
+  ; Draw the solo/versus mode select
+  lda #$51
+  sta OAM_TILE+8,y
+  lda #OAM_COLOR_1
+  sta OAM_ATTR+8,y
+  lda #9*8-1
+  sta OAM_YPOS+8,y
+  lda #12*8
+  bit PuzzleVersus
+  bpl :+
+    lda #18*8
+  :
+  sta OAM_XPOS+8,y
+
   tya
-  add #8
+  add #12
   sta OamPtr
 
   jmp Loop
@@ -261,14 +293,14 @@ RunMenu:
     inc CursorY,x
   :
 
-  lda keynew
+  lda keynew,x
   and #KEY_LEFT
   beq @NotLeft
     ldy CursorY,x
     bne :+
       ; Solo/Versus
       lda PuzzleVersus
-      eor #1
+      eor #128
       sta PuzzleVersus
       jmp @NotLeft
     :
@@ -281,7 +313,7 @@ RunMenu:
     bne @NotLevelL
       dec VirusLevel,x
       bne :+
-        lda #70
+        lda #80
         sta VirusLevel,x
       :
       ; Level
@@ -295,14 +327,14 @@ RunMenu:
     :
   @NotLeft:
 
-  lda keynew
+  lda keynew,x
   and #KEY_RIGHT
   beq @NotRight
     ldy CursorY,x
     bne :+
       ; Solo/Versus
       lda PuzzleVersus
-      eor #1
+      eor #128
       sta PuzzleVersus
       jmp @NotRight
     :
@@ -315,7 +347,7 @@ RunMenu:
     bne @NotLevelR
       inc VirusLevel,x
       lda VirusLevel,x
-      cmp #71
+      cmp #81
       bne :+
         lda #1
         sta VirusLevel,x
@@ -390,6 +422,17 @@ PuzzleSpeedNames:
   lda #' '
   jsr ClearNameCustom
 
+
+  lda PuzzleVersus
+  jne DrawVersusPlayfields
+  .scope
+  lda #0
+  sta PuzzleXSpriteOffset
+  lda #<($2000 + 32*6 + 12)
+  sta PPU_UpdateLo
+  lda #>($2000 + 32*6 + 12)
+  sta PPU_UpdateHi
+
   ; Set attributes
   lda #$23
   sta PPUADDR
@@ -429,7 +472,6 @@ PuzzleSpeedNames:
   jsr WritePPURepeated
   lda #11
   sta PPUDATA
-
   ; Make sides
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
   sta PPUCTRL
@@ -441,6 +483,110 @@ PuzzleSpeedNames:
   jsr WritePPURepeated16
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
   sta PPUCTRL
+
+  .endscope
+  jmp DrewSoloPlayfield
+DrawVersusPlayfields:
+  .scope
+  ; Offset things away from the center and into the two playfields
+  lda #<-64
+  sta PuzzleXSpriteOffset+0
+  lda #64
+  sta PuzzleXSpriteOffset+1
+
+  lda #<($2000 + 32*6 + 4)
+  sta PPU_UpdateLo+0
+  lda #>($2000 + 32*6 + 4)
+  sta PPU_UpdateHi+0
+  lda #<($2000 + 32*6 + 20)
+  sta PPU_UpdateLo+1
+  lda #>($2000 + 32*6 + 20)
+  sta PPU_UpdateHi+1
+
+  ; Set attributes
+  lda #$23
+  sta PPUADDR
+  lda #$c9
+  sta PPUADDR
+  ldx #0
+
+  lda #%11110000
+  sta PPUDATA
+  sta PPUDATA
+  jsr stx_stx_sta_sta
+  lda #%11111111
+  ldy #6
+: jsr stx_stx_sta_sta
+  dey
+  bne :-
+  lda #%00001111
+  jsr stx_stx_sta_sta
+  jsr stx_stx_sta_sta
+
+  ; Make the playfield border
+  ; Top
+  PositionXY 0, 3, 5
+  lda #4
+  sta PPUDATA
+  lda #5
+  ldx #8
+  jsr WritePPURepeated
+  lda #6
+  sta PPUDATA
+  ; Bottom
+  PositionXY 0, 3, 22
+  lda #9
+  sta PPUDATA
+  lda #10
+  ldx #8
+  jsr WritePPURepeated
+  lda #11
+  sta PPUDATA
+  ; Make sides
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
+  sta PPUCTRL
+  PositionXY 0, 3, 6
+  lda #7
+  jsr WritePPURepeated16
+  PositionXY 0, 12, 6
+  lda #8
+  jsr WritePPURepeated16
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
+  sta PPUCTRL
+
+  ; Player 2's borders
+  PositionXY 0, 19, 5
+  lda #4
+  sta PPUDATA
+  lda #5
+  ldx #8
+  jsr WritePPURepeated
+  lda #6
+  sta PPUDATA
+  ; Bottom
+  PositionXY 0, 19, 22
+  lda #9
+  sta PPUDATA
+  lda #10
+  ldx #8
+  jsr WritePPURepeated
+  lda #11
+  sta PPUDATA
+  ; Make sides
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
+  sta PPUCTRL
+  PositionXY 0, 19, 6
+  lda #7
+  jsr WritePPURepeated16
+  PositionXY 0, 28, 6
+  lda #8
+  jsr WritePPURepeated16
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
+  sta PPUCTRL
+  .endscope
+DrewSoloPlayfield:
+
+
 
   lda #0
   sta PPUSCROLL
@@ -472,9 +618,16 @@ Loop:
   ; Redraw the whole playfield if necessary
   lda PuzzleRedraw
   beq :+
-    jsr PuzzleDrawAll
+    jsr PuzzleDrawSolo
     lda #0
     sta PuzzleRedraw
+    jmp :++ ; Skip player 2 to avoid overflowing vblank
+  :
+  lda PuzzleRedraw+1
+  beq :+
+    jsr PuzzleDrawVersus2
+    lda #0
+    sta PuzzleRedraw+1
   :
 
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
@@ -485,15 +638,39 @@ Loop:
 
   jsr PuzzleReadJoy
   jsr KeyRepeat
+  jsr KeyRepeatP2
   jsr ClearOAM
 
   ldx #0
+  stx PuzzlePlayfieldBase
   jsr PuzzleDoPlayer
+  lda PuzzleVersus
+  beq :+ ; set to 128 when versus mode is on
+    sta PuzzlePlayfieldBase
+    ldx #1
+    jsr PuzzleDoPlayer
+  :
 
   ; Pausing
   lda keynew
   and #KEY_START
   beq NoPause
+    ; Don't allow pausing if someone is winning or losing
+    lda PuzzleState+0
+    cmp #PuzzleStates::VICTORY
+    beq NoPause
+    cmp #PuzzleStates::FAILURE
+    beq NoPause
+    lda PuzzleState+1
+    cmp #PuzzleStates::VICTORY
+    beq NoPause
+    cmp #PuzzleStates::FAILURE
+    beq NoPause
+
+
+    lda keydown
+    and #KEY_SELECT
+    jne PuzzleGameMenu::Reshow
     lda #BG_ON|OBJ_ON|LIGHTGRAY
     sta PPUMASK
 
@@ -523,6 +700,12 @@ Loop:
 
   jmp Loop
 
+stx_stx_sta_sta:
+  stx PPUDATA
+  stx PPUDATA
+  sta PPUDATA
+  sta PPUDATA
+  rts
 
 WriteZeroRepeated6:
   lda #0
@@ -546,8 +729,10 @@ WriteColors:
   ldy OamPtr
 
   lda #(12+3)*8
+  add PuzzleXSpriteOffset,x
   sta OAM_XPOS+0,y
   lda #(12+4)*8
+  add PuzzleXSpriteOffset,x
   sta OAM_XPOS+4,y
 
   lda #4*8-1
@@ -572,6 +757,7 @@ WriteColors:
   lda #OAM_COLOR_3
   sta OAM_ATTR+0,y
   sta OAM_ATTR+4,y
+
   tya
   add #8
   sta OamPtr
@@ -586,9 +772,9 @@ WriteColors:
   rts
 
 StateHi:
-  .hibytes PuzzleInit-1, InitPill-1, FallPill-1, PuzzleMatch-1, PuzzleGravity-1
+  .hibytes PuzzleInit-1, InitPill-1, FallPill-1, PuzzleMatch-1, PuzzleGravity-1, PuzzleVictory-1, PuzzleFailure-1
 StateLo:
-  .lobytes PuzzleInit-1, InitPill-1, FallPill-1, PuzzleMatch-1, PuzzleGravity-1
+  .lobytes PuzzleInit-1, InitPill-1, FallPill-1, PuzzleMatch-1, PuzzleGravity-1, PuzzleVictory-1, PuzzleFailure-1
 .endproc
 
 .proc InitPill
@@ -608,12 +794,45 @@ StateLo:
   lda #0
   sta PuzzleY,x
   sta PuzzleDir,x
+  sta PuzzleMatchesMade,x
 
   inc PuzzleState,x
 
   ldy PuzzleSpeed,x
   lda PuzzleFallSpeeds,y
   sta PuzzleFallTimer,x
+
+  ; If there's a tile in either of the two opening tiles
+  ; then you've lost.
+  ldy PuzzlePlayfieldBase
+  lda PuzzleMap+3*PUZZLE_HEIGHT,y
+  ora PuzzleMap+4*PUZZLE_HEIGHT,y
+  beq NotFailure
+      ldy PuzzlePlayfieldBase
+      lda #'F'
+      sta PuzzleMap+PUZZLE_HEIGHT*0,y
+      lda #'a'
+      sta PuzzleMap+PUZZLE_HEIGHT*1,y
+      lda #'i'
+      sta PuzzleMap+PUZZLE_HEIGHT*2,y
+      lda #'l'
+      sta PuzzleMap+PUZZLE_HEIGHT*3,y
+      lda #'u'
+      sta PuzzleMap+PUZZLE_HEIGHT*4,y
+      lda #'r'
+      sta PuzzleMap+PUZZLE_HEIGHT*5,y
+      lda #'e'
+      sta PuzzleMap+PUZZLE_HEIGHT*6,y
+      lda #'!'
+      sta PuzzleMap+PUZZLE_HEIGHT*7,y
+
+      lda #60
+      sta PuzzleFallTimer,x
+
+      lda #PuzzleStates::FAILURE
+      sta PuzzleState,x
+      inc PuzzleRedraw,x
+  NotFailure:
   rts
 .endproc
 
@@ -753,6 +972,7 @@ ForceFall:
   asl
   asl
   asl
+  add PuzzleXSpriteOffset,x
   sta OAM_XPOS+0,y
   add 0
   sta OAM_XPOS+4,y
@@ -848,6 +1068,13 @@ LandOnSomething:
 LandPillWrite:
   ; Push the color
   sta 2
+
+  ; Ignore negative Y positions
+  bit 1
+  bpl :+
+    rts
+  :
+
   pha
   lda 0
   asl
@@ -855,6 +1082,7 @@ LandPillWrite:
   asl
   asl
   ora 1
+  ora PuzzlePlayfieldBase
   tay
   pla
   ; Write to the internal grid
@@ -886,10 +1114,10 @@ LandPillWrite:
   sta 4
 
   ; Write PPU address
-  lda #<($2000 + 32*6 + 12)
+  lda PPU_UpdateLo,x
   add 4
   sta TileUpdateA2,y
-  lda #>($2000 + 32*6 + 12)
+  lda PPU_UpdateHi,x
   adc 5
   sta TileUpdateA1,y
 
@@ -899,7 +1127,7 @@ LandPillWrite:
 
 @Exit:
   lda #PuzzleStates::CHECK_MATCH
-  sta PuzzleState
+  sta PuzzleState,x
   rts
 
 PuzzleGridReadSecond:
@@ -930,6 +1158,7 @@ PuzzleGridReadFirst:
   asl
   asl
   ora 1
+  ora PuzzlePlayfieldBase
   tay
   lda PuzzleMap,y
   rts
@@ -975,6 +1204,7 @@ COLOR_MASK = %11000
 Row = 1
 Column = 0
 Color = 2
+ClearTile = 3
   lda #0
   sta Row
   sta Column
@@ -1009,25 +1239,55 @@ Horizontal:
   ; Clear the tiles
   lda Color
   ora #$86
+  sta ClearTile
+  sta PuzzleRedraw,x
+
+  ; New slower method of clearing that
+  ; will work with multiplayer
+  inc PuzzleMatchesMade,x
+.if 1
+  ; Clear out the whole line
+: lda ClearTile
+  sta PuzzleMap,y
+  tya
+  add #PUZZLE_HEIGHT
+  tay
+  inc Column
+  lda Column
+  cmp #PUZZLE_WIDTH
+  bcs NextHorizontalRow
+  lda PuzzleMap,y
+  beq :+
+  and #COLOR_MASK
+  cmp Color
+  beq :-
+: ; Back up
+  dec Column
+.endif
+
+  ; Old, fast method of clearing that
+  ; would count 5 matches twice
+.if 0
   sta PuzzleMap+PUZZLE_HEIGHT*0,y
   sta PuzzleMap+PUZZLE_HEIGHT*1,y
   sta PuzzleMap+PUZZLE_HEIGHT*2,y
   sta PuzzleMap+PUZZLE_HEIGHT*3,y
-  sta PuzzleRedraw,x
+.endif
 
 NextHorizontal:
   ; Next column
   inc Column
   lda Column
   cmp #PUZZLE_WIDTH-3
-  bne Horizontal
+  bcc Horizontal
+NextHorizontalRow:
   ; Next row
   lda #0
   sta Column
   inc Row
   lda Row
   cmp #PUZZLE_HEIGHT
-  bne Horizontal
+  bcc Horizontal
 
   ; -----------------------------------
 
@@ -1065,25 +1325,54 @@ Vertical:
   ; Clear the tiles
   lda Color
   ora #$86
+  sta ClearTile
+  sta PuzzleRedraw,x
+
+  ; New slower method of clearing that
+  ; will work with multiplayer
+  inc PuzzleMatchesMade,x
+.if 1
+  ; Clear out the whole line
+: lda ClearTile
+  sta PuzzleMap,y
+  iny
+  inc Row
+  lda Row
+  cmp #PUZZLE_HEIGHT
+  bcs NextVerticalColumn
+  lda PuzzleMap,y
+  beq :+
+  and #COLOR_MASK
+  cmp Color
+  beq :-
+: ; Back up
+  dec Row
+.endif
+
+  ; Old, fast method of clearing that
+  ; would count 5 matches twice
+.if 0
   sta PuzzleMap+0,y
   sta PuzzleMap+1,y
   sta PuzzleMap+2,y
   sta PuzzleMap+3,y
-  sta PuzzleRedraw,x
+.endif
+
 
 NextVertical:
   ; Next row
   inc Row
   lda Row
   cmp #PUZZLE_HEIGHT-3
-  bne Vertical
+  bcc Vertical
+NextVerticalColumn:
   ; Next column
   lda #0
   sta Row
   inc Column
   lda Column
   cmp #PUZZLE_WIDTH
-  bne Vertical
+  bcc Vertical
 
   ; Go to init pill if nothing cleared
   ; but attempt gravity if it did
@@ -1106,6 +1395,7 @@ NextVertical:
   Column = 0
   Row = 1
   DidFix = 2 ; flag to say a tile was fixed
+  VirusCount = 3 ; used to detect winning
 
   lda PuzzleFallTimer,x
   beq :+
@@ -1115,6 +1405,7 @@ NextVertical:
 
   ldy #0
   sty DidFix
+  sty VirusCount
 FixLoop:
   lda PuzzleMap,y
   bpl :+ ; all playfield tiles are >128, or negative
@@ -1126,6 +1417,41 @@ FixLoop:
   lda DidFix
   beq :+
     inc PuzzleRedraw,x
+
+    lda VirusCount
+    bne NoVictory
+      ; Can't win if the other player already won
+      jsr PuzzleOtherPlayer
+      lda PuzzleState,y
+      cmp #PuzzleStates::VICTORY
+      beq NoVictory
+
+      ; Display 'Victory!" message
+      ldy PuzzlePlayfieldBase
+      lda #'V'
+      sta PuzzleMap+PUZZLE_HEIGHT*0,y
+      lda #'i'
+      sta PuzzleMap+PUZZLE_HEIGHT*1,y
+      lda #'c'
+      sta PuzzleMap+PUZZLE_HEIGHT*2,y
+      lda #'t'
+      sta PuzzleMap+PUZZLE_HEIGHT*3,y
+      lda #'o'
+      sta PuzzleMap+PUZZLE_HEIGHT*4,y
+      lda #'r'
+      sta PuzzleMap+PUZZLE_HEIGHT*5,y
+      lda #'y'
+      sta PuzzleMap+PUZZLE_HEIGHT*6,y
+      lda #'!'
+      sta PuzzleMap+PUZZLE_HEIGHT*7,y
+
+      lda #60
+      sta PuzzleFallTimer,x
+
+      lda #PuzzleStates::VICTORY
+      sta PuzzleState,x
+      inc PuzzleRedraw,x
+    NoVictory:
     rts
   :
 
@@ -1186,9 +1512,13 @@ CallFix:
 
 ; virus, single, left, right, bottom, top, clearing, nothing
 FixTableL:
-  .lobytes NoFix-1, NoFix-1, FixLeft-1, FixRight-1, FixBottom-1, FixTop-1, FixClearing-1, NoFix-1
+  .lobytes HasVirus-1, NoFix-1, FixLeft-1, FixRight-1, FixBottom-1, FixTop-1, FixClearing-1, NoFix-1
 FixTableH:
-  .hibytes NoFix-1, NoFix-1, FixLeft-1, FixRight-1, FixBottom-1, FixTop-1, FixClearing-1, NoFix-1
+  .hibytes HasVirus-1, NoFix-1, FixLeft-1, FixRight-1, FixBottom-1, FixTop-1, FixClearing-1, NoFix-1
+
+HasVirus:
+  inc VirusCount
+  rts
 
 FixClearing:
   inc DidFix
@@ -1306,7 +1636,9 @@ GravityRight:
 
 .endproc
 
-.proc PuzzleDrawAll
+.proc PuzzleDrawSolo ; Unrolled loop to update player 1 when in the middle
+  lda PuzzleVersus
+  jne PuzzleDrawVersus1
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
   sta PPUCTRL
   .repeat 8, I
@@ -1316,6 +1648,42 @@ GravityRight:
     sta PPUADDR
     .repeat 16, J
       lda PuzzleMap+(I*16)+J
+      sta PPUDATA
+    .endrep
+  .endrep
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
+  sta PPUCTRL
+  rts
+.endproc
+
+.proc PuzzleDrawVersus1 ; Unrolled loop to update player 1 when on the left
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
+  sta PPUCTRL
+  .repeat 8, I
+    lda #>($2000 + (6*32)+(4+I))
+    sta PPUADDR
+    lda #<($2000 + (6*32)+(4+I))
+    sta PPUADDR
+    .repeat 16, J
+      lda PuzzleMap+(I*16)+J
+      sta PPUDATA
+    .endrep
+  .endrep
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
+  sta PPUCTRL
+  rts
+.endproc
+
+.proc PuzzleDrawVersus2 ; Unrolled loop to update player 2, who's on the right
+  lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
+  sta PPUCTRL
+  .repeat 8, I
+    lda #>($2000 + (6*32)+(20+I))
+    sta PPUADDR
+    lda #<($2000 + (6*32)+(20+I))
+    sta PPUADDR
+    .repeat 16, J
+      lda PuzzleMap+128+(I*16)+J
       sta PPUDATA
     .endrep
   .endrep
@@ -1347,7 +1715,7 @@ denom = 11
   rts
 .endproc
 
-.proc PuzzleInit
+.proc PuzzleInit ; Init the actual playfield
 ; Playfield generation logic adapted from Vitamins for GBA
 Column = 0
 Row = 1
@@ -1356,29 +1724,34 @@ MaxY = 3
 Color = 4
 Failures = 5
 TileNum = 6
+
+  lda #PuzzleStates::INIT_PILL
+  sta PuzzleState,x
+  inc PuzzleRedraw,x
+
+  ; Player 2 copies player 1's playfield
+  cpx #1
+  bne NotPlayer2
+    ldy #0
+  : lda PuzzleMap,y
+    sta PuzzleMap+128,y
+    iny
+    cpy #128
+    bne :-
+    lda PuzzleNextColor1+0
+    sta PuzzleNextColor1+1
+    lda PuzzleNextColor2+0
+    sta PuzzleNextColor2+1
+    rts
+  NotPlayer2:
+
 ; Init the next color
   jsr PuzzleRandomColor
   sta PuzzleNextColor1,x
   jsr PuzzleRandomColor
   sta PuzzleNextColor2,x
 
-.if 0
-; Virus count is (Level*4)+4, or 84 if Level>20
-  lda VirusLevel,x
-  cmp #20
-  bcc :+
-    lda #20
-  :
-  asl ; * 4
-  asl
-  add #4
-
-  sta VirusesLeft
-  ; Seems to crash if given >= 80? To do: look into that
-  ; 70 is okay
-.endif
-
-  ; Right now just directly use the 
+  ; Right now just directly use the virus level as virus count
   lda VirusLevel,x
   sta VirusesLeft
 
@@ -1390,11 +1763,21 @@ TileNum = 6
   jsr CalculateTileNum
 
 ; Calculate maximum allowed height
+  lda VirusesLeft
+  cmp #79
+  bcc :+
+    ; If 176+80 = 256, which will give us zero
+    ; so just hardcode the height.
+    lda #12
+    sta MaxY
+    bne :++
+  :
   lda #176
   add VirusesLeft
   ldy #20
   jsr div8
   sta MaxY
+  :
 
 ; Clear playfield
   lda #0
@@ -1445,7 +1828,11 @@ AddVirusLoop:
   eor #1
   sta Column
   jsr PuzzleGridRead
+  beq XOkay
+
+  dec Failures
   bne AddVirusLoop
+  jmp AbortAddVirus
 XOkay:
 
   ; Y is now the index of the grid square the virus is going in
@@ -1553,11 +1940,6 @@ XOkay:
   dec VirusesLeft
   jne AddVirusLoop
 AbortAddVirus:
-
-  ; ---
-  lda #PuzzleStates::INIT_PILL
-  sta PuzzleState,x
-  inc PuzzleRedraw,x
   rts
 
 CalculateTileNum:
@@ -1570,3 +1952,54 @@ CalculateTileNum:
   rts
 .endproc
 
+; Supplements KeyRepeat
+.proc KeyRepeatP2
+  lda keydown+1
+  beq NoAutorepeat
+  cmp keylast+1
+  bne NoAutorepeat
+  inc Player2AutoRepeat
+  lda Player2AutoRepeat
+  cmp #12
+  bcc SkipNoAutorepeat
+
+  lda retraces
+  and #3
+  bne :+
+  lda keydown+1
+  and #KEY_LEFT|KEY_RIGHT|KEY_UP|KEY_DOWN
+  ora keynew+1
+  sta keynew+1
+:
+
+  ; Keep it from going up to 255 and resetting
+  dec Player2AutoRepeat
+  bne SkipNoAutorepeat
+NoAutorepeat:
+  lda #0
+  sta Player2AutoRepeat
+SkipNoAutorepeat:
+  rts
+.endproc
+
+; Display a victory message and then exit to menu
+PuzzleFailure:
+.proc PuzzleVictory
+  lda PuzzleFallTimer,x
+  beq :+
+    dec PuzzleFallTimer,x
+    rts
+  :
+
+  pla
+  pla
+  jmp PuzzleGameMenu::Reshow
+.endproc
+
+; Y = index of the other player
+.proc PuzzleOtherPlayer
+  txa
+  eor #1
+  tay
+  rts
+.endproc
