@@ -844,15 +844,24 @@ Tile1 = TempVal + 0
 Tile2 = TempVal + 1
 SecondX = TempVal + 2 ; second tile X
 SecondY = TempVal + 3 ; second tile Y
-  ; Get the X and Y for the second piece
-  ; so it's already fetched
-  ldy PuzzleDir,x
-  lda SecondPieceTX,y
-  add PuzzleX,x
-  sta SecondX
-  lda SecondPieceTY,y
-  add PuzzleY,x
-  sta SecondY
+
+
+  ; Get the pre-rotate X and Y for the second tile
+  ; Backup this information in case the game needs to restore it
+  lda PuzzleX,x
+  sta TempX
+  lda PuzzleY,x
+  sta TempY
+  lda PuzzleDir,x
+  sta PlayerDir
+  lda PuzzleColor1,x
+  sta TempVal+0
+  lda PuzzleColor2,x
+  sta TempVal+1
+
+  ; ---------------
+  ; Allow rotation
+  ; ---------------
 
   ; Rotate
   lda keynew,x
@@ -878,6 +887,70 @@ SecondY = TempVal + 3 ; second tile Y
       jsr SwapColors
   NotB:
 
+  ; Get the X and Y for the second piece
+  ; so it's already fetched
+  jsr CalculateSecondXY
+
+  ; Slide left or right to move out of the way when rotating
+  ; First try moving right
+  jsr PuzzleGridReadSecond
+  bne :+
+  jsr PuzzleGridReadFirst
+  beq :++
+  :
+    ; Both tiles free to the right?
+    lda PuzzleX,x
+    sta 0
+    inc 0
+    lda PuzzleY,x
+    sta 1
+    jsr PuzzleGridRead
+    bne :+
+
+    lda SecondX
+    sta 0
+    inc 0
+    lda SecondY
+    sta 1
+    jsr PuzzleGridRead
+    bne :+
+
+    inc PuzzleX,x
+    inc SecondX
+  :
+
+  ; Move left out of things
+  jsr PuzzleGridReadSecond
+  bne :+
+  jsr PuzzleGridReadFirst
+  beq :++
+  :
+    ; Both tiles free to the left?
+    lda PuzzleX,x
+    beq :+
+    sta 0
+    dec 0
+    lda PuzzleY,x
+    sta 1
+    jsr PuzzleGridRead
+    bne :+
+
+    lda SecondX
+    sta 0
+    dec 0
+    lda SecondY
+    sta 1
+    jsr PuzzleGridRead
+    bne :+
+
+    dec PuzzleX,x
+    dec SecondX
+  :
+
+  ; ---------------
+  ; Allow moving horizontally
+  ; ---------------
+
   lda keynew,x
   and #KEY_LEFT
   beq NotLeft
@@ -887,6 +960,7 @@ SecondY = TempVal + 3 ; second tile Y
       dec SecondX
   NotLeft:
 
+  ; Don't allow moving into things to the left
   jsr PuzzleGridReadSecond
   bne :+
   jsr PuzzleGridReadFirst
@@ -903,6 +977,16 @@ SecondY = TempVal + 3 ; second tile Y
     inc SecondX
   NotRight:
 
+  ; Don't allow moving into things to the right
+  jsr PuzzleGridReadSecond
+  bne :+
+  jsr PuzzleGridReadFirst
+  beq :++
+  :
+    dec PuzzleX,x
+    dec SecondX
+  :
+
   ; Correct if you go past the right edge
   ; either by rotating or by moving right
   lda SecondX
@@ -912,13 +996,24 @@ SecondY = TempVal + 3 ; second tile Y
     dec SecondX
   :
 
+  ; If after all of this, the pill is still stuck in something, disallow the rotation
+  ; but swap the colors
   jsr PuzzleGridReadSecond
   bne :+
   jsr PuzzleGridReadFirst
   beq :++
   :
-    dec PuzzleX,x
-    dec SecondX
+    lda TempX
+    sta PuzzleX,x
+    lda TempY
+    sta PuzzleY,x
+    lda PlayerDir
+    sta PuzzleDir,x
+    lda TempVal+0
+    sta PuzzleColor2,x
+    lda TempVal+1
+    sta PuzzleColor1,x
+    jsr CalculateSecondXY
   :
 
   lda keydown,x
@@ -1024,6 +1119,16 @@ SwapColors:
   sta PuzzleColor1,x
   pla
   sta PuzzleColor2,x
+  rts
+
+CalculateSecondXY:
+  ldy PuzzleDir,x
+  lda SecondPieceTX,y
+  add PuzzleX,x
+  sta SecondX
+  lda SecondPieceTY,y
+  add PuzzleY,x
+  sta SecondY
   rts
 
 GetPillTiles:
