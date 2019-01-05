@@ -840,11 +840,11 @@ PuzzleFallSpeeds:
   .byt 60, 30, 15
 
 .proc FallPill
-Tile1 = TempVal + 0
-Tile2 = TempVal + 1
-SecondX = TempVal + 2 ; second tile X
-SecondY = TempVal + 3 ; second tile Y
-
+Tile1 = TouchTemp + 0
+Tile2 = TouchTemp + 1
+SecondX = TouchTemp + 2 ; second tile X
+SecondY = TouchTemp + 3 ; second tile Y
+GhostY = TouchTemp + 4
 
   ; Get the pre-rotate X and Y for the second tile
   ; Backup this information in case the game needs to restore it
@@ -1016,6 +1016,39 @@ SecondY = TempVal + 3 ; second tile Y
     jsr CalculateSecondXY
   :
 
+  ; Calculate the ghost piece placement
+  lda PuzzleX,x
+  sta 0  
+  lda PuzzleY,x
+  jsr GhostPieceShared
+  sta GhostY
+
+  ; Don't care about the second pill tile if it's vertical
+  ; because it'll just be the same
+  lda PuzzleDir,x
+  bne @SkipGhostBecauseVertical
+
+  lda SecondX
+  sta 0  
+  lda SecondY
+  jsr GhostPieceShared
+  cmp GhostY
+  bcs :+
+    sta GhostY
+  :
+@SkipGhostBecauseVertical:
+
+  ; Hard drop
+  lda keynew,x
+  and #KEY_UP
+  beq :+
+    lda #2
+    sta PuzzleFallTimer,x
+    lda GhostY
+    sta PuzzleY,x
+  :
+
+  ; Soft drop
   lda keydown,x
   and #KEY_DOWN
   beq :+
@@ -1092,9 +1125,47 @@ ForceFall:
   lda #OAM_COLOR_3
   sta OAM_ATTR+0,y
   sta OAM_ATTR+4,y
+  sta OAM_ATTR+8,y
+  sta OAM_ATTR+12,y
+
+  ; -----------------------------------
+
+  ; Ghost tiles
+  lda PuzzleX,x
+  add #12
+  asl
+  asl
+  asl
+  add PuzzleXSpriteOffset,x
+  sta OAM_XPOS+8,y
+  add 0
+  sta OAM_XPOS+12,y
+
+  lda GhostY
+  add #6
+  asl
+  asl
+  asl
+  sta OAM_YPOS+8,y
+  add 1
+  sta OAM_YPOS+12,y
+
+  lda PuzzleColor1,x
+  asl
+  asl
+  asl
+  ora #$87
+  sta OAM_TILE+8,y
+
+  lda PuzzleColor2,x
+  asl
+  asl
+  asl
+  ora #$87
+  sta OAM_TILE+12,y
 
   tya
-  add #8
+  add #16
   sta OamPtr
   rts
 
@@ -1111,6 +1182,18 @@ FirstPieceTile:
   .byt $82, $84 
 SecondPieceTile:
   .byt $83, $85
+
+GhostPieceShared:
+  sta 1
+: jsr PuzzleGridRead
+  bne :+
+  inc 1 
+  lda 1
+  cmp #PUZZLE_HEIGHT
+  bcc :-
+: dec 1
+  lda 1
+  rts
 
 SwapColors:
   lda PuzzleColor1,x
@@ -1135,20 +1218,20 @@ GetPillTiles:
   lda PuzzleDir,x
   asl
   add #$82
-  sta 0
+  sta 2
 
   lda PuzzleColor1,x
   asl
   asl
   asl
-  ora 0
+  ora 2
   sta Tile1
 
   lda PuzzleColor2,x
   asl
   asl
   asl
-  ora 0
+  ora 2
   adc #1 ; carry is clear
   sta Tile2
   rts
@@ -1530,6 +1613,8 @@ FixLoop:
       lda PuzzleState,y
       cmp #PuzzleStates::VICTORY
       beq NoVictory
+      lda #PuzzleStates::FAILURE
+      sta PuzzleState,y
 
       ; Display 'Victory!" message
       ldy PuzzlePlayfieldBase
@@ -1551,7 +1636,8 @@ FixLoop:
       sta PuzzleMap+PUZZLE_HEIGHT*7,y
 
       lda #60
-      sta PuzzleFallTimer,x
+      sta PuzzleFallTimer+0
+      sta PuzzleFallTimer+1
 
       lda #PuzzleStates::VICTORY
       sta PuzzleState,x
@@ -1835,7 +1921,11 @@ TileNum = 6
   inc PuzzleRedraw,x
 
   ; Player 2 copies player 1's playfield
+  ; if the level is the same
   cpx #1
+  bne NotPlayer2
+  lda VirusLevel+0
+  cmp VirusLevel+1
   bne NotPlayer2
     ldy #0
   : lda PuzzleMap,y
@@ -1886,11 +1976,13 @@ TileNum = 6
 
 ; Clear playfield
   lda #0
-  tay
+  ldy PuzzlePlayfieldBase
 : sta PuzzleMap,y
   iny
+  beq :+
   cpy #128
   bne :-
+:
 
   ; -----------------------------------
 
