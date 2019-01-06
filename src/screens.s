@@ -87,14 +87,24 @@ DontHaveExtraRAM:
   sta JOY1
   sta SNESController
   jsr ReadJoy8bits
-; sta 2 ; first 8 bits
+; sta 2 ; first 8 bits can be discarded
   jsr ReadJoy8bits
   sta 1 ; middle 8 bits
+
+  ; Second byte also indicates if it's a SNES mouse, so look
+  and #%00001111 ; SNES mouse has a signature of 1
+  cmp #1
+  bne :+
+    lda #MOUSE_BANK
+    jsr SetPRG
+    jmp ShowMouseEasterEgg
+  :
+
   jsr ReadJoy8bits
   cmp #$FF ; last byte should be all 1s if official NES or SNES controller
   bne ThirdPartyController
   lda 1    ; should be all 1s if NES, but all 0s if SNES
-  and #%00001111
+  and #%00001111 ; Test that the SNES controller signature is zero
   bne NESController
   inc SNESController
 NESController:
