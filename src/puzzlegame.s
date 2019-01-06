@@ -148,8 +148,7 @@ Reshow:
   ; Draw the menu options
   PositionXY 0, 9, 4
   jsr PutStringImmediate
-  .byt "- Vitamins -",0
-
+  .byt "- Capsules -",0
   ; -----------------------------------
 
   PositionXY 0, 6, 9

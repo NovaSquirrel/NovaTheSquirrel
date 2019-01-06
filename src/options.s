@@ -680,7 +680,7 @@ FeatureCount = TempVal
   .byt "Double Action Blaster Guys",0
   PositionXY 0, 3, 14
   jsr PutStringImmediate
-  .byt "Vitamins",0
+  .byt "Capsules",0
   PositionXY 0, 3, 16
   jsr PutStringImmediate
   .byt "Level Studio",0
