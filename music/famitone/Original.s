@@ -44,7 +44,7 @@ Original_music_data:
 	.word @env7,@env0,@env0
 	.byte $00
 	.byte $30 ;instrument $07
-	.word @env8,@env0,@env19
+	.word @env8,@env19,@env0
 	.byte $00
 	.byte $30 ;instrument $08
 	.word @env9,@env0,@env0
