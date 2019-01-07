@@ -1092,6 +1092,17 @@ GhostY = TouchTemp + 4
   ; so it's already fetched
   jsr CalculateSecondXY
 
+  lda PuzzleY,x
+  bne :+
+    lda PuzzleDir,x
+    beq :+
+      lda PuzzleX,x
+      sta SecondX
+      lda PuzzleY,x
+      sta SecondY
+  :
+
+
   ; Slide left or right to move out of the way when rotating
   ; First try moving right
   jsr PuzzleGridReadSecond
