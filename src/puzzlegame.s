@@ -28,6 +28,13 @@ PUZZLE_HEIGHT = 16
   FAILURE
 .endenum
 
+.enum PuzzleGimmicks
+  CLASSIC
+  FREE_SWAP
+
+  GIMMICK_COUNT
+.endenum
+
 .enum PuzzleTiles
   VIRUS
   SINGLE
@@ -59,6 +66,11 @@ PUZZLE_HEIGHT = 16
   PuzzleNextColor1: .res 2
   PuzzleNextColor2: .res 2
 
+  ; Experimental swap stuff
+  PuzzleSwapX: .res 2
+  PuzzleSwapY: .res 2
+  PuzzleSwapMode: .res 2  ; if players are in swap mode or not
+
   ; Low, medium or high
   PuzzleSpeed:  .res 2    ; ranges 0-2
 
@@ -66,6 +78,7 @@ PUZZLE_HEIGHT = 16
   PuzzleRedraw: .res 2    ; Redraw entire grid
 
   PuzzleVersus: .res 1    ; If nonzero, versus mode
+  PuzzleGimmick: .res 1   ; gimmick selected
 
   PuzzlePlayfieldBase: .res 1 ; 0 or 128 for player 1 or 2
 
@@ -104,6 +117,7 @@ Reshow:
   jsr WaitVblank
   lda #0
   sta PPUMASK
+
 
   lda #' '
   jsr ClearNameCustom
@@ -206,12 +220,28 @@ Loop:
   ldy VirusLevel+1
   jsr PutDecimal
 
+  ; Draw speed names
   PositionXY 0, 16, 15
   lda PuzzleSpeed+0
   jsr PutSpeedName
   PositionXY 0, 23, 15
   lda PuzzleSpeed+1
   jsr PutSpeedName
+
+  ; Print style/gimmick name
+  ; always 8 characters
+  PositionXY 0, 13, 11
+  lda PuzzleGimmick
+  asl
+  asl
+  asl
+  tax
+  ldy #8
+: lda PuzzleGimmickNames,x
+  sta PPUDATA
+  inx
+  dey
+  bne :-
 
   lda #0
   sta PPUSCROLL
@@ -314,10 +344,15 @@ RunMenu:
       jmp @NotLeft
     :
     dey
-    bne :+
+    bne @NotStyleL
       ; Style
+      dec PuzzleGimmick
+      bpl :+
+        lda #PuzzleGimmicks::GIMMICK_COUNT-1
+         sta PuzzleGimmick
+      :
       jmp @NotLeft
-    :
+    @NotStyleL:
     dey
     bne @NotLevelL
       dec VirusLevel,x
@@ -348,10 +383,17 @@ RunMenu:
       jmp @NotRight
     :
     dey
-    bne :+
+    bne @NotStyleR
       ; Style
+      inc PuzzleGimmick
+      lda PuzzleGimmick
+      cmp #PuzzleGimmicks::GIMMICK_COUNT
+      bne :+
+         lda #0
+         sta PuzzleGimmick
+      :
       jmp @NotRight
-    :
+    @NotStyleR:
     dey
     bne @NotLevelR
       inc VirusLevel,x
@@ -402,8 +444,13 @@ PutSpeedName:
   lda PuzzleSpeedNames+1,y
   sta PPUDATA
   rts
+
 PuzzleSpeedNames:
   .byt "LoMdHi"
+
+PuzzleGimmickNames:
+  .byt "Classic "
+  .byt "FreeSwap"
 .endproc
 
 .proc InitPuzzleGame
@@ -414,6 +461,8 @@ PuzzleSpeedNames:
   sta PuzzleGarbageCount+1
   sta PuzzleMatchesMade
   sta PuzzleMatchesMade+1
+  sta PuzzleSwapMode+0
+  sta PuzzleSwapMode+1
 
   ; Set palettes
   ldx #$3f
@@ -607,6 +656,7 @@ DrewSoloPlayfield:
 
   jsr ClearOAM
 
+  ; The game loop!
 Loop:
   jsr WaitVblank
   lda #BG_ON|OBJ_ON
@@ -648,6 +698,8 @@ Loop:
   lda #0
   sta PPUSCROLL
   sta PPUSCROLL
+
+  ; -----------------------------------
 
   jsr PuzzleReadJoy
   jsr KeyRepeat
@@ -709,7 +761,6 @@ Loop:
     lda #BG_ON|OBJ_ON
     sta PPUMASK
   NoPause:
-
 
   jmp Loop
 
@@ -790,44 +841,7 @@ StateLo:
   .lobytes PuzzleInit-1, InitPill-1, FallPill-1, PuzzleMatch-1, PuzzleGravity-1, PuzzleVictory-1, PuzzleFailure-1
 .endproc
 
-.proc InitPill
-  ; Send the other player garbage if needed
-  lda PuzzleMatchesMade,x
-  cmp #2
-  bcc NoSendGarbage
-    ; Don't send garbage if they already have some
-    jsr PuzzleOtherPlayer
-;    lda PuzzleGarbageCount,y
-;    bne NoSendGarbage
-      lda PuzzleMatchesMade,x
-      sta PuzzleGarbageCount,y
-
-      ; Preserve X, but multiply it by 4 for now
-      stx TempX
-      txa
-      asl
-      asl
-      tax
-
-      ; Multiply Y by four
-      tya
-      asl
-      asl
-      tay
-
-      ; Copy over the four colors
-      lda PuzzleMatchColor+0,x
-      sta PuzzleGarbageColor+0,y
-      lda PuzzleMatchColor+1,x
-      sta PuzzleGarbageColor+1,y
-      lda PuzzleMatchColor+2,x
-      sta PuzzleGarbageColor+2,y
-      lda PuzzleMatchColor+3,x
-      sta PuzzleGarbageColor+3,y
-
-      ldx TempX
-  NoSendGarbage:
-
+.proc PuzzleReceiveGarbage
   ; Receive garbage if necessary
   lda PuzzleGarbageCount,x
   beq NoReceiveGarbage
@@ -891,9 +905,61 @@ StateLo:
     dec PuzzleGarbageCount,x
     bne PutGarbageLoop
 
+    ; Don't return to the previous routine
+    pla
+    pla
     rts
     .endscope
   NoReceiveGarbage:
+  rts
+.endproc
+
+.proc InitPill
+  ; Send the other player garbage if needed
+  lda PuzzleMatchesMade,x
+  cmp #2
+  bcc NoSendGarbage
+    ; Don't send garbage if they already have some
+    jsr PuzzleOtherPlayer
+;    lda PuzzleGarbageCount,y
+;    bne NoSendGarbage
+      lda PuzzleMatchesMade,x
+      sta PuzzleGarbageCount,y
+
+      ; Preserve X, but multiply it by 4 for now
+      stx TempX
+      txa
+      asl
+      asl
+      tax
+
+      ; Multiply Y by four
+      tya
+      asl
+      asl
+      tay
+
+      ; Copy over the four colors
+      lda PuzzleMatchColor+0,x
+      sta PuzzleGarbageColor+0,y
+      lda PuzzleMatchColor+1,x
+      sta PuzzleGarbageColor+1,y
+      lda PuzzleMatchColor+2,x
+      sta PuzzleGarbageColor+2,y
+      lda PuzzleMatchColor+3,x
+      sta PuzzleGarbageColor+3,y
+
+      ldx TempX
+  NoSendGarbage:
+
+  jsr PuzzleReceiveGarbage
+
+  ; In swap mode, go right to falling pill mode instead of reinitializing the pill
+  lda PuzzleSwapMode,x
+  beq :+
+    inc PuzzleState,x
+    rts
+  :
 
   ; Color = next color
   lda PuzzleNextColor1,x
@@ -913,6 +979,7 @@ StateLo:
   sta PuzzleDir,x
   sta PuzzleMatchesMade,x
 
+  ; Move into falling pill mode
   inc PuzzleState,x
 
   ldy PuzzleSpeed,x
@@ -962,6 +1029,23 @@ Tile2 = TouchTemp + 1
 SecondX = TouchTemp + 2 ; second tile X
 SecondY = TouchTemp + 3 ; second tile Y
 GhostY = TouchTemp + 4
+
+  lda keynew,x
+  and #KEY_SELECT
+  beq :+
+    lda PuzzleGimmick
+    beq :+
+    lda PuzzleX,x
+    sta PuzzleSwapX,x
+    lda PuzzleY,x
+    sta PuzzleSwapY,x
+
+    lda PuzzleSwapMode,x
+    eor #1
+    sta PuzzleSwapMode,x
+  :
+  lda PuzzleSwapMode,x
+  jne PuzzleInSwapMode
 
   ; Get the pre-rotate X and Y for the second tile
   ; Backup this information in case the game needs to restore it
@@ -1200,7 +1284,7 @@ ForceFall:
   ora 2
   bne FallLandOnSomething
 
-
+Draw:
   ; Draw the pill
   ; (First get info before Y is taken up by OAM index)
   ldy PuzzleDir,x
@@ -1441,6 +1525,132 @@ PuzzleGridReadSecond:
   lda SecondY
   sta 1
   jmp PuzzleGridRead
+.endproc
+
+
+.proc PuzzleInSwapMode
+  jsr PuzzleReceiveGarbage
+
+  lda #24
+  sta FallPill::GhostY
+
+  lda keynew,x
+  and #KEY_LEFT
+  beq :+
+    lda PuzzleSwapX,x
+    beq :+
+      dec PuzzleSwapX,x
+  :
+
+  lda keynew,x
+  and #KEY_RIGHT
+  beq :+
+    lda PuzzleSwapX,x
+    cmp #PUZZLE_WIDTH-2
+    beq :+
+      inc PuzzleSwapX,x
+  :
+
+  lda keynew,x
+  and #KEY_UP
+  beq :+
+    lda PuzzleSwapY,x
+    beq :+
+      dec PuzzleSwapY,x
+  :
+
+  lda keynew,x
+  and #KEY_DOWN
+  beq :+
+    lda PuzzleSwapY,x
+    cmp #PUZZLE_HEIGHT-1
+    beq :+
+      inc PuzzleSwapY,x
+  :
+
+  ; -----------------------------------
+
+  lda keynew,x
+  and #KEY_A|KEY_B
+  beq NotSwap
+    lda PuzzleSwapX,x
+    sta 0
+    lda PuzzleSwapY,x
+    sta 1
+    jsr PuzzleGridRead
+    ; There's a bit of a problem here because viruses are tile 0 in each set of 8 tiles per color
+    ; so masking off the color gives you just 0-7 and empty tiles will also give you a zero.
+    ; I don't want it to be able to swap with viruses.
+    beq @EmptyOK ; Can swap with an empty tile
+    and #7
+    beq NotSwap
+  @EmptyOK:
+    sty 2
+
+    inc 0 ; Try the tile to the right
+    jsr PuzzleGridRead
+    beq @EmptyOK2 ; Can swap with an empty tile
+    and #7
+    beq NotSwap
+  @EmptyOK2:
+    sty 3
+
+    ; Swap the two tiles
+    lda PuzzleMap,y
+    pha
+    ldy 2
+    lda PuzzleMap,y
+    ldy 3
+    sta PuzzleMap,y
+    pla
+    ldy 2
+    sta PuzzleMap,y
+
+    inc PuzzleRedraw,x
+    lda #8
+    sta PuzzleFallTimer,x
+    lda #PuzzleStates::GRAVITY
+    sta PuzzleState,x
+    rts
+  NotSwap:
+
+  ; -----------------------------------
+
+  ; Draw the swap cursor
+  ldy OamPtr
+  lda PuzzleSwapX,x
+  add #12
+  asl
+  asl
+  asl
+  add PuzzleXSpriteOffset,x
+  sta OAM_XPOS+0,y
+  add #8
+  sta OAM_XPOS+4,y
+
+  lda PuzzleSwapY,x
+  add #6
+  asl
+  asl
+  asl
+  sub #1
+  sta OAM_YPOS+0,y
+  sta OAM_YPOS+4,y
+
+  lda #OAM_COLOR_1
+  sta OAM_ATTR+0,y
+  sta OAM_ATTR+4,y
+
+  lda #$50
+  sta OAM_TILE+0,y
+  sta OAM_TILE+4,y
+
+  tya
+  add #8
+  sta OamPtr
+
+  ; Draw the original piece too
+  jmp FallPill::Draw
 .endproc
 
 .proc PuzzleRandomColor
