@@ -47,7 +47,13 @@ PUZZLE_HEIGHT = 16
 
 .pushseg
 .segment "PUZRAM"
+
+PuzzleZeroStart:
   PuzzleState:  .res 2    ; State each playfield is in
+  ; Experimental swap stuff
+  PuzzleSwapX: .res 2
+  PuzzleSwapY: .res 2
+  PuzzleSwapMode: .res 2  ; if players are in swap mode or not
 
   ; Send garbage
   PuzzleMatchesMade: .res 2 ; matches made between dropping each piece
@@ -56,6 +62,7 @@ PUZZLE_HEIGHT = 16
   ; Receive garbage
   PuzzleGarbageCount: .res 2
   PuzzleGarbageColor: .res 2*4
+PuzzleZeroEnd:
 
   PuzzleX: .res 2
   PuzzleY: .res 2
@@ -66,13 +73,10 @@ PUZZLE_HEIGHT = 16
   PuzzleNextColor1: .res 2
   PuzzleNextColor2: .res 2
 
-  ; Experimental swap stuff
-  PuzzleSwapX: .res 2
-  PuzzleSwapY: .res 2
-  PuzzleSwapMode: .res 2  ; if players are in swap mode or not
 
   ; Low, medium or high
-  PuzzleSpeed:  .res 2    ; ranges 0-2
+  PuzzleSpeed:  .res 2         ; ranges 0-2. pills
+  PuzzleGravitySpeed: .res 2   ; ranges 0-2, gravity
 
   VirusLevel:   .res 2    ; Number of viruses to clear, in this version
   PuzzleRedraw: .res 2    ; Redraw entire grid
@@ -107,11 +111,16 @@ PUZZLE_HEIGHT = 16
   lda #1
   sta PuzzleSpeed+0
   sta PuzzleSpeed+1
+  sta PuzzleGravitySpeed+0
+  sta PuzzleGravitySpeed+1
 
 Reshow:
-  lda #PuzzleStates::INIT_GAME
-  sta PuzzleState+0
-  sta PuzzleState+1
+  ; Clear the stuff that should be zero'd every new game
+  ldy #PuzzleZeroEnd-PuzzleZeroStart-1
+  lda #0
+: sta PuzzleZeroStart,y
+  dey
+  bpl :-
 
   ; Turn off screen and draw the menu
   jsr WaitVblank
@@ -126,7 +135,7 @@ Reshow:
 
   ; Menu border
   ; Top
-  PositionXY 0, 4, 7
+  PositionXY 0, 4, 6
   lda #4
   sta PPUDATA
   lda #5
@@ -135,7 +144,7 @@ Reshow:
   lda #6
   sta PPUDATA
   ; Bottom
-  PositionXY 0, 4, 17
+  PositionXY 0, 4, 20
   lda #9
   sta PPUDATA
   lda #10
@@ -147,13 +156,13 @@ Reshow:
   ; Make sides
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
   sta PPUCTRL
-  PositionXY 0, 4, 8
+  PositionXY 0, 4, 7
   lda #7
-  ldx #9
+  ldx #13
   jsr WritePPURepeated
-  PositionXY 0, 26, 8
+  PositionXY 0, 26, 7
   lda #8
-  ldx #9
+  ldx #13
   jsr WritePPURepeated
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
   sta PPUCTRL
@@ -165,21 +174,33 @@ Reshow:
   .byt "- Capsules -",0
   ; -----------------------------------
 
-  PositionXY 0, 6, 9
+  PositionXY 0, 6, 7
   jsr PutStringImmediate
   .byt " Mode: Solo  Versus",0
 
-  PositionXY 0, 6, 11
+  PositionXY 0, 6, 9
   jsr PutStringImmediate
   .byt "Style: Classic",0
 
-  PositionXY 0, 6, 13
+  PositionXY 0, 6, 11
   jsr PutStringImmediate
   .byt "Count: 1P:04  2P:04",0
 
+  PositionXY 0, 6, 13
+  jsr PutStringImmediate
+  .byt "Speed: 1P:Md  2P:Md",0
+
   PositionXY 0, 6, 15
   jsr PutStringImmediate
-  .byt "Speed: 1P:Md  2P:Md ",0
+  .byt " Fall: 1P:Md  2P:Md",0
+
+  PositionXY 0, 6, 17
+  jsr PutStringImmediate
+  .byt "Theme: Minimal",0
+
+  PositionXY 0, 6, 19
+  jsr PutStringImmediate
+  .byt "Music: None",0
 
   ; -----------------------------------
 
@@ -213,24 +234,32 @@ Loop:
   sta OAM_DMA
 
   ; Print the counts and speeds chosen
-  PositionXY 0, 16, 13
+  PositionXY 0, 16, 11
   ldy VirusLevel+0
   jsr PutDecimal
-  PositionXY 0, 23, 13
+  PositionXY 0, 23, 11
   ldy VirusLevel+1
   jsr PutDecimal
 
   ; Draw speed names
-  PositionXY 0, 16, 15
+  PositionXY 0, 16, 13
   lda PuzzleSpeed+0
   jsr PutSpeedName
-  PositionXY 0, 23, 15
+  PositionXY 0, 23, 13
   lda PuzzleSpeed+1
+  jsr PutSpeedName
+
+  ; Draw fall speed names
+  PositionXY 0, 16, 15
+  lda PuzzleGravitySpeed+0
+  jsr PutSpeedName
+  PositionXY 0, 23, 15
+  lda PuzzleGravitySpeed+1
   jsr PutSpeedName
 
   ; Print style/gimmick name
   ; always 8 characters
-  PositionXY 0, 13, 11
+  PositionXY 0, 13, 9
   lda PuzzleGimmick
   asl
   asl
@@ -296,7 +325,7 @@ Loop:
   sta OAM_TILE+8,y
   lda #OAM_COLOR_1
   sta OAM_ATTR+8,y
-  lda #9*8-1
+  lda #7*8-1
   sta OAM_YPOS+8,y
   lda #12*8
   bit PuzzleVersus
@@ -316,7 +345,7 @@ ShiftCursorY:
   asl
   asl
   asl
-  add #9*8-1
+  add #7*8-1
   rts
 
 RunMenu:
@@ -324,12 +353,20 @@ RunMenu:
   and #KEY_UP
   beq :+
     dec CursorY,x
+    bpl :+
+      lda #6
+      sta CursorY,x
   :
 
   lda keynew,x
   and #KEY_DOWN
   beq :+
     inc CursorY,x
+    lda CursorY,x
+    cmp #7
+    bne :+
+      lda #0
+      sta CursorY,x
   :
 
   lda keynew,x
@@ -363,12 +400,27 @@ RunMenu:
       ; Level
       jmp @NotLeft
     @NotLevelL:
-    ; Speed
-    dec PuzzleSpeed,x
-    bpl :+
-      lda #2
-      sta PuzzleSpeed,x
-    :
+    dey
+    bne @NotSpeedL
+      ; Speed
+      dec PuzzleSpeed,x
+      bpl :+
+        lda #2
+        sta PuzzleSpeed,x
+      :
+      jmp @NotLeft
+    @NotSpeedL:
+
+    dey
+    bne @NotGravityL
+      ; Gravity
+      dec PuzzleGravitySpeed,x
+      bpl :+
+        lda #2
+        sta PuzzleGravitySpeed,x
+      :
+    @NotGravityL:
+
   @NotLeft:
 
   lda keynew,x
@@ -406,19 +458,33 @@ RunMenu:
       ; Level
       jmp @NotRight
     @NotLevelR:
-    ; Speed
-    inc PuzzleSpeed,x
-    lda PuzzleSpeed,x
-    cmp #3
-    bne :+
-      lda #0
-      sta PuzzleSpeed,x
-    :
-  @NotRight:
 
-  lda CursorY,x
-  and #3
-  sta CursorY,x
+    dey
+    bne @NotSpeedR
+      ; Speed
+      inc PuzzleSpeed,x
+      lda PuzzleSpeed,x
+      cmp #3
+      bne :+
+        lda #0
+        sta PuzzleSpeed,x
+      :
+      jmp @NotRight
+    @NotSpeedR:
+
+    dey
+    bne @NotGravityR
+      ; Gravity
+      inc PuzzleGravitySpeed,x
+      lda PuzzleGravitySpeed,x
+      cmp #3
+      bne :+
+        lda #0
+        sta PuzzleGravitySpeed,x
+      :
+    @NotGravityR:
+
+  @NotRight:
   rts
 
 PutDecimal:
@@ -457,12 +523,6 @@ PuzzleGimmickNames:
   jsr WaitVblank
   lda #0
   sta PPUMASK
-  sta PuzzleGarbageCount
-  sta PuzzleGarbageCount+1
-  sta PuzzleMatchesMade
-  sta PuzzleMatchesMade+1
-  sta PuzzleSwapMode+0
-  sta PuzzleSwapMode+1
 
   ; Set palettes
   ldx #$3f
@@ -1020,8 +1080,10 @@ StateLo:
   rts
 .endproc
 
-PuzzleFallSpeeds:
+PuzzleFallSpeeds: ; pill speed
   .byt 60, 30, 15
+PuzzleGravitySpeeds: ; gravity speeds
+  .byt 16, 8, 2
 
 .proc FallPill
 Tile1 = TouchTemp + 0
@@ -1618,7 +1680,8 @@ PuzzleGridReadSecond:
     sta PuzzleMap,y
 
     inc PuzzleRedraw,x
-    lda #8
+    ldy PuzzleGravitySpeed,x
+    lda PuzzleGravitySpeeds,y
     sta PuzzleFallTimer,x
     lda #PuzzleStates::GRAVITY
     sta PuzzleState,x
@@ -1914,7 +1977,9 @@ NextVerticalColumn:
   ; Now attempt to make things fall
   lda #PuzzleStates::GRAVITY
   sta PuzzleState,x
-  lda #8
+
+  ldy PuzzleGravitySpeed,x
+  lda PuzzleGravitySpeeds,y
   sta PuzzleFallTimer,x
   rts
 
@@ -2043,7 +2108,8 @@ GravityLoop:
 
   lda DidFix
   beq :+
-    lda #8
+    ldy PuzzleGravitySpeed,x
+    lda PuzzleGravitySpeeds,y
     sta PuzzleFallTimer,x
 
     inc PuzzleRedraw,x
