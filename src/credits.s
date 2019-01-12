@@ -222,17 +222,21 @@ CreditsData:
   .byt NAME,    "Josh Hoffman",0
 
   .byt SECTION, "DESIGN",0
-  .byt FOR,     "Music",0
+  .byt FOR,     "Game music",0
   .byt NAME,    "Oliver Kovacs",0
   .byt COMMAS
-  .byt FOR,     "Cover Art",0
-  .byt NAME,    "Kee Smith",0
+  .byt FOR,     "'Capsules' music",0
+  .byt NAME,    "maple syrup",0
 
   .byt SECTION, "DESIGN",0
   .byt FOR,     "Some enemy graphics",0
   .byt FOR,     "(Plodder, Owl, Sneaker)",0
   .byt FOR,     "Explosion sound effect",0
   .byt NAME,    "Damian Yerrick", 0
+
+  .byt SECTION, "DESIGN",0
+  .byt FOR,     "Cover art",0
+  .byt NAME,    "Kee Smith",0
 
   .byt SECTION, "DESIGN",0
   .byt FOR,     "Title screen adapted",0

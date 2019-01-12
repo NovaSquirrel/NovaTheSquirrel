@@ -21,7 +21,7 @@ MEMORY {
   ROMd:   start = $8000, size = $4000, type = ro, file = %O, fill=yes, fillval=$00;
   ROMe:   start = $8000, size = $4000, type = ro, file = %O, fill=yes, fillval=$00;
   ROMf:   start = $c000, size = $4000, type = ro, file = %O, fill=yes, fillval=$00;
-  PUZRAM: start = $0700, size = $0100, type = rw; # puzzle game RAM
+  PUZRAM: start = $6200, size = $0100, type = rw; # puzzle game RAM
 }
 
 SEGMENTS {

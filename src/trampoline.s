@@ -168,7 +168,7 @@
 
   lda #FAMITONE_BANK
   jsr _SetPRG
-  lda #0
+  lda #1
   ldx #<Original_music_data
   ldy #>Original_music_data
   jsr FamiToneInit

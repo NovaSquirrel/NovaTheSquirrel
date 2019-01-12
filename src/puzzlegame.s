@@ -73,7 +73,6 @@ PuzzleZeroEnd:
   PuzzleNextColor1: .res 2
   PuzzleNextColor2: .res 2
 
-
   ; Low, medium or high
   PuzzleSpeed:  .res 2         ; ranges 0-2. pills
   PuzzleGravitySpeed: .res 2   ; ranges 0-2, gravity
@@ -83,13 +82,17 @@ PuzzleZeroEnd:
 
   PuzzleVersus: .res 1    ; If nonzero, versus mode
   PuzzleGimmick: .res 1   ; gimmick selected
+  PuzzleTheme:  .res 1    ; theme picked
 
   PuzzlePlayfieldBase: .res 1 ; 0 or 128 for player 1 or 2
+  PuzzleTileBase:      .res 1 ; $80, $a0, $c0, or $e0
 
   PuzzleXSpriteOffset: .res 2 ; Distance to add to X for player 1 and 2's pills and next piece
   PPU_UpdateLo:      .res 2   ; Low byte of a PPU update for pill placement
   PPU_UpdateHi:      .res 2   ; High update of a PPU update for pill placement
   Player2AutoRepeat: .res 1
+
+  PuzzleMusicChoice: .res 1      ; Which music is picked
 .popseg
 
 .proc PuzzleGameMenu
@@ -115,6 +118,14 @@ PuzzleZeroEnd:
   sta PuzzleGravitySpeed+1
 
 Reshow:
+  jsr PuzzleMusicInit
+
+  lda PuzzleMusicChoice
+  bne :+
+    lda #0
+    jsr FamiToneMusicPlay
+  :
+
   ; Clear the stuff that should be zero'd every new game
   ldy #PuzzleZeroEnd-PuzzleZeroStart-1
   lda #0
@@ -124,8 +135,15 @@ Reshow:
 
   ; Turn off screen and draw the menu
   jsr WaitVblank
-  lda #0
-  sta PPUMASK
+  ldx #0
+  stx PPUMASK
+
+  ; Also make sure background is white
+  lda #$3f
+  sta PPUADDR
+  stx PPUADDR ; X is zero still from above
+  lda #$30
+  sta PPUDATA
 
 
   lda #' '
@@ -200,7 +218,7 @@ Reshow:
 
   PositionXY 0, 6, 19
   jsr PutStringImmediate
-  .byt "Music: None",0
+  .byt "Music: Yes",0
 
   ; -----------------------------------
 
@@ -271,6 +289,35 @@ Loop:
   inx
   dey
   bne :-
+
+  ; Print theme name
+  ; always 8 characters
+  PositionXY 0, 13, 17
+  lda PuzzleTheme
+  asl
+  asl
+  asl
+  tax
+  ldy #8
+: lda PuzzleThemeNames,x
+  sta PPUDATA
+  inx
+  dey
+  bne :-
+
+  ; Music names
+  PositionXY 0, 13, 19
+  lda PuzzleMusicChoice
+  asl
+  asl
+  tax
+  ldy #4
+: lda PuzzleMusicNames,x
+  sta PPUDATA
+  inx
+  dey
+  bne :-
+
 
   lda #0
   sta PPUSCROLL
@@ -419,8 +466,21 @@ RunMenu:
         lda #2
         sta PuzzleGravitySpeed,x
       :
+      jmp @NotLeft
     @NotGravityL:
 
+    dey
+    bne @NotThemeL
+      dec PuzzleTheme
+      lda PuzzleTheme
+      and #3
+      sta PuzzleTheme
+      jmp @NotLeft
+    @NotThemeL:
+
+    lda PuzzleMusicChoice
+    eor #1
+    sta PuzzleMusicChoice
   @NotLeft:
 
   lda keynew,x
@@ -482,8 +542,21 @@ RunMenu:
         lda #0
         sta PuzzleGravitySpeed,x
       :
+      jmp @NotRight
     @NotGravityR:
 
+    dey
+    bne @NotThemeR
+      inc PuzzleTheme
+      lda PuzzleTheme
+      and #3
+      sta PuzzleTheme
+      jmp @NotRight
+    @NotThemeR:
+
+    lda PuzzleMusicChoice
+    eor #1
+    sta PuzzleMusicChoice
   @NotRight:
   rts
 
@@ -517,6 +590,16 @@ PuzzleSpeedNames:
 PuzzleGimmickNames:
   .byt "Classic "
   .byt "FreeSwap"
+
+PuzzleThemeNames:
+  .byt "Minimal "
+  .byt "Night   "
+  .byt "Contrast"
+  .byt "Squirrel"
+
+PuzzleMusicNames:
+  .byt "Yes "
+  .byt "No  "
 .endproc
 
 .proc InitPuzzleGame
@@ -534,8 +617,20 @@ PuzzleGimmickNames:
   lda #$1d
   sta PPUADDR
   jsr WriteColors
+  ; Change background color
+  stx PPUADDR
+  lda #0
+  sta PPUADDR
+  ldy PuzzleTheme
+  lda ThemeBackgroundColors,y
+  sta PPUDATA
+
+  ldy PuzzleTheme
+  lda ThemeTileBases,y
+  sta PuzzleTileBase
 
   ; Erase first tile
+  ; (so that 0 in the playfield is actually empty space)
   lda #$00
   sta PPUADDR
   sta PPUADDR
@@ -708,7 +803,13 @@ DrawVersusPlayfields:
   .endscope
 DrewSoloPlayfield:
 
+  jsr PuzzleMusicInit
 
+  lda PuzzleMusicChoice
+  bne :+
+    lda #0
+    jsr FamiToneMusicPlay
+  :
 
   lda #0
   sta PPUSCROLL
@@ -718,6 +819,8 @@ DrewSoloPlayfield:
 
   ; The game loop!
 Loop:
+  jsr FamiToneUpdate
+
   jsr WaitVblank
   lda #BG_ON|OBJ_ON
   sta PPUMASK
@@ -792,6 +895,9 @@ Loop:
     cmp #PuzzleStates::FAILURE
     beq NoPause
 
+    lda #1
+    jsr FamiToneMusicPause
+    jsr FamiToneUpdate
 
     lda keydown
     and #KEY_SELECT
@@ -817,6 +923,9 @@ Loop:
   : jsr WaitVblank
     dey
     bne :-
+
+    lda #0
+    jsr FamiToneMusicPause
 
     lda #BG_ON|OBJ_ON
     sta PPUMASK
@@ -844,6 +953,10 @@ WriteColors:
   lda #$22
   sta PPUDATA
   rts
+ThemeBackgroundColors:
+  .byt $30, $0f, $0c, $30
+ThemeTileBases:
+  .byt $80, $80, $a0, $80
 .endproc
 
 .proc PuzzleDoPlayer
@@ -869,6 +982,7 @@ WriteColors:
   asl
   asl
   ora #$80 | PuzzleTiles::LEFT
+  ora PuzzleTileBase
   sta OAM_TILE+0,y
 
   lda PuzzleNextColor2,x
@@ -876,6 +990,7 @@ WriteColors:
   asl
   asl
   ora #$80 | PuzzleTiles::RIGHT
+  ora PuzzleTileBase
   sta OAM_TILE+4,y
 
   lda #OAM_COLOR_3
@@ -1492,6 +1607,7 @@ GetPillTiles:
   lda PuzzleDir,x
   asl
   add #$82
+  ora PuzzleTileBase
   sta 2
 
   lda PuzzleColor1,x
@@ -2003,6 +2119,7 @@ PrepareGarbage:
   ; Put a single tile in the array
   lda Color
   ora #$80 | PuzzleTiles::SINGLE
+  ora PuzzleTileBase
   sta PuzzleMatchColor,y
 
   inc PuzzleMatchesMade,x
@@ -2580,6 +2697,7 @@ CalculateTileNum:
   asl
   asl
   ora #$80 | PuzzleTiles::VIRUS
+  ora PuzzleTileBase
   sta TileNum
   rts
 .endproc
@@ -2634,4 +2752,11 @@ PuzzleFailure:
   eor #1
   tay
   rts
+.endproc
+
+.proc PuzzleMusicInit
+  lda #1 ; NSTC
+  ldx #<novapuzzle_music_data
+  ldy #>novapuzzle_music_data
+  jmp FamiToneInit
 .endproc
