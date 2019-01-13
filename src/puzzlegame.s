@@ -62,6 +62,7 @@ PuzzleZeroStart:
   ; Receive garbage
   PuzzleGarbageCount: .res 2
   PuzzleGarbageColor: .res 2*4
+  LockoutSoftDrop:    .res 2 ; don't allow soft drop until you press down again
 PuzzleZeroEnd:
 
   PuzzleX: .res 2
@@ -154,32 +155,32 @@ Reshow:
   ; Menu border
   ; Top
   PositionXY 0, 4, 6
-  lda #4
+  lda #$98
   sta PPUDATA
-  lda #5
+  lda #$99
   ldx #21
   jsr WritePPURepeated
-  lda #6
+  lda #$9a
   sta PPUDATA
   ; Bottom
   PositionXY 0, 4, 20
-  lda #9
+  lda #$9d
   sta PPUDATA
-  lda #10
+  lda #$9e
   ldx #21
   jsr WritePPURepeated
-  lda #11
+  lda #$9f
   sta PPUDATA
 
   ; Make sides
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
   sta PPUCTRL
   PositionXY 0, 4, 7
-  lda #7
+  lda #$9b
   ldx #13
   jsr WritePPURepeated
   PositionXY 0, 26, 7
-  lda #8
+  lda #$9c
   ldx #13
   jsr WritePPURepeated
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
@@ -673,30 +674,30 @@ PuzzleMusicNames:
   ; Make the playfield border
   ; Top
   PositionXY 0, 11, 5
-  lda #4
+  lda #$98
   sta PPUDATA
-  lda #5
+  lda #$99
   ldx #8
   jsr WritePPURepeated
-  lda #6
+  lda #$9a
   sta PPUDATA
   ; Bottom
   PositionXY 0, 11, 22
-  lda #9
+  lda #$9d
   sta PPUDATA
-  lda #10
+  lda #$9e
   ldx #8
   jsr WritePPURepeated
-  lda #11
+  lda #$9f
   sta PPUDATA
   ; Make sides
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
   sta PPUCTRL
   PositionXY 0, 11, 6
-  lda #7
+  lda #$9b
   jsr WritePPURepeated16
   PositionXY 0, 20, 6
-  lda #8
+  lda #$9c
   jsr WritePPURepeated16
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
   sta PPUCTRL
@@ -743,60 +744,60 @@ DrawVersusPlayfields:
   ; Make the playfield border
   ; Top
   PositionXY 0, 3, 5
-  lda #4
+  lda #$98
   sta PPUDATA
-  lda #5
+  lda #$99
   ldx #8
   jsr WritePPURepeated
-  lda #6
+  lda #$9a
   sta PPUDATA
   ; Bottom
   PositionXY 0, 3, 22
-  lda #9
+  lda #$9d
   sta PPUDATA
-  lda #10
+  lda #$9e
   ldx #8
   jsr WritePPURepeated
-  lda #11
+  lda #$9f
   sta PPUDATA
   ; Make sides
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
   sta PPUCTRL
   PositionXY 0, 3, 6
-  lda #7
+  lda #$9b
   jsr WritePPURepeated16
   PositionXY 0, 12, 6
-  lda #8
+  lda #$9c
   jsr WritePPURepeated16
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
   sta PPUCTRL
 
   ; Player 2's borders
   PositionXY 0, 19, 5
-  lda #4
+  lda #$98
   sta PPUDATA
-  lda #5
+  lda #$99
   ldx #8
   jsr WritePPURepeated
-  lda #6
+  lda #$9a
   sta PPUDATA
   ; Bottom
   PositionXY 0, 19, 22
-  lda #9
+  lda #$9d
   sta PPUDATA
-  lda #10
+  lda #$9e
   ldx #8
   jsr WritePPURepeated
-  lda #11
+  lda #$9f
   sta PPUDATA
   ; Make sides
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_DOWN
   sta PPUCTRL
   PositionXY 0, 19, 6
-  lda #7
+  lda #$9b
   jsr WritePPURepeated16
   PositionXY 0, 28, 6
-  lda #8
+  lda #$9c
   jsr WritePPURepeated16
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
   sta PPUCTRL
@@ -956,7 +957,7 @@ WriteColors:
 ThemeBackgroundColors:
   .byt $30, $0f, $0c, $30
 ThemeTileBases:
-  .byt $80, $80, $a0, $80
+  .byt $80, $80, $a0, $c0
 .endproc
 
 .proc PuzzleDoPlayer
@@ -1437,6 +1438,25 @@ GhostY = TouchTemp + 4
     sta PuzzleY,x
   :
 
+  ; If the ghost Y is the same as the pill Y, no ghost piece shown
+  lda GhostY
+  cmp PuzzleY,x
+  bne :+
+    lda #24
+    sta GhostY
+  :
+
+  ; Turn off the lockout soft drop flag upon releasing Down
+  lda keydown,x
+  and #KEY_DOWN
+  bne :+
+    lda #0
+    sta LockoutSoftDrop,x
+  :
+
+  ; Can't drop until they press down again
+  lda LockoutSoftDrop,x
+  bne :+
   ; Soft drop
   lda keydown,x
   and #KEY_DOWN
@@ -1629,6 +1649,9 @@ GetPillTiles:
 LandOnSomething:
   lda #PuzzleStates::INIT_PILL
   sta PuzzleState,x
+
+  lda #1
+  sta LockoutSoftDrop,x
 
   jsr GetPillTiles
   lda PuzzleX,x
