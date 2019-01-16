@@ -149,7 +149,6 @@ DoNothing:
   sta IRQAddress+1
 
 ; Clear out a chunk of on-cart RAM
-; When savefiles are implemented this will have to be adjusted
   lda #<$6000
   sta 0
   ldx #>$6000
@@ -160,7 +159,7 @@ DoNothing:
   bne :-
   inx
   stx 1
-  cpx #$7e ; stop at $7e00
+  cpx #$7e ; stop at $7e00. Saves are $7Fxx
   bne :-
 
   ; Initialize the savefile if it's corrupted

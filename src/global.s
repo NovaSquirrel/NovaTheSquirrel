@@ -1137,6 +1137,10 @@ Exit:
 
   ; Erase per-level inventory
   lda #0
+  sta LevelTimerFrames  ; Start the timer too
+  sta LevelTimerSeconds
+  sta LevelTimerMinutes
+  ; A is zero
   ldx #InventoryLen-1
 : sta InventoryPerLevelType,x
   sta InventoryPerLevelAmount,x
@@ -2062,6 +2066,28 @@ SkipNoAutorepeat:
   lda #BG_ON | OBJ_ON
   sta PPUMASK
   rts
+.endproc
+
+.proc PutHex
+    stx TempX
+	pha
+	pha
+	lsr a
+	lsr a
+	lsr a
+	lsr a
+	tax
+	lda hexdigits,x
+	sta PPUDATA
+	pla
+	and #$0f
+	tax
+	lda hexdigits,x
+	sta PPUDATA
+	pla
+    ldx TempX
+	rts
+hexdigits:	.byt "0123456789ABCDEF"
 .endproc
 
 ;----------------------------------------------------------

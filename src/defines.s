@@ -61,6 +61,7 @@ LEVEL_INTROS = 1
 HAS_DICTIONARY_TABLE = 1
 
 ;Try to make the level select music switching more seamless
+;(Didn't work very well)
 ;FAST_FORWARD_LEVEL_SELECT = 1
 
 ;Makes sure the post-level fadeout is pure white and nothing else

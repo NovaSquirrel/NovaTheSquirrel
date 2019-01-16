@@ -440,6 +440,91 @@ SandboxGotTile:
     bpl :-
   :
 
+  .scope
+  ; Tick the level timer to measure how long the level took to beat
+  lda TimeTrialMode
+  jeq NotTimeTrial
+
+    ; Display the time onscreen
+    ldy OamPtr
+    cpy #256-4*4
+    jcs NotTimeTrial
+
+    ldx LevelTimerMinutes
+    lda BCD99,x
+    pha
+    lsr
+    lsr
+    lsr
+    lsr
+    ora #$40
+    sta OAM_TILE+(4*0),y
+    pla
+    and #$0f
+    ora #$40
+    sta OAM_TILE+(4*1),y
+
+    ldx LevelTimerSeconds
+    lda BCD99,x
+    pha
+    lsr
+    lsr
+    lsr
+    lsr
+    ora #$40
+    sta OAM_TILE+(4*2),y
+    pla
+    and #$0f
+    ora #$40
+    sta OAM_TILE+(4*3),y
+
+    ; Set the other sprite attributes
+    lda #15+4
+    sta OAM_YPOS+(4*0),y
+    sta OAM_YPOS+(4*1),y
+    sta OAM_YPOS+(4*2),y
+    sta OAM_YPOS+(4*3),y
+    lda #OAM_COLOR_1
+    sta OAM_ATTR+(4*0),y
+    sta OAM_ATTR+(4*1),y
+    sta OAM_ATTR+(4*2),y
+    sta OAM_ATTR+(4*3),y
+    lda #8*5-4
+    sta OAM_XPOS+(4*0),y
+    lda #8*6-4
+    sta OAM_XPOS+(4*1),y
+    lda #8*7
+    sta OAM_XPOS+(4*2),y
+    lda #8*8
+    sta OAM_XPOS+(4*3),y
+
+    tya
+    add #4*4
+    sta OamPtr
+
+    ; Stop at 99 minutes
+    lda LevelTimerMinutes
+    cmp #99
+    beq NotTimeTrial
+
+    inc LevelTimerFrames
+    lda LevelTimerFrames
+    cmp #60
+    bcc :+
+      lda #0
+      sta LevelTimerFrames
+
+      inc LevelTimerSeconds
+      lda LevelTimerSeconds
+      cmp #60
+      bcc :+
+        lda #0
+        sta LevelTimerSeconds
+        inc LevelTimerMinutes
+    :
+  NotTimeTrial:
+  .endscope
+
 .ifdef NEW_TOGGLE_BEHAVIOR
   ; Swap toggle block graphics
   lda ToggleBlockUpload

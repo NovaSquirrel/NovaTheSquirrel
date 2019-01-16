@@ -306,7 +306,7 @@ BummerInstead:
 
 .proc ShowLevelEnd
 Ptr = 2
-; Prepare the upload data
+; Prepare the upload buffer to just upload rows of $3e
   ldx #31
   lda #$3e
 : sta UploadTileSpace+32,x
@@ -380,6 +380,13 @@ Loop:
 : jsr WaitVblank
   dex
   bne :-
+
+  lda TimeTrialMode
+  beq NotTimeTrial
+    lda #MAINLOOP_BANK
+    jsr SetPRG
+    jsr ShowTimeTrialResult
+  NotTimeTrial:
 
   lda #OPTIONS_BANK
   jsr SetPRG

@@ -449,6 +449,7 @@ OptionsBackground:
 
 .proc ShowMainMenu
 Cursor = 13
+FeatureCount = TempVal
 
   jsr SoundTestStopMusic
   jsr OptionsScreenSetup
@@ -456,6 +457,10 @@ Cursor = 13
   lda #0
   sta Cursor
   sta IsCustomLevel
+  sta TimeTrialMode
+
+  lda #3
+  sta FeatureCount
 
 ; Write the options
   PositionXY 0, 11, 4
@@ -548,6 +553,7 @@ CountBossesLoop:
 
 NoLevelsCleared:
 
+  ; Print the rest of the options
   PositionXY 0, 3, 12
   jsr PutStringImmediate
   .byt "View controls",0
@@ -557,6 +563,14 @@ NoLevelsCleared:
   PositionXY 0, 3, 16
   jsr PutStringImmediate
   .byt "Extra features",0
+
+  lda LevelCleared+4 ; Beating the game unlocks time trials
+  bpl :+
+    inc FeatureCount
+    PositionXY 0, 3, 18
+    jsr PutStringImmediate
+    .byt "Time trials",0
+  :
 
   ; This will make the colors change on the first loop iteration
   lda #255
@@ -586,6 +600,7 @@ Loop:
   jeq ShowOptions
   dey
   jeq ShowExtraFeatures
+  jmp JumpToLevelSelectTimeTrial
 NoA:
 
   ; Move the cursor
@@ -601,7 +616,7 @@ NoA:
   and #KEY_DOWN
   beq :+
     lda Cursor
-    cmp #3
+    cmp FeatureCount
     beq :+
     inc Cursor
   :
@@ -621,6 +636,10 @@ NoA:
   sta OAM_YPOS
 
   jmp Loop
+
+JumpToLevelSelectTimeTrial:
+  inc TimeTrialMode
+  jmp JumpToLevelSelect
 .endproc
 
 .proc ShowExtraFeatures

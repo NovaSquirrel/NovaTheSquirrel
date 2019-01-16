@@ -876,25 +876,3 @@ Empty: ; Empty slot, put in item
   sec
   rts
 .endproc
-
-.proc PutHex
-    stx TempX
-	pha
-	pha
-	lsr a
-	lsr a
-	lsr a
-	lsr a
-	tax
-	lda hexdigits,x
-	sta PPUDATA
-	pla
-	and #$0f
-	tax
-	lda hexdigits,x
-	sta PPUDATA
-	pla
-    ldx TempX
-	rts
-hexdigits:	.byt "0123456789ABCDEF"
-.endproc

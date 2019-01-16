@@ -62,6 +62,7 @@ SPRITEEDIT_BANK = $4
 .include "player.s"
 .include "scrolling.s"
 .include "metaplayer.s"
+.include "miscplayer.s" ; various stuff that goes in PRG9 since it's not very full
 
 .segment "PRGa" ; compressed graphics
 .segment "PRGb" ; compressed graphics

@@ -93,9 +93,14 @@ ReshowLevelSelect:
   jsr DoGraphicUpload
 ; Write text
   ldx #4
-  lda #>Instructions1
+  lda TimeTrialMode
+  beq :+
+    lda #>TimeTrialText
+    ldy #<TimeTrialText
+    bne :++ ; since it's in ROM the high byte is nonzero for sure
+: lda #>Instructions1
   ldy #<Instructions1
-  jsr vwfPutsAtRow
+: jsr vwfPutsAtRow
   ldx #5
   lda #>Instructions2
   ldy #<Instructions2
@@ -328,6 +333,90 @@ YesKeyCheck:
   sta OAM_TILE+(4*3)
 NotSpinningDontAnimate:
 
+  .scope
+  lda TimeTrialMode
+  jeq DontDrawTimeTrial
+  lda IsSpinning
+  jne DontDrawTimeTrial
+    ldy OamPtr
+
+    ;  Get the index to look up the time
+    lda WorldTimes8
+    ora CurLevel
+    asl
+    tax
+    lda SavedLevelTimes+0,x
+    sta 0
+    lda SavedLevelTimes+1,x
+    sta 1
+    ora SavedLevelTimes+0,x
+    jeq DontDrawTimeTrial
+
+    ; Minutes
+    ldx 0
+    lda BCD99,x
+    pha
+    lsr
+    lsr
+    lsr
+    lsr
+    add #1
+    sta OAM_TILE+(4*0),y
+    pla
+    and #$0f
+    add #1
+    sta OAM_TILE+(4*1),y
+
+    ; Seconds
+    ldx 1
+    lda BCD99,x
+    pha
+    lsr
+    lsr
+    lsr
+    lsr
+    add #1
+    sta OAM_TILE+(4*3),y
+    pla
+    and #$0f
+    add #1
+    sta OAM_TILE+(4*4),y
+
+    ; Colon
+    lda #$0b
+    sta OAM_TILE+(4*2),y
+
+    lda #14*8-4
+    sta OAM_XPOS+(4*0),y
+    lda #15*8-4
+    sta OAM_XPOS+(4*1),y
+    lda #16*8-4
+    sta OAM_XPOS+(4*2),y
+    lda #17*8-4
+    sta OAM_XPOS+(4*3),y
+    lda #18*8-4
+    sta OAM_XPOS+(4*4),y
+
+    lda #17*8-1
+    sta OAM_YPOS+(4*0),y
+    sta OAM_YPOS+(4*1),y
+    sta OAM_YPOS+(4*2),y
+    sta OAM_YPOS+(4*3),y
+    sta OAM_YPOS+(4*4),y
+
+    lda #OAM_COLOR_3
+    sta OAM_ATTR+(4*0),y
+    sta OAM_ATTR+(4*1),y
+    sta OAM_ATTR+(4*2),y
+    sta OAM_ATTR+(4*3),y
+    sta OAM_ATTR+(4*4),y
+
+    tya
+    add #5*4
+    sta OamPtr
+  DontDrawTimeTrial:
+  .endscope
+
   lda CurrentAngle
   sta TempAngle
   lda #0
@@ -473,12 +562,12 @@ Lda1AsrAsrNegAdd1:
   adc 1
   rts
 
+TimeTrialText:
+  .byt "  - Time Trial -",0
 Instructions1:
   .byt "- Level Select -",0
 Instructions2:
   .byt "  A: Start level",0
-Instructions3:
-  .byt " Start: Items/Shop",0
 Instructions4:
   .byt "   ( World 1 )",0
 .endproc

@@ -413,9 +413,9 @@ GameStateLen = 2+10*4 ; update if more stuff is added. Just coins and inventory.
 
   FinalBossScreenX:   .res 1 ; pixel position of final boss
   FinalBossScreenY:   .res 1
-  MusicMute:          .res 1
-  InMusicCode:        .res 1
-  JumpGracePeriod:    .res 1
+  MusicMute:          .res 1 ; Don't play music, only SFX
+  InMusicCode:        .res 1 ; Don't attempt to play more music in NMI, it's already in progress
+  JumpGracePeriod:    .res 1 ; Can start another jump even though you've walked off an edge, for some frames
   DontStartNewSong:   .res 1
 
 .ifdef FAST_FORWARD_LEVEL_SELECT
@@ -424,9 +424,15 @@ GameStateLen = 2+10*4 ; update if more stuff is added. Just coins and inventory.
   LevelSelectNeedFastForward: .res 1 ; used to make music changes on level select more seamless
 .endif
 
+  ; Timer that runs for measuring the frames a level took to complete
+  LevelTimerFrames:  .res 1
+  LevelTimerSeconds: .res 1
+  LevelTimerMinutes: .res 1
+  TimeTrialMode: .res 1 ; if nonzero, it's time trial mode
+
 .segment "SAVE"
 SaveStart:
-  SaveTag:            .res 9
+  SaveTag:            .res 9 ; Verifies integrity of the save
 SavedGameState_Start: ; apparently this isn't actually used in one chunk?
   SavedCoins:         .res 2
   InventorySavedType:   .res InventoryLen
@@ -442,6 +448,9 @@ SavedOptions:
   DeleteSavePlaceholder: .res 1 ; "delete file" placeholder
 SaveEnd:
 
+MAX_TIMED_LEVEL = 48 ; last level that a time is saved for
+  SavedLevelTimes:    .res MAX_TIMED_LEVEL*2
+
 .segment "EXWRAM" ; only on SXROM
 .res 4096 ; reserve space for a level layout
 
@@ -450,5 +459,5 @@ CustomLevelSlots = 5
 CustomLevelSprites:  .res 256 * CustomLevelSlots
 CustomLevelTilesets: .res SandboxTilesets_Length * CustomLevelSlots
 
-
 .code
+ 
