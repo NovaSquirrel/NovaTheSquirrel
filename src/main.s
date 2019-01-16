@@ -443,12 +443,17 @@ SandboxGotTile:
   .scope
   ; Tick the level timer to measure how long the level took to beat
   lda TimeTrialMode
-  jeq NotTimeTrial
+  beq @SkipTimeTrial
+    lda PlaceBlockInLevel
+    bne @SkipTimeTrial
 
     ; Display the time onscreen
     ldy OamPtr
     cpy #256-4*4
-    jcs NotTimeTrial
+    bcc :+
+@SkipTimeTrial:
+    jmp NotTimeTrial
+  :
 
     ldx LevelTimerMinutes
     lda BCD99,x
