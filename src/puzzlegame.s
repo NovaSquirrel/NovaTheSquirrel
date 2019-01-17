@@ -18,6 +18,36 @@ PuzzleMap = LevelMap ; 128 bytes, 8*16
 PUZZLE_WIDTH = 8
 PUZZLE_HEIGHT = 16
 
+.enum PuzzleSFX
+  ROTATE
+  LAND
+  CLEAR
+  CLEAR2
+  CLEAR3
+  GARBAGE
+  WIN
+  FAIL
+.endenum
+
+.proc PuzzlePlaySFX
+  stx TempX
+  sty TempY
+
+  ; Only play if SFX enabled
+  sta TouchTemp+9
+  lda PuzzleMusicChoice
+  and #1
+  beq :+
+    lda TouchTemp+9
+    ldx #FT_SFX_CH0
+    jsr  FamiToneSfxPlay
+  :
+
+  ldy TempY
+  ldx TempX
+  rts
+.endproc
+
 .enum PuzzleStates
   INIT_GAME
   INIT_PILL
@@ -31,6 +61,7 @@ PUZZLE_HEIGHT = 16
 .enum PuzzleGimmicks
   CLASSIC
   FREE_SWAP
+  DOUBLES
 
   GIMMICK_COUNT
 .endenum
@@ -100,6 +131,9 @@ PuzzleZeroEnd:
   CursorY = TempVal ; array of 2
 
   jsr ReseedRandomizer
+
+  lda #3
+  sta PuzzleMusicChoice
 
   ; Clear RAM
   ldx #0
@@ -219,7 +253,7 @@ Reshow:
 
   PositionXY 0, 6, 19
   jsr PutStringImmediate
-  .byt "Music: Yes",0
+  .byt "Sound: ",0
 
   ; -----------------------------------
 
@@ -479,8 +513,9 @@ RunMenu:
       jmp @NotLeft
     @NotThemeL:
 
+    dec PuzzleMusicChoice
     lda PuzzleMusicChoice
-    eor #1
+    and #3
     sta PuzzleMusicChoice
   @NotLeft:
 
@@ -555,8 +590,9 @@ RunMenu:
       jmp @NotRight
     @NotThemeR:
 
+    inc PuzzleMusicChoice
     lda PuzzleMusicChoice
-    eor #1
+    and #3
     sta PuzzleMusicChoice
   @NotRight:
   rts
@@ -591,6 +627,7 @@ PuzzleSpeedNames:
 PuzzleGimmickNames:
   .byt "Classic "
   .byt "FreeSwap"
+  .byt "Doubles "
 
 PuzzleThemeNames:
   .byt "Minimal "
@@ -599,8 +636,10 @@ PuzzleThemeNames:
   .byt "Squirrel"
 
 PuzzleMusicNames:
-  .byt "Yes "
-  .byt "No  "
+  .byt "Mute"
+  .byt "SFX "
+  .byt "Song"
+  .byt "Both"
 .endproc
 
 .proc InitPuzzleGame
@@ -807,7 +846,8 @@ DrewSoloPlayfield:
   jsr PuzzleMusicInit
 
   lda PuzzleMusicChoice
-  bne :+
+  and #2
+  beq :+
     lda #0
     jsr FamiToneMusicPlay
   :
@@ -1021,6 +1061,9 @@ StateLo:
   ; Receive garbage if necessary
   lda PuzzleGarbageCount,x
   beq NoReceiveGarbage
+    lda #PuzzleSFX::GARBAGE
+    jsr PuzzlePlaySFX
+
     .scope
     Column = 0
     Row = 1
@@ -1097,8 +1140,9 @@ StateLo:
   bcc NoSendGarbage
     ; Don't send garbage if they already have some
     jsr PuzzleOtherPlayer
-;    lda PuzzleGarbageCount,y
-;    bne NoSendGarbage
+
+    lda PuzzleGarbageCount,y
+    bne NoSendGarbage
       lda PuzzleMatchesMade,x
       sta PuzzleGarbageCount,y
 
@@ -1116,7 +1160,7 @@ StateLo:
       tay
 
       ; Copy over the four colors
-      lda PuzzleMatchColor+0,x
+      lda PuzzleMatchColor+0,x 
       sta PuzzleGarbageColor+0,y
       lda PuzzleMatchColor+1,x
       sta PuzzleGarbageColor+1,y
@@ -1148,6 +1192,14 @@ StateLo:
   sta PuzzleNextColor1,x
   jsr PuzzleRandomColor
   sta PuzzleNextColor2,x
+
+  lda PuzzleGimmick
+  cmp #PuzzleGimmicks::DOUBLES
+  bne :+
+    lda PuzzleNextColor1,x
+    sta PuzzleNextColor2,x
+  :
+
   lda #3
   sta PuzzleX,x
   lda #0
@@ -1168,6 +1220,14 @@ StateLo:
   lda PuzzleMap+3*PUZZLE_HEIGHT,y
   ora PuzzleMap+4*PUZZLE_HEIGHT,y
   beq NotFailure
+      lda #PuzzleSFX::FAIL
+      jsr PuzzlePlaySFX
+      stx TempX
+      sty TempY
+      jsr FamiToneMusicStop
+      ldy TempY
+      ldx TempX
+
       ldy PuzzlePlayfieldBase
       lda #'F'
       sta PuzzleMap+PUZZLE_HEIGHT*0,y
@@ -1212,7 +1272,8 @@ GhostY = TouchTemp + 4
   and #KEY_SELECT
   beq :+
     lda PuzzleGimmick
-    beq :+
+    cmp #PuzzleGimmicks::FREE_SWAP
+    bne :+
     lda PuzzleX,x
     sta PuzzleSwapX,x
     lda PuzzleY,x
@@ -1245,26 +1306,32 @@ GhostY = TouchTemp + 4
   ; Rotate
   lda keynew,x
   and #KEY_B
-  beq NotA
+  beq NotB
+    lda #PuzzleSFX::ROTATE
+    jsr PuzzlePlaySFX
+
     inc PuzzleDir,x
     lda PuzzleDir,x
     cmp #2
-    bne NotA
+    bne NotB
       lda #0
       sta PuzzleDir,x
       jsr SwapColors
-  NotA:
+  NotB:
 
   ; Rotate
   lda keynew,x
   and #KEY_A
-  beq NotB
+  beq NotA
+    lda #PuzzleSFX::ROTATE
+    jsr PuzzlePlaySFX
+
     dec PuzzleDir,x
-    bpl NotB
+    bpl NotA
       lda #1
       sta PuzzleDir,x
       jsr SwapColors
-  NotB:
+  NotA:
 
   ; Get the X and Y for the second piece
   ; so it's already fetched
@@ -1647,6 +1714,9 @@ GetPillTiles:
   rts
 
 LandOnSomething:
+  lda #PuzzleSFX::LAND
+  jsr PuzzlePlaySFX
+
   lda #PuzzleStates::INIT_PILL
   sta PuzzleState,x
 
@@ -2125,10 +2195,39 @@ NextVerticalColumn:
 PrepareGarbage:
   sty TempY
 
+  ; Play the clear sound effect
+  ; but back up the three temporary variables FamiTone uses
+  lda 0
+  pha
+  lda 1
+  pha
+  lda 2
+  pha
+  ; Play three different clear sound effects
+  ; but anything past three just uses the third one
+  lda PuzzleMatchesMade,x
+  cmp #2
+  bcc :+
+    lda #2
+  :
+  add #PuzzleSFX::CLEAR
+  jsr PuzzlePlaySFX
+  pla
+  sta 2
+  pla
+  sta 1
+  pla
+  sta 0
+
+  ; Don't send gabage in swap mode
+  lda PuzzleSwapMode,x
+  bne @_rts
+
   ; Ignore everything after the first four
   lda PuzzleMatchesMade,x
   cmp #4
   bcc :+
+@_rts:
     rts
   :
 
@@ -2187,8 +2286,17 @@ FixLoop:
       lda PuzzleState,y
       cmp #PuzzleStates::VICTORY
       beq NoVictory
+;      lda #PuzzleSFX::WIN
+;      jsr PuzzlePlaySFX
+      stx TempX
+      sty TempY
+      jsr FamiToneMusicStop
+      ldy TempY
+      ldx TempX
+
       lda #PuzzleStates::FAILURE
       sta PuzzleState,y
+
 
       ; Display 'Victory!" message
       ldy PuzzlePlayfieldBase
@@ -2412,13 +2520,19 @@ GravityRight:
     sta PPUADDR
     lda #<($2000 + (6*32)+(12+I))
     sta PPUADDR
-    .repeat 16, J
-      lda PuzzleMap+(I*16)+J
-      sta PPUDATA
-    .endrep
+    ldx #16*I
+    jsr PuzzleDrawColumn
   .endrep
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
   sta PPUCTRL
+  rts
+.endproc
+
+.proc PuzzleDrawColumn
+  .repeat 16, J
+    lda PuzzleMap+J,x
+    sta PPUDATA
+  .endrep
   rts
 .endproc
 
@@ -2430,10 +2544,8 @@ GravityRight:
     sta PPUADDR
     lda #<($2000 + (6*32)+(4+I))
     sta PPUADDR
-    .repeat 16, J
-      lda PuzzleMap+(I*16)+J
-      sta PPUDATA
-    .endrep
+    ldx #16*I
+    jsr PuzzleDrawColumn
   .endrep
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
   sta PPUCTRL
@@ -2448,10 +2560,8 @@ GravityRight:
     sta PPUADDR
     lda #<($2000 + (6*32)+(20+I))
     sta PPUADDR
-    .repeat 16, J
-      lda PuzzleMap+128+(I*16)+J
-      sta PPUDATA
-    .endrep
+    ldx #16*I+128
+    jsr PuzzleDrawColumn
   .endrep
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_1000 | VRAM_RIGHT
   sta PPUCTRL
@@ -2520,6 +2630,13 @@ TileNum = 6
   sta PuzzleNextColor1,x
   jsr PuzzleRandomColor
   sta PuzzleNextColor2,x
+
+  lda PuzzleGimmick
+  cmp #PuzzleGimmicks::DOUBLES
+  bne :+
+    lda PuzzleNextColor1,x
+    sta PuzzleNextColor2,x
+  :
 
   ; Right now just directly use the virus level as virus count
   lda VirusLevel,x
@@ -2712,6 +2829,39 @@ XOkay:
   dec VirusesLeft
   jne AddVirusLoop
 AbortAddVirus:
+
+
+.if 0
+  ; Test thing for swap mode
+  lda #0
+  sta VirusesLeft
+AddSingleLoop:
+  jsr huge_rand
+  and #7
+  sta Column
+
+: jsr huge_rand
+  and #15
+  cmp MaxY
+  bcs :-
+  ; Reverse subtraction, start from the bottom
+  eor #255
+  sec
+  adc #PUZZLE_HEIGHT-1
+  sta Row
+
+  ; Make sure this space isn't already taken, and move to a different column if it is
+  jsr PuzzleGridRead
+  bne SingleNotOkay
+    jsr PuzzleRandomColor
+    sta Color
+    jsr CalculateTileNum
+    ora #PuzzleTiles::SINGLE
+    sta PuzzleMap,y
+  SingleNotOkay:
+  dec VirusesLeft
+  bne AddSingleLoop
+.endif
   rts
 
 CalculateTileNum:
@@ -2781,5 +2931,9 @@ PuzzleFailure:
   lda #1 ; NSTC
   ldx #<novapuzzle_music_data
   ldy #>novapuzzle_music_data
-  jmp FamiToneInit
+  jsr FamiToneInit
+
+  ldx #<sounds
+  ldy #>sounds
+  jmp FamiToneSfxInit
 .endproc

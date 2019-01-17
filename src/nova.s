@@ -116,6 +116,7 @@ SPRITEEDIT_BANK = $4
 .segment "PRG3" ; Famitone and old songs
 .include "../music/famitone/Original.s"
 .include "../music/famitone/novapuzzle.s"
+.include "../music/famitone/novapuzzle sfx.s"
 .include "../music/famitone/famitone2.s"
 .include "puzzlegame.s"
 .include "mouse.s"
