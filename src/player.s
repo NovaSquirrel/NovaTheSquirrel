@@ -969,6 +969,19 @@ UnstuckY:
 FC__RL_:
 FC_L__R:
 FC_LRLR:
+  lda PlayerOnLadder
+  beq :+
+    lda PlayerNonSolidPXL
+    sta PlayerPXL
+    lda PlayerNonSolidPXH
+    sta PlayerPXH
+    lda PlayerNonSolidPYL
+    sta PlayerPYL
+    lda PlayerNonSolidPYH
+    sta PlayerPYH
+    rts
+  :
+
   ; Attempt to find a position near the player that isn't solid
   ldx #0
   stx PlayerVYL
