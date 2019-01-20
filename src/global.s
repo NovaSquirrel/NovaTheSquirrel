@@ -2105,7 +2105,7 @@ PointerB = 4
   ldx #$60
   stx PointerA+1
   lsr
-  bcs :+
+  bcc :+
     ldx #$70
   :
   add #1
