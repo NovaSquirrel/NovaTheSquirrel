@@ -34,9 +34,9 @@ PUZZLE_HEIGHT = 16
   sty TempY
 
   ; Only play if SFX enabled
+  ; (all options except 0 enable it)
   sta TouchTemp+9
   lda PuzzleMusicChoice
-  and #1
   beq :+
     lda TouchTemp+9
     ldx #FT_SFX_CH0
@@ -239,7 +239,7 @@ PlayerSelect:
 
   jsr ReseedRandomizer
 
-  lda #3
+  lda #2
   sta PuzzleMusicChoice
 
   ; Clear RAM
@@ -452,8 +452,9 @@ Loop:
   lda PuzzleMusicChoice
   asl
   asl
+  adc PuzzleMusicChoice ; Carry always clear
   tax
-  ldy #4
+  ldy #5
 : lda PuzzleMusicNames,x
   sta PPUDATA
   inx
@@ -744,10 +745,10 @@ PuzzleThemeNames:
   .byt "Squirrel"
 
 PuzzleMusicNames:
-  .byt "Mute"
-  .byt "SFX "
-  .byt "Song"
-  .byt "Both"
+  .byt "Mute "
+  .byt "SFX  "
+  .byt "Tonic"
+  .byt "Balmy"
 .endproc
 
 .proc InitPuzzleGame
@@ -958,7 +959,8 @@ DrewSoloPlayfield:
   lda PuzzleMusicChoice
   and #2
   beq :+
-    lda #0
+    lda PuzzleMusicChoice
+    and #1
     jsr FamiToneMusicPlay
   :
 
@@ -1418,9 +1420,6 @@ GhostY = TouchTemp + 4
   lda keynew,x
   and #KEY_B
   beq NotB
-    lda #PuzzleSFX::ROTATE
-    jsr PuzzlePlaySFX
-
     inc PuzzleDir,x
     lda PuzzleDir,x
     cmp #2
@@ -1434,9 +1433,6 @@ GhostY = TouchTemp + 4
   lda keynew,x
   and #KEY_A
   beq NotA
-    lda #PuzzleSFX::ROTATE
-    jsr PuzzlePlaySFX
-
     dec PuzzleDir,x
     bpl NotA
       lda #1
@@ -1582,6 +1578,14 @@ GhostY = TouchTemp + 4
     lda TempVal+1
     sta PuzzleColor1,x
     jsr CalculateSecondXY
+  :
+
+  ; Doing this later after the rotate so variables aren't corrupted
+  lda keynew
+  and #KEY_A|KEY_B
+  beq :+
+    lda #PuzzleSFX::ROTATE
+    jsr PuzzlePlaySFX
   :
 
   ; Calculate the ghost piece placement
