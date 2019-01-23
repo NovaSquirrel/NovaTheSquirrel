@@ -62,6 +62,7 @@ PUZZLE_HEIGHT = 16
   CLASSIC
   FREE_SWAP
   DOUBLES
+  NO_RUSH
 
   GIMMICK_COUNT
 .endenum
@@ -125,7 +126,113 @@ PuzzleZeroEnd:
   Player2AutoRepeat: .res 1
 
   PuzzleMusicChoice: .res 1      ; Which music is picked
+
+; Randomizer state:
+  PUZZLE_OUTCOMES = 9
+  PUZZLE_RANDBUF_SIZE = PUZZLE_OUTCOMES * 3
+  PUZZLE_PLAYERS = 2
+
+  PuzzleRandBuf: .res PUZZLE_PLAYERS * PUZZLE_RANDBUF_SIZE
+  PuzzleRandPos: .res PUZZLE_PLAYERS
 .popseg
+
+
+.proc PuzzleRandomColor
+  ; Random number from 0 to 2
+: jsr huge_rand
+  and #3
+  cmp #3
+  beq :-
+  rts
+.endproc
+
+.proc PuzzleRandomInit
+  ldx #PUZZLE_PLAYERS * PUZZLE_RANDBUF_SIZE - 1
+Loop:
+  txa
+
+  ; Constrain the piece to only 0-8
+: cmp #9 ; 
+  bcc :+ ; Exit if small enough
+  sbc #9 ; Carry is already set
+  bpl :-
+:
+
+  ; Store it
+  sta PuzzleRandBuf,x
+  dex
+  bpl Loop
+
+  ; X is still zero
+  stx PuzzleRandPos+0
+  stx PuzzleRandPos+1
+  rts
+.endproc
+
+.proc PuzzlePrescription ; get the next pill for player X
+SwapTarget = 0
+PlayerPos = 1
+Chosen = 2
+  ; Get the player position
+  lda PlayerSelect,x
+  add PuzzleRandPos,x
+  sta PlayerPos
+
+  ; Select the swap target
+  jsr huge_rand
+  and #15
+  add PuzzleRandPos,x
+  ; And keep it within the circular buffer
+  cmp #PUZZLE_RANDBUF_SIZE
+  bcc :+
+    sbc #PUZZLE_RANDBUF_SIZE ; Carry is already set
+  :
+  ; Pick the right queue
+  add PlayerSelect,x
+  sta SwapTarget
+
+  ; Swap SwapTarget with PlayerPos
+  tay
+  lda PuzzleRandBuf,y
+  pha
+  pha
+  ldy PlayerPos
+  lda PuzzleRandBuf,y
+  ldy SwapTarget
+  sta PuzzleRandBuf,y
+  pla
+  ldy PlayerPos
+  sta PuzzleRandBuf,y
+  pla
+  tay
+
+  ; Increase the position
+  inc PuzzleRandPos,x
+  lda PuzzleRandPos,x
+  cmp #PUZZLE_RANDBUF_SIZE
+  bcc :+
+    lda #0
+    sta PuzzleRandPos,x
+  :
+
+  ; Get the two pill colors
+  lda OutcomeListA,y
+  sta 0
+  lda OutcomeListB,y
+  sta 1
+  rts
+
+; All of the possible outcomes for pills
+OutcomeListA:
+  .byt 0, 0, 0, 1, 1, 1, 2, 2, 2
+OutcomeListB:
+  .byt 0, 1, 2, 0, 1, 2, 0, 1, 2
+
+PlayerSelect:
+  .byt 0, PUZZLE_RANDBUF_SIZE
+.endproc
+
+; -------------------------------------
 
 .proc PuzzleGameMenu
   CursorY = TempVal ; array of 2
@@ -628,6 +735,7 @@ PuzzleGimmickNames:
   .byt "Classic "
   .byt "FreeSwap"
   .byt "Doubles "
+  .byt "No Rush "
 
 PuzzleThemeNames:
   .byt "Minimal "
@@ -643,6 +751,8 @@ PuzzleMusicNames:
 .endproc
 
 .proc InitPuzzleGame
+  jsr PuzzleRandomInit
+
   jsr WaitVblank
   lda #0
   sta PPUMASK
@@ -1188,9 +1298,10 @@ StateLo:
   sta PuzzleColor2,x
 
   ; Choose a new next color
-  jsr PuzzleRandomColor
+  jsr PuzzlePrescription
+  lda 0
   sta PuzzleNextColor1,x
-  jsr PuzzleRandomColor
+  lda 1
   sta PuzzleNextColor2,x
 
   lda PuzzleGimmick
@@ -1533,6 +1644,10 @@ GhostY = TouchTemp + 4
     lsr
     bcs ForceFall
   :
+
+  lda PuzzleGimmick
+  cmp #PuzzleGimmicks::NO_RUSH
+  beq NoFall
 
   dec PuzzleFallTimer,x
   bne NoFall
@@ -1934,14 +2049,6 @@ PuzzleGridReadSecond:
 
   ; Draw the original piece too
   jmp FallPill::Draw
-.endproc
-
-.proc PuzzleRandomColor
-: jsr huge_rand
-  and #3
-  cmp #3
-  beq :-
-  rts
 .endproc
 
 PuzzleGridReadFirst:
@@ -2626,9 +2733,10 @@ TileNum = 6
   NotPlayer2:
 
 ; Init the next color
-  jsr PuzzleRandomColor
+  jsr PuzzlePrescription
+  lda 0
   sta PuzzleNextColor1,x
-  jsr PuzzleRandomColor
+  lda 1
   sta PuzzleNextColor2,x
 
   lda PuzzleGimmick
