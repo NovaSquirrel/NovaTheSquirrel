@@ -63,6 +63,7 @@ PUZZLE_HEIGHT = 16
   FREE_SWAP
   DOUBLES
   NO_RUSH
+  UNCONNECTED
 
   GIMMICK_COUNT
 .endenum
@@ -241,6 +242,8 @@ PlayerSelect:
 
   lda #2
   sta PuzzleMusicChoice
+  lda #4 ; squirrel, light
+  sta PuzzleTheme
 
   ; Clear RAM
   ldx #0
@@ -329,9 +332,13 @@ Reshow:
 
 
   ; Draw the menu options
-  PositionXY 0, 9, 4
+;  PositionXY 0, 9, 4
+;  jsr PutStringImmediate
+;  .byt "- Capsules -",0
+  PositionXY 0, 6, 4
   jsr PutStringImmediate
-  .byt "- Capsules -",0
+  .byt "- Squirrel Domino -",0
+
   ; -----------------------------------
 
   PositionXY 0, 6, 7
@@ -436,6 +443,7 @@ Loop:
   ; always 8 characters
   PositionXY 0, 13, 17
   lda PuzzleTheme
+  lsr
   asl
   asl
   asl
@@ -446,6 +454,15 @@ Loop:
   inx
   dey
   bne :-
+
+  ; Draw light or dark
+  ldy #$91 ; light
+  lda PuzzleTheme
+  lsr
+  bcc :+
+    ldy #$81 ; dark
+  :
+  sty PPUDATA
 
   ; Music names
   PositionXY 0, 13, 19
@@ -615,9 +632,10 @@ RunMenu:
     dey
     bne @NotThemeL
       dec PuzzleTheme
-      lda PuzzleTheme
-      and #3
-      sta PuzzleTheme
+      bpl :+
+        lda #5
+        sta PuzzleTheme
+      :
       jmp @NotLeft
     @NotThemeL:
 
@@ -629,7 +647,7 @@ RunMenu:
 
   lda keynew,x
   and #KEY_RIGHT
-  beq @NotRight
+  jeq @NotRight
     ldy CursorY,x
     bne :+
       ; Solo/Versus
@@ -693,8 +711,11 @@ RunMenu:
     bne @NotThemeR
       inc PuzzleTheme
       lda PuzzleTheme
-      and #3
-      sta PuzzleTheme
+      cmp #6
+      bcc :+
+        lda #0
+        sta PuzzleTheme
+      :
       jmp @NotRight
     @NotThemeR:
 
@@ -737,10 +758,10 @@ PuzzleGimmickNames:
   .byt "FreeSwap"
   .byt "Doubles "
   .byt "No Rush "
+  .byt "Loose   "
 
 PuzzleThemeNames:
   .byt "Minimal "
-  .byt "Night   "
   .byt "Contrast"
   .byt "Squirrel"
 
@@ -772,11 +793,15 @@ PuzzleMusicNames:
   stx PPUADDR
   lda #0
   sta PPUADDR
-  ldy PuzzleTheme
+  lda PuzzleTheme
+  and #1
+  tay
   lda ThemeBackgroundColors,y
   sta PPUDATA
 
-  ldy PuzzleTheme
+  lda PuzzleTheme
+  lsr
+  tay
   lda ThemeTileBases,y
   sta PuzzleTileBase
 
@@ -1107,9 +1132,9 @@ WriteColors:
   sta PPUDATA
   rts
 ThemeBackgroundColors:
-  .byt $30, $0f, $0c, $30
+  .byt $30, $0f
 ThemeTileBases:
-  .byt $80, $80, $a0, $c0
+  .byt $80, $a0, $c0
 .endproc
 
 .proc PuzzleDoPlayer
@@ -1289,7 +1314,8 @@ StateLo:
   ; In swap mode, go right to falling pill mode instead of reinitializing the pill
   lda PuzzleSwapMode,x
   beq :+
-    inc PuzzleState,x
+    lda #PuzzleStates::FALL_PILL
+    sta PuzzleState,x
     rts
   :
 
@@ -1324,7 +1350,9 @@ StateLo:
   inc PuzzleState,x
 
   ldy PuzzleSpeed,x
-  lda PuzzleFallSpeeds,y
+;  lda PuzzleFallSpeeds,y
+  ; Give extra time after the pill appears
+  lda #50
   sta PuzzleFallTimer,x
 
   ; If there's a tile in either of the two opening tiles
@@ -1624,7 +1652,7 @@ GhostY = TouchTemp + 4
   lda GhostY
   cmp PuzzleY,x
   bne :+
-    lda #24
+    lda #25
     sta GhostY
   :
 
@@ -1828,8 +1856,24 @@ GetPillTiles:
   asl
   asl
   ora 2
+
   adc #1 ; carry is clear
   sta Tile2
+
+  lda PuzzleGimmick
+  cmp #PuzzleGimmicks::UNCONNECTED
+  bne :+
+    lda Tile1
+    and #<~7
+    ora #1
+    sta Tile1
+
+    lda Tile2
+    and #<~7
+    ora #1
+    sta Tile2
+  :
+
   rts
 
 LandOnSomething:
