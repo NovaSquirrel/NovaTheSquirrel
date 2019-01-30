@@ -1100,12 +1100,15 @@ Loop:
 
     ; Debounce
     ldy #15
+    sty TempY
   : jsr WaitVblank
-    dey
+    jsr FamiToneUpdate
+    dec TempY
     bne :-
 
     ; Wait
   : jsr WaitVblank
+    jsr FamiToneUpdate
     jsr PuzzleReadJoy
     lda keynew
     and #KEY_START
@@ -1113,9 +1116,12 @@ Loop:
 
     ; Debounce
     ldy #15
+    sty TempY
   : jsr WaitVblank
-    dey
+    jsr FamiToneUpdate
+    dec TempY
     bne :-
+
 
     lda #0
     jsr FamiToneMusicPause
