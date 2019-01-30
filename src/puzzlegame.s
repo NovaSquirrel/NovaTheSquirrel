@@ -373,7 +373,8 @@ Reshow:
 
   PositionXY 0, 3, 22
   jsr PutStringImmediate
-  .byt "Guide ",$82,$93," to make lines of",0
+;  .byt "Guide ",$82,$93," to make lines of",0
+  .byt "Guide ",$aa,$ab," to make lines of",0
 
   PositionXY 0, 3, 23
   jsr PutStringImmediate
@@ -799,6 +800,15 @@ PuzzleMusicNames:
   lda ThemeBackgroundColors,y
   sta PPUDATA
 
+  ; Do the extra colors too
+  stx PPUADDR
+  lda #5
+  sta PPUADDR
+  lda ThemeExtraColor1,y
+  sta PPUDATA
+  lda ThemeExtraColor2,y
+  sta PPUDATA
+
   lda PuzzleTheme
   lsr
   tay
@@ -878,6 +888,7 @@ PuzzleMusicNames:
   sta PPUCTRL
 
   .endscope
+  jsr PuzzleAddBackground
   jmp DrewSoloPlayfield
 DrawVersusPlayfields:
   .scope
@@ -1133,6 +1144,11 @@ WriteColors:
   rts
 ThemeBackgroundColors:
   .byt $30, $0f
+ThemeExtraColor1:
+  .byt $3a, $0a
+ThemeExtraColor2:
+  .byt $32, $01
+
 ThemeTileBases:
   .byt $80, $a0, $c0
 .endproc
@@ -3092,4 +3108,107 @@ PuzzleFailure:
   ldx #<sounds
   ldy #>sounds
   jmp FamiToneSfxInit
+.endproc
+
+.proc PuzzleAddBackground
+  lda #$20
+  sta PPUADDR
+  lda #$00
+  sta PPUADDR
+
+
+  jsr AllFour
+  jsr AllFour
+  jsr AllFour
+  jsr AllFour
+  jsr AllFour
+  jsr AllFour
+  jsr AllFour
+  jsr Part1
+  jsr PartEmpty
+  jsr Part1
+  jsr Part2
+  jsr PartEmpty
+  jsr Part2
+
+  ; Attribute table
+  lda #$23
+  sta PPUADDR
+  lda #$c0
+  sta PPUADDR
+
+  ldx #8
+  lda #%01010101
+: sta PPUDATA
+  sta PPUDATA
+  bit PPUDATA
+  bit PPUDATA
+  bit PPUDATA
+  bit PPUDATA
+  sta PPUDATA
+  sta PPUDATA
+  dex
+  bne :-
+
+  rts
+
+AllFour:
+  jsr Part1
+  jsr PartEmpty
+  jsr Part1
+
+  jsr Part2
+  jsr PartEmpty
+  jsr Part2
+
+  jsr Part3
+  jsr PartEmpty
+  jsr Part3
+
+  jsr Part4
+  jsr PartEmpty
+  jmp Part4
+
+Part1:
+  jsr :+
+: lda #$b8
+  sta PPUDATA
+  lda #$b9
+  sta PPUDATA
+  lda PPUDATA
+  lda PPUDATA
+  rts
+Part2:
+  jsr :+
+: lda #$ba
+  sta PPUDATA
+  lda #$bb
+  sta PPUDATA
+  lda PPUDATA
+  lda PPUDATA
+  rts
+Part3:
+  jsr :+
+: lda PPUDATA
+  lda PPUDATA
+  lda #$bc
+  sta PPUDATA
+  lda #$bd
+  sta PPUDATA
+  rts
+Part4:
+  jsr :+
+: lda PPUDATA
+  lda PPUDATA
+  lda #$be
+  sta PPUDATA
+  lda #$bf
+  sta PPUDATA
+  rts
+PartEmpty:
+  ldx #16
+: lda PPUDATA
+  dex
+  bne :-
+  rts
 .endproc
