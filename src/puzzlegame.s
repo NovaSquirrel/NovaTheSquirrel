@@ -1667,12 +1667,59 @@ GhostY = TouchTemp + 4
   ; Hard drop
   lda keynew,x
   and #KEY_UP
-  beq :+
+  beq NoHardDrop
+
+    lda PuzzleY,x
+    cmp GhostY
+    beq NoSmear
+  HardDropSmear:
+    ldy OamPtr
+    lda PuzzleY,x
+    add #6
+    asl
+    asl
+    asl
+    sta OAM_YPOS,y
+ 
+    lda PuzzleX,x
+    add #12
+    asl
+    asl
+    asl
+    add PuzzleXSpriteOffset,x
+    sta OAM_XPOS,y
+
+    ; Offset it a little if horizontal
+    lda PuzzleDir,x
+    lsr
+    bcs :+
+      lda OAM_XPOS,y
+      add #4
+      sta OAM_XPOS,y
+    :
+
+    lda #0
+    sta OAM_ATTR,y
+    lda #$50
+    sta OAM_TILE,y
+    iny
+    iny
+    iny
+    iny
+    sty OamPtr
+
+    lda PuzzleY,x
+    add #1
+    cmp GhostY
+    sta PuzzleY,x
+    bne HardDropSmear
+  NoSmear:
+
     lda #2
     sta PuzzleFallTimer,x
     lda GhostY
     sta PuzzleY,x
-  :
+  NoHardDrop:
 
   ; If the ghost Y is the same as the pill Y, no ghost piece shown
   lda GhostY
