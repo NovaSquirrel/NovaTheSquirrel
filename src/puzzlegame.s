@@ -479,10 +479,14 @@ Loop:
   dey
   bne :-
 
-
   lda #0
   sta PPUSCROLL
   sta PPUSCROLL
+
+  ; Push the randomizer forward a bit
+  jsr huge_rand
+  jsr huge_rand
+  jsr huge_rand
 
   jsr PuzzleReadJoy
   jsr KeyRepeat
@@ -1147,7 +1151,7 @@ ThemeBackgroundColors:
 ThemeExtraColor1:
   .byt $3a, $0a
 ThemeExtraColor2:
-  .byt $32, $01
+  .byt $3b, $01
 
 ThemeTileBases:
   .byt $80, $a0, $c0
@@ -3111,6 +3115,12 @@ PuzzleFailure:
 .endproc
 
 .proc PuzzleAddBackground
+  lda keydown
+  and #KEY_SELECT
+  beq :+
+    rts
+  :
+
   lda #$20
   sta PPUADDR
   lda #$00
