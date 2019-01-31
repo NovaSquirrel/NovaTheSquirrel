@@ -1693,8 +1693,11 @@ GhostY = TouchTemp + 4
     lda PuzzleDir,x
     lsr
     bcs :+
+      lda PuzzleY,x
+      lsr
+      bcs :+
       lda OAM_XPOS,y
-      add #4
+      add #8
       sta OAM_XPOS,y
     :
 
