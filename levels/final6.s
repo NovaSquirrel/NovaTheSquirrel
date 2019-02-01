@@ -200,6 +200,7 @@ final6Data:
   LObj  LO::S_DOOR,           1, 2
   LWriteCol $21, LevelId::Final6B
   .byt LSpecialCmd, LevelSpecialConfig::MAKE_BACKGROUNDS, $0f, LevelBackgroundId::CLOUDS
+  .byt LSpecialCmd, LevelSpecialConfig::ANIMATED_WATER
   LFinished
 
 final6Sprite:

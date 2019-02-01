@@ -172,6 +172,7 @@ extra3Data:
   LObj  LO::R_CUSTOM,         0, 13, Metatiles::LAVA_MAIN, (15<<4)|1
   LObjN LO::TALL_1,           2, 6, 6, LN1::LADDER
   .byt LSpecialCmd, LevelSpecialConfig::FROZEN_CAVE
+  .byt LSpecialCmd, LevelSpecialConfig::ANIMATED_WATER
   LFinished
 
 extra3Sprite:

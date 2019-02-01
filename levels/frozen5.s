@@ -208,6 +208,7 @@ frozen5Data:
   LObj  LO::S_EXIT_DOOR,      2, 10
   LObjN LO::R_SOLID_BLOCK,    0, 12, 0, 2
   .byt LSpecialCmd, LevelSpecialConfig::FROZEN_CAVE
+  .byt LSpecialCmd, LevelSpecialConfig::ANIMATED_WATER
   LFinished
 
 frozen5Sprite:

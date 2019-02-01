@@ -220,6 +220,7 @@ frozen3Data:
   LWriteCol InventoryItem::ABILITY_BOOMERANG
   LObjN LO::R_ROCK,           2, 4, 2, 6
   .byt LSpecialCmd, LevelSpecialConfig::FROZEN_CAVE
+  .byt LSpecialCmd, LevelSpecialConfig::ANIMATED_WATER
   LFinished
 
 frozen3Sprite:

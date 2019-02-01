@@ -221,6 +221,7 @@ frozen4Data:
   LObj  LO::R_CUSTOM,         0, 8, Metatiles::SNOWMAN_TOP, (4<<4)|0
   LObjN LO::R_ROCK,           5, 0, 2, 14
   .byt LSpecialCmd, LevelSpecialConfig::FROZEN_CAVE
+  .byt LSpecialCmd, LevelSpecialConfig::ANIMATED_WATER
   LFinished
 
 frozen4Sprite:

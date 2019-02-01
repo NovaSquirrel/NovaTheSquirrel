@@ -241,6 +241,7 @@ frozen2Data:
   LWriteCol InventoryItem::HEALTH_RESTORE
   LObjN LO::R_SOLID_BLOCK,    3, 0, 0, 14
   .byt LSpecialCmd, LevelSpecialConfig::FROZEN_CAVE
+  .byt LSpecialCmd, LevelSpecialConfig::ANIMATED_WATER
   LFinished
 
 frozen2Sprite:

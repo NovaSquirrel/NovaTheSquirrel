@@ -219,6 +219,7 @@ frozenData:
   LObjN LO::WIDE_2,           1, 10, 2, LN2::FLOWER
   LObj  LO::S_EXIT_DOOR,      7, 9
   .byt LSpecialCmd, LevelSpecialConfig::FROZEN_CAVE
+  .byt LSpecialCmd, LevelSpecialConfig::ANIMATED_WATER
   LFinished
 
 frozenSprite:

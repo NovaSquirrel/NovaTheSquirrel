@@ -290,6 +290,7 @@ frozen7Data:
   LObjN LO::WIDE_1,           2, 2, 0, LN1::FENCE
   LObjN LO::WIDE_1,           2, 2, 0, LN1::FENCE
   .byt LSpecialCmd, LevelSpecialConfig::FROZEN_CAVE
+  .byt LSpecialCmd, LevelSpecialConfig::ANIMATED_WATER
   LFinished
 
 frozen7Sprite:
