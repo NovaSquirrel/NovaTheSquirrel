@@ -238,11 +238,6 @@ CreditsData:
   .byt FOR,     "Cover art",0
   .byt NAME,    "Kee Smith",0
 
-  .byt SECTION, "DESIGN",0
-  .byt FOR,     "Title screen adapted",0
-  .byt FOR,     "from art by",0
-  .byt NAME,    "StrawberryPocky07",0
-
   .byt SECTION, "CHARACTERS",0
   .byt FOR,     "Most characters",0
   .byt NAME,    "Josh Hoffman",0
