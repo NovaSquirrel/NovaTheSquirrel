@@ -28,8 +28,6 @@
   jsr DoGraphicUpload
   lda #GraphicsUpload::TITLE_NAM
   jsr DoGraphicUpload
-  lda #GraphicsUpload::TITLE_PAL
-  jsr DoGraphicUpload
   ; Clear sprites too
   jsr ClearOAM
   lda #2
@@ -72,6 +70,10 @@ DontHaveExtraRAM:
 
 ; Turn on the display and get it ready
   jsr WaitVblank
+  ; (Upload palette here instead of up there to avoid rainbow smears)
+  lda #GraphicsUpload::TITLE_PAL
+  jsr DoGraphicUpload
+
   lda #BG_ON
   sta PPUMASK
   lda #VBLANK_NMI | NT_2000 | OBJ_8X8 | BG_0000 | OBJ_0000
