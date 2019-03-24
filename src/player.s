@@ -26,6 +26,27 @@ NOVA_RUN_SPEED = 4
 .proc UpdateStatus
 HealthX = 0
 HealthCount = 1
+  ; In sandbox fly mode, add an indicator of how far the level has scrolled on the bottom
+  lda SandboxFlyMode
+  beq NoSandboxFlyMode
+    ldy OamPtr
+    lda #$51
+    sta OAM_TILE,y
+    lda #0
+    sta OAM_ATTR,y
+    lda #256-16-16-1
+    sta OAM_YPOS,y
+    lda ScrollX+1
+    add #4
+    sta OAM_XPOS,y
+    iny
+    iny
+    iny
+    iny
+    sty OamPtr
+  NoSandboxFlyMode:
+
+
   ldy OamPtr
   lda #15
   sta HealthX
