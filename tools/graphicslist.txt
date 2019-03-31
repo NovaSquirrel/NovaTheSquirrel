@@ -225,3 +225,6 @@ C .byt GRAPHICS_BANK2|IS_GRAPHIC, <CHREnemyEdit,           >CHREnemyEdit
 
 R CHR_PUZZLEGAME
 C .byt GRAPHICS_BANK2|IS_GRAPHIC, <CHRPuzzleGame,          >CHRPuzzleGame
+
+R CHR_PAINT
+C .byt GRAPHICS_BANK2|IS_GRAPHIC, <CHRPaint, >CHRPaint

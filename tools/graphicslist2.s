@@ -74,5 +74,6 @@
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <CHRLevelEditIcons,      >CHRLevelEditIcons ;CHR_LEVELEDIT_ICONS
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <CHREnemyEdit,           >CHREnemyEdit ;CHR_ENEMYEDIT
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <CHRPuzzleGame,          >CHRPuzzleGame ;CHR_PUZZLEGAME
+  .byt GRAPHICS_BANK2|IS_GRAPHIC, <CHRPaint, >CHRPaint ;CHR_PAINT
 .endproc
 

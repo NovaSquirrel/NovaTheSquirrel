@@ -29,6 +29,8 @@ CHREnemyEdit:  ChrFile "../chr/enemyedit.pb53",   512,   $0800
 CHRPuzzleGame: ChrFile "../chr/puzzlegame.pb53",  (1024+512),  $0800
 CHREarlyTiles: ChrFile "../chr/earlytiles.pb53",  2048,  $0800
 
+CHRPaint:      ChrFile "../chr/paint.pb53",       512, $0000
+
 AnimWaterGfx:
   .incbin "../chr/animwater.chr"
 
