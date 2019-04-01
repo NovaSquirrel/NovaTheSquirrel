@@ -814,6 +814,49 @@ ModeNum = CustomLevelMode
   stx IsCustomLevel
   stx IsSXROM
 
+  ; -----------------------------------
+
+  ; Are the custom levels initialized yet?
+  lda #3 << 2
+  jsr SetCHRBank
+  ; Check for the signature ("NS")
+  lda CustomLevelValid+0
+  cmp #'N'
+  bne InitializeLevels
+  lda CustomLevelValid+1
+  cmp #'S'
+  beq DontInitializeLevels
+InitializeLevels:
+  ; Put the signature in
+  lda #'N'
+  sta CustomLevelValid+0
+  lda #'S'
+  sta CustomLevelValid+1
+
+  ; Clear out those levels,
+  ; first by setting the bank to the main one
+  lda #0 << 2
+  jsr SetCHRBank
+  jsr ClearLevelMap
+
+  ; and then by copying the cleared out level in
+  lda #0
+: pha
+  jsr SaveLevel
+  pla
+  add #1
+  cmp #5
+  bne :-
+
+DontInitializeLevels:
+  ; Move the bank back
+  lda #0 << 2
+  jsr SetCHRBank
+
+  ; -----------------------------------
+
+  ; Actually do menu stuff now
+
   jsr OptionsScreenSetup
   lda #GraphicsUpload::CHR_LEVELEDIT_ICONS
   jsr DoGraphicUpload

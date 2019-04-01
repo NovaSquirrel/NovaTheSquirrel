@@ -458,6 +458,7 @@ CustomLevelSlots = 5
 
 CustomLevelSprites:  .res 256 * CustomLevelSlots
 CustomLevelTilesets: .res SandboxTilesets_Length * CustomLevelSlots
-
+CustomLevelValid:    .res 2 ; Verifies that the custom level slots are not garbage and don't need to be initialized
+                            ; should be "NS"
+CustomLevelNames:    .res 8*CustomLevelSlots ; 8 character names for each level
 .code
- 
