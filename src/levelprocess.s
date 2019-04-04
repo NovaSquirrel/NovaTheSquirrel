@@ -300,6 +300,8 @@ ProcessBrickwall:
 : rts
 ProcessWhitefence:
   lda (RightPointer),y
+  cmp #Metatiles::WHITEFENCE_RIGHT ; For sandbox mode
+  beq @OK2
   cmp #Metatiles::WHITEFENCE_MIDDLE
   beq @OK2
   lda #Metatiles::WHITEFENCE_RIGHT
@@ -356,6 +358,8 @@ ProcessStoneBridge:
   sta (Pointer),y
 : iny
   lda (RightPointer),y
+  cmp #Metatiles::STONE_BRIDGE_RIGHT ; For sandbox mode
+  beq @OK2
   cmp #Metatiles::STONE_BRIDGE
   beq @OK2
   lda #Metatiles::STONE_BRIDGE_RIGHT
@@ -415,6 +419,8 @@ ProcessSand:
 
 ProcessStripedLogHoriz:
   lda (RightPointer),y
+  cmp #Metatiles::STRIPED_LOG_HORIZ_R ; For sandbox mode
+  beq @OK2
   cmp #Metatiles::STRIPED_LOG_HORIZ
   beq @OK2
   lda #Metatiles::STRIPED_LOG_HORIZ_R
