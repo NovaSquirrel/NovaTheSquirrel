@@ -911,6 +911,13 @@ Loop1:
   dey
   bne :-
 
+  ; Write empty level name
+  ; so it erases when you back out of Loop2
+  PositionXY 0, 5, 17
+  ldx #8
+  lda #' '
+  jsr WritePPURepeated
+
   ; Do common menu stuff
   jsr OptionsScreenCommonLoop
 
@@ -955,16 +962,64 @@ Loop1:
 
   lda keynew
   and #KEY_A
-  beq Loop1
+  jeq Loop1
 
 ; -------------------------------------
   lda #0
   sta CustomLevelSlot
 
+  ; Select a level slot
 Loop2:
+  ; Copy the level name into regular RAM
+  lda #3 << 2
+  jsr SetCHRBank
+
+  ; Get the name
+  lda CustomLevelSlot
+  sub #1
+  asl
+  asl
+  asl
+  tax
+  ldy #0
+: lda CustomLevelNames,x
+  sta SandboxLevelName,y
+  inx
+  iny
+  cpy #8
+  bne :-
+
+  ; But if it's slot 0 then clear it out
+  lda CustomLevelSlot
+  bne @NotEmpty
+  ldx #7
+  lda #0
+: sta SandboxLevelName,x
+  dex
+  bpl :-
+@NotEmpty:
+
+  lda #0 << 2
+  jsr SetCHRBank
+
+  ; Now do the frame
   jsr WaitVblank
   lda #OBJ_ON|BG_ON
   sta PPUMASK
+
+  ; Print the name
+  PositionXY 0, 5, 17
+  ldx #0
+PrintNameLoop:
+  lda SandboxLevelName,x
+  bne :+
+  lda #' '
+  bne :++
+: add #'A'-1
+: sta PPUDATA
+  inx
+  cpx #8
+  bne PrintNameLoop
 
   ; Do common menu stuff
   jsr OptionsScreenCommonLoop
@@ -1089,6 +1144,13 @@ ClearLevelMap:
 : sta SpriteListRAM,y
   iny
   bne :-
+
+  ; Blank out the level name
+  lda #0
+  ldy #7
+: sta SandboxLevelName,y
+  dey
+  bpl :-
   rts
 .endproc
 

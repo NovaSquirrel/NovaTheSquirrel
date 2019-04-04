@@ -280,21 +280,50 @@ CursorY = 5
   jsr PutStringImmediate
   MiniFontText "SAVE LEVEL"
 
+  lda #3 << 2
+  jsr SetCHRBank
   PositionXY 0, 3, 8
   jsr PutStringImmediate
-  MiniFontText "SLOT A"
+  MiniFontText "SLOT A: "
+  ldx #8*0
+  jsr PrintSavedLevelName
+
   PositionXY 0, 3, 10
   jsr PutStringImmediate
-  MiniFontText "SLOT B"
+  MiniFontText "SLOT B: "
+  ldx #8*1
+  jsr PrintSavedLevelName
+
   PositionXY 0, 3, 12
   jsr PutStringImmediate
-  MiniFontText "SLOT C"
+  MiniFontText "SLOT C: "
+  ldx #8*2
+  jsr PrintSavedLevelName
+
   PositionXY 0, 3, 14
   jsr PutStringImmediate
-  MiniFontText "SLOT D"
+  MiniFontText "SLOT D: "
+  ldx #8*3
+  jsr PrintSavedLevelName
+
   PositionXY 0, 3, 16
   jsr PutStringImmediate
-  MiniFontText "SLOT E"
+  MiniFontText "SLOT E: "
+  ldx #8*4
+  jsr PrintSavedLevelName
+  lda #0 << 2
+  jsr SetCHRBank
+
+  PositionXY 0, 3, 18
+  jsr PutStringImmediate
+  MiniFontText "LEVEL NAME: "
+  ldx #0
+: lda SandboxLevelName,x
+  ora #$e0
+  sta PPUDATA
+  inx
+  cpx #8
+  bne :-
 
   lda #0
   sta CursorY
@@ -312,7 +341,7 @@ Loop:
   beq :+
     inc CursorY
     lda CursorY
-    cmp #5
+    cmp #6
     bne :+
       lda #0
       sta CursorY
@@ -322,13 +351,15 @@ Loop:
   beq :+
     dec CursorY
     bpl :+
-      lda #4
+      lda #5
       sta CursorY
   :
   lda keynew
   and #KEY_A
   beq :+
     lda CursorY
+    cmp #5
+    jeq OpenSaveNamePicker
     jsr SaveLevel
     inc NeedLevelRerender
     rts
@@ -355,6 +386,179 @@ Loop:
 Exit:
   inc NeedLevelRerender
   rts
+
+PrintSavedLevelName:
+  ldy #8
+: lda CustomLevelNames,x
+  ora #$e0
+  sta PPUDATA
+  inx
+  dey
+  bne :-
+  rts
+.endproc
+
+.proc OpenSaveNamePicker
+CursorX = 5
+NameIndex = 6 ; position within SandboxLevelName
+
+  jsr ScreenOff
+  jsr ClearName
+  jsr ClearOAM
+
+  ; Find the length of the current name
+  lda #0
+  sta CursorX
+  ; Count down until it hits a nonzero character
+  ; or the first character
+  ldx #7
+: lda SandboxLevelName,x
+  bne :+ ; Found a non-empty character
+  dex
+  bne :-
+  ; Name is entirely empty
+  dex ; decrement an extra time
+: inx ; push to the first non-empty character
+
+  stx NameIndex
+
+  PositionXY 0, 8, 4
+  jsr PutStringImmediate
+  MiniFontText "- SANDBOX MODE -"
+  PositionXY 0, 9, 5
+  jsr PutStringImmediate
+  MiniFontText "NAME LEVEL"
+
+  ; Name placeholder
+  PositionXY 0, 3, 10
+  jsr PutStringImmediate
+  MiniFontText "NAME:"
+
+  ; Write out alphabet
+  PositionXY 0, 3, 12
+  ldx #$e0
+: stx PPUDATA
+  inx
+  cpx #$e0+26
+  bne :-
+
+  PositionXY 0, 3, 16
+  jsr PutStringImmediate
+  MiniFontText "A: TYPE"
+  PositionXY 0, 3, 18
+  jsr PutStringImmediate
+  MiniFontText "B: BACKSPACE"
+  PositionXY 0, 3, 20
+  jsr PutStringImmediate
+  MiniFontText "START: CONFIRM"
+  PositionXY 0, 3, 22
+  jsr PutStringImmediate
+  MiniFontText "EIGHT CHARS ALLOWED"
+
+  jsr ScreenOn
+Loop:
+  jsr WaitVblank
+  lda #2
+  sta OAM_DMA
+
+  ; Update the name entered.
+  ; (Just write out the whole thing every frame)
+  PositionXY 0, 9, 10
+  ldx #0
+: lda SandboxLevelName,x
+  ora #$e0
+  sta PPUDATA
+  inx
+  cpx #8
+  bne :-
+  lda #0
+  sta PPUSCROLL
+  sta PPUSCROLL
+
+  ; Read and react to keys
+  jsr ReadJoy
+  jsr KeyRepeat
+
+  lda keynew
+  and #KEY_LEFT
+  beq NotLeft
+    dec CursorX
+    bpl NotLeft
+      lda #26
+      sta CursorX
+  NotLeft:
+
+  lda keynew
+  and #KEY_RIGHT
+  beq NotRight
+    inc CursorX
+    lda CursorX
+    cmp #27
+    bne NotRight
+      lda #0
+      sta CursorX
+  NotRight:
+
+  lda keynew
+  and #KEY_A
+  beq NotA
+   ; Don't allow if it's too long
+    ldx NameIndex
+    cpx #8
+    bcs NotA
+    ;
+    lda CursorX
+    sta SandboxLevelName,x
+    inx
+    stx NameIndex
+  NotA:
+
+  lda keynew
+  and #KEY_B
+  beq NotB
+    ; Decrement name index if it's not at the start
+    dec NameIndex
+    bpl :+
+      inc NameIndex
+    :
+
+    ; Write a space
+    ldx NameIndex
+    lda #0
+    sta SandboxLevelName,x
+  NotB:
+
+  
+  ; Display cursor
+  lda CursorX
+  asl
+  asl
+  asl
+  add #3*8
+  sta OAM_XPOS
+  lda #8*13-1
+  sta OAM_YPOS
+  lda #$51
+  sta OAM_TILE
+  sta OAM_TILE+4
+  lda #0
+  sta OAM_ATTR
+  sta OAM_ATTR+4
+
+  ; Display the text entry cursor too
+  lda #10*8-1
+  sta OAM_YPOS+4
+  lda NameIndex
+  asl
+  asl
+  asl
+  add #9*8
+  sta OAM_XPOS+4
+
+  lda keynew
+  and #KEY_START
+  jeq Loop
+  jmp OpenSaveLevelPicker
 .endproc
 
 .proc OpenSandboxAbilityPicker

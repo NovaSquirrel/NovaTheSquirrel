@@ -2193,6 +2193,20 @@ Loop:
   inx
   cpx #SandboxTilesets_Length
   bne :-
+
+  ; Copy name in
+  lda LevelSlot ; Slot * 8
+  asl
+  asl
+  asl
+  tax
+  ldy #0
+: lda SandboxLevelName,y
+  sta CustomLevelNames,x
+  inx
+  iny
+  cpy #8
+  bne :-
  
   ; Restore bank
   lda #0
@@ -2269,6 +2283,20 @@ Loop:
   iny
   inx
   cpx #SandboxTilesets_Length
+  bne :-
+
+  ; Copy name in
+  lda LevelSlot ; Slot * 8
+  asl
+  asl
+  asl
+  tax
+  ldy #0
+: lda CustomLevelNames,x
+  sta SandboxLevelName,y
+  inx
+  iny
+  cpy #8
   bne :-
 
   ; Restore bank

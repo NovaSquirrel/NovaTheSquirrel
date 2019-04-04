@@ -336,6 +336,8 @@ SandboxTilesets_Length = SandboxTilesets_End - SandboxTilesets_Start
   SandboxCurrentBlock: .res 1
   SandboxFlyMode:      .res 1 ; if nonzero, fly around and pass through objects
 
+  SandboxLevelName:    .res 8 ; name of the level
+
   LevelMap = $6000            ; lasts until $6fff
 
 .segment "BSS2"  ; SRAM
