@@ -9,14 +9,23 @@ I M_LAST_SPECIAL_GROUND = Metatiles::PICKUP_BLOCK
 
 E Metatiles
 L MetatilePalettes
+
+# Autotile fixes go in the bank that contains sandbox mode
+I .pushseg
+I .segment "PRGd"
+L MetatileUndoAutotile
+I .popseg
+
 L MetatileFlagsROM
 L MetatileUL
 L MetatileLL
 L MetatileUR
 L MetatileLR
 
+
 R EMPTY
 C .byt M_PAL_0
+C .byt Metatiles::EMPTY
 C .byt M_EMPTY
 C .byt $3f
 C .byt $3f
@@ -25,6 +34,7 @@ C .byt $3f
 
 R BRICKS
 C .byt M_PAL_2
+C .byt Metatiles::BRICKS
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_BRICKS
 C .byt $00
 C .byt $01
@@ -33,6 +43,7 @@ C .byt $03
 
 R BRICKPRIZE
 C .byt M_PAL_2
+C .byt Metatiles::BRICKPRIZE
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_BRICKS
 C .byt $00
 C .byt $01
@@ -41,6 +52,7 @@ C .byt $03
 
 R REPLACE_BRICK
 C .byt M_PAL_2
+C .byt Metatiles::REPLACE_BRICK
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_BRICKS
 C .byt $00
 C .byt $01
@@ -49,6 +61,7 @@ C .byt $03
 
 R REPLACE_BRICK_SUB1
 C .byt M_PAL_2
+C .byt Metatiles::REPLACE_BRICK_SUB1
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_BRICKS
 C .byt $00
 C .byt $01
@@ -57,6 +70,7 @@ C .byt $03
 
 R REPLACE_BRICK_SUB2
 C .byt M_PAL_2
+C .byt Metatiles::REPLACE_BRICK_SUB2
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_BRICKS
 C .byt $00
 C .byt $01
@@ -65,6 +79,7 @@ C .byt $03
 
 R PRIZE
 C .byt M_PAL_2
+C .byt Metatiles::PRIZE
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_CEILING
 C .byt $04
 C .byt $05
@@ -73,6 +88,7 @@ C .byt $07
 
 R INFINITE_PRIZE
 C .byt M_PAL_2
+C .byt Metatiles::INFINITE_PRIZE
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_CEILING
 C .byt $04
 C .byt $05
@@ -81,6 +97,7 @@ C .byt $07
 
 R USED_PRIZE
 C .byt M_PAL_2
+C .byt Metatiles::USED_PRIZE
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $08
 C .byt $09
@@ -89,6 +106,7 @@ C .byt $0b
 
 R SOLID_BLOCK
 C .byt M_PAL_1
+C .byt Metatiles::SOLID_BLOCK
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $0c
 C .byt $0d
@@ -98,6 +116,7 @@ C .byt $0f
 ##### SPECIAL GROUND ####
 R SPIKES
 C .byt M_PAL_1
+C .byt Metatiles::SPIKES
 C .byt M_SPECIAL_GROUND|M_SOLID_ALL|M_SOLID_TOP
 C .byt $12
 C .byt $13
@@ -106,6 +125,7 @@ C .byt $13
 
 R WOOD_CRATE
 C .byt M_PAL_2
+C .byt Metatiles::WOOD_CRATE
 C .byt M_SPECIAL_GROUND|M_SOLID_ALL|M_SOLID_TOP
 C .byt $d4
 C .byt $d5
@@ -114,6 +134,7 @@ C .byt $d7
 
 R PICKUP_BLOCK
 C .byt M_PAL_1
+C .byt Metatiles::PICKUP_BLOCK
 C .byt M_SPECIAL_GROUND|M_SOLID_ALL|M_SOLID_TOP
 C .byt $28
 C .byt $0d
@@ -123,6 +144,7 @@ C .byt $0f
 ##### M_SPECIAL_MISC list starts here #####
 R LADDER
 C .byt M_PAL_2
+C .byt Metatiles::LADDER
 C .byt M_SPECIAL_MISC|M_POST_PROCESS
 C .byt $10
 C .byt $10
@@ -131,6 +153,7 @@ C .byt $11
 
 R LADDER_TOP
 C .byt M_PAL_2
+C .byt Metatiles::LADDER
 C .byt M_SOLID_TOP|M_SPECIAL_MISC
 C .byt $10
 C .byt $10
@@ -139,6 +162,7 @@ C .byt $11
 
 R ROPE
 C .byt M_PAL_2
+C .byt Metatiles::ROPE
 C .byt M_SPECIAL_MISC
 C .byt $32
 C .byt $32
@@ -147,6 +171,7 @@ C .byt $33
 
 R SPRING
 C .byt M_PAL_2
+C .byt Metatiles::SPRING
 C .byt M_EMPTY|M_SPECIAL_MISC
 C .byt $3f
 C .byt $18
@@ -155,6 +180,7 @@ C .byt $19
 
 R SIGNPOST
 C .byt M_PAL_2
+C .byt Metatiles::SIGNPOST
 C .byt M_EMPTY|M_SPECIAL_MISC
 C .byt $1c
 C .byt $1d
@@ -163,6 +189,7 @@ C .byt $1f
 
 R DOOR_BOTTOM
 C .byt M_PAL_1
+C .byt Metatiles::DOOR_BOTTOM
 C .byt M_SPECIAL_MISC
 C .byt $3c
 C .byt $3c
@@ -171,6 +198,7 @@ C .byt $3c
 
 R TOGGLE_SWITCH
 C .byt M_PAL_0
+C .byt Metatiles::TOGGLE_SWITCH
 C .byt M_SPECIAL_MISC
 C .byt $3f
 C .byt $89
@@ -179,6 +207,7 @@ C .byt $8b
 
 R TELEPORTER
 C .byt M_PAL_3
+C .byt Metatiles::TELEPORTER
 C .byt M_SPECIAL_MISC
 C .byt $3f
 C .byt $8c
@@ -187,6 +216,7 @@ C .byt $8e
 
 R CLONE_SWITCH
 C .byt M_PAL_2
+C .byt Metatiles::CLONE_SWITCH
 C .byt M_SPECIAL_MISC
 C .byt $3f
 C .byt $89
@@ -195,6 +225,7 @@ C .byt $8b
 
 R GENERIC_SWITCH
 C .byt M_PAL_1
+C .byt Metatiles::GENERIC_SWITCH
 C .byt M_SPECIAL_MISC
 C .byt $3f
 C .byt $89
@@ -203,6 +234,7 @@ C .byt $8b
 
 R CHERRY_BOMB
 C .byt M_PAL_2
+C .byt Metatiles::CHERRY_BOMB
 C .byt M_SPECIAL_MISC
 C .byt $9c
 C .byt $9d
@@ -211,6 +243,7 @@ C .byt $9f
 
 R CAMPFIRE
 C .byt M_PAL_2
+C .byt Metatiles::CAMPFIRE
 C .byt M_SPECIAL_MISC
 C .byt $90
 C .byt $91
@@ -219,6 +252,7 @@ C .byt $93
 
 R FORCE_LEFT
 C .byt M_PAL_0
+C .byt Metatiles::FORCE_LEFT
 C .byt M_SPECIAL_MISC
 C .byt $a4
 C .byt $a5
@@ -227,6 +261,7 @@ C .byt $a5
 
 R FORCE_RIGHT
 C .byt M_PAL_0
+C .byt Metatiles::FORCE_RIGHT
 C .byt M_SPECIAL_MISC
 C .byt $a6
 C .byt $a7
@@ -235,6 +270,7 @@ C .byt $a7
 
 R FORCE_UP
 C .byt M_PAL_0
+C .byt Metatiles::FORCE_UP
 C .byt M_SPECIAL_MISC
 C .byt $a0
 C .byt $a0
@@ -243,6 +279,7 @@ C .byt $a2
 
 R FORCE_DOWN
 C .byt M_PAL_0
+C .byt Metatiles::FORCE_DOWN
 C .byt M_SPECIAL_MISC
 C .byt $a1
 C .byt $a1
@@ -251,6 +288,7 @@ C .byt $a3
 
 R CEILING_BARRIER
 C .byt M_PAL_1
+C .byt Metatiles::CEILING_BARRIER
 C .byt M_SPECIAL_MISC
 C .byt $31
 C .byt $31
@@ -259,6 +297,7 @@ C .byt $31
 
 R STORY_DIALOG_TRIGGER
 C .byt M_PAL_0
+C .byt Metatiles::STORY_DIALOG_TRIGGER
 C .byt M_SPECIAL_MISC|M_POST_PROCESS
 C .byt $3f
 C .byt $3f
@@ -270,6 +309,7 @@ C .byt $3f
 ##### M_COLLECTIBLE list starts here #####
 R COIN
 C .byt M_PAL_2
+C .byt Metatiles::COIN
 C .byt M_COLLECTIBLE
 C .byt $14
 C .byt $15
@@ -278,6 +318,7 @@ C .byt $17
 
 R BIG_HEART
 C .byt M_PAL_2
+C .byt Metatiles::BIG_HEART
 C .byt M_COLLECTIBLE
 C .byt $34
 C .byt $35
@@ -286,6 +327,7 @@ C .byt $37
 
 R HEART
 C .byt M_PAL_2
+C .byt Metatiles::HEART
 C .byt M_COLLECTIBLE
 C .byt $38
 C .byt $3f
@@ -294,6 +336,7 @@ C .byt $3f
 
 R KEY_RED
 C .byt M_PAL_2
+C .byt Metatiles::KEY_RED
 C .byt M_COLLECTIBLE
 C .byt $ac
 C .byt $ad
@@ -302,6 +345,7 @@ C .byt $af
 
 R KEY_GREEN
 C .byt M_PAL_0
+C .byt Metatiles::KEY_GREEN
 C .byt M_COLLECTIBLE
 C .byt $ac
 C .byt $ad
@@ -310,6 +354,7 @@ C .byt $af
 
 R KEY_BLUE
 C .byt M_PAL_3
+C .byt Metatiles::KEY_BLUE
 C .byt M_COLLECTIBLE
 C .byt $ac
 C .byt $ad
@@ -318,6 +363,7 @@ C .byt $af
 
 R RED_BOOTS
 C .byt M_PAL_2
+C .byt Metatiles::RED_BOOTS
 C .byt M_COLLECTIBLE
 C .byt $3f
 C .byt $88
@@ -326,6 +372,7 @@ C .byt $8a
 
 R GREEN_BOOTS
 C .byt M_PAL_0
+C .byt Metatiles::GREEN_BOOTS
 C .byt M_COLLECTIBLE
 C .byt $3f
 C .byt $88
@@ -334,6 +381,7 @@ C .byt $8a
 
 R GRAY_BOOTS
 C .byt M_PAL_1
+C .byt Metatiles::GRAY_BOOTS
 C .byt M_COLLECTIBLE
 C .byt $3f
 C .byt $88
@@ -342,6 +390,7 @@ C .byt $8a
 
 R BLUE_BOOTS
 C .byt M_PAL_3
+C .byt Metatiles::BLUE_BOOTS
 C .byt M_COLLECTIBLE
 C .byt $3f
 C .byt $88
@@ -350,6 +399,7 @@ C .byt $8a
 
 R WOOD_ARROW_LEFT
 C .byt M_PAL_2
+C .byt Metatiles::WOOD_ARROW_LEFT
 C .byt M_COLLECTIBLE|M_SOLID_ALL|M_SOLID_TOP
 C .byt $c0
 C .byt $c1
@@ -358,6 +408,7 @@ C .byt $c3
 
 R WOOD_ARROW_DOWN
 C .byt M_PAL_2
+C .byt Metatiles::WOOD_ARROW_DOWN
 C .byt M_COLLECTIBLE|M_SOLID_ALL|M_SOLID_TOP
 C .byt $c4
 C .byt $c5
@@ -366,6 +417,7 @@ C .byt $c7
 
 R WOOD_ARROW_UP
 C .byt M_PAL_2
+C .byt Metatiles::WOOD_ARROW_UP
 C .byt M_COLLECTIBLE|M_SOLID_ALL|M_SOLID_TOP
 C .byt $c8
 C .byt $c9
@@ -374,6 +426,7 @@ C .byt $cb
 
 R WOOD_ARROW_RIGHT
 C .byt M_PAL_2
+C .byt Metatiles::WOOD_ARROW_RIGHT
 C .byt M_COLLECTIBLE|M_SOLID_ALL|M_SOLID_TOP
 C .byt $cc
 C .byt $cd
@@ -382,6 +435,7 @@ C .byt $cf
 
 R WOOD_BOMB
 C .byt M_PAL_2
+C .byt Metatiles::WOOD_BOMB
 C .byt M_COLLECTIBLE|M_SOLID_ALL|M_SOLID_TOP
 C .byt $d0
 C .byt $d1
@@ -390,6 +444,7 @@ C .byt $d3
 
 R INVENTORY_ITEM
 C .byt M_PAL_1
+C .byt Metatiles::INVENTORY_ITEM
 C .byt M_COLLECTIBLE
 C .byt $14
 C .byt $25
@@ -398,6 +453,7 @@ C .byt $27
 
 R INVENTORY_ITEM_AUTO
 C .byt M_PAL_1
+C .byt Metatiles::INVENTORY_ITEM_AUTO
 C .byt M_COLLECTIBLE
 C .byt $14
 C .byt $2D
@@ -406,6 +462,7 @@ C .byt $2F
 
 R CHIP
 C .byt M_PAL_1
+C .byt Metatiles::CHIP
 C .byt M_COLLECTIBLE
 C .byt $94
 C .byt $95
@@ -416,6 +473,7 @@ C .byt $97
 
 R SPRING_PRESSED
 C .byt M_PAL_2
+C .byt Metatiles::SPRING
 C .byt M_EMPTY
 C .byt $3f
 C .byt $1a
@@ -424,6 +482,7 @@ C .byt $1b
 
 R SOLID_LEDGE_L
 C .byt M_PAL_1
+C .byt Metatiles::SOLID_LEDGE_M
 C .byt M_SOLID_TOP
 C .byt $57
 C .byt $3f
@@ -432,6 +491,7 @@ C .byt $3f
 
 R SOLID_LEDGE_M
 C .byt M_PAL_1
+C .byt Metatiles::SOLID_LEDGE_M
 C .byt M_SOLID_TOP|M_POST_PROCESS
 C .byt $58
 C .byt $3f
@@ -440,6 +500,7 @@ C .byt $3f
 
 R SOLID_LEDGE_R
 C .byt M_PAL_1
+C .byt Metatiles::SOLID_LEDGE_M
 C .byt M_SOLID_TOP
 C .byt $58
 C .byt $3f
@@ -448,6 +509,7 @@ C .byt $3f
 
 R SOLID_LEDGE_S
 C .byt M_PAL_1
+C .byt Metatiles::SOLID_LEDGE_M
 C .byt M_SOLID_TOP
 C .byt $57
 C .byt $3f
@@ -456,6 +518,7 @@ C .byt $3f
 
 R FALLTHROUGH_LEDGE_L
 C .byt M_PAL_1
+C .byt Metatiles::FALLTHROUGH_LEDGE_M
 C .byt M_SOLID_TOP|M_FALLABLE_LEDGE
 C .byt $67
 C .byt $3f
@@ -464,6 +527,7 @@ C .byt $3f
 
 R FALLTHROUGH_LEDGE_M
 C .byt M_PAL_1
+C .byt Metatiles::FALLTHROUGH_LEDGE_M
 C .byt M_SOLID_TOP|M_FALLABLE_LEDGE|M_POST_PROCESS
 C .byt $68
 C .byt $3f
@@ -472,6 +536,7 @@ C .byt $3f
 
 R FALLTHROUGH_LEDGE_R
 C .byt M_PAL_1
+C .byt Metatiles::FALLTHROUGH_LEDGE_M
 C .byt M_SOLID_TOP|M_FALLABLE_LEDGE
 C .byt $68
 C .byt $3f
@@ -480,6 +545,7 @@ C .byt $3f
 
 R FALLTHROUGH_LEDGE_S
 C .byt M_PAL_1
+C .byt Metatiles::FALLTHROUGH_LEDGE_M
 C .byt M_SOLID_TOP|M_FALLABLE_LEDGE
 C .byt $67
 C .byt $3f
@@ -488,6 +554,7 @@ C .byt $3f
 
 R SOLID_ROCK
 C .byt M_PAL_1
+C .byt Metatiles::SOLID_ROCK
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $52
 C .byt $62
@@ -496,6 +563,7 @@ C .byt $63
 
 R WATER_FROZEN
 C .byt M_PAL_1
+C .byt Metatiles::WATER_MAIN
 C .byt M_SOLID_TOP|M_WATER|M_ICE
 C .byt $7d
 C .byt $7e
@@ -504,6 +572,7 @@ C .byt $7e
 
 R WATER_TOP
 C .byt M_PAL_1
+C .byt Metatiles::WATER_MAIN
 C .byt M_WATER
 C .byt $7c
 C .byt $7e
@@ -512,6 +581,7 @@ C .byt $7e
 
 R WATER_MAIN
 C .byt M_PAL_1
+C .byt Metatiles::WATER_MAIN
 C .byt M_WATER|M_POST_PROCESS
 C .byt $7e
 C .byt $7e
@@ -520,6 +590,7 @@ C .byt $7e
 
 R WATER_BELOW_SOMETHING
 C .byt M_PAL_1
+C .byt Metatiles::WATER_MAIN
 C .byt M_WATER
 C .byt $7f
 C .byt $7e
@@ -528,6 +599,7 @@ C .byt $7e
 
 R LAVA_FROZEN
 C .byt M_PAL_3
+C .byt Metatiles::LAVA_MAIN
 C .byt M_LAVA|M_SOLID_TOP|M_ICE
 C .byt $7d
 C .byt $7e
@@ -536,6 +608,7 @@ C .byt $7e
 
 R LAVA_TOP
 C .byt M_PAL_3
+C .byt Metatiles::LAVA_MAIN
 C .byt M_LAVA
 C .byt $7c
 C .byt $7e
@@ -544,6 +617,7 @@ C .byt $7e
 
 R LAVA_MAIN
 C .byt M_PAL_3
+C .byt Metatiles::LAVA_MAIN
 C .byt M_LAVA|M_POST_PROCESS
 C .byt $7e
 C .byt $7e
@@ -552,6 +626,7 @@ C .byt $7e
 
 R LAVA_BELOW_SOMETHING
 C .byt M_PAL_3
+C .byt Metatiles::LAVA_MAIN
 C .byt M_LAVA
 C .byt $7f
 C .byt $7e
@@ -560,6 +635,7 @@ C .byt $7e
 
 R GROUND_TOP_L
 C .byt M_PAL_0
+C .byt Metatiles::GROUND_MIDDLE_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $70
 C .byt $60
@@ -568,6 +644,7 @@ C .byt $77
 
 R GROUND_TOP_M
 C .byt M_PAL_0
+C .byt Metatiles::GROUND_MIDDLE_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $71
 C .byt $77
@@ -576,6 +653,7 @@ C .byt $77
 
 R GROUND_TOP_R
 C .byt M_PAL_0
+C .byt Metatiles::GROUND_MIDDLE_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $71
 C .byt $77
@@ -584,6 +662,7 @@ C .byt $61
 
 R GROUND_MIDDLE_L
 C .byt M_PAL_0
+C .byt Metatiles::GROUND_MIDDLE_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $60
 C .byt $60
@@ -592,6 +671,7 @@ C .byt $73
 
 R GROUND_MIDDLE_M
 C .byt M_PAL_0
+C .byt Metatiles::GROUND_MIDDLE_M
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_POST_PROCESS
 C .byt $73
 C .byt $73
@@ -600,6 +680,7 @@ C .byt $73
 
 R GROUND_MIDDLE_R
 C .byt M_PAL_0
+C .byt Metatiles::GROUND_MIDDLE_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $73
 C .byt $73
@@ -608,6 +689,7 @@ C .byt $61
 
 R GROUND_INNER_LEFT
 C .byt M_PAL_0
+C .byt Metatiles::GROUND_MIDDLE_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $60
 C .byt $73
@@ -616,6 +698,7 @@ C .byt $73
 
 R GROUND_INNER_RIGHT
 C .byt M_PAL_0
+C .byt Metatiles::GROUND_MIDDLE_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $73
 C .byt $73
@@ -624,6 +707,7 @@ C .byt $73
 
 R GROUND_INNER_BOTH
 C .byt M_PAL_0
+C .byt Metatiles::GROUND_MIDDLE_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $60
 C .byt $73
@@ -632,6 +716,7 @@ C .byt $73
 
 R GROUND_NARROW_TOP
 C .byt M_PAL_0
+C .byt Metatiles::GROUND_MIDDLE_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $70
 C .byt $60
@@ -640,6 +725,7 @@ C .byt $61
 
 R GROUND_NARROW_SIDES
 C .byt M_PAL_0
+C .byt Metatiles::GROUND_MIDDLE_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $60
 C .byt $60
@@ -648,6 +734,7 @@ C .byt $61
 
 R GROUND_CLIMB_L
 C .byt M_PAL_0
+C .byt Metatiles::GROUND_CLIMB_L
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $50
 C .byt $60
@@ -656,6 +743,7 @@ C .byt $77
 
 R GROUND_CLIMB_R
 C .byt M_PAL_0
+C .byt Metatiles::GROUND_CLIMB_R
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $71
 C .byt $77
@@ -664,6 +752,7 @@ C .byt $61
 
 R ROCK_TOP_L
 C .byt M_PAL_1
+C .byt Metatiles::ROCK_MID_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $54
 C .byt $64
@@ -672,6 +761,7 @@ C .byt $65
 
 R ROCK_TOP_M
 C .byt M_PAL_1
+C .byt Metatiles::ROCK_MID_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $55
 C .byt $65
@@ -680,6 +770,7 @@ C .byt $65
 
 R ROCK_TOP_R
 C .byt M_PAL_1
+C .byt Metatiles::ROCK_MID_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $55
 C .byt $65
@@ -688,6 +779,7 @@ C .byt $66
 
 R ROCK_MID_L
 C .byt M_PAL_1
+C .byt Metatiles::ROCK_MID_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $64
 C .byt $64
@@ -696,6 +788,7 @@ C .byt $65
 
 R ROCK_MID_M
 C .byt M_PAL_1
+C .byt Metatiles::ROCK_MID_M
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_POST_PROCESS
 C .byt $65
 C .byt $65
@@ -704,6 +797,7 @@ C .byt $65
 
 R ROCK_MID_R
 C .byt M_PAL_1
+C .byt Metatiles::ROCK_MID_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $65
 C .byt $65
@@ -712,6 +806,7 @@ C .byt $66
 
 R ROCK_BOT_L
 C .byt M_PAL_1
+C .byt Metatiles::ROCK_MID_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $64
 C .byt $74
@@ -720,6 +815,7 @@ C .byt $75
 
 R ROCK_BOT_M
 C .byt M_PAL_1
+C .byt Metatiles::ROCK_MID_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $65
 C .byt $75
@@ -728,6 +824,7 @@ C .byt $75
 
 R ROCK_BOT_R
 C .byt M_PAL_1
+C .byt Metatiles::ROCK_MID_M
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $65
 C .byt $75
@@ -736,6 +833,7 @@ C .byt $76
 
 R DOOR_TOP
 C .byt M_PAL_1
+C .byt Metatiles::DOOR_TOP
 C .byt M_EMPTY|M_POST_PROCESS
 C .byt $20
 C .byt $3c
@@ -744,6 +842,7 @@ C .byt $3c
 
 R EXIT_DOOR_TOP
 C .byt M_PAL_1
+C .byt Metatiles::EXIT_DOOR_TOP
 C .byt M_EMPTY|M_POST_PROCESS
 C .byt $22
 C .byt $3c
@@ -752,6 +851,7 @@ C .byt $3c
 
 R TOGGLE_BLOCK_OFF
 C .byt M_PAL_0
+C .byt Metatiles::TOGGLE_BLOCK_OFF
 C .byt M_EMPTY
 C .byt $80
 C .byt $81
@@ -760,6 +860,7 @@ C .byt $83
 
 R TOGGLE_BLOCK_ON
 C .byt M_PAL_0
+C .byt Metatiles::TOGGLE_BLOCK_ON
 C .byt M_SOLID_TOP|M_SOLID_ALL
 C .byt $84
 C .byt $85
@@ -768,6 +869,7 @@ C .byt $87
 
 R CLONER
 C .byt M_PAL_1
+C .byt Metatiles::CLONER
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $b0
 C .byt $b1
@@ -778,6 +880,7 @@ C .byt $b3
 
 R LOCK_RED
 C .byt M_PAL_2
+C .byt Metatiles::LOCK_RED
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL
 C .byt $a8
 C .byt $a9
@@ -786,6 +889,7 @@ C .byt $ab
 
 R LOCK_GREEN
 C .byt M_PAL_0
+C .byt Metatiles::LOCK_GREEN
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL
 C .byt $a8
 C .byt $a9
@@ -794,6 +898,7 @@ C .byt $ab
 
 R LOCK_BLUE
 C .byt M_PAL_3
+C .byt Metatiles::LOCK_BLUE
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL
 C .byt $a8
 C .byt $a9
@@ -802,6 +907,7 @@ C .byt $ab
 
 R CHIP_SOCKET
 C .byt M_PAL_1
+C .byt Metatiles::CHIP_SOCKET
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL|M_POST_PROCESS
 C .byt $98
 C .byt $99
@@ -810,6 +916,7 @@ C .byt $9b
 
 R PUSHABLE_BLOCK
 C .byt M_PAL_1
+C .byt Metatiles::PUSHABLE_BLOCK
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_SPECIAL_WALL
 C .byt $0c
 C .byt $29
@@ -820,6 +927,7 @@ C .byt $2b
 
 R CAMPFIRE_OUT
 C .byt M_PAL_2
+C .byt Metatiles::CAMPFIRE_OUT
 C .byt M_EMPTY
 C .byt $3f
 C .byt $b8
@@ -828,6 +936,7 @@ C .byt $ba
 
 R ICE
 C .byt M_PAL_1
+C .byt Metatiles::ICE
 C .byt M_ICE|M_SOLID_ALL|M_SOLID_TOP
 C .byt $5c
 C .byt $5e
@@ -837,6 +946,7 @@ C .byt $5f
 ##### background stuff starts here #####
 R CLOUD_L
 C .byt M_PAL_1
+C .byt Metatiles::EMPTY
 C .byt M_REPLACEABLE
 C .byt $5b
 C .byt $6b
@@ -845,6 +955,7 @@ C .byt $6c
 
 R CLOUD_M
 C .byt M_PAL_1
+C .byt Metatiles::EMPTY
 C .byt M_REPLACEABLE
 C .byt $5d
 C .byt $6c
@@ -853,6 +964,7 @@ C .byt $6c
 
 R CLOUD_R
 C .byt M_PAL_1
+C .byt Metatiles::EMPTY
 C .byt M_REPLACEABLE
 C .byt $5f
 C .byt $6f
@@ -861,6 +973,7 @@ C .byt $3f
 
 R BG_FENCE
 C .byt M_PAL_2
+C .byt Metatiles::BG_FENCE
 C .byt M_EMPTY
 C .byt $ce
 C .byt $de
@@ -869,6 +982,7 @@ C .byt $df
 
 R BG_TALL_GRASS
 C .byt M_PAL_0
+C .byt Metatiles::BG_TALL_GRASS
 C .byt M_EMPTY
 C .byt $3f
 C .byt $ca
@@ -877,6 +991,7 @@ C .byt $cb
 
 R BG_FLOWER_1
 C .byt M_PAL_0
+C .byt Metatiles::BG_FLOWER_1
 C .byt M_EMPTY|M_POST_PROCESS
 C .byt $cc
 C .byt $da
@@ -885,6 +1000,7 @@ C .byt $db
 
 R BG_FLOWER_2
 C .byt M_PAL_0
+C .byt Metatiles::BG_FLOWER_1
 C .byt M_EMPTY
 C .byt $dc
 C .byt $da
@@ -893,6 +1009,7 @@ C .byt $db
 
 R BG_FLOWER_3
 C .byt M_PAL_2
+C .byt Metatiles::BG_FLOWER_1
 C .byt M_EMPTY
 C .byt $cc
 C .byt $da
@@ -901,6 +1018,7 @@ C .byt $db
 
 R BG_FLOWER_4
 C .byt M_PAL_2
+C .byt Metatiles::BG_FLOWER_1
 C .byt M_EMPTY
 C .byt $dc
 C .byt $da
@@ -909,6 +1027,7 @@ C .byt $db
 
 R BG_UP_ARROW
 C .byt M_PAL_0
+C .byt Metatiles::BG_UP_ARROW
 C .byt M_EMPTY
 C .byt $30
 C .byt $3f
@@ -917,6 +1036,7 @@ C .byt $30
 
 R BG_DN_ARROW
 C .byt M_PAL_0
+C .byt Metatiles::BG_DN_ARROW
 C .byt M_EMPTY
 C .byt $31
 C .byt $3f
@@ -925,6 +1045,7 @@ C .byt $31
 
 R BG_BLACK
 C .byt M_PAL_1
+C .byt Metatiles::BG_BLACK
 C .byt M_EMPTY
 C .byt $3c
 C .byt $3c
@@ -933,6 +1054,7 @@ C .byt $3c
 
 R BG_BUSH_TOP
 C .byt M_PAL_0
+C .byt Metatiles::BG_BUSH_TOP
 C .byt M_EMPTY
 C .byt $3f
 C .byt $c5
@@ -941,6 +1063,7 @@ C .byt $d6
 
 R BG_BUSH_BOT
 C .byt M_PAL_0
+C .byt Metatiles::BG_BUSH_BOT
 C .byt M_EMPTY|M_POST_PROCESS
 C .byt $c7
 C .byt $d7
@@ -949,6 +1072,7 @@ C .byt $d9
 
 R BG_TRUNK_L
 C .byt M_PAL_2
+C .byt Metatiles::BG_TRUNK_L
 C .byt M_EMPTY|M_POST_PROCESS
 C .byt $3f
 C .byt $3f
@@ -957,6 +1081,7 @@ C .byt $d2
 
 R BG_TRUNK_R
 C .byt M_PAL_2
+C .byt Metatiles::BG_TRUNK_R
 C .byt M_EMPTY
 C .byt $d3
 C .byt $d3
@@ -965,6 +1090,7 @@ C .byt $3f
 
 R BG_TREETOP_UL
 C .byt M_PAL_0
+C .byt Metatiles::BG_TREETOP_UL
 C .byt M_EMPTY
 C .byt $3f
 C .byt $c5
@@ -973,6 +1099,7 @@ C .byt $c6
 
 R BG_TREETOP_UR
 C .byt M_PAL_0
+C .byt Metatiles::BG_TREETOP_UR
 C .byt M_EMPTY
 C .byt $3f
 C .byt $d5
@@ -981,6 +1108,7 @@ C .byt $d6
 
 R BG_TREETOP_LL
 C .byt M_PAL_0
+C .byt Metatiles::BG_TREETOP_LL
 C .byt M_EMPTY|M_POST_PROCESS
 C .byt $c7
 C .byt $d7
@@ -989,6 +1117,7 @@ C .byt $d8
 
 R BG_TREETOP_LR
 C .byt M_PAL_0
+C .byt Metatiles::BG_TREETOP_LR
 C .byt M_EMPTY
 C .byt $3d
 C .byt $d8
@@ -997,6 +1126,7 @@ C .byt $d9
 
 R BG_TRUNK
 C .byt M_PAL_2
+C .byt Metatiles::BG_TRUNK
 C .byt M_EMPTY
 C .byt $d2
 C .byt $d2
@@ -1005,6 +1135,7 @@ C .byt $d3
 
 R BG_LINE_TOP
 C .byt M_PAL_0
+C .byt Metatiles::EMPTY
 C .byt M_EMPTY
 C .byt $39
 C .byt $3f
@@ -1013,6 +1144,7 @@ C .byt $3f
 
 R GRAY_BRICKS
 C .byt M_PAL_1
+C .byt Metatiles::GRAY_BRICKS
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $00
 C .byt $01
@@ -1022,6 +1154,7 @@ C .byt $03
 # tropical stuff
 R STONE_BRIDGE_TOP
 C .byt M_PAL_2
+C .byt Metatiles::EMPTY
 C .byt M_EMPTY
 C .byt $3f
 C .byt $80
@@ -1030,6 +1163,7 @@ C .byt $82
 
 R STONE_BRIDGE_LEFT
 C .byt M_PAL_1
+C .byt Metatiles::STONE_BRIDGE
 C .byt M_SOLID_TOP
 C .byt $81
 C .byt $3f
@@ -1038,6 +1172,7 @@ C .byt $3f
 
 R STONE_BRIDGE
 C .byt M_PAL_1
+C .byt Metatiles::STONE_BRIDGE
 C .byt M_SOLID_TOP|M_POST_PROCESS
 C .byt $83
 C .byt $3f
@@ -1046,6 +1181,7 @@ C .byt $3f
 
 R STONE_BRIDGE_RIGHT
 C .byt M_PAL_1
+C .byt Metatiles::STONE_BRIDGE
 C .byt M_SOLID_TOP
 C .byt $83
 C .byt $3f
@@ -1054,6 +1190,7 @@ C .byt $3f
 
 R PALM_TREE
 C .byt M_PAL_2
+C .byt Metatiles::PALM_TREE
 C .byt M_EMPTY|M_POST_PROCESS
 C .byt $3f
 C .byt $3f
@@ -1062,6 +1199,7 @@ C .byt $93
 
 R PALM_TREE_TOP_L
 C .byt M_PAL_0
+C .byt Metatiles::PALM_TREE_TOP_L
 C .byt M_EMPTY
 C .byt $90
 C .byt $91
@@ -1070,6 +1208,7 @@ C .byt $d8
 
 R PALM_TREE_TOP_R
 C .byt M_PAL_0
+C .byt Metatiles::PALM_TREE_TOP_R
 C .byt M_EMPTY
 C .byt $94
 C .byt $95
@@ -1078,6 +1217,7 @@ C .byt $3f
 
 R SAND_UL
 C .byt M_PAL_2
+C .byt Metatiles::SAND
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $96
 C .byt $97
@@ -1086,6 +1226,7 @@ C .byt $99
 
 R SAND_U
 C .byt M_PAL_2
+C .byt Metatiles::SAND
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $98
 C .byt $99
@@ -1094,6 +1235,7 @@ C .byt $99
 
 R SAND_UR
 C .byt M_PAL_2
+C .byt Metatiles::SAND
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $98
 C .byt $99
@@ -1102,6 +1244,7 @@ C .byt $9b
 
 R SAND_L
 C .byt M_PAL_2
+C .byt Metatiles::SAND
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $97
 C .byt $97
@@ -1110,6 +1253,7 @@ C .byt $99
 
 R SAND
 C .byt M_PAL_2
+C .byt Metatiles::SAND
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_POST_PROCESS
 C .byt $99
 C .byt $99
@@ -1118,6 +1262,7 @@ C .byt $99
 
 R SAND_R
 C .byt M_PAL_2
+C .byt Metatiles::SAND
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $99
 C .byt $99
@@ -1126,6 +1271,7 @@ C .byt $9b
 
 R STRIPED_LOG_HORIZ_L
 C .byt M_PAL_2
+C .byt Metatiles::STRIPED_LOG_HORIZ
 C .byt M_SOLID_TOP
 C .byt $9c
 C .byt $3f
@@ -1134,6 +1280,7 @@ C .byt $3f
 
 R STRIPED_LOG_HORIZ
 C .byt M_PAL_2
+C .byt Metatiles::STRIPED_LOG_HORIZ
 C .byt M_SOLID_TOP|M_POST_PROCESS
 C .byt $9e
 C .byt $3f
@@ -1142,6 +1289,7 @@ C .byt $3f
 
 R STRIPED_LOG_HORIZ_R
 C .byt M_PAL_2
+C .byt Metatiles::STRIPED_LOG_HORIZ
 C .byt M_SOLID_TOP
 C .byt $9e
 C .byt $3f
@@ -1150,6 +1298,7 @@ C .byt $3f
 
 R MOAI_RIGHT
 C .byt M_PAL_1
+C .byt Metatiles::MOAI_RIGHT
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $a4
 C .byt $a5
@@ -1158,6 +1307,7 @@ C .byt $a7
 
 R MOAI_LEFT
 C .byt M_PAL_1
+C .byt Metatiles::MOAI_LEFT
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $a8
 C .byt $a9
@@ -1166,6 +1316,7 @@ C .byt $ab
 
 R TROPICAL_FLOWER
 C .byt M_PAL_2
+C .byt Metatiles::TROPICAL_FLOWER
 C .byt M_EMPTY|M_POST_PROCESS
 C .byt $8c
 C .byt $8d
@@ -1174,6 +1325,7 @@ C .byt $8f
 
 R TROPICAL_FLOWER_2
 C .byt M_PAL_2
+C .byt Metatiles::TROPICAL_FLOWER_2
 C .byt M_EMPTY|M_POST_PROCESS
 C .byt $88
 C .byt $89
@@ -1182,6 +1334,7 @@ C .byt $8b
 
 R LOG_HORIZ
 C .byt M_PAL_2
+C .byt Metatiles::LOG_HORIZ
 C .byt M_SOLID_TOP
 C .byt $84
 C .byt $3f
@@ -1190,6 +1343,7 @@ C .byt $3f
 
 R BIG_SPIKY_BUSH
 C .byt M_PAL_0
+C .byt Metatiles::BIG_SPIKY_BUSH
 C .byt M_EMPTY|M_POST_PROCESS
 C .byt $90
 C .byt $91
@@ -1198,6 +1352,7 @@ C .byt $d8
 
 R BIG_SPIKY_BUSH_R
 C .byt M_PAL_0
+C .byt Metatiles::BIG_SPIKY_BUSH_R
 C .byt M_EMPTY
 C .byt $92
 C .byt $d8
@@ -1206,6 +1361,7 @@ C .byt $95
 
 R WOOD_PLATFORM_TOP
 C .byt M_PAL_2
+C .byt Metatiles::WOOD_PLATFORM_TOP
 C .byt M_SOLID_TOP
 C .byt $a0
 C .byt $a1
@@ -1214,6 +1370,7 @@ C .byt $a3
 
 R WOOD_PLATFORM
 C .byt M_PAL_2
+C .byt Metatiles::WOOD_PLATFORM
 C .byt M_EMPTY
 C .byt $a1
 C .byt $a1
@@ -1222,6 +1379,7 @@ C .byt $a3
 
 R FLOWER_STEM
 C .byt M_PAL_0
+C .byt Metatiles::FLOWER_STEM
 C .byt M_EMPTY
 C .byt $da
 C .byt $da
@@ -1230,6 +1388,7 @@ C .byt $db
 
 R PATH_LINE
 C .byt M_PAL_1
+C .byt Metatiles::PATH_LINE
 C .byt M_EMPTY
 C .byt $3f
 C .byt $3f
@@ -1239,6 +1398,7 @@ C .byt $3b
 # metal Hannah crates
 R METAL_ARROW_LEFT
 C .byt M_PAL_1
+C .byt Metatiles::METAL_ARROW_LEFT
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $c0
 C .byt $c1
@@ -1247,6 +1407,7 @@ C .byt $c3
 
 R METAL_ARROW_DOWN
 C .byt M_PAL_1
+C .byt Metatiles::METAL_ARROW_DOWN
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $c4
 C .byt $c5
@@ -1255,6 +1416,7 @@ C .byt $c7
 
 R METAL_ARROW_UP
 C .byt M_PAL_1
+C .byt Metatiles::METAL_ARROW_UP
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $c8
 C .byt $c9
@@ -1263,6 +1425,7 @@ C .byt $cb
 
 R METAL_ARROW_RIGHT
 C .byt M_PAL_1
+C .byt Metatiles::METAL_ARROW_RIGHT
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $cc
 C .byt $cd
@@ -1271,6 +1434,7 @@ C .byt $cf
 
 R METAL_BOMB
 C .byt M_PAL_1
+C .byt Metatiles::METAL_BOMB
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $d0
 C .byt $d1
@@ -1279,6 +1443,7 @@ C .byt $d3
 
 R METAL_CRATE
 C .byt M_PAL_1
+C .byt Metatiles::METAL_CRATE
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $d4
 C .byt $d5
@@ -1287,6 +1452,7 @@ C .byt $d7
 
 R FORK_ARROW_DOWN
 C .byt M_PAL_0
+C .byt Metatiles::FORK_ARROW_DOWN
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $c4
 C .byt $c5
@@ -1295,6 +1461,7 @@ C .byt $c7
 
 R FORK_ARROW_UP
 C .byt M_PAL_0
+C .byt Metatiles::FORK_ARROW_UP
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $c8
 C .byt $c9
@@ -1304,6 +1471,7 @@ C .byt $cb
 # suburbs background stuff
 R SQUIRREL_BUSH
 C .byt M_PAL_0
+C .byt Metatiles::SQUIRREL_BUSH
 C .byt M_EMPTY
 C .byt $a4
 C .byt $a5
@@ -1312,6 +1480,7 @@ C .byt $a7
 
 R K_STATUE_TOP
 C .byt M_PAL_1
+C .byt Metatiles::K_STATUE_TOP
 C .byt M_SOLID_ALL|M_SOLID_TOP|M_POST_PROCESS
 C .byt $ae
 C .byt $af
@@ -1320,6 +1489,7 @@ C .byt $b1
 
 R K_STATUE_BOTTOM
 C .byt M_PAL_1
+C .byt Metatiles::K_STATUE_BOTTOM
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $b2
 C .byt $b3
@@ -1328,6 +1498,7 @@ C .byt $b5
 
 R BRICKWALL_MIDDLE
 C .byt M_PAL_3
+C .byt Metatiles::BRICKWALL_MIDDLE
 C .byt M_POST_PROCESS
 C .byt $b6
 C .byt $b7
@@ -1336,6 +1507,7 @@ C .byt $b9
 
 R BRICKWALL_TOP
 C .byt M_PAL_3
+C .byt Metatiles::BRICKWALL_MIDDLE
 C .byt M_SOLID_TOP
 C .byt $ba
 C .byt $b7
@@ -1344,6 +1516,7 @@ C .byt $b9
 
 R WHITEFENCE_LEFT
 C .byt M_PAL_1
+C .byt Metatiles::WHITEFENCE_MIDDLE
 C .byt M_SOLID_TOP
 C .byt $a8
 C .byt $a9
@@ -1352,6 +1525,7 @@ C .byt $ab
 
 R WHITEFENCE_MIDDLE
 C .byt M_PAL_1
+C .byt Metatiles::WHITEFENCE_MIDDLE
 C .byt M_SOLID_TOP|M_POST_PROCESS
 C .byt $aa
 C .byt $ab
@@ -1360,6 +1534,7 @@ C .byt $ab
 
 R WHITEFENCE_RIGHT
 C .byt M_PAL_1
+C .byt Metatiles::WHITEFENCE_MIDDLE
 C .byt M_SOLID_TOP
 C .byt $aa
 C .byt $ab
@@ -1368,6 +1543,7 @@ C .byt $ad
 
 R BG_GLASS_GREEN
 C .byt M_PAL_0
+C .byt Metatiles::BG_GLASS_GREEN
 C .byt M_EMPTY
 C .byt $6c
 C .byt $6e
@@ -1376,6 +1552,7 @@ C .byt $6f
 
 R BG_GLASS_GRAY
 C .byt M_PAL_1
+C .byt Metatiles::BG_GLASS_GRAY
 C .byt M_EMPTY
 C .byt $6c
 C .byt $6e
@@ -1384,6 +1561,7 @@ C .byt $6f
 
 R BG_GLASS_RED
 C .byt M_PAL_2
+C .byt Metatiles::BG_GLASS_RED
 C .byt M_EMPTY
 C .byt $6c
 C .byt $6e
@@ -1392,6 +1570,7 @@ C .byt $6f
 
 R BG_GLASS_BLUE
 C .byt M_PAL_3
+C .byt Metatiles::BG_GLASS_BLUE
 C .byt M_EMPTY
 C .byt $6c
 C .byt $6e
@@ -1400,6 +1579,7 @@ C .byt $6f
 
 R FG_GLASS_RED
 C .byt M_PAL_2
+C .byt Metatiles::FG_GLASS_RED
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $52
 C .byt $62
@@ -1408,6 +1588,7 @@ C .byt $63
 
 R FG_GLASS_BLUE
 C .byt M_PAL_3
+C .byt Metatiles::FG_GLASS_BLUE
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $52
 C .byt $62
@@ -1416,6 +1597,7 @@ C .byt $63
 
 R GLIDER_BLOCK
 C .byt M_PAL_1
+C .byt Metatiles::GLIDER_BLOCK
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $bc
 C .byt $bd
@@ -1425,6 +1607,7 @@ C .byt $bf
 ############# minecart tracks ###############
 R MINE_TRACK
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK
 C .byt M_MINETRACK
 C .byt $3f
 C .byt $e1
@@ -1433,6 +1616,7 @@ C .byt $e1
 
 R MINE_TRACK_BRAKES
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_BRAKES
 C .byt M_MINETRACK
 C .byt $3f
 C .byt $e8
@@ -1441,6 +1625,7 @@ C .byt $e8
 
 R MINE_TRACK_UP
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_UP
 C .byt M_MINETRACK
 C .byt $3f
 C .byt $f2
@@ -1449,6 +1634,7 @@ C .byt $f4
 
 R MINE_TRACK_UP_LEFT
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_UP_LEFT
 C .byt M_MINETRACK
 C .byt $3f
 C .byt $f3
@@ -1457,6 +1643,7 @@ C .byt $f5
 
 R MINE_TRACK_UP_RIGHT
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_UP_RIGHT
 C .byt M_MINETRACK
 C .byt $3f
 C .byt $f7
@@ -1465,6 +1652,7 @@ C .byt $f9
 
 R MINE_TRACK_STOP
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_STOP
 C .byt M_MINETRACK
 C .byt $3f
 C .byt $ee
@@ -1473,6 +1661,7 @@ C .byt $f0
 
 R MINE_TRACK_BUMP
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_BUMP
 C .byt M_MINETRACK
 C .byt $3f
 C .byt $ef
@@ -1481,6 +1670,7 @@ C .byt $f1
 
 R MINE_TRACK_SPECIAL
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_SPECIAL
 C .byt M_MINETRACK
 C .byt $3f
 C .byt $f6
@@ -1489,6 +1679,7 @@ C .byt $f8
 
 R MINE_TRACK_SUPPORTS
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_SUPPORTS
 C .byt M_MINETRACK|M_POST_PROCESS
 C .byt $fa
 C .byt $fb
@@ -1497,6 +1688,7 @@ C .byt $fb
 
 R MINE_TRACK_SUPPORTS_ONLY
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_SUPPORTS_ONLY
 C .byt M_EMPTY
 C .byt $fa
 C .byt $fa
@@ -1505,6 +1697,7 @@ C .byt $fa
 
 R MINE_TRACK_STEEP_LEFT_BOT
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_STEEP_LEFT_BOT
 C .byt M_EMPTY|M_POST_PROCESS
 C .byt $ea
 C .byt $eb
@@ -1513,6 +1706,7 @@ C .byt $3f
 
 R MINE_TRACK_STEEP_LEFT_TOP
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_STEEP_LEFT_TOP
 C .byt M_EMPTY
 C .byt $3f
 C .byt $3f
@@ -1521,6 +1715,7 @@ C .byt $ea
 
 R MINE_TRACK_STEEP_RIGHT_BOT
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_STEEP_RIGHT_BOT
 C .byt M_EMPTY|M_POST_PROCESS
 C .byt $ed
 C .byt $3f
@@ -1529,6 +1724,7 @@ C .byt $ed
 
 R MINE_TRACK_STEEP_RIGHT_TOP
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_STEEP_RIGHT_TOP
 C .byt M_EMPTY
 C .byt $3f
 C .byt $ec
@@ -1537,6 +1733,7 @@ C .byt $3f
 
 R MINE_TRACK_GRADUAL_LEFT_L
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_GRADUAL_LEFT_L
 C .byt M_EMPTY|M_POST_PROCESS
 C .byt $e2
 C .byt $e3
@@ -1545,6 +1742,7 @@ C .byt $e5
 
 R MINE_TRACK_GRADUAL_LEFT_R
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_GRADUAL_LEFT_R
 C .byt M_EMPTY
 C .byt $e3
 C .byt $3f
@@ -1553,6 +1751,7 @@ C .byt $3f
 
 R MINE_TRACK_GRADUAL_LEFT_U
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_GRADUAL_LEFT_U
 C .byt M_EMPTY
 C .byt $3f
 C .byt $3f
@@ -1561,6 +1760,7 @@ C .byt $e4
 
 R MINE_TRACK_GRADUAL_RIGHT_L
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_GRADUAL_RIGHT_L
 C .byt M_EMPTY
 C .byt $e7
 C .byt $3f
@@ -1569,6 +1769,7 @@ C .byt $3f
 
 R MINE_TRACK_GRADUAL_RIGHT_R
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_GRADUAL_RIGHT_R
 C .byt M_EMPTY|M_POST_PROCESS
 C .byt $e6
 C .byt $e7
@@ -1577,6 +1778,7 @@ C .byt $e9
 
 R MINE_TRACK_GRADUAL_RIGHT_U
 C .byt M_PAL_3
+C .byt Metatiles::MINE_TRACK_GRADUAL_RIGHT_U
 C .byt M_EMPTY
 C .byt $3f
 C .byt $e6
@@ -1585,6 +1787,7 @@ C .byt $3f
 
 R FROZEN_BACKGROUND
 C .byt M_PAL_1
+C .byt Metatiles::FROZEN_BACKGROUND
 C .byt M_EMPTY
 C .byt $78
 C .byt $7a
@@ -1593,6 +1796,7 @@ C .byt $7b
 
 R ENEMY_BARRIER
 C .byt M_PAL_0
+C .byt Metatiles::ENEMY_BARRIER
 C .byt M_EMPTY
 C .byt $3f
 C .byt $3f
@@ -1601,6 +1805,7 @@ C .byt $3f
 
 R BOULDER_SOLID
 C .byt M_PAL_1
+C .byt Metatiles::BOULDER_SOLID
 C .byt M_SOLID_ALL|M_SOLID_TOP
 C .byt $3f
 C .byt $3f
@@ -1609,6 +1814,7 @@ C .byt $3f
 
 R FROZEN_CRACK
 C .byt M_PAL_3
+C .byt Metatiles::FROZEN_CRACK
 C .byt M_POST_PROCESS
 C .byt $c0
 C .byt $d0
@@ -1617,6 +1823,7 @@ C .byt $d1
 
 R FROZEN_CRACK2
 C .byt M_PAL_3
+C .byt Metatiles::FROZEN_CRACK
 C .byt M_EMPTY
 C .byt $c8
 C .byt $d8
@@ -1625,6 +1832,7 @@ C .byt $d9
 
 R SNOWMAN_TOP
 C .byt M_PAL_0
+C .byt Metatiles::SNOWMAN_TOP
 C .byt M_SOLID_ALL|M_POST_PROCESS
 C .byt $c4
 C .byt $d4
@@ -1633,6 +1841,7 @@ C .byt $d5
 
 R SNOWMAN_BOTTOM
 C .byt M_PAL_0
+C .byt Metatiles::SNOWMAN_BOTTOM
 C .byt M_SOLID_ALL
 C .byt $c6
 C .byt $d6
@@ -1641,6 +1850,7 @@ C .byt $d7
 
 R ICE2
 C .byt M_PAL_0
+C .byt Metatiles::ICE2
 C .byt M_ICE|M_SOLID_ALL|M_SOLID_TOP
 C .byt $5c
 C .byt $5e

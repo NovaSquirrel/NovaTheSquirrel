@@ -439,7 +439,7 @@ NameIndex = 6 ; position within SandboxLevelName
   ldx #$e0
 : stx PPUDATA
   inx
-  cpx #$e0+26
+  cpx #$e0+27
   bne :-
 
   PositionXY 0, 3, 16
@@ -1362,8 +1362,6 @@ MetatileList:
 .endproc
 
 ; Reverses most of the LevelPostProcess effects.
-; Actually should just be a lookup table since it would only be 256 bytes at most anyway
-; unlike this routine which I think is longer, oops.
 .proc UndoPostProcessLevel
   ; Level starts at $6000
   ldy #$00
@@ -1372,20 +1370,8 @@ MetatileList:
   sta LevelBlockPtr+1
 Loop:
   lda (LevelBlockPtr),y
-  cmp BackgroundMetatile
-  beq IsBackground
-    sta 0 ; Save block ID to compare against
-    ldx #0
-  : lda FindList,x
-    beq IsBackground ; Exit if at the end of the list and no matches
-    cmp 0            ; Is it the block in the level?
-    beq DoReplace
-    inx
-    bne :-           ; Unconditional
-
-; Replace the block in the level
-DoReplace:
-  lda ReplaceList,x
+  tax
+  lda MetatileUndoAutotile,x
   sta (LevelBlockPtr),y
 IsBackground:
   ; Increment low byte
@@ -1397,105 +1383,4 @@ IsBackground:
   cmp #$70
   bne Loop
   rts
-
-FindList:
-  .byt Metatiles::LADDER_TOP
-  .byt Metatiles::SOLID_LEDGE_L
-  .byt Metatiles::SOLID_LEDGE_R
-  .byt Metatiles::SOLID_LEDGE_S
-  .byt Metatiles::FALLTHROUGH_LEDGE_L
-  .byt Metatiles::FALLTHROUGH_LEDGE_R
-  .byt Metatiles::FALLTHROUGH_LEDGE_S
-  .byt Metatiles::WATER_FROZEN
-  .byt Metatiles::WATER_TOP
-  .byt Metatiles::WATER_BELOW_SOMETHING
-  .byt Metatiles::LAVA_FROZEN
-  .byt Metatiles::LAVA_TOP
-  .byt Metatiles::LAVA_BELOW_SOMETHING
-  .byt Metatiles::GROUND_TOP_L
-  .byt Metatiles::GROUND_TOP_M
-  .byt Metatiles::GROUND_TOP_R
-  .byt Metatiles::GROUND_MIDDLE_L
-  .byt Metatiles::GROUND_MIDDLE_R
-  .byt Metatiles::GROUND_INNER_LEFT
-  .byt Metatiles::GROUND_INNER_RIGHT
-  .byt Metatiles::GROUND_INNER_BOTH
-  .byt Metatiles::GROUND_NARROW_TOP
-  .byt Metatiles::GROUND_NARROW_SIDES
-  .byt Metatiles::ROCK_TOP_L
-  .byt Metatiles::ROCK_TOP_M
-  .byt Metatiles::ROCK_TOP_R
-  .byt Metatiles::ROCK_MID_L
-  .byt Metatiles::ROCK_MID_R
-  .byt Metatiles::ROCK_BOT_L
-  .byt Metatiles::ROCK_BOT_M
-  .byt Metatiles::ROCK_BOT_R
-  .byt Metatiles::CLOUD_L
-  .byt Metatiles::CLOUD_M
-  .byt Metatiles::CLOUD_R
-  .byt Metatiles::STONE_BRIDGE_TOP
-  .byt Metatiles::STONE_BRIDGE_LEFT
-  .byt Metatiles::STONE_BRIDGE_RIGHT
-  .byt Metatiles::SAND_UL
-  .byt Metatiles::SAND_U
-  .byt Metatiles::SAND_UR
-  .byt Metatiles::SAND_L
-  .byt Metatiles::SAND_R
-  .byt Metatiles::STRIPED_LOG_HORIZ_L
-  .byt Metatiles::STRIPED_LOG_HORIZ_R
-  .byt Metatiles::BRICKWALL_TOP
-  .byt Metatiles::WHITEFENCE_LEFT
-  .byt Metatiles::WHITEFENCE_RIGHT
-  .byt Metatiles::BG_LINE_TOP
-  .byt 0
-
-ReplaceList:
-  .byt Metatiles::LADDER
-  .byt Metatiles::SOLID_LEDGE_M
-  .byt Metatiles::SOLID_LEDGE_M
-  .byt Metatiles::SOLID_LEDGE_M
-  .byt Metatiles::FALLTHROUGH_LEDGE_M
-  .byt Metatiles::FALLTHROUGH_LEDGE_M
-  .byt Metatiles::FALLTHROUGH_LEDGE_M
-  .byt Metatiles::WATER_MAIN
-  .byt Metatiles::WATER_MAIN
-  .byt Metatiles::WATER_MAIN
-  .byt Metatiles::LAVA_MAIN
-  .byt Metatiles::LAVA_MAIN
-  .byt Metatiles::LAVA_MAIN
-  .byt Metatiles::GROUND_MIDDLE_M
-  .byt Metatiles::GROUND_MIDDLE_M
-  .byt Metatiles::GROUND_MIDDLE_M
-  .byt Metatiles::GROUND_MIDDLE_M
-  .byt Metatiles::GROUND_MIDDLE_M
-  .byt Metatiles::GROUND_MIDDLE_M
-  .byt Metatiles::GROUND_MIDDLE_M
-  .byt Metatiles::GROUND_MIDDLE_M
-  .byt Metatiles::GROUND_MIDDLE_M
-  .byt Metatiles::GROUND_MIDDLE_M
-  .byt Metatiles::ROCK_MID_M
-  .byt Metatiles::ROCK_MID_M
-  .byt Metatiles::ROCK_MID_M
-  .byt Metatiles::ROCK_MID_M
-  .byt Metatiles::ROCK_MID_M
-  .byt Metatiles::ROCK_MID_M
-  .byt Metatiles::ROCK_MID_M
-  .byt Metatiles::ROCK_MID_M
-  .byt Metatiles::EMPTY
-  .byt Metatiles::EMPTY
-  .byt Metatiles::EMPTY
-  .byt Metatiles::EMPTY
-  .byt Metatiles::STONE_BRIDGE
-  .byt Metatiles::STONE_BRIDGE
-  .byt Metatiles::SAND
-  .byt Metatiles::SAND
-  .byt Metatiles::SAND
-  .byt Metatiles::SAND
-  .byt Metatiles::SAND
-  .byt Metatiles::STRIPED_LOG_HORIZ
-  .byt Metatiles::STRIPED_LOG_HORIZ
-  .byt Metatiles::BRICKWALL_MIDDLE
-  .byt Metatiles::WHITEFENCE_MIDDLE
-  .byt Metatiles::WHITEFENCE_MIDDLE
-  .byt Metatiles::EMPTY
 .endproc
