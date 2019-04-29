@@ -1140,7 +1140,7 @@ ClearLevelMap:
   bpl :-
 
   ; Also delete enemy list
-  lda #255
+  lda #0
 : sta SpriteListRAM,y
   iny
   bne :-
