@@ -278,6 +278,8 @@ AutoRepeatCount = 5
   jsr _SetPRG
 
   jsr StopSoundFar
+  lda IsCustomLevel
+  bne :+
   lda MusicMute
   bne :+
     inc pently_music_playing
@@ -1142,6 +1144,8 @@ KU = KEY_UP
 KD = KEY_DOWN
 KA = KEY_A
 KB = KEY_B
+  .byt KR, KA, KD, KD, KB, KA, KB, KB ; clear time trial times
+  .byt KB, KA, KB, KA, KL, KD, KU, KR ; 100%
   .byt KU, KU, KD, KD, KL, KR, KL, KR ; Konami code
   .byt KA, KB, KL, KR, KL, KR, KD, KD ; reverse Konami code
   .byt KL, KL, KL, KL, KL, KL, KL, KL ; left
@@ -1170,6 +1174,8 @@ KB = KEY_B
   rts
 
 Routines:
+  .raddr ClearTimes
+  .raddr Everything
   .raddr Health ; Konami Code
   .raddr Health ; reverse Konami code
   .raddr Fireball ; left
@@ -1183,6 +1189,25 @@ Routines:
   .raddr Burger ; b repeatedly
   .raddr Rich
   .raddr InfiniteProjectiles
+
+ClearTimes:
+  ldx #MAX_TIMED_LEVEL*2-1
+  lda #0
+: sta SavedLevelTimes,x
+  dex
+  bpl :-
+  rts
+
+Everything:
+  ldx #4
+  lda #255
+: sta LevelAvailable,x
+  sta LevelCleared,x
+  sta CollectibleBits,x
+  dex
+  bpl :-
+  rts
+
 Rich:
   lda #99
   sta Coins+0
