@@ -225,7 +225,7 @@ CreditsData:
   .byt FOR,     "Game music",0
   .byt NAME,    "Oliver Kovacs",0
   .byt COMMAS
-  .byt FOR,     "'Capsules' music",0
+  .byt FOR,     "Squirrel Domino music",0
   .byt NAME,    "maple syrup",0
 
   .byt SECTION, "DESIGN",0

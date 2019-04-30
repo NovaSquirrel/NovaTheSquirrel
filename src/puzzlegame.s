@@ -271,13 +271,6 @@ Reshow:
     jsr FamiToneMusicPlay
   :
 
-  ; Clear the stuff that should be zero'd every new game
-  ldy #PuzzleZeroEnd-PuzzleZeroStart-1
-  lda #0
-: sta PuzzleZeroStart,y
-  dey
-  bpl :-
-
   ; Turn off screen and draw the menu
   jsr WaitVblank
   ldx #0
@@ -347,7 +340,7 @@ Reshow:
 
   PositionXY 0, 6, 9
   jsr PutStringImmediate
-  .byt "Style: Classic",0
+  .byt "Style:",0
 
   PositionXY 0, 6, 11
   jsr PutStringImmediate
@@ -363,11 +356,11 @@ Reshow:
 
   PositionXY 0, 6, 17
   jsr PutStringImmediate
-  .byt "Theme: Minimal",0
+  .byt "Theme:",0
 
   PositionXY 0, 6, 19
   jsr PutStringImmediate
-  .byt "Sound: ",0
+  .byt "Sound:",0
 
   ; -----------------------------------
 
@@ -598,7 +591,7 @@ RunMenu:
       dec PuzzleGimmick
       bpl :+
         lda #PuzzleGimmicks::GIMMICK_COUNT-1
-         sta PuzzleGimmick
+        sta PuzzleGimmick
       :
       jmp @NotLeft
     @NotStyleL:
@@ -778,6 +771,13 @@ PuzzleMusicNames:
 .endproc
 
 .proc InitPuzzleGame
+  ; Clear the stuff that should be zero'd every new game
+  ldy #PuzzleZeroEnd-PuzzleZeroStart-1
+  lda #0
+: sta PuzzleZeroStart,y
+  dey
+  bpl :-
+
   jsr PuzzleRandomInit
 
   jsr WaitVblank
@@ -3148,6 +3148,23 @@ PuzzleFailure:
 
   pla
   pla
+
+  ; Keep going, but only if you win and it's not two player
+  lda PuzzleState
+  cmp #PuzzleStates::VICTORY
+  bne :+
+    lda PuzzleVersus
+    bne :+
+    lda VirusLevel
+    add #4
+    cmp #80
+    bcc NotTooMuch
+    lda #80
+  NotTooMuch:
+    sta VirusLevel+0
+    jmp InitPuzzleGame
+  :
+
   jmp PuzzleGameMenu::Reshow
 .endproc
 
