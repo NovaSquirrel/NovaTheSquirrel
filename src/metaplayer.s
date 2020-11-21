@@ -572,12 +572,35 @@ _rts:
   lda #0
   sta PlayerNeedsGround
 
-  ldy TempSpace
+  ; Animate the spring changing
+  ; but only if the spring isn't scheduled to disappear before it'd pop back up
+  ldy #MaxDelayedMetaEdits-1
+DelayedBlockLoop:
+  ; Count down the timer, if there is a timer
+  lda DelayedMetaEditTime,y
+  beq :+
+    ; Is it this block?
+    lda DelayedMetaEditIndexHi,y
+    cmp LevelBlockPtr+1
+    bne :+
+    lda DelayedMetaEditIndexLo,y
+    sub TempSpace
+    cmp LevelBlockPtr+0
+    bne :+
+    lda DelayedMetaEditTime,y
+    cmp #6
+    bcc DontSpringUp
+: dey
+  bpl DelayedBlockLoop
+
   ; animate the spring
+  ldy TempSpace
   lda #1
   sta 0
   lda #Metatiles::SPRING
   jsr DelayChangeBlock
+DontSpringUp:
+  ldy TempSpace
   lda #Metatiles::SPRING_PRESSED
   jmp ChangeBlock
 .endproc
