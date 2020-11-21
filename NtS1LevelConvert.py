@@ -352,7 +352,7 @@ def ExportLevel(filename):
 	for R in FG:
 		Rule = FindRuleFor(R.type, R.w, R.h)
 		if Rule == -1:
-			print("No rule found for %s of size %i, %i" % (R[RTYPE], R[RW], R[RH]))
+			print("No rule found for %s of size %i, %i" % (R.type, R.w, R.h))
 
 		# Adjust the X position
 		XDifference = R.x - LastX;
