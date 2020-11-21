@@ -53,6 +53,7 @@
   .byt BLOCK_RECTANGLE,        Metatiles::GROUND_MIDDLE_M
   .byt BLOCK_RECTANGLE,        Metatiles::ROCK_MID_M
   .byt BLOCK_RECTANGLE,        Metatiles::WATER_MAIN
+  .byt BLOCK_RECTANGLE,        Metatiles::WATER_MAIN_ALTCOLOR
   .byt BLOCK_SINGLE,           Metatiles::SOLID_BLOCK
   .byt BLOCK_SINGLE,           Metatiles::SPRING
   .byt BLOCK_SINGLE,           Metatiles::SIGNPOST
@@ -180,7 +181,7 @@
   .byt Metatiles::MINE_TRACK
   .byt Metatiles::MINE_TRACK_BRAKES
   .byt Metatiles::FROZEN_CRACK
-  .byt Metatiles::EMPTY
+  .byt Metatiles::WATER_MAIN_ALTCOLOR
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY
   .byt Metatiles::EMPTY

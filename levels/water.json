@@ -14,7 +14,7 @@
 	"Header":	{
 		"Music":	"WORLD_1B",
 		"SpriteGFX":	["SP_WALKER", "SP_CANNON", "SP_FIRE", "SP_KING"],
-		"GFXUpload":	["PAL_GRASSY", "PAL_ALTGRASS1", "PAL_ENEMY2", "BG_COMMON", "BG_GRASSY", "BG_GRASSYBG", "BG_TROPICAL"],
+		"GFXUpload":	["PAL_GRASSY_BLUEWATER", "PAL_ALTGRASS1", "PAL_ENEMY2", "BG_COMMON", "BG_GRASSY", "BG_GRASSYBG", "BG_TROPICAL"],
 		"BGColor":	49
 	},
 	"Layers":	[{
@@ -22,12 +22,6 @@
 			"Type":	"Rectangle",
 			"Tileset":	"novafg",
 			"Data":	[{
-					"Id":	"WATER",
-					"X":	20,
-					"Y":	10,
-					"W":	10,
-					"H":	4
-				}, {
 					"Id":	"SIGNPOST",
 					"X":	16,
 					"Y":	10,
@@ -47,25 +41,13 @@
 					"W":	1,
 					"H":	1
 				}, {
-					"Id":	"WATER",
-					"X":	42,
-					"Y":	7,
-					"W":	5,
-					"H":	8
-				}, {
-					"Id":	"WATER",
-					"X":	47,
-					"Y":	10,
-					"W":	5,
-					"H":	5
-				}, {
 					"Id":	"GROUND",
 					"X":	47,
 					"Y":	0,
 					"W":	5,
 					"H":	10
 				}, {
-					"Id":	"WATER",
+					"Id":	"WATER_ALTCOLOR",
 					"X":	52,
 					"Y":	7,
 					"W":	5,
@@ -149,12 +131,6 @@
 					"W":	11,
 					"H":	6
 				}, {
-					"Id":	"WATER",
-					"X":	83,
-					"Y":	2,
-					"W":	22,
-					"H":	2
-				}, {
 					"Id":	"SPRING",
 					"X":	84,
 					"Y":	8,
@@ -189,18 +165,6 @@
 					"X":	105,
 					"Y":	5,
 					"W":	7,
-					"H":	7
-				}, {
-					"Id":	"WATER",
-					"X":	102,
-					"Y":	12,
-					"W":	15,
-					"H":	3
-				}, {
-					"Id":	"WATER",
-					"X":	112,
-					"Y":	5,
-					"W":	11,
 					"H":	7
 				}, {
 					"Id":	"GROUND",
@@ -262,12 +226,6 @@
 					"Y":	3,
 					"W":	2,
 					"H":	1
-				}, {
-					"Id":	"WATER",
-					"X":	153,
-					"Y":	3,
-					"W":	2,
-					"H":	9
 				}, {
 					"Id":	"GROUND",
 					"X":	146,
@@ -335,12 +293,6 @@
 					"W":	1,
 					"H":	1
 				}, {
-					"Id":	"WATER",
-					"X":	172,
-					"Y":	10,
-					"W":	4,
-					"H":	5
-				}, {
 					"Id":	"COIN",
 					"X":	172,
 					"Y":	4,
@@ -352,12 +304,6 @@
 					"Y":	3,
 					"W":	3,
 					"H":	1
-				}, {
-					"Id":	"WATER",
-					"X":	185,
-					"Y":	7,
-					"W":	15,
-					"H":	8
 				}, {
 					"Id":	"GROUND",
 					"X":	189,
@@ -382,6 +328,12 @@
 					"Y":	0,
 					"W":	20,
 					"H":	2
+				}, {
+					"Id":	"WATER_ALTCOLOR",
+					"X":	185,
+					"Y":	7,
+					"W":	15,
+					"H":	8
 				}, {
 					"Id":	"GROUND",
 					"X":	185,
@@ -604,24 +556,6 @@
 					"Y":	11,
 					"W":	1,
 					"H":	1
-				}, {
-					"Id":	"WATER",
-					"X":	65,
-					"Y":	2,
-					"W":	2,
-					"H":	5
-				}, {
-					"Id":	"WATER",
-					"X":	67,
-					"Y":	2,
-					"W":	6,
-					"H":	2
-				}, {
-					"Id":	"WATER",
-					"X":	63,
-					"Y":	5,
-					"W":	2,
-					"H":	2
 				}, {
 					"Id":	"SAND",
 					"X":	116,
@@ -988,6 +922,72 @@
 					"Y":	6,
 					"W":	3,
 					"H":	1
+				}, {
+					"Id":	"WATER_ALTCOLOR",
+					"X":	20,
+					"Y":	10,
+					"W":	10,
+					"H":	4
+				}, {
+					"Id":	"WATER_ALTCOLOR",
+					"X":	42,
+					"Y":	7,
+					"W":	5,
+					"H":	8
+				}, {
+					"Id":	"WATER_ALTCOLOR",
+					"X":	47,
+					"Y":	10,
+					"W":	5,
+					"H":	5
+				}, {
+					"Id":	"WATER_ALTCOLOR",
+					"X":	63,
+					"Y":	5,
+					"W":	2,
+					"H":	2
+				}, {
+					"Id":	"WATER_ALTCOLOR",
+					"X":	65,
+					"Y":	2,
+					"W":	2,
+					"H":	5
+				}, {
+					"Id":	"WATER_ALTCOLOR",
+					"X":	67,
+					"Y":	2,
+					"W":	6,
+					"H":	2
+				}, {
+					"Id":	"WATER_ALTCOLOR",
+					"X":	83,
+					"Y":	2,
+					"W":	22,
+					"H":	2
+				}, {
+					"Id":	"WATER_ALTCOLOR",
+					"X":	112,
+					"Y":	5,
+					"W":	11,
+					"H":	7
+				}, {
+					"Id":	"WATER_ALTCOLOR",
+					"X":	102,
+					"Y":	12,
+					"W":	14,
+					"H":	3
+				}, {
+					"Id":	"WATER_ALTCOLOR",
+					"X":	153,
+					"Y":	3,
+					"W":	2,
+					"H":	9
+				}, {
+					"Id":	"WATER_ALTCOLOR",
+					"X":	172,
+					"Y":	10,
+					"W":	4,
+					"H":	5
 				}]
 		}, {
 			"Name":	"Sprites",

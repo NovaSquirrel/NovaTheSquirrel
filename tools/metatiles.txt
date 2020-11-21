@@ -127,10 +127,10 @@ R WOOD_CRATE
 C .byt M_PAL_2
 C .byt Metatiles::WOOD_CRATE
 C .byt M_SPECIAL_GROUND|M_SOLID_ALL|M_SOLID_TOP
-C .byt $d4
-C .byt $d5
-C .byt $d6
-C .byt $d7
+C .byt $dc
+C .byt $dd
+C .byt $de
+C .byt $df
 
 R PICKUP_BLOCK
 C .byt M_PAL_1
@@ -591,6 +591,42 @@ C .byt $7e
 R WATER_BELOW_SOMETHING
 C .byt M_PAL_1
 C .byt Metatiles::WATER_MAIN
+C .byt M_WATER
+C .byt $7f
+C .byt $7e
+C .byt $7f
+C .byt $7e
+
+R WATER_FROZEN_ALTCOLOR
+C .byt M_PAL_3
+C .byt Metatiles::WATER_MAIN_ALTCOLOR
+C .byt M_SOLID_TOP|M_WATER|M_ICE
+C .byt $7d
+C .byt $7e
+C .byt $7d
+C .byt $7e
+
+R WATER_TOP_ALTCOLOR
+C .byt M_PAL_3
+C .byt Metatiles::WATER_MAIN_ALTCOLOR
+C .byt M_WATER
+C .byt $7c
+C .byt $7e
+C .byt $7c
+C .byt $7e
+
+R WATER_MAIN_ALTCOLOR
+C .byt M_PAL_3
+C .byt Metatiles::WATER_MAIN_ALTCOLOR
+C .byt M_WATER|M_POST_PROCESS
+C .byt $7e
+C .byt $7e
+C .byt $7e
+C .byt $7e
+
+R WATER_BELOW_SOMETHING_ALTCOLOR
+C .byt M_PAL_3
+C .byt Metatiles::WATER_MAIN_ALTCOLOR
 C .byt M_WATER
 C .byt $7f
 C .byt $7e

@@ -33,6 +33,12 @@ PalGrassy:  .byt $03
             .byt $2d, $3d, $30
             .byt $17, $27, $37
             .byt $06, $16, $26 ;.byt $02, $12, $22
+PalGrassyBlueWater:
+            .byt $03
+            .byt $1a, $2a, $37
+            .byt $2d, $3d, $30
+            .byt $17, $27, $37
+            .byt $11, $21, $31
 PalFrozen:  .byt $03
             .byt $21, $31, $30
             .byt $0c, $1c, $10

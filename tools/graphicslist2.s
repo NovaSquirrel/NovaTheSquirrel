@@ -75,5 +75,6 @@
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <CHREnemyEdit,           >CHREnemyEdit ;CHR_ENEMYEDIT
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <CHRPuzzleGame,          >CHRPuzzleGame ;CHR_PUZZLEGAME
   .byt GRAPHICS_BANK2|IS_GRAPHIC, <CHRPaint, >CHRPaint ;CHR_PAINT
+  .byt GRAPHICS_BANK1|IS_PALETTE, <PalGrassyBlueWater,    >PalGrassyBlueWater ;PAL_GRASSY_BLUEWATER
 .endproc
 

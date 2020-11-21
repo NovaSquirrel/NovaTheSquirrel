@@ -118,6 +118,7 @@ ListOfProcessTiles:
   .byt Metatiles::GROUND_MIDDLE_M
   .byt Metatiles::ROCK_MID_M
   .byt Metatiles::WATER_MAIN
+  .byt Metatiles::WATER_MAIN_ALTCOLOR
   .byt Metatiles::SOLID_LEDGE_M
   .byt Metatiles::FALLTHROUGH_LEDGE_M
   .byt Metatiles::DOOR_TOP
@@ -152,6 +153,7 @@ ListOfProcessAddrLo:
   .byt <(ProcessGround-1)
   .byt <(ProcessRock-1)
   .byt <(ProcessWater-1)
+  .byt <(ProcessWaterAltColor-1)
   .byt <(ProcessSolidLedge-1)
   .byt <(ProcessFallthroughLedge-1)
   .byt <(ProcessDoorTop-1)
@@ -186,6 +188,7 @@ ListOfProcessAddrHi:
   .byt >(ProcessGround-1)
   .byt >(ProcessRock-1)
   .byt >(ProcessWater-1)
+  .byt >(ProcessWaterAltColor-1)
   .byt >(ProcessSolidLedge-1)
   .byt >(ProcessFallthroughLedge-1)
   .byt >(ProcessDoorTop-1)
@@ -762,6 +765,30 @@ ProcessWater:
   lda #Metatiles::WATER_BELOW_SOMETHING
   sta (Pointer),y
 TopIsWater:
+  rts
+
+ProcessWaterAltColor:
+  dey
+  lda (Pointer),y
+  cmp #Metatiles::WATER_MAIN_ALTCOLOR
+  beq TopIsWaterAlt
+  cmp #Metatiles::WATER_TOP_ALTCOLOR
+  beq TopIsWaterAlt
+  cmp #Metatiles::WATER_BELOW_SOMETHING_ALTCOLOR
+  beq TopIsWaterAlt
+; not water, check if it's solid or not
+  tax
+  lda MetatileFlags,x
+  iny
+  and #M_SOLID_ALL
+  bne :+
+    lda #Metatiles::WATER_TOP_ALTCOLOR
+    sta (Pointer),y
+    rts
+  :
+  lda #Metatiles::WATER_BELOW_SOMETHING_ALTCOLOR
+  sta (Pointer),y
+TopIsWaterAlt:
   rts
 
 ProcessLava:

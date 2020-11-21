@@ -38,6 +38,8 @@ RectRules = [
   {"T":"SIGNPOST",       "W":1,   "H":1,  "O": "LObj  LO::S_SIGNPOST,       &X, &Y"},
   {"T":"WATER",          "W":16,  "H":16, "O": "LObjN LO::R_WATER,          &X, &Y, &W, &H"},
   {"T":"WATER",          "W":256, "H":16, "O": "LObjN LO::RECT_1,           &X, &Y, &H, LN1::WATER, &W"},
+  {"T":"WATER_ALTCOLOR", "W":16,  "H":16, "O": "LObjN LO::R_WATER_ALTCOLOR, &X, &Y, &W, &H"},
+  {"T":"WATER_ALTCOLOR", "W":256, "H":16, "O": "LObjN LO::RECT_3,           &X, &Y, &H, LN3::WATER_ALTCOLOR, &W"},
   {"T":"LADDER",         "W":1,   "H":16, "O": "LObjN LO::TALL_1,           &X, &Y, &H, LN1::LADDER"},
   {"T":"SPIKES",         "W":16,  "H":1,  "O": "LObjN LO::WIDE_1,           &X, &Y, &W, LN1::SPIKES"},
   {"T":"DOOR",           "W":1,   "H":1,  "O": "LObj  LO::S_DOOR,           &X, &Y"},
@@ -189,6 +191,15 @@ def ExportLevel(filename):
 	level_file.close()
 	level_json = json.loads(level_text)
 
+	# Strip that slash off
+	slash = filename.rfind('\\')
+	if slash == -1:
+		slash = filename.rfind('/')
+	if slash != -1:
+		without_dir = filename[slash+1:]
+	else:
+		without_dir = filename
+
 	FG = []
 	for z in range(len(level_json["Layers"][0]["Data"])):
 		FG.append(Rect(level_json["Layers"][0]["Data"][z], z))
@@ -281,7 +292,7 @@ def ExportLevel(filename):
 
 	# Open the output file
 	outfile = open(filename + ".s", "w")
-	outfile.write(filename+":\n")
+	outfile.write(without_dir+":\n")
 
 	# write music, start X, screens and Y position
 	# .d.mmmmm
@@ -296,8 +307,8 @@ def ExportLevel(filename):
 		outfile.write("  .byt GraphicsUpload::"+Header['SpriteGFX'][i]+"\n");
 
 	# write pointers to the foreground and sprite data
-	outfile.write("  .addr "+filename+"Data\n");
-	outfile.write("  .addr "+filename+"Sprite\n");
+	outfile.write("  .addr "+without_dir+"Data\n");
+	outfile.write("  .addr "+without_dir+"Sprite\n");
  
 	# write background
 	outfile.write("  .byt "+Hex(Header['BGColor'])+" ; background\n");
@@ -330,7 +341,7 @@ def ExportLevel(filename):
 			outfile.write("  .byt $%.2x, $00\n" % (16-(HScreens*VScreens)-1)&15)
 
 	# do the data section
-	outfile.write('\n%sData:\n' % filename)
+	outfile.write('\n%sData:\n' % without_dir)
 
 	# write any config stuff if present
 	if Config:
@@ -448,7 +459,7 @@ def ExportLevel(filename):
 	outfile.write("  LFinished\n\n")
 
 	# Write the list of sprites
-	outfile.write("%sSprite:\n" % filename)
+	outfile.write("%sSprite:\n" % without_dir)
 
 	for sprite in SP:
 		if sprite.extra:

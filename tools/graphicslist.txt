@@ -228,3 +228,6 @@ C .byt GRAPHICS_BANK2|IS_GRAPHIC, <CHRPuzzleGame,          >CHRPuzzleGame
 
 R CHR_PAINT
 C .byt GRAPHICS_BANK2|IS_GRAPHIC, <CHRPaint, >CHRPaint
+
+R PAL_GRASSY_BLUEWATER
+C .byt GRAPHICS_BANK1|IS_PALETTE, <PalGrassyBlueWater,    >PalGrassyBlueWater
