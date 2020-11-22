@@ -137,10 +137,48 @@ PuzzleZeroEnd:
   PuzzleRandPos: .res PUZZLE_PLAYERS
 .popseg
 
+.proc overlapped_random
+seed = random1
+save_y = ScrollX ; Just reuse this I guess
+  sty save_y
+  ; rotate the middle bytes left
+  ldy seed+2 ; will move to seed+3 at the end
+  lda seed+1
+  sta seed+2
+  ; compute seed+1 ($C5>>1 = %1100010)
+  lda seed+3 ; original high byte
+  lsr
+  sta seed+1 ; reverse: 100011
+  lsr
+  lsr
+  lsr
+  lsr
+  eor seed+1
+  lsr
+  eor seed+1
+  eor seed+0 ; combine with original low byte
+  sta seed+1
+  ; compute seed+0 ($C5 = %11000101)
+  lda seed+3 ; original high byte
+  asl
+  eor seed+3
+  asl
+  asl
+  asl
+  asl
+  eor seed+3
+  asl
+  asl
+  eor seed+3
+  sty seed+3 ; finish rotating byte 2 into 3
+  ldy save_y
+  sta seed+0
+  rts
+.endproc
 
 .proc PuzzleRandomColor
   ; Random number from 0 to 2
-: jsr huge_rand
+: jsr overlapped_random
   and #3
   cmp #3
   beq :-
@@ -180,7 +218,7 @@ Chosen = 2
   sta PlayerPos
 
   ; Select the swap target
-  jsr huge_rand
+  jsr overlapped_random
   and #15
   add PuzzleRandPos,x
   ; And keep it within the circular buffer
@@ -477,9 +515,9 @@ Loop:
   sta PPUSCROLL
 
   ; Push the randomizer forward a bit
-  jsr huge_rand
-  jsr huge_rand
-  jsr huge_rand
+  jsr overlapped_random
+  jsr overlapped_random
+  jsr overlapped_random
 
   jsr PuzzleReadJoy
   jsr KeyRepeat
@@ -1250,7 +1288,7 @@ StateLo:
     iny
     sty TempY
 
-    jsr huge_rand
+    jsr overlapped_random
     and #7
     sta Column
     lda #0
@@ -2915,11 +2953,11 @@ AddVirusLoop:
   lda Failures
   jeq AbortAddVirus
 
-  jsr huge_rand
+  jsr overlapped_random
   and #7
   sta Column
 
-: jsr huge_rand
+: jsr overlapped_random
   and #15
   cmp MaxY
   bcs :-
@@ -3068,11 +3106,11 @@ AbortAddVirus:
   lda #0
   sta VirusesLeft
 AddSingleLoop:
-  jsr huge_rand
+  jsr overlapped_random
   and #7
   sta Column
 
-: jsr huge_rand
+: jsr overlapped_random
   and #15
   cmp MaxY
   bcs :-
