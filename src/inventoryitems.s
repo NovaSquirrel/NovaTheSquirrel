@@ -273,6 +273,7 @@ LastMenuOption = ScratchPage + 22
 PerLevelPageHasItems = ScratchPage + 23
 ExtraOptionsCount = 6 ; constant
 AutoRepeatCount = 5
+HasValidOption = ScratchPage+50 ; Runs for 11 bytes (though we're treating it as 16? I dunno)
 
   lda #VWF_BANK
   jsr _SetPRG
@@ -312,6 +313,7 @@ DrawAgain:
   ldx #15
   lda #0
 : sta IconList,x
+  sta HasValidOption,x ; Default to invalid
   dex
   bpl :-
 
@@ -360,13 +362,20 @@ DrawAgain:
 
   lda PauseScreenPage
   bne NoDrawInventoryList
+  inc HasValidOption+10 ; 10th item is "More options" so it's always valid
   ldy #0
   sty TouchTemp
-: ; Write the names of all inventory items
+WriteItemNames: ; Write the names of all inventory items
   lda TouchTemp
   add InventoryPage
   tay
   ldx InventoryType,y
+  beq :+
+    ; Mark it as having a valid option
+    ldy TouchTemp
+    lda #1
+    sta HasValidOption,y
+  :
   ldy TouchTemp
   lda InventoryIIcon,x
   sta IconListOffset,y
@@ -390,12 +399,20 @@ DrawAgain:
   inc TouchTemp
   ldy TouchTemp
   cpy #InventoryLen
-  bne :-
+  bne WriteItemNames
 NoDrawInventoryList:
 
 ; Write the list of "more options" if on that page
   lda PauseScreenPage
   beq NoDrawExtraOptionsList
+  lda #1
+  sta HasValidOption+0
+  sta HasValidOption+1
+  sta HasValidOption+2
+  sta HasValidOption+3
+  sta HasValidOption+4
+  sta HasValidOption+5
+  sta HasValidOption+10 ; Last option is valid
   ldy #0
 : sty TouchTemp
   lda MoreItemsListNameH,y
@@ -678,10 +695,10 @@ TossOutItem:
   and #KEY_SELECT
   jeq NotSelect
     lda PauseScreenPage  ; Don't allow swapping when on page 2
-    bne NotSelect
+    jne NotSelect
     lda InventoryCursorY ; \ if it's on the "other options" item, don't allow swapping with it
     cmp #InventoryLen    ; /
-    beq NotSelect
+    jeq NotSelect
     lda InventoryCursorYSwap
     bmi @SetSwap
     lda InventoryCursorYSwap
@@ -696,6 +713,7 @@ TossOutItem:
     ldy InventoryCursorY
     swaparray IconListOffset
     swaparray SwapList
+    swaparray HasValidOption
 
     jsr WaitVblank
     jsr UpdateOneLine
@@ -716,23 +734,73 @@ TossOutItem:
 
   lda keynew
   and #KEY_UP
-  beq :+
-    dec InventoryCursorY
+  beq NotUp
+    ; If you're swapping, allow the cursor to go wherever
+    lda InventoryCursorYSwap
+    bmi :+
+      dec InventoryCursorY
+      bpl NotUp
+      lda LastMenuOption
+      sta InventoryCursorY
+      bpl NotUp ; Unconditional
+    :
+
+    ; Are there options?
+    ldy LastMenuOption
+  : lda HasValidOption,y
+    bne @HasItems
+    dey
+    bpl :-
+    bmi NotUp
+  @HasItems:
+
+    ldy InventoryCursorY
+@Loop:
+    dey
     bpl :+
-    lda LastMenuOption
-    sta InventoryCursorY
-  :
+      ldy LastMenuOption
+    :
+    lda HasValidOption,y
+    beq @Loop
+    sty InventoryCursorY
+  NotUp:
 
   lda keynew
   and #KEY_DOWN
-  beq :+
+  beq NotDown
+    ; If you're swapping, allow the cursor to go wherever
+    lda InventoryCursorYSwap
+    bmi :++
+      lda InventoryCursorY
+      cmp LastMenuOption
+      bne :+
+        lda #255
+        sta InventoryCursorY ; Will get incremented to 0
+      :
+      inc InventoryCursorY
+      bpl NotDown ; Unconditional
+    :
+
+    ; Are there options?
+    ldy LastMenuOption
+  : lda HasValidOption,y
+    bne @HasItems
+    dey
+    bpl :-
+    bmi NotDown
+  @HasItems:
+
     ldy InventoryCursorY
-    inc InventoryCursorY
+@Loop:
     cpy LastMenuOption
     bne :+
-    lda #0
-    sta InventoryCursorY
-  :
+      ldy #255 ; Will be incremented to zero
+    :
+    iny
+    lda HasValidOption,y
+    beq @Loop
+    sty InventoryCursorY
+  NotDown:
 
   lda PlayerAbility
   beq NoAbilityIcon
@@ -800,7 +868,8 @@ NoAbilityIcon:
   and #KEY_START
   jeq Loop
 
-; Wait for unpress (and keep track of key presses, for codes)
+  ; Cheat code stuff!
+  ; Wait for unpress (and keep track of key presses, for codes)
   ; Reset code space first
   lda #0
   ldy #8
@@ -1118,12 +1187,13 @@ ExitLevelCode:
   sta PlayerAbility
   jmp PauseScreen::GoBackToLevelSelect
 TossItemsCode:
-  inc TossMode
   lda #0
   sta InventoryPage
   lsr PauseScreenPage
+  inc TossMode
   dec LastMenuOption
   jmp DrawAgain
+
 GameOptionsCode:
   inc OptionsViaInventory
   jsr ShowOptions

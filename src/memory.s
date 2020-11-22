@@ -208,7 +208,7 @@
   JustTeleported:    .res 1 ; if 0, don't redo sprites
   NeedDialog:        .res 1
   InventoryCursorY:   .res 1
-  InventoryCursorYSwap: .res 1
+  InventoryCursorYSwap: .res 1 ; if 128, there's no swap
   PlayerRidingSomething: .res 1 ; if 1, player is treated to be standing on a solid and can jump
   SwitchCooldownTimer: .res 1
   ToggleSwitchCooldownTimer: .res 1
