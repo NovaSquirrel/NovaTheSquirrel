@@ -187,12 +187,12 @@ Palette:
 CreditsData:
   .byt SECTION, "Nova the Squirrel",0
   .byt FOR,     "A platformer for the NES",0
-  .byt NAME,    "by Josh Hoffman",0
+  .byt NAME,    "by NovaSquirrel",0
 
   .byt SECTION, "CODE",0
   .byt FOR,     "Princess Engine",0
   .byt FOR,     "ft2pently music tool",0
-  .byt NAME,    "Josh Hoffman",0
+  .byt NAME,    "NovaSquirrel",0
 
   .byt SECTION, "LIBRARIES",0
   .byt FOR,     "Pently music engine",0
@@ -214,12 +214,12 @@ CreditsData:
   .byt FOR,     "Enemy design",0
   .byt FOR,     "Level design",0
   .byt FOR,     "Boss design",0
-  .byt NAME,    "Josh Hoffman",0
+  .byt NAME,    "NovaSquirrel",0
   .byt SECTION, "DESIGN",0
   .byt FOR,     "Sound effects",0
   .byt FOR,     "Pixel art",0
   .byt FOR,     "Story and writing",0
-  .byt NAME,    "Josh Hoffman",0
+  .byt NAME,    "NovaSquirrel",0
 
   .byt SECTION, "DESIGN",0
   .byt FOR,     "Game music",0
@@ -240,7 +240,7 @@ CreditsData:
 
   .byt SECTION, "CHARACTERS",0
   .byt FOR,     "Most characters",0
-  .byt NAME,    "Josh Hoffman",0
+  .byt NAME,    "NovaSquirrel",0
 
   .byt FOR,     "Sherwin",0
   .byt NAME,    "Andrew Clark",0
