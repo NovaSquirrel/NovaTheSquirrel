@@ -46,7 +46,7 @@ John:     .byt "John",0
   .byt CharacterNameData::Korey - CharacterNameData,   $12, $21, $31
   .byt CharacterNameData::Remy - CharacterNameData,    $0f, $2a, $30
   .byt CharacterNameData::Eclipse - CharacterNameData, $15, $25, $38
-  .byt CharacterNameData::MolSno - CharacterNameData,  $0f, $16, $30
+  .byt CharacterNameData::MolSno - CharacterNameData,  $09, $2a, $30
   .byt CharacterNameData::S_Team - CharacterNameData,  $0f, $16, $30
   .byt CharacterNameData::Smiloid - CharacterNameData, $0f, $16, $30
   .byt CharacterNameData::Ike - CharacterNameData,     $17, $26, $30

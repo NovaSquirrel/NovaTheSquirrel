@@ -102,7 +102,7 @@ PalEnemy7:  .byt $61
 
 PalEnemyMolSno:
             .byt $61
-            .byt $0f, $16, $30 ; MolSno
+            .byt $09, $29, $30 ; world 3 boss
             .byt $0f, $21, $30 ; John
 PalFighterMaker:
             .byt $60
