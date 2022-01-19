@@ -18,3 +18,9 @@ Engine features include cutscenes with variable width text and portraits, and mo
 There is a level editor that I think is a lot better than Tiled, named [PrincessEdit](https://github.com/NovaSquirrel/PrincessEdit).
 
 This is an open source project and it also exists to develop the [Princess Engine](http://wiki.novasquirrel.com/Princess%20Engine) (named because its goal is similar to [President](http://pineight.com/mw/index.php?title=President) ) into something that's useful for other programmers to use to make their own NES platformer game. This engine will provide something much more legal to play with than hacking a game in the Mario series. In addition, unlike with Super Mario World, all the tools as well as the game itself are completely open source, and GPL licensed.
+
+License
+=======
+All code is available under the [GPL license version 3](https://www.gnu.org/licenses/gpl-3.0.en.html) or later.
+
+Assets (graphics, levels, etc.) are available under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/) therefore the game may not be sold without permission with these intact.

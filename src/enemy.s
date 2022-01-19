@@ -2736,6 +2736,7 @@ Frames:
   beq NotCarried
 
 IsCarried:
+  .if 0
   ; Put down if requested
   lda keydown
   and #KEY_DOWN
@@ -2744,6 +2745,7 @@ IsCarried:
     sta ObjectF4,x
     sta CarryingSunKey
   :
+  .endif
   jsr CarryAboveHead
 
   lda retraces
