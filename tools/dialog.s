@@ -265,8 +265,8 @@ JustGotMirror:
 .byt SCR::NARRATE, CHAR::KOREY, "Y", $eb, "h", $f4, $c2, $f6, " ", $8b, " ", $ba, "F", "r", "o", "z", $e5, SCR::NEWLINE, "V", "o", "l", $af, "o", $f5, "J", "u", $dd, " ", $f9, "u", $dd, " ", $cf, " ", $c1, " ", $98, SCR::NEWLINE, "-", " ", $bf, $82, " ", "i", "t", $e8, $fa, $ac, $fe, "i", "m", "p", $c8, "t", $c9, "t", SCR::NEWLINE, $99, $a5, " ", $ae, " ", $9b, " ", "F", "a", "-", "a", "-", $c9, "c", "y", SCR::NEWLINE, "c", "o", "l", "a", "."
 ; [NOVA]What's so fancy about it?
 .byt SCR::NARRATE, CHAR::NOVA, "W", "h", $c5, $e8, $cb, " ", "f", $c9, "c", $fe, $89, "i", "t", "?"
-; [KOREY]No, it's fa-a-ancy. Completely different. Anyway, in Frozen Volcano, there's this dude named MolSno, short for "Molten Snow". He has a real problem so he bought every single can of fa-a-ancy cola there is and you'll just have to get some from him.
-.byt SCR::NARRATE, CHAR::KOREY, "N", "o", $f4, "i", "t", $e8, "f", "a", "-", "a", "-", $c9, "c", "y", ".", SCR::NEWLINE, "C", "o", "m", "p", $a7, "e", $d1, "d", $cd, "f", $ec, $e5, "t", $f5, "A", "n", "y", $b6, ",", SCR::NEWLINE, $be, "F", "r", "o", "z", $e5, " ", "V", "o", "l", $af, "o", $f4, $87, "'", "s", SCR::NEWLINE, $98, " ", "d", "u", "d", $e6, "n", "a", $cf, $ff, "M", "o", "l", "S", $d0, ",", SCR::NEWLINE, $de, $c8, $d2, $a4, " ", '"', "M", "o", "l", $ea, "n", " ", "S", $b3, '"', $f5, "H", "e", SCR::NEWLINE, "h", $c3, " ", $bd, $fa, "a", "l", " ", $81, " ", $cb, " ", $c2, SCR::NEWLINE, "b", $f3, $da, $d2, "e", "v", $ec, $fe, "s", $b0, "l", $e6, $af, " ", "o", "f", SCR::NEWLINE, "f", "a", "-", "a", "-", $c9, "c", $fe, "c", "o", "l", $bd, $87, " ", $b7, $c9, "d", SCR::NEWLINE, $a5, "'", "l", "l", " ", $8d, $9a, $ba, $ae, " ", $9b, SCR::NEWLINE, $96, $b1, "."
+; [KOREY]No, it's fa-a-ancy. Completely different. Anyway, in Frozen Volcano, there's this person named Danny. They have a real problem so they bought every single can of fa-a-ancy cola there is and you'll just have to get some from them.
+.byt SCR::NARRATE, CHAR::KOREY, "N", "o", $f4, "i", "t", $e8, "f", "a", "-", "a", "-", $c9, "c", "y", ".", SCR::NEWLINE, "C", "o", "m", "p", $a7, "e", $d1, "d", $cd, "f", $ec, $e5, "t", $f5, "A", "n", "y", $b6, ",", SCR::NEWLINE, $be, "F", "r", "o", "z", $e5, " ", "V", "o", "l", $af, "o", $f4, $87, "'", "s", SCR::NEWLINE, $98, " ", "p", $ec, $cb, "n", " ", "n", "a", $cf, $ff, "D", $c9, "n", "y", ".", SCR::NEWLINE, $f7, "e", $fe, $9a, $bd, $fa, "a", "l", " ", $81, " ", $cb, SCR::NEWLINE, $97, " ", "b", $f3, $da, $d2, "e", "v", $ec, $fe, "s", $b0, "l", $e6, $af, SCR::NEWLINE, $bc, "f", "a", "-", "a", "-", $c9, "c", $fe, "c", "o", "l", $bd, $87, " ", $b8, SCR::NEWLINE, $a3, $a5, "'", "l", "l", " ", $8d, $9a, $ba, $ae, SCR::NEWLINE, $9b, " ", $96, $91, "."
 ; [NOVA]Sure, I guess I'll try that. But why cola?
 .byt SCR::NARRATE, CHAR::NOVA, "S", "u", $fa, $f4, $bf, "g", "u", "e", $f0, " ", $d4, " ", $f9, $fe, $df, $c5, $f5, "B", "u", "t", SCR::NEWLINE, $d9, $fe, "c", "o", "l", "a", "?"
 ; [KOREY]I'll let you in on a little secret - the name Latte comes from the latte caffeinated drink, and in this world caffeine is a really powerful thing, especially in the hands of a squirrel.
@@ -280,23 +280,23 @@ ColaSigns:
 .byt SCR::SCENE, SCENES::FORUMS
 ; []-halp I've been taken-
 .byt SCR::NARRATE, CHAR::NONE, $86
-; [NOVA_SILLY]You know maybe the reason MolSno went crazy and bought all the cola is because the volcano he lives in is covered with cola advertisements.
-.byt SCR::NARRATE, CHAR::NOVA_SILLY, "Y", $f3, " ", $8e, " ", "m", "a", "y", $b9, $a1, " ", $fa, $c3, $c1, SCR::NEWLINE, "M", "o", "l", "S", $d0, " ", $c7, $e0, " ", "c", "r", "a", "z", $fe, $c9, "d", SCR::NEWLINE, "b", $f3, $da, $d2, $ac, " ", $a1, " ", "c", "o", "l", $bd, $b8, SCR::NEWLINE, "b", "e", "c", "a", "u", $e4, " ", $a1, " ", "v", "o", "l", $af, "o", " ", $c2, " ", "l", "i", "v", "e", "s", SCR::NEWLINE, $be, $b7, "c", $8b, $d5, $9c, " ", "c", "o", "l", "a", SCR::NEWLINE, $f6, "v", $ec, "t", $b8, "e", $cf, $e0, "s", "."
+; [NOVA_SILLY]You know maybe the reason Danny went crazy and bought all the cola is because the volcano they live in is covered with cola advertisements.
+.byt SCR::NARRATE, CHAR::NOVA_SILLY, "Y", $f3, " ", $8e, " ", "m", "a", "y", $b9, $a1, " ", $fa, $c3, $c1, SCR::NEWLINE, "D", $c9, "n", $fe, $c7, $e0, " ", "c", "r", "a", "z", $fe, $a3, "b", $f3, $da, "t", SCR::NEWLINE, $ac, " ", $a1, " ", "c", "o", "l", $bd, $b7, "b", "e", "c", "a", "u", $e4, " ", $a1, SCR::NEWLINE, "v", "o", "l", $af, "o", " ", $97, " ", "l", "i", "v", $e6, $be, $b8, SCR::NEWLINE, "c", $8b, $d5, $9c, " ", "c", "o", "l", "a", SCR::NEWLINE, $f6, "v", $ec, "t", $b8, "e", $cf, $e0, "s", "."
 ; [SHERWIN]You think so?
 .byt SCR::NARRATE, CHAR::SHERWIN, "Y", $f3, " ", $82, " ", $cb, "?"
-; [NOVA]I think I'm about to see him... hopefully he cooperates?
-.byt SCR::NARRATE, CHAR::NOVA, $bf, $82, " ", $d3, $89, $ba, $b2, " ", $b1, ".", ".", ".", SCR::NEWLINE, "h", "o", "p", "e", "f", "u", "l", $d1, $c2, " ", "c", $e3, "p", $ec, $c5, "e", "s", "?"
-; [SHERWIN]"Molten Snow", eh? That's just a fancy name for water isn't it?
-.byt SCR::NARRATE, CHAR::SHERWIN, '"', "M", "o", "l", $ea, "n", " ", "S", $b3, '"', $f4, "e", "h", "?", " ", $f7, $c5, "'", "s", SCR::NEWLINE, $8d, $bd, "f", $c9, "c", $fe, "n", "a", $cf, " ", $a4, " ", "w", $c5, $ec, SCR::NEWLINE, $b8, "n", $e7, "i", "t", "?"
+; [NOVA]I think I'm about to see them... hopefully they cooperate?
+.byt SCR::NARRATE, CHAR::NOVA, $bf, $82, " ", $d3, $89, $ba, $b2, " ", $91, ".", ".", ".", SCR::NEWLINE, "h", "o", "p", "e", "f", "u", "l", $d1, $97, " ", "c", $e3, "p", $ec, $c5, "e", "?"
+; [SHERWIN]Ha, well I wouldn't count on it.
+.byt SCR::NARRATE, CHAR::SHERWIN, "H", "a", $f4, $c7, "l", "l", " ", $bf, "w", $9f, "n", $e7, "c", $f3, $e0, " ", $c1, " ", "i", "t", "."
 .byt SCR::END_SCRIPT
 MolSnoMeet:
 .byt SCR::SCENE, SCENES::NOVA_AND_MOLSNO
-; <0 NOVA>Hey I assume you're MolSno? I need some of your fa-a-ancy cola so I can save the world. Surely you can spare some cans?
-.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "H", "e", $fe, $bf, $c3, "s", "u", $cf, " ", $a5, "'", $fa, " ", "M", "o", "l", "S", $d0, "?", SCR::NEWLINE, $bf, $f8, $d5, $9b, " ", $bc, $90, SCR::NEWLINE, "f", "a", "-", "a", "-", $c9, "c", $fe, "c", "o", "l", $bd, $cb, " ", $bf, $af, " ", "s", "a", "v", "e", SCR::NEWLINE, $a1, " ", "w", $c8, $ee, $f5, "S", "u", $fa, $d1, $a5, " ", $af, SCR::NEWLINE, $dc, "a", $fa, " ", $9b, " ", $af, "s", "?"
+; <0 NOVA>Hey I assume you're Danny? I need some of your fa-a-ancy cola so I can save the world. Surely you can spare some cans?
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA, "H", "e", $fe, $bf, $c3, "s", "u", $cf, " ", $a5, "'", $fa, " ", "D", $c9, "n", "y", "?", " ", "I", SCR::NEWLINE, $f8, $d5, $9b, " ", $bc, $90, " ", "f", "a", "-", "a", "-", $c9, "c", "y", SCR::NEWLINE, "c", "o", "l", $bd, $cb, " ", $bf, $af, " ", "s", "a", "v", $e6, $a1, " ", "w", $c8, $ee, ".", SCR::NEWLINE, "S", "u", $fa, $d1, $a5, " ", $af, " ", $dc, "a", $fa, " ", $9b, SCR::NEWLINE, $af, "s", "?"
 ; <1 MOLSNO>No way, I'm safe in this volcano. This cola is all mine, every last can.
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::MOLSNO, "N", "o", " ", $b6, $f4, $d3, "s", "a", "f", $e6, $be, $98, SCR::NEWLINE, "v", "o", "l", $af, "o", $f5, $f7, $b7, "c", "o", "l", $bd, $b7, $ac, " ", "m", $d7, "e", ",", SCR::NEWLINE, "e", "v", $ec, $fe, "l", $c3, $d2, $af, "."
-; <0 NOVA_AW>MolSno, do we really have to do this? I don't want to fight you.
-.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA_AW, "M", "o", "l", "S", $d0, $f4, $c4, " ", $c7, " ", $fa, $ac, $fe, $9a, $bb, SCR::NEWLINE, $c4, " ", $98, "?", " ", $bf, $c4, "n", $e7, "w", $c9, $d2, $ba, "f", "i", $da, "t", SCR::NEWLINE, $a5, "."
+; <0 NOVA_AW>Danny, do we really have to do this? I don't want to fight you.
+.byt SCR::SAY, SCR::SPEAKER_0|CHAR::NOVA_AW, "D", $c9, "n", "y", $f4, $c4, " ", $c7, " ", $fa, $ac, $fe, $9a, $bb, SCR::NEWLINE, $c4, " ", $98, "?", " ", $bf, $c4, "n", $e7, "w", $c9, $d2, $ba, "f", "i", $da, "t", SCR::NEWLINE, $a5, "."
 ; <1 MOLSNO>You know what? You can have my cans... the empty ones!
 .byt SCR::SAY, SCR::SPEAKER_1|CHAR::MOLSNO, "Y", $f3, " ", $8e, " ", $8a, "?", " ", "Y", $f3, " ", $af, SCR::NEWLINE, $9a, $ca, " ", $af, "s", ".", ".", $f5, $a1, " ", "e", "m", "p", "t", "y", SCR::NEWLINE, $ab, "s", "!"
 .byt SCR::END_SCRIPT
@@ -891,8 +891,8 @@ PreLevelBoss2:
 .byt " ", "f", "i", $da, $d2, "F", $c8, "e", $c2, $f6, " ", "B", "l", "o", $f2, " ", "G", "u", "y", "."
 .byt SCR::END_SCRIPT
 PreLevelBoss3:
-; Nova fights against MolSno
-.byt $a0, " ", "f", "i", $da, "t", $fb, "a", "g", "a", $d7, $dd, " ", "M", "o", "l", "S", $d0
+; Nova fights against Danny
+.byt $a0, " ", "f", "i", $da, "t", $fb, "a", "g", "a", $d7, $dd, " ", "D", $c9, "n", "y"
 .byt SCR::NEWLINE
 ; for access to the F-a-ancy
 .byt $a4, " ", "a", "c", "c", "e", $f0, " ", $ba, $a1, " ", "F", "-", "a", "-", $c9, "c", "y"

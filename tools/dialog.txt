@@ -199,7 +199,7 @@
 [SHERWIN]Probably the cola?
 [KOREY]Yeah, head over to Frozen Volcano. Just trust me on this - I think it's really important that you get some Fa-a-ancy cola.
 [NOVA]What's so fancy about it?
-[KOREY]No, it's fa-a-ancy. Completely different. Anyway, in Frozen Volcano, there's this dude named MolSno, short for "Molten Snow". He has a real problem so he bought every single can of fa-a-ancy cola there is and you'll just have to get some from him.
+[KOREY]No, it's fa-a-ancy. Completely different. Anyway, in Frozen Volcano, there's this person named Danny. They have a real problem so they bought every single can of fa-a-ancy cola there is and you'll just have to get some from them.
 [NOVA]Sure, I guess I'll try that. But why cola?
 [KOREY]I'll let you in on a little secret - the name Latte comes from the latte caffeinated drink, and in this world caffeine is a really powerful thing, especially in the hands of a squirrel.
 [SHERWIN]Haha yeah, squirrels already tend to be pretty hyper even without any help from coffee!
@@ -209,17 +209,17 @@
 :ColaSigns:
 `scene FORUMS
 []-halp I've been taken-
-[NOVA_SILLY]You know maybe the reason MolSno went crazy and bought all the cola is because the volcano he lives in is covered with cola advertisements.
+[NOVA_SILLY]You know maybe the reason Danny went crazy and bought all the cola is because the volcano they live in is covered with cola advertisements.
 [SHERWIN]You think so?
-[NOVA]I think I'm about to see him... hopefully he cooperates?
-[SHERWIN]"Molten Snow", eh? That's just a fancy name for water isn't it?
+[NOVA]I think I'm about to see them... hopefully they cooperate?
+[SHERWIN]Ha, well I wouldn't count on it.
 `end
 
 :MolSnoMeet:
 `scene NOVA_AND_MOLSNO
-<0 NOVA>Hey I assume you're MolSno? I need some of your fa-a-ancy cola so I can save the world. Surely you can spare some cans?
+<0 NOVA>Hey I assume you're Danny? I need some of your fa-a-ancy cola so I can save the world. Surely you can spare some cans?
 <1 MOLSNO>No way, I'm safe in this volcano. This cola is all mine, every last can.
-<0 NOVA_AW>MolSno, do we really have to do this? I don't want to fight you.
+<0 NOVA_AW>Danny, do we really have to do this? I don't want to fight you.
 <1 MOLSNO>You know what? You can have my cans... the empty ones!
 `end
 
@@ -703,7 +703,7 @@ building platforms to them.
 `end
 
 :PreLevelBoss3:
-Nova fights against MolSno
+Nova fights against Danny
 `nl
 for access to the F-a-ancy
 `nl

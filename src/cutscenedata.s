@@ -23,7 +23,7 @@ Sherwin:  .byt "Sherwin",0
 Korey:    .byt "Korey",0
 Remy:     .byt "Remy D.",0
 Eclipse:  .byt "Eclipse",0
-MolSno:   .byt "MolSno",0
+MolSno:   .byt "Danny",0
 S_Team:   .byt "S.Team",0
 Smiloid:  .byt "Smiloid",0
 Ike:      .byt "Ike",0
