@@ -255,7 +255,6 @@ CreditsData:
   .byt SECTION, "CHARACTERS",0
   .byt FOR,     "Cameos",0
   .byt NAME,    "Lia",0
-  .byt NAME,    "MolSno",0
   .byt NAME,    "Remy",0
 
   .byt SECTION, "SPECIAL THANKS",0
