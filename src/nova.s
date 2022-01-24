@@ -46,6 +46,102 @@ ABILITY_HELP_BANK = $d
 DABG_BANK = $5
 EXTRAS_BANK = $4 ; DABG resources, other games I can fit!
 SPRITEEDIT_BANK = $4
+HEXEDITOR_BANK = $7
+
+.code
+; Putting this first so that it cannot cross a page boundary
+.proc SerialBoot
+; https://web.archive.org/web/20120401200051/http://blargg.parodius.com/nes-code/bootloader/usage.html
+crc     = <0
+temp    = <2
+        lda #0
+        sta PPUCTRL     ; Disable NMI
+        sei             ; Disable interrupts
+badcrc:
+notsig: ldx #0          ; Number of bytes received
+byte:   lda #$01        ; Wait for start bit
+start:  bit $4017
+        beq start
+        ldy #6          ; Delay from start bit to middle of data bit
+dbit:   dey
+        bne dbit
+        ldy #3          ; Delay between data bits
+        nop             ; Remove this NOP for PAL timing
+        nop
+        lsr $4017       ; Read bit
+        rol a
+        bcc dbit
+        cpx #4          ; Verify signature if one of first four bytes
+        bcs past
+        eor #$E2        ; Handle signature with partial signature before it
+        bne not1st
+        ldx #0
+not1st: eor signature-1,x; Share last zero byte of JMP
+        bne notsig
+past:   sta 0,x         ; Write after signature verify clears A, so that
+        inx             ; CRC gets cleared for later
+        bne byte
+        txa             ; Calculate CRC-16 of user data
+        ldx #5
+check:  eor 0,x
+        sta crc+1       ; based on Greg Cook's CRC-16 code
+        lsr
+        lsr
+        lsr
+        lsr
+        tay
+        asl
+        eor crc
+        sta temp
+        tya
+        eor crc+1
+        sta crc+1
+        asl
+        asl
+        asl
+        tay
+        asl
+        asl
+        eor crc+1
+        sta crc
+        tya
+        rol
+        eor temp
+        inx
+        bne check
+        eor crc         ; Verify checksum
+        bne badcrc
+        jmp $0007       ; Execute received code
+signature:
+        .byte $5D^$E2, $CC^$E2, $75^$E2
+.endproc
+; Waits for and receives byte via serial on second controller port.
+; No more than 19 cycles may be spent between calls to this routine,
+; or data will be lost.
+; Out: A = received byte
+; Preserved: X, Y
+read_serial:
+        lda #1
+start:  bit $4017       ; Wait for start bit
+        beq start
+        lsr
+        ror
+        nop             ; Remove for PAL timing
+dbit:   lsr $4017       ; Read start bit and first 7 data bits
+        pha
+        pla
+        pha
+        pla
+        nop             ; Remove for PAL timing
+        nop
+        ror a
+        bcs last        ; Loop until carry shifts out
+        jmp dbit
+last:   nop
+        lsr $4017       ; Read final data bit
+        ror a
+        eor #$FF        ; Un-invert received byte
+        rts
 
 .segment "PRG8" ; object bank
 .include "object.s"
@@ -92,8 +188,10 @@ SPRITEEDIT_BANK = $4
 
 .segment "PRG7" ; dialog
 .include "../tools/dialog.s"
+.include "hexeditor.s"
 .segment "PRGf" ; important stuff
 .code
+
 .include "leveldecode.s"
 .include "boot.s"
 .include "graphicslist.s"
@@ -126,3 +224,5 @@ SPRITEEDIT_BANK = $4
 .include "spriteedit.s"
 .segment "PRG5" ; DABG
 .incbin "DABG_MAIN.bin"
+
+.include "serialvectors.s"

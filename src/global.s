@@ -2305,3 +2305,71 @@ Loop:
   rts
 .endproc
 
+; For serial bootloader use
+.proc PutDecimal ; Prints with anywhere from 1 to 3 digits
+   cmp #10 ; only one char
+   bcs :+
+     add #'0'    ; char is number+'0'
+     sta PPUDATA
+     rts
+   :
+
+   ; the hundreds digit if necessary
+   cmp #200
+   bcc LessThan200
+   ldx #'2'
+   stx PPUDATA
+   sub #200
+   jmp :+
+LessThan200:
+   cmp #100
+   bcc :+
+   ldx #'1'
+   stx PPUDATA
+   sub #100
+:
+   ldx #'0'    ; now calculate the tens digit
+:  cmp #10
+   bcc Finish
+   sbc #10     ; carry will be set if this runs anyway
+   inx
+   jmp :-
+Finish:
+   stx PPUDATA ; display tens digit
+   add #'0'
+   sta PPUDATA ; display ones digit
+   rts
+.endproc
+
+; Also for serial bootloader use
+.proc div8_global ; see also mul8
+num = 0   ; <-- also result
+denom = 1
+  sta num
+  sty denom
+  lda #$00
+  ldx #$07
+  clc
+: rol num
+  rol
+  cmp denom
+  bcc :+
+  sbc denom
+: dex
+  bpl :--
+  rol num
+  tay
+  lda num
+  rts
+.endproc
+
+LaunchSerialBoot:
+  ldx #255
+  txs 
+  jsr ScreenOff
+  lda #' '
+  jsr ClearNameCustom
+.proc SerialBootRetry
+: jsr SerialBoot
+  jmp :- 
+.endproc

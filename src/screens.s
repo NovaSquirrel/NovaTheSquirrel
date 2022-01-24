@@ -113,10 +113,62 @@ NESController:
 ThirdPartyController:
 
 ; Onto the actual display loop
+  lda #0 ; Secret codes
+  sta 2
+  sta 3
+  sta 4
 DisplayLoop:
   jsr WaitVblank
   jsr ReadJoy
   jsr ReseedRandomizer
+
+  ;----------------------------------------------
+  ; Secret code
+  lda keynew
+  and #KEY_A
+  beq :+
+    inc 2
+  :
+  lda keynew
+  and #KEY_LEFT
+  beq :+
+    inc 3
+  :
+  lda keynew
+  and #KEY_RIGHT
+  beq :+
+    inc 4
+  :
+
+  ; Code 1: hex editor
+  lda 2 ; A
+  cmp #5
+  bne :+
+  lda 3 ; L
+  cmp #3
+  bne :+
+  lda 4
+  cmp #3 ; R
+  bne :+
+    lda #HEXEDITOR_BANK
+    jsr SetPRG
+    jmp RunHexEditor
+  :
+
+  ; Code 2: serial bootloader directly
+  lda 2 ; A
+  cmp #8
+  bne :+
+  lda 3 ; L
+  cmp #3
+  bne :+
+  lda 4 ; R
+  cmp #5
+  bne :+
+    jmp LaunchSerialBoot
+  :
+  ;----------------------------------------------
+
   lda keynew
   and #KEY_START
   beq :+

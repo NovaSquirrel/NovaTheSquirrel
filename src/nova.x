@@ -53,6 +53,7 @@ SEGMENTS {
   PRGf:    load = ROMf, type = ro;
 
   CODE:    load = ROMf, type = ro;
+  SERIAL_VECTOR: load = ROMf, type = ro, start = $FE00; 
   VECTORS: load = ROMf, type = ro, start = $FFFA;
 }
 
