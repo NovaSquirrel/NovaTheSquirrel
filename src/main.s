@@ -283,6 +283,20 @@ NoFallingBlock:
   bne PlaceBlockMode
   jsr RunPlayer
   jsr AdjustCamera
+  ; Precompute ScrollX/16 for object positioning
+  lda ScrollX
+  sta ScrollXPixels
+  lda ScrollX+1
+  lsr
+  ror ScrollXPixels
+  lsr
+  ror ScrollXPixels
+  lsr
+  ror ScrollXPixels
+  lsr
+  ror ScrollXPixels
+  sta ScrollXPixels+1
+  ; Now it's all ready for DisplayPlayer and RunObjects
   jsr DisplayPlayer
   lda #OBJECT_BANK
   jsr SetPRG

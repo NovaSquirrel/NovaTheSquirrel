@@ -40,24 +40,32 @@
 ; inputs: X (object slot)
 .proc DispEnemyWideCalculatePositions
 ; like RealXPosToScreenPosByX but this accounts for hiding the sprite if offscreen
-  lda ObjectPXL,x
-  sub ScrollX+0
-  sta O_RAM::OBJ_DRAWX
-
+Temp = TouchTemp
   lda #0
   sta O_RAM::ON_SCREEN
 
+  lda ObjectPXL,x
+  sta O_RAM::OBJ_DRAWX
   lda ObjectPXH,x
-  sbc ScrollX+1
-  bcc ParentExit
-  cmp #15
-  bcs ParentExit
-  .repeat 4
-    lsr
-    ror O_RAM::OBJ_DRAWX
-  .endrep
+  lsr
+  ror O_RAM::OBJ_DRAWX
+  lsr
+  ror O_RAM::OBJ_DRAWX
+  lsr
+  ror O_RAM::OBJ_DRAWX
+  lsr
+  ror O_RAM::OBJ_DRAWX
+  pha
+
   lda O_RAM::OBJ_DRAWX
-  cmp #$f9
+  sub ScrollXPixels
+  sta O_RAM::OBJ_DRAWX
+  pla
+  sbc ScrollXPixels+1
+  bne ParentExit ; Any nonzero value means it's either off the left or right side
+
+  lda O_RAM::OBJ_DRAWX
+  cmp #$f8
   bcs ParentExit
   lda ObjectPYH,x
   cmp #16

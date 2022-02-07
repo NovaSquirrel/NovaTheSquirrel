@@ -118,16 +118,16 @@ SANDBOX_LEVEL = (8*5)+4 ; level number used for the sandbox
 .endenum
 
 .macro RealXPosToScreenPos RealLo, RealHi, Store
-  lda RealLo
-  sub ScrollX+0
+  lda RealHi
   sta Store
 
-  lda RealHi
-  sbc ScrollX+1
+  lda RealLo
   .repeat 4
-    lsr
-    ror Store
+    lsr Store
+    ror
   .endrep
+  sub ScrollXPixels
+  sta Store
 .endmacro
 
 .macro RealYPosToScreenPos RealLo, RealHi, Store
@@ -142,16 +142,16 @@ SANDBOX_LEVEL = (8*5)+4 ; level number used for the sandbox
 .endmacro
 
 .macro RealXPosToScreenPosByX RealLo, RealHi, Store
-  lda RealLo,x
-  sub ScrollX+0
+  lda RealHi,x
   sta Store
 
-  lda RealHi,x
-  sbc ScrollX+1
+  lda RealLo,x
   .repeat 4
-    lsr
-    ror Store
+    lsr Store
+    ror
   .endrep
+  sub ScrollXPixels
+  sta Store
 .endmacro
 
 .macro RealYPosToScreenPosByX RealLo, RealHi, Store
@@ -166,16 +166,16 @@ SANDBOX_LEVEL = (8*5)+4 ; level number used for the sandbox
 .endmacro
 
 .macro RealXPosToScreenPosByY RealLo, RealHi, Store
-  lda RealLo,y
-  sub ScrollX+0
+  lda RealHi,y
   sta Store
 
-  lda RealHi,y
-  sbc ScrollX+1
+  lda RealLo,y
   .repeat 4
-    lsr
-    ror Store
+    lsr Store
+    ror
   .endrep
+  sub ScrollXPixels
+  sta Store
 .endmacro
 
 .macro RealYPosToScreenPosByY RealLo, RealHi, Store

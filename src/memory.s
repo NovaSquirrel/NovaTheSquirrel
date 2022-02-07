@@ -39,7 +39,7 @@
   random2:          .res 2 ; / combined to get a 2147385345 period randomizer
 
   ScrollX:          .res 2  ; Current X scroll value, using 12.4 coordinates for easy math with object coordinates
-  ScrollSpeed:      .res 2  ; unused?
+  ScrollXPixels:    .res 2  ; Current X scroll value divided by 16
 
   LevelBlockPtr:    .res 2  ; written to by GetLevelColumnPtr
 
