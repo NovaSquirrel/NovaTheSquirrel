@@ -83,9 +83,8 @@ NoNMIMusic:
   pla
 .endif
 DefaultIRQ:
-  rti
 IRQ:
-  jmp (IRQAddress)
+  rti
 DoNothing:
   rts
 
@@ -141,12 +140,6 @@ DoNothing:
     lda #>periodTableHi_PAL
     sta periodTableHi+1
   :
-
-; Set an interrupt handler that's just an RTI
-  lda #<DefaultIRQ
-  sta IRQAddress+0
-  lda #>DefaultIRQ
-  sta IRQAddress+1
 
 ; Clear out a chunk of on-cart RAM
   lda #<$6000

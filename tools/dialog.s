@@ -3,7 +3,7 @@ Intro:
 jsr LoadExpositionGraphics
 lda #' '
 jsr ClearNameCustom
-brk
+jsr ScriptBRK
 .byt SCR::GROUND
 .byt SCR::IMAGE, $a6, $21, <$22ae, >$22ae
 .byt SCR::MONO_TEXT, <ExpositionText1, >ExpositionText1
@@ -528,7 +528,7 @@ jsr StartCredits
 ldx CutsceneOldSP
 txs
 jmp StartCutsceneSkip
-brk
+jsr ScriptBRK
 .byt SCR::END_SCRIPT
 
 WaterAbout:
@@ -713,7 +713,7 @@ lda #InventoryItem::MINE_TRACK_BUMP
 jsr InventoryGiveItem
 dec 0
 bne :-
-brk
+jsr ScriptBRK
 .byt SCR::END_SCRIPT
 SignAboutRun:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN

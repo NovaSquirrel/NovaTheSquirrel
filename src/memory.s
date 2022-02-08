@@ -385,9 +385,6 @@ GameStateLen = 2+10*4 ; update if more stuff is added. Just coins and inventory.
   PlayerJumpCancel: .res 1
   PlayerSwimming:   .res 1
 
-; Pointer for IRQ, mostly only used for a very specific use of BRK in cutscenes
-  IRQAddress:       .res 2
-
   CurWorld:         .res 1 ; current world for level select
   OptionsViaInventory: .res 1 ; if 1, accessing options via inventory screen
 

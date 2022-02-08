@@ -143,14 +143,14 @@ StartCutsceneSkip = StartCutscene::SkipTheScript
 
 .proc ScriptBRK ; BRK handler
   ; BRKs in inline assembly in cutscenes transfer control back to the script interpreter
-  pla ; Discard flags
+  ; But, I've swapped the BRK out for JSR because of a 6502 quirk where NMI can override BRK
   pla ; Low
   sta ScriptPtr+0
   pla ; High
   sta ScriptPtr+1
 
-  ; Return address we got is the address we need +1, so fix it
-  dec16 ScriptPtr
+  ; Return address we got is the address we need -1, so fix it
+  inc16 ScriptPtr
   jmp ScriptLoop
 .endproc
 
@@ -176,10 +176,6 @@ StartCutsceneSkip = StartCutscene::SkipTheScript
 .endproc
 
 .proc ScriptLoopInit
-  lda #<ScriptBRK
-  sta IRQAddress+0
-  lda #>ScriptBRK
-  sta IRQAddress+1
   lda #DIALOG_BANK
   jsr SetPRG
 .endproc

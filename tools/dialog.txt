@@ -3,7 +3,7 @@
 :jsr LoadExpositionGraphics
 :lda #' '
 :jsr ClearNameCustom
-:brk
+:jsr ScriptBRK
 `ground
 `image $a6, $21, <$22ae, >$22ae
 `monotext ExpositionText1
@@ -374,7 +374,7 @@
 :ldx CutsceneOldSP
 :txs
 :jmp StartCutsceneSkip
-:brk
+:jsr ScriptBRK
 `end
 
 `#---MISC STUFF---
@@ -554,7 +554,7 @@ Down+B: Drop bomb
 :jsr InventoryGiveItem
 :dec 0
 :bne :-
-:brk
+:jsr ScriptBRK
 `end
 
 
