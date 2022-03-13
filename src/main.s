@@ -122,7 +122,7 @@
   NoUploadTile:
 
   ; Queue for up to four single-byte changes
-  .repeat 4, I ; change if the max number of tile changes per frame is changed
+  .repeat ::MaxNumTileUpdates, I
     lda TileUpdateA1+I
     beq :+
       sta PPUADDR
@@ -136,7 +136,7 @@
   .endrep
 
   ; Queue for up to four changes the size of a block
-  .repeat 4, I
+  .repeat ::MaxNumBlockUpdates, I
     lda BlockUpdateA1+I
     beq :+
       sta PPUADDR
