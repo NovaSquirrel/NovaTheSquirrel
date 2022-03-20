@@ -117,6 +117,7 @@ SANDBOX_LEVEL = (8*5)+4 ; level number used for the sandbox
   EFFECT
 .endenum
 
+
 .macro RealXPosToScreenPos RealLo, RealHi, Store
   lda RealHi
   sta Store
@@ -183,6 +184,20 @@ SANDBOX_LEVEL = (8*5)+4 ; level number used for the sandbox
   sta Store
 
   lda RealHi,y
+  .repeat 4
+    lsr
+    ror Store
+  .endrep
+.endmacro
+
+; TODO: move remaining things off of this (the metasprite draw code - remember there's one in object2.s too)
+.macro OldRealXPosToScreenPosByX RealLo, RealHi, Store
+  lda RealLo,x
+  sub ScrollX+0
+  sta Store
+
+  lda RealHi,x
+  sbc ScrollX+1
   .repeat 4
     lsr
     ror Store

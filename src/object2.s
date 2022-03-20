@@ -1141,7 +1141,7 @@ YOffset     = LevelDecodePointer+1
   ldx TempX ; we need the object slot index again to read the object's X position
 
 ; --- compute the X and Y positions ---
-  RealXPosToScreenPosByX ObjectPXL, ObjectPXH, O_RAM::OBJ_DRAWX
+  OldRealXPosToScreenPosByX ObjectPXL, ObjectPXH, O_RAM::OBJ_DRAWX
 ;  sta HighX
 
   ; divide the columns by 3
