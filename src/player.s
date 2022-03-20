@@ -649,7 +649,7 @@ NotWalk:
   beq :+
     lda PlayerVXH
     bmi IsMoving
-    lsr Temp
+    ;lsr Temp
   :
   lda keydown
   and #KEY_RIGHT
@@ -659,7 +659,7 @@ NotWalk:
     beq Stopped
     lda PlayerVXH
     bpl IsMoving
-    lsr Temp
+    ;lsr Temp
   :
 .endif
 ;  lda keydown
