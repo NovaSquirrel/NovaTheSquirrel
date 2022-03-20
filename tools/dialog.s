@@ -697,8 +697,8 @@ AboutLaser:
 .byt SCR::END_SCRIPT
 SignAboutInsane2b:
 .byt SCR::SCENE, SCENES::NOVA_AND_SIGN
-; <1 SIGN>I, the sign, have loaded tons of placeable rails into your inventory. If the minecarts give you too much trouble, be a wimp and use blocks.
-.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "I", $f4, $a1, " ", "s", "i", "g", "n", $f4, $9a, "l", "o", $f6, $d5, $bb, "n", "s", SCR::NEWLINE, $bc, "p", "l", "a", "c", $eb, "b", "l", $e6, "r", "a", $db, $fb, $d7, $ba, $90, SCR::NEWLINE, $d7, "v", $e5, $bb, "r", "y", $f5, "I", "f", " ", $a1, " ", "m", $d7, "e", "c", "a", $ed, "s", SCR::NEWLINE, "g", "i", "v", $e6, $a5, " ", $bb, "o", " ", "m", "u", $e1, " ", $f9, $f3, "b", "l", "e", $f4, "b", "e", SCR::NEWLINE, $bd, "w", "i", "m", "p", " ", $a3, "u", $e4, " ", "b", "l", "o", $f2, "s", "."
+; <1 SIGN>I, the sign, have loaded tons of placeable rails into your inventory. If the minecarts give you too much trouble, it's ok to use blocks instead!
+.byt SCR::SAY, SCR::SPEAKER_1|CHAR::SIGN, "I", $f4, $a1, " ", "s", "i", "g", "n", $f4, $9a, "l", "o", $f6, $d5, $bb, "n", "s", SCR::NEWLINE, $bc, "p", "l", "a", "c", $eb, "b", "l", $e6, "r", "a", $db, $fb, $d7, $ba, $90, SCR::NEWLINE, $d7, "v", $e5, $bb, "r", "y", $f5, "I", "f", " ", $a1, " ", "m", $d7, "e", "c", "a", $ed, "s", SCR::NEWLINE, "g", "i", "v", $e6, $a5, " ", $bb, "o", " ", "m", "u", $e1, " ", $f9, $f3, "b", "l", "e", ",", SCR::NEWLINE, "i", "t", $e8, "o", "k", " ", $ba, "u", $e4, " ", "b", "l", "o", $f2, $fb, $d7, $dd, $eb, "d", "!"
 .byt SCR::RUN_ASM
 lda #99
 sta 0

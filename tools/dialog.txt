@@ -539,7 +539,7 @@ Down+B: Drop bomb
 
 :SignAboutInsane2b:
 `scene NOVA_AND_SIGN
-<1 SIGN>I, the sign, have loaded tons of placeable rails into your inventory. If the minecarts give you too much trouble, be a wimp and use blocks.
+<1 SIGN>I, the sign, have loaded tons of placeable rails into your inventory. If the minecarts give you too much trouble, it's ok to use blocks instead!
 `asm
 :lda #99
 :sta 0
