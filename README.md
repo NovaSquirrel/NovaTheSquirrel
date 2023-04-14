@@ -19,6 +19,20 @@ There is a level editor named [PrincessEdit](https://github.com/NovaSquirrel/Pri
 
 This project was originally also intended to provide a good platformer base like Super Mario World tends to serve, without copyright infringement.
 
+Building
+========
+In order to build the game, you will need Python 3 and [cc65](https://cc65.github.io/). Python 3 is optional and is only required if you want to modify any levels or graphics, as the repository contains pre-compressed versions of both.
+
+After having those installed, you can run `mk.bat` to build the game, or copy and paste the commands out of there to run them separately if you wish.
+
+-------
+
+Some of the data is kept in a human-friendly format and needs to be converted into a game-friendly format, so if you want to modify it then you also need to build a few tools. In the `tools` directory there's `tblmake.c` and `mkdialog.c` which can both be built with `gcc tblmake.c -o tblmake` and `gcc mkdialog.c -o mkdialog` or something equivalent for your C compiler of choice.
+
+From here, there are `.bat` files that use these programs to re-convert assets, and there's another `.bat` to re-convert and re-compress the title screen in the `title` directory.
+
+Individual graphics files in the `chr` directory can be compressed with `py -3 pb53.py -i graphic_name.chr -o graphic_name.pb53 --raw`
+
 License
 =======
 All code is available under the [GPL license version 3](https://www.gnu.org/licenses/gpl-3.0.en.html) or later.
