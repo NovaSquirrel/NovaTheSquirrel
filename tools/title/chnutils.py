@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Nametable compression for cut scenes
-# Copyright 2011-2012 Damian Yerrick
+# Copyright 2011-2015 Damian Yerrick
 #
 # Copying and distribution of this file, with or without
 # modification, are permitted in any medium without royalty
@@ -79,6 +79,7 @@ def compress_nt(ntdata):
         else:
             nbits = row[2]
             if idx >= 1 << nbits:
-                print >>red, "index FAIL! %d can't fit in %d bits" % (idx, nbits)
+                print("index FAIL! %d can't fit in %d bits" % (idx, nbits),
+                      file=red)
             out.append(idx, nbits + 1)
     return str(out)

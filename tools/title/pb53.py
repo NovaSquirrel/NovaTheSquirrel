@@ -1,5 +1,13 @@
-#!/usr/bin/env python
-from __future__ import division
+#!/usr/bin/env python3
+#
+# RLE compression tool for Action 53
+# Copyright 2012-2015 Damian Yerrick
+#
+# Copying and distribution of this file, with or without
+# modification, are permitted in any medium without royalty
+# provided the copyright notice and this notice are preserved.
+# This file is offered as-is, without any warranty.
+#
 """
 
 The compression format deals with 16-byte chunks considered as 8x8
@@ -20,12 +28,11 @@ pixel tiles with two bit planes.  Possible formats are as follows:
 """
 
 def pb8_oneplane(planedata, topValue=None):
-    ctile = [0]
+    ctile = bytearray([0])
     lastc = topValue
     flag = 0
     for c in planedata:
         flag = flag << 1
-        c = ord(c)
         if c == lastc:
             flag = flag | 1
         else:
@@ -34,53 +41,56 @@ def pb8_oneplane(planedata, topValue=None):
     ctile[0] = flag
     return ctile
 
-def pb53(chrdata):
+def pb53(chrdata, segsize=4096, copyprev=True):
     """Compress tile data with PB53.
+
+chrdata -- byte string
+segsize -- length of each segment
+copyprev -- if enabled, allow tiles to reference the same numbered
+tile in the previous segment
 
 Return (pb53data, seekpoints)
 pb53 is the compressed data
 seekpoints is an array of indices of the start of the compressed data
-for each 4096-byte unit after the first
+for each segment after the first
 
 """
-    from array import array
-    from binascii import b2a_hex
-
-    out = array('B')
+    out = bytearray()
     seekpoints = []
 
     for i in range(0, len(chrdata), 16):
-        if i > 0 and i % 4096 == 0:
+        is_first_in_seg = i % segsize == 0
+        if i > 0 and is_first_in_seg:
             seekpoints.append(len(out))
         tile = chrdata[i:i + 16]
-        asInts = array('B', tile)
-
-        solid0 = (asInts[0] in (0x00, 0xFF)
-                  and all(x == tile[0] for x in tile[1:8]))
-        solid1 = (asInts[8] in (0x00, 0xFF)
-                  and all(x == tile[8] for x in tile[9:16]))
+        if len(tile) < 16:
+            tile = bytearray(tile)
+            tile.extend(bytearray(16 - len(tile)))
 
         # Solid color tiles: $84-$87
+        solid0 = (tile[0] in (0x00, 0xFF)
+                  and all(x == tile[0] for x in tile[1:8]))
+        solid1 = (tile[8] in (0x00, 0xFF)
+                  and all(x == tile[8] for x in tile[9:16]))
         if solid0 and solid1:
-            ctrlbyte = 0x84 | (0x02 & asInts[8]) | (0x01 & asInts[0])
+            ctrlbyte = 0x84 | (0x02 & tile[8]) | (0x01 & tile[0])
             out.append(ctrlbyte)
             continue
 
-        # Duplicate previous tile: $82
-        if i >= 16 and chrdata[i - 16:i] == tile:
-            ctrlbyte = 0x82
-            out.append(ctrlbyte)
+        # Duplicate previous tile in same segment: $82
+        if not is_first_in_seg and chrdata[i - 16:i] == tile:
+            out.append(0x82)
             continue
 
-        # Duplicate tile from previous pattern table: $83
-        if i >= 4096 and chrdata[i - 4096:i - 4080] == tile:
-            ctrlbyte = 0x83
-            out.append(ctrlbyte)
+        # Duplicate tile from previous segment: $83
+        if (copyprev and i >= segsize
+            and chrdata[i - segsize:i - segsize + 16] == tile):
+            out.append(0x83)
             continue
 
         # Encode first plane
         if solid0:
-            ctrlbyte = 0x80 | (0x01 & asInts[0])
+            ctrlbyte = 0x80 | (0x01 & tile[0])
             out.append(ctrlbyte)
         else:
             pb = pb8_oneplane(tile[0:8])
@@ -88,36 +98,35 @@ for each 4096-byte unit after the first
 
         # Encode second plane
         if solid1:
-            ctrlbyte = 0x80 | (0x01 & asInts[8])
+            ctrlbyte = 0x80 | (0x01 & tile[8])
             out.append(ctrlbyte)
         elif tile[0:8] == tile[8:16]:
             # Colors 0 and 3
             ctrlbyte = 0x82
             out.append(ctrlbyte)
-        elif all(a ^ b == 0xFF for (a, b) in zip(asInts[0:8], asInts[8:16])):
+        elif all(a ^ b == 0xFF for (a, b) in zip(tile[0:8], tile[8:16])):
             # Colors 1 and 2
             ctrlbyte = 0x83
             out.append(ctrlbyte)
         else:
             pb = pb8_oneplane(tile[8:16])
             out.extend(pb)
-    return (out.tostring(), seekpoints)
+    return (out, seekpoints)
 
 def unpb53plane(ctrlbyte, it):
     if ctrlbyte >= 0x80:
         # Solid plane
         p0data = 0xFF if (ctrlbyte & 0x01) else 0x00
         return ([p0data] * 8)
-    p0data = [it.next()]
+    p0data = [next(it)]
     while len(p0data) < 8:
         ctrlbyte = ctrlbyte << 1
-        p0data.append(p0data[-1] if ctrlbyte & 0x80 else it.next())
+        p0data.append(p0data[-1] if ctrlbyte & 0x80 else next(it))
     return p0data
     
-def unpb53(data, numTiles=None):
-    from array import array
-    out = array('B')
-    it = (ord(c) for c in data)
+def unpb53(data, numTiles=None, segsize=4096):
+    out = bytearray()
+    it = iter(data)
     for ctrlbyte in it:
         if numTiles is not None and len(out) >= numTiles * 16:
             break
@@ -137,12 +146,12 @@ def unpb53(data, numTiles=None):
 
         if ctrlbyte == 0x83:
             # Repeat corresponding tile from other bank
-            out.extend(out[-4096:-4080])
+            out.extend(out[-segsize:-segsize + 16])
             continue
 
         # Decode each plane
         out.extend(unpb53plane(ctrlbyte, it))
-        ctrlbyte = it.next()
+        ctrlbyte = next(it)
         if ctrlbyte in (0x82, 0x83):
             # 2-color plane, colors 0/3 or 1/2
             xorbyte = 0xFF if (ctrlbyte & 0x01) else 0x00
@@ -150,12 +159,10 @@ def unpb53(data, numTiles=None):
         else:
             out.extend(unpb53plane(ctrlbyte, it))
 
-
-    return out.tostring()
+    return out
 
 roms = [
     '../../my_games/Concentration Room 0.02.nes',
-    '../../my_games/lj65 0.41.nes',
     '../roms/Zooming_Secretary.nes',
     '../../compomenu/roms/fhbg.nes',
     '../../compomenu/roms/lan.nes',
@@ -170,15 +177,15 @@ def test():
     for filename in roms:
         rom = ines.load_ines(filename)
         (data, seekpoints) = pb53(rom['chr'])
-        print "%s: compressed %s to %s" % (filename, len(rom['chr']), len(data))
-        print "seekpoints:", seekpoints
+        print("%s: compressed %s to %s\nseekpoints: %s"
+              % (filename, len(rom['chr']), len(data), seekpoints))
         unpacked = unpb53(data)
         if unpacked != rom['chr']:
             diffs = [i if a != b else None
                      for (i, (a, b)) in enumerate(zip(rom['chr'], unpacked))]
-            print "unpacked different starting at", diffs[0]
+            print("unpacked different starting at", diffs[0])
         else:
-            print "unpack ok"
+            print("unpack ok")
   
 def parse_argv(argv):
     from optparse import OptionParser
@@ -186,8 +193,14 @@ def parse_argv(argv):
     parser.add_option("-d", "--unpack", dest="unpacking",
                       help="unpack instead of packing",
                       action="store_true", default=False)
+    parser.add_option("--block-size", dest="blocksize",
+                      help="compress SIZE 16-byte units per segment (default 256)", metavar="SIZE",
+                      type="int", default=256)
+    parser.add_option("--no-prev", dest="copyprev",
+                      help="don't use references to previous block",
+                      action="store_false", default=True)
     parser.add_option("--raw", dest="withHeader",
-                      help="don't write 2-byte length header",
+                      help="don't write 2-byte length and segment seek points",
                       action="store_false", default=True)
     parser.add_option("-i", "--input", dest="infilename",
                       help="read input from INFILE", metavar="INFILE")
@@ -200,7 +213,7 @@ def parse_argv(argv):
     infilename = options.infilename
     if infilename is None:
         try:
-            infilename = argsreader.next()
+            infilename = next(argsreader)
         except StopIteration:
             infilename = '-'
     if infilename == '-' and options.unpacking:
@@ -211,7 +224,7 @@ def parse_argv(argv):
     outfilename = options.outfilename
     if outfilename is None:
         try:
-            outfilename = argsreader.next()
+            outfilename = next(argsreader)
         except StopIteration:
             outfilename = '-'
     if outfilename == '-' and not options.unpacking:
@@ -219,7 +232,8 @@ def parse_argv(argv):
         if sys.stdout.isatty():
             raise ValueError('cannot compress to terminal')
 
-    return (infilename, outfilename, options.unpacking, options.withHeader)
+    return (infilename, outfilename, options.unpacking,
+            options.blocksize, options.copyprev, options.withHeader)
 
 argvTestingMode = True
 
@@ -229,10 +243,11 @@ def main(argv=None):
         argv = sys.argv
         if (argvTestingMode and len(argv) < 2
             and sys.stdin.isatty() and sys.stdout.isatty()):
-            argv.extend(raw_input('args:').split())
+            argv.extend(input('args:').split())
     try:
-        (infilename, outfilename, unpacking, withHeader) = parse_argv(argv)
-    except StandardError, e:
+        (infilename, outfilename, unpacking,
+         blocksize, copyprev, withHeader) = parse_argv(argv)
+    except Exception as e:
         import sys
         sys.stderr.write("%s: %s\n" % (argv[0], str(e)))
         sys.exit(1)
@@ -254,21 +269,16 @@ def main(argv=None):
 
         # Decompress input file
         if withHeader:
-            numTiles = ord(data[0]) * 256 + ord(data[1])
+            numTiles = data[0] * 256 + data[1]
             startOffset = -((-numTiles) // 256) * 2
         else:
             numTiles = None
             startOffset = 0
-        outdata = unpb53(data[startOffset:])
-        if maxlength is not None:
-            if len(outdata) < maxlength:
-                raise IndexError('incomplete chunk')
-            if len(outdata) > maxlength:
-                outdata = outdata[:maxlength]
+        outdata = unpb53(data[startOffset:], blocksize * 16, copyprev)
     else:
 
         # Compress input file
-        (outdata, seekpoints) = pb53(data)
+        (outdata, seekpoints) = pb53(data, blocksize * 16, copyprev)
         if withHeader:
 
             # The .pb53 header is the unpacked length in 16-byte units,
@@ -276,8 +286,8 @@ def main(argv=None):
             sz = (len(data) // 16) % 0x10000
             headerwords = [sz]
             headerwords.extend(seekpoints)
-            header = "".join("".join((chr((sz >> 8) & 0xFF), chr(sz & 0xFF)))
-                             for sz in headerwords)
+            header = b"".join(bytes([(sz >> 8) & 0xFF, sz & 0xFF])
+                              for sz in headerwords)
             outdata = header + outdata
     
     # Read input file
